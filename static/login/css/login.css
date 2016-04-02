@@ -1,0 +1,71 @@
+.login-row{
+	max-width: 450px;
+	margin: 0 auto;
+}
+
+#lower-bar{
+	width: 100%;
+	height: 5px;
+}
+
+.bar{
+	float: left;
+	width: 25%;
+	height: 100%;
+}
+
+#red-bar{
+	background-color: #E0424E;
+}
+
+#green-bar{
+	background-color: #009065;
+}
+
+#yellow-bar{
+	background-color: #F2AE47;
+}
+
+#blue-bar{
+	background-color: #006E9C;
+}
+
+.login-row:last-child > span{
+	font-size: 10pt;
+}
+
+.login-row > h1{
+	font-weight: normal;
+	margin: 0;
+}
+
+.login-input{
+	width: 100%;
+	margin-top: 20px;
+	box-sizing: border-box;
+}
+
+.login-input > input[type="text"], .login-input > input[type="password"] {
+	width: 100%;
+	outline: none;
+	padding: 5px;
+	border-radius: 3px;
+	border: 1px solid #C9C9C9;
+	box-sizing: border-box;
+}
+
+.login-input > input[type="submit"]{
+	background-color: #ee8755;
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	font-weight: normal;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.login-input > input[type="submit"]:hover{
+	transition: all 0.3s;
+	background-color: #0077ad;
+}

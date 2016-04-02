@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<title>Laboratorio de Microbiología Molecular y Biotecnología Ambiental | Universidad Técnica Federíco Santa María</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/header.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/body.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/footer.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'login/css/signin.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/home.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/upload.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/plus-font.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="icon" href="{% static 'shared/images/icon.ico' %}">
+
+		<!--Javascript-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="{% static 'intranet/js/upload.js' %}"></script>
+		<script src="{% static 'intranet/js/pdf.js' %}"></script>
+	</head>
+	<body>
+		<div id="header">
+			<div id="top-bar">
+				<div id="top-bar-grid" class="grid">
+					<ul id="breadcrumbs">
+						<li><a href="http://www.usm.cl">USM.cl</a></li>
+						<li><a href="#">Laboratorio de Microbiología Molecular y Biotecnología Ambiental</a></li>
+					</ul>
+					<ul id="top-bar-nav">
+						<!--<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
+						<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
+						<li><a href="#">Contacto</a></li>-->
+						{% if request.user.is_authenticated == False %}
+							<li><a href="{% url 'login' %}">Ingresar</a></li>
+						{% else %}
+							<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+						{% endif %}
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div id="lower-side" class="grid">
+				<div id="brand-images">
+					<a id="usm-logo" href="{% url 'home' %}"><img src="{% static 'shared/images/header-usm.png' %}" alt="Universidad Técnica Federíco Santa María"></a>
+					<a id="labmmba-logo" href="{% url 'home' %}"><img src="{% static 'shared/images/labmmba1.png' %}" alt="Laboratorio de Microbiología Molecular y Biotecnología Ambiental"></a>
+					<button id="resp-btn-menu"><i class="fa fa-bars"></i></button>
+					<div class="clear"></div>
+				</div>
+				<div class="navbar">
+					<ul class="navigator">
+						<li><a href="#" {% if current_view == "1" %} class="nav-selected" {% endif %}>Areas de Investigación</a></li>
+						<li><a href="#" {% if current_view == "2" %} class="nav-selected" {% endif %}>Cooperación</a></li>
+						<li><a href="{% url 'about' %}" {% if current_view == "about" %} class="nav-selected" {% endif %}>Sobre Nosotros</a></li>
+						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>Ubicación</a></li>
+						{% if request.user.is_authenticated == True %}
+							<li><a href="{% url 'intranet' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>Intranet</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="responsive-menu" class="responsive-menu-close">
+			<ul>
+				<li><a href="#" >Areas de Investigación</a></li>
+				<li><a href="#" >Cooperación</a></li>
+				<li><a href="{% url 'about' %}" >Sobre Nosotros</a></li>
+				<li><a href="#">Ubicación</a></li>
+				{% if request.user.is_authenticated == True %}
+					<li><a href="{% url 'intranet' %}">Intranet</a></li>
+				{% endif %}
+			</ul>
+			<ul>
+				<!--<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
+				<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
+				<li><a href="#">Contacto</a></li>-->
+				{% if request.user.is_authenticated == False %}
+					<li><a href="{% url 'login' %}">Ingresar</a></li>
+				{% else %}
+					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+				{% endif %}
+			</ul>
+		</div>
+		{% if current_view == "home" %}
+		<div id="home-image">
+			<img src="{% static 'shared/images/home3.jpg' %}">
+		</div>
+		{% endif %}
+		{% if request.user.is_authenticated == False %}
+			<script>
+			$('#resp-btn-menu').click(function(){
+				if($('#responsive-menu').hasClass('responsive-menu-close'))
+					$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open');
+				else
+					$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open');				
+			});
+			</script>
+		{% else %}
+			<script>
+			$('#resp-btn-menu').click(function(){
+				if($('#responsive-menu').hasClass('responsive-menu-close'))
+					$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open-v2');
+				else
+					$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open-v2');				
+			});
+			</script>
+		{% endif %}
+		<div id="body">
+			{% block content %}{% endblock %}
+		</div>
+		<div id="footer">
+			<div class="row grid">
+				<div class="navbar">
+					<ul class="navigator">
+						<li><a href="#" {% if current_view == "1" %} class="nav-selected" {% endif %}>Areas de Investigación</a></li>
+						<li><a href="#" {% if current_view == "2" %} class="nav-selected" {% endif %}>Cooperación</a></li>
+						<li><a href="{% url 'about' %}" {% if current_view == "about" %} class="nav-selected" {% endif %}>Sobre Nosotros</a></li>
+						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>Ubicación</a></li>
+						{% if request.user.is_authenticated == True %}
+							<li><a href="{% url 'intranet' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>Intranet</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+			<div class="row grid">
+				<div id="footer-info">
+					<p>Laboratorio de Microbiología Molecular y Biotecnología Ambiental</p>
+					<p>© Universidad Técnica Federico Santa María </p>
+					<p>Avenida España 1680, Edificio B 3° piso, Valparaíso · +56 32 1234 567 · <a class="simple-link" href="mailto:labmmba@usm.cl">labmmba@usm.cl</a></p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</body>
+</html>

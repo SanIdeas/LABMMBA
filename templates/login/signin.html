@@ -1,0 +1,71 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+<div class="grid row">
+	<div id="content">
+		<div class="signin-row">
+			<h1>Registro</h1>
+			<span>Crea una cuenta de usuario en el sistema Labmmba</span>
+			<form action="{% url 'signin' %}" method="POST">
+				<div id="left-form">
+					 <div class="row">
+						<div class="login-input">
+							<span>Correo electronico</span>
+							<input type="text" name="email" required>						
+						</div>
+						<div class="login-input">
+							<span>Nombre</span>
+							<input type="text" name="first_name" required>						
+						</div>
+						<div class="login-input">
+							<span>Apellido</span>
+							<input type="text" name="last_name" required>						
+						</div>
+						<div class="login-input">
+							<span>Contraseña</span>
+							<input type="password" name="password" required>						
+						</div>
+					</div>
+				</div>
+				<div id="right-form">
+					<div class="row">
+						<div class="login-input">
+							<span>Institución</span>
+							<input type="text" name="institution" required>						
+						</div>
+						<div class="login-input">
+							<span>Pais</span>
+							<input type="text" name="country" required>						
+						</div>
+						<div class="login-input">
+							<span>Area</span>
+							<select class="select" name="area" required>
+								<option selected disabled>Selecciona un area</option>
+								{% for area in areas %}
+									<option value="{{ area.id }}">{{ area.name }}</option>
+								{% endfor %}
+							</select>				
+						</div>
+						<div class="login-input">
+							<span>Carrera</span>
+							<input type="text" name="career">						
+						</div>
+					</div>
+				</div>
+				<div class="login-input signin-submit">
+					<input type="submit" value="Enviar">						
+				</div>
+				{% csrf_token %}
+			</form>
+			<div id="lower-bar">
+				<div id="red-bar" class="bar"></div>
+				<div id="green-bar" class="bar"></div>					
+				<div id="yellow-bar" class="bar"></div>	
+				<div id="blue-bar" class="bar"></div>	
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
