@@ -1,0 +1,16 @@
+[
+{
+  "model": "login.area",
+  "pk": 1,
+  "fields": {
+    "name": "Microbiolog\u00eda Molecular"
+  }
+},
+{
+  "model": "login.area",
+  "pk": 2,
+  "fields": {
+    "name": "Biotecnolog\u00eda Ambiental"
+  }
+}
+]

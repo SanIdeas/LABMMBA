@@ -127,10 +127,34 @@
 	width: 100%;
 	padding: 10px 20px;
 	box-sizing: border-box;
+	transition: background-color .3s;
+	cursor: pointer;
 }
 
 .result > ul > li:nth-child(2n+1){
 	background-color: #F8F8F8;
+}
+
+/*Search*/
+
+.result > ul > li > h4{
+	margin: 0px;
+}
+
+.result > ul > li > span{
+	margin: 0px;
+	font-size: 13px;
+    color: #009065;
+}
+
+.result > ul > li > p{
+	margin: 0px;
+	font-size: 13px;
+}
+
+.result > ul > li:hover{
+	background-color: #F0F0F0;
+	transition: background-color .3s;
 }
 
 @media screen and (max-width: 700px){

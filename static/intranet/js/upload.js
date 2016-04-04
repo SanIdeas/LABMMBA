@@ -53,7 +53,7 @@ function replaceValues(object){
 		var year = object["CreationDate"].substr(2, 4);
 		var month = object["CreationDate"].substr(6, 2);
 		var day = object["CreationDate"].substr(8, 2);
-		var date = day + '/' + month + '/' + year;
+		var date = year + '-' + month + '-' + day;
 
 		input.val(date);
 		input.prop('readOnly', true);

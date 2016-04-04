@@ -50,7 +50,7 @@
 	float: right;
 }
 
-.upload-row > input[type="text"]{
+.upload-row > input[type="text"], .upload-row > input[type="date"]{
 	width: 300px;
 	border: none;
 	padding: 5px;

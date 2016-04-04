@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 
 # Create your views here.
 
+
+
 def login(request):
 	if request.method == "GET":
 		if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
