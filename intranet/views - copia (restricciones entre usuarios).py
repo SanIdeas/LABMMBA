@@ -13,7 +13,7 @@ from django.utils.encoding import smart_str
 
 def home(request, search=None):
 	if request.user.is_authenticated() == True:
-		all_docs = Document.objects.all()
+		all_docs = Document.objects.filter((Q(type=False) | (Q(type=True) & Q(owner=request.user))))#Todos los documentos publicos y propios(ya sean publicos o privados)
 		if search is None: #Si no es una busqueda
 			documents = all_docs
 		else:
@@ -54,20 +54,22 @@ def upload(request):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
-def pdf_viewer(request, title=None, author=None):
-	try:
-		document = Document.objects.get(title=title, author=author)
-	except Document.DoesNotExist:
-		document = None
-	if document is not None:
-		if ((document.type and document.owner == request.user) or not document.type):
-			print '----------------', document.document.url
-			#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
-			pdf = open(document.document.url, 'rb')
-			response =  HttpResponse(pdf, content_type='application/pdf')
-			response['Content-Disposition'] = 'inline;filename=some_file.pdf'.replace('some_file',title)
-			return response
+def pdf_viewer(request, filename=None):
+	if request.user.is_authenticated():
+		try:
+			document = Document.objects.get(title=filename)
+		except Document.DoesNotExist:
+			document = None
+		if document is not None:
+			if ((document.type and document.owner == request.user) or not document.type):
+				#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
+				pdf = open(document.document.url, 'rb')
+				response =  HttpResponse(pdf, content_type='application/pdf')
+				response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+				return response
+			else:
+				return HttpResponse('No posees permisos para ver el documento: ' + filename)
 		else:
-			return HttpResponse('Debes tener una cuenta para visualizar este archivo.')
+			return HttpResponse('No se encontraron documentos con el nombre: ' + filename)
 	else:
-		return HttpResponse('No se encontraron documentos con el nombre: ' + title)		
+		return HttpResponse('Debes tener una cuenta para visualizar los archivos.')

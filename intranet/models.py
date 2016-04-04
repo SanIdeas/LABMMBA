@@ -25,6 +25,7 @@ class Document(models.Model):
 	#Retorna el nombre completo del duenno.
 	def owner_name(self):
 		return self.owner.first_name + ' ' + self.owner.last_name
+
 	
 	#Dado una lista de palabras(words). Si todas coinciden con al menos un campo de la fila, retorna True.
 	def match(self, words):

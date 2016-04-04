@@ -58,6 +58,8 @@
 						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>Ubicación</a></li>
 						{% if request.user.is_authenticated == True %}
 							<li><a href="{% url 'intranet' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>Intranet</a></li>
+						{% else %}
+							<li><a href="{% url 'publications' %}" {% if current_view == "publications" %} class="nav-selected" {% endif %}>Publicaciones</a></li>
 						{% endif %}
 					</ul>
 				</div>
@@ -71,6 +73,8 @@
 				<li><a href="#">Ubicación</a></li>
 				{% if request.user.is_authenticated == True %}
 					<li><a href="{% url 'intranet' %}">Intranet</a></li>
+				{% else %}
+					<li><a href="{% url 'publications' %}">Publicaciones</a></li>
 				{% endif %}
 			</ul>
 			<ul>
@@ -93,15 +97,6 @@
 			<script>
 			$('#resp-btn-menu').click(function(){
 				if($('#responsive-menu').hasClass('responsive-menu-close'))
-					$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open');
-				else
-					$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open');				
-			});
-			</script>
-		{% else %}
-			<script>
-			$('#resp-btn-menu').click(function(){
-				if($('#responsive-menu').hasClass('responsive-menu-close'))
 					$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open-v2');
 				else
 					$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open-v2');				
@@ -121,6 +116,8 @@
 						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>Ubicación</a></li>
 						{% if request.user.is_authenticated == True %}
 							<li><a href="{% url 'intranet' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>Intranet</a></li>
+						{% else %}
+							<li><a href="{% url 'publications' %}" {% if current_view == "publications" %} class="nav-selected" {% endif %}>Publicaciones</a></li>
 						{% endif %}
 					</ul>
 				</div>

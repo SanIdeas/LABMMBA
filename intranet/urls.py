@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'search/(?P<search>.*)/$', views.home, name="intranet_search"),
     url(r'^profile/$', views.profile, name="profile"),
     url(r'^upload/$', views.upload, name='upload'),
+    url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
 ]
