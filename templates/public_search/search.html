@@ -37,15 +37,17 @@
 		{% else %}
 			<table>
 				<tr>
-					<th>Nombre</th>
-					<th>Autor(es)</th>
-					<th>Fecha</th>
+					<th class="col1">Autor(es)</th>
+					<th class="col2">Titulo</th>
+					<th class="col3">Año</th>
+					<th class="col5">Añadido</th>
 				</tr>
 				{% for document in documents%}
 					<tr class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-						<td>{{ document.title }}</td>
-						<td>{{ document.author }}</td>
-						<td>{{ document.date }}</td>
+						<td class="col1">{{ document.author }}</td>
+						<td class="col2">{{ document.title }}</td>
+						<td class="col3">{{ document.date|date:"Y" }}</td>
+						<td class="col5">{{ document.date_added }}</td>
 					</tr>
 				{% endfor %}
 		{% endif %}

@@ -50,6 +50,7 @@ class UserManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
+
 class Area(models.Model):
 	name = models.CharField(max_length=30)
 
@@ -72,3 +73,24 @@ class User(AbstractBaseUser):
 
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = ['first_name', 'last_name', 'institution', 'country', 'area', 'career']
+
+class Mendeley_credentials(models.Model):
+	state = models.CharField(max_length=100)
+	token_type = models.CharField(max_length=50) 
+	refresh_token = models.CharField(max_length=400)
+	msso = models.CharField(max_length=400)
+	access_token = models.CharField(max_length=400)
+	scope = models.CharField(max_length=10)
+	expires_in = models.IntegerField()
+	expires_at = models.DecimalField(max_digits=15, decimal_places=4)
+
+	def get_token(self):
+		token = {}
+		for field in self._meta.fields:
+			if field.name == 'scope':
+				scope_list = []
+				scope_list.append(getattr(self, field.name))
+				token[field.name] = scope_list
+			else:
+				token[field.name] = getattr(self, field.name)
+		return token

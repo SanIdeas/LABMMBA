@@ -4,6 +4,17 @@
 		{% load staticfiles %}
 		<title>Laboratorio de Microbiología Molecular y Biotecnología Ambiental | Universidad Técnica Federíco Santa María</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
+
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" value="summary">
+
+		<!-- Open Graph data -->
+		<meta property="og:title" content="Laboratorio de Microbiología Molecular y Biotecnología Ambiental" />
+		<meta property="og:type" content="article" />
+		<!--<meta property="og:url" content="http://www.ejemplo.com/" />-->
+		<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}" />
+		<meta property="og:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
 		<!-- Stylesheets -->
 		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/main.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/header.css' %}">
@@ -39,6 +50,7 @@
 						{% else %}
 							<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 						{% endif %}
+						<li><a href="#">English version</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -93,16 +105,14 @@
 			<img src="{% static 'shared/images/home3.jpg' %}">
 		</div>
 		{% endif %}
-		{% if request.user.is_authenticated == False %}
-			<script>
-			$('#resp-btn-menu').click(function(){
-				if($('#responsive-menu').hasClass('responsive-menu-close'))
-					$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open-v2');
-				else
-					$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open-v2');				
-			});
-			</script>
-		{% endif %}
+		<script>
+		$('#resp-btn-menu').click(function(){
+			if($('#responsive-menu').hasClass('responsive-menu-close'))
+				$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open-v2');
+			else
+				$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open-v2');				
+		});
+		</script>
 		<div id="body">
 			{% block content %}{% endblock %}
 		</div>

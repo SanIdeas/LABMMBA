@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from intranet.forms import DocumentForm
 from intranet.models import Document
+from login.views import get_mendeley_session
 from django.db.models import Q
 from login.models import User
 from unidecode import unidecode
@@ -42,13 +43,17 @@ def upload(request):
 		if request.method == "GET":
 			return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
 		else:
+			mendeley_session = get_mendeley_session()
+			#print [method for method in dir(request.FILES.read()) if callable(getattr(request.FILES.read(), method))]
 			request.POST['owner'] = User.objects.get(email=request.user.email)
 			form = DocumentForm(request.POST, request.FILES)
 			print form.errors
 			if form.is_valid():
 				final_form = form.save(commit=False)
 				final_form.owner = request.user
-				form.save()
+				document = form.save()
+				document = mendeley_session.documents.create_from_file(document.document.url)
+
 				return HttpResponseRedirect(reverse('upload'))
 			else:
 				return HttpResponseRedirect(reverse('upload'))

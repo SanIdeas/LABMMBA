@@ -1,8 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from login.models import User, Area
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from django.contrib.staticfiles.templatetags.staticfiles import static
+import os, datetime, base64, json, requests
+from intranet.models import Document
+
+
 
 # Create your views here.
 
@@ -16,7 +23,8 @@ def login(request):
 		email = request.POST['email']
 		password = request.POST['password']
 		user = authenticate(username=email, password=password)
-		if user is not None: #Si el usuario es autenticado se inicia sesion.
+		if user is not None: 
+		#Si el usuario es autenticado se inicia sesion.
 			auth_login(request, user)
 			return HttpResponseRedirect(reverse('intranet'))
 		else:
