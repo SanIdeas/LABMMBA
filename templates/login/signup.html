@@ -4,10 +4,10 @@
 
 <div class="grid row">
 	<div id="content">
-		<div class="signin-row">
+		<div class="signup-row">
 			<h1>Registro</h1>
 			<span>Crea una cuenta de usuario en el sistema Labmmba</span>
-			<form action="{% url 'signin' %}" method="POST">
+			<form action="{% url 'signup' %}" method="POST">
 				<div id="left-form">
 					 <div class="row">
 						<div class="login-input">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="login-input signin-submit">
+				<div class="login-input signup-submit">
 					<input type="submit" value="Enviar">						
 				</div>
 				{% csrf_token %}

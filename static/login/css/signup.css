@@ -1,9 +1,9 @@
-.signin-row{
+.signup-row{
 	max-width: 900px;
 	margin: 0 auto;
 }
 
-.signin-row > h1{
+.signup-row > h1{
 	font-weight: normal;
 	margin: 0;
 }
@@ -22,7 +22,7 @@
 	box-sizing: border-box;
 }
 
-.signin-submit{
+.signup-submit{
 	padding-bottom: 20px;
 }
 
