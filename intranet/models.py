@@ -47,7 +47,6 @@ class Document(models.Model):
 					if(not(word in unidecode(self.owner_name()).lower())):
 						result_owner = False
 				#Se revisa el texto plano.
-				print '------------------------------------'
 				for word in words:
 					text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
 					if(not(word in text)):
@@ -78,7 +77,5 @@ class Document(models.Model):
 						result = False
 				if result:
 					break
-		print self.title
-		print 'termina', result
 		ret = {'match': result, 'extract': extract}
 		return ret

@@ -26,9 +26,9 @@
 			<ul>
 				{% for document in documents %}
 				<li class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-					<h4 class='text-result'>{{ document.title }}</h4>
-					<span class='text-result'>{{ document.author }} -</span>
-					<span class='text-result'> {{ document.date }}</span>
+					<h4 class='text-result'> {{ document.title }} </h4>
+					<span class='text-result'> {{ document.author }} -</span>
+					<span class='text-result'> {{ document.date }} </span>
 					<p><strong>Dueño:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
 					<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
 					{% if document.extract != '' %}

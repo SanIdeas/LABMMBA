@@ -15,7 +15,6 @@ def search(request, search=None):
 			documents = all_docs
 		else:
 			split_search = unidecode(search.lower()).split(' ')
-			print '.................', split_search
 			documents = []
 			for document in all_docs:
 				result = document.match(split_search)

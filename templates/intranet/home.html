@@ -40,9 +40,9 @@
 				<ul>
 					{% for document in documents %}
 					<li class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-						<h4 class='text-result'> {{ document.title }}</h4>
+						<h4 class='text-result'> {{ document.title }} </h4>
 						<span class='text-result'> {{ document.author }} -</span>
-						<span class='text-result'> {{ document.date }}</span>
+						<span class='text-result'> {{ document.date }} </span>
 						<p><strong>Dueño:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
 						<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
 						{% if document.extract|length > 0 %}
@@ -55,10 +55,10 @@
 						console.log(search)
 						$('.text-result').each(function(){
 							for ( var i = 0; i< search.length; i++){
-								var html = $(this).html().toLowerCase();
+								var html = $(this).html();
 								console.log(search[i])
-								var re = new RegExp('^' + search[i].toLowerCase() + '| ' + search[i].toLowerCase(), 'g')
-								$(this).html(html.replace(re, ' <span class="word-result">' + search[i] + '</span> '));
+								var re = new RegExp('^' + search[i] + '| ' + search[i], 'gi')
+								$(this).html(html.replace(re, ' <span class="word-result">' + '$&'.replace(' ', '') + '</span> '));
 							}
 						});
 					</script>
