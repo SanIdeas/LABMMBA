@@ -30,10 +30,10 @@ def login(request):
 		else:
 			return render(request, 'login/login.html')
 
-def signup(request):
+def signin(request):
 	if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
 			if request.method == "GET":
-				return render(request, 'login/signup.html', {'areas': Area.objects.all()})
+				return render(request, 'login/signin.html', {'areas': Area.objects.all()})
 			else:
 				try:
 				    user = User.objects.get(email=request.POST['email'])
@@ -46,7 +46,7 @@ def signup(request):
 					auth_login(request, user)
 					return HttpResponseRedirect(reverse('intranet'))
 				else:
-					return render(request, 'login/signup.html', {'areas': Area.objects.all()})
+					return render(request, 'login/signin.html', {'areas': Area.objects.all()})
 	else:
 		return HttpResponseRedirect(reverse('intranet'))
 

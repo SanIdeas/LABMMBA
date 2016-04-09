@@ -10,17 +10,14 @@ def search(request, search=None):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect(reverse('intranet'))
 	else:
-		all_docs = Document.objects.filter(type=False)#Solo documentos publicos
+		all_docs = Document.objects.filter(type=False)
 		if search is None: #Si no es una busqueda
 			documents = all_docs
 		else:
-			split_search = unidecode(search.lower()).split(' ')
-			print '.................', split_search
+			split_search = unidecode(search.lower()).split(' ', 1)
 			documents = []
 			for document in all_docs:
-				if document.match(split_search)['match']:
-					if document.match(split_search)['extract'] != '':
-						setattr(document, 'extract', document.match(split_search)['extract'])
+				if document.match(split_search):
 					documents.append(document)
 		parameters = {'current_view': 'publications', 'documents': documents}
 		if search is not None:
