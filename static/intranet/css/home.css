@@ -158,6 +158,16 @@
 	transition: background-color .3s;
 }
 
+.word-result{
+	background-color: #F3E01F;
+}
+
+.long-text{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 700px){
 	.body{
 		width: 100%;
