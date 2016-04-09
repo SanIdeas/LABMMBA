@@ -78,7 +78,7 @@ class Document(models.Model):
 						result = False
 				if result:
 					break
-
+		print self.title
 		print 'termina', result
 		ret = {'match': result, 'extract': extract}
 		return ret

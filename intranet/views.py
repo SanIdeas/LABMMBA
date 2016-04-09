@@ -49,9 +49,10 @@ def home(request, search=None):
 			split_search = unidecode(search.lower()).split(' ')
 			documents = []
 			for document in all_docs:
-				if document.match(split_search)['match']:
-					if document.match(split_search)['extract'] != '':
-						setattr(document, 'extract', document.match(split_search)['extract'])
+				result = document.match(split_search)
+				if result['match']:
+					if result['extract'] != '':
+						setattr(document, 'extract', result['extract'])
 					documents.append(document)
 		parameters = {'current_view': 'intranet', 'documents': documents}
 		if search is not None:

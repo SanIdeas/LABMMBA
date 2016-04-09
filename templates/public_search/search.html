@@ -43,8 +43,8 @@
 						for ( var i = 0; i< search.length; i++){
 							var html = $(this).html();
 							console.log(search[i])
-							var re = new RegExp(' ' + search[i], 'g')
-							$(this).html(html.replace(re, ' <span class="word-result">' + search[i] + '</span> '));
+							var re = new RegExp('^' + search[i] + '| ' + search[i], 'gi')
+							$(this).html(html.replace(re, ' <span class="word-result">' + '$&'.replace(' ', '') + '</span> '));
 						}
 					});
 				</script>
