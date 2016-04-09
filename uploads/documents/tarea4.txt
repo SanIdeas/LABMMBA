@@ -1,0 +1,116 @@
+ili-255: introduccion a la informatica teorica
+
+inf-155: informatica teorica
+
+tarea #4
+
+feliz halloween les desean sus ejecutores
+
+horst von brand
+
+alondra rojas ruz
+
+alejandro sazo gomez
+
+martin villanueva
+
+31 de octubre 2014
+
+preguntas
+
+1. esboze como puede usarse la no decibilidad del problema de detectar hola, mundo para demostrar que deter-
+minar si alguna vez un programa (con una entrada dada) termina deteniendose, vale decir, no entra en un bucle
+innito al recibir dicha entrada, es no decidible.
+
+2. sea l = {w w r|w  
+
+} con  = {0,1}
+
+a) construya la tm que reconoce l . para ello explique como trabaja su maquina y muestre una tabla con la
+funcion de transicion  asociada. recuerde denir claramente la 7-tupla que compone la tm. la tabla debe
+tener el siguiente formato:
+
+q
+
+0
+
+1
+
+
+
+b
+
+
+
+
+
+cuadro 1: tabla de funcion de transicion generica
+
+b) muestre con descripciones instantaneas como funciona su maquina a traves de una cadena  tal que ||  5
+c) describa informalmente como podria implementar una tm multicinta para aceptar l .
+
+3. una descripcion de maquina de turing es que consta del alfabeto de cinta  (incluye , el alfabeto de entrada, y
+el simbolo blanco b  ), el conjunto nito q de estados que incluye q0 (inicial), qy (acepta) y qn (rechaza); y una
+funcion de transicion  : (q \{qy , qn })  q{1,+1}. la entrada es   
+, en posiciones 1 a || de la cinta, las
+demas contienen b. partiendo de los ejemplos 0 = 10010, 1 = 11011,  = {0,1,b},  = {0,1}, q = {q0, q1, q2, qy , qn }
+y  dada por la tabla:
+
+q
+q0
+q1
+q2
+
+0
+
+(q0,0,+1)
+(qy ,b,1)
+(qn ,b,1)
+
+1
+
+(q0,1,+1)
+(q2,1,+1)
+(qn ,b,1)
+
+b
+
+(q1,b,1)
+(qn ,b,1)
+(qy ,0,1)
+
+que operacion realiza la maquina sobre ?
+hint: interprete  y la operacion de forma no tan linguistica.
+
+condiciones generales
+
+la tarea se realizara individualmente (esto es grupos de una persona), sin excepciones.
+
+en caso de que se descubra copia, equivale a nota 0 para los estudiantes implicados.
+
+cada respuesta debe estar correctamente justicada, en caso contrario el puntaje obtenido queda sujeto al criterio
+de los ayudantes.
+
+la tarea debe ser realizada en latex.
+
+la tarea debe ser entregada impresa en la secretaria docente de informatica (piso 1, edicio f3) el dia indicado en
+moodle.
+
+debera subir los fuentes latex de su solucion y el pdf en un tarball en el area designada al efecto en moodle bajo
+el formato tarea4-rol.tar.gz. el archivo debe contener el directorio tarea4-rol , en el cual estan los archivos
+pedidos (fuentes y pdf o los que sean requeridos).
+
+por cada dia de atraso se descontaran 20 puntos. a partir del tercer dia de atraso no se reciben mas tareas y la nota
+es automaticamente cero.
+
+la nota de la tarea puede ser segun lo entregado, o (en el caso de algunos estudiantes elegidos al azar) el resultado de
+una interrogacion en que debera explicar lo entregado. no presentarse a la interrogacion signica automaticamente
+nota cero.
+
+sobre la nota de la interrogacion se aplican los descuentos por atraso.
+
+ar/as/mv/hvb/latex 2
+
+2
+
+

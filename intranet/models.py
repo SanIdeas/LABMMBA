@@ -8,7 +8,7 @@ import os
 # Create your models here.
 
 class Document(models.Model):
-	document = models.FileField(upload_to='uploads/documents/')
+	document = models.FileField(upload_to='uploads/documents/', max_length=500)
 	category = models.CharField(max_length=50)
 	type = models.BooleanField()
 	title = models.CharField(max_length=100)
@@ -40,9 +40,16 @@ class Document(models.Model):
 					break
 			elif (type(field) == models.FileField):
 				result = True
+				result_owner = True
+				result_content = True
 				for word in words:
 					if(not(word in unidecode(self.owner_name()).lower())):
-						result = False
+						result_owner = False
+				#Se revisa el texto plano.
+				for word in words:
+					if(not(word in open(self.document.url.replace('pdf', 'txt')).read())):
+						result_content = False
+				result = result_owner or result_content
 				if result:
 					break
 			elif (field == self._meta.get_field('date')):
