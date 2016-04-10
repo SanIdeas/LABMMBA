@@ -72,6 +72,11 @@ def profile(request, user_id):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
+def update_profile_picture(request):
+	if request.user.is_authenticated() == True:
+		User.objects.get(id=request.user.id).update_picture(request.FILES['picture'])
+		return HttpResponseRedirect(reverse('profile', args={request.user.id}))
+
 def upload(request):
 	if request.user.is_authenticated() == True:
 		#Document.objects.all().delete()

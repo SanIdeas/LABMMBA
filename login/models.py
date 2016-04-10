@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser
 )
-import json
+import json, os
 from django.utils import timezone
 
 # Create your models here.
@@ -69,7 +69,7 @@ class User(AbstractBaseUser):
 	is_active = models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)
 	last_activity = models.DateField(auto_now=True)
-	profile_picture = models.FileField(upload_to='uploads/profile_pictures/', max_length=500, null=True)
+	profile_picture = models.FileField(upload_to='static/profile_pictures/', max_length=500, null=True)
 	doc_count = models.IntegerField(default=0)
 
 
@@ -90,4 +90,12 @@ class User(AbstractBaseUser):
 			self.doc_count =self.doc_count - 1
 		self.save()
 		return self
+
+	def update_picture(self, picture):
+		self.profile_picture = picture
+		self.save()
+		return True
+
+	def filename(self):
+		return 'profile_pictures/' + os.path.basename(self.profile_picture.name)
 

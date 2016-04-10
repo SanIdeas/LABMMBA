@@ -8,8 +8,8 @@
 }
 
 .user-wrapper{
-	width: 260px;
-    height: 273px;
+	width: 183px;
+    height: 250px;
     margin: 0px 38px;
 	float: left;
 	margin-bottom: 20px;
@@ -17,12 +17,13 @@
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	overflow: hidden;
+	background-color: #F8F8F8;
 }
 
 
 .user-header{
 	width: 100%;
-	height: 150px;
+	height: 120px;
 	overflow: hidden;
 }
 
@@ -37,20 +38,30 @@
 .user-background > img{
 	width: 110%;
 	align-self: center;
+	display: none;
 }
 
-.user-header > img{
+.user-header > .profile-picture-wrapper{
 	position: relative;
 	margin: 0 auto;
 	display: block;
 	border-radius: 50%;
-	height: 140px;
-	/*top: -145px;*/
+	height: 110px;
+	width: 110px;
+	top: -115px;
+	overflow: hidden;
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+	/*border: 5px solid white;
+    box-sizing: border-box;*/
+}
+
+.profile-picture-wrapper > img{
+	height: 100%;
 }
 
 .user-body{
 	width: 100%;
-	height: 123px;
+	height: 125px;
 	position: relative;
 }
 
@@ -76,6 +87,7 @@
 	padding: 0px;
 	bottom: 0px;
 	border-spacing: 0;
+	border-top: 1px solid #E7E7E7;
 }
 
 .user-body > table  td{
@@ -90,39 +102,25 @@
     left: 0;
     margin: 0 auto;
     position: absolute;
-    text-shadow: 2px 0px 0px white, -2px 0px 0px white, 0px 2px 0px white, 0px -2px 0px white;
+    text-shadow: 2px 0px 0px #F8F8F8, -2px 0px 0px #F8F8F8, 0px 2px 0px #F8F8F8, 0px -2px 0px #F8F8F8;
 }
 
 .user-body > table td:nth-child(1) > h4{
-    font-size: 35px;	
+    font-size: 25px;	
     top: 9px;
 }
 
 .user-body > table td:nth-child(2) > h4{
-	font-size: 15px;
+	font-size: 10px;
     top: 20px;
 }
 
 .user-body > table td > span{
 	white-space: nowrap;
+	font-size: 10px;
 }
 
 .user-body > table  td > i{
-    font-size: 31px;	
+    font-size: 20px;	
 }
 
-.user-wrapper:nth-child(4n-3){
-	border-bottom: 2px solid #e0424e;
-}
-
-.user-wrapper:nth-child(4n-2){
-	border-bottom: 2px solid #009065;
-}
-
-.user-wrapper:nth-child(4n-1){
-	border-bottom: 2px solid #f2ae47;
-}
-
-.user-wrapper:nth-child(4n){
-	border-bottom: 2px solid #006e9c;
-}

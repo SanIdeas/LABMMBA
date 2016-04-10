@@ -22,17 +22,57 @@
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	background-color: white;
 	position: relative;
 	top: -100px;
-	display: flex;
-	justify-content: center;
 	overflow: hidden;
 }
 
-#profile-picture > img{
+#profile-picture > #picture-wrapper{
 	width: 100%;
+	height: 100%;
+	display: flex;
+	position: absolute;
+	justify-content: center;
+}
+
+#profile-picture > #picture-wrapper > img{
 	align-self: center;
+	height: 100%;
+}
+
+#edit-btn-wrapper{
+	border-radius: 50%;
+	opacity: 0;
+	z-index: 99;
+	width: 100%;
+	height: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    opacity: 0.5;
+    transition: 0.2s ease-in-out;
+	cursor: pointer;
+}
+
+#edit-btn-wrapper > i{
+    font-size: 40px;
+    margin-left: 8px;
+    color: white;
+	align-self: center;
+	opacity: 0;
+    transform: scale(0.9, 0.9);
+    transition: 0.2s ease-in-out;
+}
+
+#edit-btn-wrapper:hover{
+    background-color: black;
+    transition: 0.2s ease-in-out;
+}
+
+#edit-btn-wrapper:hover > i{
+    opacity: 1;
+    transform: scale(1, 1);
+    transition: 0.2s ease-in-out;
 }
 
 #information-section{
@@ -56,6 +96,44 @@
 
 #information-section > table  td:nth-child(2){
 	text-align: right;
+}
+
+.btn{
+	text-decoration: none;
+	padding:  10px 30px;
+	font-size: 15px;
+	border: none;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	margin: 0 auto;
+	position: relative;
+	display: table;
+	cursor: pointer;
+	display: none;
+	outline: none;
+	transition: all 0.3s;
+}
+
+.btn:hover{
+	transition: all 0.3s;
+    background-color: #0077ad !important;
+}
+
+#accept-btn{
+	background-color: #009065;
+	left: 200px;
+	top: -180px;
+}
+
+#cancel-btn{
+	background-color: #e0424e;
+	left: -200px;
+    top: -218px;
+}
+
+.btn-visible{
+	display: block;
 }
 
 @media screen and (max-width: 700px){

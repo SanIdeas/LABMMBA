@@ -36,8 +36,8 @@ class Document(models.Model):
 					if(not(word in unidecode(getattr(self, field.name)).lower())):
 						result = False
 				#print words, unidecode(getattr(self, field.name)).lower(), result
-				if result:
-					break
+				#if result:
+				#	break
 			elif (type(field) == models.FileField):
 				result = True
 				result_owner = True
@@ -75,7 +75,7 @@ class Document(models.Model):
 				for word in words:
 					if(not(word in unidecode(str(self.date)).lower())):
 						result = False
-				if result:
-					break
+				#if result:
+				#	break
 		ret = {'match': result, 'extract': extract}
 		return ret

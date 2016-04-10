@@ -27,30 +27,61 @@
 					<img src="{% static 'intranet/images/background-picture2.png' %}">
 				</div>
 				<div id="profile-picture">
-					<img {% if request.user.profile_picture %} src="{{ request.user.profile_picture.url }}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}>
+					{% if request.user == profile_user %} <div id="edit-btn-wrapper"><i class="fa fa-pencil-square-o"></i></div> {% endif %}
+					<div id="picture-wrapper"><img id="picture-circle" {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}></div>
 				</div>
+				<button id="accept-btn" class="btn">Aceptar</button>
+				<button id="cancel-btn" class="btn">Cancelar</button>
 			</div>
+			{% if request.user == profile_user %}
+				<form id="picture_form"  action="{% url 'update_picture' %}" method="POST" style="display: none" enctype="multipart/form-data">
+					<input id="picture-input" type="file" accept="image/x-png, image/jpeg" style="display: none" name="picture" required>
+					{% csrf_token %}
+				</form>
+				<script>
+				var prev_picture;
+					$('#edit-btn-wrapper').click(function(){
+						$('#picture-input').click();
+					});
+
+					$('#picture-input').change(function(){
+						$('.btn').addClass('btn-visible');
+						prev_picture = $('#picture-circle').attr('src');
+						readURL(this);
+					});
+
+					$('#cancel-btn').click(function(){
+						closeForm()
+						$('#picture-circle').attr('src', prev_picture);
+						$('.btn').removeClass('btn-visible');
+					});
+
+					$('#accept-btn').click(function(){
+						$('#picture_form').submit();
+					});
+				</script>
+			{% endif %}
 			<div id="information-section">
 				<table>
 					<tr>
 						<td>Nombre completo:</td>
-						<td>{{request.user.first_name}} {{ request.user.last_name }}</td>
+						<td>{{profile_user.first_name}} {{ profile_user.last_name }}</td>
 					</tr>
 					<tr>
 						<td>Institución:</td>
-						<td>{{ request.user.institution }}</td>
+						<td>{{ profile_user.institution }}</td>
 					</tr>
 					<tr>
 						<td>Carrera:</td>
-						<td>{{ request.user.career }}</td>
+						<td>{{ profile_user.career }}</td>
 					</tr>
 					<tr>
 						<td>País:</td>
-						<td>{{ request.user.country }}</td>
+						<td>{{ profile_user.country }}</td>
 					</tr>
 					<tr>
 						<td>Area:</td>
-						<td>{{ request.user.area.name }}</td>
+						<td>{{ profile_user.area.name }}</td>
 					</tr>
 				</table>
 			</div>
@@ -89,18 +120,18 @@
 					{% endfor %}
 				</table>
 				</div>
-				<div id="lower-bar">
-					<div id="red-bar" class="bar"></div>
-					<div id="green-bar" class="bar"></div>					
-					<div id="yellow-bar" class="bar"></div>	
-					<div id="blue-bar" class="bar"></div>	
-				</div>
 				<script>
 					$('.search-result').click(function(){
 						window.open("{% url 'viewer' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
 					});
 				</script>	
 			{% endif %}
+		<div id="lower-bar">
+			<div id="red-bar" class="bar"></div>
+			<div id="green-bar" class="bar"></div>					
+			<div id="yellow-bar" class="bar"></div>	
+			<div id="blue-bar" class="bar"></div>	
+		</div>
 		</div>
 		<div class="clear"></div>
 	</div>

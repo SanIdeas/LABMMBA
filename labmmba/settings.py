@@ -130,4 +130,5 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'login.User'
 
+MEDIA_ROOT = 'C:/Users/herna/Desktop/git/ISW'
 
