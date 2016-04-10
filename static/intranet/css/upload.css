@@ -152,6 +152,10 @@
 	background-color: #EBEBE4;
 }
 
+.message{
+	color: #e0424e;
+}
+
 @media screen and (max-width:500px){
 	.upload-row > select{
 		width: 100%;

@@ -13,8 +13,8 @@
 				<ul>
 					<li class="section-head"><h3>Enlaces</h3></li>
 					<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
-					<li class="section-row"><a href="#">Mi perfil</a></li>
-					<li class="section-row"><a href="#">Usuarios</a></li>
+					<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
+					<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
 					<li class="section-row"><a href="#">Categorias</a></li>
 					<li class="section-row"><a href="{% url 'upload' %}">Subir documento</a></li>
 				</ul>
@@ -81,13 +81,13 @@
 							<td class="col5">{{ document.date_added }}</td>
 						</tr>
 					{% endfor %}
+				</table>
 			{% endif %}
 				<script>
 					$('.search-result').click(function(){
 						window.open("{% url 'viewer' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
 					});
 				</script>
-				</table>
 				<div id="lower-bar">
 					<div id="red-bar" class="bar"></div>
 					<div id="green-bar" class="bar"></div>					

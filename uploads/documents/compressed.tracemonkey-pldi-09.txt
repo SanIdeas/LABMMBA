@@ -1,0 +1,1944 @@
+trace-based just-in-time type specialization for dynamic
+
+languages
+
+andreas gal+, brendan eich, mike shaver, david anderson, david mandelin,
+
+mohammad r. haghighat$, blake kaplan, graydon hoare, boris zbarsky, jason orendorff,
+
+jesse ruderman, edwin smith#, rick reitmaier#, michael bebenita+, mason chang+#, michael franz+
+
+{gal,brendan,shaver,danderson,dmandelin,mrbkap,graydon,bz,jorendorff,jruderman}@mozilla.com
+
+mozilla corporation
+
+adobe corporation#
+
+{edwsmith,rreitmai}@adobe.com
+
+intel corporation$
+
+{mohammad.r.haghighat}@intel.com
+
+university of california, irvine+
+
+{mbebenit,changm,franz}@uci.edu
+
+abstract
+dynamic languages such as javascript are more difcult to com-
+pile than statically typed ones. since no concrete type information
+is available, traditional compilers need to emit generic code that can
+handle all possible type combinations at runtime. we present an al-
+ternative compilation technique for dynamically-typed languages
+that identies frequently executed loop traces at run-time and then
+generates machine code on the y that is specialized for the ac-
+tual dynamic types occurring on each path through the loop. our
+method provides cheap inter-procedural type specialization, and an
+elegant and efcient way of incrementally compiling lazily discov-
+ered alternative paths through nested loops. we have implemented
+a dynamic compiler for javascript based on our technique and we
+have measured speedups of 10x and more for certain benchmark
+programs.
+categories and subject descriptors d.3.4 [programming lan-
+guages]: processors  incremental compilers, code generation.
+general terms design, experimentation, measurement, perfor-
+mance.
+keywords
+
+javascript, just-in-time compilation, trace trees.
+
+introduction
+
+1.
+dynamic languages such as javascript, python, and ruby, are pop-
+ular since they are expressive, accessible to non-experts, and make
+deployment as easy as distributing a source le. they are used for
+small scripts as well as for complex applications. javascript, for
+example, is the de facto standard for client-side web programming
+
+permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for prot or commercial advantage and that copies bear this notice and the full citation
+on the rst page. to copy otherwise, to republish, to post on servers or to redistribute
+to lists, requires prior specic permission and/or a fee.
+pldi09,
+copyright c(cid:13) 2009 acm 978-1-60558-392-1/09/06. . . $5.00
+
+june 1520, 2009, dublin, ireland.
+
+and is used for the application logic of browser-based productivity
+applications such as google mail, google docs and zimbra col-
+laboration suite. in this domain, in order to provide a uid user
+experience and enable a new generation of applications, virtual ma-
+chines must provide a low startup time and high performance.
+
+compilers for statically typed languages rely on type informa-
+tion to generate efcient machine code. in a dynamically typed pro-
+gramming language such as javascript, the types of expressions
+may vary at runtime. this means that the compiler can no longer
+easily transform operations into machine instructions that operate
+on one specic type. without exact type information, the compiler
+must emit slower generalized machine code that can deal with all
+potential type combinations. while compile-time static type infer-
+ence might be able to gather type information to generate opti-
+mized machine code, traditional static analysis is very expensive
+and hence not well suited for the highly interactive environment of
+a web browser.
+
+we present a trace-based compilation technique for dynamic
+languages that reconciles speed of compilation with excellent per-
+formance of the generated machine code. our system uses a mixed-
+mode execution approach: the system starts running javascript in a
+fast-starting bytecode interpreter. as the program runs, the system
+identies hot (frequently executed) bytecode sequences, records
+them, and compiles them to fast native code. we call such a se-
+quence of instructions a trace.
+
+unlike method-based dynamic compilers, our dynamic com-
+piler operates at the granularity of individual loops. this design
+choice is based on the expectation that programs spend most of
+their time in hot loops. even in dynamically typed languages, we
+expect hot loops to be mostly type-stable, meaning that the types of
+values are invariant. (12) for example, we would expect loop coun-
+ters that start as integers to remain integers for all iterations. when
+both of these expectations hold, a trace-based compiler can cover
+the program execution with a small number of type-specialized, ef-
+ciently compiled traces.
+
+each compiled trace covers one path through the program with
+one mapping of values to types. when the vm executes a compiled
+trace, it cannot guarantee that the same path will be followed
+or that the same types will occur in subsequent loop iterations.
+
+hence, recording and compiling a trace speculates that the path and
+typing will be exactly as they were during recording for subsequent
+iterations of the loop.
+
+every compiled trace contains all the guards (checks) required
+to validate the speculation. if one of the guards fails (if control
+ow is different, or a value of a different type is generated), the
+trace exits. if an exit becomes hot, the vm can record a branch
+trace starting at the exit to cover the new path. in this way, the vm
+records a trace tree covering all the hot paths through the loop.
+
+nested loops can be difcult to optimize for tracing vms. in
+a na ve implementation, inner loops would become hot rst, and
+the vm would start tracing there. when the inner loop exits, the
+vm would detect that a different branch was taken. the vm would
+try to record a branch trace, and nd that the trace reaches not the
+inner loop header, but the outer loop header. at this point, the vm
+could continue tracing until it reaches the inner loop header again,
+thus tracing the outer loop inside a trace tree for the inner loop.
+but this requires tracing a copy of the outer loop for every side exit
+and type combination in the inner loop. in essence, this is a form
+of unintended tail duplication, which can easily overow the code
+cache. alternatively, the vm could simply stop tracing, and give up
+on ever tracing outer loops.
+
+we solve the nested loop problem by recording nested trace
+trees. our system traces the inner loop exactly as the na ve version.
+the system stops extending the inner tree when it reaches an outer
+loop, but then it starts a new trace at the outer loop header. when
+the outer loop reaches the inner loop header, the system tries to call
+the trace tree for the inner loop. if the call succeeds, the vm records
+the call to the inner tree as part of the outer trace and nishes
+the outer trace as normal. in this way, our system can trace any
+number of loops nested to any depth without causing excessive tail
+duplication.
+
+these techniques allow a vm to dynamically translate a pro-
+gram to nested, type-specialized trace trees. because traces can
+cross function call boundaries, our techniques also achieve the ef-
+fects of inlining. because traces have no internal control-ow joins,
+they can be optimized in linear time by a simple compiler (10).
+thus, our tracing vm efciently performs the same kind of op-
+timizations that would require interprocedural analysis in a static
+optimization setting. this makes tracing an attractive and effective
+tool to type specialize even complex function call-rich code.
+
+we implemented these techniques for an existing javascript in-
+terpreter, spidermonkey. we call the resulting tracing vm trace-
+monkey. tracemonkey supports all the javascript features of spi-
+dermonkey, with a 2x-20x speedup for traceable programs.
+
+this paper makes the following contributions:
+ we explain an algorithm for dynamically forming trace trees to
+cover a program, representing nested loops as nested trace trees.
+
+ we explain how to speculatively generate efcient type-specialized
+
+code for traces from dynamic language programs.
+
+ we validate our tracing techniques in an implementation based
+on the spidermonkey javascript interpreter, achieving 2x-20x
+speedups on many programs.
+
+the remainder of this paper is organized as follows. section 3 is
+a general overview of trace tree based compilation we use to cap-
+ture and compile frequently executed code regions. in section 4
+we describe our approach of covering nested loops using a num-
+ber of individual trace trees. in section 5 we describe our trace-
+compilation based speculative type specialization approach we use
+to generate efcient machine code from recorded bytecode traces.
+our implementation of a dynamic type-specializing compiler for
+javascript is described in section 6. related work is discussed in
+section 8. in section 7 we evaluate our dynamic compiler based on
+
+continue;
+
+if (!primes[i])
+
+1 for (var i = 2; i < 100; ++i) {
+2
+3
+4
+5
+6 }
+
+primes[k] = false;
+
+for (var k = i + i; i < 100; k += i)
+
+figure 1. sample program: sieve of eratosthenes. primes is
+initialized to an array of 100 false values on entry to this code
+snippet.
+
+figure 2. state machine describing the major activities of trace-
+monkey and the conditions that cause transitions to a new activ-
+ity. in the dark box, tm executes js as compiled traces. in the
+light gray boxes, tm executes js in the standard interpreter. white
+boxes are overhead. thus, to maximize performance, we need to
+maximize time spent in the darkest box and minimize time spent in
+the white boxes. the best case is a loop where the types at the loop
+edge are the same as the types on entrythen tm can stay in native
+code until the loop is done.
+
+a set of industry benchmarks. the paper ends with conclusions in
+section 9 and an outlook on future work is presented in section 10.
+
+2. overview: example tracing run
+this section provides an overview of our system by describing
+how tracemonkey executes an example program. the example
+program, shown in figure 1, computes the rst 100 prime numbers
+with nested loops. the narrative should be read along with figure 2,
+which describes the activities tracemonkey performs and when it
+transitions between the loops.
+
+tracemonkey always begins executing a program in the byte-
+code interpreter. every loop back edge is a potential trace point.
+when the interpreter crosses a loop edge, tracemonkey invokes
+the trace monitor, which may decide to record or execute a native
+trace. at the start of execution, there are no compiled traces yet, so
+the trace monitor counts the number of times each loop back edge is
+executed until a loop becomes hot, currently after 2 crossings. note
+that the way our loops are compiled, the loop edge is crossed before
+entering the loop, so the second crossing occurs immediately after
+the rst iteration.
+
+here is the sequence of events broken down by outer loop
+
+iteration:
+
+interpret bytecodesmonitor recordlir traceexecute compiled traceenter compiled tracecompilelir traceleave compiled traceloop edgehotloop/exitabort recordingnish at loop headercold/blacklistedloop/exitcompiled trace readyloop edge with same typesside exit to existing traceside exit,no existing traceoverhead interpretingnativesymbol keyv0 := ld state[748]
+
+st sp[0], v0
+
+v1 := ld state[764]
+v2 := i2f(v1)
+
+st sp[8], v1
+st sp[16], 0
+
+v3 := ld v0[4]
+v4 := and v3, -4
+v5 := eq v4, array
+
+xf v5
+
+// load primes from the trace activation record
+// store primes to interpreter stack
+// load k from the trace activation record
+// convert k from int to double
+// store k to interpreter stack
+// store false to interpreter stack
+// load class word for primes
+// mask out object class tag for primes
+// test whether primes is an array
+// side exit if v5 is false
+
+v6 := js_array_set(v0, v2, false)
+v7 := eq v6, 0
+
+xt v7
+
+// call function to set array element
+
+// test return value from call
+// side exit if js_array_set returns false.
+
+figure 3. lir snippet for sample program. this is the lir recorded for line 5 of the sample program in figure 1. the lir encodes
+the semantics in ssa form using temporary variables. the lir also encodes all the stores that the interpreter would do to its data stack.
+sometimes these stores can be optimized away as the stack locations are live only on exits to the interpreter. finally, the lir records guards
+and side exits to verify the assumptions made in this recording: that primes is an array and that the call to set its element succeeds.
+
+mov edx, ebx(748)
+mov edi(0), edx
+mov esi, ebx(764)
+mov edi(8), esi
+mov edi(16), 0
+mov eax, edx(4)
+and eax, -4
+cmp eax, array
+jne side_exit_1
+sub esp, 8
+push false
+push esi
+call js_array_set
+add esp, 8
+mov ecx, ebx
+test eax, eax
+je side_exit_2
+...
+side_exit_1:
+mov ecx, ebp(-4)
+mov esp, ebp
+jmp epilog
+
+// load primes from the trace activation record
+// (*) store primes to interpreter stack
+// load k from the trace activation record
+// (*) store k to interpreter stack
+// (*) store false to interpreter stack
+// (*) load object class word for primes
+// (*) mask out object class tag for primes
+// (*) test whether primes is an array
+// (*) side exit if primes is not an array
+// bump stack for call alignment convention
+// push last argument for call
+// push first argument for call
+// call function to set array element
+// clean up extra stack space
+// (*) created by register allocator
+// (*) test return value of js_array_set
+// (*) side exit if call failed
+
+// restore ecx
+// restore esp
+// jump to ret statement
+
+figure 4. x86 snippet for sample program. this is the x86 code compiled from the lir snippet in figure 3. most lir instructions compile
+to a single x86 instruction. instructions marked with (*) would be omitted by an idealized compiler that knew that none of the side exits
+would ever be taken. the 17 instructions generated by the compiler compare favorably with the 100+ instructions that the interpreter would
+execute for the same code snippet, including 4 indirect jumps.
+
+i=2. this is the rst iteration of the outer loop. the loop on
+lines 4-5 becomes hot on its second iteration, so tracemonkey en-
+ters recording mode on line 4. in recording mode, tracemonkey
+records the code along the trace in a low-level compiler intermedi-
+ate representation we call lir. the lir trace encodes all the oper-
+ations performed and the types of all operands. the lir trace also
+encodes guards, which are checks that verify that the control ow
+and types are identical to those observed during trace recording.
+thus, on later executions, if and only if all guards are passed, the
+trace has the required program semantics.
+
+tracemonkey stops recording when execution returns to the
+loop header or exits the loop. in this case, execution returns to the
+loop header on line 4.
+
+after recording is nished, tracemonkey compiles the trace to
+native code using the recorded type information for optimization.
+the result is a native code fragment that can be entered if the
+
+interpreter pc and the types of values match those observed when
+trace recording was started. the rst trace in our example, t45,
+covers lines 4 and 5. this trace can be entered if the pc is at line 4,
+i and k are integers, and primes is an object. after compiling t45,
+tracemonkey returns to the interpreter and loops back to line 1.
+
+i=3. now the loop header at line 1 has become hot, so trace-
+monkey starts recording. when recording reaches line 4, trace-
+monkey observes that it has reached an inner loop header that al-
+ready has a compiled trace, so tracemonkey attempts to nest the
+inner loop inside the current trace. the rst step is to call the inner
+trace as a subroutine. this executes the loop on line 4 to completion
+and then returns to the recorder. tracemonkey veries that the call
+was successful and then records the call to the inner trace as part of
+the current trace. recording continues until execution reaches line
+1, and at which point tracemonkey nishes and compiles a trace
+for the outer loop, t16.
+
+i=4. on this iteration, tracemonkey calls t16. because i=4, the
+if statement on line 2 is taken. this branch was not taken in the
+original trace, so this causes t16 to fail a guard and take a side exit.
+the exit is not yet hot, so tracemonkey returns to the interpreter,
+which executes the continue statement.
+
+i=5. tracemonkey calls t16, which in turn calls the nested trace
+t45. t16 loops back to its own header, starting the next iteration
+without ever returning to the monitor.
+
+i=6. on this iteration, the side exit on line 2 is taken again. this
+time, the side exit becomes hot, so a trace t23,1 is recorded that
+covers line 3 and returns to the loop header. thus, the end of t23,1
+jumps directly to the start of t16. the side exit is patched so that
+on future iterations, it jumps directly to t23,1.
+
+at this point, tracemonkey has compiled enough traces to cover
+the entire nested loop structure, so the rest of the program runs
+entirely as native code.
+
+3. trace trees
+in this section, we describe traces, trace trees, and how they are
+formed at run time. although our techniques apply to any dynamic
+language interpreter, we will describe them assuming a bytecode
+interpreter to keep the exposition simple.
+
+3.1 traces
+a trace is simply a program path, which may cross function call
+boundaries. tracemonkey focuses on loop traces, that originate at
+a loop edge and represent a single iteration through the associated
+loop.
+
+similar to an extended basic block, a trace is only entered at
+the top, but may have many exits. in contrast to an extended basic
+block, a trace can contain join nodes. since a trace always only
+follows one single path through the original program, however, join
+nodes are not recognizable as such in a trace and have a single
+predecessor node like regular nodes.
+
+a typed trace is a trace annotated with a type for every variable
+(including temporaries) on the trace. a typed trace also has an entry
+type map giving the required types for variables used on the trace
+before they are dened. for example, a trace could have a type map
+(x: int, b: boolean), meaning that the trace may be entered
+only if the value of the variable x is of type int and the value of b
+is of type boolean. the entry type map is much like the signature
+of a function.
+
+in this paper, we only discuss typed loop traces, and we will
+refer to them simply as traces. the key property of typed loop
+traces is that they can be compiled to efcient machine code using
+the same techniques used for typed languages.
+
+in tracemonkey, traces are recorded in trace-avored ssa lir
+(low-level intermediate representation). in trace-avored ssa (or
+tssa), phi nodes appear only at the entry point, which is reached
+both on entry and via loop edges. the important lir primitives
+are constant values, memory loads and stores (by address and
+offset), integer operators, oating-point operators, function calls,
+and conditional exits. type conversions, such as integer to double,
+are represented by function calls. this makes the lir used by
+tracemonkey independent of the concrete type system and type
+conversion rules of the source language. the lir operations are
+generic enough that the backend compiler is language independent.
+figure 3 shows an example lir trace.
+
+bytecode interpreters typically represent values in a various
+complex data structures (e.g., hash tables) in a boxed format (i.e.,
+with attached type tag bits). since a trace is intended to represent
+efcient code that eliminates all that complexity, our traces oper-
+ate on unboxed values in simple variables and arrays as much as
+possible.
+
+a trace records all its intermediate values in a small activation
+record area. to make variable accesses fast on trace, the trace also
+imports local and global variables by unboxing them and copying
+them to its activation record. thus, the trace can read and write
+these variables with simple loads and stores from a native activation
+recording, independently of the boxing mechanism used by the
+interpreter. when the trace exits, the vm boxes the values from
+this native storage location and copies them back to the interpreter
+structures.
+
+for every control-ow branch in the source program,
+
+the
+recorder generates conditional exit lir instructions. these instruc-
+tions exit from the trace if required control ow is different from
+what it was at trace recording, ensuring that the trace instructions
+are run only if they are supposed to. we call these instructions
+guard instructions.
+
+most of our traces represent loops and end with the special loop
+lir instruction. this is just an unconditional branch to the top of
+the trace. such traces return only via guards.
+
+now, we describe the key optimizations that are performed as
+part of recording lir. all of these optimizations reduce complex
+dynamic language constructs to simple typed constructs by spe-
+cializing for the current trace. each optimization requires guard in-
+structions to verify their assumptions about the state and exit the
+trace if necessary.
+
+type specialization.
+all lir primitives apply to operands of specic types. thus,
+lir traces are necessarily type-specialized, and a compiler can
+easily produce a translation that requires no type dispatches. a
+typical bytecode interpreter carries tag bits along with each value,
+and to perform any operation, must check the tag bits, dynamically
+dispatch, mask out the tag bits to recover the untagged value,
+perform the operation, and then reapply tags. lir omits everything
+except the operation itself.
+
+a potential problem is that some operations can produce values
+of unpredictable types. for example, reading a property from an
+object could yield a value of any type, not necessarily the type
+observed during recording. the recorder emits guard instructions
+that conditionally exit if the operation yields a value of a different
+type from that seen during recording. these guard instructions
+guarantee that as long as execution is on trace, the types of values
+match those of the typed trace. when the vm observes a side exit
+along such a type guard, a new typed trace is recorded originating
+at the side exit location, capturing the new type of the operation in
+question.
+
+representation specialization: objects. in javascript, name
+lookup semantics are complex and potentially expensive because
+they include features like object inheritance and eval. to evaluate
+an object property read expression like o.x, the interpreter must
+search the property map of o and all of its prototypes and parents.
+property maps can be implemented with different data structures
+(e.g., per-object hash tables or shared hash tables), so the search
+process also must dispatch on the representation of each object
+found during search. tracemonkey can simply observe the result of
+the search process and record the simplest possible lir to access
+the property value. for example, the search might nds the value of
+o.x in the prototype of o, which uses a shared hash-table represen-
+tation that places x in slot 2 of a property vector. then the recorded
+can generate lir that reads o.x with just two or three loads: one to
+get the prototype, possibly one to get the property value vector, and
+one more to get slot 2 from the vector. this is a vast simplication
+and speedup compared to the original interpreter code. inheritance
+relationships and object representations can change during execu-
+tion, so the simplied code requires guard instructions that ensure
+the object representation is the same. in tracemonkey, objects rep-
+
+resentations are assigned an integer key called the object shape.
+thus, the guard is a simple equality check on the object shape.
+
+representation specialization: numbers. javascript has no
+integer type, only a number type that is the set of 64-bit ieee-
+754 oating-pointer numbers (doubles). but many javascript
+operators, in particular array accesses and bitwise operators, really
+operate on integers, so they rst convert the number to an integer,
+and then convert any integer result back to a double.1 clearly, a
+javascript vm that wants to be fast must nd a way to operate on
+integers directly and avoid these conversions.
+
+in tracemonkey, we support two representations for numbers:
+integers and doubles. the interpreter uses integer representations
+as much as it can, switching for results that can only be represented
+as doubles. when a trace is started, some values may be imported
+and represented as integers. some operations on integers require
+guards. for example, adding two integers can produce a value too
+large for the integer representation.
+
+function inlining. lir traces can cross function boundaries
+in either direction, achieving function inlining. move instructions
+need to be recorded for function entry and exit to copy arguments
+in and return values out. these move statements are then optimized
+away by the compiler using copy propagation. in order to be able
+to return to the interpreter, the trace must also generate lir to
+record that a call frame has been entered and exited. the frame
+entry and exit lir saves just enough information to allow the
+intepreter call stack to be restored later and is much simpler than
+the interpreters standard call code. if the function being entered
+is not constant (which in javascript includes any call by function
+name), the recorder must also emit lir to guard that the function
+is the same.
+
+guards and side exits. each optimization described above
+requires one or more guards to verify the assumptions made in
+doing the optimization. a guard is just a group of lir instructions
+that performs a test and conditional exit. the exit branches to a
+side exit, a small off-trace piece of lir that returns a pointer to
+a structure that describes the reason for the exit along with the
+interpreter pc at the exit point and any other data needed to restore
+the interpreters state structures.
+
+aborts. some constructs are difcult to record in lir traces.
+for example, eval or calls to external functions can change the
+program state in unpredictable ways, making it difcult for the
+tracer to know the current type map in order to continue tracing.
+a tracing implementation can also have any number of other limi-
+tations, e.g.,a small-memory device may limit the length of traces.
+when any situation occurs that prevents the implementation from
+continuing trace recording, the implementation aborts trace record-
+ing and returns to the trace monitor.
+
+3.2 trace trees
+especially simple loops, namely those where control ow, value
+types, value representations, and inlined functions are all invariant,
+can be represented by a single trace. but most loops have at least
+some variation, and so the program will take side exits from the
+main trace. when a side exit becomes hot, tracemonkey starts a
+new branch trace from that point and patches the side exit to jump
+directly to that trace. in this way, a single trace expands on demand
+to a single-entry, multiple-exit trace tree.
+
+this section explains how trace trees are formed during execu-
+tion. the goal is to form trace trees during execution that cover all
+the hot paths of the program.
+
+1 arrays are actually worse than this: if the index value is a number, it must
+be converted from a double to a string for the property access operator, and
+then to an integer internally to the array implementation.
+
+in certain cases the trace might reach the loop header with a
+different type map. this scenario is sometime observed for the rst
+iteration of a loop. some variables inside the loop might initially be
+undened, before they are set to a concrete type during the rst loop
+iteration. when recording such an iteration, the recorder cannot
+link the trace back to its own loop header since it is type-unstable.
+instead, the iteration is terminated with a side exit that will always
+fail and return to the interpreter. at the same time a new trace is
+recorded with the new type map. every time an additional type-
+unstable trace is added to a region, its exit type map is compared to
+the entry map of all existing traces in case they complement each
+other. with this approach we are able to cover type-unstable loop
+iterations as long they eventually form a stable equilibrium.
+
+finally, the trace might exit the loop before reaching the loop
+header, for example because execution reaches a break or return
+statement. in this case, the vm simply ends the trace with an exit
+to the trace monitor.
+
+starting a tree. tree trees always start at loop headers, because
+they are a natural place to look for hot paths. in tracemonkey, loop
+headers are easy to detectthe bytecode compiler ensures that a
+bytecode is a loop header iff it is the target of a backward branch.
+tracemonkey starts a tree when a given loop header has been exe-
+cuted a certain number of times (2 in the current implementation).
+starting a tree just means starting recording a trace for the current
+point and type map and marking the trace as the root of a tree. each
+tree is associated with a loop header and type map, so there may be
+several trees for a given loop header.
+
+closing the loop. trace recording can end in several ways.
+ideally, the trace reaches the loop header where it started with
+the same type map as on entry. this is called a type-stable loop
+iteration. in this case, the end of the trace can jump right to the
+beginning, as all the value representations are exactly as needed to
+enter the trace. the jump can even skip the usual code that would
+copy out the state at the end of the trace and copy it back in to the
+trace activation record to enter a trace.
+
+as mentioned previously, we may speculatively chose to rep-
+resent certain number-typed values as integers on trace. we do so
+when we observe that number-typed variables contain an integer
+value at trace entry. if during trace recording the variable is unex-
+pectedly assigned a non-integer value, we have to widen the type
+of the variable to a double. as a result, the recorded trace becomes
+inherently type-unstable since it starts with an integer value but
+ends with a double value. this represents a mis-speculation, since
+at trace entry we specialized the number-typed value to an integer,
+assuming that at the loop edge we would again nd an integer value
+in the variable, allowing us to close the loop. to avoid future spec-
+ulative failures involving this variable, and to obtain a type-stable
+trace we note the fact that the variable in question as been observed
+to sometimes hold non-integer values in an advisory data structure
+which we call the oracle.
+
+when compiling loops, we consult the oracle before specializ-
+ing values to integers. speculation towards integers is performed
+only if no adverse information is known to the oracle about that
+particular variable. whenever we accidentally compile a loop that
+is type-unstable due to mis-speculation of a number-typed vari-
+able, we immediately trigger the recording of a new trace, which
+based on the now updated oracle information will start with a dou-
+ble value and thus become type stable.
+
+extending a tree. side exits lead to different paths through
+the loop, or paths with different types or representations. thus, to
+completely cover the loop, the vm must record traces starting at all
+side exits. these traces are recorded much like root traces: there is
+a counter for each side exit, and when the counter reaches a hotness
+threshold, recording starts. recording stops exactly as for the root
+trace, using the loop header of the root trace as the target to reach.
+
+our implementation does not extend at all side exits. it extends
+only if the side exit is for a control-ow branch, and only if the side
+exit does not leave the loop. in particular we do not want to extend
+a trace tree along a path that leads to an outer loop, because we
+want to cover such paths in an outer tree through tree nesting.
+3.3 blacklisting
+sometimes, a program follows a path that cannot be compiled
+into a trace, usually because of limitations in the implementation.
+tracemonkey does not currently support recording throwing and
+catching of arbitrary exceptions. this design trade off was chosen,
+because exceptions are usually rare in javascript. however, if a
+program opts to use exceptions intensively, we would suddenly
+incur a punishing runtime overhead if we repeatedly try to record
+a trace for this path and repeatedly fail to do so, since we abort
+tracing every time we observe an exception being thrown.
+
+as a result, if a hot loop contains traces that always fail, the vm
+could potentially run much more slowly than the base interpreter:
+the vm repeatedly spends time trying to record traces, but is never
+able to run any. to avoid this problem, whenever the vm is about
+to start tracing, it must try to predict whether it will nish the trace.
+our prediction algorithm is based on blacklisting traces that
+have been tried and failed. when the vm fails to nish a trace start-
+ing at a given point, the vm records that a failure has occurred. the
+vm also sets a counter so that it will not try to record a trace starting
+at that point until it is passed a few more times (32 in our imple-
+mentation). this backoff counter gives temporary conditions that
+prevent tracing a chance to end. for example, a loop may behave
+differently during startup than during its steady-state execution. af-
+ter a given number of failures (2 in our implementation), the vm
+marks the fragment as blacklisted, which means the vm will never
+again start recording at that point.
+
+after implementing this basic strategy, we observed that for
+small loops that get blacklisted, the system can spend a noticeable
+amount of time just nding the loop fragment and determining that
+it has been blacklisted. we now avoid that problem by patching the
+bytecode. we dene an extra no-op bytecode that indicates a loop
+header. the vm calls into the trace monitor every time the inter-
+preter executes a loop header no-op. to blacklist a fragment, we
+simply replace the loop header no-op with a regular no-op. thus,
+the interpreter will never again even call into the trace monitor.
+
+there is a related problem we have not yet solved, which occurs
+
+when a loop meets all of these conditions:
+ the vm can form at least one root trace for the loop.
+ there is at least one hot side exit for which the vm cannot
+
+complete a trace.
+
+ the loop body is short.
+in this case, the vm will repeatedly pass the loop header, search
+for a trace, nd it, execute it, and fall back to the interpreter.
+with a short loop body, the overhead of nding and calling the
+trace is high, and causes performance to be even slower than the
+basic interpreter. so far, in this situation we have improved the
+implementation so that the vm can complete the branch trace.
+but it is hard to guarantee that this situation will never happen.
+as future work, this situation could be avoided by detecting and
+blacklisting loops for which the average trace call executes few
+bytecodes before returning to the interpreter.
+
+4. nested trace tree formation
+figure 7 shows basic trace tree compilation (11) applied to a nested
+loop where the inner loop contains two paths. usually, the inner
+loop (with header at i2) becomes hot rst, and a trace tree is rooted
+at that point. for example, the rst recorded trace may be a cycle
+
+figure 5. a tree with two traces, a trunk trace and one branch
+trace. the trunk trace contains a guard to which a branch trace was
+attached. the branch trace contain a guard that may fail and trigger
+a side exit. both the trunk and the branch trace loop back to the tree
+anchor, which is the beginning of the trace tree.
+
+figure 6. we handle type-unstable loops by allowing traces to
+compile that cannot loop back to themselves due to a type mis-
+match. as such traces accumulate, we attempt to connect their loop
+edges to form groups of trace trees that can execute without having
+to side-exit to the interpreter to cover odd type cases. this is par-
+ticularly important for nested trace trees where an outer tree tries to
+call an inner tree (or in this case a forest of inner trees), since inner
+loops frequently have initially undened values which change type
+to a concrete value after the rst iteration.
+
+through the inner loop, {i2, i3, i5, }. the  symbol is used to
+indicate that the trace loops back the tree anchor.
+
+when execution leaves the inner loop, the basic design has two
+choices. first, the system can stop tracing and give up on compiling
+the outer loop, clearly an undesirable solution. the other choice is
+to continue tracing, compiling traces for the outer loop inside the
+inner loops trace tree.
+
+for example, the program might exit at i5 and record a branch
+incorporates the outer loop: {i5, i7, i1, i6, i7, i1, }.
+trace that
+later, the program might take the other branch at i2 and then
+exit, recording another branch trace incorporating the outer loop:
+{i2, i4, i5, i7, i1, i6, i7, i1, }. thus, the outer loop is recorded and
+compiled twice, and both copies must be retained in the trace cache.
+
+ttrunktracetreeanchortraceanchorbranchtraceguardsideexittrace2trace1trace2trace1closedlinkedlinkedlinkednumbernumberstringstringstringstringbooleantrace2trace1trace3linkedlinkedlinkedclosednumbernumbernumberbooleannumberbooleannumberboolean(a)(b)(c)figure 7. control ow graph of a nested loop with an if statement
+inside the inner most loop (a). an inner tree captures the inner
+loop, and is nested inside an outer tree which calls the inner tree.
+the inner tree returns to the outer tree once it exits along its loop
+condition guard (b).
+
+in general, if loops are nested to depth k, and each loop has n paths
+(on geometric average), this na ve strategy yields o(nk) traces,
+which can easily ll the trace cache.
+
+in order to execute programs with nested loops efciently, a
+tracing system needs a technique for covering the nested loops with
+native code without exponential trace duplication.
+
+4.1 nesting algorithm
+the key insight is that if each loop is represented by its own trace
+tree, the code for each loop can be contained only in its own tree,
+and outer loop paths will not be duplicated. another key fact is that
+we are not tracing arbitrary bytecodes that might have irreduceable
+control ow graphs, but rather bytecodes produced by a compiler
+for a language with structured control ow. thus, given two loop
+edges, the system can easily determine whether they are nested
+and which is the inner loop. using this knowledge, the system can
+compile inner and outer loops separately, and make the outer loops
+traces call the inner loops trace tree.
+
+the algorithm for building nested trace trees is as follows. we
+start tracing at loop headers exactly as in the basic tracing system.
+when we exit a loop (detected by comparing the interpreter pc
+with the range given by the loop edge), we stop the trace. the
+key step of the algorithm occurs when we are recording a trace
+for loop lr (r for loop being recorded) and we reach the header
+of a different loop lo (o for other loop). note that lo must be an
+inner loop of lr because we stop the trace when we exit a loop.
+ if lo has a type-matching compiled trace tree, we call lo as
+a nested trace tree. if the call succeeds, then we record the call
+in the trace for lr. on future executions, the trace for lr will
+call the inner trace directly.
+
+ if lo does not have a type-matching compiled trace tree yet,
+we have to obtain it before we are able to proceed. in order
+to do this, we simply abort recording the rst trace. the trace
+monitor will see the inner loop header, and will immediately
+start recording the inner loop. 2
+if all the loops in a nest are type-stable, then loop nesting creates
+no duplication. otherwise, if loops are nested to a depth k, and each
+
+2 instead of aborting the outer recording, we could principally merely sus-
+pend the recording, but that would require the implementation to be able
+to record several traces simultaneously, complicating the implementation,
+while saving only a few iterations in the interpreter.
+
+figure 8. control ow graph of a loop with two nested loops (left)
+and its nested trace tree conguration (right). the outer tree calls
+the two inner nested trace trees and places guards at their side exit
+locations.
+
+loop is entered with m different type maps (on geometric average),
+then we compile o(mk) copies of the innermost loop. as long as
+m is close to 1, the resulting trace trees will be tractable.
+
+an important detail is that the call to the inner trace tree must act
+like a function call site: it must return to the same point every time.
+the goal of nesting is to make inner and outer loops independent;
+thus when the inner tree is called, it must exit to the same point
+in the outer tree every time with the same type map. because we
+cannot actually guarantee this property, we must guard on it after
+the call, and side exit if the property does not hold. a common
+reason for the inner tree not to return to the same point would
+be if the inner tree took a new side exit for which it had never
+compiled a trace. at this point, the interpreter pc is in the inner
+tree, so we cannot continue recording or executing the outer tree.
+if this happens during recording, we abort the outer trace, to give
+the inner tree a chance to nish growing. a future execution of the
+outer tree would then be able to properly nish and record a call to
+the inner tree. if an inner tree side exit happens during execution of
+a compiled trace for the outer tree, we simply exit the outer trace
+and start recording a new branch in the inner tree.
+
+4.2 blacklisting with nesting
+the blacklisting algorithm needs modication to work well with
+nesting. the problem is that outer loop traces often abort during
+startup (because the inner tree is not available or takes a side exit),
+which would lead to their being quickly blacklisted by the basic
+algorithm.
+
+the key observation is that when an outer trace aborts because
+the inner tree is not ready, this is probably a temporary condition.
+thus, we should not count such aborts toward blacklisting as long
+as we are able to build up more traces for the inner tree.
+
+in our implementation, when an outer tree aborts on the inner
+tree, we increment the outer trees blacklist counter as usual and
+back off on compiling it. when the inner tree nishes a trace, we
+decrement the blacklist counter on the outer loop, forgiving the
+outer loop for aborting previously. we also undo the backoff so that
+the outer tree can start immediately trying to compile the next time
+we reach it.
+
+5. trace tree optimization
+this section explains how a recorded trace is translated to an
+optimized machine code trace. the trace compilation subsystem,
+nanojit, is separate from the vm and can be used for other
+applications.
+
+i2i3i4i5i1i6i7t1t2treecalloutertreenestedtreeexitguard(a)(b)i2i3i1i6i4i5t2t1t4exitguardnestedtree5.1 optimizations
+because traces are in ssa form and have no join points or -
+nodes, certain optimizations are easy to implement. in order to
+get good startup performance, the optimizations must run quickly,
+so we chose a small set of optimizations. we implemented the
+optimizations as pipelined lters so that they can be turned on and
+off independently, and yet all run in just two loop passes over the
+trace: one forward and one backward.
+
+every time the trace recorder emits a lir instruction, the in-
+struction is immediately passed to the rst lter in the forward
+pipeline. thus, forward lter optimizations are performed as the
+trace is recorded. each lter may pass each instruction to the next
+lter unchanged, write a different instruction to the next lter, or
+write no instruction at all. for example, the constant folding lter
+can replace a multiply instruction like v13 := mul3, 1000 with a
+constant instruction v13 = 3000.
+
+we currently apply four forward lters:
+ on isas without oating-point instructions, a soft-oat lter
+converts oating-point lir instructions to sequences of integer
+instructions.
+
+ cse (constant subexpression elimination),
+ expression simplication, including constant folding and a few
+algebraic identities (e.g., a  a = 0), and
+ source language semantic-specic expression simplication,
+primarily algebraic identities that allow double to be replaced
+with int. for example, lir that converts an int to a double
+and then back again would be removed by this lter.
+
+when trace recording is completed, nanojit runs the backward
+optimization lters. these are used for optimizations that require
+backward program analysis. when running the backward lters,
+nanojit reads one lir instruction at a time, and the reads are passed
+through the pipeline.
+
+we currently apply three backward lters:
+ dead data-stack store elimination. the lir trace encodes many
+stores to locations in the interpreter stack. but these values are
+never read back before exiting the trace (by the interpreter or
+another trace). thus, stores to the stack that are overwritten
+before the next exit are dead. stores to locations that are off
+the top of the interpreter stack at future exits are also dead.
+
+ dead call-stack store elimination. this is the same optimization
+as above, except applied to the interpreters call stack used for
+function call inlining.
+
+ dead code elimination. this eliminates any operation that
+
+stores to a value that is never used.
+
+after a lir instruction is successfully read (pulled) from
+the backward lter pipeline, nanojits code generator emits native
+machine instruction(s) for it.
+
+5.2 register allocation
+we use a simple greedy register allocator that makes a single
+backward pass over the trace (it is integrated with the code gen-
+erator). by the time the allocator has reached an instruction like
+v3 = add v1, v2, it has already assigned a register to v3. if v1 and
+v2 have not yet been assigned registers, the allocator assigns a free
+register to each. if there are no free registers, a value is selected for
+spilling. we use a class heuristic that selects the oldest register-
+carried value (6).
+
+the heuristic considers the set r of values v in registers imme-
+diately after the current instruction for spilling. let vm be the last
+instruction before the current where each v is referred to. then the
+
+tag
+xx1
+000
+010
+100
+110
+
+js type
+number
+object
+number
+string
+boolean
+null, or
+undened
+
+description
+31-bit integer representation
+pointer to jsobject handle
+pointer to double handle
+pointer to jsstring handle
+enumeration for null, undened, true, false
+
+figure 9. tagged values in the spidermonkey js interpreter.
+testing tags, unboxing (extracting the untagged value) and boxing
+(creating tagged values) are signicant costs. avoiding these costs
+is a key benet of tracing.
+
+heuristic selects v with minimum vm. the motivation is that this
+frees up a register for as long as possible given a single spill.
+
+if we need to spill a value vs at this point, we generate the
+restore code just after the code for the current instruction. the
+corresponding spill code is generated just after the last point where
+vs was used. the register that was assigned to vs is marked free for
+the preceding code, because that register can now be used freely
+without affecting the following code
+
+implementation
+
+6.
+to demonstrate the effectiveness of our approach, we have im-
+plemented a trace-based dynamic compiler for the spidermonkey
+javascript virtual machine (4). spidermonkey is the javascript
+vm embedded in mozillas firefox open-source web browser (2),
+which is used by more than 200 million users world-wide. the core
+of spidermonkey is a bytecode interpreter implemented in c++.
+
+in spidermonkey, all javascript values are represented by the
+type jsval. a jsval is machine word in which up to the 3 of the
+least signicant bits are a type tag, and the remaining bits are data.
+see figure 6 for details. all pointers contained in jsvals point to
+gc-controlled blocks aligned on 8-byte boundaries.
+
+javascript object values are mappings of string-valued property
+names to arbitrary values. they are represented in one of two ways
+in spidermonkey. most objects are represented by a shared struc-
+tural description, called the object shape, that maps property names
+to array indexes using a hash table. the object stores a pointer to
+the shape and the array of its own property values. objects with
+large, unique sets of property names store their properties directly
+in a hash table.
+
+the garbage collector is an exact, non-generational, stop-the-
+
+world mark-and-sweep collector.
+
+in the rest of this section we discuss key areas of the tracemon-
+
+key implementation.
+
+6.1 calling compiled traces
+compiled traces are stored in a trace cache, indexed by intepreter
+pc and type map. traces are compiled so that they may be
+called as functions using standard native calling conventions (e.g.,
+fastcall on x86).
+
+the interpreter must hit a loop edge and enter the monitor in
+order to call a native trace for the rst time. the monitor computes
+the current type map, checks the trace cache for a trace for the
+current pc and type map, and if it nds one, executes the trace.
+
+to execute a trace, the monitor must build a trace activation
+record containing imported local and global variables, temporary
+stack space, and space for arguments to native calls. the local and
+global values are then copied from the interpreter state to the trace
+activation record. then, the trace is called like a normal c function
+pointer.
+
+when a trace call returns, the monitor restores the interpreter
+state. first, the monitor checks the reason for the trace exit and
+applies blacklisting if needed. then, it pops or synthesizes inter-
+preter javascript call stack frames as needed. finally, it copies the
+imported variables back from the trace activation record to the in-
+terpreter state.
+
+at least in the current implementation, these steps have a non-
+negligible runtime cost, so minimizing the number of interpreter-
+to-trace and trace-to-interpreter transitions is essential for perfor-
+mance. (see also section 3.3). our experiments (see figure 12)
+show that for programs we can trace well such transitions hap-
+pen infrequently and hence do not contribute signicantly to total
+runtime. in a few programs, where the system is prevented from
+recording branch traces for hot side exits by aborts, this cost can
+rise to up to 10% of total execution time.
+
+6.2 trace stitching
+transitions from a trace to a branch trace at a side exit avoid the
+costs of calling traces from the monitor, in a feature called trace
+stitching. at a side exit, the exiting trace only needs to write live
+register-carried values back to its trace activation record. in our im-
+plementation, identical type maps yield identical activation record
+layouts, so the trace activation record can be reused immediately
+by the branch trace.
+
+in programs with branchy trace trees with small traces, trace
+stitching has a noticeable cost. although writing to memory and
+then soon reading back would be expected to have a high l1
+cache hit rate, for small traces the increased instruction count has
+a noticeable cost. also, if the writes and reads are very close
+in the dynamic instruction stream, we have found that current
+x86 processors often incur penalties of 6 cycles or more (e.g., if
+the instructions use different base registers with equal values, the
+processor may not be able to detect that the addresses are the same
+right away).
+
+the alternate solution is to recompile an entire trace tree, thus
+achieving inter-trace register allocation (10). the disadvantage is
+that tree recompilation takes time quadratic in the number of traces.
+we believe that the cost of recompiling a trace tree every time
+a branch is added would be prohibitive. that problem might be
+mitigated by recompiling only at certain points, or only for very
+hot, stable trees.
+
+in the future, multicore hardware is expected to be common,
+making background tree recompilation attractive. in a closely re-
+lated project (13) background recompilation yielded speedups of
+up to 1.25x on benchmarks with many branch traces. we plan to
+apply this technique to tracemonkey as future work.
+
+recording is activated by a pointer swap that sets the inter-
+preters dispatch table to call a single interrupt routine for ev-
+ery bytecode. the interrupt routine rst calls a bytecode-specic
+recording routine. then, it turns off recording if necessary (e.g.,
+the trace ended). finally, it jumps to the standard interpreter byte-
+code implementation. some bytecodes have effects on the type map
+that cannot be predicted before executing the bytecode (e.g., call-
+ing string.charcodeat, which returns an integer or nan if the
+index argument is out of range). for these, we arrange for the inter-
+preter to call into the recorder again after executing the bytecode.
+since such hooks are relatively rare, we embed them directly into
+the interpreter, with an additional runtime check to see whether a
+recorder is currently active.
+
+while separating the interpreter from the recorder reduces indi-
+vidual code complexity, it also requires careful implementation and
+extensive testing to achieve semantic equivalence.
+
+in some cases achieving this equivalence is difcult since spi-
+dermonkey follows a fat-bytecode design, which was found to be
+benecial to pure interpreter performance.
+
+in fat-bytecode designs, individual bytecodes can implement
+complex processing (e.g., the getprop bytecode, which imple-
+ments full javascript property value access, including special cases
+for cached and dense array access).
+
+fat bytecodes have two advantages: fewer bytecodes means
+lower dispatch cost, and bigger bytecode implementations give the
+compiler more opportunities to optimize the interpreter.
+
+fat bytecodes are a problem for tracemonkey because they
+require the recorder to reimplement the same special case logic
+in the same way. also, the advantages are reduced because (a)
+dispatch costs are eliminated entirely in compiled traces, (b) the
+traces contain only one special case, not the interpreters large
+chunk of code, and (c) tracemonkey spends less time running the
+base interpreter.
+
+one way we have mitigated these problems is by implementing
+certain complex bytecodes in the recorder as sequences of simple
+bytecodes. expressing the original semantics this way is not too dif-
+cult, and recording simple bytecodes is much easier. this enables
+us to retain the advantages of fat bytecodes while avoiding some of
+their problems for trace recording. this is particularly effective for
+fat bytecodes that recurse back into the interpreter, for example to
+convert an object into a primitive value by invoking a well-known
+method on the object, since it lets us inline this function call.
+
+it is important to note that we split fat opcodes into thinner op-
+codes only during recording. when running purely interpretatively
+(i.e. code that has been blacklisted), the interpreter directly and ef-
+ciently executes the fat opcodes.
+
+6.3 trace recording
+the job of the trace recorder is to emit lir with identical semantics
+to the currently running interpreter bytecode trace. a good imple-
+mentation should have low impact on non-tracing interpreter per-
+formance and a convenient way for implementers to maintain se-
+mantic equivalence.
+
+in our implementation, the only direct modication to the inter-
+preter is a call to the trace monitor at loop edges. in our benchmark
+results (see figure 12) the total time spent in the monitor (for all
+activities) is usually less than 5%, so we consider the interpreter
+impact requirement met. incrementing the loop hit counter is ex-
+pensive because it requires us to look up the loop in the trace cache,
+but we have tuned our loops to become hot and trace very quickly
+(on the second iteration). the hit counter implementation could be
+improved, which might give us a small increase in overall perfor-
+mance, as well as more exibility with tuning hotness thresholds.
+once a loop is blacklisted we never call into the trace monitor for
+that loop (see section 3.3).
+
+6.4 preemption
+spidermonkey, like many vms, needs to preempt the user program
+periodically. the main reasons are to prevent innitely looping
+scripts from locking up the host system and to schedule gc.
+
+in the interpreter, this had been implemented by setting a pre-
+empt now ag that was checked on every backward jump. this
+strategy carried over into tracemonkey: the vm inserts a guard on
+the preemption ag at every loop edge. we measured less than a
+1% increase in runtime on most benchmarks for this extra guard.
+in practice, the cost is detectable only for programs with very short
+loops.
+
+we tested and rejected a solution that avoided the guards by
+compiling the loop edge as an unconditional jump, and patching
+the jump target to an exit routine when preemption is required.
+this solution can make the normal case slightly faster, but then
+preemption becomes very slow. the implementation was also very
+complex, especially trying to restart execution after the preemption.
+
+6.5 calling external functions
+like most interpreters, spidermonkey has a foreign function inter-
+face (ffi) that allows it to call c builtins and host system functions
+(e.g., web browser control and dom access). the ffi has a stan-
+dard signature for js-callable functions, the key argument of which
+is an array of boxed values. external functions called through the
+ffi interact with the program state through an interpreter api (e.g.,
+to read a property from an argument). there are also certain inter-
+preter builtins that do not use the ffi, but interact with the program
+state in the same way, such as the calliteratornext function
+used with iterator objects. tracemonkey must support this ffi in
+order to speed up code that interacts with the host system inside hot
+loops.
+
+calling external functions from tracemonkey is potentially dif-
+cult because traces do not update the interpreter state until exit-
+ing. in particular, external functions may need the call stack or the
+global variables, but they may be out of date.
+
+for the out-of-date call stack problem, we refactored some of
+the interpreter api implementation functions to re-materialize the
+interpreter call stack on demand.
+
+we developed a c++ static analysis and annotated some inter-
+preter functions in order to verify that the call stack is refreshed
+at any point it needs to be used. in order to access the call stack,
+a function must be annotated as either forcesstack or re-
+quiresstack. these annotations are also required in order to call
+requiresstack functions, which are presumed to access the call
+stack transitively. forcesstack is a trusted annotation, applied
+to only 5 functions, that means the function refreshes the call stack.
+requiresstack is an untrusted annotation that means the func-
+tion may only be called if the call stack has already been refreshed.
+similarly, we detect when host functions attempt to directly
+read or write global variables, and force the currently running trace
+to side exit. this is necessary since we cache and unbox global
+variables into the activation record during trace execution.
+
+since both call-stack access and global variable access are
+rarely performed by host functions, performance is not signicantly
+affected by these safety mechanisms.
+
+another problem is that external functions can reenter the inter-
+preter by calling scripts, which in turn again might want to access
+the call stack or global variables. to address this problem, we made
+the vm set a ag whenever the interpreter is reentered while a com-
+piled trace is running.
+
+every call to an external function then checks this ag and exits
+the trace immediately after returning from the external function call
+if it is set. there are many external functions that seldom or never
+reenter, and they can be called without problem, and will cause
+trace exit only if necessary.
+
+the ffis boxed value array requirement has a performance
+cost, so we dened a new ffi that allows c functions to be an-
+notated with their argument types so that the tracer can call them
+directly, without unnecessary argument conversions.
+
+currently, we do not support calling native property get and set
+override functions or dom functions directly from trace. support
+is planned future work.
+
+6.6 correctness
+during development, we had access to existing javascript test
+suites, but most of them were not designed with tracing vms in
+mind and contained few loops.
+
+one tool that helped us greatly was mozillas javascript fuzz
+tester, jsfunfuzz, which generates random javascript programs
+by nesting random language elements. we modied jsfunfuzz
+to generate loops, and also to test more heavily certain constructs
+we suspected would reveal aws in our implementation. for exam-
+ple, we suspected bugs in tracemonkeys handling of type-unstable
+
+figure 11. fraction of dynamic bytecodes executed by inter-
+preter and on native traces. the speedup vs. interpreter is shown
+in parentheses next to each test. the fraction of bytecodes exe-
+cuted while recording is too small to see in this gure, except
+for crypto-md5, where fully 3% of bytecodes are executed while
+recording. in most of the tests, almost all the bytecodes are exe-
+cuted by compiled traces. three of the benchmarks are not traced
+at all and run in the interpreter.
+
+loops and heavily branching code, and a specialized fuzz tester in-
+deed revealed several regressions which we subsequently corrected.
+
+7. evaluation
+we evaluated our javascript tracing implementation using sun-
+spider, the industry standard javascript benchmark suite. sunspi-
+der consists of 26 short-running (less than 250ms, average 26ms)
+javascript programs. this is in stark contrast to benchmark suites
+such as specjvm98 (3) used to evaluate desktop and server java
+vms. many programs in those benchmarks use large data sets and
+execute for minutes. the sunspider programs carry out a variety of
+tasks, primarily 3d rendering, bit-bashing, cryptographic encoding,
+math kernels, and string processing.
+
+all experiments were performed on a macbook pro with 2.2
+
+ghz core 2 processor and 2 gb ram running macos 10.5.
+
+benchmark results. the main question is whether programs
+run faster with tracing. for this, we ran the standard sunspider test
+driver, which starts a javascript interpreter, loads and runs each
+program once for warmup, then loads and runs each program 10
+times and reports the average time taken by each. we ran 4 differ-
+ent congurations for comparison: (a) spidermonkey, the baseline
+interpreter, (b) tracemonkey, (d) squirrelfish extreme (sfx), the
+call-threaded javascript interpreter used in apples webkit, and
+(e) v8, the method-compiling javascript vm from google.
+
+figure 10 shows the relative speedups achieved by tracing, sfx,
+and v8 against the baseline (spidermonkey). tracing achieves the
+best speedups in integer-heavy benchmarks, up to the 25x speedup
+on bitops-bitwise-and.
+
+tracemonkey is the fastest vm on 9 of the 26 benchmarks
+(3d-morph, bitops-3bit-bits-in-byte, bitops-bitwise-
+and, crypto-sha1, math-cordic, math-partial-sums, math-
+spectral-norm, string-base64, string-validate-input).
+
+!"#$!"#%!"#&!"#!"#(!"#)!"#*!"#+!"#,!"#$!!"#&-./012#3%4%56#&-.789:;#3%4,56#&-.9<=>9</2#3$4%56#<//2??.1@a<9=.>922?#3!4,56#<//2??.b<aac0/;#3%4%56#<//2??.a18-=#34%56#<//2??.a?@2d2#3&4!56#1@>8:?.&1@>.1@>?.@a.1=>2#3%(4(56#1@>8:?.1@>?.@a.1=>2#3+4*56#1@>8:?.1@>e@?2.<a-#3%(4%56#1@>8:?.a?@2d2.1@>?#3%4*56#/8a>98fg8e.92/09?@d2#3$4!56#/9=:>8.<2?#3$4)56#/9=:>8.7-(#3%4&56#/9=:>8.?;<$#3(4,56#-<>2.b897<>.>8h2#3$4$56#-<>2.b897<>.5:<91#3$4!56#7<>;./89-@/#34,56#7<>;.:<9i<f.?07?#3(4,56#7<>;.?:2/>9<f.a897#3*4$56#92j25:.-a<#34%56#?>9@aj.1<?2)#3%4(56#?>9@aj.b<?><#3$4(56#?>9@aj.><j/f80-#3$4$56#?>9@aj.0a:</c./8-2#3$4%56#?>9@aj.d<f@-<>2.@a:0>#3$4,56#ka>29:92>#l<id2#figure 10. speedup vs. a baseline javascript interpreter (spidermonkey) for our trace-based jit compiler, apples squirrelfish extreme
+inline threading interpreter and googles v8 js compiler. our system generates particularly efcient code for programs that benet most from
+type specialization, which includes sunspider benchmark programs that perform bit manipulation. we type-specialize the code in question
+to use integer arithmetic, which substantially improves performance. for one of the benchmark programs we execute 25 times faster than
+the spidermonkey interpreter, and almost 5 times faster than v8 and sfx. for a large number of benchmarks all three vms produce similar
+results. we perform worst on benchmark programs that we do not trace and instead fall back onto the interpreter. this includes the recursive
+benchmarks access-binary-trees and control-flow-recursive, for which we currently dont generate any native code.
+
+in particular, the bitops benchmarks are short programs that per-
+form many bitwise operations, so tracemonkey can cover the en-
+tire program with 1 or 2 traces that operate on integers. tracemon-
+key runs all the other programs in this set almost entirely as native
+code.
+
+regexp-dna is dominated by regular expression matching,
+which is implemented in all 3 vms by a special regular expression
+compiler. thus, performance on this benchmark has little relation
+to the trace compilation approach discussed in this paper.
+
+tracemonkeys smaller speedups on the other benchmarks can
+
+be attributed to a few specic causes:
+
+ the implementation does not currently trace recursion, so
+tracemonkey achieves a small speedup or no speedup on
+benchmarks that use recursion extensively: 3d-cube, 3d-
+raytrace, access-binary-trees, string-tagcloud, and
+controlflow-recursive.
+
+ the implementation does not currently trace eval and some
+other functions implemented in c. because date-format-
+tofte and date-format-xparb use such functions in their
+main loops, we do not trace them.
+
+ the implementation does not currently trace through regular
+expression replace operations. the replace function can be
+passed a function object used to compute the replacement text.
+our implementation currently does not trace functions called
+as replace functions. the run time of string-unpack-code is
+dominated by such a replace call.
+
+ two programs trace well, but have a long compilation time.
+access-nbody forms a large number of traces (81). crypto-md5
+forms one very long trace. we expect to improve performance
+on this programs by improving the compilation speed of nano-
+jit.
+
+ some programs trace very well, and speed up compared to
+the interpreter, but are not as fast as sfx and/or v8, namely
+bitops-bits-in-byte, bitops-nsieve-bits, access-
+fannkuch, access-nsieve, and crypto-aes. the reason is
+not clear, but all of these programs have nested loops with
+small bodies, so we suspect that the implementation has a rela-
+tively high cost for calling nested traces. string-fasta traces
+well, but its run time is dominated by string processing builtins,
+which are unaffected by tracing and seem to be less efcient in
+spidermonkey than in the two other vms.
+
+detailed performance metrics. in figure 11 we show the frac-
+tion of instructions interpreted and the fraction of instructions exe-
+cuted as native code. this gure shows that for many programs, we
+are able to execute almost all the code natively.
+
+figure 12 breaks down the total execution time into four activ-
+ities: interpreting bytecodes while not recording, recording traces
+(including time taken to interpret the recorded trace), compiling
+traces to native code, and executing native code traces.
+
+these detailed metrics allow us to estimate parameters for a
+simple model of tracing performance. these estimates should be
+considered very rough, as the values observed on the individual
+benchmarks have large standard deviations (on the order of the
+
+!"#"$!"$#"%!"%#"&()*+,"-./"01"3d-cube
+3d-morph
+3d-raytrace
+access-binary-trees
+access-fannkuch
+access-nbody
+access-nsieve
+bitops-3bit-bits-in-byte
+bitops-bits-in-byte
+bitops-bitwise-and
+bitops-nsieve-bits
+controlow-recursive
+crypto-aes
+crypto-md5
+crypto-sha1
+date-format-tofte
+date-format-xparb
+math-cordic
+math-partial-sums
+math-spectral-norm
+regexp-dna
+string-base64
+string-fasta
+string-tagcloud
+string-unpack-code
+string-validate-input
+
+loops
+25
+5
+10
+0
+10
+8
+3
+2
+3
+1
+3
+0
+50
+4
+5
+3
+3
+2
+2
+15
+2
+3
+5
+3
+4
+6
+
+trees
+27
+8
+25
+0
+34
+16
+6
+2
+3
+1
+3
+0
+72
+4
+5
+3
+3
+4
+4
+20
+2
+5
+11
+6
+4
+10
+
+traces aborts
+3
+2
+10
+5
+24
+5
+3
+0
+1
+0
+0
+1
+19
+0
+0
+7
+3
+1
+1
+0
+0
+0
+6
+5
+0
+1
+
+29
+8
+100
+0
+57
+18
+8
+2
+4
+1
+5
+0
+78
+5
+10
+4
+11
+5
+4
+20
+2
+7
+15
+6
+37
+13
+
+flushes
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+trees/loop
+1.1
+1.6
+2.5
+-
+3.4
+2.0
+2.0
+1.0
+1.0
+1.0
+1.0
+-
+1.4
+1.0
+1.0
+1.0
+1.0
+2.0
+2.0
+1.3
+1.0
+1.7
+2.2
+2.0
+1.0
+1.7
+
+traces/tree
+1.1
+1.0
+4.0
+-
+1.7
+1.1
+1.3
+1.0
+1.3
+1.0
+1.7
+-
+1.1
+1.3
+2.0
+1.3
+3.7
+1.3
+1.0
+1.0
+1.0
+1.4
+1.4
+1.0
+9.3
+1.3
+
+traces/loop
+1.2
+1.6
+10.0
+-
+5.7
+2.3
+2.7
+1.0
+1.3
+1.0
+1.7
+-
+1.6
+1.3
+2.0
+1.3
+3.7
+2.5
+2.0
+1.3
+1.0
+2.3
+3.0
+2.0
+9.3
+2.2
+
+speedup
+2.20x
+2.86x
+1.18x
+0.93x
+2.20x
+4.19x
+3.05x
+25.47x
+8.67x
+25.20x
+2.75x
+0.98x
+1.64x
+2.30x
+5.95x
+1.07x
+0.98x
+4.92x
+5.90x
+7.12x
+4.21x
+2.53x
+1.49x
+1.09x
+1.20x
+1.86x
+
+figure 13. detailed trace recording statistics for the sunspider benchmark set.
+
+mean). we exclude regexp-dna from the following calculations,
+because most of its time is spent in the regular expression matcher,
+which has much different performance characteristics from the
+other programs. (note that this only makes a difference of about
+10% in the results.) dividing the total execution time in processor
+clock cycles by the number of bytecodes executed in the base
+interpreter shows that on average, a bytecode executes in about
+35 cycles. native traces take about 9 cycles per bytecode, a 3.9x
+speedup over the interpreter.
+
+using similar computations, we nd that trace recording takes
+about 3800 cycles per bytecode, and compilation 3150 cycles per
+bytecode. hence, during recording and compiling the vm runs at
+1/200 the speed of the interpreter. because it costs 6950 cycles to
+compile a bytecode, and we save 26 cycles each time that code is
+run natively, we break even after running a trace 270 times.
+
+the other vms we compared with achieve an overall speedup
+of 3.0x relative to our baseline interpreter. our estimated native
+code speedup of 3.9x is signicantly better. this suggests that
+our compilation techniques can generate more efcient native code
+than any other current javascript vm.
+
+these estimates also indicate that our startup performance could
+be substantially better if we improved the speed of trace recording
+and compilation. the estimated 200x slowdown for recording and
+compilation is very rough, and may be inuenced by startup factors
+in the interpreter (e.g., caches that have not warmed up yet during
+recording). one observation supporting this conjecture is that in
+the tracer, interpreted bytecodes take about 180 cycles to run. still,
+recording and compilation are clearly both expensive, and a better
+implementation, possibly including redesign of the lir abstract
+syntax or encoding, would improve startup performance.
+
+our performance results conrm that type specialization using
+trace trees substantially improves performance. we are able to
+outperform the fastest available javascript compiler (v8) and the
+
+fastest available javascript inline threaded interpreter (sfx) on 9
+of 26 benchmarks.
+
+8. related work
+trace optimization for dynamic languages. the closest area of
+related work is on applying trace optimization to type-specialize
+dynamic languages. existing work shares the idea of generating
+type-specialized code speculatively with guards along interpreter
+traces.
+
+to our knowledge, rigos psyco (16) is the only published
+type-specializing trace compiler for a dynamic language (python).
+psyco does not attempt to identify hot loops or inline function calls.
+instead, psyco transforms loops to mutual recursion before running
+and traces all operations.
+
+palls luajit is a lua vm in development that uses trace com-
+pilation ideas. (1). there are no publications on luajit but the cre-
+ator has told us that luajit has a similar design to our system, but
+will use a less aggressive type speculation (e.g., using a oating-
+point representation for all number values) and does not generate
+nested traces for nested loops.
+
+general trace optimization. general trace optimization has
+a longer history that has treated mostly native code and typed
+languages like java. thus, these systems have focused less on type
+specialization and more on other optimizations.
+
+dynamo (7) by bala et al, introduced native code tracing as a
+replacement for prole-guided optimization (pgo). a major goal
+was to perform pgo online so that the prole was specic to
+the current execution. dynamo used loop headers as candidate hot
+traces, but did not try to create loop traces specically.
+
+trace trees were originally proposed by gal et al. (11) in the
+context of java, a statically typed language. their trace trees ac-
+tually inlined parts of outer loops within the inner loops (because
+
+erate native code with nearly the same structure but better perfor-
+mance.
+
+call threading, also known as context threading (8), compiles
+methods by generating a native call instruction to an interpreter
+method for each interpreter bytecode. a call-return pair has been
+shown to be a potentially much more efcient dispatch mechanism
+than the indirect jumps used in standard bytecode interpreters.
+
+inline threading (15) copies chunks of interpreter native code
+which implement the required bytecodes into a native code cache,
+thus acting as a simple per-method jit compiler that eliminates the
+dispatch overhead.
+
+neither call threading nor inline threading perform type special-
+
+ization.
+
+apples squirrelfish extreme (5) is a javascript implementa-
+tion based on call threading with selective inline threading. com-
+bined with efcient interpreter engineering, these threading tech-
+niques have given sfx excellent performance on the standard sun-
+spider benchmarks.
+
+googles v8 is a javascript implementation primarily based
+on inline threading, with call threading only for very complex
+operations.
+
+figure 12. fraction of time spent on major vm activities. the
+speedup vs. interpreter is shown in parentheses next to each test.
+most programs where the vm spends the majority of its time run-
+ning native code have a good speedup. recording and compilation
+costs can be substantial; speeding up those parts of the implemen-
+tation would improve sunspider performance.
+
+inner loops become hot rst), leading to much greater tail duplica-
+tion.
+
+yeti, from zaleski et al. (19) applied dynamo-style tracing
+to java in order to achieve inlining, indirect jump elimination,
+and other optimizations. their primary focus was on designing an
+interpreter that could easily be gradually re-engineered as a tracing
+vm.
+
+suganuma et al. (18) described region-based compilation (rbc),
+a relative of tracing. a region is an subprogram worth optimizing
+that can include subsets of any number of methods. thus, the com-
+piler has more exibility and can potentially generate better code,
+but the proling and compilation systems are correspondingly more
+complex.
+
+type specialization for dynamic languages. dynamic lan-
+guage implementors have long recognized the importance of type
+specialization for performance. most previous work has focused on
+methods instead of traces.
+
+chambers et. al (9) pioneered the idea of compiling multiple
+versions of a procedure specialized for the input types in the lan-
+guage self. in one implementation, they generated a specialized
+method online each time a method was called with new input types.
+in another, they used an ofine whole-program static analysis to
+infer input types and constant receiver types at call sites. interest-
+ingly, the two techniques produced nearly the same performance.
+
+salib (17) designed a type inference algorithm for python based
+on the cartesian product algorithm and used the results to special-
+ize on types and translate the program to c++.
+
+mccloskey (14) has work in progress based on a language-
+independent type inference that is used to generate efcient c
+implementations of javascript and python programs.
+
+native code generation by interpreters. the traditional inter-
+preter design is a virtual machine that directly executes asts or
+machine-code-like bytecodes. researchers have shown how to gen-
+
+9. conclusions
+this paper described how to run dynamic languages efciently by
+recording hot traces and generating type-specialized native code.
+our technique focuses on aggressively inlined loops, and for each
+loop, it generates a tree of native code traces representing the
+paths and value types through the loop observed at run time. we
+explained how to identify loop nesting relationships and generate
+nested traces in order to avoid excessive code duplication due
+to the many paths through a loop nest. we described our type
+specialization algorithm. we also described our trace compiler,
+which translates a trace from an intermediate representation to
+optimized native code in two linear passes.
+
+our experimental results show that in practice loops typically
+are entered with only a few different combinations of value types
+of variables. thus, a small number of traces per loop is sufcient
+to run a program efciently. our experiments also show that on
+programs amenable to tracing, we achieve speedups of 2x to 20x.
+
+10. future work
+work is underway in a number of areas to further improve the
+performance of our trace-based javascript compiler. we currently
+do not trace across recursive function calls, but plan to add the
+support for this capability in the near term. we are also exploring
+adoption of the existing work on tree recompilation in the context
+of the presented dynamic compiler in order to minimize jit pause
+times and obtain the best of both worlds, fast tree stitching as well
+as the improved code quality due to tree recompilation.
+
+we also plan on adding support for tracing across regular ex-
+pression substitutions using lambda functions, function applica-
+tions and expression evaluation using eval. all these language
+constructs are currently executed via interpretation, which limits
+our performance for applications that use those features.
+
+acknowledgments
+parts of this effort have been sponsored by the national science
+foundation under grants cns-0615443 and cns-0627747, as well
+as by the california micro program and industrial sponsor sun
+microsystems under project no. 07-127.
+
+the u.s. government is authorized to reproduce and distribute
+reprints for governmental purposes notwithstanding any copyright
+annotation thereon. any opinions, ndings, and conclusions or rec-
+ommendations expressed here are those of the author and should
+
+!"#$!"#%!"#&!"#!"#(!!"#)*+,-./#0$1$23#)*+45678#0$1923#)*+6:;<6:,/#0(1$23#:,,/==+.>?:6;+<6//=#0!1923#:,,/==+@:??a-,8#0$1$23#:,,/==+?.5*;#0%1$23#:,,/==+?=>/b/#0)1!23#.><57=+).><+.><=+>?+.;</#0$c1c23#.><57=+.><=+>?+.;</#01d23#.><57=+.><e>=/+:?*#0$c1$23#.><57=+?=>/b/+.><=#0$1d23#,5?<65fg5e+6/,-6=>b/#0(1!23#,6;7<5+:/=#0(1&23#,6;7<5+4*c#0$1)23#,6;7<5+=8:(#0c1923#*:</+@564:<+<5h/#0(1(23#*:</+@564:<+27:6.#0(1!23#4:<8+,56*>,#0%1923#4:<8+7:6i:f+=-4=#0c1923#4:<8+=7/,<6:f+?564#0d1(23#6/j/27+*?:#0%1$23#=<6>?j+.:=/&%#0$1c23#=<6>?j+@:=<:#0(1c23#=<6>?j+<:j,f5-*#0(1(23#=<6>?j+-?7:,a+,5*/#0(1$23#=<6>?j+b:f>*:</+>?7-<#0(1923#k?</676/<#l5?><56#m/,56*#n547>f/#n:ff#o6:,/#m-?#o6:,/#not be interpreted as necessarily representing the ofcial views,
+policies or endorsements, either expressed or implied, of the na-
+tional science foundation (nsf), any other agency of the u.s. gov-
+ernment, or any of the companies mentioned above.
+references
+[1] luajit
+
+http://lua-users.org/lists/lua-l/2008-
+
+2008
+
+-
+
+roadmap
+02/msg00051.html.
+
+[2] mozilla  firefox web browser and thunderbird email client -
+
+http://www.mozilla.com.
+
+[3] specjvm98 - http://www.spec.org/jvm98/.
+[4] spidermonkey
+
+(javascript-c)
+
+http://www.mozilla.org/js/spidermonkey/.
+
+engine
+
+-
+
+[5] surn safari - blog archive - announcing squirrelfish extreme -
+
+http://webkit.org/blog/214/introducing-squirrelsh-extreme/.
+
+[6] a. aho, r. sethi, j. ullman, and m. lam. compilers: principles,
+
+techniques, and tools, 2006.
+
+[7] v. bala, e. duesterwald, and s. banerjia. dynamo: a transparent
+dynamic optimization system. in proceedings of the acm sigplan
+conference on programming language design and implementation,
+pages 112. acm press, 2000.
+
+[8] m. berndl, b. vitale, m. zaleski, and a. brown. context threading:
+a flexible and efcient dispatch technique for virtual machine in-
+terpreters. in code generation and optimization, 2005. cgo 2005.
+international symposium on, pages 1526, 2005.
+
+[9] c. chambers and d. ungar. customization: optimizing compiler
+technology for self, a dynamically-typed o bject-oriented pro-
+in proceedings of the acm sigplan 1989
+gramming language.
+conference on programming language design and implementation,
+pages 146160. acm new york, ny, usa, 1989.
+
+[10] a. gal. efcient bytecode verication and compilation in a virtual
+machine dissertation. phd thesis, university of california, irvine,
+2006.
+
+[11] a. gal, c. w. probst, and m. franz. hotpathvm: an effective jit
+in proceedings of the
+compiler for resource-constrained devices.
+international conference on virtual execution environments, pages
+144153. acm press, 2006.
+
+[12] c. garrett, j. dean, d. grove, and c. chambers. measurement and
+
+application of dynamic receiver class distributions. 1994.
+
+[13] j. ha, m. r. haghighat, s. cong, and k. s. mckinley. a concurrent
+trace-based just-in-time compiler for javascript. dept.of computer
+sciences, the university of texas at austin, tr-09-06, 2009.
+
+[14] b. mccloskey. personal communication.
+[15] i. piumarta and f. riccardi. optimizing direct threaded code by selec-
+tive inlining. in proceedings of the acm sigplan 1998 conference
+on programming language design and implementation, pages 291
+300. acm new york, ny, usa, 1998.
+
+[16] a. rigo. representation-based just-in-time specialization and the
+
+psyco prototype for python. in pepm, 2004.
+
+[17] m. salib.
+
+starkiller: a static type inferencer and compiler for
+
+python. in masters thesis, 2004.
+
+[18] t. suganuma, t. yasue, and t. nakatani. a region-based compila-
+tion technique for dynamic compilers. acm transactions on pro-
+gramming languages and systems (toplas), 28(1):134174, 2006.
+[19] m. zaleski, a. d. brown, and k. stoodley. yeti: a gradually
+in proceedings of the international
+extensible trace interpreter.
+conference on virtual execution environments, pages 8393. acm
+press, 2007.
+
+

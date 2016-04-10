@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser
 )
 import json
+from django.utils import timezone
 
 # Create your models here.
 
@@ -61,14 +62,32 @@ class User(AbstractBaseUser):
 	)
 	first_name = models.CharField(max_length=20)
 	last_name = models.CharField(max_length=20)
-	institution = models.CharField(max_length=20)
+	institution = models.CharField(max_length=50)
 	country = models.CharField(max_length=20)
 	area = models.ForeignKey(Area, on_delete=models.CASCADE)
 	career = models.CharField(max_length=40)
 	is_active = models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)
+	last_activity = models.DateField(auto_now=True)
+	profile_picture = models.FileField(upload_to='uploads/profile_pictures/', max_length=500, null=True)
+	doc_count = models.IntegerField(default=0)
+
 
 	objects = UserManager()
 
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = ['first_name', 'last_name', 'institution', 'country', 'area', 'career']
+
+	def update_activity(self):
+		self.last_activity = timezone.now()
+		self.save()
+		return self
+
+	def doc_number(self, operator):
+		if operator == '+':
+			self.doc_count =self.doc_count + 1
+		else:
+			self.doc_count =self.doc_count - 1
+		self.save()
+		return self
+

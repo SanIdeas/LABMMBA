@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^profile/$', views.profile, name="profile"),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
+    url(r'^profile/(?P<user_id>.*)/$', views.profile, name='profile'),
+    url(r'^users/$', views.users, name='users'),
 ]

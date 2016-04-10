@@ -13,8 +13,8 @@
 				<ul>
 					<li class="section-head"><h3>Enlaces</h3></li>
 					<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
-					<li class="section-row"><a href="#">Mi perfil</a></li>
-					<li class="section-row"><a href="#">Usuarios</a></li>
+					<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
+					<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
 					<li class="section-row"><a href="#">Categorias</a></li>
 					<li class="section-row"><a href="#">Subir documento</a></li>
 				</ul>
@@ -27,6 +27,9 @@
 					<div class="search-bar">
 						<div class="clear"></div>
 					</div>
+					{% if message|length > 0 %}
+						<span class="message">{{ message }}</span>
+					{% endif %}
 					<!--<li id="upload-frame">
 						<h3>Click aquí para subir archivo o arrastra el documento</h3>
 					</li>-->
