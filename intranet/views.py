@@ -13,6 +13,8 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
 import unicodedata
+from datetime import date
+from django.utils import timezone
 
 # Create your views here.
 def strip_accents(s):
@@ -62,9 +64,11 @@ def home(request, search=None):
 		print request.get_full_path
 		return HttpResponseRedirect(reverse('login'))
 
-def profile(request):
+def profile(request, user_id):
 	if request.user.is_authenticated() == True:
-		return render(request, 'intranet/profile.html', {'current_view': 'intranet'})
+		profile = User.objects.get(id=user_id)
+		documents = Document.objects.filter(owner=user_id)
+		return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
@@ -83,6 +87,7 @@ def upload(request):
 				final_form = form.save(commit=False)
 				final_form.owner = request.user
 				document = form.save()
+				document.owner.update_activity().doc_number('+')
 				try:
 					text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
 					text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
@@ -116,3 +121,12 @@ def pdf_viewer(request, title=None, author=None):
 			return HttpResponse('Debes tener una cuenta para visualizar este archivo.')
 	else:
 		return HttpResponse('No se encontraron documentos con el nombre: ' + title)
+
+def users(request):
+	if request.user.is_authenticated() == True:
+		users = User.objects.all()
+		for user in users:
+			user.last_activity = (timezone.now().date() - user.last_activity).days
+		return render(request, 'intranet/users.html', {'users': users})
+	else:
+		return HttpResponseRedirect(reverse('login'))
