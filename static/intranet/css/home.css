@@ -136,6 +136,11 @@
 	background-color: #F8F8F8;
 }
 
+.documents-message{
+	width: 100%;
+	text-align: center;
+}
+
 /*Search*/
 
 .result > ul > li > h4{

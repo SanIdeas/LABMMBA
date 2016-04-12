@@ -114,7 +114,6 @@ def pdf_viewer(request, title=None, author=None):
 		document = None
 	if document is not None:
 		if ((document.type and request.user.is_authenticated()) or not document.type):
-			print '----------------', document.document.url
 			#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
 			with open(document.document.url, 'rb') as pdf:
 				response =  HttpResponse(pdf.read(), content_type='application/pdf')
@@ -131,7 +130,7 @@ def users(request):
 	if request.user.is_authenticated() == True:
 		users = User.objects.all()
 		for user in users:
-			user.last_activity = (timezone.now().date() - user.last_activity).days
+			user.last_activity = (timezone.localtime(timezone.now()).date() - user.last_activity).days
 		return render(request, 'intranet/users.html', {'users': users})
 	else:
 		return HttpResponseRedirect(reverse('login'))

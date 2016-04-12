@@ -79,7 +79,7 @@ class User(AbstractBaseUser):
 	REQUIRED_FIELDS = ['first_name', 'last_name', 'institution', 'country', 'area', 'career']
 
 	def update_activity(self):
-		self.last_activity = timezone.now()
+		self.last_activity = timezone.localtime(timezone.now())
 		self.save()
 		return self
 
