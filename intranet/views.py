@@ -84,7 +84,13 @@ def upload(request):
 			return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
 		else:
 			if request.FILES['document'].size/1000 > 2048:
-				return render(request, 'intranet/upload.html', {'current_view': 'intranet', 'message': 'El archivo no debe superar los 2 Mb'})
+				message = {'type': 'error', 'content': 'El archivo no debe superar los 2 Mb'}
+				return render(request, 'intranet/upload.html', {'current_view': 'intranet', 'message': message})
+
+			if Document.objects.filter(title=request.POST['title'], author=request.POST['author']).exists():
+				message = {'type': 'error', 'content': 'Ya existe el documento'}
+				return render(request, 'intranet/upload.html', {'current_view': 'intranet', 'message': message})
+
 			request.POST['owner'] = User.objects.get(email=request.user.email)
 			form = DocumentForm(request.POST, request.FILES)
 			print form.errors

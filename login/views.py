@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -8,7 +9,6 @@ from selenium.webdriver.common.keys import Keys
 from django.contrib.staticfiles.templatetags.staticfiles import static
 import os, datetime, base64, json, requests
 from intranet.models import Document
-
 
 
 # Create your views here.
@@ -28,7 +28,8 @@ def login(request):
 			auth_login(request, user)
 			return HttpResponseRedirect(reverse('intranet'))
 		else:
-			return render(request, 'login/login.html')
+			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
+			return render(request, 'login/login.html', {'message': message})
 
 def signup(request):
 	if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
@@ -46,7 +47,8 @@ def signup(request):
 					auth_login(request, user)
 					return HttpResponseRedirect(reverse('intranet'))
 				else:
-					return render(request, 'login/signup.html', {'areas': Area.objects.all()})
+					message = {'type': 'error', 'content': 'El email ' + request.POST['email'] + ' ya existe.'}
+					return render(request, 'login/signup.html', {'areas': Area.objects.all(), 'message': message})
 	else:
 		return HttpResponseRedirect(reverse('intranet'))
 

@@ -90,3 +90,33 @@ function getMeta(file){
 
 	reader.readAsDataURL(file);
 }
+
+function methodSwitcher(method){
+	if(method == 'local'){
+		$('.upload-body[upload-method="local"]').css('display', 'block');
+		$('.upload-body[upload-method="drive"]').css('display', 'none');
+	}
+	else{
+		$('.upload-body[upload-method="local"]').css('display', 'none');
+		$('.upload-body[upload-method="drive"]').css('display', 'block');
+	}
+}
+
+function addDocument(){
+	var code = ['<div class="document-frame" doc-index="0">',
+					'<div class="frame-header">',
+						'<h5 class="frame-title">Titulo.pdf</h5>',
+						'<button class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></button>',
+						'<div class="clear"></div>',
+					'</div>',
+					'<ul class="frame-data">',
+						'<li><strong>Titulo:</strong> <input type="text" placeholder="Ej: Tesis de microbiologia"></li>',
+						'<li><strong>Autor:</strong> <input type="text"  placeholder="Ej: Hernán Herreros"></li>',
+						'<li><strong>Año:</strong> <input type="text" placeholder="Ej: 2016"></li>',
+						'<li><strong>Colaboradores:</strong> <input type="text"></li>',
+						'<li><strong>Privacidad:</strong> <input type="text"></li>',
+					'</ul>',
+				'</div>'].join('');
+	$('.upload-body[upload-method="local"]').append(code);
+
+}

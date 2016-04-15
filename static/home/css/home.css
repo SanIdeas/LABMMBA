@@ -1,0 +1,59 @@
+.home-section{
+	padding-left: 20px;
+}
+
+.items-list{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.items-list > li{
+	display: inline-block;
+	width: 33%;
+	height: 100px;
+}
+
+.items-list > li > a{
+	text-decoration: none;
+	color: inherit;
+	display: block;
+	padding: 20px;
+	transition: .2s ease-in-out;
+}
+
+.items-list > li > a:hover{
+	background: #f4f8f9;
+	transition: .2s ease-in-out;
+}
+
+.date{
+    font-size: 12px;
+    font-style: italic;
+}
+
+.title{
+	color: #0077AD;
+	margin: 0px;
+	margin-top: 10px;
+}
+
+.author{
+	margin: 0;
+	font-size: 10px;
+}
+
+.owner-picture{
+	width: 100px;
+	height: 100px;
+	float: left;
+	overflow: hidden;
+	margin-right: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.owner-picture > img{
+	width: 100%;
+	align-self: center;
+}

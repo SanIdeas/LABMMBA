@@ -18,7 +18,10 @@
 						<input type="password" name="password" required>						
 					</div>
 					<div class="login-input">
-						<input type="submit" value="Enviar">						
+						<input type="submit" value="Enviar">
+						{% if message %}
+							<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
+						{% endif %}						
 					</div>
 				</div>
 				{% csrf_token %}

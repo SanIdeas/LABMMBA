@@ -7,6 +7,9 @@
 		<div class="signup-row">
 			<h1>Registro</h1>
 			<span>Crea una cuenta de usuario en el sistema Labmmba</span>
+			{% if message %}
+				<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
+			{% endif %}		
 			<form action="{% url 'signup' %}" method="POST">
 				<div id="left-form">
 					 <div class="row">

@@ -41,6 +41,14 @@ body{
     margin-bottom: 20px;
 }
 
+.message-error{
+	color: #e0424e;
+    position: absolute;
+    font-weight: normal;
+    margin: 0;
+    font-size: 14px;
+}
+
 @media screen and (max-width: 700px){
 	#content-body{
 		width: 100% !important;

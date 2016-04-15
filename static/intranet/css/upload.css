@@ -152,8 +152,147 @@
 	background-color: #EBEBE4;
 }
 
-.message{
-	color: #e0424e;
+/************NEW************/
+
+#upload-selector-container{
+	max-width: 600px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.upload-selector{
+	width: 50%;
+	height: 80px;
+	float: left;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	cursor: pointer;
+    transition: .2s ease-in-out;
+
+}
+
+.upload-selector:hover{
+    background-color: #f4f8f9;
+    transition: .2s ease-in-out;
+}
+
+.upload-selector > *{
+	align-self: center;
+}
+
+.upload-selector > i{
+	color: #E0424E;
+	font-size: 55px;
+}
+
+.upload-selector > h5{
+	width: 70%;
+	text-align: right;
+	padding: 0px 10px;
+	box-sizing: border-box;
+}
+
+.upload-selector > img{
+	width: 100%;
+}
+
+.upload-selector:nth-child(1){
+	border-right: 1px solid #F1F1F1;
+}
+
+.unselect{
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+    background-color: #f4f8f9;
+}
+
+
+.upload-body{
+	max-width: 900px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.upload-body > #add-btn{
+	background-color: #009065;
+	border-radius: 3px;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.upload-body > #add-btn:hover{
+	transition: all 0.3s;
+    background-color: #0077ad;
+}
+
+.document-frame{
+	border-radius: 3px;
+    width: 100%;
+    /*background-color: #f4f8f9;
+    padding: 20px;*/
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 20px 0;
+    position: relative;
+}
+
+.frame-header{
+	top: 0;
+    width: 100%;
+    left: 0;
+	height: 30px;
+	background-color: #E0E0E0;
+}
+
+.close-btn{
+	float: right;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: #777;
+	outline: none;
+	font-size: 15px;
+	height: 100%;
+}
+
+.frame-title{
+	margin: 0 10px;
+	font-weight: normal;
+	float: left;
+	line-height: 30px;
+	height: 30px;
+	font-size: 15px;
+}
+
+.frame-data{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.frame-data > li{
+	padding: 5px 10px;
+    /*border-bottom: 1px solid #ECECEC;*/
+    margin: 5px 0px;
+    background-color: #F8F8F8;
+    margin: 5px 0px;
+
+}
+
+.frame-data > li > input{
+	float: right;
+    border: none;
+    background-color: transparent;
+    color: #777;
+    text-align: right;
+    outline: none;
+    width: 250px;
 }
 
 @media screen and (max-width:500px){

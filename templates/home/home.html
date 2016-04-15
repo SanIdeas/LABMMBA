@@ -1,4 +1,32 @@
 {% extends 'shared/base.html' %}
-
+{% load staticfiles %}
 {% block content %}
+
+<!--<div class="grid row">
+	<div id="content">
+		<h2 class="home-section">Ultimas publicaciones</h2>
+		<ul class="items-list">
+			{% for document in documents %}
+				<li>
+					<a href="#">
+						<div class="owner-picture" ><img src="{% static document.owner.filename %}"></div>
+						<span class="date">{{document.date_added.day}} · {{document.date_added|date:"F" }} · {{document.date_added.year}}</span>
+						<h4 class="title">{{ document.title }}</h4>
+						<span class="author">{{ document.author }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="owner-picture" ><img src="{% static document.owner.filename %}"></div>
+						<span class="date">{{document.date_added.day}} · {{document.date_added|date:"F" }} · {{document.date_added.year}}</span>
+						<h4 class="title">{{ document.title }}</h4>
+						<span class="author">{{ document.author }}</span>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<div class="clear"></div>
+	</div>
+</div>-->
+
 {% endblock %}
