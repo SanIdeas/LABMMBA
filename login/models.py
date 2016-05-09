@@ -1,3 +1,19 @@
+# Copyright (C) 2010 Google Inc. 
+# 
+# Licensed under the Apache License, Version 2.0 (the "License"); 
+# you may not use this file except in compliance with the License. 
+# You may obtain a copy of the License at 
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0 
+# 
+# Unless required by applicable law or agreed to in writing, software 
+# distributed under the License is distributed on an "AS IS" BASIS, 
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+# See the License for the specific language governing permissions and 
+# limitations under the License.  
+# OAuth 2.0 utilities for Django. 
+# Utilities for using OAuth 2.0 in conjunction with the Django datastore. 
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -6,9 +22,32 @@ from django.contrib.auth.models import (
 )
 import json, os
 from django.utils import timezone
+import oauth2client 
+import base64 
+import cPickle 
 
 # Create your models here.
 
+class CredentialsField(models.Field): 
+	
+	def __init__(self, *args, **kwargs): 
+		if 'null' not in kwargs: 
+			kwargs['null'] = True 
+		super(CredentialsField, self).__init__(*args, **kwargs) 
+	
+	def get_internal_type(self): 
+		return "TextField" 
+ 
+	def to_python(self, value): 
+		if value is None: 
+			return None 
+		if isinstance(value, oauth2client.client.Credentials): 
+			return value 
+		return cPickle.loads(base64.b64decode(value)) 
+	def get_db_prep_value(self, value, connection, prepared=False): 
+		if value is None: 
+			return None 
+		return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
 	def create_user(self, email, first_name, last_name, institution, country, area, career, password=None):
@@ -60,6 +99,7 @@ class User(AbstractBaseUser):
 		max_length=255,
 		unique=True,
 	)
+	drive_credentials = CredentialsField(null=True)
 	first_name = models.CharField(max_length=20)
 	last_name = models.CharField(max_length=20)
 	institution = models.CharField(max_length=50)
@@ -71,6 +111,7 @@ class User(AbstractBaseUser):
 	last_activity = models.DateField(auto_now=True)
 	profile_picture = models.FileField(upload_to='static/profile_pictures/', max_length=500, null=True)
 	doc_count = models.IntegerField(default=0)
+	drive_credentials = models.BinaryField(null=True)
 
 
 	objects = UserManager()
@@ -84,8 +125,9 @@ class User(AbstractBaseUser):
 		return self
 
 	def doc_number(self, operator):
+		current = self.doc_count + 1
 		if operator == '+':
-			self.doc_count =self.doc_count + 1
+			self.doc_count = current
 		else:
 			self.doc_count =self.doc_count - 1
 		self.save()
@@ -98,4 +140,7 @@ class User(AbstractBaseUser):
 
 	def filename(self):
 		return 'profile_pictures/' + os.path.basename(self.profile_picture.name)
+
+	def credentials(self):
+		return cPickle.loads(base64.b64decode(self.drive_credentials))
 

@@ -11,17 +11,27 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
+from PyPDF2 import PdfFileWriter, PdfFileReader
 from cStringIO import StringIO
 import unicodedata
 from datetime import date
 from django.utils import timezone
 
 # Create your views here.
+
 def strip_accents(s):
 	s = s.decode("cp1252")  # decode from cp1252 encoding instead of the implicit ascii encoding used by unicode()
 	s = unicodedata.normalize('NFKD', s).encode('ascii','ignore')
 	return s
-	
+
+#Recibe un stream y retorna un diccionario con los metadatos.
+def get_metadata(stream):
+	pdf = PdfFileReader(stream)
+	return pdf.getDocumentInfo()
+
+
 def convert_pdf_to_txt(path):
 	rsrcmgr = PDFResourceManager()
 	retstr = StringIO()
@@ -105,7 +115,8 @@ def upload(request):
 					text_file.write(text_from_file.lower())
 					text_file.close()
 				except:
-					None
+					text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+					text_file.close()
 				return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
 			else:
 				return render(request, 'intranet/upload.html', {'current_view': 'intranet'})

@@ -3,24 +3,35 @@ from __future__ import unicode_literals
 from django.db import models
 from login.models import User
 from unidecode import unidecode
+from django.conf import settings
 import os
 
 # Create your models here.
 
 class Document(models.Model):
 	document = models.FileField(upload_to='uploads/documents/', max_length=500)
-	category = models.CharField(max_length=50)
+	category = models.CharField(max_length=50, null=True)
 	type = models.BooleanField()
-	title = models.CharField(max_length=100)
-	author = models.CharField(max_length=100)
-	date = models.DateField()
+	title = models.CharField(max_length=100, null=True)
+	author = models.CharField(max_length=100, null=True)
+	date = models.DateField(null=True)
 	abstract = models.CharField(max_length=200, null=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	date_added = models.DateField(auto_now_add=True)
+	drive_id = models.CharField(max_length=100, null=True)
 
 	#Retorna el nombre del archivo pdf.
 	def filename(self):
 		return os.path.basename(self.document.name)
+
+	#http://stackoverflow.com/questions/12358920/renaming-files-in-django-filefield
+	def format_filename(self):
+		new_filename='uploads/documents/' + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.pdf'
+		os.rename(self.document.path, (settings.MEDIA_ROOT + '/' + new_filename).replace('/', '\\'))
+		self.document.name = new_filename
+		self.save()
+		return self.document.name
+
 
 	#Retorna el nombre completo del duenno.
 	def owner_name(self):
@@ -79,3 +90,11 @@ class Document(models.Model):
 				#	break
 		ret = {'match': result, 'extract': extract}
 		return ret
+
+	def dictionary(self):
+		dic = {}
+		for field in self._meta.fields:
+			if field.name not in ['owner', 'date_added', 'document', 'date']:
+				dic[field.name] = getattr(self, field.name)
+		return dic
+

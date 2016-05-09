@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^login/', include('login.urls')),
     url(r'^intranet/', include('intranet.urls')),
     url(r'^publications/', include('public_search.urls')),
+    url(r'^drive/', include('drive.urls')),
 ]

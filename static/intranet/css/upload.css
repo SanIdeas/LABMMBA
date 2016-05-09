@@ -1,3 +1,6 @@
+.hidden{
+	display: none;
+}
 #upload-list{
 	/*max-width: 780px;*/
 	margin: 0 auto;
@@ -136,11 +139,13 @@
     color: white;
     padding: 10px 30px;
     font-weight: normal;
-    border-radius: 3px;
+    /*border-radius: 3px;*/
     cursor: pointer;
    	margin: 12px 0;
     transition: background-color 0.3s;
     font: 400 normal 15px/1.5 'Source Sans Pro', sans-serif;
+    float: right;
+    outline: none;
 }
 
 #submit-btn:hover{
@@ -210,14 +215,18 @@
 
 
 .upload-body{
-	max-width: 900px;
+	max-width: 1400px;
 	margin: 0 auto;
 	margin-bottom: 20px;
 }
 
-.upload-body > #add-btn{
+.upload-body > #btn-wrapper{
+	width: 100%;
+	background-color: #F8F8F8;
+}
+
+#btn-wrapper > #add-btn{
 	background-color: #009065;
-	border-radius: 3px;
 	color: white;
 	padding: 10px 20px;
 	border: none;
@@ -226,13 +235,14 @@
 	transition: all 0.3s;
 }
 
-.upload-body > #add-btn:hover{
+
+#btn-wrapper > #add-btn:hover{
 	transition: all 0.3s;
     background-color: #0077ad;
 }
 
 .document-frame{
-	border-radius: 3px;
+	/*border-radius: 3px;*/
     width: 100%;
     /*background-color: #f4f8f9;
     padding: 20px;*/
@@ -247,9 +257,46 @@
     width: 100%;
     left: 0;
 	height: 30px;
-	background-color: #E0E0E0;
+	background-color: #F3F3F3;
+	height: 50px;
 }
 
+.type-select{
+	border: none;
+    background: transparent;
+    outline: none;
+    margin-right: 10px;
+    height: 100%;
+    float: right;
+    color: #777;
+    cursor: pointer;
+	transition: all 0.3s;
+}
+
+.type-select:hover{
+	background-color: rgba(0,0,0,0.3);
+	transition: all 0.3s;
+}
+
+.public-type{
+	background-color: #009065;
+	color: white;
+	transition: all 0.3s;
+}
+
+.private-type{
+	background-color: #E0424E;
+	color: white;
+	transition: all 0.3s;	
+}
+
+.public-type > *, .public-type > * > *, .private-type > *, .private-type > * > *{
+	color: white;
+}
+
+.public-type > * option, .private-type > * option{
+	color: #777;
+}
 .close-btn{
 	float: right;
 	background-color: transparent;
@@ -259,6 +306,13 @@
 	outline: none;
 	font-size: 15px;
 	height: 100%;
+	transition: all 0.2s;
+	width: 50px;
+}
+
+.close-btn:hover{
+	background-color: rgba(0,0,0,0.3);
+	transition: all 0.3s;
 }
 
 .frame-title{
@@ -268,6 +322,7 @@
 	line-height: 30px;
 	height: 30px;
 	font-size: 15px;
+	padding: 10px;
 }
 
 .frame-data{
@@ -295,6 +350,133 @@
     width: 250px;
 }
 
+.drive-link-wrapper{
+	max-width: 1400px; /*Valor anterior: 600px*/
+	margin: 0 auto;
+	overflow: hidden;
+	height: 40px;
+}
+
+#drive-link{
+	width: 100%;
+	padding: 10px 40px;
+	outline: none;
+	border: none;
+	font-size: 100%;
+	color: #777;
+	text-align: center;
+    outline: none;
+	box-sizing: border-box;
+	background-color: #E9EDF0;
+}
+#loading-bar{
+	background-color: #009065;
+	width: 0%;
+	margin: 0 auto;
+	position: relative;
+	height: 2px;
+	top: -2px;
+	transition: all .2s	;
+}
+
+.folder-wrapper{
+	width: 100%;
+	margin: 10px 0;
+	border: 3px solid #F8F8F8;
+	box-sizing: border-box;
+}
+
+.folder-wrapper > h4{
+	font-weight: normal;
+	padding: 10px;
+	margin: 0;
+}
+
+#folder-table{
+	width: 90%;
+	table-layout: fixed;
+	padding: 0;
+	border-spacing: 0;
+	margin: 10px auto;
+}
+
+#folder-table th{
+	text-align: left;
+	background-color: #fafafa;
+	font-weight: normal;
+	padding: 10px 10px;
+	font-size: 100%;
+	border-bottom: 3px solid #F0F0F0;
+}
+
+#folder-table th:nth-child(1){
+	width: 20px;
+}
+
+#folder-table th:nth-child(2){
+	width: 40%;
+}
+
+#folder-table td:nth-child(2){
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#folder-table td{
+	padding: 20px 10px;
+	font-size: 90%;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+.checkbox, .main-checkbox{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#spinner-wrapper{
+	height: 25px;
+    top: -33px;
+    position: relative;
+    padding: 0px 7px;
+}
+
+#spinner-wrapper img{
+    height: 100%;
+    float: right;
+}
+
+#error-message{
+	width: 100%;
+	text-align: center;
+	color: #777;
+	font-weight: normal;
+}
+
+.document-info{
+	width: 90% !important;
+	margin: 0 auto;
+}
+
+.document-info > table{
+	margin: 0 !important;
+	table-layout: auto !important;
+}
+
+.document-info > table td{
+	font-size: 80%;
+	padding: 8px !important;
+}
+
+#thumbnail-column{
+	width: 1%;
+}
+
+.last-upload-row{
+	width: 90%;
+	margin: 0 auto;
+}
+
 @media screen and (max-width:500px){
 	.upload-row > select{
 		width: 100%;
@@ -307,6 +489,11 @@
 		width: 100% !important;
 	}
 
+}
+@media screen and (max-width:620px){
+	#thumbnail-column{
+		display: none;
+	}
 }
 
 @media screen and (max-width:770px){
