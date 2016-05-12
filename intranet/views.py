@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from intranet.forms import DocumentForm
 from intranet.models import Document
@@ -93,16 +94,40 @@ def upload(request):
 		if request.method == "GET":
 			return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
 		else:
-			if request.FILES['document'].size/1000 > 2048:
-				message = {'type': 'error', 'content': 'El archivo no debe superar los 2 Mb'}
-				return render(request, 'intranet/upload.html', {'current_view': 'intranet', 'message': message})
+			if 'id' in request.POST:
+				ids = request.POST['id'].split(',')
+				print ids
+				for id in ids:
+					document = Document.objects.get(id=id,owner=request.user)
+					document.title = request.POST['title' + id]
+					document.author = request.POST['author' + id]
+					document.date = request.POST['date' + id]
+					document.category = request.POST['category' + id]
+					document.type = request.POST['type' + id]
+					document.abstract = request.POST['abstract' + id]
+					document.save()
+				return JsonResponse({'error': False, 'message':'Actualizado con exito.'})
+			elif 'local_ids' in request.POST:
+				local_ids = request.POST['local_ids'].split(',')
+				for id in local_ids:
+					if request.FILES['document'+id].size/1000 > 2048:
+						return JsonResponse({'error': True, 'message':'El archivo ' + request.FILES['document'+id].name + ' no debe superar los 2 Mb'})
 
-			if Document.objects.filter(title=request.POST['title'], author=request.POST['author']).exists():
-				message = {'type': 'error', 'content': 'Ya existe el documento'}
-				return render(request, 'intranet/upload.html', {'current_view': 'intranet', 'message': message})
+					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
+						return JsonResponse({'error': True, 'message':'El documento ' + request.POST['title'+id] + ' del autor ' + request.POST['author'+id] + ' ya existe.'})
 
 			request.POST['owner'] = User.objects.get(email=request.user.email)
-			form = DocumentForm(request.POST, request.FILES)
+			form = DocumentForm({
+				'title': request.POST['title'+id],
+				'author': request.POST['author'+id],
+				'date': request.POST['date'+id],
+				'type': request.POST['type'+id],
+				'category': request.POST['category'+id],
+				'abstract': request.POST['abstract'+id],
+				'owner': request.user,
+				},{
+					'document': request.FILES['document'+id]
+				})
 			print form.errors
 			if form.is_valid():
 				final_form = form.save(commit=False)
@@ -115,13 +140,13 @@ def upload(request):
 					text_file.write(text_from_file.lower())
 					text_file.close()
 				except:
-					text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+					text_file =	 open(document.document.url.replace('pdf', 'txt'), 'w')
 					text_file.close()
-				return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
+				return JsonResponse({'error': False, 'message':'Subida exitosa'})
 			else:
-				return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
+				return JsonResponse({'error': True, 'message':'Ocurrio un problema: ' + str(form.errors)})
 	else:
-		return HttpResponseRedirect(reverse('login'))
+		return JsonResponse({'error': True, 'message':'Debes iniciar sesion.'})
 
 
 def pdf_viewer(request, title=None, author=None):

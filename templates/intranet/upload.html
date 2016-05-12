@@ -25,11 +25,7 @@
 			{% if message %}
 				<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
 			{% endif %}	
-			<div class="search-bar">
-				<div class="clear"></div>
-			</div>	
 			<h4 class="documents-message">Subir documento desde</h4>
-
 			<div id="upload-selector-container">
 				<div class="upload-selector" upload-method="local" frst="True">
 					<h5>Archivos locales</h5>
@@ -40,10 +36,16 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="upload-body" upload-method="local" style="display: none;">
+			<div class="upload-body hidden" upload-method="local">
 				<div id="btn-wrapper"><button id="add-btn">Añadir documento(s)</button></div>
 				<input id="mult-files" type="file"accept="application/pdf" style="display: none" multiple>
-
+				<form id="confirm-form">
+					{%csrf_token%}
+				</form>
+				<div class="submit-row">
+					<button class="submit-btn">Confirmar</button>
+					<div class="clear"></div>
+				</div>
 				<!--<div class="document-frame" doc-index="0">
 					<div class="frame-header" doc-index="0">
 						<h5 class="frame-title">Titulo.pdf</h5>
@@ -66,15 +68,15 @@
 				</div>-->
 			</div>
 
-			<div class="upload-body" upload-method="drive" style="display: none;">
-				<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="Ingresa el enlace de la carpeta o archivo Google Drive"><div id="loading-bar"></div><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
+			<div class="upload-body hidden" upload-method="drive">
+				<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="Ingresa el enlace de la carpeta o archivo Google Drive"><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
 				<h4 id="error-message" class="hidden">Mensaje de error</h4>
 				<div class="folder-wrapper hidden">
 					<h4 id="drive-title">Titulo del enlace</h4>
 					<table id="folder-table" class="hidden">
 						<thead>
 							<tr>
-								<th><input class="main-checkbox" type="checkbox" indeterminate></th>
+								<th><input class="main-checkbox" type="checkbox"></th>
 								<th>Nombre</th>
 								<th>Dueño</th>
 								<th>Ultima modificación</th>
@@ -108,10 +110,21 @@
 							</tr>
 						</table>
 					</div>
-					<div class="last-upload-row">
-						<button id="submit-btn">Confirmar</button>
-						<div class="clear"></div></div>
+					<div id="confirmation-section" class="document-info">
+						<form id="confirm-drive-form">
+							{%csrf_token%}
+						</form>
+					</div>
+					<div class="submit-row-90">
+						<button class="submit-btn">Confirmar</button>
+						<div class="clear"></div>
+					</div>
 				</div>
+			</div>
+			<div class="row hidden" id="success-icon">
+				<div id="loading-bar"></div>
+				<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+				<h4 class="h4-center">Subida exitosa</h4>
 			</div>
 			<!--Barra de colores-->
 		</div>
@@ -119,6 +132,7 @@
 			var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
 			var link_analizer_link = "{% url 'link_analizer' '999' %}";
 			var download_drive_link = "{% url 'download_drive_files' '999' %}";
+			var upload_link = "{% url 'upload' %}";
 			{% if request.user.drive_credentials == None %}
 				PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);
 			{% endif %}

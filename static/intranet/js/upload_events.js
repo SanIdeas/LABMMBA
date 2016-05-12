@@ -1,6 +1,8 @@
 //PopupCenter('http://127.0.0.1:8000{% url 'get_credentials' %}', 'Iniciar sesion en Google Drive', 650, 700)
-var files = [];
-var state = '' //Define el estado. Si es 'single' significa que se esta mostrando un solo archivo gdrive. Si es 'multi' significa que se estan mostrando multiples archivos gdrive.
+var files = {}, key_count = 0;
+var state = ''; //Define el estado. Si es 'single' significa que se esta mostrando un solo archivo gdrive. Si es 'multi' significa que se estan mostrando multiples archivos gdrive. si es 'confirm' significa que se esta en la ventana de confirmacion.
+var upload_method = '';
+var selector_type_event;
 $('.upload-selector').click(function(){
 	if($(this).hasClass('unselect')){
 		$(this).removeClass('unselect');
@@ -32,8 +34,8 @@ $('#drive-link').change(function(){
 	//window.open("{% url 'link_analizer' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
 });
 
-$('#submit-btn').click(function(){
-	download_drive_request();
+$('.submit-btn').click(function(){
+	drive_request_handler();
 });
 
 

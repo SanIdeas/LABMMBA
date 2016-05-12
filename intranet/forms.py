@@ -6,4 +6,4 @@ class DocumentForm(ModelForm):
 	class Meta:
 		model = Document
 		fields = '__all__'
-		exclude = ['abstract', 'owner', 'category']
+		exclude = ['abstract', 'owner', 'category', 'drive_id', 'author']

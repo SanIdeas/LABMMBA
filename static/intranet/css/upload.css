@@ -1,3 +1,56 @@
+/******CHECK ANIMATION*******/
+.checkmark__circle {
+	stroke-dasharray: 166;
+	stroke-dashoffset: 166;
+	stroke-width: 2;
+	stroke-miterlimit: 10;
+	stroke: #F2AE47;
+	fill: none;
+	animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	display: block;
+	stroke-width: 2;
+	stroke: #fff;
+	stroke-miterlimit: 10;
+	margin: 0px auto;
+	margin-top: 8%;
+	box-shadow: inset 0px 0px 0px #F2AE47;
+	animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+	}
+
+.checkmark__check {
+	transform-origin: 50% 50%;
+	stroke-dasharray: 48;
+	stroke-dashoffset: 48;
+	animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes scale {
+	0%, 100% {
+		transform: none;
+	}
+	50% {
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
+@keyframes fill {
+	100% {
+		box-shadow: inset 0px 0px 0px 30px #F2AE47;
+	}
+}
+
+/***************************/
+
 .hidden{
 	display: none;
 }
@@ -133,7 +186,7 @@
 	transition: transform 1s;
 }
 
-#submit-btn{
+.submit-btn{
 	background-color: #ee8755;
     border: none;
     color: white;
@@ -148,7 +201,7 @@
     outline: none;
 }
 
-#submit-btn:hover{
+.submit-btn:hover{
 	transition: all 0.3s;
     background-color: #0077ad;
 }
@@ -336,7 +389,6 @@
     /*border-bottom: 1px solid #ECECEC;*/
     margin: 5px 0px;
     background-color: #F8F8F8;
-    margin: 5px 0px;
 
 }
 
@@ -370,13 +422,12 @@
 	background-color: #E9EDF0;
 }
 #loading-bar{
-	background-color: #009065;
+	background-color: #F2AE47;
 	width: 0%;
-	margin: 0 auto;
 	position: relative;
 	height: 2px;
 	top: -2px;
-	transition: all .2s	;
+	transition: all .3s	linear;
 }
 
 .folder-wrapper{
@@ -436,7 +487,7 @@
 
 #spinner-wrapper{
 	height: 25px;
-    top: -33px;
+    top: -31px;
     position: relative;
     padding: 0px 7px;
 }
@@ -472,9 +523,18 @@
 	width: 1%;
 }
 
-.last-upload-row{
+.submit-row{
+	width: 100%;
+}
+
+.submit-row-90{
 	width: 90%;
 	margin: 0 auto;
+}
+
+.h4-center{
+	width: 100%;
+	text-align: center;
 }
 
 @media screen and (max-width:500px){

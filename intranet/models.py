@@ -94,7 +94,7 @@ class Document(models.Model):
 	def dictionary(self):
 		dic = {}
 		for field in self._meta.fields:
-			if field.name not in ['owner', 'date_added', 'document', 'date']:
+			if field.name not in ['owner', 'date_added', 'document']:
 				dic[field.name] = getattr(self, field.name)
 		return dic
 
