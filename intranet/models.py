@@ -15,10 +15,11 @@ class Document(models.Model):
 	title = models.CharField(max_length=100, null=True)
 	author = models.CharField(max_length=100, null=True)
 	date = models.DateField(null=True)
-	abstract = models.CharField(max_length=200, null=True)
+	abstract = models.CharField(max_length=400, null=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	date_added = models.DateField(auto_now_add=True)
 	drive_id = models.CharField(max_length=100, null=True)
+	drive_thumbnail = models.CharField(max_length=200, null=True)
 
 	#Retorna el nombre del archivo pdf.
 	def filename(self):
@@ -97,4 +98,15 @@ class Document(models.Model):
 			if field.name not in ['owner', 'date_added', 'document']:
 				dic[field.name] = getattr(self, field.name)
 		return dic
+
+	def save_abstract(self):
+		text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
+		initial_index = 0
+		if initial_index + 400 > len(text):
+			end_index = len(text) - 1
+		else:
+			end_index = initial_index + 400
+		self.abstract = text[initial_index:end_index]
+		self.save()
+		return self.abstract
 

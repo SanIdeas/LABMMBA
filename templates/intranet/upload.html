@@ -39,6 +39,7 @@
 			<div class="upload-body hidden" upload-method="local">
 				<div id="btn-wrapper"><button id="add-btn">Añadir documento(s)</button></div>
 				<input id="mult-files" type="file"accept="application/pdf" style="display: none" multiple>
+				<h5 id="message" class="hidden"></h5>
 				<form id="confirm-form">
 					{%csrf_token%}
 				</form>
@@ -71,7 +72,7 @@
 			<div class="upload-body hidden" upload-method="drive">
 				<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="Ingresa el enlace de la carpeta o archivo Google Drive"><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
 				<h4 id="error-message" class="hidden">Mensaje de error</h4>
-				<div class="folder-wrapper hidden">
+				<div class="folder-wrapper hidden animation-down">
 					<h4 id="drive-title">Titulo del enlace</h4>
 					<table id="folder-table" class="hidden">
 						<thead>
@@ -87,7 +88,7 @@
 							
 						</tbody>
 					</table>
-					<div id="information-section" document-id="" class="document-info hidden">
+					<div id="information-section" document-id="" class="document-info hidden animation-down">
 						<table>
 							<tr>
 								<td id="thumbnail-column" rowspan="5"><img id="document-thumbnail" src=""></td>

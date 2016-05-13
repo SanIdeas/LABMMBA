@@ -31,8 +31,8 @@ def date(date):
         month, day, year = re.match('([0-9])*\/([0-9]*)\/([0-9]*)', date).groups()
         return day, month, year
 
-def upload_from_drive(stream, drive_id, request):
-    owner = User.objects.get(email=request.user.email)
+def upload_from_drive(stream, drive_id, request, thumbnail):
+    owner = request.user
     try:
         meta = get_metadata(stream)
         print meta
@@ -41,9 +41,10 @@ def upload_from_drive(stream, drive_id, request):
             'title': meta['/Title'] if '/Title' in meta else 'Titulo temporal' + str(datetime.datetime.now()),
             'author': meta['/Author'] if  '/Author' in meta else owner.first_name + ' ' + owner.last_name,
             'date': year + '-' + month + '-' + day if '/CreationDate' in meta else '2000-01-01',
-            'owner': owner,
+            'owner': owner.id,
             'drive_id': drive_id,
             'type': 1,
+            'drive_thumbnail': thumbnail if thumbnail else None,
         }
         files = {
             'document': stream  
@@ -53,9 +54,10 @@ def upload_from_drive(stream, drive_id, request):
             'title': 'Titulo temporal' + str(datetime.datetime.now()),
             'author': owner.first_name + ' ' + owner.last_name,
             'date': '2001-01-01',
-            'owner': owner,
+            'owner': owner.id,
             'drive_id': drive_id,
             'type': 1,
+            'drive_thumbnail': thumbnail if thumbnail else None,
         }
         files = {
             'document': stream  
@@ -63,8 +65,6 @@ def upload_from_drive(stream, drive_id, request):
     form = DocumentForm(fields, files)
     print form.errors
     if form.is_valid():
-        final_form = form.save(commit=False)
-        final_form.owner = request.user
         document = form.save()
         document.owner.update_activity().doc_number('+')
         document.format_filename()
@@ -76,6 +76,7 @@ def upload_from_drive(stream, drive_id, request):
         except:
             text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
             text_file.close()
+        document.save_abstract()
         return document.id
     else:
         return False
@@ -194,13 +195,13 @@ def download_drive_files(request, ids):
         files = []
         service = get_drive_service(request)
         for id in ids:
-            file = service.files().get(fileId=id, **{'fields':'title,downloadUrl'}).execute()
+            file = service.files().get(fileId=id, **{'fields':'title,downloadUrl, thumbnailLink'}).execute()
             resp, content = service._http.request(file['downloadUrl'])
             if resp.status == 200:
                 fh = tempfile.TemporaryFile()
                 fh.write(content)
                 fh.seek(0)
-                local_id = upload_from_drive(File(fh), id, request)
+                local_id = upload_from_drive(File(fh), id, request, file['thumbnailLink'])
                 doc = Document.objects.get(id=local_id).dictionary()
                 doc['error'] = False
                 doc['message'] = None

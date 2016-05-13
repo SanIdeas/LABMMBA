@@ -131,11 +131,11 @@ function methodSwitcher(method){
 }
 
 function addDocument(index, filename, object){
-	var code = ['<div class="document-frame" doc-index="$index">',
+	var code = ['<div class="document-frame animation-down" doc-index="$index">',
 					'<div class="frame-header">',
 						'<h5 class="frame-title">$filename</h5>',
 						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
-						'<select class="type-select" name="type$index" required>',
+						'<select class="type-select field" name="type$index" required>',
 							'<option value="" disabled selected>Selecciona privacidad</option>',
 							'<option value="0">Publico</option>',
 							'<option value="1">Privado</option>',
@@ -143,20 +143,20 @@ function addDocument(index, filename, object){
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
-						'<li><strong>Titulo:</strong> <input type="text" value="$title" name="title$index" placeholder="Ej: Tesis de microbiologia"></li>',
-						'<li><strong>Autor:</strong> <input type="text" value="$author" name="author$index" placeholder="Ej: Hernán Herreros"></li>',
-						'<li><strong>Año:</strong> <input type="text" value="$date" name="date$index" placeholder="Ej: 2016"></li>',
-						'<li><strong>Colaboradores:</strong> <input type="text"></li>',
+						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" name="title$index" placeholder="Ej: Tesis de microbiologia"> required</li>',
+						'<li><strong>Autor:</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="Ej: Hernán Herreros" required></li>',
+						'<li><strong>Fecha de creación:</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="Ej: 2016" required></li>',
+						'<li><strong>Colaboradores:</strong> <input class="field" type="text" required></li>',
 						'<li><strong>Area:</strong>',
-							'<select name="category$index" required>',
+							'<select name="category$index" class="field form-select" required>',
 								'<option value="" disabled selected>Selecciona privacidad</option>',
 								'<option value="1"> Microbiología Molecular</option>',
 								'<option value="2">Biotecnología Ambiental</option>',
 							'</select>',
 						'</li>',
-						'<li><strong>Extracto:</strong> <input type="text" value="" name="abstract$index" placeholder="Ej: 2016"></li>',
 					'</ul>',
-				'</div>'].join('').replace(/\$index/g, index).replace(/\$filename/g, filename).replace(/\$title/g, object['Title'] ? object['Title']:'').replace(/\$author/g, object['Author'] ? object['Author']:'').replace(/\$date/g, (object['CreationDate'] ? object['CreationDate']:'').substr(2, 4));
+				'</div>'].join('').replace(/\$index/g, index).replace(/\$filename/g, filename).replace(/\$title/g, object['Title'] ? object['Title']:'').replace(/\$author/g, object['Author'] ? object['Author']:'').replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
+	console.log(object['CreationDate']);
 	$('#confirm-form').append(code);
 	$('#confirm-form').off();
 	$('#confirm-form').keydown(function(e){
@@ -174,9 +174,9 @@ function addDocument(index, filename, object){
 	$('.type-select').off();
 	$('.type-select').change(function(){
 				if($(this).val() == "0")
-					$('.frame-header[doc-index="' + $(this).attr('doc-index') + '"]').addClass('public-type').removeClass('private-type');
+					$(this).closest('.frame-header').addClass('public-type').removeClass('private-type');
 				else
-					$('.frame-header[doc-index="' + $(this).attr('doc-index') + '"]').addClass('private-type').removeClass('public-type');
+					$(this).closest('.frame-header').addClass('private-type').removeClass('public-type');
 			});
 
 }
@@ -186,9 +186,16 @@ function filesHandler(){
 	for(var i = 0; i < files.length; i++){
 		files_names.push(files[i].name);
 	}
-
 	for (var i = 0; i < new_files.length; i++){
-		if (files_names.indexOf(new_files[i].name) < 0){
+		var exists = false
+		for(var key in files){
+			if(files.hasOwnProperty(key)){
+				if(files[key].name == new_files[i].name){
+					exists = true;
+				}
+			}
+		}
+		if(!exists){
 			files[key_count] = new_files[i];
 			getMeta(key_count, new_files[i]);
 			key_count++;
@@ -278,7 +285,7 @@ function create_drive_table(response){
 	$('.folder-row').remove();
 	var files = response['files'];
 	if (files.length > 0){
-		var code = ['<tr class="folder-row">',
+		var code = ['<tr class="folder-row animation-down">',
 						'<td><input class="checkbox" type="checkbox" name="id" value="$id"></td>',
 						'<td>$filename</td>',
 						'<td>$owner</td>',
@@ -373,6 +380,7 @@ function drive_request_handler(){
 	if(state=='confirm'){
 		if(upload_method == 'drive'){
 			var form = new FormData($('#confirm-drive-form')[0]);
+			var form_status = $('#confirm-drive-form')[0].checkValidity();
 			
 		}
 		else{
@@ -384,8 +392,10 @@ function drive_request_handler(){
 					form.append('document'+id.toString(), files[id]);
 				}
 			}
+			var form_status = $('#confirm-form')[0].checkValidity();
 		}
-		xhr.open('POST', upload_link, true);
+		if(form_status){
+			xhr.open('POST', upload_link, true);
 			xhr.onload = function(){
 				response = JSON.parse(xhr.responseText);
 				if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
@@ -393,10 +403,41 @@ function drive_request_handler(){
 					console.log(response);
 				}
 				else if ((response['error'])){
-					console.log(response);
+					$('#message').removeClass('hidden');
+					$('#message').html(response['message']);
 				}
 			}
 			xhr.send(form);
+		}
+		else{
+			if(upload_method=='local'){
+				var class_='.field';
+				var parent = 'li';
+			}
+			if(upload_method=='drive'){
+				var class_='.drive-field'
+				var parent = 'tr';
+			}
+			$(class_).each(function(i, field){
+				if ($(field).val() == null || $(field).val() == ''){
+					console.log($(field).closest(parent).length)
+					if($(field).closest(parent).length){
+						$(field).closest(parent).addClass('required');
+						$($(this)).on('input', function(){
+							if($(this).closest(parent).hasClass('required'))$(this).closest(parent).removeClass('required')
+								$(this).off();
+						});
+					}					
+					else{
+						$(field).addClass('required');
+							$($(this)).on('input', function(){
+								if($(this).hasClass('required'))$(this).removeClass('required')
+									$(this).off('input');
+							});
+					}
+				}
+			});
+		}
 	}
 	else{
 		xhr.onload =function(){
@@ -442,21 +483,21 @@ function load_confirmation(files){
 	$('.confirmation-frame').remove()
 	var section = $('#confirm-drive-form');
 	var ids = [];
-	var code = ['<div class="document-frame confirmation-frame">',
+	var old_code = ['<div class="document-frame confirmation-frame animation-down">',
 					'<ul class="frame-data">',
-						'<li><strong>Titulo:</strong> <input type="text" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required></li>',
-						'<li><strong>Autor:</strong> <input type="text" name="author$id" value="$author" placeholder="Ej: Hernán Herreros" required></li>',
-						'<li><strong>Fecha:</strong> <input type="text" name="date$id" value="$date" placeholder="Ej: 2016-12-30" required></li>',
-						'<li><strong>Colaboradores:</strong> <input type="text"></li>',
+						'<li><strong>Titulo:</strong> <input type="text" class="drive-field" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required></li>',
+						'<li><strong>Autor:</strong> <input type="text" class="drive-field" name="author$id" value="$author" placeholder="Ej: Hernán Herreros" required></li>',
+						'<li><strong>Fecha:</strong> <input type="text" class="drive-field" name="date$id" value="$date" placeholder="Ej: 2016-12-30" required></li>',
+						'<li><strong>Colaboradores:</strong> <input class="drive-field" type="text" required></li>',
 						'<li><strong>Area:</strong>',
-							'<select name="category$id" required>',
+							'<select name="category$id" class="form-select drive-field" required>',
 								'<option value="" disabled selected>Selecciona privacidad</option>',
 								'<option value="1"> Microbiología Molecular</option>',
 								'<option value="2">Biotecnología Ambiental</option>',
 							'</select>',
 						'</li>',
 						'<li><strong>Privacidad:</strong>',
-							'<select name="type$id" required>',
+							'<select name="type$id" class="form-select drive-field" required>',
 								'<option value="" disabled selected>Selecciona privacidad</option>',
 								'<option value="0">Público</option>',
 								'<option value="1">Privado</option>',
@@ -465,8 +506,52 @@ function load_confirmation(files){
 						'<li><strong>Extracto:</strong> <input type="text" name="abstract$id" required></li>',
 					'</ul>',
 				'</div>']
+	var code = ['<table class="confirmation-table confirmation-frame animation-down">',
+					'<tr>',
+						'<td rowspan="7" class="thumbnail-col"><img src="$thumbnail"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Titulo:</strong></td>',
+						'<td><input type="text" class="drive-field" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Autor:</strong></td>',
+						'<td ><input type="text" class="drive-field" name="author$id" value="$author" placeholder="Ej: Hernán Herreros" required></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Fecha:</strong></td>',
+						'<td ><input type="text" class="drive-field" name="date$id" value="$date" placeholder="Ej: 2016-12-30" required></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Colaboradores:</strong></td>',
+						'<td ><input class="drive-field" type="text"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Area:</strong></td>',
+						'<td >',
+							'<select name="category$id" class="form-select drive-field" required>',
+								'<option value="" disabled selected>Selecciona privacidad</option>',
+								'<option value="1"> Microbiología Molecular</option>',
+								'<option value="2">Biotecnología Ambiental</option>',
+							'</select>',
+						'</td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Privacidad:</strong></td>',
+						'<td >',
+							'<select name="type$id" class="form-select drive-field" required>',
+								'<option value="" disabled selected>Selecciona privacidad</option>',
+								'<option value="0">Público</option>',
+								'<option value="1">Privado</option>',
+							'</select>',
+						'</td>',
+					'</tr>',
+					'<tr>',
+						'<td colspan="3" ><textarea class="drive-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
+					'</tr>',
+				'</table>']
 	for(var i = 0; i < files.length; i++){
-		var completed_code = code.join('').replace(/\$id/g, files[i]['id']).replace(/\$title/g, files[i]['title'] ? files[i]['title']:'').replace(/\$author/g, files[i]['author'] ? files[i]['author']:'').replace(/\$date/g, (files[i]['date'] ? files[i]['date']:''));
+		var completed_code = code.join('').replace(/\$id/g, files[i]['id']).replace(/\$title/g, files[i]['title'] ? files[i]['title']:'').replace(/\$author/g, files[i]['author'] ? files[i]['author']:'').replace(/\$date/g, files[i]['date'] ? files[i]['date'] : '').replace(/\$thumbnail/g, files[i]['drive_thumbnail'] ? files[i]['drive_thumbnail'] : '').replace(/\$abstract/g, files[i]['abstract'] ? files[i]['abstract'] : '');
 		section.append(completed_code);
 		ids.push(files[i]['id']);
 	}

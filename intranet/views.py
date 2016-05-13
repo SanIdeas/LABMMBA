@@ -114,37 +114,38 @@ def upload(request):
 						return JsonResponse({'error': True, 'message':'El archivo ' + request.FILES['document'+id].name + ' no debe superar los 2 Mb'})
 
 					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
-						return JsonResponse({'error': True, 'message':'El documento ' + request.POST['title'+id] + ' del autor ' + request.POST['author'+id] + ' ya existe.'})
+						return JsonResponse({'error': True, 'message':'El documento <span style="text-transform: uppercase; font-size:14px">' + request.POST['title'+id] + '</span> del autor <span style="text-transform: uppercase; font-size:14px">' + request.POST['author'+id] + '</span style="font-size:100%"> ya existe.'})
 
-			request.POST['owner'] = User.objects.get(email=request.user.email)
-			form = DocumentForm({
-				'title': request.POST['title'+id],
-				'author': request.POST['author'+id],
-				'date': request.POST['date'+id],
-				'type': request.POST['type'+id],
-				'category': request.POST['category'+id],
-				'abstract': request.POST['abstract'+id],
-				'owner': request.user,
-				},{
-					'document': request.FILES['document'+id]
-				})
-			print form.errors
-			if form.is_valid():
-				final_form = form.save(commit=False)
-				final_form.owner = request.user
-				document = form.save()
-				document.owner.update_activity().doc_number('+')
-				try:
-					text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-					text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
-					text_file.write(text_from_file.lower())
-					text_file.close()
-				except:
-					text_file =	 open(document.document.url.replace('pdf', 'txt'), 'w')
-					text_file.close()
+					request.POST['owner'] = User.objects.get(email=request.user.email)
+					fields = {
+						'title': request.POST['title'+id],
+						'author': request.POST['author'+id],
+						'date': request.POST['date'+id],
+						'type': int(request.POST['type'+id]),
+						'category': request.POST['category'+id],
+						'owner': request.user.id,
+						}
+					files = {
+							'document': request.FILES['document'+id]
+						}
+					form = DocumentForm(fields, files)
+					print form.errors
+					if form.is_valid():
+						document = form.save()
+						document.owner.update_activity().doc_number('+')
+						document.format_filename()
+						try:
+							text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+							text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+							text_file.write(text_from_file.lower())
+							text_file.close()
+						except:
+							text_file =	 open(document.document.url.replace('pdf', 'txt'), 'w')
+							text_file.close()
+						document.save_abstract()
+					else:
+						return JsonResponse({'error': True, 'message':'Ocurrio un problema: ' + str(form.errors)})
 				return JsonResponse({'error': False, 'message':'Subida exitosa'})
-			else:
-				return JsonResponse({'error': True, 'message':'Ocurrio un problema: ' + str(form.errors)})
 	else:
 		return JsonResponse({'error': True, 'message':'Debes iniciar sesion.'})
 

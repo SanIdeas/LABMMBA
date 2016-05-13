@@ -51,6 +51,20 @@
 
 /***************************/
 
+@keyframes down {
+	0% {
+		transform: translate(0px, -10px);
+		opacity: 0;
+	}
+	100% {
+		transform: translate(0px, 0px);
+		opacity: 1;
+	}
+}
+
+li{
+	transition: background-color 0.2s;
+}
 .hidden{
 	display: none;
 }
@@ -332,13 +346,13 @@
 }
 
 .public-type{
-	background-color: #009065;
+	background-color: #408E7C;
 	color: white;
 	transition: all 0.3s;
 }
 
 .private-type{
-	background-color: #E0424E;
+	background-color: #E0737B;
 	color: white;
 	transition: all 0.3s;	
 }
@@ -535,6 +549,96 @@
 .h4-center{
 	width: 100%;
 	text-align: center;
+}
+
+.required{
+	background-color: #FFE2E2 !important;
+    transition: background-color 0.2s ease;
+}
+
+.form-select{
+	float: right;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+#message{
+	color: #EC5A5A;
+	width: 100%;
+	text-align: center;
+}
+
+.animation-down{
+	animation: down .4s ease-in-out;
+}
+
+.confirmation-table{
+	width: 100%;
+	margin: 0 auto;
+	table-layout: auto;
+	border-spacing: 0;
+    margin: 20px 0;
+}
+
+.confirmation-table td{
+	font-size: 80%;
+	padding: 8px !important;
+	padding: 5px 10px;
+    margin: 5px 0px;
+    border-bottom: 5px solid white;
+}
+
+.confirmation-table tr{
+    background-color: #F8F8F8;
+}
+
+.confirmation-table td input{
+    border: none;
+    background-color: transparent;
+    color: #777;
+    text-align: right;
+    outline: none;
+    width: 250px;
+}
+
+.confirmation-table  td:nth-child(2){
+    text-align: right;
+}
+
+
+.confirmation-table tr:nth-child(n+2):nth-last-child(n+2) td:nth-child(1){
+    border-left: 5px solid white;
+}
+
+.confirmation-table .thumbnail-col{
+	width: 1%;
+}
+
+.confirmation-table td > textarea{
+	margin: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    height: 65px;
+}
+
+.confirmation-table td > textarea::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.confirmation-table td > textarea::-webkit-scrollbar-thumb {
+    background-color: #9A9A9A;
+    border-radius: 30px;
+}
+
+.confirmation-table td > textarea::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
 }
 
 @media screen and (max-width:500px){
