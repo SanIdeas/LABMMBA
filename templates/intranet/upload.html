@@ -134,6 +134,7 @@
 			var link_analizer_link = "{% url 'link_analizer' '999' %}";
 			var download_drive_link = "{% url 'download_drive_files' '999' %}";
 			var upload_link = "{% url 'upload' %}";
+			var static_link = "{% static '999' %}";
 			{% if request.user.drive_credentials == None %}
 				PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);
 			{% endif %}

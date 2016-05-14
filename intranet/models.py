@@ -1,16 +1,17 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from login.models import User
+from login.models import User, Area
 from unidecode import unidecode
 from django.conf import settings
-import os
+from collections import Counter
+import os, re, operator
 
 # Create your models here.
 
 class Document(models.Model):
 	document = models.FileField(upload_to='uploads/documents/', max_length=500)
-	category = models.CharField(max_length=50, null=True)
+	category = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
 	type = models.BooleanField()
 	title = models.CharField(max_length=100, null=True)
 	author = models.CharField(max_length=100, null=True)
@@ -19,11 +20,14 @@ class Document(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	date_added = models.DateField(auto_now_add=True)
 	drive_id = models.CharField(max_length=100, null=True)
-	drive_thumbnail = models.CharField(max_length=200, null=True)
+	thumbnail = models.FileField(upload_to='static/thumbnails/', max_length=500)
+	words = models.CharField(max_length=200, null=True)
 
 	#Retorna el nombre del archivo pdf.
 	def filename(self):
 		return os.path.basename(self.document.name)
+	def thumbnail_filename(self):
+		return 'thumbnails/' + os.path.basename(self.thumbnail.name)
 
 	#http://stackoverflow.com/questions/12358920/renaming-files-in-django-filefield
 	def format_filename(self):
@@ -32,6 +36,13 @@ class Document(models.Model):
 		self.document.name = new_filename
 		self.save()
 		return self.document.name
+
+	def format_thumbnail_filename(self):
+		new_filename='static/thumbnails/' + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.jpg'
+		os.rename(self.thumbnail.path, (settings.MEDIA_ROOT + '/' + new_filename).replace('/', '\\'))
+		self.thumbnail.name = new_filename
+		self.save()
+		return self.thumbnail.name
 
 
 	#Retorna el nombre completo del duenno.
@@ -95,8 +106,10 @@ class Document(models.Model):
 	def dictionary(self):
 		dic = {}
 		for field in self._meta.fields:
-			if field.name not in ['owner', 'date_added', 'document']:
+			if field.name not in ['owner', 'date_added', 'document', 'thumbnail']:
 				dic[field.name] = getattr(self, field.name)
+			elif field.name == 'thumbnail':
+				dic[field.name] = self.thumbnail_filename()
 		return dic
 
 	def save_abstract(self):
@@ -109,4 +122,21 @@ class Document(models.Model):
 		self.abstract = text[initial_index:end_index]
 		self.save()
 		return self.abstract
+
+	def keywords(self):
+		text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ').replace('.', '').replace(',', '')
+		reg = re.compile('\S{4,}')
+		c = Counter(ma.group() for ma in reg.finditer(text))
+		keywords = []
+		for word, count in c.most_common(5):
+			keywords.append(word)
+		self.words = ','.join(keywords)
+		self.save()
+		return keywords
+
+	def privacy(self):
+		if self.type == 0:
+			return 'public'
+		else:
+			return 'private'
 

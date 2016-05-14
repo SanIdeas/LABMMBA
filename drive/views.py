@@ -10,7 +10,8 @@ from django.core.files import File
 from intranet.views import get_metadata, strip_accents, convert_pdf_to_txt
 from intranet.forms import DocumentForm
 from intranet.models import Document
-import httplib2
+from PIL import Image
+import httplib2, urllib, cStringIO
 import re, io, os, tempfile, datetime, base64, cPickle, ast, json
 flow = client.flow_from_clientsecrets(
     'drive/client_secret.json',
@@ -47,7 +48,8 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
             'drive_thumbnail': thumbnail if thumbnail else None,
         }
         files = {
-            'document': stream  
+            'document': stream,
+            'thumbnail': thumbnail,
         }
     except:
         fields = {
@@ -68,6 +70,7 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
         document = form.save()
         document.owner.update_activity().doc_number('+')
         document.format_filename()
+        document.format_thumbnail_filename()
         try:
             text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
             text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
@@ -77,6 +80,7 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
             text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
             text_file.close()
         document.save_abstract()
+        document.keywords()
         return document.id
     else:
         return False
@@ -201,7 +205,12 @@ def download_drive_files(request, ids):
                 fh = tempfile.TemporaryFile()
                 fh.write(content)
                 fh.seek(0)
-                local_id = upload_from_drive(File(fh), id, request, file['thumbnailLink'])
+                thumbnailLink = file['thumbnailLink']
+                file = urllib.urlopen(thumbnailLink).read()
+                img = tempfile.TemporaryFile()
+                img.write(file)
+                img.seek(0)
+                local_id = upload_from_drive(File(fh), id, request, File(img))
                 doc = Document.objects.get(id=local_id).dictionary()
                 doc['error'] = False
                 doc['message'] = None

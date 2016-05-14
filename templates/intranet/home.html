@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="title-section">
-	<div class="title-label"><h1>Sistema de Redes Labmmba</h1></div>
+	<div class="title-label"><h1>Sistema de Redes LABMMBA</h1></div>
 </div>
 
 <div class="grid row">
@@ -93,7 +93,7 @@
 			{% endif %}
 				<script>
 					$('.search-result').click(function(){
-						window.open("{% url 'viewer' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
+						window.open("{% url 'document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
 					});
 				</script>
 			<!--Barra de colores-->			

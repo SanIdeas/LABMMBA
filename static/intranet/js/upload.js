@@ -149,7 +149,7 @@ function addDocument(index, filename, object){
 						'<li><strong>Colaboradores:</strong> <input class="field" type="text" required></li>',
 						'<li><strong>Area:</strong>',
 							'<select name="category$index" class="field form-select" required>',
-								'<option value="" disabled selected>Selecciona privacidad</option>',
+								'<option value="" disabled selected>Selecciona una categoria</option>',
 								'<option value="1"> Microbiología Molecular</option>',
 								'<option value="2">Biotecnología Ambiental</option>',
 							'</select>',
@@ -551,7 +551,7 @@ function load_confirmation(files){
 					'</tr>',
 				'</table>']
 	for(var i = 0; i < files.length; i++){
-		var completed_code = code.join('').replace(/\$id/g, files[i]['id']).replace(/\$title/g, files[i]['title'] ? files[i]['title']:'').replace(/\$author/g, files[i]['author'] ? files[i]['author']:'').replace(/\$date/g, files[i]['date'] ? files[i]['date'] : '').replace(/\$thumbnail/g, files[i]['drive_thumbnail'] ? files[i]['drive_thumbnail'] : '').replace(/\$abstract/g, files[i]['abstract'] ? files[i]['abstract'] : '');
+		var completed_code = code.join('').replace(/\$id/g, files[i]['id']).replace(/\$title/g, files[i]['title'] ? files[i]['title']:'').replace(/\$author/g, files[i]['author'] ? files[i]['author']:'').replace(/\$date/g, files[i]['date'] ? files[i]['date'] : '').replace(/\$thumbnail/g, files[i]['thumbnail'] ? static_link.replace('999', files[i]['thumbnail']) : '').replace(/\$abstract/g, files[i]['abstract'] ? files[i]['abstract'] : '');
 		section.append(completed_code);
 		ids.push(files[i]['id']);
 	}

@@ -1,0 +1,86 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="title-section">
+	<div class="title-label"><h1></h1></div>
+</div>
+
+<div class="grid row">
+	<div id="content">
+		<div class="side left-side">
+			<div class="side-section">
+				<ul>
+					<li class="section-head"><h3>Enlaces</h3></li>
+					<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
+					<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
+					<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
+					<li class="section-row"><a href="#">Categorias</a></li>
+					<li class="section-row"><a href="{% url 'upload' %}">Subir documento</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="body">
+			<div id="doc-container">
+				<div id="doc-head">
+					<div id="type-wrapper" class="{{document.privacy}}">
+					</div>
+				</div>
+				<h2>{{document.title}}</h2>
+				<h5>{{document.category.name}}</h5>
+				<h5>{{document.date.year}}</h5>
+				<div id="doc-abstract">
+					{{ document.abstract }}
+				</div>
+				<div id="doc-info-container">
+					<div id="doc-preview-wrapper">
+						<a href="{% url 'viewer' document.author document.title %}" target="_blank">
+							<div id="doc-open-btn"><i class="fa fa-external-link" aria-hidden="true"></i></div>
+							<div id="doc-img-wrapper"><img  src="{% static 'intranet/images/pdf_icon.jpg' %}">
+
+							</div>
+						</a>
+					</div>
+					<div id="doc-info-wrapper">
+						<table>
+							<tr>
+								<td colspan="2">
+									<div id="doc-owner-wrapper">
+										<div id="doc-owner-info">
+											<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
+											<h5>{{document.owner.simplify_institution}} - {{document.owner.area.name}}</h5>
+										</div>
+										<div id="doc-owner-img">
+											<img {% if document.owner.profile_picture %} src="{% static document.owner.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Autor:</strong></td>
+								<td>{{document.author}}</td>
+							</tr>
+							<tr>
+								<td><strong>Agregado el:</strong></td>
+								<td>{{document.date_added}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div id="doc-keywords-container">
+					<ul>
+					{% for keyword in document.keywords %}
+						<li><a href="#">{{keyword}}</a></li>
+					{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+{% endblock %}
