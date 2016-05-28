@@ -93,6 +93,7 @@ def update_profile_picture(request):
 def upload(request):
     if request.user.is_authenticated() == True:
         #Document.objects.all().delete()
+        #User.objects.all().delete()
         if request.method == "GET":
             return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
         else:
