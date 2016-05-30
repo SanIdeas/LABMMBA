@@ -61,14 +61,20 @@ def home(request, search=None):
         if search is None: #Si no es una busqueda
             documents = all_docs
         else:
-            split_search = unidecode(search.lower()).split(' ')
             documents = []
+            high_acc_result = []
+            low_acc_result = []
             for document in all_docs:
-                result = document.match(split_search)
+                result = document.match(search)
                 if result['match']:
                     if result['extract'] != '':
                         setattr(document, 'extract', result['extract'])
-                    documents.append(document)
+                    if result['exact']:
+                        high_acc_result.append(document)
+                    else:
+                        low_acc_result.append(document)
+            documents = high_acc_result + low_acc_result
+            print documents
         parameters = {'current_view': 'intranet', 'documents': documents}
         if search is not None:
             parameters['search'] = search

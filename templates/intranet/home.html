@@ -1,5 +1,5 @@
 {% extends 'shared/base.html' %}
-
+{% load staticfiles %}
 {% block content %}
 
 <div class="title-section">
@@ -25,7 +25,7 @@
 			<div class="search-bar">
 				<input id="search-field" type="text" placeholder="Ingresa tu busqueda aquí" {% if search %} value="{{ search }}" {% endif %}>
 				<i class="fa fa-search"></i>
-				<i class="fa fa-caret-down"></i>
+				<i id="filter-btn" class="fa fa-caret-down"></i>
 				<div class="clear"></div>
 				<script>
 					$('#search-field').keypress(function(e){
@@ -34,6 +34,76 @@
 						}
 					});
 				</script>
+			</div>
+			<div id="filters" class="filters-hidden">
+				<div id="categories" class="row">
+					<ul id="categories-list">
+						<li>
+							<label class="category-label" for="categoria1">
+								<div class="category-box">
+									<input id="categoria1" class="category-checkbox" cat-num="1" type="checkbox" value="categoria" name="categoria1" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="1"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Microbiología Molecular</h4>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="category-label" for="categoria2">
+								<div class="category-box">
+									<input id="categoria2" class="category-checkbox" cat-num="2" type="checkbox" value="categoria" name="categoria2" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="2"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Biotecnologia Ambiental</h4>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="category-label" for="categoria3">
+								<div class="category-box">
+									<input id="categoria3" class="category-checkbox" cat-num="3" type="checkbox" value="categoria" name="categoria3" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="3"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Categoria de prueba</h4>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="category-label" for="categoria4">
+								<div class="category-box">
+									<input id="categoria4" class="category-checkbox" cat-num="4" type="checkbox" value="categoria" name="categoria4" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="4"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Desarrollo de Software</h4>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="category-label" for="categoria5">
+								<div class="category-box">
+									<input id="categoria5" class="category-checkbox" cat-num="5" type="checkbox" value="categoria" name="categoria5" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="5"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Informatica</h4>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="category-label" for="categoria6">
+								<div class="category-box">
+									<input id="categoria6" class="category-checkbox" cat-num="6" type="checkbox" value="categoria" name="categoria6" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="6"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Universidad Tecnica Federico Santa Maria</h4>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="category-label" for="categoria7">
+								<div class="category-box">
+									<input id="categoria7" class="category-checkbox" cat-num="7" type="checkbox" value="categoria" name="categoria7" style="display:none">
+									<div class="rounded-checkbox"><div class="check-background hidden" cat-num="7"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+									<h4>Categoria de Prueba</h4>
+								</div>
+							</label>
+						</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
 			</div>
 			<div class="result">
 			{% if search %}
@@ -102,5 +172,6 @@
 		<div class="clear"></div>
 	</div>
 </div>
+<script src="{% static 'intranet/js/home_events.js' %}"></script>
 
 {% endblock %}

@@ -72,7 +72,7 @@
 				</div>
 				<div id="doc-keywords-container">
 					<ul>
-					{% for keyword in document.keywords %}
+					{% for keyword in document.get_keywords %}
 						<li><a href="#">{{keyword}}</a></li>
 					{% endfor %}
 					</ul>
