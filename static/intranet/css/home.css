@@ -1,3 +1,15 @@
+
+*::-webkit-scrollbar {
+    height: 3px;
+    width: 5px;
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #D2D2D2;
+    border-radius: 15px;
+}
+
 .side{
 	width: 20%;
 	float: left;
@@ -176,8 +188,6 @@
 
 #categories{
 	overflow: auto;
-    overflow-y: hidden;
-    padding: 10px 0px;
 }
 #categories::-webkit-scrollbar {
     height: 3px;
@@ -211,18 +221,18 @@
 }
 
 .category-box{
-	padding: 25px 20px;
+	padding: 5px 34px;
+    padding-left: 10px;
 	color: white;
 	background: url('/static/shared/images/gradiente.png') repeat;
 	background-position-x: -140px;
-	margin-right: 10px;
 	cursor: pointer;
-	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+	border-right: 1px solid #007F7D;
 	position: relative;
 }
 
-#categories-list > li:last-child > .category-box{
-	margin: 0;
+#categories-list > li:last-child .category-box{
+	border-right: none;
 }
 
 .category-box > h4{
@@ -261,7 +271,8 @@
 }
 
 #filters{
-	overflow: hidden;
+    top: -20px;
+    position: relative;
 }
 
 .filters-hidden{
@@ -270,8 +281,80 @@
 }
 
 .filters-visible{
-	height: 115px;
+	height: 180px;
 	transition: height .5s cubic-bezier(0.78, 0.01, 0.13, 1.02);
+}
+
+#options{
+
+}
+
+#options > table{
+	table-layout: fixed;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border-spacing: 0px;
+	background-color: white;
+}
+
+#options td{
+	text-align: center;
+	border: 1px solid #F8F8F8;
+	cursor: pointer;
+	position: relative;
+}
+
+#options td:after{
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: "\f0d7";
+    margin-left: 5px;
+}
+
+.option-menu{
+	width: 100%;
+    position: absolute;
+    z-index: 99;
+    overflow: auto;
+	display: none;
+    left: -1px;
+    height: 140px;
+    background-color: white;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid #F8F8F8;
+}
+
+.option-menu ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.option-menu ul li{
+	padding: 5px;
+	border-bottom: 1px solid #F8F8F8;
+	position: relative;
+}
+
+.option-menu ul label{
+	cursor: pointer;
+}
+
+.option-menu ul li:hover{
+	background-color: #F8F8F8;
+}
+
+#options td:hover > .option-menu{
+	display: block;
+}
+
+.menus{
+	border: 1px solid #F8F8F8;
+	color: white;
 }
 
 @keyframes checked {

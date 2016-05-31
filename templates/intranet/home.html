@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="title-section">
-	<div class="title-label"><h1>Sistema de Redes LABMMBA</h1></div>
+	<div class="title-label"><h1>Redes Labmmba</h1></div>
 </div>
 
 <div class="grid row">
@@ -25,7 +25,6 @@
 			<div class="search-bar">
 				<input id="search-field" type="text" placeholder="Ingresa tu busqueda aquí" {% if search %} value="{{ search }}" {% endif %}>
 				<i class="fa fa-search"></i>
-				<i id="filter-btn" class="fa fa-caret-down"></i>
 				<div class="clear"></div>
 				<script>
 					$('#search-field').keypress(function(e){
@@ -35,8 +34,84 @@
 					});
 				</script>
 			</div>
-			<div id="filters" class="filters-hidden">
-				<div id="categories" class="row">
+			<div id="filters">
+				<div id="options">
+					<table>
+						<tr>
+							<td>
+								Buscar por
+								<div class="option-menu " opt="by">
+									<ul>
+										<label for="chk-title">
+											<li>
+												<input type="checkbox" id="chk-title" class="filter-chk" style="display:none" filter="title" name="by" value="title">
+												<div class="rounded-checkbox menus"><div class="check-background hidden" filter="title"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+												Titulo
+											</li>
+										</label>
+										<label for="chk-author">
+											<li>
+												<input type="checkbox" id="chk-author" class="filter-chk" style="display:none" filter="author" name="by" value="author">
+												<div class="rounded-checkbox menus"><div class="check-background hidden" filter="author"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+												Autor
+											</li>
+										</label>
+										<label for="chk-content">
+											<li>
+												<input type="checkbox" id="chk-content" class="filter-chk" style="display:none" filter="content" name="by" value="content">
+												<div class="rounded-checkbox menus"><div class="check-background hidden" filter="content"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+												Contenido
+											</li>
+										</label>
+									</ul>
+								</div>
+							</td>
+							<td>
+								Usuario
+								<div class="option-menu " opt="usr">
+									<ul>
+										{% for usr in users %}
+										<label for="chk-usr-{{usr.id}}">
+											<li>
+												<input type="checkbox" id="chk-usr-{{usr.id}}" class="filter-chk" style="display:none" filter="usr-{{usr.id}}" name="user" value="{{usr.id}}">
+												<div class="rounded-checkbox menus"><div class="check-background hidden" filter="usr-{{usr.id}}"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+												{{usr.first_name}} {{usr.last_name}}
+											</li>
+										</label>
+										{% endfor %}
+									</ul>
+								</div>
+							</td>
+							<td>
+								Fecha
+								<div class="option-menu " opt="dte">
+									<ul>
+										<li>Titulo</li>
+										<li>Autor</li>
+										<li>Contenido</li>
+									</ul>
+								</div>
+							</td>
+							<td>
+								Autor
+								<div class="option-menu " opt="ath">
+									<ul>
+										{% for athr in authors %}
+										<label for="chk-athr-{{athr.author}}">
+											<li>
+												<input type="checkbox" id="chk-athr-{{athr.author}}" class="filter-chk" style="display:none" filter="athr-{{athr.author}}" name="author" value="{{athr.author}}">
+												<div class="rounded-checkbox menus"><div class="check-background hidden" filter="athr-{{athr.author}}"><i class="fa fa-check"  aria-hidden="true"></i></div></div>
+												{{athr.author}}
+											</li>
+										</label>
+										{% endfor %}
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="categories" >
 					<ul id="categories-list">
 						<li>
 							<label class="category-label" for="categoria1">

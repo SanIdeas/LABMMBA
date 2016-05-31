@@ -50,6 +50,15 @@ $('.category-checkbox').on('change', function(){
 	}
 });
 
+$('.filter-chk').on('change', function(){
+	if($(this).prop('checked')){
+		$('.check-background[filter="' + $(this).attr('filter') + '"]').removeClass('hidden');
+	}
+	else{
+		$('.check-background[filter="' + $(this).attr('filter') + '"]').addClass('hidden');
+	}
+});
+
 $('#filter-btn').click(function(){
 	var filters = $('#filters')
 	if(filters.hasClass('filters-hidden')) filters.removeClass('filters-hidden').addClass("filters-visible");

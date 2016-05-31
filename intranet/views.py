@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from intranet.forms import DocumentForm
 from intranet.models import Document
-from django.db.models import Q
+from django.db.models import Q, Count
 from login.models import User
 from unidecode import unidecode
 import os, sys
@@ -75,7 +75,7 @@ def home(request, search=None):
                         low_acc_result.append(document)
             documents = high_acc_result + low_acc_result
             print documents
-        parameters = {'current_view': 'intranet', 'documents': documents}
+        parameters = {'current_view': 'intranet', 'documents': documents, 'users': User.objects.all(), 'authors': Document.objects.values('author').annotate(total=Count('author'))}
         if search is not None:
             parameters['search'] = search
         return render(request, 'intranet/home.html',parameters)
