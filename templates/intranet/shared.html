@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<title>Laboratorio de Microbiología Molecular y Biotecnología Ambiental | Universidad Técnica Federíco Santa María</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
+
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" value="summary">
+
+		<!-- Open Graph data -->
+		<meta property="og:title" content="Laboratorio de Microbiología Molecular y Biotecnología Ambiental" />
+		<meta property="og:type" content="article" />
+		<!--<meta property="og:url" content="http://www.ejemplo.com/" />-->
+		<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}" />
+		<meta property="og:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/header.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/body.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/footer.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'login/css/signup.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/shared.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/home.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/users.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/upload.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/profile.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/document.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/plus-font.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="icon" href="{% static 'shared/images/icon.ico' %}">
+
+		<!--Javascript-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+		<script src="{% static 'intranet/js/upload.js' %}"></script>
+		<script src="{% static 'intranet/js/profile.js' %}"></script>
+		<script src="{% static 'intranet/js/pdf.js' %}"></script>
+	</head>
+	<body>
+		<div id="header">
+			<div id="top-bar">
+				<div id="top-bar-grid" class="grid">
+					<ul id="breadcrumbs">
+						<li><a href="http://www.usm.cl">USM.cl</a></li>
+						<li><a href="#">Laboratorio de Microbiología Molecular y Biotecnología Ambiental</a></li>
+					</ul>
+					<ul id="top-bar-nav">
+						{% if request.user.is_authenticated == False %}
+							<li><a href="{% url 'login' %}">Ingresar</a></li>
+						{% else %}
+							<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+						{% endif %}
+						<li><a href="#">English version</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div id="bottom-header">
+				<div id="top-wrapper">
+					<a id="logo" href="/"><img src="/static/shared/images/logo Labmmba.png" alt="Laboratorio de Microbiología Molecular y Biotecnología Ambiental"></a>
+					<div class="search-bar">
+						<input id="search-field" type="text" placeholder="Ingresa tu busqueda aquí">
+						<i class="fa fa-search"></i>
+						<div class="clear"></div>
+						<script>
+							$('#search-field').keypress(function(e){
+								if(e.which == 13 && $(this).val() != ''){
+									window.location.href = "/intranet/search/999/".replace('999', $(this).val());
+								}
+							});
+						</script>
+					</div>
+					<button id="resp-btn-menu"><i class="fa fa-bars"></i></button>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="responsive-menu" class="responsive-menu-close">
+			<ul>
+				<li><a href="#" >Areas de Investigación</a></li>
+				<li><a href="#" >Cooperación</a></li>
+				<li><a href="{% url 'about' %}" >Sobre Nosotros</a></li>
+				<li><a href="#">Ubicación</a></li>
+				{% if request.user.is_authenticated == True %}
+					<li><a href="{% url 'intranet' %}">Intranet</a></li>
+				{% else %}
+					<li><a href="{% url 'publications' %}">Publicaciones</a></li>
+				{% endif %}
+			</ul>
+			<ul>
+				<!--<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
+				<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
+				<li><a href="#">Contacto</a></li>-->
+				{% if request.user.is_authenticated == False %}
+					<li><a href="{% url 'login' %}">Ingresar</a></li>
+				{% else %}
+					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+				{% endif %}
+			</ul>
+		</div>
+		<script>
+		$('#resp-btn-menu').click(function(){
+			if($('#responsive-menu').hasClass('responsive-menu-close'))
+				$('#responsive-menu').removeClass('responsive-menu-close').addClass('responsive-menu-open-v2');
+			else
+				$('#responsive-menu').addClass('responsive-menu-close').removeClass('responsive-menu-open-v2');				
+		});
+		</script>
+		<div id="content-wrapper">
+			<div id="content-grid">
+				<div id="intranet-content">
+					<div id="left-menu">
+						<div class="menu-section">
+							<ul>
+								<li class="section-head"><h3>Enlaces</h3></li>
+								<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
+								<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
+								<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
+								<li class="section-row"><a href="#">Categorias</a></li>
+								<li class="section-row"><a href="{% url 'upload' %}">Subir documento</a></li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div id="page-body">
+						{% block content %}{% endblock %}
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<script src="{% static 'intranet/js/home_events.js' %}"></script>
+		</div>
+		<div id="lower-bar">
+			<div id="red-bar" class="bar"></div>
+			<div id="green-bar" class="bar"></div>					
+			<div id="yellow-bar" class="bar"></div>	
+			<div id="blue-bar" class="bar"></div>	
+		</div>	
+	</body>
+	<script>
+	$(document).ready(function(){
+		var body = $('#content-wrapper');
+		var h = $(window).height() - $('#header').height()-$('#lower-bar').height();
+		body.height(h + 'px');
+		$(window).resize(function(){
+			var body = $('#content-wrapper');
+			var h = $(window).height() - $('#header').height()-$('#lower-bar').height();
+			body.height(h + 'px');
+		});
+	});
+	</script>
+</html>

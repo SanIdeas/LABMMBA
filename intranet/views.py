@@ -201,3 +201,6 @@ def document(request, title=None, author=None):
             return HttpResponse('No se encontro el documento ' + title + ' del autor ' + author)
     else:
         return HttpResponseRedirect(reverse('login'))
+
+def new_ui(request):
+    return render(request, 'intranet/shared.html')

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^profile/(?P<user_id>.*)/$', views.profile, name='profile'),
     url(r'^users/$', views.users, name='users'),
     url(r'^document/(?P<author>.*)/(?P<title>.*)/', views.document, name="document"),
+    url(r'^new_ui', views.new_ui, name="new_ui"),
 ]
