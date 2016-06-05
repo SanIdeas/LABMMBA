@@ -50,6 +50,7 @@
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	padding-left: 10px;
 }
 
 .result > ul > li{
@@ -92,7 +93,9 @@
 }
 
 .word-result{
-	background-color: #F3E01F;
+	background-color: rgba(243, 224, 31, 0.66);
+    border-radius: 5px;
+    padding: 2px 4px;
 }
 
 .long-text{
@@ -123,12 +126,6 @@
 	margin: 0px;
 	padding: 0px;
 	display: flex;
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 #categories-list > li{
@@ -270,6 +267,67 @@
 	border: 1px solid #F8F8F8;
 	color: white;
 }
+
+#filters-v2{
+	height: 100%;
+	width: 250px;
+	background-color: #F8F8F8;
+}
+
+#filters-v2 > form > h4{
+	margin: 0;
+    padding: 5px;
+    font-weight: normal;
+    background-color: #797979;
+    color: white;
+}
+
+#filters-v2 > form > ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#filters-v2 > form > ul > li{
+	padding: 4px 9px;
+	border-bottom: 2px solid #F3F3F3;
+	font-size: 80%;
+}
+
+#filters-v2 > form > ul ul{
+	list-style: none;
+	margin: 0;
+    padding-left: 15px;
+    max-height: 100px;
+    overflow: auto;
+}
+
+#filters-v2 label{
+	cursor: pointer;
+	width: 100%;
+	display: block;
+	margin-bottom: 5px;
+}
+
+#filters-v2 ul > li > label:after{
+	content: "";
+  	display: table;
+  	clear: both;
+}
+
+#filters-v2  ul > li > label  input[type='checkbox']{
+	float: left;
+}
+
+.noselect{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 
 @keyframes checked {
 	0% {

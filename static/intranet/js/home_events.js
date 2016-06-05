@@ -64,3 +64,7 @@ $('#filter-btn').click(function(){
 	if(filters.hasClass('filters-hidden')) filters.removeClass('filters-hidden').addClass("filters-visible");
 	else filters.addClass('filters-hidden').removeClass("filters-visible");
 });
+
+$('.filter-checkbox').on('change', function(){
+	$('#filter-form').submit();
+});

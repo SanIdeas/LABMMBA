@@ -181,6 +181,9 @@
 			</script>
 		</ul>
 	{% endif %}
+	<script>
+		$('#search-field').val('{{search}}');
+	</script>
 {% else %}
 	{% if not documents %}
 		<h5 class="documents-message">No hay documentos en la base de datos</h5>
@@ -212,5 +215,6 @@
 	</script>
 <!--Barra de colores-->			
 </div>
+<script src="{% static 'intranet/js/home_events.js' %}"></script>
 
 {% endblock %}

@@ -1,147 +1,123 @@
-{% extends 'shared/base.html' %}
+{% extends 'intranet/shared.html' %}
 {% load staticfiles %}
 {% block content %}
 
-<div class="title-section">
-	<div class="title-label"><h1>Subir documento</h1></div>
+{% if message %}
+	<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
+{% endif %}	
+<h4 class="documents-message">Subir documento desde</h4>
+<div id="upload-selector-container">
+	<div class="upload-selector" upload-method="local" frst="True">
+		<h5>Archivos locales</h5>
+		<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+	</div>
+	<div class="upload-selector" upload-method="drive" frst="True">
+		<img src="{% static 'intranet/images/google-drive-logo-lockup.png' %}">
+	</div>
+	<div class="clear"></div>
 </div>
-
-<div class="grid row">
-	<div id="content">
-		<div class="side left-side">
-			<div class="side-section">
-				<ul>
-					<li class="section-head"><h3>Enlaces</h3></li>
-					<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
-					<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
-					<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
-					<li class="section-row"><a href="#">Categorias</a></li>
-					<li class="section-row"><a href="#">Subir documento</a></li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="body">
-			{% if message %}
-				<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
-			{% endif %}	
-			<h4 class="documents-message">Subir documento desde</h4>
-			<div id="upload-selector-container">
-				<div class="upload-selector" upload-method="local" frst="True">
-					<h5>Archivos locales</h5>
-					<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-				</div>
-				<div class="upload-selector" upload-method="drive" frst="True">
-					<img src="{% static 'intranet/images/google-drive-logo-lockup.png' %}">
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="upload-body hidden" upload-method="local">
-				<div id="btn-wrapper"><button id="add-btn">Añadir documento(s)</button></div>
-				<input id="mult-files" type="file"accept="application/pdf" style="display: none" multiple>
-				<h5 id="message" class="hidden"></h5>
-				<form id="confirm-form">
-					{%csrf_token%}
-				</form>
-				<div class="submit-row">
-					<button class="submit-btn">Confirmar</button>
-					<div class="clear"></div>
-				</div>
-				<!--<div class="document-frame" doc-index="0">
-					<div class="frame-header" doc-index="0">
-						<h5 class="frame-title">Titulo.pdf</h5>
-						<button class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-						<select class="type-select" name="type" doc-index="0" required>
-							<option value="" disabled selected>Selecciona privacidad</option>
-							<option value="0">Publico</option>
-							<option value="1">Privado</option>
-						</select>
-						<div class="clear"></div>
-					</div>
-					
-					<ul class="frame-data">
-						<li><strong>Titulo:</strong> <input type="text" placeholder="Ej: Tesis de microbiologia"></li>
-						<li><strong>Autor:</strong> <input type="text"  placeholder="Ej: Hernán Herreros"></li>
-						<li><strong>Año:</strong> <input type="text" placeholder="Ej: 2016"></li>
-						<li><strong>Colaboradores:</strong> <input type="text"></li>
-						<li><strong>Privacidad:</strong> <input type="text"></li>
-					</ul>
-				</div>-->
-			</div>
-
-			<div class="upload-body hidden" upload-method="drive">
-				<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="Ingresa el enlace de la carpeta o archivo Google Drive"><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
-				<h4 id="error-message" class="hidden">Mensaje de error</h4>
-				<div class="folder-wrapper hidden animation-down">
-					<h4 id="drive-title">Titulo del enlace</h4>
-					<table id="folder-table" class="hidden">
-						<thead>
-							<tr>
-								<th><input class="main-checkbox" type="checkbox"></th>
-								<th>Nombre</th>
-								<th>Dueño</th>
-								<th>Ultima modificación</th>
-								<th>Tamaño</th>
-							</tr>
-						</thead>
-						<tbody id="folder-body">
-							
-						</tbody>
-					</table>
-					<div id="information-section" document-id="" class="document-info hidden animation-down">
-						<table>
-							<tr>
-								<td id="thumbnail-column" rowspan="5"><img id="document-thumbnail" src=""></td>
-							</tr>
-							<tr>
-								<td>Dueño:</td>
-								<td id="document-owner"></td>
-							</tr>
-							<tr>
-								<td>Correo electronico</td>
-								<td id="document-email"></td>
-							</tr>
-							<tr>
-								<td>Ultima modificación:</td>
-								<td id="document-modifiedDate"></td>
-							</tr>
-							<tr>
-								<td>Tamaño:</td>
-								<td id="document-size"></td>
-							</tr>
-						</table>
-					</div>
-					<div id="confirmation-section" class="document-info">
-						<form id="confirm-drive-form">
-							{%csrf_token%}
-						</form>
-					</div>
-					<div class="submit-row-90">
-						<button class="submit-btn">Confirmar</button>
-						<div class="clear"></div>
-					</div>
-				</div>
-			</div>
-			<div class="row hidden" id="success-icon">
-				<div id="loading-bar"></div>
-				<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-				<h4 class="h4-center">Subida exitosa</h4>
-			</div>
-			<!--Barra de colores-->
-		</div>
-		<script>
-			var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
-			var link_analizer_link = "{% url 'link_analizer' '999' %}";
-			var download_drive_link = "{% url 'download_drive_files' '999' %}";
-			var upload_link = "{% url 'upload' %}";
-			var static_link = "{% static '999' %}";
-			{% if request.user.drive_credentials == None %}
-				PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);
-			{% endif %}
-		</script>
+<div class="upload-body hidden" upload-method="local">
+	<div id="btn-wrapper"><button id="add-btn">Añadir documento(s)</button></div>
+	<input id="mult-files" type="file"accept="application/pdf" style="display: none" multiple>
+	<h5 id="message" class="hidden"></h5>
+	<form id="confirm-form">
+		{%csrf_token%}
+	</form>
+	<div class="submit-row">
+		<button class="submit-btn">Confirmar</button>
 		<div class="clear"></div>
 	</div>
+	<!--<div class="document-frame" doc-index="0">
+		<div class="frame-header" doc-index="0">
+			<h5 class="frame-title">Titulo.pdf</h5>
+			<button class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+			<select class="type-select" name="type" doc-index="0" required>
+				<option value="" disabled selected>Selecciona privacidad</option>
+				<option value="0">Publico</option>
+				<option value="1">Privado</option>
+			</select>
+			<div class="clear"></div>
+		</div>
+		
+		<ul class="frame-data">
+			<li><strong>Titulo:</strong> <input type="text" placeholder="Ej: Tesis de microbiologia"></li>
+			<li><strong>Autor:</strong> <input type="text"  placeholder="Ej: Hernán Herreros"></li>
+			<li><strong>Año:</strong> <input type="text" placeholder="Ej: 2016"></li>
+			<li><strong>Colaboradores:</strong> <input type="text"></li>
+			<li><strong>Privacidad:</strong> <input type="text"></li>
+		</ul>
+	</div>-->
 </div>
+
+<div class="upload-body hidden" upload-method="drive">
+	<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="Ingresa el enlace de la carpeta o archivo Google Drive"><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
+	<h4 id="error-message" class="hidden">Mensaje de error</h4>
+	<div class="folder-wrapper hidden animation-down">
+		<h4 id="drive-title">Titulo del enlace</h4>
+		<table id="folder-table" class="hidden">
+			<thead>
+				<tr>
+					<th><input class="main-checkbox" type="checkbox"></th>
+					<th>Nombre</th>
+					<th>Dueño</th>
+					<th>Ultima modificación</th>
+					<th>Tamaño</th>
+				</tr>
+			</thead>
+			<tbody id="folder-body">
+				
+			</tbody>
+		</table>
+		<div id="information-section" document-id="" class="document-info hidden animation-down">
+			<table>
+				<tr>
+					<td id="thumbnail-column" rowspan="5"><img id="document-thumbnail" src=""></td>
+				</tr>
+				<tr>
+					<td>Dueño:</td>
+					<td id="document-owner"></td>
+				</tr>
+				<tr>
+					<td>Correo electronico</td>
+					<td id="document-email"></td>
+				</tr>
+				<tr>
+					<td>Ultima modificación:</td>
+					<td id="document-modifiedDate"></td>
+				</tr>
+				<tr>
+					<td>Tamaño:</td>
+					<td id="document-size"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="confirmation-section" class="document-info">
+			<form id="confirm-drive-form">
+				{%csrf_token%}
+			</form>
+		</div>
+		<div class="submit-row-90">
+			<button class="submit-btn">Confirmar</button>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<div class="row hidden" id="success-icon">
+	<div id="loading-bar"></div>
+	<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+	<h4 class="h4-center">Subida exitosa</h4>
+</div>
+<script>
+	var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
+	var link_analizer_link = "{% url 'link_analizer' '999' %}";
+	var download_drive_link = "{% url 'download_drive_files' '999' %}";
+	var upload_link = "{% url 'upload' %}";
+	var static_link = "{% static '999' %}";
+	{% if request.user.drive_credentials == None %}
+		PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);
+	{% endif %}
+</script>
+<div class="clear"></div>
 
 <script src="{% static 'intranet/js/upload_events.js' %}"></script>
 

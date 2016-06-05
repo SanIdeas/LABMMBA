@@ -202,21 +202,22 @@
 #doc-keywords-container a{
 	text-decoration: none;
     padding: 7px 21px;
-    background-color: #76ADC3;
-    color: white;
+    color: #76ADC3;
     font-size: 80%;
     transition: all 0.3s;
+    border: 2px solid #76ADC3;
 }
 
 #doc-keywords-container a:hover{
-    background-color: #0077AD;
+    background-color: #76ADC3;
+    color: white;
     transition: all 0.3s;
 }
 
-#doc-keywords-container a:after{
+#doc-keywords-container a:before{
 	content: '\2022';
     padding-left: 5px;
     font-weight: bold;
-    right: -5px;
+    right: 5px;
     position: relative;
 }

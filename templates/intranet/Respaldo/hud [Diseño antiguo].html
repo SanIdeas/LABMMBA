@@ -1,0 +1,30 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="title-section">
+	<div class="title-label"><h1>Usuarios</h1></div>
+</div>
+
+<div class="grid row">
+	<div id="content">
+		<div class="side left-side">
+			<div class="side-section">
+				<ul>
+					<li class="section-head"><h3>Enlaces</h3></li>
+					<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
+					<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
+					<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
+					<li class="section-row"><a href="#">Categorias</a></li>
+					<li class="section-row"><a href="{% url 'upload' %}">Subir documento</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="body">
+			{% block content %} {% endblock %}
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+{% endblock %}
