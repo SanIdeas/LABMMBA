@@ -134,12 +134,12 @@ function addDocument(index, filename, object){
 	var code = ['<div class="document-frame animation-down" doc-index="$index">',
 					'<div class="frame-header">',
 						'<h5 class="frame-title">$filename</h5>',
-						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
 						'<select class="type-select field" name="type$index" required>',
 							'<option value="" disabled selected>Selecciona privacidad</option>',
 							'<option value="0">Publico</option>',
 							'<option value="1">Privado</option>',
 						'</select>',
+						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
@@ -340,13 +340,26 @@ function create_drive_document(response){
 
 //Alterna entre los diferentes tipos de respuesta. Estos son: Carpetas, archivos individuales y mensajes de error.
 function alternator(id, message){
-	var options = ['#information-section', '#error-message', '#folder-table', "#confirmation-section", "#success-icon"];
+	var options = ['#information-section', '#error-message', '#folder-table', "#confirmation-section", "#success-icon", '.cssload-loader', 'local-error'];
 	if (id == options[1]){
+		$('.cssload-loader').addClass('hidden');
 		if(!$('.folder-wrapper').hasClass('hidden'))$('.folder-wrapper').addClass('hidden');
 		if($('#error-message').hasClass('hidden'))$('#error-message').removeClass('hidden');
 		$('#error-message').text(message);
 	}
+	else if(id == options[5]){
+		$('.upl-hud').addClass('hidden');
+		$('.cssload-loader').removeClass('hidden');
+	}	
+	else if(id == options[6]){
+		$('.upl-hud').removeClass('hidden');
+		$('.cssload-loader').addClass('hidden');
+		$('#message').removeClass('hidden');
+		$('#message').html(message);
+	}
 	else if(id == options[4]){
+		$('.upl-hud').removeClass('hidden');
+		$('.cssload-loader').addClass('hidden');
 		if($(id).hasClass('hidden'))$(id).removeClass('hidden');
 		$('#upload-selector-container').addClass('hidden');
 		$('.upload-body').addClass('hidden');
@@ -403,11 +416,12 @@ function drive_request_handler(){
 					console.log(response);
 				}
 				else if ((response['error'])){
-					$('#message').removeClass('hidden');
-					$('#message').html(response['message']);
+					alternator('local-error', response['message'])
 				}
+				
 			}
 			xhr.send(form);
+			alternator('.cssload-loader')
 		}
 		else{
 			if(upload_method=='local'){
@@ -455,6 +469,8 @@ function drive_request_handler(){
 			url = download_drive_link.replace('999', $('#information-section').attr('document-id'));
 			xhr.open('GET', url, true);
 			xhr.send();
+			$('.upl-hud').addClass('hidden');
+			$('.cssload-loader').removeClass('hidden');
 		}
 		else if(state == 'multi'){
 			var ids = [];

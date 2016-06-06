@@ -1,134 +1,0 @@
-	  
-
-	  
-
-	  
-
-	  
-
-	  
-
-investigacion	  de	  operaciones	  ii	  
-
-modelos	  de	  inventario	  
-
-pregunta	  1:	  
-directivos	  de	  una	  empresa	  estan	  disenando	  un	  sistema	  de	  inventario.	  las	  caracteristicas	  son	  las	  
-siguientes:	  se	  estima	  que	  la	  demanda	  anual	  es	  de	  1100	  unidades	  del	  producto	  para	  el	  proximo	  
-ano,	   a	   una	   tasa	   constante	   y	   considerando	   365	   dias	   de	   operacion.	   el	   costo	   de	   almacenar	   una	  
-unidad	  en	  inventario	  durante	  un	  ano	  es	  de	  1	  uf.	  el	  costo	  fijo	  de	  realizar	  un	  pedido	  es	  de	  0.5	  uf.	  
-el	   costo	   de	   cada	   unidad	   es	   de	   5	   uf.	   cada	   orden	   se	   recibe	   en	   forma	   completa,	   pero	   con	   un	  
-retraso	  de	  un	  dia	  contado	  desde	  el	  momento	  en	  que	  se	  realiza	  el	  pedido.	  politicas	  de	  la	  empresa	  
-no	   permiten	   stock-out,	   es	   decir,	   demanda	   que	   no	   pueda	   ser	   satisfecha.	   a	   partir	   de	   estas	  
-condiciones,	  responda:	  
-	  
-
-a)  cual	  es	  el	  tamano	  del	  lote	  a	  ordenar	  que	  minimiza	  los	  costos	  de	  la	  empresa?	  
-b)  cuantas	  unidades	  han	  salido	  de	  inventario,	  en	  un	  periodo,	  cuando	  se	  realiza	  un	  pedido?	  
-c)  cual	  es	  el	  costo	  total	  de	  operacion	  anual	  del	  sistema?	  
-d)  cuanto	  tiempo	  transcurre	  entre	  el	  momento	  en	  que	  llega	  un	  lote	  y	  el	  momento	  en	  que	  
-
-se	  pide	  el	  lote	  siguiente?	  
-
-1 
-
-	  
-pregunta	  2:	  
-una	  distribuidora	  vende	  su	  producto	  directamente	  al	  publico.	  la	  tasa	  de	  demanda	  del	  producto,	  
-la	   cual	   se	   puede	   asumir	   constante,	   es	   de	   1000	   unidades	   mensuales.	   la	   distribuidora	   desea	  
-establecer	   un	   contrato	   de	   entrega	   por	   lotes	   con	   su	   actual	   proveedor.	   el	   costo	   unitario	   del	  
-producto	  es	  de	  $2.5,	  el	  costo	  fijo	  en	  que	  se	  incurre	  cada	  vez	  que	  se	  ordena	  un	  lote	  es	  de	  $25,	  y	  
-el	  costo	  promedio	  de	  mantener	  un	  producto	  en	  inventario	  durante	  un	  ano	  se	  estima	  en	  20%	  del	  
-valor	  del	  producto.	  
-	  
-
-a)  cuantos	  articulos	  recomendaria	  usted	  ordenar	  de	  manera	  tal	  de	  minimizar	  el	  costo	  de	  
-
-administracion	  anual	  del	  inventario?	  
-
-b)  cada	  cuantos	  dias	  deberia	  ordenarse	  un	  nuevo	  lote?	  
-c)  cual	  es	  el	  costo	  anual	  de	  mantener	  productos	  en	  inventario,	  el	  costo	  anual	  de	  ordenar	  y	  
-
-el	  costo	  total	  anual	  de	  administracion	  del	  sistema?	  
-
-d)  asumiendo	  365	  dias	  de	  operacion	  del	  sistema	  por	  ano	  y	  un	  retraso	  de	  entrega	  de	  los	  
-productos	  por	  parte	  del	  proveedor	  de	  la	  distribuidora	  de	  5	  dias.	  cuantos	  articulos	  se	  
-habran	  vendido	  en	  un	  periodo	  cuando	  se	  ordene	  el	  lote	  siguiente,	  suponiendo	  que	  no	  se	  
-permiten	  faltantes?	  
-
-e)  suponer	   que	   la	   distribuidora	   decide	   operar	   ordenando	   lotes	   de	   1000	   unidades,	  
-ordenando	   una	   vez	   al	   mes,	   cuanto	   mas	   barata	   (cara)	   es	   esta	   politica	   comparada	   con	  
-una	  politica	  eoq?	  
-
-f)  cual	  deberia	  ser	  el	  punto	  de	  reorden	  si	  se	  opera	  ordenando	  lotes	  de	  1000	  unidades,	  
-
-ordenando	  una	  vez	  al	  mes?	  (el	  retraso	  en	  la	  entrega	  es	  de	  cinco	  dias).	  
-
-	  
-	  
-	  
-
- 
-
-pregunta	  3:	  
-el	   distribuidor	   mb	   provee	   una	   variedad	   de	   partes	   de	   automoviles	   a	   pequenos	   garages.	   ellos	  
-compran	  las	  partes	  a	  las	  industrias	  de	  manufactura	  de	  acuerdo	  a	  un	  modelo	  eoq.	  para	  un	  tipo	  
-de	   parabrisas	   el	   analisis	   eoq	   recomienda	   ordenes	   con	   q*=25,	   para	   satisfacer	   una	   demanda	  
-semanal	   promedio	   de	   4	   unidades.	   el	   lead	   time	   es	   de	   3	   semanas,	   el	   costo	   de	   mantener	   una	  
-unidad	  en	  inventario	  al	  ano	  es	  de	  us$5.	  
-	  
-
-a)  calcule	  la	  cantidad	  necesaria	  a	  tener	  en	  inventario	  en	  el	  momento	  de	  emitir	  la	  orden.	  
-b)  suponga	   ahora	   que	   la	   demanda	   para	   los	   parabrisas	   es	   probabilistica	   y	   que	   durante	   el	  
-lead	  time	  tiene	  un	  comportamiento	  normal	  con	  un	  valor	  esperado	  de	  12	  y	  desviacion	  
-estandar	  de	  2.5.	  si	  mb	  puede	  aceptar	  a	  lo	  mas	  1	  stock-out	  al	  ano,	  ud.	  recomendaria	  
-tener	  una	  cantidad	  mayor	  en	  inventario	  en	  el	  momento	  de	  emitir	  la	  orden?	  porque?	  
-
-c)  cual	  es	  el	  costo	  adicional	  atribuido	  a	  la	  incertidumbre	  de	  la	  demanda?	  
-d)  cambia	  el	  punto	  de	  reorden	  si	  se	  permiten	  2	  stock-outs	  al	  ano?	  
-
-	  
-pregunta	  4:	  
-una	   compania	   tiene	   actualmente	   dos	   sucursales.	   cada	   sucursal	   satisface	   la	   mitad	   de	   la	  
-1 	  
-demanda.	  la	  demanda	  anual	  en	  cada	  sucursal	  es	  n(10.000,1.000.000).	  el	  lead	  time	  es	  de	  
-10
-anual.	  se	  desea	  asegurar	  satisfacer	  un	  95%	  de	  la	  demanda	  a	  tiempo.	  suponga	  que	  el	  modelo	  
-eoq	  entrego	  para	  cada	  sucursal	  un	  tamano	  de	  la	  orden	  de	  2.000	  unidades.	  
-
-  cuantas	   unidades	   adicionales	   se	   deberian	   mantener	   en	   inventario	   para	   asegurar	   el	  
-
-requerimiento	  de	  satisfaccion	  de	  la	  demanda?	  
-
-  si	  se	  decide	  concentrar	  sus	  operaciones	  en	  solo	  una	  sucursal,	  se	  modifica	  la	  respuesta	  
-
-anterior?	  
-
-  un	  estudiante	  de	  mba	  argumenta:	  "teniendo	  una	  unica	  sucursal	  centralizada,	  podemos	  
-reducir	   la	   cantidad	   total	   en	   inventario	   requerida	   para	   lograr	   satisfacer	   en	   un	   95%	   la	  
-demanda	  de	  todos	  los	  clientes	  a	  tiempo.	  luego,	  nos	  convine	  tener	  una	  sucursal	  en	  vez	  
-de	  varias	  sucursales".	  podria	  ud.	  rebatir	  este	  argumento	  tecnicamente?	  
-
-	  
-	  
-
-pregunta	  5:	  
-el	  distribuidor	  de	  sun	  provee	  una	  gran	  variedad	  de	  partes	  de	  computadores,	  como	  tarjetas	  
-madre,	  cables,	  monitores.	  ellos	  compran	  las	  partes	  a	  las	  industrias	  de	  manufactura	  de	  acuerdo	  a	  
-un	  modelo	  eoq.	  para	  el	  tipo	  tarjeta	  madre	  el	  analisis	  eoq	  recomienda	  ordenes	  de	  25	  unidades,	  
-para	  satisfacer	  una	  demanda	  semanal	  que	  se	  distribuye	  normal	  con	  un	  promedio	  de	  4	  unidades	  
-y	  una	  desviacion	  standard	  de	  1,44.	  
-el	  costo	  de	  mantener	  una	  unidad	  en	  inventario	  cada	  6	  meses	  es	  de	  us$2,5.	  
-
-a)  cuanto	  debera	  ser	  el	  tiempo	  de	  espera	  en	  dias	  entre	  la	  emision	  de	  una	  orden	  y	  la	  
-llegada	  de	  los	  items	  a	  inventario	  para	  que	  se	  tenga	  a	  lo	  mas	  un	  stock-out	  al	  ano	  al	  
-trabajar	  con	  un	  punto	  de	  reorden	  de	  18	  unidades?	  
-
-b)  cual	  es	  el	  costo	  adicional	  atribuido	  a	  la	  incertidumbre	  de	  la	  demanda?	  
-c)  considerando	  el	  punto	  1	  anterior,	  estime	  el	  numero	  de	  unidades	  insatisfechas	  al	  ano.	  
-
- 
-
-2 
-
-

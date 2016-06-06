@@ -23,6 +23,7 @@ import unicodedata, tempfile
 from datetime import date
 from django.utils import timezone
 from collections import Counter
+from itertools import chain
 
 # Create your views here.
 
@@ -60,11 +61,13 @@ def convert_pdf_to_txt(path):
 def get_filters(rqst):
 	dict = {}
 	for key in rqst.GET:
+		print key
 		if key == 'date':
 			str = '__year__in'
 		else:
 			str = '__in'
 		if len(rqst.GET.getlist(key)) > 0:
+			print key + str
 			dict[key + str] = rqst.GET.getlist(key)
 	return dict
 
@@ -75,7 +78,6 @@ def filters_selected(list, request, name):
 			if unicode(val[0]) in request.GET.getlist(name):
 				list[count] = val + (True,)
 			elif name == 'owner' or name == 'category':
-				print '----', name, val[0]
 				if unicode(val[0].id) in request.GET.getlist(name):
 					list[count] = val + (True,)
 				else:
@@ -86,7 +88,10 @@ def filters_selected(list, request, name):
 		count += 1
 	return list
 
-def home(request, search=None):
+def home(request):
+	return render(request, 'intranet/home.html')
+
+def documents(request, search=None):
 	if request.user.is_authenticated() == True:
 		kwargs = get_filters(request)
 		all_docs = Document.objects.filter(**kwargs)
@@ -100,7 +105,6 @@ def home(request, search=None):
 			years = []
 			owners = []
 			categories = []
-			words = []
 			for document in all_docs:
 				result = document.match(search)
 				if result['match']:
@@ -114,22 +118,18 @@ def home(request, search=None):
 					years.append(document.date.year)
 					owners.append(document.owner)
 					categories.append(document.category)
-					words = words + document.words.split(',')
 			documents = high_acc_result + low_acc_result
 			authors = filters_selected(Counter(authors).most_common(), request, 'author')
 			years = filters_selected(Counter(years).most_common(), request, 'date')
 			owners = filters_selected(Counter(owners).most_common(), request, 'owner')
 			categories = filters_selected(Counter(categories).most_common(), request, 'category')
-			words = filters_selected(Counter(words).most_common(40), request, 'words')
-		parameters = {'current_view': 'intranet', 'documents': documents, 'users': User.objects.all()}
+		parameters = {'current_view': 'intranet', 'documents': documents}
 		if search is not None:
 			parameters['authors'] = authors
 			parameters['years'] = years
 			parameters['categories'] = categories
-			parameters['words'] = words
 			parameters['owners'] = owners
 			parameters['search'] = search
-			print parameters
 		return render(request, 'intranet/home.html',parameters)
 	else:
 		print request.get_full_path
@@ -259,7 +259,7 @@ def new_ui(request):
 
 def search_helper(request, search=None):
 	if request.user.is_authenticated() == True:
-		doc = Document.objects.values('title', 'author').filter(reduce(operator.and_, (Q(title__contains=x) for x in search.split(','))))
+		doc = Document.objects.values('title', 'author').filter(reduce(operator.and_, (Q(title__contains=x) for x in search.split(' '))))
 		response = {'error': False, 'list': list(doc)}
 		return JsonResponse(response)
 	else:

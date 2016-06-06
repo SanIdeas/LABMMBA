@@ -64,14 +64,10 @@
 			<div id="bottom-header">
 				<div id="top-wrapper">
 					<a id="logo" href="/"><img src="/static/shared/images/logo Labmmba.png" alt="Laboratorio de Microbiología Molecular y Biotecnología Ambiental"></a>
+					<button id="resp-btn-menu"><i class="fa fa-bars"></i></button>
 					<div id="helper-wrapper" class="hidden">
 						<ul id="helper">
-							<li class="helper-row">
-								<a href="#">
-									<h4>TITULO</h4>
-									<h6>Autor</h6>
-								</a>
-							</li>
+							<!--Resultados de ayuda-->
 						</ul>
 					</div>
 					<div class="search-bar">
@@ -79,30 +75,29 @@
 						<i class="fa fa-search"></i>
 						<div class="clear"></div>
 					</div>
-					<button id="resp-btn-menu"><i class="fa fa-bars"></i></button>
 					<div class="clear"></div>
 				</div>
 			</div>
 		</div>
 		<div id="responsive-menu" class="responsive-menu-close">
 			<ul>
-				<li><a href="#" >Areas de Investigación</a></li>
-				<li><a href="#" >Cooperación</a></li>
-				<li><a href="{% url 'about' %}" >Sobre Nosotros</a></li>
-				<li><a href="#">Ubicación</a></li>
-				{% if request.user.is_authenticated == True %}
-					<li><a href="{% url 'intranet' %}">Intranet</a></li>
-				{% else %}
-					<li><a href="{% url 'publications' %}">Publicaciones</a></li>
-				{% endif %}
+				{% url 'intranet' as intranet%}
+				<li class="{% if intranet == request.path%} rsp-selected {%endif%}"><a href="{{intranet}}">Inicio</a></li>
+				{% url 'documents' as documents_view%}
+				<li class="{% if documents_view == request.path%} rsp-selected {%endif%}"><a href="{{documents_view}}">Documentos</a></li>
+				{% url 'profile' request.user.id as profile%}
+				<li class="{% if profile == request.path%} rsp-selected {%endif%}"><a href="{{profile}}">Mi perfil</a></li>
+				{% url 'users' as users_view%}
+				<li class="{% if users_view == request.path%} rsp-selected {%endif%}"><a href="{{users_view}}">Usuarios</a></li>
+				{% url 'upload' as upload%}
+				<li class="{% if upload == request.path%} rsp-selected {%endif%}"><a href="{{upload}}">Subir documento</a></li>
+				<li><a href="{% url 'home' %}">Volver a la página principal</a></li>				
 			</ul>
 			<ul>
-				<!--<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
-				<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
-				<li><a href="#">Contacto</a></li>-->
 				{% if request.user.is_authenticated == False %}
 					<li><a href="{% url 'login' %}">Ingresar</a></li>
 				{% else %}
+					<li><a href="{% url 'profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
 					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 				{% endif %}
 			</ul>
@@ -114,11 +109,16 @@
 						<div class="menu-section">
 							<ul>
 								<li class="section-head"><h3>Enlaces</h3></li>
-								<li class="section-row"><a href="{% url 'intranet' %}">Documentos</a></li>
-								<li class="section-row"><a href="{% url 'profile' request.user.id %}">Mi perfil</a></li>
-								<li class="section-row"><a href="{% url 'users' %}">Usuarios</a></li>
-								<li class="section-row"><a href="#">Categorias</a></li>
-								<li class="section-row"><a href="{% url 'upload' %}">Subir documento</a></li>
+								{% url 'intranet' as intranet%}
+								<li class="section-row {% if intranet == request.path%} selected {%endif%}"><a href="{{intranet}}">Inicio</a></li>
+								{% url 'documents' as documents_view%}
+								<li class="section-row {% if documents_view == request.path%} selected {%endif%}"><a href="{{documents_view}}">Documentos</a></li>
+								{% url 'profile' request.user.id as profile%}
+								<li class="section-row {% if profile == request.path%} selected {%endif%}"><a href="{{profile}}">Mi perfil</a></li>
+								{% url 'users' as users_view%}
+								<li class="section-row {% if users_view == request.path%} selected {%endif%}"><a href="{{users_view}}">Usuarios</a></li>
+								{% url 'upload' as upload%}
+								<li class="section-row {% if upload == request.path%} selected {%endif%}"><a href="{{upload}}">Subir documento</a></li>
 							</ul>
 						</div>
 						<div class="clear"></div>
@@ -166,7 +166,7 @@
 											{% endfor %}
 										</ul>
 									</li>
-									<li>
+									<!--<li>
 										PALABRAS CLAVE
 										<ul>
 											{% for word, count, selected in words %}
@@ -177,7 +177,7 @@
 												{% endif %}
 											{% endfor %}
 										</ul>
-									</li>
+									</li>-->
 									<li>
 										AÑO
 										<ul>

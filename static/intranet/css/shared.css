@@ -4,6 +4,7 @@ html{
 
 body{
 	height: 100%;
+    overflow: hidden;
 }
 #bottom-header{
 	/*background-image: linear-gradient(to bottom, rgba(0, 110, 156, 0.5), rgba(0, 110, 156, 0.5)), url('/static/shared/images/gradiente.png');*/
@@ -21,6 +22,12 @@ body{
     justify-content: center;
     width: 40%;
     box-sizing: border-box;
+}
+
+#top-wrapper > #logo:after{
+    content: "";
+    display: table;
+    clear: both;
 }
 
 #top-wrapper > #logo > img{
@@ -45,6 +52,7 @@ body{
     margin: 0 auto;
     align-self: center;
     cursor: pointer;
+    text-align: center;
 }
 
 .search-bar > input[type="text"]{
@@ -57,6 +65,8 @@ body{
     box-sizing: border-box;
     text-align: right;
     outline: none;
+    border-radius: 0;
+    height: 100%;
 }
 
 #helper-wrapper{
@@ -69,6 +79,8 @@ body{
     background-color: #FFF;
     max-height: 200px;
     overflow: auto;
+    z-index: 99;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 #helper-wrapper > ul{
@@ -91,10 +103,6 @@ body{
 #helper-wrapper a:hover{
     background-color: #E7E7E7;
     transition: background-color .3s;
-}
-
-#helper-wrapper a:last-child{
-    border-bottom: none;
 }
 
 #helper-wrapper h4, #helper-wrapper h6{
@@ -165,6 +173,14 @@ body{
     transition: background-color .3s;
 }
 
+.selected{
+    background-color: #E7E7E7;
+}
+
+.rsp-selected{
+    background-color: #016592;
+}
+
 .section-row > a:hover{
 	background-color: #E7E7E7;
 	transition: background-color .3s;
@@ -178,10 +194,55 @@ body{
     width: 100%;
     overflow: hidden;
     display: flex;
+    min-width: 750px;
 }
 
 #main-wrapper{
     height: 100%;
     width: 100%;
     overflow: auto;
+}
+
+.responsive-menu-open-v2{
+    height: 335px;
+}
+
+@media screen and (max-width: 980px){
+    #left-menu{
+        display: none;
+    }
+    #page-body{
+        min-width: inherit;
+    }
+}
+
+@media screen and (max-width: 770px){
+    #top-wrapper{
+        display: block;
+    }
+    .search-bar{
+        display: flex;
+        width: 90%;
+        margin: 5px auto;
+    }
+    #top-wrapper > #logo{
+        display: flex;
+        max-width: inherit;
+        width: 100%;
+    }
+    #top-wrapper > #logo > img{
+        margin: 0 auto;
+    }
+    #resp-btn-menu{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        margin: 7px;
+    }
+    #helper-wrapper{
+        top: 84px;
+        width: 90%;
+        left: 5%;
+    }
+
 }

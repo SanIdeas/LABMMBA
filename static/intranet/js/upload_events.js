@@ -38,6 +38,7 @@ $('.submit-btn').click(function(){
 	drive_request_handler();
 });
 
+
 /*$('.type-select').change(function(){
 	if($(this).val() == "0")
 		$('.frame-header[doc-index="' + $(this).attr('doc-index') + '"]').addClass('public-type').removeClass('private-type');

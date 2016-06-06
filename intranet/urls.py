@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="intranet"),
-    url(r'search/(?P<search>.*)/$', views.home, name="intranet_search"),
+    url(r'documents/$', views.documents, name="documents"),
+    url(r'search/(?P<search>.*)/$', views.documents, name="intranet_search"),
     url(r'^profile/$', views.profile, name="profile"),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),

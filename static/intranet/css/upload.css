@@ -50,6 +50,211 @@
 }
 
 /***************************/
+/******UPLOADING SPINNER*******/
+.cssload-loader {
+	margin-top: 100px;
+	position: relative;
+	left: calc(50% - 76px);
+	width: 152px;
+	height: 152px;
+	border-radius: 50%;
+		-o-border-radius: 50%;
+		-ms-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+	perspective: 1900px;
+}
+
+.cssload-loader > h4{
+	bottom: -47px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.cssload-inner {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	border-radius: 50%;
+		-o-border-radius: 50%;
+		-ms-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;	
+}
+
+.cssload-inner.cssload-one {
+	left: 0%;
+	top: 0%;
+	animation: cssload-rotate-one 1s linear infinite;
+		-o-animation: cssload-rotate-one 1s linear infinite;
+		-ms-animation: cssload-rotate-one 1s linear infinite;
+		-webkit-animation: cssload-rotate-one 1s linear infinite;
+		-moz-animation: cssload-rotate-one 1s linear infinite;
+	border-bottom: 7px solid rgb(0,144,101);
+}
+
+.cssload-inner.cssload-two {
+	right: 0%;
+	top: 0%;
+	animation: cssload-rotate-two 1s linear infinite;
+		-o-animation: cssload-rotate-two 1s linear infinite;
+		-ms-animation: cssload-rotate-two 1s linear infinite;
+		-webkit-animation: cssload-rotate-two 1s linear infinite;
+		-moz-animation: cssload-rotate-two 1s linear infinite;
+	border-right: 7px solid rgb(242,174,71);
+}
+
+.cssload-inner.cssload-three {
+	right: 0%;
+	bottom: 0%;
+	animation: cssload-rotate-three 1s linear infinite;
+		-o-animation: cssload-rotate-three 1s linear infinite;
+		-ms-animation: cssload-rotate-three 1s linear infinite;
+		-webkit-animation: cssload-rotate-three 1s linear infinite;
+		-moz-animation: cssload-rotate-three 1s linear infinite;
+	border-top: 7px solid rgb(0,109,156);
+}
+
+@keyframes cssload-rotate-one {
+	0% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
+}
+
+@-o-keyframes cssload-rotate-one {
+	0% {
+		-o-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	100% {
+		-o-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
+}
+
+@-ms-keyframes cssload-rotate-one {
+	0% {
+		-ms-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	100% {
+		-ms-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
+}
+
+@-webkit-keyframes cssload-rotate-one {
+	0% {
+		-webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	100% {
+		-webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
+}
+
+@-moz-keyframes cssload-rotate-one {
+	0% {
+		-moz-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+	}
+	100% {
+		-moz-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+	}
+}
+
+@keyframes cssload-rotate-two {
+	0% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
+}
+
+@-o-keyframes cssload-rotate-two {
+	0% {
+		-o-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+	100% {
+		-o-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
+}
+
+@-ms-keyframes cssload-rotate-two {
+	0% {
+		-ms-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+	100% {
+		-ms-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
+}
+
+@-webkit-keyframes cssload-rotate-two {
+	0% {
+		-webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+	100% {
+		-webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
+}
+
+@-moz-keyframes cssload-rotate-two {
+	0% {
+		-moz-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+	}
+	100% {
+		-moz-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+	}
+}
+
+@keyframes cssload-rotate-three {
+	0% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
+}
+
+@-o-keyframes cssload-rotate-three {
+	0% {
+		-o-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+	100% {
+		-o-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
+}
+
+@-ms-keyframes cssload-rotate-three {
+	0% {
+		-ms-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+	100% {
+		-ms-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
+}
+
+@-webkit-keyframes cssload-rotate-three {
+	0% {
+		-webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+	100% {
+		-webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
+}
+
+@-moz-keyframes cssload-rotate-three {
+	0% {
+		-moz-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+	}
+	100% {
+		-moz-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+	}
+}
 
 @keyframes down {
 	0% {
@@ -61,6 +266,8 @@
 		opacity: 1;
 	}
 }
+
+/******************************/
 
 li{
 	transition: background-color 0.2s;
@@ -201,17 +408,19 @@ li{
 }
 
 .submit-btn{
-	background-color: #ee8755;
+	background-color: #F2AE47;
     border: none;
     color: white;
     padding: 10px 30px;
     font-weight: normal;
-    /*border-radius: 3px;*/
+    width: 80%;
+    margin: 12px auto;
+    border-radius: 5px;
+    display: inherit;
+    max-width: 500px;
     cursor: pointer;
-   	margin: 12px 0;
     transition: background-color 0.3s;
     font: 400 normal 15px/1.5 'Source Sans Pro', sans-serif;
-    float: right;
     outline: none;
 }
 
@@ -289,17 +498,23 @@ li{
 
 .upload-body > #btn-wrapper{
 	width: 100%;
-	background-color: #F8F8F8;
 }
 
 #btn-wrapper > #add-btn{
-	background-color: #009065;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	transition: all 0.3s;
+	background-color: #EE8755;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    width: 100%;
+    display: inherit;
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+    font-size: 100%;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 
@@ -326,6 +541,7 @@ li{
 	height: 30px;
 	background-color: #F3F3F3;
 	height: 50px;
+	display: inline-flex;
 }
 
 .type-select{
@@ -334,7 +550,6 @@ li{
     outline: none;
     margin-right: 10px;
     height: 100%;
-    float: right;
     color: #777;
     cursor: pointer;
 	transition: all 0.3s;
@@ -386,10 +601,15 @@ li{
 	margin: 0 10px;
 	font-weight: normal;
 	float: left;
+	width: 100%;
 	line-height: 30px;
 	height: 30px;
 	font-size: 15px;
 	padding: 10px;
+	display: inline-flex;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .frame-data{
