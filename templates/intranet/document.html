@@ -3,13 +3,74 @@
 {% block content %}
 {% load staticfiles %}
 <div id="doc-container">
-	<div id="doc-head">
-		<div id="type-wrapper" class="{{document.privacy}}">
-		</div>
+	<div class="box">
+		<h2>{{document.title}}</h2>
+		<h5>{{document.category.name}}</h5>
+		<h5>{{document.date.year}}</h5>
+		<div id="type-wrapper" class="{{document.privacy}}"></div>
 	</div>
-	<h2>{{document.title}}</h2>
-	<h5>{{document.category.name}}</h5>
-	<h5>{{document.date.year}}</h5>
+	<div class="s2">
+		<div class="box">
+			<div id="doc-abstract">
+				{{ document.abstract }}
+			</div>
+			<div class="separator"></div>
+			<a href="{% url 'viewer' document.author document.title %}" target="_blank" id="open-doc" class="submit-btn">Abrir Documento</a>
+			<div class="separator"></div>
+			<div id="doc-information">
+				<table>
+					<tr>
+						<td><strong>Autor:</strong></td>
+						<td>{{document.author}}</td>
+					</tr>
+					<tr>
+						<td><strong>Agregado el:</strong></td>
+						<td>{{document.date_added}}</td>
+					</tr>
+				</table>
+			</div>
+			<div id="keywords">
+				<ul>
+				{% for keyword in document.get_keywords %}
+					<li><a href="#">{{keyword}}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="box" style="height: 200px">
+			
+		</div>		
+	</div>
+	<div class="s2">
+		<div class="box">
+			<div id="owner-wrapper">
+				<div id="owner-information">
+					<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
+					<h5>{{document.owner.simplify_institution}} - {{document.owner.area.name}}</h5>
+				</div>
+				<div id="owner-img">
+					<img {% if document.owner.profile_picture %} src="{% static document.owner.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<h4>Relacionados</h4>
+			<ul>
+			{% for doc in related %}
+				<li>
+					<a href="{% url 'document' doc.author doc.title%}">
+						<h5>{{ doc.title }}</h5>
+						<span>{{ doc.author }}</span>
+					</a>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>		
+	</div>
+	<div class="box" style="height: 200px; width: 100%">
+		
+	</div>
+	<!--
 	<div id="doc-abstract">
 		{{ document.abstract }}
 	</div>
@@ -56,7 +117,6 @@
 			<li><a href="#">{{keyword}}</a></li>
 		{% endfor %}
 		</ul>
-	</div>
+	</div>-->
 </div>
-<div class="clear"></div>
 {% endblock %}

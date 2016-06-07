@@ -137,9 +137,12 @@ def documents(request, search=None):
 
 def profile(request, user_id):
 	if request.user.is_authenticated() == True:
-		profile = User.objects.get(id=user_id)
-		documents = Document.objects.filter(owner=user_id)
-		return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
+		try:
+			profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
+			documents = Document.objects.filter(owner=user_id)
+			return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
+		except:
+			return HttpResponseRedirect(reverse('users'))			
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
@@ -183,7 +186,7 @@ def upload(request):
 						'author': request.POST['author'+id],
 						'date': request.POST['date'+id],
 						'type': int(request.POST['type'+id]),
-						'category': Area.objects.get(id=request.POST['category' + id]),
+						'category': Area.objects.get(id=request.POST['category' + id]).id,
 						'owner': request.user.id,
 						}
 					files = {
@@ -233,7 +236,7 @@ def pdf_viewer(request, title=None, author=None):
 
 def users(request):
 	if request.user.is_authenticated() == True:
-		users = User.objects.all()
+		users = User.objects.filter(is_admin=False)
 		for user in users:
 			user.last_activity = (timezone.localtime(timezone.now()).date() - user.last_activity).days
 		return render(request, 'intranet/users.html', {'users': users})
@@ -245,10 +248,13 @@ def document(request, title=None, author=None):
 	if request.user.is_authenticated() == True:
 		try:
 			document = Document.objects.get(title=title, author=author)
+			related = Document.objects.values('title', 'author').filter(reduce(operator.or_, (Q(title__contains=x) for x in document.words.split(','))))
+			print '----'
+			print document.id
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
-			return render(request, 'intranet/document.html', {'current_view': 'intranet', 'document': document})
+			return render(request, 'intranet/document.html', {'current_view': 'intranet', 'document': document, 'related': related})
 		else:
 			return HttpResponse('No se encontro el documento ' + title + ' del autor ' + author)
 	else:
@@ -262,5 +268,11 @@ def search_helper(request, search=None):
 		doc = Document.objects.values('title', 'author').filter(reduce(operator.and_, (Q(title__contains=x) for x in search.split(' '))))
 		response = {'error': False, 'list': list(doc)}
 		return JsonResponse(response)
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def admin(request):
+	if request.user.is_authenticated() == True and request.user.is_admin:
+		return render(request, 'intranet/admin.html')
 	else:
 		return HttpResponseRedirect(reverse('login'))

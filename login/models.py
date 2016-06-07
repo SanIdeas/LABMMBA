@@ -48,7 +48,7 @@ class CredentialsField(models.Field):
         return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, institution, country, area, career, password=None):
+    def create_user(self, email, first_name, last_name, institution, country, is_admin, area, career, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -62,6 +62,7 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             institution=institution,
             country=country,
+            is_admin = is_admin,
             area=area,
             career=career,
         )
@@ -70,7 +71,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, institution, country, area, career, password):
+    def create_superuser(self, email, first_name, last_name, institution, country, career, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -81,7 +82,8 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             institution=institution,
             country=country,
-            area=area,
+            area=None,
+            is_admin=True,
             career=career,
         )
         user.is_admin = True
@@ -102,7 +104,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=20)
     institution = models.CharField(max_length=50)
     country = models.CharField(max_length=20)
-    area = models.ForeignKey(Area, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
     career = models.CharField(max_length=40)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

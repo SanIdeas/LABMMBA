@@ -7,6 +7,14 @@ var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.",
 	};
 })(jQuery);
 
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 //Para formatear Bytes a diferentes unidades.
 //http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
 function formatSizeUnits(bytes){
@@ -170,6 +178,8 @@ function addDocument(index, filename, object){
 		console.log("delete");
 		$('.document-frame[doc-index="' + $(this).attr('doc-index') + '"]').remove();
 		delete files[$(this).attr('doc-index')];
+		if(Object.size(files) == 0)
+			$('#local-submit').prop('disabled', true).addClass('disabled');
 	});
 	$('.type-select').off();
 	$('.type-select').change(function(){
@@ -200,6 +210,8 @@ function filesHandler(){
 			getMeta(key_count, new_files[i]);
 			key_count++;
 			console.log(files[key_count]);
+			if(Object.size(files) == 1)
+				$('#local-submit').prop('disabled', false).removeClass('disabled');
 		}
 	}
 }

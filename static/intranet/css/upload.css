@@ -429,6 +429,16 @@ li{
     background-color: #0077ad;
 }
 
+.disabled{
+	transition: all 0.3s;
+	background-color: #D8D8D8;
+	cursor: inherit;	
+}
+
+.disabled:hover{
+	background-color: #D8D8D8;
+}
+
 .read-only{
 	background-color: #EBEBE4;
 }
@@ -524,22 +534,21 @@ li{
 }
 
 .document-frame{
-	/*border-radius: 3px;*/
     width: 100%;
-    /*background-color: #f4f8f9;
-    padding: 20px;*/
     box-sizing: border-box;
     overflow: hidden;
     margin: 20px 0;
+    border: 1px solid #E4E4E4;
+    border-radius: 4px;
     position: relative;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .frame-header{
 	top: 0;
     width: 100%;
     left: 0;
-	height: 30px;
-	background-color: #F3F3F3;
 	height: 50px;
 	display: inline-flex;
 }
@@ -614,16 +623,19 @@ li{
 
 .frame-data{
 	list-style: none;
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .frame-data > li{
 	padding: 5px 10px;
-    /*border-bottom: 1px solid #ECECEC;*/
-    margin: 5px 0px;
-    background-color: #F8F8F8;
+    border-bottom: 1px solid #ECECEC;
+    background-color: #FFFFFF;
+}
 
+.frame-data > li:last-child{
+    border-bottom: none;
 }
 
 .frame-data > li > input{
@@ -794,22 +806,29 @@ li{
 
 .confirmation-table{
 	width: 100%;
-	margin: 0 auto;
-	table-layout: auto;
-	border-spacing: 0;
+    margin: 0 auto;
+    border: 1px solid #E4E4E4;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.07);
+    box-sizing: border-box;
+    table-layout: auto;
+    border-spacing: 0;
+    padding: 10px;
     margin: 20px 0;
 }
 
 .confirmation-table td{
 	font-size: 80%;
-	padding: 8px !important;
-	padding: 5px 10px;
+    padding: 8px !important;
+    padding: 5px 10px;
     margin: 5px 0px;
-    border-bottom: 5px solid white;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ECECEC;
 }
 
-.confirmation-table tr{
-    background-color: #F8F8F8;
+.confirmation-table tr:last-child td{
+    border-bottom: none;
 }
 
 .confirmation-table td input{
@@ -823,11 +842,6 @@ li{
 
 .confirmation-table  td:nth-child(2){
     text-align: right;
-}
-
-
-.confirmation-table tr:nth-child(n+2):nth-last-child(n+2) td:nth-child(1){
-    border-left: 5px solid white;
 }
 
 .confirmation-table .thumbnail-col{

@@ -119,6 +119,10 @@
 								<li class="section-row {% if users_view == request.path%} selected {%endif%}"><a href="{{users_view}}">Usuarios</a></li>
 								{% url 'upload' as upload%}
 								<li class="section-row {% if upload == request.path%} selected {%endif%}"><a href="{{upload}}">Subir documento</a></li>
+								{% if request.user.is_admin %}
+									{% url 'admin' as admin%}
+									<li class="section-row {% if admin == request.path%} selected {%endif%}"><a href="{{admin}}">Administrador</a></li>
+								{% endif %}
 							</ul>
 						</div>
 						<div class="clear"></div>

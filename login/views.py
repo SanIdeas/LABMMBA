@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from login.models import User, Area
+from login.models import User, Area, UserManager
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys

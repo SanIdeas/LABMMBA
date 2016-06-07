@@ -79,6 +79,7 @@ body{
     background-color: #FFF;
     max-height: 200px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     z-index: 99;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
 }
@@ -189,6 +190,7 @@ body{
 #page-body{
 	padding: 0 10px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
@@ -201,6 +203,7 @@ body{
     height: 100%;
     width: 100%;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .responsive-menu-open-v2{
