@@ -45,7 +45,7 @@ def signup(request):
 					user = User.objects.create_user(request.POST['email'], request.POST['first_name'], request.POST['last_name'], request.POST['institution'], request.POST['country'], Area.objects.get(id=request.POST['area']), request.POST['career'], request.POST['password'])
 					user = authenticate(username=request.POST['email'], password=request.POST['password'])
 					auth_login(request, user)
-					return HttpResponseRedirect(reverse('intranet'))
+					return HttpResponseRedirect(reverse('intranet:home'))
 				else:
 					message = {'type': 'error', 'content': 'El email ' + request.POST['email'] + ' ya existe.'}
 					return render(request, 'login/signup.html', {'areas': Area.objects.all(), 'message': message})
