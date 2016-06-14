@@ -1,20 +1,21 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="grid row">
 	<div id="content">
 		<div class="login-row">
-			<h1>Ingresar al sistema</h1>
-			<span>Ingresa tus datos para acceder a la base de datos de Labmmba</span>
+			<h1>{% trans "Ingresar al sistema" %}</h1>
+			<span>{% trans "Ingresa tus datos para acceder a la base de datos de Labmmba" %}</span>
 			<form action="{% url 'login' %}" method="POST">
 				<div class="row">
 					<div class="login-input">
-						<span>Correo electronico</span>
+						<span>{% trans "Correo electronico" %}</span>
 						<input type="text" name="email" required>						
 					</div>
 					<div class="login-input">
-						<span>Contraseña</span>
+						<span>{% trans "Contraseña" %}</span>
 						<input type="password" name="password" required>						
 					</div>
 					<div class="login-input">
@@ -35,7 +36,7 @@
 			</div>
 		</div>
 		<div class="login-row row grid">
-			<span>¿No posees cuenta?. Registrate <a class="simple-link" href="{% url 'signup' %}">aquí</a></span>
+			<span>{% trans "¿No posees cuenta?. Registrate" %} <a class="simple-link" href="{% url 'signup' %}">{% trans "aquí" %}</a></span>
 		</div>
 	</div>
 </div>

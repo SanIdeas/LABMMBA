@@ -21,7 +21,7 @@ $('#resp-btn-menu').click(function(){
 
 $('#search-field').keypress(function(e){
 	if(e.which == 13 && $(this).val() != ''){
-		window.location.href = "/intranet/search/999/".replace('999', $(this).val());
+		window.location.href = "/" + current_lang + "/intranet/search/999/".replace('999', $(this).val());
 	}
 });
 

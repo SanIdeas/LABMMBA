@@ -2,10 +2,13 @@
 <html>
 	<head>
 		{% load staticfiles %}
+		{% load i18n %}
+		{% load tags %}
+		{% get_current_language as lang %}
 		<title>Laboratorio de Microbiología Molecular y Biotecnología Ambiental | Universidad Técnica Federíco Santa María</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
-
+		
 		<!-- Twitter Card data -->
 		<meta name="twitter:card" value="summary">
 
@@ -24,16 +27,18 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'login/css/signup.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/shared.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/home.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/documents.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/users.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/upload.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/profile.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/document.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/document_information.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/plus-font.css' %}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="icon" href="{% static 'shared/images/icon.ico' %}">
 
 		<!--Javascript-->
+		<script>var current_lang = "{{lang}}"</script>
+		<script src="{% url 'javascript-catalog' %}"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
 		<script src="{% static 'intranet/js/upload.js' %}"></script>
@@ -51,12 +56,16 @@
 					</ul>
 					<ul id="top-bar-nav">
 						{% if request.user.is_authenticated == False %}
-							<li><a href="{% url 'login' %}">Ingresar</a></li>
+							<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 						{% else %}
-							<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-							<li><a href="{% url 'profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+							<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
+							<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
 						{% endif %}
-						<li><a href="#">English version</a></li>
+						{% if lang == "es" %}
+							<li><a href="{% translate_url 'en' %}">English version</a></li>
+						{% else %}
+							<li><a href="{% translate_url 'es' %}">Versión en Español</a></li>
+						{% endif %}
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -71,7 +80,7 @@
 						</ul>
 					</div>
 					<div class="search-bar">
-						<input id="search-field" type="text" placeholder="Ingresa tu busqueda aquí">
+						<input id="search-field" type="text" placeholder="{% trans 'Ingresa tu busqueda aquí' %}">
 						<i class="fa fa-search"></i>
 						<div class="clear"></div>
 					</div>
@@ -81,24 +90,24 @@
 		</div>
 		<div id="responsive-menu" class="responsive-menu-close">
 			<ul>
-				{% url 'intranet' as intranet%}
-				<li class="{% if intranet == request.path%} rsp-selected {%endif%}"><a href="{{intranet}}">Inicio</a></li>
-				{% url 'documents' as documents_view%}
-				<li class="{% if documents_view == request.path%} rsp-selected {%endif%}"><a href="{{documents_view}}">Documentos</a></li>
-				{% url 'profile' request.user.id as profile%}
-				<li class="{% if profile == request.path%} rsp-selected {%endif%}"><a href="{{profile}}">Mi perfil</a></li>
-				{% url 'users' as users_view%}
-				<li class="{% if users_view == request.path%} rsp-selected {%endif%}"><a href="{{users_view}}">Usuarios</a></li>
-				{% url 'upload' as upload%}
-				<li class="{% if upload == request.path%} rsp-selected {%endif%}"><a href="{{upload}}">Subir documento</a></li>
-				<li><a href="{% url 'home' %}">Volver a la página principal</a></li>				
+				{% url 'intranet:home' as intranet%}
+				<li class="{% if intranet == request.path%} rsp-selected {%endif%}"><a href="{{intranet}}">{% trans "Inicio" %}</a></li>
+				{% url 'intranet:documents' as documents_view%}
+				<li class="{% if documents_view == request.path%} rsp-selected {%endif%}"><a href="{{documents_view}}">{% trans "Documentos" %}</a></li>
+				{% url 'intranet:profile' request.user.id as profile%}
+				<li class="{% if profile == request.path%} rsp-selected {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
+				{% url 'intranet:users' as users_view%}
+				<li class="{% if users_view == request.path%} rsp-selected {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
+				{% url 'intranet:upload' as upload%}
+				<li class="{% if upload == request.path%} rsp-selected {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
+				<li><a href="{% url 'home' %}">{% trans "Volver a la página principal" %}</a></li>				
 			</ul>
 			<ul>
 				{% if request.user.is_authenticated == False %}
-					<li><a href="{% url 'login' %}">Ingresar</a></li>
+					<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 				{% else %}
-					<li><a href="{% url 'profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
-					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+					<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+					<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 				{% endif %}
 			</ul>
 		</div>
@@ -108,20 +117,20 @@
 					<div id="left-menu">
 						<div class="menu-section">
 							<ul>
-								<li class="section-head"><h3>Enlaces</h3></li>
-								{% url 'intranet' as intranet%}
-								<li class="section-row {% if intranet == request.path%} selected {%endif%}"><a href="{{intranet}}">Inicio</a></li>
-								{% url 'documents' as documents_view%}
-								<li class="section-row {% if documents_view == request.path%} selected {%endif%}"><a href="{{documents_view}}">Documentos</a></li>
-								{% url 'profile' request.user.id as profile%}
-								<li class="section-row {% if profile == request.path%} selected {%endif%}"><a href="{{profile}}">Mi perfil</a></li>
-								{% url 'users' as users_view%}
-								<li class="section-row {% if users_view == request.path%} selected {%endif%}"><a href="{{users_view}}">Usuarios</a></li>
-								{% url 'upload' as upload%}
-								<li class="section-row {% if upload == request.path%} selected {%endif%}"><a href="{{upload}}">Subir documento</a></li>
+								<li class="section-head"><h3>{% trans "Enlaces" %}</h3></li>
+								{% url 'intranet:home' as intranet%}
+								<li class="section-row {% if intranet == request.path%} selected {%endif%}"><a href="{{intranet}}">{% trans "Inicio" %}</a></li>
+								{% url 'intranet:documents' as documents_view%}
+								<li class="section-row {% if documents_view == request.path%} selected {%endif%}"><a href="{{documents_view}}">{% trans "Documentos" %}</a></li>
+								{% url 'intranet:profile' request.user.id as profile%}
+								<li class="section-row {% if profile == request.path%} selected {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
+								{% url 'intranet:users' as users_view%}
+								<li class="section-row {% if users_view == request.path%} selected {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
+								{% url 'intranet:upload' as upload%}
+								<li class="section-row {% if upload == request.path%} selected {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
 								{% if request.user.is_admin %}
-									{% url 'admin' as admin%}
-									<li class="section-row {% if admin == request.path%} selected {%endif%}"><a href="{{admin}}">Administrador</a></li>
+									{% url 'intranet:admin' as admin%}
+									<li class="section-row {% if admin == request.path%} selected {%endif%}"><a href="{{admin}}">{% trans "Administrador" %}</a></li>
 								{% endif %}
 							</ul>
 						</div>
@@ -132,10 +141,10 @@
 						{% if documents %}
 							<div id="filters-v2" class="noselect">
 								<form action="" method="GET" id="filter-form">
-								<h4>Refinar busqueda</h4>
+								<h4>{% trans "Refinar busqueda" %}</h4>
 								<ul>
 									<li>
-										AUTOR
+										{% trans "AUTOR" %}
 										<ul>
 											{% for ath, count, selected in authors %}
 												{% if ath %}
@@ -147,7 +156,7 @@
 										</ul>
 									</li>
 									<li>
-										DUEÑO
+										{% trans "DUEÑO" %}
 										<ul>
 											{% for own, count, selected in owners %}
 												{% if own %}
@@ -159,7 +168,7 @@
 										</ul>
 									</li>
 									<li>
-										CATEGORÍA
+										{% trans "CATEGORÍA" %}
 										<ul>
 											{% for cat, count, selected in categories %}
 												{% if cat %}
@@ -170,20 +179,8 @@
 											{% endfor %}
 										</ul>
 									</li>
-									<!--<li>
-										PALABRAS CLAVE
-										<ul>
-											{% for word, count, selected in words %}
-												{% if word %}
-													<li><label for="checkbox-word{{word}}"><input id="checkbox-word{{word}}" name="words" value="{{word}}"type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{word}} ({{count}})</span></label></li>
-												{% elif words|length == 1  %}
-													<li><span>-</span></li>
-												{% endif %}
-											{% endfor %}
-										</ul>
-									</li>-->
 									<li>
-										AÑO
+										{% trans "AÑO" %}
 										<ul>
 											{% for year, count, selected in years %}
 												{% if year %}
@@ -214,6 +211,6 @@
 			<div id="blue-bar" class="bar"></div>	
 		</div>	
 	</body>
-	<script>var helper_link = '{% url 'helper' 999 %}'; var document_link = '{% url 'document' 888 999 %}'</script>
+	<script>var helper_link = '{% url 'intranet:helper' 999 %}'; var document_link = '{% url 'intranet:document' 888 999 %}'</script>
 	<script src="{% static 'intranet/js/shared_events.js' %}"></script>
 </html>

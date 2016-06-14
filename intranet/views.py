@@ -24,6 +24,7 @@ from datetime import date
 from django.utils import timezone
 from collections import Counter
 from itertools import chain
+from django.utils.translation import ugettext as _
 
 # Create your views here.
 
@@ -130,7 +131,7 @@ def documents(request, search=None):
 			parameters['categories'] = categories
 			parameters['owners'] = owners
 			parameters['search'] = search
-		return render(request, 'intranet/home.html',parameters)
+		return render(request, 'intranet/documents.html',parameters)
 	else:
 		print request.get_full_path
 		return HttpResponseRedirect(reverse('login'))
@@ -142,14 +143,14 @@ def profile(request, user_id):
 			documents = Document.objects.filter(owner=user_id)
 			return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
 		except:
-			return HttpResponseRedirect(reverse('users'))			
+			return HttpResponseRedirect(reverse('intranet:users'))			
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 def update_profile_picture(request):
 	if request.user.is_authenticated() == True:
 		User.objects.get(id=request.user.id).update_picture(request.FILES['picture'])
-		return HttpResponseRedirect(reverse('profile', args={request.user.id}))
+		return HttpResponseRedirect(reverse('intranet:profile', args={request.user.id}))
 
 def upload(request):
 	if request.user.is_authenticated() == True:
@@ -170,15 +171,16 @@ def upload(request):
 					document.type = int(request.POST['type' + id])
 					document.abstract = request.POST['abstract' + id]
 					document.save()
-				return JsonResponse({'error': False, 'message':'Actualizado con exito.'})
+				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
 			elif 'local_ids' in request.POST:
 				local_ids = request.POST['local_ids'].split(',')
 				for id in local_ids:
 					if request.FILES['document'+id].size/1000 > 2048:
-						return JsonResponse({'error': True, 'message':'El archivo ' + request.FILES['document'+id].name + ' no debe superar los 2 Mb'})
+						return JsonResponse({'error': True, 'message':_('El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
 
 					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
-						return JsonResponse({'error': True, 'message':'El documento <span style="text-transform: uppercase; font-size:14px">' + request.POST['title'+id] + '</span> del autor <span style="text-transform: uppercase; font-size:14px">' + request.POST['author'+id] + '</span style="font-size:100%"> ya existe.'})
+						message = _('El documento <span style="text-transform: uppercase; font-size:14px"> %(title)s </span> del autor <span style="text-transform: uppercase; font-size:14px"> %(author)s </span> ya existe.') % {'title': request.POST['title'+id],'author': request.POST['author'+id]}
+						return JsonResponse({'error': True, 'message':message})
 
 					request.POST['owner'] = User.objects.get(email=request.user.email)
 					fields = {
@@ -209,10 +211,10 @@ def upload(request):
 						document.save_abstract()
 						document.keywords()
 					else:
-						return JsonResponse({'error': True, 'message':'Ocurrio un problema: ' + str(form.errors)})
-				return JsonResponse({'error': False, 'message':'Subida exitosa'})
+						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error':str(form.errors)}})
+				return JsonResponse({'error': False, 'message':_('Subida exitosa')})
 	else:
-		return JsonResponse({'error': True, 'message':'Debes iniciar sesion.'})
+		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
 
 def pdf_viewer(request, title=None, author=None):
@@ -230,9 +232,9 @@ def pdf_viewer(request, title=None, author=None):
 				return response
 			pdf.close()
 		else:
-			return HttpResponse('Debes tener una cuenta para visualizar este archivo.')
+			return HttpResponse(_('Debes tener una cuenta para visualizar este archivo.'))
 	else:
-		return HttpResponse('No se encontraron documentos con el nombre: ' + title)
+		return HttpResponse(_('No se encontraron documentos con el nombre: %(title)s') % {'title': title})
 
 def users(request):
 	if request.user.is_authenticated() == True:
@@ -250,13 +252,13 @@ def document(request, title=None, author=None):
 			document = Document.objects.get(title=title, author=author)
 			related = Document.objects.values('title', 'author').filter(reduce(operator.or_, (Q(title__contains=x) for x in document.words.split(','))))
 			print '----'
-			print document.id
+			print document.document
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
-			return render(request, 'intranet/document.html', {'current_view': 'intranet', 'document': document, 'related': related})
+			return render(request, 'intranet/document_information.html', {'current_view': 'intranet', 'document': document, 'related': related})
 		else:
-			return HttpResponse('No se encontro el documento ' + title + ' del autor ' + author)
+			return HttpResponse(_('No se encontró el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
 	else:
 		return HttpResponseRedirect(reverse('login'))
 

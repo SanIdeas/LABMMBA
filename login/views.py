@@ -18,7 +18,7 @@ def login(request):
 		if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
 			return render(request, 'login/login.html')
 		else:
-			return HttpResponseRedirect(reverse('intranet')) #Se redirecciona a la ultima pagina visitada.			
+			return HttpResponseRedirect(reverse('intranet:home')) #Se redirecciona a la ultima pagina visitada.			
 	else:
 		email = request.POST['email']
 		password = request.POST['password']
@@ -26,7 +26,7 @@ def login(request):
 		if user is not None: 
 		#Si el usuario es autenticado se inicia sesion.
 			auth_login(request, user)
-			return HttpResponseRedirect(reverse('intranet'))
+			return HttpResponseRedirect(reverse('intranet:home'))
 		else:
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
 			return render(request, 'login/login.html', {'message': message})
@@ -50,7 +50,7 @@ def signup(request):
 					message = {'type': 'error', 'content': 'El email ' + request.POST['email'] + ' ya existe.'}
 					return render(request, 'login/signup.html', {'areas': Area.objects.all(), 'message': message})
 	else:
-		return HttpResponseRedirect(reverse('intranet'))
+		return HttpResponseRedirect(reverse('intranet:home'))
 
 
 def logout(request):

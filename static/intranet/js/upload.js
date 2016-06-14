@@ -139,12 +139,13 @@ function methodSwitcher(method){
 }
 
 function addDocument(index, filename, object){
-	var code = ['<div class="document-frame animation-down" doc-index="$index">',
+	if (current_lang == 'es'){
+		var code = ['<div class="document-frame animation-down" doc-index="$index">',
 					'<div class="frame-header">',
 						'<h5 class="frame-title">$filename</h5>',
 						'<select class="type-select field" name="type$index" required>',
 							'<option value="" disabled selected>Selecciona privacidad</option>',
-							'<option value="0">Publico</option>',
+							'<option value="0">Público</option>',
 							'<option value="1">Privado</option>',
 						'</select>',
 						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
@@ -152,7 +153,7 @@ function addDocument(index, filename, object){
 					'</div>',
 					'<ul class="frame-data">',
 						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" name="title$index" placeholder="Ej: Tesis de microbiologia"required></li>',
-						'<li><strong>Autor:</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="Ej: Hernán Herreros" required></li>',
+						'<li><strong>Autor:</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="Ej: Juan Perez" required></li>',
 						'<li><strong>Fecha de creación:</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="Ej: 2016" required></li>',
 						'<li><strong>Colaboradores:</strong> <input class="field" type="text" required></li>',
 						'<li><strong>Area:</strong>',
@@ -163,7 +164,36 @@ function addDocument(index, filename, object){
 							'</select>',
 						'</li>',
 					'</ul>',
-				'</div>'].join('').replace(/\$index/g, index).replace(/\$filename/g, filename).replace(/\$title/g, object['Title'] ? object['Title']:'').replace(/\$author/g, object['Author'] ? object['Author']:'').replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
+				'</div>']
+	}
+	else if (current_lang == 'en'){
+		var code = ['<div class="document-frame animation-down" doc-index="$index">',
+					'<div class="frame-header">',
+						'<h5 class="frame-title">$filename</h5>',
+						'<select class="type-select field" name="type$index" required>',
+							'<option value="" disabled selected>' + gettext('Selecciona privacidad') + '</option>',
+							'<option value="0">' + gettext('Público') + '</option>',
+							'<option value="1">' + gettext('Privado') + '</option>',
+						'</select>',
+						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
+						'<div class="clear"></div>',
+					'</div>',
+					'<ul class="frame-data">',
+						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" name="title$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '"required></li>',
+						'<li><strong>' + gettext('Autor') + ':</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="' + gettext('Ej: Juan Perez') + '" required></li>',
+						'<li><strong>' + gettext('Fecha de creación') + ':</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="' + gettext('Ej: 2016-12-30') + '" required></li>',
+						'<li><strong>' + gettext('Colaboradores') + ':</strong> <input class="field" type="text" required></li>',
+						'<li><strong>' + gettext('Area') + ':</strong>',
+							'<select name="category$index" class="field form-select" required>',
+								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
+								'<option value="1"> ' + gettext('Microbiología Molecular') + '</option>',
+								'<option value="2">' + gettext('Biotecnología Ambiental') + '</option>',
+							'</select>',
+						'</li>',
+					'</ul>',
+				'</div>']
+	}
+	code = code.join('').replace(/\$index/g, index).replace(/\$filename/g, filename).replace(/\$title/g, object['Title'] ? object['Title']:'').replace(/\$author/g, object['Author'] ? object['Author']:'').replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
 	console.log(object['CreationDate']);
 	$('#confirm-form').append(code);
 	$('#confirm-form').off();
@@ -247,7 +277,7 @@ function PopupCenter(url, title, w, h, autoSearch) {
 
 function initial_drive_request(link){
 	if (link == '/drive/analizer//'){
-		alternator('#error-message', 'Debes añadir un enlace de Google Drive a la solicitud');
+		alternator('#error-message', gettext('Debes añadir un enlace de Google Drive a la solicitud'));
 		/*if(!$('.folder-wrapper').hasClass('hidden'))$('.folder-wrapper').addClass('hidden');
 		if($('#error-message').hasClass('hidden'))$('#error-message').removeClass('hidden');
 		$('#error-message').text('Debes añadir un enlace de Google Drive a la solicitud');*/
@@ -330,7 +360,7 @@ function create_drive_table(response){
 		if(!$('#error-mesage').hasClass('hidden'))$('#error-message').addClass('hidden');*/
 	}
 	else{
-		alternator('#error-message', 'No se encontraron archivos compatibles en el enlace')
+		alternator('#error-message', gettext('No se encontraron archivos compatibles en el enlace'));
 		/*if(!$('.folder-wrapper').hasClass('hidden'))$('.folder-wrapper').addClass('hidden');
 		if($('#error-message').hasClass('hidden'))$('#error-message').removeClass('hidden');
 		$('#error-message').text('No se encontraron archivos compatibles en el enlace');*/
@@ -507,34 +537,12 @@ function format_date(date){
 
 function load_confirmation(files){
 	alternator('#confirmation-section');
-	$('#drive-title').text('Confirma los datos de tus documentos');
+	$('#drive-title').text(gettext('Confirma los datos de tus documentos'));
 	$('.confirmation-frame').remove()
 	var section = $('#confirm-drive-form');
 	var ids = [];
-	var old_code = ['<div class="document-frame confirmation-frame animation-down">',
-					'<ul class="frame-data">',
-						'<li><strong>Titulo:</strong> <input type="text" class="drive-field" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required></li>',
-						'<li><strong>Autor:</strong> <input type="text" class="drive-field" name="author$id" value="$author" placeholder="Ej: Hernán Herreros" required></li>',
-						'<li><strong>Fecha:</strong> <input type="text" class="drive-field" name="date$id" value="$date" placeholder="Ej: 2016-12-30" required></li>',
-						'<li><strong>Colaboradores:</strong> <input class="drive-field" type="text" required></li>',
-						'<li><strong>Area:</strong>',
-							'<select name="category$id" class="form-select drive-field" required>',
-								'<option value="" disabled selected>Selecciona una categoria</option>',
-								'<option value="1"> Microbiología Molecular</option>',
-								'<option value="2">Biotecnología Ambiental</option>',
-							'</select>',
-						'</li>',
-						'<li><strong>Privacidad:</strong>',
-							'<select name="type$id" class="form-select drive-field" required>',
-								'<option value="" disabled selected>Selecciona privacidad</option>',
-								'<option value="0">Público</option>',
-								'<option value="1">Privado</option>',
-							'</select>',
-						'</li>',
-						'<li><strong>Extracto:</strong> <input type="text" name="abstract$id" required></li>',
-					'</ul>',
-				'</div>']
-	var code = ['<table class="confirmation-table confirmation-frame animation-down">',
+	if(current_lang == "es"){
+		var code = ['<table class="confirmation-table confirmation-frame animation-down">',
 					'<tr>',
 						'<td rowspan="7" class="thumbnail-col"><img src="$thumbnail"></td>',
 					'</tr>',
@@ -578,6 +586,54 @@ function load_confirmation(files){
 						'<td colspan="3" ><textarea class="drive-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
 					'</tr>',
 				'</table>']
+	}
+	else if(current_lang == "en"){
+		var code = ['<table class="confirmation-table confirmation-frame animation-down">',
+					'<tr>',
+						'<td rowspan="7" class="thumbnail-col"><img src="$thumbnail"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Titulo') + ':</strong></td>',
+						'<td><input type="text" class="drive-field" name="title$id" value="$title" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" required></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Autor') + ':</strong></td>',
+						'<td ><input type="text" class="drive-field" name="author$id" value="$author" placeholder="' + gettext('Ej: Juan Perez') + '" required></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Fecha') + ':</strong></td>',
+						'<td ><input type="text" class="drive-field" name="date$id" value="$date" placeholder="' + gettext('Ej: 2016-12-30') + '" required></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Colaboradores') + ':</strong></td>',
+						'<td ><input class="drive-field" type="text"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Area') + ':</strong></td>',
+						'<td >',
+							'<select name="category$id" class="form-select drive-field" required>',
+								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
+								'<option value="1"> ' + gettext('Microbiología Molecular') + '</option>',
+								'<option value="2">' + gettext('Biotecnología Ambiental') + '</option>',
+							'</select>',
+						'</td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Privacidad') + ':</strong></td>',
+						'<td >',
+							'<select name="type$id" class="form-select drive-field" required>',
+								'<option value="" disabled selected>' + gettext('Selecciona privacidad') + '</option>',
+								'<option value="0">' + gettext('Público') + '</option>',
+								'<option value="1">' + gettext('Privado') + '</option>',
+							'</select>',
+						'</td>',
+					'</tr>',
+					'<tr>',
+						'<td colspan="3" ><textarea class="drive-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
+					'</tr>',
+				'</table>']
+	}
+	
 	for(var i = 0; i < files.length; i++){
 		var completed_code = code.join('').replace(/\$id/g, files[i]['id']).replace(/\$title/g, files[i]['title'] ? files[i]['title']:'').replace(/\$author/g, files[i]['author'] ? files[i]['author']:'').replace(/\$date/g, files[i]['date'] ? files[i]['date'] : '').replace(/\$thumbnail/g, files[i]['thumbnail'] ? static_link.replace('999', files[i]['thumbnail']) : '').replace(/\$abstract/g, files[i]['abstract'] ? files[i]['abstract'] : '');
 		section.append(completed_code);

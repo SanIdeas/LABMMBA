@@ -1,0 +1,403 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-13 22:39-0400\n"
+"PO-Revision-Date: 2016-06-13 22:47-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: .\drive\views.py:163
+msgid "Para continuar debes enlazar tu cuenta de Google Drive"
+msgstr "Link your Google Drive account to continue"
+
+#: .\drive\views.py:174
+msgid "El link ingresado no contiene documentos compatibles"
+msgstr "The Link does not have compatible documents"
+
+#: .\drive\views.py:187
+msgid "No existen archivos compatibles en el enlace."
+msgstr "There are not compatible files in the link."
+
+#: .\drive\views.py:189
+msgid "Error desconocido. Contacta al administrador."
+msgstr "Unkown error. Contact the administrator."
+
+#: .\drive\views.py:192 .\drive\views.py:226
+msgid "Debes iniciar sesion."
+msgstr "You must log in"
+
+#: .\drive\views.py:220
+#, python-format
+msgid ""
+"No se pudo descargar el documento %(title)s debibo a un problema desconocido."
+msgstr ""
+"The document %(title)s could not be downloaded due to an unknown problem"
+
+#: .\drive\views.py:224
+msgid ""
+"Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas "
+"tarde."
+msgstr "There was a problem to obtain files from Google Drive. Trylater."
+
+#: .\labmmba\settings.py:115
+msgid "Spanish"
+msgstr "Spanish"
+
+#: .\labmmba\settings.py:116
+msgid "English"
+msgstr "English"
+
+#: .\templates\about\about.html:7 .\templates\about\about.html.py:15
+msgid "Quiénes Somos"
+msgstr "About us"
+
+#: .\templates\about\about.html:16
+msgid "Nuestra Historia"
+msgstr "Our history"
+
+#: .\templates\about\about.html:17
+msgid "Integrantes"
+msgstr "Members"
+
+#: .\templates\about\about.html:18 .\templates\shared\base.html.py:81
+#: .\templates\shared\base.html:96 .\templates\shared\base.html.py:143
+msgid "Cooperación"
+msgstr "Cooperation"
+
+#: .\templates\about\about.html:23
+msgid "Nuestra historia"
+msgstr "Our history"
+
+#: .\templates\intranet\document_information.html:19
+msgid "Abrir Documento"
+msgstr "Open Document"
+
+#: .\templates\intranet\document_information.html:24
+#: .\templates\intranet\documents.html:47 .\templates\intranet\profile.html:77
+#: .\templates\public_search\search.html:56
+msgid "Autor"
+msgstr "Author"
+
+#: .\templates\intranet\document_information.html:28
+msgid "Agregado el"
+msgstr "Added on"
+
+#: .\templates\intranet\document_information.html:58
+msgid "Relacionados"
+msgstr "Related"
+
+#: .\templates\intranet\documents.html:9
+#, python-format
+msgid " No se encontraron resultados para %(search)s "
+msgstr "No results for %(search)s found"
+
+#: .\templates\intranet\documents.html:17
+#: .\templates\intranet\documents.html:50 .\templates\intranet\upload.html:43
+#: .\templates\intranet\upload.html:58 .\templates\public_search\search.html:33
+msgid "Dueño"
+msgstr "Owner"
+
+#: .\templates\intranet\documents.html:20
+#: .\templates\public_search\search.html:36
+msgid "Extracto"
+msgstr "Abstract"
+
+#: .\templates\intranet\documents.html:43
+msgid "No hay documentos en la base de datos"
+msgstr "There are no documents in the database"
+
+#: .\templates\intranet\documents.html:48 .\templates\intranet\profile.html:78
+#: .\templates\public_search\search.html:57
+msgid "Titulo"
+msgstr "Title"
+
+#: .\templates\intranet\documents.html:49 .\templates\intranet\profile.html:79
+#: .\templates\public_search\search.html:58
+msgid "Año"
+msgstr "Year"
+
+#: .\templates\intranet\documents.html:51 .\templates\intranet\profile.html:81
+#: .\templates\public_search\search.html:59
+msgid "Añadido"
+msgstr "Added"
+
+#: .\templates\intranet\profile.html:14
+msgid "Aceptar"
+msgstr "Accept"
+
+#: .\templates\intranet\profile.html:15
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: .\templates\intranet\profile.html:48
+msgid "Nombre completo"
+msgstr "Full name"
+
+#: .\templates\intranet\profile.html:52 .\templates\login\signup.html.py:38
+msgid "Institución"
+msgstr "Institution"
+
+#: .\templates\intranet\profile.html:56 .\templates\login\signup.html.py:55
+msgid "Carrera"
+msgstr "Career"
+
+#: .\templates\intranet\profile.html:60
+msgid "País"
+msgstr "Country"
+
+#: .\templates\intranet\profile.html:64 .\templates\login\signup.html.py:46
+msgid "Area"
+msgstr "Area"
+
+#: .\templates\intranet\profile.html:70
+msgid "Mis documentos"
+msgstr "My documents"
+
+#: .\templates\intranet\profile.html:72
+msgid "No posees documentos"
+msgstr "You don´t have documents"
+
+#: .\templates\intranet\profile.html:80
+msgid "Tipo"
+msgstr "Type"
+
+#: .\templates\intranet\profile.html:88
+msgid "Público"
+msgstr "Public"
+
+#: .\templates\intranet\profile.html:88
+msgid "Privado"
+msgstr "Private"
+
+#: .\templates\intranet\shared.html:59 .\templates\intranet\shared.html:107
+#: .\templates\shared\base.html.py:58 .\templates\shared\base.html:110
+msgid "Ingresar"
+msgstr "Log in"
+
+#: .\templates\intranet\shared.html:61 .\templates\intranet\shared.html:110
+#: .\templates\shared\base.html.py:60 .\templates\shared\base.html:112
+msgid "Cerrar Sesión"
+msgstr "Logout"
+
+#: .\templates\intranet\shared.html:83 .\templates\public_search\search.html:13
+msgid "Ingresa tu busqueda aquí"
+msgstr "Enter your search here"
+
+#: .\templates\intranet\shared.html:94 .\templates\intranet\shared.html:122
+msgid "Inicio"
+msgstr "Start"
+
+#: .\templates\intranet\shared.html:96 .\templates\intranet\shared.html:124
+#: .\templates\intranet\users.html:21
+msgid "Documentos"
+msgstr "Documents"
+
+#: .\templates\intranet\shared.html:98 .\templates\intranet\shared.html:126
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: .\templates\intranet\shared.html:100 .\templates\intranet\shared.html:128
+msgid "Usuarios"
+msgstr "Users"
+
+#: .\templates\intranet\shared.html:102 .\templates\intranet\shared.html:130
+msgid "Subir documento"
+msgstr "Upload document"
+
+#: .\templates\intranet\shared.html:103
+msgid "Volver a la página principal"
+msgstr "return to homepage"
+
+#: .\templates\intranet\shared.html:120
+msgid "Enlaces"
+msgstr "Links"
+
+#: .\templates\intranet\shared.html:133
+msgid "Administrador"
+msgstr "Administrator"
+
+#: .\templates\intranet\shared.html:144
+msgid "Refinar busqueda"
+msgstr "Refine search"
+
+#: .\templates\intranet\shared.html:147
+msgid "AUTOR"
+msgstr "AUTHOR"
+
+#: .\templates\intranet\shared.html:159
+msgid "DUEÑO"
+msgstr "OWNER"
+
+#: .\templates\intranet\shared.html:171
+msgid "CATEGORÍA"
+msgstr "CATEGORY"
+
+#: .\templates\intranet\shared.html:183
+msgid "AÑO"
+msgstr "YEAR"
+
+#: .\templates\intranet\upload.html:9
+msgid "Subir documento desde"
+msgstr "Upload document from"
+
+#: .\templates\intranet\upload.html:12
+msgid "Archivos locales"
+msgstr "Local files"
+
+#: .\templates\intranet\upload.html:21
+msgid "Añadir documentos"
+msgstr "Add documents"
+
+#: .\templates\intranet\upload.html:28 .\templates\intranet\upload.html:81
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: .\templates\intranet\upload.html:34
+msgid "Ingresa el enlace de la carpeta o archivo Google Drive"
+msgstr "Enter the Google Drive link for the folder or file"
+
+#: .\templates\intranet\upload.html:35
+msgid "Mensaje de error"
+msgstr "error message"
+
+#: .\templates\intranet\upload.html:37
+msgid "Titulo del enlace"
+msgstr "Link title"
+
+#: .\templates\intranet\upload.html:42 .\templates\login\signup.html.py:22
+msgid "Nombre"
+msgstr "Name"
+
+#: .\templates\intranet\upload.html:44 .\templates\intranet\upload.html:66
+msgid "Ultima modificación"
+msgstr "Last modification"
+
+#: .\templates\intranet\upload.html:45 .\templates\intranet\upload.html:70
+msgid "Tamaño"
+msgstr "Size"
+
+#: .\templates\intranet\upload.html:62 .\templates\login\login.html.py:14
+#: .\templates\login\signup.html:18
+msgid "Correo electronico"
+msgstr "Email"
+
+#: .\templates\intranet\upload.html:89
+msgid "Subida exitosa"
+msgstr "Successful upload"
+
+#: .\templates\intranet\upload.html:95
+msgid "Procesando"
+msgstr "Processing"
+
+#: .\templates\intranet\users.html:22
+#, python-format
+msgid "Hace %(days)s dias"
+msgstr "%(days)s days ago"
+
+#: .\templates\intranet\users.html:22
+msgid "Ultima actividad"
+msgstr "last activity"
+
+#: .\templates\login\login.html:9
+msgid "Ingresar al sistema"
+msgstr "Enter the Intranet"
+
+#: .\templates\login\login.html:10
+msgid "Ingresa tus datos para acceder a la base de datos de Labmmba"
+msgstr "Enter your information to access the Labmmba database"
+
+#: .\templates\login\login.html:18 .\templates\login\signup.html.py:30
+msgid "Contraseña"
+msgstr "Password"
+
+#: .\templates\login\login.html:39
+msgid "¿No posees cuenta?. Registrate"
+msgstr "Don't have an account?. Sign up"
+
+#: .\templates\login\login.html:39
+msgid "aquí"
+msgstr "here"
+
+#: .\templates\login\signup.html:9
+msgid "Registro"
+msgstr "Sign up"
+
+#: .\templates\login\signup.html:10
+msgid "Crea una cuenta de usuario en el sistema Labmmba"
+msgstr "Create an account in the Labmmba system"
+
+#: .\templates\login\signup.html:26
+msgid "Apellido"
+msgstr "Last name"
+
+#: .\templates\login\signup.html:42
+msgid "Pais"
+msgstr "Country"
+
+#: .\templates\login\signup.html:48
+msgid "Selecciona un area"
+msgstr "Select an area"
+
+#: .\templates\public_search\search.html:7 .\templates\shared\base.html:87
+#: .\templates\shared\base.html.py:102 .\templates\shared\base.html:149
+msgid "Publicaciones"
+msgstr "Publications"
+
+#: .\templates\shared\base.html:80 .\templates\shared\base.html.py:95
+#: .\templates\shared\base.html:142
+msgid "Areas de Investigación"
+msgstr "Research areas"
+
+#: .\templates\shared\base.html:82 .\templates\shared\base.html.py:97
+#: .\templates\shared\base.html:144
+msgid "Sobre Nosotros"
+msgstr "About us"
+
+#: .\templates\shared\base.html:83 .\templates\shared\base.html.py:98
+#: .\templates\shared\base.html:145
+msgid "Ubicación"
+msgstr "Location"
+
+#: .\templates\shared\base.html:85 .\templates\shared\base.html.py:100
+#: .\templates\shared\base.html:147
+msgid "Intranet"
+msgstr "Intranet"
+
+#~ msgid "Actualizado con exito."
+#~ msgstr "Update successful"
+
+#~ msgid "El archivo %(name)s no debe superar los 2 Mb"
+#~ msgstr "The file %(name)s must not exceed 2 Mb"
+
+#~ msgid ""
+#~ "El documento <span style=\"text-transform: uppercase; font-size:14px\"> "
+#~ "%(title)s </span> del autor <span style=\"text-transform: uppercase; font-"
+#~ "size:14px\"> %(author)s </span> ya existe."
+#~ msgstr ""
+#~ "The document <span style=\"text-transform: uppercase; font-size:14px\"> "
+#~ "%(title)s </span> from the author <span style=\"text-transform: "
+#~ "uppercase; font-size:14px\"> %(author)s </span> already exists."
+
+#~ msgid "Ocurrio un problema: %(error)s"
+#~ msgstr "There was a problem: %(error)s"
+
+#~ msgid "Debes tener una cuenta para visualizar este archivo."
+#~ msgstr "You must have an account to view this file"
+
+#~ msgid "No se encontraron documentos con el nombre: %(title)s"
+#~ msgstr "There were no documents titled %(title)s found"
+
+#~ msgid "No se encontró el documento %(title)s del autor %(author)s"
+#~ msgstr ""
+#~ "No documents with the name %(title)s from the author %(author)s found"

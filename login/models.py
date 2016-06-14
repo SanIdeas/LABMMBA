@@ -48,7 +48,7 @@ class CredentialsField(models.Field):
         return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, institution, country, is_admin, area, career, password=None):
+    def create_user(self, email, first_name, last_name, institution, country, area, career, password=None, is_admin=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -62,7 +62,7 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             institution=institution,
             country=country,
-            is_admin = is_admin,
+            is_admin = is_admin if is_admin else False,
             area=area,
             career=career,
         )

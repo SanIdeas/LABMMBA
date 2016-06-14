@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-13 22:44-0400\n"
+"PO-Revision-Date: 2016-06-13 22:42-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: .\static\intranet\js\upload.js:174 .\static\intranet\js\upload.js:625
+msgid "Selecciona privacidad"
+msgstr "Select privacy"
+
+#: .\static\intranet\js\upload.js:175 .\static\intranet\js\upload.js:626
+msgid "Público"
+msgstr "Public"
+
+#: .\static\intranet\js\upload.js:176 .\static\intranet\js\upload.js:627
+msgid "Privado"
+msgstr "Private"
+
+#: .\static\intranet\js\upload.js:182 .\static\intranet\js\upload.js:596
+msgid "Titulo"
+msgstr "Title"
+
+#: .\static\intranet\js\upload.js:182 .\static\intranet\js\upload.js:597
+msgid "Ej: Tesis de microbiologia"
+msgstr "ie. Microbiology Thesis"
+
+#: .\static\intranet\js\upload.js:183 .\static\intranet\js\upload.js:600
+msgid "Autor"
+msgstr "Author"
+
+#: .\static\intranet\js\upload.js:183 .\static\intranet\js\upload.js:601
+msgid "Ej: Juan Perez"
+msgstr "ie. John Smith"
+
+#: .\static\intranet\js\upload.js:184
+msgid "Fecha de creación"
+msgstr "Date of creation"
+
+#: .\static\intranet\js\upload.js:184 .\static\intranet\js\upload.js:605
+msgid "Ej: 2016-12-30"
+msgstr "ie. 2016-12-30"
+
+#: .\static\intranet\js\upload.js:185 .\static\intranet\js\upload.js:608
+msgid "Colaboradores"
+msgstr "Contributors"
+
+#: .\static\intranet\js\upload.js:186 .\static\intranet\js\upload.js:612
+msgid "Area"
+msgstr "Area"
+
+#: .\static\intranet\js\upload.js:188 .\static\intranet\js\upload.js:615
+msgid "Selecciona una categoria"
+msgstr "Select a category"
+
+#: .\static\intranet\js\upload.js:189 .\static\intranet\js\upload.js:616
+msgid "Microbiología Molecular"
+msgstr "Molecular Microbiology"
+
+#: .\static\intranet\js\upload.js:190 .\static\intranet\js\upload.js:617
+msgid "Biotecnología Ambiental"
+msgstr "Environmental Biotechnology"
+
+#: .\static\intranet\js\upload.js:280
+msgid "Debes añadir un enlace de Google Drive a la solicitud"
+msgstr "You must add a Google Drive link to the request"
+
+#: .\static\intranet\js\upload.js:363
+msgid "No se encontraron archivos compatibles en el enlace"
+msgstr "No compatibles files found in the link"
+
+#: .\static\intranet\js\upload.js:540
+msgid "Confirma los datos de tus documentos"
+msgstr "Confirm the information of your documents"
+
+#: .\static\intranet\js\upload.js:604
+msgid "Fecha"
+msgstr "Date"
+
+#: .\static\intranet\js\upload.js:622
+msgid "Privacidad"
+msgstr "Privacy"

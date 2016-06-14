@@ -1,14 +1,15 @@
 {% extends 'intranet/shared.html' %}
 {% load staticfiles %}
+{% load i18n %}
 {% block content %}
 
 {% if message %}
 	<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
 {% endif %}	
-<h4 class="documents-message upl-hud">Subir documento desde</h4>
+<h4 class="documents-message upl-hud">{% trans "Subir documento desde" %}</h4>
 <div id="upload-selector-container" class="upl-hud">
 	<div class="upload-selector" upload-method="local" frst="True">
-		<h5>Archivos locales</h5>
+		<h5>{% trans "Archivos locales" %}</h5>
 		<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 	</div>
 	<div class="upload-selector" upload-method="drive" frst="True">
@@ -17,31 +18,31 @@
 	<div class="clear"></div>
 </div>
 <div class="upload-body hidden upl-hud" upload-method="local">
-	<div id="btn-wrapper"><button id="add-btn">Añadir documentos</button></div>
+	<div id="btn-wrapper"><button id="add-btn">{% trans "Añadir documentos" %}</button></div>
 	<input id="mult-files" type="file"accept="application/pdf" style="display: none" multiple>
 	<h5 id="message" class="hidden"></h5>
 	<form id="confirm-form">
 		{%csrf_token%}
 	</form>
 	<div class="submit-row">
-		<button id="local-submit" class="submit-btn disabled" disabled>Confirmar</button>
+		<button id="local-submit" class="submit-btn disabled" disabled>{% trans "Confirmar" %}</button>
 		<div class="clear"></div>
 	</div>
 </div>
 
 <div class="upload-body hidden" upload-method="drive">
-	<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="Ingresa el enlace de la carpeta o archivo Google Drive"><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
-	<h4 id="error-message" class="hidden">Mensaje de error</h4>
+	<div class="row drive-link-wrapper" ><input id="drive-link" type="text" placeholder="{% trans 'Ingresa el enlace de la carpeta o archivo Google Drive' %}"><div id="spinner-wrapper" class="hidden"><img src="{% static 'intranet/images/ring.svg' %}"></div></div>
+	<h4 id="error-message" class="hidden">{% trans "Mensaje de error" %}</h4>
 	<div class="folder-wrapper hidden animation-down upl-hud">
-		<h4 id="drive-title">Titulo del enlace</h4>
+		<h4 id="drive-title">{% trans "Titulo del enlace" %}</h4>
 		<table id="folder-table" class="hidden">
 			<thead>
 				<tr>
 					<th><input class="main-checkbox" type="checkbox"></th>
-					<th>Nombre</th>
-					<th>Dueño</th>
-					<th>Ultima modificación</th>
-					<th>Tamaño</th>
+					<th>{% trans "Nombre" %}</th>
+					<th>{% trans "Dueño" %}</th>
+					<th>{% trans "Ultima modificación" %}</th>
+					<th>{% trans "Tamaño" %}</th>
 				</tr>
 			</thead>
 			<tbody id="folder-body">
@@ -54,19 +55,19 @@
 					<td id="thumbnail-column" rowspan="5"><img id="document-thumbnail" src=""></td>
 				</tr>
 				<tr>
-					<td>Dueño:</td>
+					<td>{% trans "Dueño" %}:</td>
 					<td id="document-owner"></td>
 				</tr>
 				<tr>
-					<td>Correo electronico</td>
+					<td>{% trans "Correo electronico" %}:</td>
 					<td id="document-email"></td>
 				</tr>
 				<tr>
-					<td>Ultima modificación:</td>
+					<td>{% trans "Ultima modificación" %}:</td>
 					<td id="document-modifiedDate"></td>
 				</tr>
 				<tr>
-					<td>Tamaño:</td>
+					<td>{% trans "Tamaño" %}:</td>
 					<td id="document-size"></td>
 				</tr>
 			</table>
@@ -77,7 +78,7 @@
 			</form>
 		</div>
 		<div class="submit-row-90">
-			<button class="submit-btn">Confirmar</button>
+			<button class="submit-btn">{% trans "Confirmar" %}</button>
 			<div class="clear"></div>
 		</div>
 	</div>
@@ -85,19 +86,19 @@
 <div class="row hidden" id="success-icon">
 	<div id="loading-bar"></div>
 	<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-	<h4 class="h4-center">Subida exitosa</h4>
+	<h4 class="h4-center">{% trans "Subida exitosa" %}</h4>
 </div>
 <div class="cssload-loader hidden">
 	<div class="cssload-inner cssload-one"></div>
 	<div class="cssload-inner cssload-two"></div>
 	<div class="cssload-inner cssload-three"></div>
-	<h4>Procesando</h4>
+	<h4>{% trans "Procesando" %}</h4>
 </div>
 <script>
-	var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
+	var get_credentials_link = 'http://nachoherrs.ddns.net{% url 'get_credentials' %}';
 	var link_analizer_link = "{% url 'link_analizer' '999' %}";
 	var download_drive_link = "{% url 'download_drive_files' '999' %}";
-	var upload_link = "{% url 'upload' %}";
+	var upload_link = "{% url 'intranet:upload' %}";
 	var static_link = "{% static '999' %}";
 	{% if request.user.drive_credentials == None %}
 		PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);

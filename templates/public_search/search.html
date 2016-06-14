@@ -1,15 +1,16 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="title-section">
-	<div class="title-label"><h1>Publicaciones</h1></div>
+	<div class="title-label"><h1>{% trans "Publicaciones" %}</h1></div>
 </div>
 
 <div class="grid row">
 	<div id="content">
 		<div class="search-bar">
-			<input id="search-field" type="text" placeholder="Ingresa tu busqueda aquí" {% if search %} value="{{ search }}" {% endif %}>
+			<input id="search-field" type="text" placeholder="{% trans 'Ingresa tu busqueda aquí' %}" {% if search %} value="{{ search }}" {% endif %}>
 			<i class="fa fa-search"></i>
 			<i class="fa fa-caret-down"></i>
 			<div class="clear"></div>
@@ -29,10 +30,10 @@
 					<h4 class='text-result'> {{ document.title }} </h4>
 					<span class='text-result'> {{ document.author }} -</span>
 					<span class='text-result'> {{ document.date }} </span>
-					<p><strong>Dueño:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
+					<p><strong>{% trans "Dueño" %}:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
 					<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
 					{% if document.extract != '' %}
-						<p class="long-text"><strong>Extracto:</strong><span class='text-result'> {{ document.extract }}</span></p>
+						<p class="long-text"><strong>{% trans "Extracto" %}:</strong><span class='text-result'> {{ document.extract }}</span></p>
 					{% endif %}
 				</li>
 				{% endfor %}
@@ -52,10 +53,10 @@
 		{% else %}
 			<table>
 				<tr>
-					<th class="col1">Autor(es)</th>
-					<th class="col2">Titulo</th>
-					<th class="col3">Año</th>
-					<th class="col5">Añadido</th>
+					<th class="col1">{% trans "Autor" %}</th>
+					<th class="col2">{% trans "Titulo" %}</th>
+					<th class="col3">{% trans "Año" %}</th>
+					<th class="col5">{% trans "Añadido" %}</th>
 				</tr>
 				{% for document in documents%}
 					<tr class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
@@ -69,7 +70,7 @@
 		{% endif %}
 			<script>
 				$('.search-result').click(function(){
-					window.open("{% url 'viewer' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
+					window.open("{% url 'intranet:viewer' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
 				});
 			</script>
 			<div id="lower-bar">

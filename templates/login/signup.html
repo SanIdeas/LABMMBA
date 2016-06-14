@@ -1,12 +1,13 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="grid row">
 	<div id="content">
 		<div class="signup-row">
-			<h1>Registro</h1>
-			<span>Crea una cuenta de usuario en el sistema Labmmba</span>
+			<h1>{% trans "Registro" %}</h1>
+			<span>{% trans "Crea una cuenta de usuario en el sistema Labmmba" %}</span>
 			{% if message %}
 				<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
 			{% endif %}		
@@ -14,19 +15,19 @@
 				<div id="left-form">
 					 <div class="row">
 						<div class="login-input">
-							<span>Correo electronico</span>
+							<span>{% trans "Correo electronico" %}</span>
 							<input type="text" name="email" required>						
 						</div>
 						<div class="login-input">
-							<span>Nombre</span>
+							<span>{% trans "Nombre" %}</span>
 							<input type="text" name="first_name" required>						
 						</div>
 						<div class="login-input">
-							<span>Apellido</span>
+							<span>{% trans "Apellido" %}</span>
 							<input type="text" name="last_name" required>						
 						</div>
 						<div class="login-input">
-							<span>Contraseña</span>
+							<span>{% trans "Contraseña" %}</span>
 							<input type="password" name="password" required>						
 						</div>
 					</div>
@@ -34,24 +35,24 @@
 				<div id="right-form">
 					<div class="row">
 						<div class="login-input">
-							<span>Institución</span>
+							<span>{% trans "Institución" %}</span>
 							<input type="text" name="institution" required>						
 						</div>
 						<div class="login-input">
-							<span>Pais</span>
+							<span>{% trans "Pais" %}</span>
 							<input type="text" name="country" required>						
 						</div>
 						<div class="login-input">
-							<span>Area</span>
+							<span>{% trans "Area" %}</span>
 							<select class="select" name="area" required>
-								<option selected disabled>Selecciona un area</option>
+								<option selected disabled>{% trans "Selecciona un area" %}</option>
 								{% for area in areas %}
 									<option value="{{ area.id }}">{{ area.name }}</option>
 								{% endfor %}
 							</select>				
 						</div>
 						<div class="login-input">
-							<span>Carrera</span>
+							<span>{% trans "Carrera" %}</span>
 							<input type="text" name="career">						
 						</div>
 					</div>

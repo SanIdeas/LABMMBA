@@ -13,10 +13,11 @@ from intranet.models import Document
 from PIL import Image
 import httplib2, urllib, cStringIO
 import re, io, os, tempfile, datetime, base64, cPickle, ast, json
+from django.utils.translation import ugettext as _
 flow = client.flow_from_clientsecrets(
     'drive/client_secret.json',
     scope='https://www.googleapis.com/auth/drive.readonly',
-    redirect_uri='http://127.0.0.1:8000/drive/oauth2callback')
+    redirect_uri='http://nachoherrs.ddns.net/drive/oauth2callback')
 flow.params['include_granted_scopes'] = 'true'
 flow.params['access_type'] = 'offline'
 
@@ -159,7 +160,7 @@ def link_analizer(request, link=None):
             #request.user.credentials().revoke(httplib2.Http())
             service = get_drive_service(request)
             if not service:
-                return JsonResponse({'error': True, 'message':'Para continuar debes enlazar tu cuenta de Google Drive', 'code': 'gglir'})
+                return JsonResponse({'error': True, 'message':_('Para continuar debes enlazar tu cuenta de Google Drive'), 'code': 'gglir'})
             param={}
             param['fields'] = 'fileSize,id,modifiedDate,ownerNames,title,mimeType,owners/emailAddress,thumbnailLink,downloadUrl'
             file = service.files().get(fileId=drive_id, **param).execute()
@@ -170,7 +171,7 @@ def link_analizer(request, link=None):
             elif file['mimeType'] == 'application/vnd.google-apps.folder':
                 response = {'files': children_list(drive_id, service), 'folder_name': file['title'], 'type': 'Folder', 'link': link, 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
             else:
-                return JsonResponse({'error': True, 'message':'El link ingresado no contiene documentos compatibles'})  
+                return JsonResponse({'error': True, 'message':_('El link ingresado no contiene documentos compatibles')})  
 
 
             #response['files'][0] = {'name':file['title'], 'size': file['fileSize'], 'content-type': file['mimeType']}
@@ -183,12 +184,12 @@ def link_analizer(request, link=None):
             except:
                 get_error = None
             if get_error != None:
-                response = {'error': True, 'message':'No existen archivos compatibles en el enlace.'}
+                response = {'error': True, 'message':_('No existen archivos compatibles en el enlace.')}
             else:
-                response = {'error': True, 'message':'Error desconocido. Contacta al administrador.'}           
+                response = {'error': True, 'message':_('Error desconocido. Contacta al administrador.')}           
             return JsonResponse(response)
     else:
-        response = {'error': True, 'message':'Debes iniciar sesion.'}
+        response = {'error': True, 'message':_('Debes iniciar sesion.')}
         return JsonResponse(response)
 
 #Recibe las id de los archivos a descargar y retorna un diccionario con las id locales.
@@ -216,11 +217,11 @@ def download_drive_files(request, ids):
                 doc['message'] = None
                 files.append(doc)
             else:
-                files.append({'error': True, 'message': 'No se pudo descargar el documento: ' + file['Title'] + ' debibo a un problema desconocido.'})
+                files.append({'error': True, 'message': _('No se pudo descargar el documento %(title)s debibo a un problema desconocido.') % {'title': file['Title']}})
         response['files'] = files
         return JsonResponse(response)
     except errors.HttpError, error:
-        return JsonResponse({'error': True, 'message':'Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas tarde.'})
+        return JsonResponse({'error': True, 'message':_('Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas tarde.')})
     else:
-        response = {'error': True, 'message':'Debes iniciar sesion.'}
+        response = {'error': True, 'message':_('Debes iniciar sesion.')}
         return JsonResponse(response)

@@ -2,6 +2,9 @@
 <html>
 	<head>
 		{% load staticfiles %}
+		{% load i18n %}
+		{% load tags %}
+		{% get_current_language as lang %}
 		<title>Laboratorio de Microbiología Molecular y Biotecnología Ambiental | Universidad Técnica Federíco Santa María</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
@@ -52,11 +55,15 @@
 						<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
 						<li><a href="#">Contacto</a></li>-->
 						{% if request.user.is_authenticated == False %}
-							<li><a href="{% url 'login' %}">Ingresar</a></li>
+							<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 						{% else %}
-							<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+							<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 						{% endif %}
-						<li><a href="#">English version</a></li>
+						{% if lang == "es" %}
+							<li><a href="{% translate_url 'en' %}">English version</a></li>
+						{% else %}
+							<li><a href="{% translate_url 'es' %}">Versión en Español</a></li>
+						{% endif %}
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -70,14 +77,14 @@
 				</div>
 				<div class="navbar">
 					<ul class="navigator">
-						<li><a href="#" {% if current_view == "1" %} class="nav-selected" {% endif %}>Areas de Investigación</a></li>
-						<li><a href="#" {% if current_view == "2" %} class="nav-selected" {% endif %}>Cooperación</a></li>
-						<li><a href="{% url 'about' %}" {% if current_view == "about" %} class="nav-selected" {% endif %}>Sobre Nosotros</a></li>
-						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>Ubicación</a></li>
+						<li><a href="#" {% if current_view == "1" %} class="nav-selected" {% endif %}>{% trans "Areas de Investigación" %}</a></li>
+						<li><a href="#" {% if current_view == "2" %} class="nav-selected" {% endif %}>{% trans "Cooperación" %}</a></li>
+						<li><a href="{% url 'about' %}" {% if current_view == "about" %} class="nav-selected" {% endif %}>{% trans "Sobre Nosotros" %}</a></li>
+						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>{% trans "Ubicación" %}</a></li>
 						{% if request.user.is_authenticated == True %}
-							<li><a href="{% url 'intranet' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>Intranet</a></li>
+							<li><a href="{% url 'intranet:home' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>{% trans "Intranet" %}</a></li>
 						{% else %}
-							<li><a href="{% url 'publications' %}" {% if current_view == "publications" %} class="nav-selected" {% endif %}>Publicaciones</a></li>
+							<li><a href="{% url 'publications' %}" {% if current_view == "publications" %} class="nav-selected" {% endif %}>{% trans "Publicaciones" %}</a></li>
 						{% endif %}
 					</ul>
 				</div>
@@ -85,14 +92,14 @@
 		</div>
 		<div id="responsive-menu" class="responsive-menu-close">
 			<ul>
-				<li><a href="#" >Areas de Investigación</a></li>
-				<li><a href="#" >Cooperación</a></li>
-				<li><a href="{% url 'about' %}" >Sobre Nosotros</a></li>
-				<li><a href="#">Ubicación</a></li>
+				<li><a href="#">{% trans "Areas de Investigación" %}</a></li>
+				<li><a href="#">{% trans "Cooperación" %}</a></li>
+				<li><a href="{% url 'about' %}" >{% trans "Sobre Nosotros" %}</a></li>
+				<li><a href="#">{% trans "Ubicación" %}</a></li>
 				{% if request.user.is_authenticated == True %}
-					<li><a href="{% url 'intranet' %}">Intranet</a></li>
+					<li><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
 				{% else %}
-					<li><a href="{% url 'publications' %}">Publicaciones</a></li>
+					<li><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
 				{% endif %}
 			</ul>
 			<ul>
@@ -100,9 +107,9 @@
 				<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
 				<li><a href="#">Contacto</a></li>-->
 				{% if request.user.is_authenticated == False %}
-					<li><a href="{% url 'login' %}">Ingresar</a></li>
+					<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 				{% else %}
-					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+					<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 				{% endif %}
 			</ul>
 		</div>
@@ -132,14 +139,14 @@
 			<div class="row grid">
 				<div class="navbar">
 					<ul class="navigator">
-						<li><a href="#" {% if current_view == "1" %} class="nav-selected" {% endif %}>Areas de Investigación</a></li>
-						<li><a href="#" {% if current_view == "2" %} class="nav-selected" {% endif %}>Cooperación</a></li>
-						<li><a href="{% url 'about' %}" {% if current_view == "about" %} class="nav-selected" {% endif %}>Sobre Nosotros</a></li>
-						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>Ubicación</a></li>
+						<li><a href="#" {% if current_view == "1" %} class="nav-selected" {% endif %}>{% trans "Areas de Investigación" %}</a></li>
+						<li><a href="#" {% if current_view == "2" %} class="nav-selected" {% endif %}>{% trans "Cooperación" %}</a></li>
+						<li><a href="{% url 'about' %}" {% if current_view == "about" %} class="nav-selected" {% endif %}>{% trans "Sobre Nosotros" %}</a></li>
+						<li><a href="#" {% if current_view == "4" %} class="nav-selected" {% endif %}>{% trans "Ubicación" %}</a></li>
 						{% if request.user.is_authenticated == True %}
-							<li><a href="{% url 'intranet' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>Intranet</a></li>
+							<li><a href="{% url 'intranet:home' %}" {% if current_view == "intranet" %} class="nav-selected" {% endif %}>{% trans "Intranet" %}</a></li>
 						{% else %}
-							<li><a href="{% url 'publications' %}" {% if current_view == "publications" %} class="nav-selected" {% endif %}>Publicaciones</a></li>
+							<li><a href="{% url 'publications' %}" {% if current_view == "publications" %} class="nav-selected" {% endif %}>{% trans "Publicaciones" %}</a></li>
 						{% endif %}
 					</ul>
 				</div>

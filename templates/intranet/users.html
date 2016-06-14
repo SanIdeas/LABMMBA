@@ -1,10 +1,11 @@
 {% extends 'intranet/shared.html' %}
 
 {% block content %}
+{% load i18n %}
 {% load staticfiles %}
 <div id="users-container">
 	{% for user in users %}
-		<a href="{% url 'profile' user.id %}">
+		<a href="{% url 'intranet:profile' user.id %}">
 		<div class="user-wrapper">
 			<div class="user-header">
 				<div class="user-background">
@@ -17,8 +18,8 @@
 				<h5>{{ user.area.name }}</h5>
 				<table>
 					<tr>
-						<td><h4>{{ user.doc_count}}</h4><i class="fa fa-file-text-o"></i><span>Documentos</span></td>
-						<td><h4>Hace {{ user.last_activity }} dias</h4><i class="fa fa-calendar-o"></i><span>Ultima actividad</span></td>
+						<td><h4>{{ user.doc_count}}</h4><i class="fa fa-file-text-o"></i><span>{% trans "Documentos" %}</span></td>
+						<td><h4>{% blocktrans with days=user.last_activity %}Hace {{ days }} dias{% endblocktrans %}</h4><i class="fa fa-calendar-o"></i><span>{% trans "Ultima actividad" %}</span></td>
 					</tr>
 				</table>
 			</div>

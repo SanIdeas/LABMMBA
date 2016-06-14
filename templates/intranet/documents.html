@@ -1,0 +1,73 @@
+{% extends 'intranet/shared.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+
+<div class="result">
+{% if search %}
+	{% if not documents %}
+		<h5 class="documents-message">{% blocktrans %} No se encontraron resultados para {{ search }} {% endblocktrans %}</h5>
+	{% else %}
+		<ul>
+			{% for document in documents %}
+			<li class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
+				<h4 class='text-result'> {{ document.title }} </h4>
+				<span class='text-result'> {{ document.author }} -</span>
+				<span class='text-result'> {{ document.date }} </span>
+				<p><strong>{% trans "Dueño" %}:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
+				<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
+				{% if document.extract|length > 0 %}
+					<p class="long-text"><strong>{% trans "Extracto" %}:</strong><span class='text-result'> {{ document.extract }}</span></p>
+				{% endif %}
+			</li>
+			{% endfor %}
+			<script>
+				var search = '{{ search }}'.split(' ');
+				console.log(search)
+				$('.text-result').each(function(){
+					for ( var i = 0; i< search.length; i++){
+						var html = $(this).html();
+						console.log(search[i])
+						var re = new RegExp('^' + search[i] + '| ' + search[i], 'gi')
+						$(this).html(html.replace(re, ' <span class="word-result">' + '$&'.replace(' ', '') + '</span> '));
+					}
+				});
+			</script>
+		</ul>
+	{% endif %}
+	<script>
+		$('#search-field').val('{{search}}');
+	</script>
+{% else %}
+	{% if not documents %}
+		<h5 class="documents-message">{% trans "No hay documentos en la base de datos" %}</h5>
+	{% else %}
+		<table>
+			<tr>
+				<th class="col1">{% trans "Autor" %}</th>
+				<th class="col2">{% trans "Titulo" %}</th>
+				<th class="col3">{% trans "Año" %}</th>
+				<th class="col4">{% trans "Dueño" %}</th>
+				<th class="col5">{% trans "Añadido" %}</th>
+			</tr>
+			{% for document in documents%}
+				<tr class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
+					<td class="col1">{{ document.author }}</td>
+					<td class="col2">{{ document.title }}</td>
+					<td class="col3">{{ document.date|date:"Y" }}</td>
+					<td class="col4">{{ document.owner_name }}</td>
+					<td class="col5">{{ document.date_added }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+{% endif %}
+<script>
+		$('.search-result').click(function(){
+			window.open("{% url 'intranet:document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
+		});
+	</script>	
+</div>
+<script src="{% static 'intranet/js/documents_events.js' %}"></script>
+
+{% endblock %}

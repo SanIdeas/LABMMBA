@@ -1,9 +1,10 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="title-section">
-	<div class="title-label"><h1>Sobre Nosotros</h1></div>
+	<div class="title-label"><h1>{% trans "Quiénes Somos" %}</h1></div>
 </div>
 
 <div class="grid row">
@@ -11,15 +12,15 @@
 		<div id="content-menu">
 			<ul>
 				<li class="menu-row menu-head"><a href="{% url 'home' %}">Labmmba</a></li>
-				<li class="menu-row"><a href="{% url 'about' %}">Quiénes Somos</a></li>
-				<li class="menu-row"><a href="#">Nuestra Historia</a></li>
-				<li class="menu-row"><a href="#">Integrantes</a></li>
-				<li class="menu-row"><a href="#">Cooperación</a></li>
+				<li class="menu-row"><a href="{% url 'about' %}">{% trans "Quiénes Somos" %}</a></li>
+				<li class="menu-row"><a href="#">{% trans "Nuestra Historia" %}</a></li>
+				<li class="menu-row"><a href="#">{% trans "Integrantes" %}</a></li>
+				<li class="menu-row"><a href="#">{% trans "Cooperación" %}</a></li>
 			</ul>
 		</div>
 		<div id="content-body">
 			<div  id="title">
-				<h1>Nuestra historia:</h1>
+				<h1>{% trans "Nuestra historia" %}:</h1>
 				<div class="clear"></div>
 			</div>
 			<p>
