@@ -11,6 +11,10 @@ class DocumentForm(forms.ModelForm):
 	drive_id = forms.CharField(required=False)
 	thumbnail = forms.FileField(required=False)
 	words = forms.CharField(required=False)
+	issn = forms.CharField(required=False)
+	url = forms.CharField(required=False)
+	doi = forms.CharField(required=False)
+	pages = forms.CharField(required=False)
 	class Meta:
 		model = Document
 		fields = '__all__'

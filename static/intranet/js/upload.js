@@ -1,4 +1,5 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
+var crossref_timeout, crossref_busy = false;
 (function($){
 	//Resetea el input de archivo
 	$.fn.resetInput = function(){
@@ -152,10 +153,14 @@ function addDocument(index, filename, object){
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
-						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" name="title$index" placeholder="Ej: Tesis de microbiologia"required></li>',
+						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia"required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
 						'<li><strong>Autor:</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="Ej: Juan Perez" required></li>',
 						'<li><strong>Fecha de creación:</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="Ej: 2016" required></li>',
 						'<li><strong>Colaboradores:</strong> <input class="field" type="text" required></li>',
+						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
+						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
+						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
+						'<li><strong>Paginas:</strong><input type="text" class="field" name="pages$index" placeholder="No requerido"></li>',
 						'<li><strong>Area:</strong>',
 							'<select name="category$index" class="field form-select" required>',
 								'<option value="" disabled selected>Selecciona una categoria</option>',
@@ -179,10 +184,14 @@ function addDocument(index, filename, object){
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
-						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" name="title$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '"required></li>',
+						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-id="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '"required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
 						'<li><strong>' + gettext('Autor') + ':</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="' + gettext('Ej: Juan Perez') + '" required></li>',
 						'<li><strong>' + gettext('Fecha de creación') + ':</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="' + gettext('Ej: 2016-12-30') + '" required></li>',
 						'<li><strong>' + gettext('Colaboradores') + ':</strong> <input class="field" type="text" required></li>',
+						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
+						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
+						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
+						'<li><strong>Paginas:</strong><input type="text" class="field" name="pages$index" placeholder="No requerido"></li>',
 						'<li><strong>' + gettext('Area') + ':</strong>',
 							'<select name="category$index" class="field form-select" required>',
 								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
@@ -217,7 +226,43 @@ function addDocument(index, filename, object){
 					$(this).closest('.frame-header').addClass('public-type').removeClass('private-type');
 				else
 					$(this).closest('.frame-header').addClass('private-type').removeClass('public-type');
-			});
+	});
+	$('.field[field-name="title"]').off();
+	$('.field[field-name="title"]').on('input', function(){
+		if(!crossref_busy){
+			crossref_busy = true;
+			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+			var $this = $(this)
+			crossref_timeout = setTimeout(function(){
+				if($this.val() == ''){
+					crossref_busy = false;
+					$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').removeClass('hidden');
+					$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
+				}
+				else{
+					console.log($this.attr('doc-id'));
+					crossref_query($this.val(), $this.attr('doc-id'), false);
+				}
+			}, 2000);
+		}
+	});
+	$('.field[field-name="title"]').focus(function(e){
+		$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+	});
+	$('.field[field-name="title"]').keyup(function(e){
+		if(e.which == 27 || e.which == 13){
+			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
+			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
+		}
+	});
+	$('.field[field-name="title"]').focusout(function(e){
+		var $this = $(this)
+		setTimeout(function(){
+			$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
+			$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');			
+		}, 100);
+	});
 
 }
 function filesHandler(){
@@ -429,6 +474,18 @@ function alternator(id, message){
 	}
 }
 
+function uploads_5000(){
+	for(var i = 0; i < 5000; i++){
+		console.log(i);
+		xhr = new XMLHttpRequest;
+		var form = new FormData($('#confirm-form')[0]);
+		form.append('title0', 'Genomic and Functional Analyses of the 2-Aminophenol Catabolic Pathway and Partial Conversion of Its Substrate into Picolinic Acid in Burkholderia xenovorans LB400' + i);
+		form.append('document0', files[0]);
+		form.append('local_ids', '0');
+		xhr.open('POST', upload_link, true);
+		xhr.send(form);		
+	}
+}
 //Maneja algunas de las solicitudes de la aplicacion relacionadas con el boton 'Confirmar'. 
 function drive_request_handler(){
 	xhr = new XMLHttpRequest;
@@ -475,8 +532,7 @@ function drive_request_handler(){
 				var parent = 'tr';
 			}
 			$(class_).each(function(i, field){
-				if ($(field).val() == null || $(field).val() == ''){
-					console.log($(field).closest(parent).length)
+				if (($(field).val() == null || $(field).val() == '') && $(field).prop('required') == true){
 					if($(field).closest(parent).length){
 						$(field).closest(parent).addClass('required');
 						$($(this)).on('input', function(){
@@ -544,11 +600,11 @@ function load_confirmation(files){
 	if(current_lang == "es"){
 		var code = ['<table class="confirmation-table confirmation-frame animation-down">',
 					'<tr>',
-						'<td rowspan="7" class="thumbnail-col"><img src="$thumbnail"></td>',
+						'<td rowspan="11" class="thumbnail-col"><img src="$thumbnail"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>Titulo:</strong></td>',
-						'<td><input type="text" class="drive-field" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required></td>',
+						'<td><input type="text" class="drive-field title-field" doc-id="$iddrive" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required><div class="crossref-wrapper hidden" doc-id="$iddrive"><div class="loader hidden" doc-id="$iddrive"><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$iddrive"></ul></div></div></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>Autor:</strong></td>',
@@ -561,6 +617,22 @@ function load_confirmation(files){
 					'<tr>',
 						'<td><strong>Colaboradores:</strong></td>',
 						'<td ><input class="drive-field" type="text"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>ISSN:</strong></td>',
+						'<td ><input type="text" class="drive-field" name="issn$id" placeholder="No requerido"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>DOI:</strong></td>',
+						'<td ><input type="text" class="drive-field" name="doi$id" placeholder="No requerido"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>URL:</strong></td>',
+						'<td ><input type="text" class="drive-field" name="url$id" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>Paginas:</strong></td>',
+						'<td ><input type="text" class="drive-field" name="pages$id" placeholder="No requerido"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>Area:</strong></td>',
@@ -590,11 +662,11 @@ function load_confirmation(files){
 	else if(current_lang == "en"){
 		var code = ['<table class="confirmation-table confirmation-frame animation-down">',
 					'<tr>',
-						'<td rowspan="7" class="thumbnail-col"><img src="$thumbnail"></td>',
+						'<td rowspan="11" class="thumbnail-col"><img src="$thumbnail"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>' + gettext('Titulo') + ':</strong></td>',
-						'<td><input type="text" class="drive-field" name="title$id" value="$title" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" required></td>',
+						'<td><input type="text" class="drive-field title-field" doc-id="$iddrive" name="title$id" value="$title" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" required><div class="crossref-wrapper hidden" doc-id="$iddrive"><div class="loader hidden" doc-id="$iddrive><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$iddrive"></ul></div></div></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>' + gettext('Autor') + ':</strong></td>',
@@ -607,6 +679,22 @@ function load_confirmation(files){
 					'<tr>',
 						'<td><strong>' + gettext('Colaboradores') + ':</strong></td>',
 						'<td ><input class="drive-field" type="text"></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('ISSN') + ':</strong></td>',
+						'<td ><input type="text" class="drive-field" name="issn$id" placeholder="' + gettext('No requerido') + '" ></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('DOI') + ':</strong></td>',
+						'<td ><input type="text" class="drive-field" name="doi$id" placeholder="' + gettext('No requerido') + '" ></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('URL') + ':</strong></td>',
+						'<td ><input type="text" class="drive-field" name="url$id" placeholder="' + gettext('ej: http://dx.doi.org/10.1109/ms.2006.34') + '" ></td>',
+					'</tr>',
+					'<tr>',
+						'<td><strong>' + gettext('Paginas') + ':</strong></td>',
+						'<td ><input type="text" class="drive-field" name="pages$id" placeholder="' + gettext('No requerido') + '" ></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>' + gettext('Area') + ':</strong></td>',
@@ -639,5 +727,74 @@ function load_confirmation(files){
 		section.append(completed_code);
 		ids.push(files[i]['id']);
 	}
+
+	$('.title-field').off();
+	$('.title-field').on('input', function(){
+		if(!crossref_busy){
+			crossref_busy = true;
+			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+			var $this = $(this)
+			crossref_timeout = setTimeout(function(){
+				if($this.val() == ''){
+					crossref_busy = false;
+					$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').removeClass('hidden');
+					$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
+				}
+				else
+					crossref_query($this.val(), $this.attr('doc-id'), true);
+			}, 2000);
+		}
+	});
+	$('.title-field').focus(function(e){
+		$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+	});
+	$('.title-field').keyup(function(e){
+		if(e.which == 27 || e.which == 13){
+			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
+			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
+		}
+	});
+	$('.title-field').focusout(function(e){
+		var $this = $(this)
+		setTimeout(function(){
+			$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
+			$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');			
+		}, 100);
+	});
 	section.append('<input class="confirmation-frame" type="hidden" value="' + ids.join(',') + '" name="id">');
+}
+
+function crossref_query(query, doc_id, is_drive){
+	if(is_drive)
+		cls = 'drive-field';
+	else
+		cls = 'field';
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', crossref_link.replace('999', query) , true);
+	xhr.onload = function(){
+		var response = xhr.responseText;
+		if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
+				$('.crossref-list[doc-id="' + doc_id +'"]').children().remove();
+				$('.crossref-list[doc-id="' + doc_id +'"]').append(response);
+				$('.loader').addClass('hidden');
+				crossref_busy = false;
+				$('.crossref-row').off();
+				$('.crossref-row').click(function(e){
+					if(is_drive)
+						var doc = $(this).closest('ul').attr('doc-id').replace('drive', '');
+					else
+						var doc = $(this).closest('ul').attr('doc-id');
+					console.log('.' + cls + '[name="title' + doc + '"]');
+					$('.' + cls + '[name="title' + doc + '"]').val($(this).attr('title'));
+					$('.' + cls + '[name="author' + doc + '"]').val($(this).attr('author'));
+					$('.' + cls + '[name="date' + doc + '"]').val($(this).attr('date'));
+					$('.' + cls + '[name="issn' + doc + '"]').val($(this).attr('issn'));
+					$('.' + cls + '[name="doi' + doc + '"]').val($(this).attr('doi'));
+					$('.' + cls + '[name="url' + doc + '"]').val($(this).attr('url'));
+					$('.' + cls + '[name="pages' + doc + '"]').val($(this).attr('pages'));
+				});
+			}
+	}
+	xhr.send(null);
 }

@@ -45,7 +45,7 @@
 	box-sizing: border-box;
 }
 
-.login-input > input[type="text"], .login-input > input[type="password"] {
+.login-input > input[type="email"], .login-input > input[type="password"] {
 	width: 100%;
 	outline: none;
 	padding: 5px;

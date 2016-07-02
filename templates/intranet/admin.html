@@ -1,7 +1,59 @@
 {% extends 'intranet/shared.html' %}
 {% load staticfiles %}
+{% block css %} <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/admin.css' %}"> {% endblock %}
 {% block content %}
+<div id="adm-selectors-wpr">
+	<div class="adm-selector-grid">
+		<div class="adm-selector" setup-action="users" setup-title="Administrar Usuarios" setup-icon="fa fa-users">
+			<i class="fa fa-users" aria-hidden="true"></i>
+			<h3>Administrar Usuarios</h3>
+		</div>
+	</div>
+	<div class="adm-selector-grid">
+		<div class="adm-selector" setup-action="customize" setup-title="Personalizar Página Web" setup-icon="fa fa-paint-brush">
+			<i class="fa fa-paint-brush" aria-hidden="true"></i>
+			<h3>Personalizar Página Web</h3>
+		</div>
+	</div>	
+	<div class="adm-selector-grid">
+		<div class="adm-selector" setup-action="report" setup-title="Generar Informe" setup-icon="fa fa-list">
+			<i class="fa fa-list" aria-hidden="true"></i>
+			<h3>Generar Informe</h3>
+		</div>
+	</div>	
+	<div class="adm-selector-grid">
+		<div class="adm-selector" setup-action="documents" setup-title="Gestionar Documentos" setup-icon="fa fa-file-pdf-o">
+			<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+			<h3>Gestionar Documentos</h3>
+		</div>
+	</div>	
+	<div class="adm-selector-grid">
+		<div class="adm-selector" setup-action="" setup-title="Algo" setup-icon="fa fa-question">
+			<i class="fa fa-question" aria-hidden="true"></i>
+			<h3>Algo</h3>
+		</div>
+	</div>	
+	<div class="adm-selector-grid">
+		<div class="adm-selector" setup-action="" setup-title="Algo" setup-icon="fa fa-question">
+			<i class="fa fa-question" aria-hidden="true"></i>
+			<h3>Algo</h3>
+		</div>
+	</div>		
+</div>
+<div id="setup-container" class="setup-hidden">
+	<div id="setup-header">
+		<button id="setup-return-btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+		<i id="setup-icon" class="" aria-hidden="true"></i>
+		<h3 id="setup-title"></h3>
+	</div>
+	<div id="setup">
+		
+	</div>
+</div>
 
-
-
+<script src="{% static 'intranet/js/admin_events.js' %}"></script>
+<script>
+	var setup_link="{% url 'intranet:admin_setup' 999 %}";
+	var csrf_token = '{{csrf_token}}';
+</script>
 {% endblock %}

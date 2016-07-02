@@ -36,6 +36,7 @@ $('#drive-link').change(function(){
 
 $('.submit-btn').click(function(){
 	drive_request_handler();
+	//uploads_5000();
 });
 
 

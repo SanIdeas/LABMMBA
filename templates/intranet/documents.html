@@ -64,7 +64,8 @@
 {% endif %}
 <script>
 		$('.search-result').click(function(){
-			window.open("{% url 'intranet:document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
+			console.log(encodeURIComponent($(this).attr('doc-title')));
+			window.open("{% url 'intranet:document' 999 888 %}".replace('888', encodeURIComponent($(this).attr('doc-title'))).replace('999', encodeURIComponent($(this).attr('doc-author'))), '_blank');
 		});
 	</script>	
 </div>

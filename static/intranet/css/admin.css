@@ -1,0 +1,138 @@
+#adm-selectors-wpr{
+	width: 100%;
+	position: relative;
+
+}
+
+#adm-selectors-wpr:after{
+	content:"";
+	clear: both;
+	display: table;
+}
+
+.adm-selector-grid{
+	width: 33%;
+	box-sizing: border-box;
+	float: left;
+	padding: 5px;
+}
+
+.adm-selector{
+	width: 100%;
+	padding: 40px;
+	position: relative;
+	box-sizing: border-box;
+	color: #e0424e;
+	cursor: pointer;
+	background-color: #e9edf0;
+	transition: background-color 0.2s;
+}
+
+.adm-selector:hover{
+	background-color: #d1d4d6;
+	transition: background-color 0.2s;
+}
+
+.adm-selector:after{
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 5px;
+	top: 0px;
+	left: 0px;
+	background-color: #f2ae47;
+}
+
+.adm-selector > h3{
+	margin: 0;
+    font-size: 20px;
+    font-weight: normal;
+    margin-left: 100px;
+    padding-left: 10px;
+}
+.adm-selector > i{
+    font-size: 85px;
+    line-height: 35px;
+    float: left;
+}
+
+.setup-hidden{
+	display: none;
+}
+
+#setup-container{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#setup-header{
+	height: 50px;
+	width: 100%;
+	background-color: #e9edf0;
+}
+
+#setup-icon{
+	position: relative;
+    height: 100%;
+    font-size: 30px;
+    margin-left: 20px;
+    float: left;
+    line-height: 51px;
+}
+
+#setup-title{
+	float: left;
+    margin: 0px 0px 0px 15px;
+    height: 100%;
+    line-height: 50px;
+}
+
+#setup-return-btn{
+	float: left;
+	background: none;
+    border: 0;
+    background-color: #f2ae47;
+    color: white;
+    width: 70px;
+    height: 100%;
+    font-size: 30px;
+    cursor: pointer;
+    outline: none;
+}
+
+#setup{
+    overflow-y: auto;
+    overflow-x: hidden;
+	padding: 0px 5px;
+	box-sizing: border-box;
+}
+
+.setup-subtitle{
+	margin: 0;
+	padding: 10px 0px;
+
+}
+
+
+@media screen and (max-width:1536px){
+	.adm-selector-grid{
+		width: 50%;
+		box-sizing: border-box;
+		float: left;
+		padding: 5px;
+	}
+}
+
+@media screen and (max-width:1097px){
+	.adm-selector-grid{
+		width: 100%;
+		box-sizing: border-box;
+		float: left;
+		padding: 5px;
+	}
+}
+
+.overflow-hidden{
+	overflow: hidden !important;
+}

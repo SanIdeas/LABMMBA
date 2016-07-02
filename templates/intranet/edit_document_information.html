@@ -1,0 +1,145 @@
+{% extends 'intranet/shared.html' %}
+
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+<form action="" method="POST">
+{% csrf_token %}
+<div id="doc-container">
+	<div class="box">
+		<h2><input type="text" name="title" class="edit-field-title" value="{{document.title}}"></h2>
+		<h5>
+			<select name="category" class="edit-field select-field" required>
+				<option value="" disabled > Selecciona una categoria</option>
+				<option value="1" {% if document.category.id = 1 %} selected {% endif %}>Microbiología Molecular</option>
+				<option value="2" {% if document.category.id = 2 %} selected {% endif %}>Biotecnología Ambiental</option>
+			</select>
+		</h5>
+		<h5><input type="date" name ="date" class="edit-field" value="{{document.date|date:'Y-m-d'}}"></h5>
+		<div id="type-wrapper" class="{{document.privacy}}"></div>
+	</div>
+	<div class="s2">
+		<div class="box">
+			<div id="doc-abstract">
+				<textarea name="abstract" id="abstract-edit">{{ document.abstract }}</textarea>
+			</div>
+			<div class="separator"></div>
+			<a href="{% url 'intranet:viewer' document.author document.title %}" target="_blank" id="open-doc" class="submit-btn">{% trans "Abrir Documento" %}</a>
+			<div class="separator"></div>
+			<div id="doc-information">
+				<table>
+					<tr>
+						<td><strong>{% trans "Autor" %}:</strong></td>
+						<td><input type="text" class="edit-field" name="author" value="{{document.author}}"></td>
+					</tr>
+					<tr>
+						<td><strong>{% trans "Publicado el" %}:</strong></td>
+						<td><input type="date" class="edit-field" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
+					</tr>
+					{% if document.pages %}
+					<tr>
+						<td><strong>{% trans "Paginas" %}:</strong></td>
+						<td><input type="text" class="edit-field" name="pages" value="{{document.pages}}"></td>
+					</tr>
+					{% endif %}
+					{% if document.issn %}
+					<tr>
+						<td><strong>{% trans "ISSN" %}:</strong></td>
+						<td><input type="text" class="edit-field" name="issn" value="{{document.issn}}"></td>
+					</tr>
+					{% endif %}
+					{% if document.doi %}
+						<tr>
+							<td><strong>{% trans "DOI" %}:</strong></td>
+							<td><input type="text" class="edit-field" name="doi" value="{{document.doi}}"></td>
+						</tr>
+					{% endif %}
+					<tr>
+						<td><strong>{% trans "Agregado el" %}:</strong></td>
+						<td><input type="date" class="edit-field" name="date_added" value="{{document.date_added|date:'Y-m-d'}}"></td>
+					</tr>
+				</table>
+			</div>
+			<div id="keywords">
+				<ul>
+				{% for keyword in document.get_keywords %}
+					<li><a class="rm-keyword" href="#">{{keyword}}</a></li>
+				{% endfor %}
+					<li></i><input id="input-kwds" placeholder="Escribe una palabra clave" type="text"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="box" style="height: 200px">
+			
+		</div>		
+	</div>
+	<div class="s2">
+		{% if document.owner.id == request.user.id %}
+			<div class="box document-optns-wrpr">
+				<a class="btn-document" href="#">
+					<span class="accept-document">
+					  <input type="submit" class="accept-document" value="Aceptar">
+					</span>
+				</a>
+				</br>
+				<a class="btn-document" href="{% url 'intranet:document' document.author document.title %}">
+					<span class="cancel-document">
+					  Cancelar
+					</span>
+				</a>
+			</div>		
+		{% endif %}
+		<div class="box">
+			<div id="owner-wrapper">
+				<div id="owner-information">
+					<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
+					<h5>{{document.owner.simplify_institution}} - {{document.owner.area.name}}</h5>
+				</div>
+				<div id="owner-img">
+					<div {% if document.owner.profile_picture %} style="background-image: url('{% static document.owner.filename %}');" {% else %} style="background-image: url('{% static 'intranet/images/default.png' %}');" {% endif%}></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box" style="height: 200px; width: 100%">
+		
+	</div>
+</div>
+<input type="hidden" name="words" id="kwrds-field">
+</form>
+<script>
+	function update_kwrds(){
+		kwrds = [];
+		$('.rm-keyword').each(function(){
+			kwrds.push($(this).text());
+		})
+		$('#kwrds-field').val(kwrds.join(','));
+	}
+	var text = $('#abstract-edit').val();
+	var kwrds = [];
+    matches = text.match(/\n/g),
+    breaks = matches ? matches.length : 2;
+    $('#abstract-edit').attr('rows',breaks + 2);
+    update_kwrds();
+    $('.rm-keyword').on('click', function(e){
+    	e.preventDefault();
+    	$(this).closest('li').remove();
+    	update_kwrds();
+    });
+
+    $('#input-kwds').keypress(function(e) {
+	    if(e.which == 13) {
+    		e.preventDefault();
+	        $("<li><a class='rm-keyword' href='#'>" + $(this).val().toLowerCase() + "</a></li>").insertBefore($(this).closest('li'));
+	        $(this).val('');
+		    update_kwrds();
+	        $('.rm-keyword').off();
+		    $('.rm-keyword').on('click', function(e){
+		    	e.preventDefault();
+		    	$(this).closest('li').remove();
+    			update_kwrds();
+		    });
+	    }
+	});
+</script>
+{% endblock %}

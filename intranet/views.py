@@ -25,8 +25,15 @@ from django.utils import timezone
 from collections import Counter
 from itertools import chain
 from django.utils.translation import ugettext as _
+import Levenshtein
 
 # Create your views here.
+
+#Retorna el porcentaje de similitud entre dos strings.
+#Se utiliza el algoritmo de Levenshtein ya que tiene mejor rendimiento. Fuente:
+#http://stackoverflow.com/questions/6690739/fuzzy-string-comparison-in-python-confused-with-which-library-to-use
+def similar(a, b):
+	return Levenshtein.ratio(a, b)
 
 def strip_accents(s):
 	s = s.decode("cp1252")  # decode from cp1252 encoding instead of the implicit ascii encoding used by unicode()
@@ -62,13 +69,11 @@ def convert_pdf_to_txt(path):
 def get_filters(rqst):
 	dict = {}
 	for key in rqst.GET:
-		print key
 		if key == 'date':
 			str = '__year__in'
 		else:
 			str = '__in'
 		if len(rqst.GET.getlist(key)) > 0:
-			print key + str
 			dict[key + str] = rqst.GET.getlist(key)
 	return dict
 
@@ -124,7 +129,7 @@ def documents(request, search=None):
 			years = filters_selected(Counter(years).most_common(), request, 'date')
 			owners = filters_selected(Counter(owners).most_common(), request, 'owner')
 			categories = filters_selected(Counter(categories).most_common(), request, 'category')
-		parameters = {'current_view': 'intranet', 'documents': documents}
+		parameters = {'current_view': 'intranet', 'documents': documents[:10]}
 		if search is not None:
 			parameters['authors'] = authors
 			parameters['years'] = years
@@ -133,7 +138,6 @@ def documents(request, search=None):
 			parameters['search'] = search
 		return render(request, 'intranet/documents.html',parameters)
 	else:
-		print request.get_full_path
 		return HttpResponseRedirect(reverse('login'))
 
 def profile(request, user_id):
@@ -161,7 +165,6 @@ def upload(request):
 		else:
 			if 'id' in request.POST:
 				ids = request.POST['id'].split(',')
-				print ids
 				for id in ids:
 					document = Document.objects.get(id=id,owner=request.user)
 					document.title = request.POST['title' + id]
@@ -170,6 +173,10 @@ def upload(request):
 					document.category = Area.objects.get(id=request.POST['category' + id])
 					document.type = int(request.POST['type' + id])
 					document.abstract = request.POST['abstract' + id]
+					document.issn = request.POST['issn' + id]
+					document.doi = request.POST['doi' + id]
+					document.url = request.POST['url' + id]
+					document.pages = request.POST['pages' + id]
 					document.save()
 				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
 			elif 'local_ids' in request.POST:
@@ -181,7 +188,6 @@ def upload(request):
 					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
 						message = _('El documento <span style="text-transform: uppercase; font-size:14px"> %(title)s </span> del autor <span style="text-transform: uppercase; font-size:14px"> %(author)s </span> ya existe.') % {'title': request.POST['title'+id],'author': request.POST['author'+id]}
 						return JsonResponse({'error': True, 'message':message})
-
 					request.POST['owner'] = User.objects.get(email=request.user.email)
 					fields = {
 						'title': request.POST['title'+id],
@@ -190,6 +196,10 @@ def upload(request):
 						'type': int(request.POST['type'+id]),
 						'category': Area.objects.get(id=request.POST['category' + id]).id,
 						'owner': request.user.id,
+						'issn': request.POST['issn' + id],
+						'doi': request.POST['doi' + id],
+						'url': request.POST['url' + id],
+						'pages': request.POST['pages' + id],
 						}
 					files = {
 							'document': request.FILES['document'+id]
@@ -251,16 +261,45 @@ def document(request, title=None, author=None):
 		try:
 			document = Document.objects.get(title=title, author=author)
 			related = Document.objects.values('title', 'author').filter(reduce(operator.or_, (Q(title__contains=x) for x in document.words.split(','))))
-			print '----'
-			print document.document
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
 			return render(request, 'intranet/document_information.html', {'current_view': 'intranet', 'document': document, 'related': related})
 		else:
-			return HttpResponse(_('No se encontró el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
+			return HttpResponse(_('No se encontro el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
 	else:
 		return HttpResponseRedirect(reverse('login'))
+def edit_document(request, title=None, author=None):
+	if request.user.is_authenticated() == True:
+		try:
+			document = Document.objects.get(title=title, author=author, owner=request.user)
+		except:
+			document = None
+		if document:
+			if request.method == "GET":
+				return render(request, 'intranet/edit_document_information.html', {'current_view': 'intranet', 'document': document})
+			elif request.method == "POST":
+					document.title = request.POST['title']
+					document.author = request.POST['author']
+					document.date = request.POST['date']
+					document.category = Area.objects.get(id=request.POST['category'])
+					document.abstract = request.POST['abstract']
+					document.issn = request.POST['issn']
+					document.doi = request.POST['doi']
+					document.words = request.POST['words']
+					document.url = "http://dx.doi.org/" + request.POST['doi']
+					document.pages = request.POST['pages']
+					document.save()
+					return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': request.POST['title'], 'author': request.POST['author']}))
+			elif request.method == "DELETE":
+				document.delete()
+				return JsonResponse({'error': False})
+		else:
+			print 'OAWDAWAW'
+			return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': title, 'author': author})) #Se redirecciona a la ultima pagina visitada.
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
 
 def new_ui(request):
 	return render(request, 'intranet/shared.html')
@@ -273,8 +312,14 @@ def search_helper(request, search=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
-def admin(request):
+def admin(request, setup=None):
 	if request.user.is_authenticated() == True and request.user.is_admin:
-		return render(request, 'intranet/admin.html')
+		if request.method == "GET":
+			return render(request, 'intranet/admin.html')
+		elif request.method == "POST":
+			try:
+				return render(request, 'intranet/admin_setups/%(setup)s.html' % {'setup': setup})
+			except:
+				return HttpResponse('<h1>No existe esta configuracion</h1>')
 	else:
 		return HttpResponseRedirect(reverse('login'))

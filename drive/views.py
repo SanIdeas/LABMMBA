@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.http import JsonResponse
 from login.models import User
 from oauth2client import client
 from apiclient.discovery import build
 from apiclient import http, errors
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.core.files import File 
 from intranet.views import get_metadata, strip_accents, convert_pdf_to_txt
@@ -206,7 +205,7 @@ def download_drive_files(request, ids):
                 fh = tempfile.TemporaryFile()
                 fh.write(content)
                 fh.seek(0)
-                thumbnailLink = file['thumbnailLink']
+                thumbnailLink = file['thumbnailLink'].replace('=s220', '=s320')
                 file = urllib.urlopen(thumbnailLink).read()
                 img = tempfile.TemporaryFile()
                 img.write(file)
