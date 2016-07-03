@@ -143,7 +143,10 @@ def documents(request, search=None):
 def profile(request, user_id):
 	if request.user.is_authenticated() == True:
 		try:
-			profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
+			if request.user.is_admin:
+				profile = User.objects.get(id=user_id)
+			else:
+				profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
 			documents = Document.objects.filter(owner=user_id)
 			return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
 		except:
@@ -312,13 +315,40 @@ def search_helper(request, search=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
-def admin(request, setup=None):
+def admin(request, setup=None, user_id=None, delete=False, activate=False, block=False, unblock=False):
 	if request.user.is_authenticated() == True and request.user.is_admin:
 		if request.method == "GET":
-			return render(request, 'intranet/admin.html')
+			if activate:
+				user = User.objects.get(id=user_id)
+				user.is_active = True
+				user.save()
+				return JsonResponse({'error': False})
+			elif delete:
+				User.objects.get(id=user_id).delete()
+				return JsonResponse({'error': False})
+			elif block:
+				user = User.objects.get(id=user_id)
+				user.is_blocked = True
+				user.save()
+				return JsonResponse({'error': False})
+			elif unblock:
+				user = User.objects.get(id=user_id)
+				user.is_blocked = False
+				user.save()
+				return JsonResponse({'error': False})
+			else:
+				return render(request, 'intranet/admin.html')
 		elif request.method == "POST":
 			try:
-				return render(request, 'intranet/admin_setups/%(setup)s.html' % {'setup': setup})
+				if setup == 'users':
+					args= {
+					'not_active': User.objects.filter(is_active=False, is_admin=False),
+					'active': User.objects.filter(is_active=True, is_blocked=False, is_admin=False),
+					'blocked': User.objects.filter(is_active=True, is_blocked=True, is_admin=False)
+					}
+				else:
+					args={}
+				return render(request, 'intranet/admin_setups/%(setup)s.html' % {'setup': setup}, args)
 			except:
 				return HttpResponse('<h1>No existe esta configuracion</h1>')
 	else:

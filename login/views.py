@@ -22,11 +22,28 @@ def login(request):
 	else:
 		email = request.POST['email']
 		password = request.POST['password']
-		user = authenticate(username=email, password=password)
-		if user is not None: 
-		#Si el usuario es autenticado se inicia sesion.
-			auth_login(request, user)
-			return HttpResponseRedirect(reverse('intranet:home'))
+		try:
+			user = User.objects.get(email=email)
+		except:
+			user = None
+		print user
+		if user is not None:
+			if user.is_blocked:
+				message = {'type': 'error', 'content': 'El administrador ha bloqueado tu cuenta.'}
+				return render(request, 'login/login.html', {'message': message})
+			elif user.is_active:
+				user = authenticate(username=email, password=password)
+				if user is not None:
+					#Si el usuario es autenticado se inicia sesion.
+					auth_login(request, user)
+					return HttpResponseRedirect(reverse('intranet:home'))
+				else:
+					message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
+					return render(request, 'login/login.html', {'message': message})					
+			else:
+				message = {'type': 'error', 'content': 'Ten paciencia. Debes ser aprobado por el administrador.'}
+				return render(request, 'login/login.html', {'message': message})
+
 		else:
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
 			return render(request, 'login/login.html', {'message': message})
@@ -44,8 +61,8 @@ def signup(request):
 				if user is  None:
 					user = User.objects.create_user(request.POST['email'], request.POST['first_name'], request.POST['last_name'], request.POST['institution'], request.POST['country'], Area.objects.get(id=request.POST['area']), request.POST['career'], request.POST['password'])
 					user = authenticate(username=request.POST['email'], password=request.POST['password'])
-					auth_login(request, user)
-					return HttpResponseRedirect(reverse('intranet:home'))
+					#auth_login(request, user)
+					return HttpResponseRedirect(reverse('login'))
 				else:
 					message = {'type': 'error', 'content': 'El email ' + request.POST['email'] + ' ya existe.'}
 					return render(request, 'login/signup.html', {'areas': Area.objects.all(), 'message': message})

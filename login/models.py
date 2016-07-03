@@ -48,7 +48,7 @@ class CredentialsField(models.Field):
         return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, institution, country, area, career, password=None, is_admin=None):
+    def create_user(self, email, first_name, last_name, institution, country, area, career, password=None, is_active=True, is_admin=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -65,6 +65,7 @@ class UserManager(BaseUserManager):
             is_admin = is_admin if is_admin else False,
             area=area,
             career=career,
+            is_active=False,
         )
 
         user.set_password(password)
@@ -85,6 +86,7 @@ class UserManager(BaseUserManager):
             area=None,
             is_admin=True,
             career=career,
+            is_active=True,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -106,7 +108,8 @@ class User(AbstractBaseUser):
     country = models.CharField(max_length=20)
     area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
     career = models.CharField(max_length=40)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
+    is_blocked = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     last_activity = models.DateField(auto_now=True)
     profile_picture = models.FileField(upload_to='static/profile_pictures/', max_length=500, null=True)
