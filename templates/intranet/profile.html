@@ -66,7 +66,7 @@
 		</tr>
 	</table>
 </div>
-{% if request.user == profile_user %}
+{% if request.user == profile_user or request.user.is_admin %}
 	<h3>{% trans "Mis documentos" %}</h3>
 	{% if not documents %}
 		<h5 class="documents-message" >{% trans "No posees documentos" %}</h5>
@@ -94,7 +94,7 @@
 	{% endif %}
 	<script>
 		$('.search-result').click(function(){
-			window.open("{% url 'intranet:viewer' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
+			window.open("{% url 'intranet:document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
 		});
 	</script>	
 {% endif %}

@@ -1,7 +1,97 @@
 {% extends 'intranet/shared.html' %}
 {% load staticfiles %}
+{% block css %} <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/home.css' %}"> {% endblock %}
 {% block content %}
 {% load i18n %}
 
+<div id="home-header">
+	<h3>{% trans "Resumen de actividad" %}</h3>
+</div>
 
+<div class="chart-box right">
+	<div class="chart-title"><h4>{% trans "Documentos agregados" %}</h4></div>
+	<div class="chart">
+		<canvas id="chart1"></canvas>	
+	</div>
+	<div class="separator"></div>
+	<div class="chart-text"><span>{% trans "Actividad de los ultimos 6 meses" %}</span></div>
+</div>
+
+<div class="chart-box left">
+	<div class="chart-title"><h4>{% trans "Categorias Populares" %}</h4></div>
+	<div class="chart">
+		<canvas id="chart2"></canvas>		
+	</div>
+	<div class="separator"></div>
+	<div class="chart-text"><span>{% blocktrans with number=number_categories %}Selección de las {{ number }} categorias mas populares{% endblocktrans %}</span></div>
+</div>
+<script>
+var ctx = document.getElementById("chart1");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [{{ names_months|safe }}],
+        datasets: [{
+            label: '',
+           	fill: true,
+            data: [{{ count_months }}],
+            backgroundColor:'#e9edf0',
+            borderColor:'#F7A220',
+            lineTension:0.1,
+            borderJoinStyle:'miter',
+            pointRadius:3,
+            pointHoverRadius:5,
+            pointHoverBackgroundColor: "#e9edf0",
+            pointBackgroundColor: '#f2ae47'
+        }]
+    },
+    options: {
+    	scales:{
+    		yAxes:[{
+    			gridLines:{
+	    			display:false,
+	    		},
+
+    		}],
+    		xAxes:[{
+    			gridLines:{
+	    			display:false,
+	    		}
+    		}]
+    	},
+    	legend:{
+    		display:false
+    	}
+    }
+});
+var ctx2 = document.getElementById("chart2");
+var myChart2 = new Chart(ctx2, {
+    type: 'pie',
+    data: {
+        labels: [{{ names_categories|safe }}],
+        datasets: [{
+            data: [{{count_categories}}],
+            backgroundColor:[
+            	"#f2ae47",
+            	"#e0424e",
+            	"#006e9c",
+            	"#009065",
+            	"#E17947",
+            	"#8DE57C",
+
+            ]
+        }]
+    },
+    options: {
+    	scale:{
+    		ticks:{
+    			display:false
+    		}
+    	},
+    	legend:{
+    		display:true
+    	}
+    }
+});
+</script>
 {% endblock %}

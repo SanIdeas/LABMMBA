@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-13 22:39-0400\n"
-"PO-Revision-Date: 2016-06-13 22:47-0400\n"
+"POT-Creation-Date: 2016-07-03 03:27-0400\n"
+"PO-Revision-Date: 2016-07-03 03:50-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -17,34 +17,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 
-#: .\drive\views.py:163
+#: .\crossref\views.py:54
+#, fuzzy
+#| msgid "Debes iniciar sesion."
+msgid "Debe iniciar sesion."
+msgstr "You must log in"
+
+#: .\drive\views.py:162
 msgid "Para continuar debes enlazar tu cuenta de Google Drive"
 msgstr "Link your Google Drive account to continue"
 
-#: .\drive\views.py:174
+#: .\drive\views.py:173
 msgid "El link ingresado no contiene documentos compatibles"
 msgstr "The Link does not have compatible documents"
 
-#: .\drive\views.py:187
+#: .\drive\views.py:186
 msgid "No existen archivos compatibles en el enlace."
 msgstr "There are not compatible files in the link."
 
-#: .\drive\views.py:189
+#: .\drive\views.py:188
 msgid "Error desconocido. Contacta al administrador."
 msgstr "Unkown error. Contact the administrator."
 
-#: .\drive\views.py:192 .\drive\views.py:226
+#: .\drive\views.py:191 .\drive\views.py:225
 msgid "Debes iniciar sesion."
 msgstr "You must log in"
 
-#: .\drive\views.py:220
+#: .\drive\views.py:219
 #, python-format
 msgid ""
 "No se pudo descargar el documento %(title)s debibo a un problema desconocido."
 msgstr ""
 "The document %(title)s could not be downloaded due to an unknown problem"
 
-#: .\drive\views.py:224
+#: .\drive\views.py:223
 msgid ""
 "Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas "
 "tarde."
@@ -79,23 +85,120 @@ msgstr "Cooperation"
 msgid "Nuestra historia"
 msgstr "Our history"
 
+#: .\templates\intranet\admin.html:8 .\templates\intranet\admin.html.py:10
+msgid "Administrar Usuarios"
+msgstr "Manage users"
+
+#: .\templates\intranet\admin.html:14 .\templates\intranet\admin.html.py:16
+msgid "Personalizar Página Web"
+msgstr "Customize Web Page"
+
+#: .\templates\intranet\admin.html:20 .\templates\intranet\admin.html.py:22
+msgid "Generar Informe"
+msgstr "Generate report"
+
+#: .\templates\intranet\admin.html:26 .\templates\intranet\admin.html.py:28
+msgid "Gestionar Documentos"
+msgstr "Manage Documents"
+
+#: .\templates\intranet\admin.html:32 .\templates\intranet\admin.html.py:34
+#: .\templates\intranet\admin.html:38 .\templates\intranet\admin.html.py:40
+msgid "Algo"
+msgstr "Something"
+
+#: .\templates\intranet\admin_setups\users.html:3
+msgid "Pendientes de Aprobación"
+msgstr "Pending approval"
+
+#: .\templates\intranet\admin_setups\users.html:17
+#: .\templates\intranet\admin_setups\users.html:54
+#: .\templates\intranet\admin_setups\users.html:80
+msgid "Ver"
+msgstr "View"
+
+#: .\templates\intranet\admin_setups\users.html:23
+msgid "Admitir"
+msgstr "Allow"
+
+#: .\templates\intranet\admin_setups\users.html:28
+#: .\templates\intranet\admin_setups\users.html:59
+#: .\templates\intranet\admin_setups\users.html:90
+msgid "Eliminar"
+msgstr "Delete"
+
+#: .\templates\intranet\admin_setups\users.html:35
+msgid "Usuarios Activos"
+msgstr "Active Users"
+
+#: .\templates\intranet\admin_setups\users.html:49
+msgid "Bloquear"
+msgstr "Block"
+
+#: .\templates\intranet\admin_setups\users.html:66
+msgid "Usuarios Inactivos"
+msgstr "Inactive Users"
+
+#: .\templates\intranet\admin_setups\users.html:85
+msgid "Desbloquear"
+msgstr "Unlock"
+
+#: .\templates\intranet\admin_setups\users.html:100
+msgid "¿De verdad deseas eliminar a este usuario?"
+msgstr "Do you really want to delete this user?"
+
+#: .\templates\intranet\admin_setups\users.html:105
+msgid ""
+"Ten en cuenta que este usuario posee <strong id=\"modal-user-count\"></"
+"strong> documentos."
+msgstr ""
+"Note that this user has <strong id=\"modal-user-count\"></strong> documents."
+
+#: .\templates\intranet\admin_setups\users.html:107
+#: .\templates\intranet\document_information.html:83
+msgid "CONFIRMAR"
+msgstr "CONFIRM"
+
+#: .\templates\intranet\admin_setups\users.html:108
+msgid "CANCELAR"
+msgstr "CANCEL"
+
 #: .\templates\intranet\document_information.html:19
+#: .\templates\intranet\edit_document_information.html:31
 msgid "Abrir Documento"
 msgstr "Open Document"
 
 #: .\templates\intranet\document_information.html:24
-#: .\templates\intranet\documents.html:47 .\templates\intranet\profile.html:77
+#: .\templates\intranet\documents.html:47
+#: .\templates\intranet\edit_document_information.html:36
+#: .\templates\intranet\profile.html:77
 #: .\templates\public_search\search.html:56
 msgid "Autor"
 msgstr "Author"
 
 #: .\templates\intranet\document_information.html:28
+#: .\templates\intranet\edit_document_information.html:40
+msgid "Publicado el"
+msgstr "Published "
+
+#: .\templates\intranet\document_information.html:33
+#: .\templates\intranet\edit_document_information.html:45
+msgid "Paginas"
+msgstr "Pages"
+
+#: .\templates\intranet\document_information.html:39
+#: .\templates\intranet\edit_document_information.html:51
+msgid "ISSN"
+msgstr "ISSN"
+
+#: .\templates\intranet\document_information.html:45
+#: .\templates\intranet\edit_document_information.html:57
+msgid "DOI"
+msgstr "DOI"
+
+#: .\templates\intranet\document_information.html:50
+#: .\templates\intranet\edit_document_information.html:62
 msgid "Agregado el"
 msgstr "Added on"
-
-#: .\templates\intranet\document_information.html:58
-msgid "Relacionados"
-msgstr "Related"
 
 #: .\templates\intranet\documents.html:9
 #, python-format
@@ -132,13 +235,68 @@ msgstr "Year"
 msgid "Añadido"
 msgstr "Added"
 
+#: .\templates\intranet\edit_document_information.html:13
+msgid "Selecciona una categoria"
+msgstr "Select a category"
+
+#: .\templates\intranet\edit_document_information.html:14
+msgid "Microbiología Molecular"
+msgstr "Molecular Microbiology"
+
+#: .\templates\intranet\edit_document_information.html:15
+msgid "Biotecnología Ambiental"
+msgstr "Environmental Biotechnology"
+
+#: .\templates\intranet\edit_document_information.html:16
+msgid "Bionanotecnología"
+msgstr "Bionanotechnology"
+
+#: .\templates\intranet\edit_document_information.html:17
+msgid "Genómica Funcional y Proteómica"
+msgstr "Functional Genomic and proteomics"
+
+#: .\templates\intranet\edit_document_information.html:18
+msgid "Síntesis de compuestos bioactivos y de interés biotecnológico"
+msgstr "Synthesis of bioactive compounds and biotechnological interest "
+
+#: .\templates\intranet\edit_document_information.html:19
+msgid "Biorremediación de Ambientes Contaminados"
+msgstr "Bioremediation of Contaminated Environments"
+
+#: .\templates\intranet\edit_document_information.html:72
+msgid "Escribe una palabra clave"
+msgstr "Write a keyword"
+
+#: .\templates\intranet\edit_document_information.html:85
 #: .\templates\intranet\profile.html:14
 msgid "Aceptar"
 msgstr "Accept"
 
+#: .\templates\intranet\edit_document_information.html:91
 #: .\templates\intranet\profile.html:15
 msgid "Cancelar"
 msgstr "Cancel"
+
+#: .\templates\intranet\home.html:8
+msgid "Resumen de actividad"
+msgstr "Activity summary"
+
+#: .\templates\intranet\home.html:12
+msgid "Documentos agregados"
+msgstr "Added documents"
+
+#: .\templates\intranet\home.html:17
+msgid "Actividad de los ultimos 6 meses"
+msgstr "Activity of last 6 months"
+
+#: .\templates\intranet\home.html:21
+msgid "Categorias Populares"
+msgstr "Popular categories"
+
+#: .\templates\intranet\home.html:26
+#, python-format
+msgid "Selección de las %(number)s categorias mas populares"
+msgstr "Selection of the %(number)s most popular categories"
 
 #: .\templates\intranet\profile.html:48
 msgid "Nombre completo"
@@ -180,70 +338,70 @@ msgstr "Public"
 msgid "Privado"
 msgstr "Private"
 
-#: .\templates\intranet\shared.html:59 .\templates\intranet\shared.html:107
+#: .\templates\intranet\shared.html:62 .\templates\intranet\shared.html:116
 #: .\templates\shared\base.html.py:58 .\templates\shared\base.html:110
 msgid "Ingresar"
 msgstr "Log in"
 
-#: .\templates\intranet\shared.html:61 .\templates\intranet\shared.html:110
+#: .\templates\intranet\shared.html:64 .\templates\intranet\shared.html:119
 #: .\templates\shared\base.html.py:60 .\templates\shared\base.html:112
 msgid "Cerrar Sesión"
 msgstr "Logout"
 
-#: .\templates\intranet\shared.html:83 .\templates\public_search\search.html:13
+#: .\templates\intranet\shared.html:86 .\templates\public_search\search.html:13
 msgid "Ingresa tu busqueda aquí"
 msgstr "Enter your search here"
 
-#: .\templates\intranet\shared.html:94 .\templates\intranet\shared.html:122
+#: .\templates\intranet\shared.html:97 .\templates\intranet\shared.html:131
 msgid "Inicio"
 msgstr "Start"
 
-#: .\templates\intranet\shared.html:96 .\templates\intranet\shared.html:124
+#: .\templates\intranet\shared.html:99 .\templates\intranet\shared.html:133
 #: .\templates\intranet\users.html:21
 msgid "Documentos"
 msgstr "Documents"
 
-#: .\templates\intranet\shared.html:98 .\templates\intranet\shared.html:126
+#: .\templates\intranet\shared.html:101 .\templates\intranet\shared.html:135
 msgid "Mi perfil"
 msgstr "My profile"
 
-#: .\templates\intranet\shared.html:100 .\templates\intranet\shared.html:128
+#: .\templates\intranet\shared.html:104 .\templates\intranet\shared.html:138
 msgid "Usuarios"
 msgstr "Users"
 
-#: .\templates\intranet\shared.html:102 .\templates\intranet\shared.html:130
+#: .\templates\intranet\shared.html:107 .\templates\intranet\shared.html:141
 msgid "Subir documento"
 msgstr "Upload document"
 
-#: .\templates\intranet\shared.html:103
-msgid "Volver a la página principal"
-msgstr "return to homepage"
-
-#: .\templates\intranet\shared.html:120
-msgid "Enlaces"
-msgstr "Links"
-
-#: .\templates\intranet\shared.html:133
+#: .\templates\intranet\shared.html:110 .\templates\intranet\shared.html:144
 msgid "Administrador"
 msgstr "Administrator"
 
-#: .\templates\intranet\shared.html:144
+#: .\templates\intranet\shared.html:112
+msgid "Volver a la página principal"
+msgstr "return to homepage"
+
+#: .\templates\intranet\shared.html:129
+msgid "Enlaces"
+msgstr "Links"
+
+#: .\templates\intranet\shared.html:155
 msgid "Refinar busqueda"
 msgstr "Refine search"
 
-#: .\templates\intranet\shared.html:147
+#: .\templates\intranet\shared.html:158
 msgid "AUTOR"
 msgstr "AUTHOR"
 
-#: .\templates\intranet\shared.html:159
+#: .\templates\intranet\shared.html:170
 msgid "DUEÑO"
 msgstr "OWNER"
 
-#: .\templates\intranet\shared.html:171
+#: .\templates\intranet\shared.html:182
 msgid "CATEGORÍA"
 msgstr "CATEGORY"
 
-#: .\templates\intranet\shared.html:183
+#: .\templates\intranet\shared.html:194
 msgid "AÑO"
 msgstr "YEAR"
 
@@ -373,6 +531,9 @@ msgstr "Location"
 #: .\templates\shared\base.html:147
 msgid "Intranet"
 msgstr "Intranet"
+
+#~ msgid "Relacionados"
+#~ msgstr "Related"
 
 #~ msgid "Actualizado con exito."
 #~ msgstr "Update successful"

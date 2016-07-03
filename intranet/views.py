@@ -20,12 +20,13 @@ from pdfminer.pdfdocument import PDFDocument
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from cStringIO import StringIO
 import unicodedata, tempfile
-from datetime import date
+from datetime import date, timedelta
 from django.utils import timezone
 from collections import Counter
 from itertools import chain
 from django.utils.translation import ugettext as _
-import Levenshtein
+import Levenshtein, random
+from django.db import connection
 
 # Create your views here.
 
@@ -95,7 +96,45 @@ def filters_selected(list, request, name):
 	return list
 
 def home(request):
-	return render(request, 'intranet/home.html')
+	if request.user.is_authenticated() == True:
+		date_start = (date.today() - timedelta(5*365/12))
+		n = date_start.month#Initial Month
+		categories = Document.objects.values('category').annotate(count=Count('category'))
+		dates = Document.objects.filter(date_added__year__gte=date_start.year, date_added__month__gte=date_start.month)
+		months = []
+
+		for i in dates:
+			months.append(i.date_added.strftime('%B'))
+		months_counts =  dict(Counter(months))
+		months_map = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9,'October':10, 'November':11,'December':12}
+		months_num = [1,2,3,4,5,6,7,8,9,10,11,12]
+		months_fixed_num = []
+		for val in months_num:
+			if (val - n)%13 == 0:
+				n = n-1
+			months_fixed_num.append((val - n)%13)
+		print months_counts
+		months_fixed = []
+		counts_fixed = []
+		for i in range(1, len(months_counts)+1):
+			for key, val in months_counts.iteritems():
+				fixed = months_fixed_num[months_map[key]-1]
+				if fixed == i:
+					months_fixed.append(_(key))
+					counts_fixed.append(str(val))
+
+		names_months = '"' + '" ,"'.join(months_fixed) + '"'
+		count_months = ','.join(counts_fixed)
+		names=[]
+		count=[]
+		for a in categories:
+			names.append(_(Area.objects.get(id=a['category']).name))
+			count.append(str(a['count']))
+		names_categories = '"' + '","'.join(names) + '"'
+		count_categories = ','.join(count)
+		return render(request, 'intranet/home.html', {'names_categories': names_categories, 'count_categories': count_categories, 'number_categories': len(names), 'names_months':names_months, 'count_months': count_months })
+	else:
+		return HttpResponseRedirect(reverse('login'))
 
 def documents(request, search=None):
 	if request.user.is_authenticated() == True:
@@ -129,7 +168,7 @@ def documents(request, search=None):
 			years = filters_selected(Counter(years).most_common(), request, 'date')
 			owners = filters_selected(Counter(owners).most_common(), request, 'owner')
 			categories = filters_selected(Counter(categories).most_common(), request, 'category')
-		parameters = {'current_view': 'intranet', 'documents': documents[:10]}
+		parameters = {'current_view': 'intranet', 'documents': documents}
 		if search is not None:
 			parameters['authors'] = authors
 			parameters['years'] = years
@@ -275,7 +314,10 @@ def document(request, title=None, author=None):
 def edit_document(request, title=None, author=None):
 	if request.user.is_authenticated() == True:
 		try:
-			document = Document.objects.get(title=title, author=author, owner=request.user)
+			if request.user.is_admin:
+				document = Document.objects.get(title=title, author=author)
+			else:
+				document = Document.objects.get(title=title, author=author, owner=request.user)
 		except:
 			document = None
 		if document:
@@ -298,14 +340,11 @@ def edit_document(request, title=None, author=None):
 				document.delete()
 				return JsonResponse({'error': False})
 		else:
-			print 'OAWDAWAW'
 			return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': title, 'author': author})) #Se redirecciona a la ultima pagina visitada.
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 
-def new_ui(request):
-	return render(request, 'intranet/shared.html')
 
 def search_helper(request, search=None):
 	if request.user.is_authenticated() == True:

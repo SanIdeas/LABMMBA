@@ -93,7 +93,7 @@ class UserManager(BaseUserManager):
         return user
 
 class Area(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=100)
 
 class User(AbstractBaseUser):
     email = models.EmailField(

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-13 22:44-0400\n"
-"PO-Revision-Date: 2016-06-13 22:42-0400\n"
+"POT-Creation-Date: 2016-07-03 03:27-0400\n"
+"PO-Revision-Date: 2016-07-03 03:50-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -17,78 +17,119 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 
-#: .\static\intranet\js\upload.js:174 .\static\intranet\js\upload.js:625
+#: .\static\intranet\js\upload.js:183 .\static\intranet\js\upload.js:729
 msgid "Selecciona privacidad"
 msgstr "Select privacy"
 
-#: .\static\intranet\js\upload.js:175 .\static\intranet\js\upload.js:626
+#: .\static\intranet\js\upload.js:184 .\static\intranet\js\upload.js:730
 msgid "Público"
 msgstr "Public"
 
-#: .\static\intranet\js\upload.js:176 .\static\intranet\js\upload.js:627
+#: .\static\intranet\js\upload.js:185 .\static\intranet\js\upload.js:731
 msgid "Privado"
 msgstr "Private"
 
-#: .\static\intranet\js\upload.js:182 .\static\intranet\js\upload.js:596
+#: .\static\intranet\js\upload.js:191 .\static\intranet\js\upload.js:680
 msgid "Titulo"
 msgstr "Title"
 
-#: .\static\intranet\js\upload.js:182 .\static\intranet\js\upload.js:597
+#: .\static\intranet\js\upload.js:191 .\static\intranet\js\upload.js:681
 msgid "Ej: Tesis de microbiologia"
-msgstr "ie. Microbiology Thesis"
+msgstr "e.g. Microbiology Thesis"
 
-#: .\static\intranet\js\upload.js:183 .\static\intranet\js\upload.js:600
+#: .\static\intranet\js\upload.js:192 .\static\intranet\js\upload.js:684
 msgid "Autor"
 msgstr "Author"
 
-#: .\static\intranet\js\upload.js:183 .\static\intranet\js\upload.js:601
+#: .\static\intranet\js\upload.js:192 .\static\intranet\js\upload.js:685
 msgid "Ej: Juan Perez"
-msgstr "ie. John Smith"
+msgstr "e.g. John Smith"
 
-#: .\static\intranet\js\upload.js:184
+#: .\static\intranet\js\upload.js:193
 msgid "Fecha de creación"
 msgstr "Date of creation"
 
-#: .\static\intranet\js\upload.js:184 .\static\intranet\js\upload.js:605
+#: .\static\intranet\js\upload.js:193 .\static\intranet\js\upload.js:689
 msgid "Ej: 2016-12-30"
-msgstr "ie. 2016-12-30"
+msgstr "e.g. 2016-12-30"
 
-#: .\static\intranet\js\upload.js:185 .\static\intranet\js\upload.js:608
+#: .\static\intranet\js\upload.js:194 .\static\intranet\js\upload.js:692
 msgid "Colaboradores"
 msgstr "Contributors"
 
-#: .\static\intranet\js\upload.js:186 .\static\intranet\js\upload.js:612
+#: .\static\intranet\js\upload.js:199 .\static\intranet\js\upload.js:712
 msgid "Area"
 msgstr "Area"
 
-#: .\static\intranet\js\upload.js:188 .\static\intranet\js\upload.js:615
+#: .\static\intranet\js\upload.js:201 .\static\intranet\js\upload.js:715
 msgid "Selecciona una categoria"
 msgstr "Select a category"
 
-#: .\static\intranet\js\upload.js:189 .\static\intranet\js\upload.js:616
+#: .\static\intranet\js\upload.js:202 .\static\intranet\js\upload.js:716
 msgid "Microbiología Molecular"
 msgstr "Molecular Microbiology"
 
-#: .\static\intranet\js\upload.js:190 .\static\intranet\js\upload.js:617
+#: .\static\intranet\js\upload.js:203 .\static\intranet\js\upload.js:717
 msgid "Biotecnología Ambiental"
 msgstr "Environmental Biotechnology"
 
-#: .\static\intranet\js\upload.js:280
+#: .\static\intranet\js\upload.js:204 .\static\intranet\js\upload.js:718
+msgid "Bionanotecnología"
+msgstr "Bionanotechnology"
+
+#: .\static\intranet\js\upload.js:205 .\static\intranet\js\upload.js:719
+msgid "Genómica Funcional y Proteómica"
+msgstr "Functional Genomic and proteomics"
+
+#: .\static\intranet\js\upload.js:206 .\static\intranet\js\upload.js:720
+msgid "Síntesis de compuestos bioactivos y de interés biotecnológico"
+msgstr "Synthesis of bioactive compounds and biotechnological interest "
+
+#: .\static\intranet\js\upload.js:207 .\static\intranet\js\upload.js:721
+msgid "Biorremediación de Ambientes Contaminados"
+msgstr "Bioremediation of Contaminated Environments"
+
+#: .\static\intranet\js\upload.js:333
 msgid "Debes añadir un enlace de Google Drive a la solicitud"
 msgstr "You must add a Google Drive link to the request"
 
-#: .\static\intranet\js\upload.js:363
+#: .\static\intranet\js\upload.js:416
 msgid "No se encontraron archivos compatibles en el enlace"
 msgstr "No compatibles files found in the link"
 
-#: .\static\intranet\js\upload.js:540
+#: .\static\intranet\js\upload.js:604
 msgid "Confirma los datos de tus documentos"
 msgstr "Confirm the information of your documents"
 
-#: .\static\intranet\js\upload.js:604
+#: .\static\intranet\js\upload.js:688
 msgid "Fecha"
 msgstr "Date"
 
-#: .\static\intranet\js\upload.js:622
+#: .\static\intranet\js\upload.js:696
+msgid "ISSN"
+msgstr "ISSN"
+
+#: .\static\intranet\js\upload.js:697 .\static\intranet\js\upload.js:701
+#: .\static\intranet\js\upload.js:709
+msgid "No requerido"
+msgstr "Not required"
+
+#: .\static\intranet\js\upload.js:700
+msgid "DOI"
+msgstr "DOI"
+
+#: .\static\intranet\js\upload.js:704
+msgid "URL"
+msgstr "URL"
+
+#: .\static\intranet\js\upload.js:705
+msgid "ej: http://dx.doi.org/10.1109/ms.2006.34"
+msgstr "e.g. http://dx.doi.org/10.1109/ms.2006.34"
+
+#: .\static\intranet\js\upload.js:708
+msgid "Paginas"
+msgstr "Pages"
+
+#: .\static\intranet\js\upload.js:726
 msgid "Privacidad"
 msgstr "Privacy"

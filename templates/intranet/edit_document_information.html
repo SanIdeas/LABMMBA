@@ -10,9 +10,13 @@
 		<h2><input type="text" name="title" class="edit-field-title" value="{{document.title}}"></h2>
 		<h5>
 			<select name="category" class="edit-field select-field" required>
-				<option value="" disabled > Selecciona una categoria</option>
-				<option value="1" {% if document.category.id = 1 %} selected {% endif %}>Microbiología Molecular</option>
-				<option value="2" {% if document.category.id = 2 %} selected {% endif %}>Biotecnología Ambiental</option>
+				<option value="" disabled > {% trans "Selecciona una categoria" %}</option>
+				<option value="1" {% if document.category.id = 1 %} selected {% endif %}>{% trans "Microbiología Molecular" %}</option>
+				<option value="2" {% if document.category.id = 2 %} selected {% endif %}>{% trans "Biotecnología Ambiental" %}</option>
+				<option value="3" {% if document.category.id = 3 %} selected {% endif %}>{% trans "Bionanotecnología" %}</option>
+				<option value="4" {% if document.category.id = 4 %} selected {% endif %}>{% trans "Genómica Funcional y Proteómica" %}</option>
+				<option value="5" {% if document.category.id = 5 %} selected {% endif %}>{% trans "Síntesis de compuestos bioactivos y de interés biotecnológico" %}</option>
+				<option value="6" {% if document.category.id = 6 %} selected {% endif %}>{% trans "Biorremediación de Ambientes Contaminados" %}</option>
 			</select>
 		</h5>
 		<h5><input type="date" name ="date" class="edit-field" value="{{document.date|date:'Y-m-d'}}"></h5>
@@ -65,26 +69,26 @@
 				{% for keyword in document.get_keywords %}
 					<li><a class="rm-keyword" href="#">{{keyword}}</a></li>
 				{% endfor %}
-					<li></i><input id="input-kwds" placeholder="Escribe una palabra clave" type="text"></li>
+					<li></i><input id="input-kwds" placeholder="{% trans 'Escribe una palabra clave' %}" type="text"></li>
 				</ul>
 			</div>
 		</div>
-		<div class="box" style="height: 200px">
+		<!--<div class="box" style="height: 200px">
 			
-		</div>		
+		</div>-->		
 	</div>
 	<div class="s2">
-		{% if document.owner.id == request.user.id %}
+		{% if document.owner.id == request.user.id or request.user.is_admin %}
 			<div class="box document-optns-wrpr">
 				<a class="btn-document" href="#">
 					<span class="accept-document">
-					  <input type="submit" class="accept-document" value="Aceptar">
+					  <input type="submit" class="accept-document" value="{% trans 'Aceptar' %}">
 					</span>
 				</a>
 				</br>
 				<a class="btn-document" href="{% url 'intranet:document' document.author document.title %}">
 					<span class="cancel-document">
-					  Cancelar
+					  {% trans "Cancelar" %}
 					</span>
 				</a>
 			</div>		
@@ -101,9 +105,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="box" style="height: 200px; width: 100%">
+	<!--<div class="box" style="height: 200px; width: 100%">
 		
-	</div>
+	</div>-->
 </div>
 <input type="hidden" name="words" id="kwrds-field">
 </form>

@@ -1,0 +1,59 @@
+investigacion de operaciones 2 
+
+ayudantia teoria de colas 
+
+javiera loyola. 
+12 de mayo, 2016 
+
+hum-q-rico sandwich 
+el local hum-q-rico sandwich se especializa en la preparacion y entrega de 
+sandwich a empresas y bancos de vina del mar. los clientes pueden llamar por 
+telefono al sr. gourmand para hacer su pedido, el que sera enviado directamente 
+a su lugar de trabajo. entre las 11:30 a.m. y las 13:00 se reciben en promedio 180 
+ordenes, las que llegan siguiendo un proceso poisson. el tiempo requerido para 
+preparar un sandwich para el sr. gourmand o cualquiera de sus dos ayudantes es 
+en promedio de 75 segundos, siguiendo este una distribucion exponencial. una 
+vez que esta lista la orden, se entrega a uno de los 5 motociclistas que haran el 
+servicio  de  reparto.  los  tiempos  para  el  reparto  siguen  una  distribucion 
+exponencial y su promedio es de 2 minutos. 
+
+1. en promedio, cuantos minutos debe esperar un cliente desde que solicita su 
+
+2. en un momento cualquiera dado, habran mas personas esperando para hacer 
+
+pedido hasta recibir su sandwich? 
+
+su pedido o para recibirlo? 
+
+3. cual es la probabilidad de que un cliente llame y tenga que esperar? 
+4. cual es la probabilidad de que hayan a lo mas 2 clientes esperando a hacer su 
+
+pedido, considerando que todos los servidores estan ocupados? 
+
+5. los habitantes de la region han oido que un famoso chef ha visitado y evaluado 
+el local del sr. gourmand, lo que le hace ganar fama. las ordenes comienzan a 
+llegar  a  una  tasa  de  3,5  por  minuto.  es  necesario  o  no  contratar  a  mas 
+empleados para sostener este nuevo sistema? 
+
+hotline lan chile 
+lan chile tiene una linea 800 para atender a sus clientes si ellos tienen consultas 
+acerca de tarifas, vuelos, reclamos, etc. con la excepcion de los dias feriados, se 
+estima que 225 clientes llaman por hora. la duracion de la conversacion es de 
+1.5 minutos. lan chile tiene varios agentes encargados de responder. sin 
+embargo, cuando todos estan ocupados, el cliente escucha un mensaje grabado 
+para permanecer en linea, en espera de que algun agente se desocupe. ya que el 
+tiempo de espera para hablar con un agente es menor a 3 minutos se puede 
+
+suponer que no habra desercion. lan chile le paga a cada agente us$16 por 
+hora, incluyendo beneficios. la compania de telefonos le cobra us$0.18 por 
+cada minuto que un cliente este, ya sea hablando o esperando por un agente. 
+basado en una reciente encuesta, lan chile concluyo que existe un costo por 
+insatisfaccion de los clientes de aproximadamente us$0.20 por cada minuto que 
+debe esperar en linea. mientras que un cliente que esta hablando, baja su costo de 
+insatisfaccion a us$0.05 por minuto. lan chile desea determinar el numero de 
+agentes que deberia tener para minimizar el costo hora de operacion de la linea 
+en periodos normales. defina un modelo para calcular el costo promedio total 
+por hora, y explique el procedimiento para determinar el numero de agentes. 
+ 
+
+

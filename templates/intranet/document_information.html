@@ -65,7 +65,7 @@
 		</div>		
 	</div>
 	<div class="s2">
-		{% if document.owner.id == request.user.id %}
+		{% if document.owner.id == request.user.id or request.user.is_admin %}
 			<div class="box document-optns-wrpr">
 				<a class="btn-document" href="{% url 'intranet:edit_document' document.author document.title %}">
 					<span class="fa-stack fa-lg edit-document">
@@ -80,7 +80,7 @@
 					</span>
 				</a>
 				<div id="cancel-confirm">
-					<h3>CONFIRMAR</h3>
+					<h3>{% trans "CONFIRMAR" %}</h3>
 				</div>
 			</div>		
 		{% endif %}

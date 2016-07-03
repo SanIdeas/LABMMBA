@@ -73,4 +73,4 @@ def signup(request):
 def logout(request):
 	if request.user.is_authenticated() is not None:
 		auth_logout(request)
-		return HttpResponseRedirect(request.META.get('HTTP_REFERER')) #Se redirecciona a la ultima pagina visitada.
+		return HttpResponseRedirect(reverse('home'))

@@ -1,0 +1,101 @@
+universidad tecnica federico santa maria  casa central 
+
+departamento de industrias 
+
+informacion y matematica financiera 
+
+ayudantia n8 
+
+informacion y matematica financiera 
+
+profesor: manuel marin (paralelo 01) 
+
+ayudante: ezequiel camus 
+
+fecha: 16 de junio 2016 
+
+ 
+ 
+
+ 
+
+problema 1 
+ 
+de un negocio. la tasa ofrecida es del 10% anual con un plazo de pago de 6 anos. 
+
+se solicita un credito por un monto de m$ 75.000, para llevar a cabo la inversion inicial 
+
+ 
+
+determine la tabla de amortizacion para cada caso que se presenta a continuacion. 
+
+a)  cuota fija. 
+b)  amortizacion constante. 
+c)  cuota fija con 2 anos de gracias sin cancelar intereses. 
+d)  cuota fija con 2 anos de gracia sin realizar ningun tipo de pago. 
+
+problema 2 
+ 
+una  persona  deposito  m$8.000  en  una  cuenta  a  interes  que  abonaba  un  15%  anual 
+con capitalizacion cuatrimestral. sin retiros ni depositos intermedios, esta persona retiro todo 
+el saldo al cabo de  5 anos.  el nivel de  precios promedio  al consumidor tenia un valor 125  al 
+momento del deposito y un valor 264 al momento del retiro. 
+
+a)  determinar cual es el monto retirado por la persona al final de los 5 anos. 
+b)  determinar la ganancia real de la persona al cabo de los 5 anos. 
+
+problema 3 
+
+usted  desea  remodelar  su  casa,  para  lo  cual  solicita  un  credito  por  $25.000.000  en  un 
+plazo de 10 meses, pagando cuotas mensuales. dado que es un credito para remodelacion, el 
+banco lo otorga en uf. las condiciones del credito son las siguientes: 
+
+  credito  de  cuota  fija  para  los  primeros  cuatro  meses  y  para  los  siguientes  seis, 
+
+ 
+
+amortizacion constante. 
+la  tasa  de  interes  nominal  para  los  primeros  cuatro  meses  es  de  un  12%  anual 
+capitalizacion semestral. para los siguientes seis meses, la tasa de interes nominal es 
+de un 6% semestral capitalizacion mensual. 
+
+  el valor de la uf al momento del credito es de $25.000. 
+  se  da  la  opcion  de  diferir  dos  cuotas  durante  el  periodo  de  duracion  del  credito,  en 
+
+donde no habra pago alguno. 
+
+determine 
+
+a)  tabla de amortizacion del credito, sin diferir ningun pago 
+b)  valor a pagar del credito si se difiere la cuota 3 y 6. 
+
+ 
+
+universidad tecnica federico santa maria  casa central 
+
+departamento de industrias 
+
+informacion y matematica financiera 
+
+ 
+problema 4 
+
+la empresa desea reemplazar un equipo para lo cual solicita un credito de $100.000.000 
+pagadero  a  4  anos.  durante  los  primeros  dos  anos  se  pagan  cuotas  iguales,  las  cuales  se 
+pagaran semestralmente a una tasa de 15% anual capitalizable mensualmente con un periodo 
+de gracia (sin pago de intereses). durante los dos anos siguientes, se paga el saldo insoluto con 
+amortizacion  constante  en  cuotas  semestrales,  con  una  tasa  de  interes  del  12%  anual 
+capitalizacion trimestral. 
+
+a.  desarrolle la tabla de amortizacion 
+b.  usted  desea  prepagar  el  credito  al  sexto  semestre.  las  condiciones  de  prepago 
+establecen  que  debe  pagar  un  periodo  de  interes  adicional  a  modo  de  comision 
+conviene prepagar? 
+
+ 
+
+ 
+
+ 
+
+

@@ -1,0 +1,111 @@
+investigacion de operaciones ii.
+
+         
+
+teoria de colas.
+
+distribucion exponencial y de poisson.
+
+1.
+
+2.
+
+ 
+3.
+
+el numero de cervezas ordenadas en un pub sigue una distribucion de poisson, con una media de 30 cervezas por hora.
+a)
+encuentre la probabilidad que exactamente 60 cervezas sean ordenadas entre las 10 pm y la medianoche.
+b) encuentra la media y la desviacion estandar del numero de cervezas ordenadas entre las 9 pm y las 1 am.
+c)
+
+encuentre la probabilidad de que el tiempo entre dos ordenes consecutivas este entre 1 y 3 minutos.
+
+suponga que ha llegado a un sistema de espera m/m/7/fcfs/8/
+ cuando todos los dependientes estan ocupados. cual 
+es la probabilidad de que pueda completar el servicio antes que al menos uno de los clientes que esta siendo actualmente 
+atendido?
+
+el tiempo entre llegada de autobuses sigue una distribucion exponencial con una media de 60 minutos.
+a)
+b)
+c)
+d) recien ha llegado un autobus. cual es la probabilidad que pasen entre 30 y 90 minutos antes que el proximo 
+
+cual es la probabilidad de que exactamente 4 autobuses lleguen durante las proximas 2 horas?
+cual es la probabilidad de que al menos 2 autobuses lleguen durante las proximas 2 horas?
+cual es la probabilidad de que no lleguen autobuses durante las proximas 2 horas?
+
+autobus llegue?
+
+4. una maquina de servicio automatico tiene siempre una unidad de reserva para su reemplazo inmediato en caso de falla. 
+el tiempo para que ocurra la falla de la maquina o de su unidad de reserva es exponencial con media de 10 horas. el 
+tiempo para que ocurra una falla se distribuye de forma exponencial.
+a) determine la probabilidad de falla en un intervalo de 5 horas.
+b) determine la probabilidad de que una falla ocurra en 6 horas mas, considerando que la ultima falla tuvo lugar hace 
+
+3 horas.
+
+c) determine el numero promedio de fallas en una semana, considerando que se ofrece servicio durante las 24 horas.
+d) determine la probabilidad de que ocurra por lo menos una falla en un periodo de 24 horas.
+
+estado estacionario.
+
+5. considere una linea de espera con un solo servidor donde las tasas de llegadas y de salidas son constantes y 
+
+estan dadas por l n=3 llegadas/hora y m
+a) la probabilidad de tener n personas en el sistema.
+b) la probabilidad de tener cero personas en el sistema si las tasas de llegada y de salida son 4 y 5 
+
+n=8 salidas/hora para n 0. determine:
+
+respectivamente. cual es la probabilidad de que el sistema no este vacio?
+
+c) numero esperado de clientes en el sistema.
+d) tiempo de espera en el sistema.
+e) tiempo de espera en la fila.
+f) numero esperado de clientes en la fila.
+g) porcentaje de utilizacion del servidor.
+h) el numero esperado de clientes en el servicio.
+i) el porcentaje de tiempo que el servidor esta desocupado.
+
+6. en una estacion de servicio de lavado de autos, la informacion que se tiene indica que los autos llegan para 
+ser atendidos, segun una distribucion de poisson, con media de 4 por hora. el tiempo para lavar y asear cada 
+automovil varia, pero se advierte que sigue una distribucion exponencial con media de 10 minutos por 
+automovil. la estacion no puede atender a mas de un auto a la vez. determine:
+a) el numero de lugares de estacionamiento que se debe proporcionar de modo que cuando llegue un auto 
+
+encuentre un lugar un 90% de las veces.
+
+b) el  porcentaje de tiempo que la estacion esta inactiva.
+c) el tiempo esperado de duracion del servicio.
+d) la probabilidad de que un automovil que llega debera esperar antes de ser lavado.
+e) si hay seis espacios de estacionamiento determine la probabilidad de que un automovil que llegue no 
+
+encuentre espacio para estacionarse.
+
+1
+
+f)
+
+si la disciplina de espera es fifo determine la desviacion estandar del tiempo de espera en el sistema y 
+la probabilidad de que el tiempo de espera en el sistema varie  la mitad de su desviacion estandar en 
+torno a su valor medio.
+
+7. en  una   pequena  ciudad   operan   dos  companias  de   radiotaxis.  cada   una  de  las   companias  posee   dos 
+radiotaxis y se sabe que comparten el mercado casi en partes iguales. esto lo hace evidente el hecho que las 
+llamadas que llegan a la oficina de despacho de cada compania llegan a una tasa de 10 por hora. el tiempo 
+promedio por servicio es 11.5 minutos. la llegada de llamadas sigue una distribucion de poisson, mientras 
+que los tiempos de servicio son exponenciales.
+las dos companias fueron compradas hace poco por uno de los hombres de negocio de la ciudad. despues 
+de tomar el mando de las dos companias su primera accion fue intentar reunir a las dos, en una oficina de 
+despacho, con la esperanza de ofrecer un servicio mas rapido a sus clientes. determine:
+a) el porcentaje de utilizacion en ambas situaciones.
+b) el tiempo de espera de un cliente por servicio en ambas situaciones.
+c) la probabilidad que todos los autos de las dos companias reciban llamadas.
+d) el porcentaje de tiempo que todos los autos de las companias reunidas reciben llamadas.
+e) el numero esperado de autos desocupados en los dos casos.
+
+2
+
+

@@ -153,10 +153,9 @@ function addDocument(index, filename, object){
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
-						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia"required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
+						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
 						'<li><strong>Autor:</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="Ej: Juan Perez" required></li>',
 						'<li><strong>Fecha de creación:</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="Ej: 2016" required></li>',
-						'<li><strong>Colaboradores:</strong> <input class="field" type="text" required></li>',
 						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
 						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
 						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
@@ -164,8 +163,12 @@ function addDocument(index, filename, object){
 						'<li><strong>Area:</strong>',
 							'<select name="category$index" class="field form-select" required>',
 								'<option value="" disabled selected>Selecciona una categoria</option>',
-								'<option value="1"> Microbiología Molecular</option>',
+								'<option value="1">Microbiología Molecular</option>',
 								'<option value="2">Biotecnología Ambiental</option>',
+								'<option value="3">Bionanotecnología</option>',
+								'<option value="4">Genómica Funcional y Proteómica</option>',
+								'<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>',
+								'<option value="6">Biorremediación de Ambientes Contaminados</option>',
 							'</select>',
 						'</li>',
 					'</ul>',
@@ -184,10 +187,9 @@ function addDocument(index, filename, object){
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
-						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-id="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '"required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
+						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-id="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
 						'<li><strong>' + gettext('Autor') + ':</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="' + gettext('Ej: Juan Perez') + '" required></li>',
 						'<li><strong>' + gettext('Fecha de creación') + ':</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="' + gettext('Ej: 2016-12-30') + '" required></li>',
-						'<li><strong>' + gettext('Colaboradores') + ':</strong> <input class="field" type="text" required></li>',
 						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
 						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
 						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
@@ -195,8 +197,12 @@ function addDocument(index, filename, object){
 						'<li><strong>' + gettext('Area') + ':</strong>',
 							'<select name="category$index" class="field form-select" required>',
 								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
-								'<option value="1"> ' + gettext('Microbiología Molecular') + '</option>',
+								'<option value="1">' + gettext('Microbiología Molecular') + '</option>',
 								'<option value="2">' + gettext('Biotecnología Ambiental') + '</option>',
+								'<option value="3">' + gettext('Bionanotecnología') + '</option>',
+								'<option value="4">' + gettext('Genómica Funcional y Proteómica') + '</option>',
+								'<option value="5">' + gettext('Síntesis de compuestos bioactivos y de interés biotecnológico') + '</option>',
+								'<option value="6">' + gettext('Biorremediación de Ambientes Contaminados') + '</option>',
 							'</select>',
 						'</li>',
 					'</ul>',
@@ -205,6 +211,7 @@ function addDocument(index, filename, object){
 	code = code.join('').replace(/\$index/g, index).replace(/\$filename/g, filename).replace(/\$title/g, object['Title'] ? object['Title']:'').replace(/\$author/g, object['Author'] ? object['Author']:'').replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
 	console.log(object['CreationDate']);
 	$('#confirm-form').append(code);
+	crossref_query(object['Title'] ? object['Title']:'', index, false);
 	$('#confirm-form').off();
 	$('#confirm-form').keydown(function(e){
 		if(event.keyCode == 13) {
@@ -600,11 +607,11 @@ function load_confirmation(files){
 	if(current_lang == "es"){
 		var code = ['<table class="confirmation-table confirmation-frame animation-down">',
 					'<tr>',
-						'<td rowspan="11" class="thumbnail-col"><img src="$thumbnail"></td>',
+						'<td rowspan="10" class="thumbnail-col"><img src="$thumbnail"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>Titulo:</strong></td>',
-						'<td><input type="text" class="drive-field title-field" doc-id="$iddrive" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" required><div class="crossref-wrapper hidden" doc-id="$iddrive"><div class="loader hidden" doc-id="$iddrive"><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$iddrive"></ul></div></div></td>',
+						'<td><input type="text" class="drive-field title-field" doc-id="$iddrive" name="title$id" value="$title" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$iddrive"><div class="loader hidden" doc-id="$iddrive"><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$iddrive"></ul></div></div></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>Autor:</strong></td>',
@@ -613,10 +620,6 @@ function load_confirmation(files){
 					'<tr>',
 						'<td><strong>Fecha:</strong></td>',
 						'<td ><input type="text" class="drive-field" name="date$id" value="$date" placeholder="Ej: 2016-12-30" required></td>',
-					'</tr>',
-					'<tr>',
-						'<td><strong>Colaboradores:</strong></td>',
-						'<td ><input class="drive-field" type="text"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>ISSN:</strong></td>',
@@ -641,6 +644,10 @@ function load_confirmation(files){
 								'<option value="" disabled selected>Selecciona una categoria</option>',
 								'<option value="1"> Microbiología Molecular</option>',
 								'<option value="2">Biotecnología Ambiental</option>',
+								'<option value="3">Bionanotecnología</option>',
+								'<option value="4">Genómica Funcional y Proteómica</option>',
+								'<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>',
+								'<option value="6">Biorremediación de Ambientes Contaminados</option>',
 							'</select>',
 						'</td>',
 					'</tr>',
@@ -662,11 +669,11 @@ function load_confirmation(files){
 	else if(current_lang == "en"){
 		var code = ['<table class="confirmation-table confirmation-frame animation-down">',
 					'<tr>',
-						'<td rowspan="11" class="thumbnail-col"><img src="$thumbnail"></td>',
+						'<td rowspan="10" class="thumbnail-col"><img src="$thumbnail"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>' + gettext('Titulo') + ':</strong></td>',
-						'<td><input type="text" class="drive-field title-field" doc-id="$iddrive" name="title$id" value="$title" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" required><div class="crossref-wrapper hidden" doc-id="$iddrive"><div class="loader hidden" doc-id="$iddrive><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$iddrive"></ul></div></div></td>',
+						'<td><input type="text" class="drive-field title-field" doc-id="$iddrive" name="title$id" value="$title" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$iddrive"><div class="loader hidden" doc-id="$iddrive><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$iddrive"></ul></div></div></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>' + gettext('Autor') + ':</strong></td>',
@@ -675,10 +682,6 @@ function load_confirmation(files){
 					'<tr>',
 						'<td><strong>' + gettext('Fecha') + ':</strong></td>',
 						'<td ><input type="text" class="drive-field" name="date$id" value="$date" placeholder="' + gettext('Ej: 2016-12-30') + '" required></td>',
-					'</tr>',
-					'<tr>',
-						'<td><strong>' + gettext('Colaboradores') + ':</strong></td>',
-						'<td ><input class="drive-field" type="text"></td>',
 					'</tr>',
 					'<tr>',
 						'<td><strong>' + gettext('ISSN') + ':</strong></td>',
@@ -703,6 +706,10 @@ function load_confirmation(files){
 								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
 								'<option value="1"> ' + gettext('Microbiología Molecular') + '</option>',
 								'<option value="2">' + gettext('Biotecnología Ambiental') + '</option>',
+								'<option value="3">' + gettext('Bionanotecnología') + '</option>',
+								'<option value="4">' + gettext('Genómica Funcional y Proteómica') + '</option>',
+								'<option value="5">' + gettext('Síntesis de compuestos bioactivos y de interés biotecnológico') + '</option>',
+								'<option value="6">' + gettext('Biorremediación de Ambientes Contaminados') + '</option>',
 							'</select>',
 						'</td>',
 					'</tr>',
@@ -726,7 +733,12 @@ function load_confirmation(files){
 		var completed_code = code.join('').replace(/\$id/g, files[i]['id']).replace(/\$title/g, files[i]['title'] ? files[i]['title']:'').replace(/\$author/g, files[i]['author'] ? files[i]['author']:'').replace(/\$date/g, files[i]['date'] ? files[i]['date'] : '').replace(/\$thumbnail/g, files[i]['thumbnail'] ? static_link.replace('999', files[i]['thumbnail']) : '').replace(/\$abstract/g, files[i]['abstract'] ? files[i]['abstract'] : '');
 		section.append(completed_code);
 		ids.push(files[i]['id']);
+
 	}
+
+	$('.title-field').each(function(){
+		crossref_query($(this).val(), $(this).attr('doc-id'), true);
+	});
 
 	$('.title-field').off();
 	$('.title-field').on('input', function(){
