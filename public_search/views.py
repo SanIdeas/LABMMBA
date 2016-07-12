@@ -3,6 +3,8 @@ from intranet.models import Document
 from unidecode import unidecode
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from intranet.views import get_filters, filters_selected
+from collections import Counter
 
 # Create your views here.
 
@@ -10,13 +12,18 @@ def search(request, search=None):
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('intranet'))
     else:
-        all_docs = Document.objects.filter(type=False)#Solo documentos publicos
+        kwargs = get_filters(request)
+        all_docs = Document.objects.filter(type=False,**kwargs)
         if search is None: #Si no es una busqueda
             documents = all_docs
         else:
             documents = []
             high_acc_result = []
             low_acc_result = []
+            authors = []
+            years = []
+            owners = []
+            categories = []
             for document in all_docs:
                 result = document.match(search)
                 if result['match']:
@@ -26,8 +33,20 @@ def search(request, search=None):
                         high_acc_result.append(document)
                     else:
                         low_acc_result.append(document)
+                    authors.append(document.author)
+                    years.append(document.date.year)
+                    owners.append(document.owner)
+                    categories.append(document.category)
             documents = high_acc_result + low_acc_result
-        parameters = {'current_view': 'publications', 'documents': documents}
+            authors = filters_selected(Counter(authors).most_common(), request, 'author')
+            years = filters_selected(Counter(years).most_common(), request, 'date')
+            owners = filters_selected(Counter(owners).most_common(), request, 'owner')
+            categories = filters_selected(Counter(categories).most_common(), request, 'category')
+        parameters = {'current_view': 'intranet', 'documents': documents}
         if search is not None:
+            parameters['authors'] = authors
+            parameters['years'] = years
+            parameters['categories'] = categories
+            parameters['owners'] = owners
             parameters['search'] = search
         return render(request, 'public_search/search.html',parameters)

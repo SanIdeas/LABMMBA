@@ -267,6 +267,17 @@
 	}
 }
 
+
+@keyframes abstract-spinner {
+	0% {
+		transform: rotateZ(0deg);
+	}
+	100% {
+		transform: rotateZ(360deg);
+	}
+}
+
+
 /******************************/
 
 li{
@@ -952,6 +963,22 @@ li{
 		width: 100% !important;
 	}
 
+}
+
+.loading-abs-wrp:after{
+	content: "\f1ce";
+    font-family: FontAwesome;
+    width: 100%;
+    position: absolute;
+    font-size: 29px;
+    left: 0;
+    text-align: center;
+    line-height: 63px;
+    animation: abstract-spinner 1s linear infinite;
+}
+
+.loading-abs{
+	background-color: #e9edf0 !important;
 }
 @media screen and (max-width:620px){
 	#thumbnail-column{

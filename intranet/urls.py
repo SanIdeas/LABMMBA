@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^documents/$', views.documents, name="documents"),
     url(r'^search/(?P<search>.*)/$', views.documents, name="intranet_search"),
     url(r'^profile/$', views.profile, name="profile"),
+    url(r'^upload/extract/$', views.extract_content_and_keywords, name='extract_content'),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
     url(r'^profile/update/picture/$', views.update_profile_picture, name='update_picture'),

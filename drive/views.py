@@ -16,7 +16,7 @@ from django.utils.translation import ugettext as _
 flow = client.flow_from_clientsecrets(
     'drive/client_secret.json',
     scope='https://www.googleapis.com/auth/drive.readonly',
-    redirect_uri='http://nachoherrs.ddns.net/drive/oauth2callback')
+    redirect_uri='http://127.0.0.1:8000/drive/oauth2callback')
 flow.params['include_granted_scopes'] = 'true'
 flow.params['access_type'] = 'offline'
 
@@ -36,11 +36,12 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
     owner = request.user
     try:
         meta = get_metadata(stream)
-        print meta
         day, month, year = date(meta['/CreationDate'])
         fields = {
             'title': meta['/Title'] if '/Title' in meta else 'Titulo temporal' + str(datetime.datetime.now()),
             'author': meta['/Author'] if  '/Author' in meta else owner.first_name + ' ' + owner.last_name,
+            'abstract': meta['/Subject'] if  '/Subject' in meta else None,
+            'words': meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None,
             'date': year + '-' + month + '-' + day if '/CreationDate' in meta else '2000-01-01',
             'owner': owner.id,
             'drive_id': drive_id,
@@ -55,6 +56,8 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
         fields = {
             'title': 'Titulo temporal' + str(datetime.datetime.now()),
             'author': owner.first_name + ' ' + owner.last_name,
+            'abstract': meta['/Subject'] if  '/Subject' in meta else None,
+            'words': meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None,
             'date': '2001-01-01',
             'owner': owner.id,
             'drive_id': drive_id,
@@ -71,16 +74,16 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
         document.owner.update_activity().doc_number('+')
         document.format_filename()
         document.format_thumbnail_filename()
-        try:
-            text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-            text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
-            text_file.write(text_from_file.lower())
-            text_file.close()
-        except:
-            text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-            text_file.close()
-        document.save_abstract()
-        document.keywords()
+        #try:
+        #    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+        #    text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+        #    text_file.write(text_from_file.lower())
+        #    text_file.close()
+        #except:
+        #    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+        #    text_file.close()
+        #document.save_abstract()
+        #document.keywords()
         return document.id
     else:
         return False
@@ -103,7 +106,6 @@ def children_list(folder_id, service):
 
 
 def get_drive_service(request):
-    print request.user.credentials()
     if request.user.drive_credentials == None:
         return False
     elif request.user.credentials()._expires_in() < 10:
@@ -197,6 +199,7 @@ def download_drive_files(request, ids):
         ids = ids.split('+')
         response = {'error': False}
         files = []
+        real_ids=[]
         service = get_drive_service(request)
         for id in ids:
             file = service.files().get(fileId=id, **{'fields':'title,downloadUrl, thumbnailLink'}).execute()
@@ -211,6 +214,7 @@ def download_drive_files(request, ids):
                 img.write(file)
                 img.seek(0)
                 local_id = upload_from_drive(File(fh), id, request, File(img))
+                real_ids.append(local_id)
                 doc = Document.objects.get(id=local_id).dictionary()
                 doc['error'] = False
                 doc['message'] = None
@@ -218,6 +222,7 @@ def download_drive_files(request, ids):
             else:
                 files.append({'error': True, 'message': _('No se pudo descargar el documento %(title)s debibo a un problema desconocido.') % {'title': file['Title']}})
         response['files'] = files
+        response['real_ids'] = real_ids
         return JsonResponse(response)
     except errors.HttpError, error:
         return JsonResponse({'error': True, 'message':_('Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas tarde.')})

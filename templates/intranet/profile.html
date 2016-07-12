@@ -16,7 +16,7 @@
 </div>
 {% if request.user == profile_user %}
 	<form id="picture_form"  action="{% url 'intranet:update_picture' %}" method="POST" style="display: none" enctype="multipart/form-data">
-		<input id="picture-input" type="file" accept="image/x-png, image/jpeg" style="display: none" name="picture" required>
+		<input id="picture-input" type="file" accept="image/png, image/jpeg" style="display: none" name="picture" required>
 		{% csrf_token %}
 	</form>
 	<script>
@@ -62,7 +62,7 @@
 		</tr>
 		<tr>
 			<td>{% trans "Area" %}:</td>
-			<td>{{ profile_user.area.name }}</td>
+			<td>{% trans profile_user.area.name %}</td>
 		</tr>
 	</table>
 </div>

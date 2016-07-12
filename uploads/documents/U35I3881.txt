@@ -1,0 +1,731 @@
+ingenieria de software 
+
+feature	driven	development	
+
+hernan	astudillo	&	gaston	marquez	
+departamento	de	informa/ca	
+universidad	tecnica	federico	santa	maria	
+
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+contexto	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+contexto   
+como	 se	 ha	 visto	 en	 las	 sesiones	 anteriores,	 el	 modelo	 de	
+cascada	se	divide	en	diferentes	fases	
+ se	asume	que	en	cada	etapa	todo	debe	estar	100%	listo	para	poder	pasar	a	la	
+siguiente	
+ lo	anterior,	produce	complicaciones	en	el	modelo	
+
+ las	metodologias	agiles	intentan	evitar	esta	debilidad	
+
+ iteraciones	incrementales	ayudan	
+
+ fdd	nace	como	alternaova	al	desarrollo	en	cascada	tradicional	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+contexto en semat 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+feature	driven	development	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+fdd [1] 
+ que	es	fdd?	
+
+ es	 un	 proceso	 de	 desarrollo	 agil	 y	 altamente	 adaptaovo	 con	 las	 siguientes	
+cualidades	
+
+ iteraciones	cortas	
+ enfaoza	la	calidad	en	todos	los	pasos	
+ entrega	resultados	frecuentes,	tangibles	en	todos	los	pasos	
+ provee	progresos	e	informacion	en	cada	estado,	con	el	minimo	de	problemas	para	los	
+ es	amigable	para	clientes,	gerentes	y	desarrolladores	
+
+desarrolladores	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+fdd [2] 
+ problemas	tradicionales	en	el	desarrollo	de	so=ware	
+
+ser	resueltos	en	pequenos	periodos	de	oempo,	usualmente	2	semanas.	
+
+ complejidada	se	sabe	que	el	proyecto	es	complejo	en	varios	aspectos,	pero	
+siempre	existe	el	problema	para	esomar	
+ fdda	descompone	el	dominio	del	problema	en	pequenos	problemas,	los	cuales	pueden	
+ fdda	divide	el	proyecto	en	iteraciones	para	que	la	distancia	de	oempo	entre	el	analisis	
+ calidada	 en	 el	 desarrollo	 de	 so=ware	 regularmente	 se	 pide	 productos	 de	
+calidad,	pero	no	se	sabe	como	manejarla	durante	el	proceso	de	desarrollo	
+ fdda	 el	 concepto	 de	 calidad	 es	 abordado	 no	 solamente	 en	 el	 test	 del	 codigo,	 sino	
+
+y	el	tesong	sea	poco,	asi	se	descubren	errores	tempranamente.	
+
+tambien	la	incluye	en	estandares	de	codigo,	mediciones	y	metricas.	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+fdd [3] 
+ roles	en	fdd	
+
+1. project	manager	
+2. chief	architect	
+3. development	manager	
+4. chief	programmers	[progr.	principal;	construye	subsistema;	cirujano]	
+5. class	owners	(mas	conocidos	como	desarrolladores)	
+6. domain	experts	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+roles	de	fdd	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+roles de fdd [1] 
+ project	manager	
+
+ gesoona	y	lidera		los	objeovos	del	proyecto	
+ presupuesto,	personal,	progreso	en	los	reportes	
+ opera	el	sistema	del	proyecto	
+ maneja	posibles	distracciones	del	personal	
+
+ chief	architect	
+
+ es	responsable	del	diseno	del	sistema		
+ ejecuta	talleres	de	diseno	
+ prepara	al	equipo	para	superar	obstaculos	tecnicos	
+
+	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+roles de fdd [2] 
+ development	manager	
+
+ lidera	el	dia	a	dia	de	las	acovidades	de	desarrollo	
+ resuelve	los	conictos	de	recursos	
+ se	apoya	entre	el	chief	architec	y	project	manager	
+
+ chief	programmers	
+
+ desarrolladores	con	experiencia	
+ lideran	pequenos	grupos	de	desarrolladores	
+ rol	principal:	manega	las	necesidades	entre	desarrolladores	y	managers	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+roles de fdd [3] 
+ class	owners	
+
+ desarrolladores	individuales	
+ diseno,	test,	codigo	y	documentacion	
+
+ domain	experts	
+
+ usuarios,	clientes,	partners,	sponsors,	otros.	
+ expertos	en	el	conocimiento	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+roles de fdd [4] 
+ roles	de	soporte	para	el	equipo	
+
+ supporong	roles	
+ domain	manager	
+ release	manager	
+ language	guru	
+ build	engineer	
+ toolsmith	
+ system	administrator	
+ tester	
+ deployers	
+ technical	writers	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+pracdcas	en	fdd	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [1] 
+ fdd	aplica	praocas	que	son	aceptadas	en	la	industria	las	cuales	son:	
+
+1. domain	object	modeling	
+2. developing	by	feature	
+3. class	(code)	ownership	
+4. feature	team	
+5.
+6. regular	build	schedule	
+7. conguraoon	management	
+8. progress	reporong	
+
+inspecoons	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [2] 
+ domain	object	modeling	
+
+ construccion	de	diagramas	de	clases	en	funcion	de	su	signicado	
+ es	una	forma	de	descomposicion	de	objetos	
+ modelar	con	colores	[goyal,	2007]	
+
+ amarilloarol	uolizado	por	personas	u	organizaciones	
+ azula	descripciones	de	catalogo	
+ verdea	lugar	o	cosa	
+ rosadoa	momento	o	intervalo	de	oempo	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [3] 
+ domain	object	modeling	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [4] 
+ developing	by	feature	
+
+ se	 enoende	 como	 feature	 un	 caracterisoca	 pequena	 que	 puede	 ser	 implementada	 en	 2	
+
+semanas.	
+
+ el	template	de	un	feature	es	
+
+ <acoon>the	<result><by|for	|of	|	to|><a(n)><object>	
+ por	ejemplo:	calcular[acoon]	el	total[result]	de	la	venta[object]	
+
+ un	feature	set	es	un	grupo	de	caracterisocas	del	negocio	
+
+ <acoon><-ing><a(n)><object>	
+ por	ejemplo:	making	a	product	sale	(creando	una	venta	de	producto)	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [5] 
+ class	(code)	ownership	
+
+ denota	quien	o	que	rol	es	responsable	del	contenido	de	la	clase	
+ se	asignan	responsabilidades	sobre	la	codicacion	de	esa	clase	
+
+ feature	team	
+
+ conformado	por	equipos	pequenos	
+ capacidad	de	poder	cambiarse	de	roles	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [6] 
+ inspecdons	
+
+ para	 evitar	 problemas,	 los	 features	 team	 inspeccionan	 todas	 las	 nuevas	
+dimensiones	del	proyecto	
+ se	aplican	tecnicas	de	deteccion	de	errores	
+ se	buscan	nuevas	oportunidades	
+
+ regular	build	schedule	
+
+ se	revisa	que	que	todos	los	intervalos	de	codigo	denidos	por	el	equipo	se	
+vayan	complentando	
+ esto	permite	que	siempre	habra	un	sistema	demostrable	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+practicas en fdd [7] 
+ conguradon	management	
+
+ se	gesoonan	las	ulomas	versiones	de	codigo	
+ objeovoa	crear	un	historial	sobre	seguimiento	de	los	artefactos	del	proyecto	
+
+ progress	repordng	
+
+ apropiada	documentacion	en	todos	los	niveles		
+ respaldo	de	trabajo	terminado	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso	de	fdd	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [1] 
+ fdd	empieza		con	la	creacion	del	modelo	de	dominio	de	objeto	con	
+las	colaboracion	de	domain	experts.	
+ usando	 la	 informacion	 obtenida,	 los	 desarrolladores	 crean	 una	 lista	
+de	caracterisocas.	
+ luego,	el	plan	es	dibujado	y	las	responsabilidades	son	asignadas.	
+ se	conforman	pequenos	grupos	en	funcion	de	las	caracterisocas	en	
+donde	el	desarrollo	de	cada	caracterisoca	no	pase	de	2	semanas.	
+ en	 la	 siguiente	 slide	 se	 presenta	 el	 proceso	 [goyal,	 2007][calberg,	
+2007]	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [2] 
+
+develop an overall
+
+model
+
+build a features
+
+list
+
+plan by feature
+
+design by feature
+
+build by feature
+
+per	project	
+
+per	feature	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [3] 
+
+develop an overall
+
+model
+
+build a features
+
+list
+
+plan by feature
+
+design by feature
+
+build by feature
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [4] 
+ [palmer	et	al.,	2002]	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [5] 
+ develop	an	overall	model	
+
+ domain	experts,	chief	architect,	chief	programmers	
+
+ quien	parocipa?	
+ se	establece	la	forma	del	proyecto	
+ se	denen	las	clases	y	las	relaciones	
+ se	crea	la	base	del	modelo	de	objetos	
+ se	incluyen	entrevistas	con	el	cliente	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [6] 
+
+develop an overall
+
+model
+
+build a features
+
+list
+
+plan by feature
+
+design by feature
+
+build by feature
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [7] 
+ [palmer	et	al.,	2002]	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [8] 
+ build	a	features	list	
+ quien	parocipa?	
+ descomposicion	funcional	del	modelo	
+ se	analizan	las	tareas	del	negocio	y	se	traducen	en	tareas	de	equipo	
+ se	comienza	a	generar	valor	al	cliente	
+
+ domain	experts,	chief	programmers,	chief	architect		
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [9] 
+
+develop an overall
+
+model
+
+build a features
+
+list
+
+plan by feature
+
+design by feature
+
+build by feature
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [10] 
+ [palmer	et	al.,	2002]	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [11] 
+ plan	by	feature	
+
+ project	manager,	development	manager	y	chief	programmers	
+
+ quien	parocipa?	
+ se	clasica	el	grupo	de	caracterisocas	en	conjuntos	de	caracterisocas	
+ se	prioriza	en	base	a	las	necesidades	del	ciente	
+ se	establecen	fechas	de	compromisos	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [12] 
+
+develop an overall
+
+model
+
+build a features
+
+list
+
+plan by feature
+
+design by feature
+
+build by feature
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [13] 
+ [palmer	et	al.,	2002]	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [14] 
+ design	by	feature	
+ quien	parocipa?	
+ se	analiza	la	arquitectura	tecnica	del	proyecto	
+ 2	semanas	de	trabajo	
+ se	crean	diseno	de	clases	y	objetos,	diagramas	de	secuencia	(si	es	necesario)	
+ la	fuidez	de	comunicacion	entre	los	equipos	es	primordial	
+ se	pueden	hacer	actualizaciones	al	modelo	de	objetos	
+
+ chief	programmer,	class	owners	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [15] 
+
+develop an overall
+
+model
+
+build a features
+
+list
+
+plan by feature
+
+design by feature
+
+build by feature
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [16] 
+ [palmer	et	al.,	2002]	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+proceso de fdd [17] 
+ develop	by	feature	
+ quien	parocipa?	
+ implementar	
+ inspeccion	de	codigo	
+ pruebas	unitarias	
+ promocion	a	produccion	
+
+ class	owners,	chief	programmers	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+conclusiones	
+
+utfsm-di-2016	
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+conclusiones [1] 
+ [calberg,	vesocks.com]	
+
+rup 
+
+??? 
+
+scales to 
+
+tools 
+
+rational 
+
+process 
+
+heavy 
+
+roles 
+
+artifacts 
+
+~30 
+
+25-30 
+
+fdd 
+
+xp 
+
+10-250 
+developers 
+togethersoft 
+(borland) 
+medium 
+
+50 developers 
+
+??? 
+
+agile 
+
+~6 (9 optional) 
+
+~7 
+
+flexible 
+~10-15 
+
+~30 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so=ware		sesion	1:	introduccion	
+ingenieria	de	so=ware		sesion	8		fdd	
+
+conclusiones [2] 
+ fdd	es	un	metodo	que	ayuda	a	equipos	a	producir	trabajo	tangible.	
+ es	uol	para	funcionalidad	del	cliente	(features)	
+ fdd	se	enfoca	que	el	equipo	muestre	resultados	en	2	semanas	y	
+aporta	seguimiento	y	reporte	de	capacidades	
+ herramienta	para	trabajar	con	fdd	
+
+ htp://borland.com/en-gb/products/requirements-management/together	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria de software 
+
+feature	driven	development	
+
+hernan	astudillo	&	gaston	marquez	
+departamento	de	informa/ca	
+universidad	tecnica	federico	santa	maria	
+
+utfsm-di-2016	
+
+

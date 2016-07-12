@@ -97,39 +97,35 @@ def filters_selected(list, request, name):
 
 def home(request):
 	if request.user.is_authenticated() == True:
-		date_start = (date.today() - timedelta(5*365/12))
-		n = date_start.month#Initial Month
+		start_date = (date.today() - timedelta(5*365/12))
+		n = start_date.month#Initial Month
 		categories = Document.objects.values('category').annotate(count=Count('category'))
-		dates = Document.objects.filter(date_added__year__gte=date_start.year, date_added__month__gte=date_start.month)
+		dates = Document.objects.filter(date_added__gte=start_date.strftime('%Y-%m-1'))
 		months = []
 
 		for i in dates:
 			months.append(i.date_added.strftime('%B'))
 		months_counts =  dict(Counter(months))
-		months_map = {'January':1, 'February':2, 'March':3, 'April':4, 'May':5, 'June':6, 'July':7, 'August':8, 'September':9,'October':10, 'November':11,'December':12}
-		months_num = [1,2,3,4,5,6,7,8,9,10,11,12]
-		months_fixed_num = []
-		for val in months_num:
-			if (val - n)%13 == 0:
-				n = n-1
-			months_fixed_num.append((val - n)%13)
-		print months_counts
-		months_fixed = []
-		counts_fixed = []
-		for i in range(1, len(months_counts)+1):
-			for key, val in months_counts.iteritems():
-				fixed = months_fixed_num[months_map[key]-1]
-				if fixed == i:
-					months_fixed.append(_(key))
-					counts_fixed.append(str(val))
-
-		names_months = '"' + '" ,"'.join(months_fixed) + '"'
-		count_months = ','.join(counts_fixed)
+		months_map = {0: 'January', 1: 'February', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September',9: 'October', 10: 'November',11: 'December'}
+		actual_month = date.today().month
+		months = []
+		counts = []
+		for i in reversed(range(actual_month-1,actual_month - 7, -1)):
+			months.append(_(months_map[i%12]))
+			if months_map[i%12] in months_counts:
+				counts.append(str(months_counts[months_map[i%12]]))
+			else:
+				counts.append('0')
+		names_months = '"' + '" ,"'.join(months) + '"'
+		count_months = ','.join(counts)
 		names=[]
 		count=[]
 		for a in categories:
-			names.append(_(Area.objects.get(id=a['category']).name))
-			count.append(str(a['count']))
+			try:
+				names.append(_(Area.objects.get(id=a['category']).name))
+				count.append(str(a['count']))
+			except:
+				None
 		names_categories = '"' + '","'.join(names) + '"'
 		count_categories = ','.join(count)
 		return render(request, 'intranet/home.html', {'names_categories': names_categories, 'count_categories': count_categories, 'number_categories': len(names), 'names_months':names_months, 'count_months': count_months })
@@ -223,6 +219,7 @@ def upload(request):
 				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
 			elif 'local_ids' in request.POST:
 				local_ids = request.POST['local_ids'].split(',')
+				real_ids=[]
 				for id in local_ids:
 					if request.FILES['document'+id].size/1000 > 2048:
 						return JsonResponse({'error': True, 'message':_('El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
@@ -252,22 +249,45 @@ def upload(request):
 						document = form.save()
 						document.owner.update_activity().doc_number('+')
 						document.format_filename()
-						try:
-							text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-							text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
-							text_file.write(text_from_file.lower())
-							text_file.close()
-						except:
-							text_file =  open(document.document.url.replace('pdf', 'txt'), 'w')
-							text_file.close()
-						document.save_abstract()
-						document.keywords()
+						real_ids.append(document.id)
+						#try:
+						#	text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+						#	text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+						#	text_file.write(text_from_file.lower())
+						#	text_file.close()
+						#except:
+						#	text_file =  open(document.document.url.replace('pdf', 'txt'), 'w')
+						#	text_file.close()
+						#document.save_abstract()
+						#document.keywords()
 					else:
 						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error':str(form.errors)}})
-				return JsonResponse({'error': False, 'message':_('Subida exitosa')})
+				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'real_ids': real_ids})
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
+def extract_content_and_keywords(request):
+	if request.user.is_authenticated() == True:
+		if request.POST['ids']:
+			abstracts = []
+			for id in request.POST['ids'].split(','):
+				document = Document.objects.get(id=id) 
+				try:
+				    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+				    text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+				    text_file.write(text_from_file.lower())
+				    text_file.close()
+				except:
+				    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+				    text_file.close()
+				document.save_abstract()
+				document.keywords()
+				abstracts.append({'id': document.id, 'abstract': document.abstract})
+			return JsonResponse({'error': False, 'abstracts': abstracts})
+		else:
+			return JsonResponse({'error': True})
+	else:
+		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
 def pdf_viewer(request, title=None, author=None):
 	try:
@@ -302,11 +322,10 @@ def document(request, title=None, author=None):
 	if request.user.is_authenticated() == True:
 		try:
 			document = Document.objects.get(title=title, author=author)
-			related = Document.objects.values('title', 'author').filter(reduce(operator.or_, (Q(title__contains=x) for x in document.words.split(','))))
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
-			return render(request, 'intranet/document_information.html', {'current_view': 'intranet', 'document': document, 'related': related})
+			return render(request, 'intranet/document_information.html', {'current_view': 'intranet', 'document': document})
 		else:
 			return HttpResponse(_('No se encontro el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
 	else:
@@ -337,6 +356,7 @@ def edit_document(request, title=None, author=None):
 					document.save()
 					return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': request.POST['title'], 'author': request.POST['author']}))
 			elif request.method == "DELETE":
+				document.owner.doc_number('-')
 				document.delete()
 				return JsonResponse({'error': False})
 		else:

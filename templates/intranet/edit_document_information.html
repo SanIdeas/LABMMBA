@@ -19,7 +19,7 @@
 				<option value="6" {% if document.category.id = 6 %} selected {% endif %}>{% trans "Biorremediación de Ambientes Contaminados" %}</option>
 			</select>
 		</h5>
-		<h5><input type="date" name ="date" class="edit-field" value="{{document.date|date:'Y-m-d'}}"></h5>
+		<h5>{{document.date.year}}</h5>
 		<div id="type-wrapper" class="{{document.privacy}}"></div>
 	</div>
 	<div class="s2">
@@ -40,24 +40,18 @@
 						<td><strong>{% trans "Publicado el" %}:</strong></td>
 						<td><input type="date" class="edit-field" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
 					</tr>
-					{% if document.pages %}
 					<tr>
 						<td><strong>{% trans "Paginas" %}:</strong></td>
-						<td><input type="text" class="edit-field" name="pages" value="{{document.pages}}"></td>
+						<td><input type="text" class="edit-field" name="pages" {% if document.pages %} value="{{document.pages}}" {% endif %}></td>
 					</tr>
-					{% endif %}
-					{% if document.issn %}
 					<tr>
 						<td><strong>{% trans "ISSN" %}:</strong></td>
-						<td><input type="text" class="edit-field" name="issn" value="{{document.issn}}"></td>
+						<td><input type="text" class="edit-field" name="issn" {% if document.issn %} value="{{document.issn}}" {% endif %}></td>
 					</tr>
-					{% endif %}
-					{% if document.doi %}
 						<tr>
 							<td><strong>{% trans "DOI" %}:</strong></td>
-							<td><input type="text" class="edit-field" name="doi" value="{{document.doi}}"></td>
+							<td><input type="text" class="edit-field" name="doi" {% if document.doi %} value="{{document.doi}}" {% endif %}></td>
 						</tr>
-					{% endif %}
 					<tr>
 						<td><strong>{% trans "Agregado el" %}:</strong></td>
 						<td><input type="date" class="edit-field" name="date_added" value="{{document.date_added|date:'Y-m-d'}}"></td>
@@ -66,9 +60,11 @@
 			</div>
 			<div id="keywords">
 				<ul>
-				{% for keyword in document.get_keywords %}
-					<li><a class="rm-keyword" href="#">{{keyword}}</a></li>
-				{% endfor %}
+				{% if document.words %}
+					{% for keyword in document.get_keywords %}
+						<li><a class="rm-keyword" href="#">{{keyword}}</a></li>
+					{% endfor %}
+				{% endif %}
 					<li></i><input id="input-kwds" placeholder="{% trans 'Escribe una palabra clave' %}" type="text"></li>
 				</ul>
 			</div>

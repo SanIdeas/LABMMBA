@@ -1,0 +1,1317 @@
+craig
+larman
+valtech
+
+victor r.
+basili
+university of 
+maryland
+
+c o v e r   f e a t u r e
+
+iterative and incremental
+development:
+a brief history
+
+although many view iterative and incremental development as a modern
+practice, its application dates as far back as the mid-1950s. prominent
+software-engineering thought leaders from each succeeding decade
+supported iid practices, and many large projects used them successfully.
+
+a s agile methods become more popular,
+
+some  view  iterative,  evolutionary,  and
+incremental  software  developmenta
+cornerstone  of  these  methodsas  the
+modern replacement of the waterfall
+model, but its practiced and published roots go back
+decades. of course, many software-engineering stu-
+dents are aware of this, yet surprisingly, some com-
+mercial and government organizations still are not. 
+this description of projects and individual con-
+tributions provides compelling evidence of iterative
+and incremental developments (iids) long exis-
+tence. many examples come from the 1970s and
+1980sthe most active but least known part of
+iids history. we are mindful that the idea of iid
+came independently from countless unnamed pro-
+jects and the contributions of thousands and that
+this list is merely representative. we do not mean
+this article to diminish the unsung importance of
+other iid contributors.
+
+we  chose  a  chronology  of  iid  projects  and
+approaches rather than a deep comparative analy-
+sis. the methods varied in such aspects as iteration
+length and the use of time boxing. some attempted
+signicant up-front specication work followed by
+incremental time-boxed development, while others
+were more classically evolutionary and feedback
+driven. despite their differences, however, all the
+approaches had a common themeto avoid a sin-
+gle-pass sequential, document-driven, gated-step
+approach. 
+
+finally, a note about our terminology: although
+some prefer to reserve the phrase iterative devel-
+
+opment merely for rework, in modern agile meth-
+ods the term implies not just revisiting work, but
+also evolutionary advancementa usage that dates
+from at least 1968.
+
+pre-1970
+
+iid  grew  from  the  1930s  work  of  walter
+shewhart,1 a quality expert at bell labs who pro-
+posed a series of short plan-do-study-act (pdsa)
+cycles  for  quality  improvement.  starting  in  the
+1940s, quality guru w. edwards deming began
+vigorously  promoting  pdsa,  which  he  later
+described in 1982 in out of the crisis.2 tom gilb3
+and richard zultner4 also explored pdsa applica-
+tion to software development in later works.
+
+the x-15 hypersonic jet was a milestone 1950s
+project applying iid,5 and the practice was consid-
+ered a major contribution to the x-15s success.
+although the x-15 was not a software project, it is
+noteworthy because some personneland hence,
+iid experienceseeded nasas early 1960s project
+mercury, which did apply iid in software. in addi-
+tion, some project mercury personnel seeded the
+ibm federal systems division (fsd), another early
+iid proponent.
+
+project mercury ran with very short (half-day)
+iterations that were time boxed. the development
+team conducted a technical review of all changes,
+and,  interestingly,  applied  the  extreme  pro-
+gramming practice of test-rst development, plan-
+ning and writing tests before each micro-increment.
+they also practiced top-down development with
+stubs. 
+
+0018-9162/03/$17.00  2003 ieee
+
+p u b l i s h e d   b y   t h e   i e e e   c o m p u t e r   s o c i e t y
+
+june 2003
+
+47
+
+we were doing
+
+incremental
+
+development as
+early as 1957, in 
+los angeles, under
+
+the direction of
+bernie dimsdale 
+
+[at ibms 
+
+service bureau 
+corporation].
+
+the recollections of gerald m. weinberg,
+who worked on the project, provide a win-
+dow into some practices during this period. in
+a personal communication, he wrote:
+
+we were doing incremental development as
+early as 1957, in los angeles, under the direc-
+tion  of  bernie  dimsdale  [at  ibms  service
+bureau corporation]. he was a colleague of
+john von neumann, so perhaps he learned it
+there, or assumed it as totally natural. i do
+remember herb jacobs (primarily, though we
+all participated) developing a large simulation
+for motorola, where the technique used was,
+as far as i can tell, indistinguishable from xp.
+when much of the same team was reassem-
+bled in washington, dc in 1958 to develop project
+mercury, we had our own machine and the new
+share operating system, whose symbolic modi-
+cation and assembly allowed us to build the system
+incrementally, which we did, with great success.
+project mercury was the seed bed out of which
+grew the ibm federal systems division. thus, that
+division started with a history and tradition of
+incremental development.
+
+all of us, as far as i can remember, thought
+waterfalling of a huge project was rather stupid,
+or at least ignorant of the realities... i think what
+the waterfall description did for us was make 
+us realize that we were doing something else,
+something unnamed except for software devel-
+opment.
+
+the earliest reference we found that specically
+focused on describing and recommending iterative
+development was a 1968 report from brian randell
+and f.w. zurcher at the ibm t.j. watson research
+center.6 m.m. lehman later described randell and
+zurchers work and again promoted iterative devel-
+opment in his september 1969 internal report to
+ibm management on development recommenda-
+tions:7
+
+the basic approach recognizes the futility of sep-
+arating design, evaluation, and documentation
+processes in software-system design. the design
+process  is  structured  by  an  expanding  model
+seeded by a formal denition of the system, which
+provides a rst, executable, functional model. it is
+tested and further expanded through a sequence
+of models, that develop an increasing amount of
+function and an increasing amount of detail as to
+how that function is to be executed. ultimately,
+the model becomes the system.
+
+another 1960s reference comes from robert
+
+glass:8
+
+it is the opinion of the author that incremental
+development 
+leads  to 
+a  more  thorough  system  shakedown,  avoids
+implementer and management discouragement.
+
+is  worthwhile,  [it] 
+
+the seventies
+
+in his well-known 1970 article, managing the
+development  of  large  software  systems,
+winston royce shared his opinions on what would
+become known as the waterfall model, expressed
+within the constraints of government contracting
+at that time.9 manyincorrectlyview royces
+paper as the paragon of single-pass waterfall. in
+reality, he recommended an approach somewhat
+different  than  what  has  devolved  into  todays
+waterfall  concept,  with  its  strict  sequence  of
+requirements analysis, design, and development
+phases. indeed, royces recommendation was to
+do it twice:
+
+if  the  computer  program  in  question  is  being
+developed for the first time, arrange matters so
+that the version nally delivered to the customer
+for operational deployment is actually the second
+version insofar as critical design/operations areas
+are concerned.
+
+royce further suggested that a 30-month project
+might have a 10-month pilot model and justied
+its necessity when the project contains novel ele-
+ments and unknown factors (hardly a unique case).
+thus, we see hints of iterative development, feed-
+back, and adaptation in royces article. this iter-
+ative feedback-based step has been lost in most
+descriptions of this model, although it is clearly not
+classic iid.
+
+what did royce think about the waterfall ver-
+sus iid when he learned of the latter approach?
+in a personal communication, walker royce,
+his son and a contributor to popular iid meth-
+ods in the 1990s, said this of his father and the
+paper:
+
+he was always a proponent of iterative, incre-
+mental,  evolutionary  development.  his  paper
+described the waterfall as the simplest description,
+but that it would not work for all but the most
+straightforward projects. the rest of his paper
+describes [iterative practices] within the context
+of the 60s/70s government-contracting models (a
+serious set of constraints).
+
+48
+
+computer
+
+this was an ironic insight, given the inuence this
+paper had as part of the bulwark promoting a strict
+sequential life cycle for large, complex projects.
+
+the next earliest reference comes from harlan
+mills, a 1970s software-engineering thought leader
+who worked at ibm fsd. in his well-known top-
+down programming in large systems, mills pro-
+moted iterative development. in addition to his
+advice to begin developing from top-level control
+structures downward, perhaps less appreciated was
+the related life-cycle advice mills gave for building
+the system via iterated expansions:10
+
+... it is possible to generate a sequence of interme-
+diate systems of code and functional subspecica-
+tions so that at every step, each [intermediate]
+system can be veried to be correct...
+
+clearly, mills suggested iterative renement for
+the development phase, but he did not mention
+avoiding a large up-front specication step, did not
+specify iteration length, and did not emphasize
+feedback and adaptation-driven development from
+each iteration. he did, however, raise these points
+later in the decade. given his employment at ibm
+fsd, we suspect millss exposure to the more clas-
+sic iid projects run there in the early 1970s inu-
+enced his thought, but we could not conrm this
+with colleagues.
+
+early practice of more modern iid (feedback-dri-
+ven refinement with customer involvement and
+clearly delineated iterations) came under the lead-
+ership  of  mike  dyer,  bob  mchenry,  and  don
+oneill and many others during their tenure at ibm
+fsd. the divisions story is fascinating because of
+the extent and success of its iid use on large, life-
+critical us department of defense (dod) space and
+avionics systems during this time.
+
+the rst major documented ibm fsd applica-
+tion of iid that we know of was in 1972. this was
+no toy application, but a high-visibility life-critical
+system of more than 1 million lines of codethe
+command  and  control  system  for  the  first  us
+trident submarine. oneill was project manager,
+and  the  project  included  dyer  and  mchenry.
+oneill  conceived  and  planned  the  use  of  iid
+(which fsd later called integration engineering)
+on this project; it was a key success factor, and he
+was awarded an ibm outstanding contribution
+award for the work. (note that ibm leadership vis-
+ibly approved of iid methods.)
+
+the system had to be delivered by a certain date
+or fsd would face a $100,000 per day late penalty.
+the  team  organized  the  project  into  four  time-
+
+the rst major 
+documented 
+ibm fsd iid 
+
+application was 
+the life-critical 
+command and
+
+boxed iterations of about six months each.
+there was still a signicant up-front speci-
+cation effort, and the iteration was longer
+than normally recommended today. although
+some feedback-driven evolution occurred in
+the requirements, oneill noted that the iid
+approach was also a way to manage the com-
+plexity and risks of large-scale development.11
+also  in  1972,  an  ibm  fsd  competitor,
+trw, applied iid in a major projectthe
+$100 million trw/army site defense soft-
+ware project for ballistic missile defense. the
+project  began  in  february  1972,  and  the
+trw team developed the system in ve iter-
+ations. iteration 1 tracked a single object, and
+by iteration 5, a few years later, the system was
+complete.  the  iterations  were  not  strictly  time
+boxed, and there was signicant up-front speci-
+cation work, but the team rened each iteration in
+response to the preceding iterations feedback.12
+
+control system for
+the rst us trident
+
+submarine.
+
+as with ibm fsd, trw (where royce worked)
+was an early adopter of iid practices. indeed, barry
+boehm, the originator of the iid spiral model in the
+mid-1980s, was chief scientist at trw.
+
+another mid-1970s extremely large application
+of iid at fsd was the development of the light
+airborne  multipurpose  system,  part  of  the  us
+navys helicopter-to-ship weapon system. a four-
+year 200-person-year effort involving millions of
+lines of code, lamps was incrementally delivered
+in 45 time-boxed iterations (one month per itera-
+tion). this is the earliest example we found of a
+project that used an iteration length in the range of
+one to six weeks, the length that current popular
+iid methods recommend. the project was quite
+successful: as mills wrote, every one of those
+deliveries was on time and under budget.13
+
+in 1975, vic basili and joe turner published a
+paper  about  iterative  enhancement  that  clearly
+described classic iid:14
+
+the basic idea behind iterative enhancement is to
+develop a software system incrementally, allowing
+the developer to take advantage of what was being
+learned during the development of earlier, incre-
+mental,  deliverable  versions  of  the  system.
+learning comes from both the development and
+use of the system, where possible. key steps in the
+process were to start with a simple implementa-
+tion of a subset of the software requirements and
+iteratively enhance the evolving sequence of ver-
+sions until the full system is implemented. at each
+iteration, design modifications are made along
+with adding new functional capabilities. 
+
+june 2003
+
+49
+
+tom gilb
+
+introduced the 
+terms evolution
+and evolutionary
+
+to the process 
+
+lexicon.
+
+the paper detailed successful iid applica-
+tion to the development of extendable com-
+pilers  for  a  family  of  application-specific
+programming languages on a variety of hard-
+ware architectures. the project team devel-
+oped the base system in 17 iterations over 20
+months. they analyzed each iteration from
+both the users and developers points of view
+and used the feedback to modify both the
+language requirements and design changes in
+future iterations. finally, they tracked mea-
+sures, such as coupling and cohesion, over the mul-
+tiple iterations.
+
+in 1976, tom gilb published software metrics
+(coining the term), in which he discussed his iid
+practiceevolutionary project managementand
+introduced the terms evolution and evolution-
+ary to the process lexicon. this is the earliest book
+we could nd that had a clear iid discussion and
+promotion, especially of evolutionary delivery:3
+
+evolution  is  a  technique  for  producing  the
+appearance of stability. a complex system will be
+most successful if it is implemented in small steps
+and if each step has a clear measure of successful
+achievement as well as a retreat possibility to a
+previous successful step upon failure. you have the
+opportunity of receiving some feedback from the
+real  world  before  throwing  in  all  resources
+intended for a system, and you can correct possi-
+ble design errors...
+
+the book marked the arrival of a long-standing
+and passionate voice for evolutionary and iterative
+development. gilb is one of the earliest and most
+active iid practitioners and promoters. he began
+the practice in the early 1960s and went on to
+establish several iid milestones. his material was
+probably the rst with a clear avor of agile, light,
+and adaptive iteration with quick results, similar
+to that of newer iid methods. 
+
+by 1976, mills had strengthened his iid message:15
+
+software development should be done incremen-
+tally, in stages with continuous user participation
+and replanning and with design-to-cost program-
+ming within each stage.
+
+not in iterationi.e., that development is done in
+an open loop, rather than a closed loop with user
+feedback between iterations. the danger in the
+sequence [waterfall approach] is that the project
+moves from being grand to being grandiose, and
+exceeds our human intellectual capabilities for
+management and control.
+
+and perhaps reecting several years of seeing iid
+in action at fsd, mills asked, ...why do enter-
+prises tolerate the frustrations and difculties of
+such [waterfall] development?
+
+in  1977,  fsd  incorporated  the  trident  iid
+approach, which included integrating all software
+components at the end of each iteration into its
+software-engineering  practicesan  approach
+mchenry dubbed integration engineering. some
+trident team members and mills were key advisers
+in  this  incorporation  effort.16 integration  engi-
+neering spread to the 2,500 fsd software engi-
+neers, and the idea of iid as an alternative to the
+waterfall  stimulated  substantial  interest  within
+ibms commercial divisions and senior customer
+ranks and among its competitors.
+
+although  unknown  to  most  software  profes-
+sionals, another early and striking example of a
+major iid success is the very heart of nasas space
+shuttle softwarethe primary avionics software
+system, which fsd built from 1977 to 1980. the
+team applied iid in a series of 17 iterations over 31
+months, averaging around eight weeks per itera-
+tion.17 their motivation for avoiding the waterfall
+life cycle was that the shuttle programs require-
+ments changed during the software development
+process. ironically (in hindsight), the authors sound
+almost  apologetic  about  having  to  forego  the
+ideal waterfall model for an iid approach: 
+
+due  to  the  size,  complexity,  and  evolutionary
+[changing requirements] nature of the program, it
+was recognized early that the ideal software devel-
+opment life cycle [the waterfall model] could not
+be strictly applied...however, an implementation
+approach (based on small incremental releases)
+was devised for sts-1 which met the objectives by
+applying the ideal cycle to small elements of the
+overall software package on an iterative basis.
+
+using a three-year inventory system project as a
+backdrop, he challenged the idea and value of up-
+front requirements or design specication:
+
+...there are dangers, too, particularly in the con-
+duct of these [waterfall] stages in sequence, and
+
+the shuttle project also exhibited classic iid prac-
+tices: time-boxed iterations in the eight-week range,
+feedback-driven renement of specications, and
+so on.
+
+the rst iid discussion in the popular press that
+we could nd was in 1978, when tom gilb began
+
+50
+
+computer
+
+publishing a column in the uks computer weekly.
+the column regularly promoted iid, as well as evo-
+lutionary project management and delivery. in his
+6 april 1978 column, gilb wrote,
+
+a synonym for waterfall during this period
+suggests 
+its  unquestioned  dominance.
+contrast this to its qualied use in the 1990s,
+sequential  life  cycle  or  iterative  life
+cycle.)
+
+the iid practice 
+of evolutionary 
+prototyping was
+commonly used 
+in 1980s efforts 
+to create articial
+
+intelligence
+systems.
+
+management does not require firm estimates of
+completion, time, and money for the entire pro-
+ject. each [small iterative] step must meet one of
+the following criteria (priority order): either (a)
+give planned return on investment payback, or, if
+impossible, then (b) give breakeven (no loss); or, at
+least, (c) some positive user benet measurably; or,
+at least (d) some user environment feedback and
+learning.
+
+another discussion of incremental development,
+although published in 1984, refers to a system
+development corp. project to build an air defense
+system, which began in 1977 and nished in 1980.
+the project combined signicant up-front speci-
+cations with incremental development and builds.
+ostensibly, the project was meant to t within dod
+single-pass waterfall standards, with testing and
+integration in the last phase. carolyn wong com-
+ments on the unrealism of this approach and the
+teams need to use incremental development:18
+
+the [waterfall] model was adopted because soft-
+ware  development  was  guided  by  dod  stan-
+dards...  in  reality,  software  development  is  a
+complex,  continuous,  iterative,  and  repetitive
+process. the [waterfall model] does not reect this
+complexity. 
+
+the eighties
+
+in 1980, weinberg wrote about iid in adaptive
+programming: the new religion, published in
+australasian computerworld. summarizing the
+article, he said, the fundamental idea was to build
+in small increments, with feedback cycles involv-
+ing the customer for each. a year later, tom gilb
+wrote in more detail about evolutionary develop-
+ment.19
+
+in the same year, daniel mccracken and michael
+jackson promoted iid and argued against the stul-
+tifying waterfall in a chapter within a software
+engineering  and  design  text  edited  by  william
+cotterman.  the  chapters  title,  a  minority
+dissenting position, underscored the subordinate
+position of iid to the waterfall model at the time.20
+their arguments continued in life-cycle concept
+considered harmful,21 a 1982 twist on edsger
+dijkstras  late  1960s  classic  go  to  statement
+considered harmful.22 (the use of life cycle as
+
+in  1982,  william  swartout  and  robert
+balzer argued that specication and design
+have a necessary interplay, and they promoted
+an  iterative  and  evolutionary  approach  to
+requirements engineering and development.23
+the same year also provided the earliest ref-
+erence to a very large application successfully
+built using evolutionary prototyping, an iid
+approach that does not usually include time-
+boxed iterations. the $100 million military com-
+mand  and  control  project  was  based  on  ibms
+customer information control system technology.24
+in  1983,  grady  booch  published  software
+engineering with ada,25 in which he described an
+iterative process for growing an object-oriented sys-
+tem. the book was inuential primarily in the dod
+development community, but more for the object-
+oriented design method than for its iterative advice.
+however, boochs later 1990s books that covered
+iid found a large general audience, and many rst
+considered or tried iterative development through
+their inuence.
+
+the early 1980s was an active period for the
+(attempted) creation of articial intelligence systems,
+expert systems, and so on, especially using lisp
+machines. a common approach in this community
+was the iid practice of evolutionary prototyping.26
+in another mid-1980s questioning of the sequen-
+tial life cycle, gilb wrote evolutionary delivery
+versus the waterfall model. in this paper, gilb
+promoted a more aggressive strategy than other iid
+discussions of the time, recommending frequent
+(such as every few weeks) delivery of useful results
+to stakeholders.27
+
+a  1985  landmark  in  iid  publications  was 
+barry  boehms  a  spiral  model  of  software
+development and enhancement (although the
+more frequent citation date is 1986).28 the spiral
+model was arguably not the rst case in which a
+team prioritized development cycles by risk: gilb
+and ibm fsd had previously applied or advocated
+variations of this idea, for example. however, the
+spiral model did formalize and make prominent the
+risk-driven-iterations concept and the need to use
+a discrete step of risk assessment in each iteration.
+in 1986, frederick brooks, a prominent soft-
+ware-engineering thought leader of the 1970s and
+1980s, published the classic no silver bullet
+extolling the advantages of iid:29
+
+june 2003
+
+51
+
+the cleanroom
+
+method 
+
+incorporated 
+evolutionary 
+development 
+with more formal
+
+methods of 
+specication 
+and proof.
+
+nothing in the past decade has so radically
+changed my own practice, or its effectiveness
+[as incremental development].
+
+commenting on adopting a waterfall process,
+brooks wrote:
+
+much of present-day software acquisition pro-
+cedure rests upon the assumption that one can
+specify a satisfactory system in advance, get
+bids for its construction, have it built, and
+install it. i think this assumption is fundamen-
+tally wrong, and that many software acquisi-
+tion problems spring from that fallacy.
+
+perhaps summing up a decade of iid-promoting
+messages to military standards bodies and other
+organizations, brooks made his point very clear in
+his  keynote  speech  at  the  1995  international
+conference on software engineering: the water-
+fall model is wrong!
+
+in 1986, david parnas and paul clements pub-
+lished a rational design process: how and why
+to fake it.30 in it, they stated that, although they
+believe in the ideal of the waterfall model (thorough,
+correct, and clear specications before develop-
+ment), it is impractical. they listed many reasons,
+including (paraphrased)
+
+ a systems users seldom know exactly what
+they want and cannot articulate all they know.
+ even if we could state all requirements, there
+are many details that we can only discover
+once we are well into implementation.
+
+ even if we knew all these details, as humans,
+
+we can master only so much complexity.
+
+ even if we could master all this complexity,
+external  forces  lead  to  changes  in  require-
+ments, some of which may invalidate earlier
+decisions.
+
+and commented that for all these reasons, the pic-
+ture of the software designer deriving his design in
+a  rational,  error-free  way  from  a  statement  of
+requirements is quite unrealistic.
+
+in 1987, trw launched a four-year project to
+build the command center processing and display
+system replacement (ccpds-r), a command and
+control system, using iid methods. walker royce
+described the effort in 60 pages of detail.31 the
+team time-boxed six iterations, averaging around
+six months each. the approach was consistent
+with  what  would  later  become  the  rational
+unified  process  (to  which  royce  contributed):
+
+attention to high risks and the core architecture in
+the early iterations. 
+
+bill curtis and colleagues published a particu-
+larly  agile-relevant  paper  during  this  decade,32
+reporting results on research into the processes that
+inuenced 19 large projects. the authors identied
+that the prescriptive waterfall model attempted to
+satisfy management accountability goals, but they
+did not describe how projects successfully ran. the
+paper  also  noted  that  successful  development
+emphasizes  a  cyclic  learning  process  with  high
+attention to peoples skills, common vision, and
+communication issues, rather than viewing the
+effort as a sequential manufacturing process. as
+the authors state,
+
+the conclusion that stands out most clearly from
+our eld study observations is that the process of
+developing large software systems must be treated,
+at least in part, as a learning and communication
+process.
+
+in  1987,  as  part  of  the  ibm  fsd  software
+engineering practices program, mills, dyer, and
+rick linger continued the evolution of iid with
+the cleanroom method, which incorporated evo-
+lutionary development with more formal methods
+of specication and proof, reecting millss strong
+mathematical inuences.33
+
+by the late 1980s, the dod was experiencing
+signicant failure in acquiring software based on
+the strict, document-driven, single-pass waterfall
+model  that  dod-std-2167  required.  a  1999
+review of failure rates in a sample of earlier dod
+projects drew grave conclusions: of a total $37
+billion for the sample set, 75% of the projects
+failed or were never used, and only 2% were used
+without extensive modication.34 consequently,
+at the end of 1987, the dod changed the water-
+fall-based standards to allow iid, on the basis of
+recommendations in an october 1987 report from
+the defense science board task force on military
+software, chaired by brooks. the report recom-
+mended replacing the waterfall, a failing approach
+on many large dod projects, with iterative devel-
+opment:
+
+dod-std-2167 likewise needs a radical overhaul
+to reect modern best practice. draft 2167a is a
+step, but it does not go nearly far enough. as
+drafted, it continues to reinforce exactly the doc-
+ument-driven, specify-then-build approach that
+lies at the heart of so many dod software prob-
+lems....
+
+52
+
+computer
+
+in the decade since the waterfall model was devel-
+oped, our discipline has come to recognize that
+[development]  requires  iteration  between  the
+designers and users. 
+
+finally, in a section titled professional humility
+and  evolutionary  development  (humility  to
+accept that the 2167s goalsget the specications
+accurate without incremental implementation and
+feedbackwas not possible), the report stated:
+
+experience  with  confidently  specifying  and
+painfully building mammoths has shown it to be
+simplest, safest, and even fastest to develop a com-
+plex software system by building a minimal ver-
+sion, putting it into actual use, and then adding
+functions [and other qualities] according to the
+priorities that emerge from actual use. 
+
+evolutionary development is best technically,
+
+and it saves time and money.
+
+both dod overseers and contractors often view
+the updated dod-std-2167a, released in february
+1988, as the epitome of a waterfall specication.
+yet, its authors actually wanted it to be an amend-
+ment (hence the a) for life-cycle neutrality that
+allowed iid alternatives to the waterfall: 
+
+this standard is not intended to specify or dis-
+courage the use of any particular software devel-
+opment method. the contractor is responsible for
+selecting  software  development  methods  (for
+example, rapid prototyping) that best support the
+achievement of contract requirements.
+
+despite this intent, many (justiably) interpreted
+the new standard as containing an implied prefer-
+ence for the waterfall model because of its contin-
+ued document-driven milestone approach. 
+
+ironically, in a conversation nearly a decade later,
+the principal creator of dod-std-2167 expressed
+regret for creating the strict waterfall-based stan-
+dard. he said that at the time he knew of the sin-
+gle-pass document-driven waterfall model, and
+others he questioned advised it was excellent, as
+did the literature he examined, but he had not heard
+of iterative development. in hindsight, he said he
+would have made a strong recommendation for iid
+rather than the waterfall model.
+
+in 1988, gilb published principles of software
+engineering management, the rst book with sub-
+stantial chapters dedicated to iid discussion and
+promotion.35 in it he reiterated and expanded on
+the  iid  material  from  software  metrics.  gilb
+
+described the evo method, distinguished by
+frequent evolutionary delivery and an empha-
+sis on dening quantied measurable goals
+and then measuring the actual results from
+each time-boxed short iteration.
+
+1990 to the present
+
+by the 1990s, especially the latter half, pub-
+lic awareness of iid in software development
+was signicantly accelerating. hundreds of
+books and papers were promoting iid as their
+main or secondary theme. dozens more iid
+methods sprang forth, which shared an in-
+creasing trend to time-boxed iterations of one
+to six weeks.
+
+in the 1970s and 1980s, some iid projects
+
+tom gilbs
+principles of
+software 
+engineering 
+
+management was
+the rst book with
+substantial chapters
+
+dedicated to 
+iid discussion 
+and promotion.
+
+still incorporated a preliminary major specication
+stage, although their teams developed them in iter-
+ations with minor feedback. in the 1990s, in con-
+trast,  methods  tended  to  avoid  this  model,
+preferring  less  early  specification  work  and  a
+stronger evolutionary analysis approach.
+
+the dod was still experiencing many failures with
+waterfall-mentality projects. to correct this and
+to reemphasize the need to replace the waterfall
+model with iid, the defense science board task
+force on acquiring defense software commercially,
+chaired by paul kaminski, issued a report in june
+1994 that stated simply, dod must manage pro-
+grams using iterative development. apply evolu-
+tionary  development  with  rapid  deployment  of
+initial functional capability.
+
+consequently, in december 1994, mil-std-498
+replaced  2167a.  an  article  by  maj.  george
+newberry summarizing the changes included a sec-
+tion titled removing the waterfall bias, in which
+he described the goal of encouraging evolutionary
+acquisition and iid:36
+
+mil-std-498 describes software development in one
+or more incremental builds. each build implements
+a specied subset of the planned capabilities. the
+process steps are repeated for each build, and within
+each build, steps may be overlapping and iterative.
+
+mil-std-498 itself clearly states the core iid prac-
+tices of evolving requirements and design incre-
+mentally with implementation:
+
+if a system is developed in multiple builds, its
+requirements may not be fully defined until the
+nal build.... if a system is designed in multiple
+builds, its design may not be fully dened until the
+nal build.
+
+june 2003
+
+53
+
+xp garnered 
+
+signicant public
+attention because 
+of its emphasis on
+communication,
+simplicity, and 
+testing, and its 
+
+sustainable
+
+developer-oriented
+
+practices.
+
+meanwhile, in the commercial realm, jeff
+sutherland and ken schwaber at easel corp.
+had started to apply what would become
+known  as  the  scrum  method,  which
+employed time-boxed 30-day iterations. the
+method took inspiration from a japanese iid
+approach used for nonsoftware products at
+honda, canon, and fujitsu in the 1980s;
+from shashimi (slices or iterations); and
+from a version of scrum described in 1986.37
+a 1999 article described their later refine-
+ments to scrum.38
+
+in january 1994, a group of 16 rapid appli-
+cation development (rad) practitioners met
+in the uk to discuss the denition of a stan-
+dard iterative process to support rad devel-
+opment. the group drew inspiration from james
+martins rad teachings. martin, in turn, had taken
+his  inspiration  from  the  time-boxing  work  at
+dupont, led by scott shultz in the mid-1980s. the
+rad groups process denition would eventually
+become  the  dynamic  systems  development
+method (dsdm), an iid method that predictably
+had more early advocates in europe and has since
+spread.39
+
+in the early 1990s, a consortium of companies
+began  a  project  to  build  a  new-generation
+canadian automated air trafc control system
+(caats) using a risk-driven iid method. the pro-
+ject,  under  the  process  leadership  of  philippe
+kruchten, used a series of six-month iterations, rel-
+atively long by todays standards. the project was
+a success, despite its prior near-failure applying a
+waterfall approach.40
+
+in  the  mid-1990s,  many  contributors  within
+rational corp. (including kruchten and walker
+royce) and its clients created the rational unied
+process, now a popular iid method. a 1995 mile-
+stone was the public promotion of the daily build
+and smoke test, a widely influential iid practice
+institutionalized by microsoft that featured a one-
+day micro-iteration.41
+
+in 1996, kent beck joined the chrysler c3 pay-
+roll project. it was in this context that the full set of
+xp practices matured, with some collaboration by
+ron jeffries and inspiration from earlier 1980s
+work at tektronix with ward cunningham. xp
+went  on  to  garner  significant  public  attention
+because of its emphasis on communication, sim-
+plicity,  and  testing,  its  sustainable  developer-
+oriented practices, and its interesting name.42
+
+in 1997, a project to build a large logistics system
+in singapore, which had been running as a water-
+fall project, was facing failure. with the collabora-
+
+tion of peter coad and jeff de luca, the team res-
+urrected it and ran it as a successful iid project.
+deluca created an overall iterative process descrip-
+tion, feature-driven development (fdd), that also
+incorporated ideas from coad.43
+
+in 1998, the standish group issued its widely
+cited chaos: charting the seas of information
+technology, a report that analyzed 23,000 pro-
+jects to determine failure factors. the top reasons
+for project failure, according to the report, were
+associated with waterfall practices. it also con-
+cluded that iid practices tended to ameliorate the
+failures. one of the reports key conclusions was
+to adopt iid:
+
+research also indicates that smaller time frames,
+with delivery of software components early and
+often, will increase the success rate. shorter time
+frames result in an iterative process of design, pro-
+totype, develop, test, and deploy small elements.
+
+in  2000,  dod  replaced  mil-std-498  with
+another  software  acquisition  standard,  dod
+5000.2, which again recommended adopting evo-
+lutionary acquisition and the use of iid:
+
+there are two approaches, evolutionary and sin-
+gle step [waterfall], to full capability. an evolu-
+tionary  approach  is  preferred.  ...  [in  this]
+approach, the ultimate capability delivered to the
+user is divided into two or more blocks, with
+increasing  increments  of  capability...software
+development shall follow an iterative spiral devel-
+opment process in which continually expanding
+software versions are based on learning from ear-
+lier development.
+
+in 2001, alan maccormack reported a study of
+key success factors in recent projects; rst among
+these was adopting an iid life cycle:44
+
+now there is proof that the evolutionary approach
+to  software  development  results  in  a  speedier
+process and higher-quality products. [...] the iter-
+ative process is best captured in the evolutionary
+delivery model proposed by tom gilb.
+
+in  february  2001,  a  group  of  17  process
+expertsrepresenting dsdm, xp, scrum, fdd,
+and othersinterested in promoting modern, sim-
+ple iid methods and principles met in utah to dis-
+cuss common ground. from this meeting came the
+agile alliance (www.agilealliance.org) and the now
+popular catch phrase agile methods, all of which
+
+54
+
+computer
+
+apply iid. and in 2002, alistair cockburn, one of
+the participants, published the rst book under the
+new appellation.45
+
+i n a typical quip, h.l. mencken said, for every
+
+complex problem, there is a solution that is sim-
+ple, neat, and wrong. in the history of science,
+it is the norm that simplistic but inferior ideas rst
+hold the dominant position, even without sup-
+porting results. medicines four humors and related
+astrological diagnosis and prescription dominated
+europe for more than a millennium, for example.
+software development is a very young eld, and
+it is thus no surprise that the simplied single-pass
+and document-driven waterfall model of require-
+ments, design, implementation held sway during
+the rst attempts to create the ideal development
+process. other reasons for the waterfall ideas early
+adoption or continued promotion include:
+
+ its  simple  to  explain  and  recall.  do  the
+requirements, then design, and then imple-
+ment. iid is more complex to understand and
+describe. even winston royces original two-
+iteration waterfall immediately devolved into
+a single sequential step as other adopters used
+it and writers described it.
+
+ it gives the illusion of an orderly, accountable,
+and measurable process, with simple docu-
+ment-driven milestones (such as requirements
+complete).
+
+ it was promoted in many software engineering,
+requirements  engineering,  and  management
+texts, courses, and consulting organizations. 
+it was labeled appropriate or ideal, seemingly
+unaware of this history or of the statistically
+signicant research evidence in favor of iid.
+
+this brief history shows that iid concepts have
+been and are a recommended practice by promi-
+nent software-engineering thought leaders of each
+decade, associated with many successful large pro-
+jects, and recommended by standards boards. 
+
+yet, even though the value of iid is well known
+among literate, experienced software engineers,
+some commercial organizations, consulting com-
+panies, and standards bodies still promote a docu-
+ment-driven single-pass sequential life cycle as the
+ideal. we conclude with this recommendation: in
+the interest of promoting greater project success
+and saving taxpayer or investor dollars, lets con-
+tinue efforts to educate and promote the use of 
+iid methods. i
+
+references
+1. w. shewhart, statistical method from the viewpoint
+of  quality  control,  dover,  1986  (reprint  from
+1939).
+
+2. w.e. deming, out of the crisis, spc press, 1982;
+
+reprinted in paperback by mit press, 2003.
+
+3. t. gilb, software metrics, little, brown, and co.,
+
+1976 (out of print).
+
+4. r. zultner, the deming approach to quality soft-
+ware engineering, quality progress, vol. 21, no. 11,
+1988, pp. 58-64. 
+
+5. w.h. dana, the x-15 lessons learned, tech. report,
+
+nasa dryden research facility, 1993.
+
+6. b. randell and f.w. zurcher, iterative multi-level
+modeling: a methodology for computer system
+design, proc. ifip, ieee cs press, 1968, pp. 867-
+871.
+
+7. m.m. lehman, the programming process, inter-
+nal ibm report, 1969; reprinted in program evolu-
+tionprocesses of software change, academic press,
+1985.
+
+8. r. glass, elementary level discussion of com-
+piler/interpreter writing, acm computing surveys,
+mar. 1969, pp. 64-68.
+
+9. w. royce, managing the development of large
+software systems, proc. westcon, ieee cs press,
+1970, pp. 328-339.
+
+10. h. mills, debugging techniques in large systems,
+
+software productivity, dorset house, 1988.
+
+11. d. oneill, integration engineering perspective, j.
+
+systems and software, no. 3, 1983, pp. 77-83.
+
+12. r.d. williams, managing the development of reli-
+able software, proc. intl conf. reliable software,
+acm press, 1975, pp. 3-8.
+
+13. h. mills, principles of software engineering, ibm
+
+systems j., vol. 19, no. 4, 1980, pp. 289-295.
+
+14. v. basili and j. turner, iterative enhancement: a
+practical technique for software development,
+ieee trans. software eng., dec. 1975, pp. 390-
+396.
+
+15. h. mills, software development, ieee trans.
+
+software eng., dec. 1976, pp. 265-273.
+
+16. d. oneill, the management of software engi-
+neering, ibm systems j., vol. 19, no. 4, 1980, pp.
+421-431.
+
+17. w. madden and k. rone, design, development,
+integration: space shuttle flight software system,
+comm. acm, sept. 1984, pp. 914-925.
+
+18. c. wong, a successful software development,
+ieee trans. software eng., no. 3, 1984, pp. 714-
+727.
+
+19. t. gilb, evolutionary development, acm soft-
+
+ware eng. notes, apr. 1981, p. 17.
+
+20. w.w. cotterman et al., eds., systems analysis and
+
+june 2003
+
+55
+
+design: a foundation for the 1980s, north-hol-
+land, 1981.
+
+ment, pattern languages of program design, vol.
+4, 1999, pp. 637-651.
+
+21. d. mccracken and m. jackson, life-cycle concept
+considered harmful, acm software eng. notes,
+apr. 1982, pp. 29-32.
+
+22. e. dijkstra, go to statement considered harmful,
+
+comm. acm, mar. 1968, pp. 147-148. 
+
+23. w. swartout and r. balzer, on the inevitable inter-
+twining  of  specification  and  implementation,
+comm. acm, july 1982, pp. 438-440.
+
+24. d. tamanaha, an integrated rapid prototyping
+methodology for command and control systems:
+experience and insight, acm software eng. notes,
+dec. 1982, pp. 387-396.
+
+25. g. booch, software engineering with ada, benjamin-
+
+cummings, 1983.
+
+26. r. budde et al., eds., approaches to prototyping,
+
+springer verlag, 1984.
+
+27. t. gilb, evolutionary delivery versus the waterfall
+model, acm software requirements eng. notes,
+july 1985.
+
+28. b. boehm, a spiral model of software development
+and enhancement, proc. intl workshop software
+process and software environments, acm press,
+1985; also in acm software eng. notes, aug. 1986,
+pp. 22-42.
+
+29. f. brooks, no silver bullet: essence and accidents
+of software engineering, proc. ifip, ieee cs press,
+1987, pp. 1069-1076; reprinted in computer, apr.
+1987, pp. 10-19.
+
+30. d.  parnas  and  p.  clements,  a  rational  design
+process: how and why to fake it, ieee trans.
+software eng., feb. 1986, pp. 251-257.
+
+31. w. royce, software project management, addison-
+
+wesley, 1998.
+
+32. w. curtis et al., on building software process mod-
+els under the lamppost, proc. intl conf. software
+eng., ieee cs press, 1987, pp. 96-103.
+
+33. h. mills et al., cleanroom software engineering,
+
+ieee software, sept. 1987, pp. 19-25.
+
+34. s. jarzombek, proc. joint aerospace weapons sys-
+tems support, sensors and simulation symp., govt
+printing ofce press, 1999.
+
+35. t. gilb, principles of software engineering manage-
+
+ment, addison wesley longman, 1989.
+
+36. g.a. newberry, changes from dod-std-2167a
+to mil-std-498, crosstalk: j. defense software
+eng.,  apr.  1995;  www.stsc.hill.af.mil/crosstalk/
+frames.asp?uri=1995/04/changes.asp.
+
+37. h. takeuchi and i. nonaka, the new new product
+development game, harvard business rev., jan.
+1986, pp. 137-146.
+
+38. m. beedle et al., scrum: an extension pattern
+language for hyperproductive software develop-
+
+39. j. stapleton, dsdm: dynamic systems development
+
+method, addison-wesley, 1997.
+
+40. p.  kruchten,  rational  development  process,
+crosstalk:  j.  defense  software  eng.,  july  1996;
+www.stsc.hill.af.mil/crosstalk/frames.asp?uri=1996/07/
+rational.asp.
+
+41. j. mccarthy, dynamics of software development,
+
+microsoft press, 1995.
+
+42. k. beck, extreme programming explained: embrace
+
+change, addison-wesley, 1999.
+
+43. p. coad et al., feature-driven development, in
+java modeling in color with uml, prentice hall,
+1999.
+
+44. a. maccormack, product-development practices
+that work, mit sloan management rev., vol. 42,
+no. 2, 2001, pp. 75-84.
+
+45. a. cockburn, agile software development, addi-
+
+son-wesley, 2002.
+
+craig larman is chief scientist for valtech, an
+international consulting company, and he speaks
+and consults worldwide. he is also the author of
+agile  and  iterative  development:  a  managers
+guide (addison-wesley, 2003), which examines
+both historical and other forms of evidence demon-
+strating the advantages of iterative methods. lar-
+man  is  a  member  of  the  acm  and  the  ieee.
+contact him at craig@craiglarman.com.
+
+victor r. basili is a professor of computer science
+at the university of maryland and executive direc-
+tor of the fraunhofer center-maryland, where he
+works on measuring, evaluating, and improving
+the software development process and product. he
+is an ieee and acm fellow and co-editor-in-chief
+of kluwers empirical software engineering: an
+international journal. contact him at basili@cs.
+umd.edu.
+
+56
+
+computer
+
+

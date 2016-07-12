@@ -1,0 +1,1488 @@
+successful software project and products:  
+
+an empirical investigation 
+
+richard berntsson-svensson 
+school of information systems,  
+technology and management 
+university of new south wales 
+
+sydney nsw 2052 
+
+australia 
+
+aybuke aurum 
+
+school of information systems,  
+technology and management 
+university of new south wales 
+
+sydney nsw 2052 
+
+australia 
+
+z3167700@student.unsw.edu.au 
+
+aybuke@unsw.edu.au
+
+ 
+
+ 
+
+abstract 
+the circumstances surrounding the success and failure of software 
+projects  have  been  a  topic  of  discussion  among  both  practitioners 
+and  researchers  for  many  years.  a  classical  definition  of  project 
+success is one that is within budget and on time. some of the most 
+common  factors  identified  in  the  literature  as  leading  to  software 
+project  success  are  user  involvement,  management  support  and 
+realistic  requirements.  studies  have  indicated  that  managers  have 
+different perceptions from software practitioners when it comes to 
+defining  a  successful  software  project.  the  observation  of  this 
+difference  of  opinions  has  led  us  to  the  question:  could  there  be 
+different  perceptions  about  what  effect  various  factors  have  on 
+software  project  success  among  different  industries?  this  paper 
+presents  an  empirical  study.  firstly,  it  begins  with  a  detailed 
+investigation  of  software  product  and  project  success  factors. 
+secondly,  it  examines  success  factors  for  software  projects  and 
+products  across  a  selection  of  different  industries,  based  on  data 
+collected  from  companies  in  sweden  and  australia.  thirdly,  it 
+studies  how  practitioners  in  industry  define  success  factors  for 
+software projects and products. 
+
+categories and subject descriptors 
+k.6.3  [management  of  computing  and  information  systems]: 
+software management  software development. 
+
+general terms 
+management, measurement. 
+
+keywords 
+product success, success factors, successful project. 
+ 
+1.  introduction 
+despite  experiencing  many  successful  software  projects,  software 
+engineers  still  struggle  to  ensure  the  consistent  success  of  their 
+
+ 
+permission to make digital or hard copies of all or part of this work for 
+personal or classroom use is granted without fee provided that copies are 
+not  made  or  distributed  for  profit  or  commercial  advantage  and  that 
+copies  bear  this  notice  and  the  full  citation  on  the  first  page.  to  copy 
+otherwise,  or  republish,  to  post  on  servers  or  to  redistribute  to  lists, 
+requires prior specific permission and/or a fee. 
+isese'06, september 2122, 2006, rio de janeiro, brazil. 
+copyright 2006 acm 1-59593-218-6/06/0009...$5.00. 
+. 
+
+projects.  most  software  engineers  will  concede  that  they  have 
+experienced one of the many software project failures during their 
+careers. [6, 8, 27]. 
+the chaos report from the standish group [20] indicates that over 
+the  years  there  has  been  great  improvement  in  the  delivery  of 
+software systems that meet business objectives within budget and on 
+schedule.  the  report  shows  that  in  1994,  31%  of  all  software 
+projects failed and only 16% of the projects were successful [18]. 
+four years later, only 28% of the projects failed and the success rate 
+had increased to 26% [19]. another two years later, the success rate 
+had increased to 28% while only 23% of all projects failed [20].  
+while the chaos report presents an encouraging view, others have 
+argued  that  the  measure  of  success  will  vary depending on how 
+you define it. successful software projects have been described as 
+projects  that  are  completed  within  budget,  on  schedule,  and  that 
+meet  business  objectives  [8,  12,  18].  others  have  suggested  that 
+success  depends  on  the  perspective  of  stakeholders.  linberg  [12] 
+found  that  there  are  differences  of  opinion  between  project 
+participants  (developers)  and  managers when it comes to defining 
+what constitutes a successful software project. linbergs conclusion 
+suggests that a new theory of success might be needed. this theory 
+would  account  for  differences  in  opinions  and  experiences  across 
+different  industries  with  regard  to  success  factors  in  software 
+development. 
+in  the  context  above,  our  literature  review  revealed  three  issues. 
+firstly,  there  are  several  studies  in  software  engineering  and 
+information  systems  literature  that  investigate  success  factors  in 
+software projects. however, their findings do not always correlate 
+with one another given the differing nature of the projects and the 
+industries that have been investigated (see table 1). secondly, we 
+found that the previous research findings for project success factors 
+overlap with product success factors. in other words, project success 
+factors are intertwined with project success factors [3, 25]. thirdly, 
+to the best of our knowledge, no study has specifically investigated 
+how software practitioners define software product success factors 
+in an industrial context. 
+the objective of this article is to explore project and product success 
+factors  in  the  software  industry,  namely  the  financial  services, 
+consulting and telecommunications industries. furthermore, it aims 
+to compare the views of respondents of different types of industries 
+as to the factors that lead to software project and product success 
+and as to what constitutes a successful software project and product. 
+this article presents the results of an empirical study, based on data 
+collected from 27 software projects at 11 companies in sweden and 
+
+australia,  in  an  attempt  to  assist  practitioners  and  researchers  to 
+share their perspectives. 
+the  contribution  of  this  article  is  two  fold:  (1)  it  provides  a 
+comparison  of  success  factors  for  software  projects  and  products 
+between  different  industries  based  on  data  from  the  industries 
+themselves,  and  (2)  it  studies  how practitioners  in  industry  define 
+success factors for software projects and products. 
+the  remainder  of  this  paper  is  organized  as  follows:  in  section  2 
+related  works  are  reviewed.  section  3  presents  the  research 
+methodology that was used and how the research design. section 4 
+presents the results while section 5 discusses the findings. in section 
+6, the validity of the research is discussed and the conclusions are 
+presented in section 7. 
+
+2.  related work 
+this section presents how the literature defines successful software 
+projects and products as well as which key factors leads to project 
+success.  
+2.1 defining project and product success 
+what  is  a  successful  software  project?  a  classical  definition  of 
+project  success,  as  mentioned  earlier,  is  one  that  is  within  budget 
+and on time. the most common definition of project success is the 
+one  from  the  standish  study  [18],  which  defines  software  project 
+success  as  meeting  budget,  delivery,  and  business  objectives. 
+kerzner [9] also defines project success as completed within time, 
+within  budget,  within  scope,  meeting  performance  requirements, 
+and  obtaining  user  acceptance.  according  to  lewis  [11],  project 
+success could be defined as meeting performance requirements, cost 
+requirements,  time  restrictions,  and  project  scope.  there  are 
+instances, however, where projects that meet all of these factors are 
+not necessarily viewed as successful. on the other hand, there are 
+projects  that  do  not  meet  above  criteria,  but  that  are  considered 
+successful nonetheless [11].  
+in  addition,  product  success  is  not  readily  defined,  although  it  is 
+generally  regarded  as  being  a  product 
+that  satisfies  user 
+requirements. there is little information in the literature about the 
+definition of successful software products. existing studies [7, 25] 
+that discuss software products usually refer to them in the context of 
+software projects, without detailed and dedicated discussion. 
+2.2 project success versus product success 
+baccarini [2] argues that project success requires a combination of 
+project  management  success  and  project  product  success.  project 
+management  success  is  related  to  the  efficiency  of  the  project 
+management process in terms of cost, time and quality. on the other 
+hand, project product success is related to the effectiveness of the 
+end  product.  according  to  baccarini  [2]  project  success  can  be 
+summarized as follows: 
+project  success  =  project  management  success  +  project  product 
+success 
+
+several researchers point out the causal relationship between project 
+management success and project product success [2, 15, 22]. on the 
+one  hand,  a  project  that  is  over  budget  and  over  time  can  be 
+considered a failure; however, the end product can still be a success 
+[22]. on the other hand, a project within budget and on time may be 
+considered successful; however the end product may be a failure [3, 
+12].  
+2.3 identifying project success factors 
+in order to obtain a better understanding of software project success 
+factors  we  examined  project  success  factors  across  non-software 
+related industries e.g. new product development in the toy industry 
+[3]. interestingly, we found out that there was no detailed process 
+model  for  new  product  development.  instead,  the  focus  was  on 
+building prototypes until the product was right, met the necessary 
+quality  standards  and  was  ready  to  be  manufactured.  once  the 
+product was delivered to manufacturing, updates and changes were 
+uncommon as this was seen as an expensive process. that is, a great 
+deal of effort was put into perfecting the design process. in software 
+development,  developers  (who  effectively  manufacture 
+the 
+software  product)  are  relatively  more  flexible  with  updating  and 
+changing  the  end  product,  even  after  design  phase  has  been 
+completed. in the toy industry, project and product success can be 
+equated. in the software industry, as mentioned earlier, this is not 
+the case. 
+however,  in  terms  of  project  and  product  success  factors  both 
+industries have addressed similar issues. table 1 illustrates software 
+project factors from various studies. as illustrated in table 1, results 
+from 8 separate studies present different success factors. this may 
+be  due  to  the  fact  that  the  studies  were  conducted  in  different 
+industries or at different companies. alternatively, the nature of the 
+software  project  may  play  a  role  in  the  outcome  of  these  studies. 
+regrettably, this sort of information was not available in the articles 
+that we reviewed. 
+2.4 project categories 
+a software project can involve software development, maintenance 
+or an enhancement. the present study categorizes software projects 
+based on specific customer-supplier relationships as follows:  
+  bespoke  software  development:  the  supplier  develops  a  new 
+custom-made  product  or  service  for  one  or  a  couple  of 
+customers. 
+
+  market driven software development: the supplier develops a 
+
+product for a specific market without a predefined customer. 
+
+  a  mix  of  bespoke  and  market  driven  software  development: 
+the supplier develops a product for a specific market, but with 
+the intention that it is possible to sell the product to customers 
+with customization. 
+in-house  software  development:  the  supplier  also  is  the 
+customer.  the  system  is  developed  for  the  own  company  or 
+organization. 
+
+ 
+
+in  this  paper,  when  presenting  our  research  we  use  above 
+classification. 
+
+table 1. literature success factors 
+
+literature 
+
+linberg 
+[12] 
+
+standish 
+group [20] 
+
+nah et al. 
+[13] 
+milis and 
+mercken 
+[14] 
+
+procaccino 
+et al. [16] 
+
+verner and 
+cerpa [23] 
+
+procaccino 
+et al. [17] 
+
+product type 
+
+project 
+type 
+bespoke  medical 
+
+instrument 
+
+na 
+
+na 
+
+na 
+
+na 
+
+na 
+
+na 
+
+na 
+
+enterprise 
+systems 
+information 
+communication 
+technology 
+systems 
+na 
+
+na 
+
+na 
+
+verner and 
+evanco [24] 
+
+in-house  na 
+
+na: not available 
+
+project size 
+
+2 years with a 
+budget of us $ 
+1 million 
+na 
+
+na 
+
+1 year with a 
+budget over  
+1.5 million 
+
+na 
+
+na 
+
+na 
+
+na 
+
+company 
+type 
+medical 
+instruments 
+
+na 
+
+na 
+
+banks and 
+insurance 
+
+financial 
+institution 
+
+insurance, 
+banks, 
+finance 
+na 
+
+banks, 
+financial 
+institutions, 
+insurance 
+
+country 
+
+success factors 
+
+usa 
+
+usa 
+
+na 
+
+belgium 
+
+na 
+
+australia 
+
+usa 
+
+usa 
+
+technical challenge, working product, well 
+designed product, high performing project 
+team, no schedule pressure 
+user involvement, executive support, 
+experienced project manager, clear business 
+objectives, minimized scope, firm basic 
+requirements 
+top management support, business plan and 
+vision,  effective communication 
+management involvement and support,  
+project definition, project team,  project plan, 
+change management, proper project resources 
+
+customer/user involvement, sponsor support, 
+project manager authority, enough time for 
+requirement elicitation 
+skilled project manager, good and complete 
+requirements, good schedule and estimates, 
+working long hours 
+clear and understandable requirements,  
+skilled team, feedback from project manager,  
+defined methodology 
+good project manager,  good requirements, 
+good project vision, project manager 
+communication skills, working long hours 
+
+3.  methodology 
+the primary objective of this study is to investigate software project 
+and  product  success  factors  in  software  industry.  the  following 
+research questions provided a focus for our empirical investigation 
+in swedish and australian companies:  
+(1) what is the effect of certain factors on the success or failure of 
+projects across various industries?  
+(2) how do various industries define project success and are there 
+any differences across industries?  
+(3) how do various industries define product success and are there 
+any differences across industries? 
+a  quantitative  questionnaire  [3]  was  designed  to  evaluate  the 
+research  questions.  several  pilot  studies  performed  to  validate  the 
+questionnaire.  the  questionnaire  included  33,  mostly  close-ended 
+questions. however, open-ended and weighted questions were also 
+included in the questionnaire. ethical clearance was obtained before 
+the research was conducted in australia.  
+the  questionnaire  consisted  of  three  parts.  part  1  contained 
+questions for gathering background information about the subjects. 
+this  included  demographic  information  such  as  contact  details, 
+gender, academic background, experience in software development, 
+position  at  current  company,  and  company  information.  part  2 
+contained close-ended questions about the subjects last completed 
+software project. the questions addressed different factors and were 
+answered  using  a  six-point  or  a  three  point  scale.  part  2  also 
+contained  open-ended  questions  to  allow  participants  provide 
+
+answers  using  their  own  thoughts  and  words.  part  3  contained 
+questions  about  software  products  for  which  the  subjects  were 
+involved in development. this part contained open-ended questions 
+and a question that allowed participants to assign weights to a series 
+of  options.  this  made  it  possible  for  us  to  ascertain  the  relative 
+importance of each factor. the subjects were given 1000 points to 
+spend among nine factors (subjects had the opportunity to add their 
+own factors). subjects could spend the points however they wished 
+(i.e.  one  factor  could  be  assigned  1000  points);  with  the  only 
+exception  being  that  two  factors  could  not  be  given  the  same 
+number of points. 
+
+3.1  data collection 
+data  was  collected  from  swedish  and  australian  companies.  the 
+population  in  this  study  was  software  practitioners  and  managers 
+from  the  financial  services,  consulting,  and  telecommunications 
+industries.  a  probability  sampling  method  was  used  because  it 
+provides  the  researcher  with  a  good  selection  process  of  samples 
+from a large known population [1]. samples were selected in two 
+different ways: through contacts we had working at companies and 
+from a list of randomly selected software development companies. 
+the participants (subjects) from each company were selected by the 
+contact person at that company. this study used two forms for data 
+collection:  structured 
+interviews  and  emailed  questionnaires. 
+emailed  questionnaires  were  used  to  facilitate  larger  sample  sizes 
+and  to  minimize  the  time  taken  for  data  collection  and  analysis. 
+there are potential risks with emailed questionnaires, such as lack 
+of interest and time, and a low response rate. therefore, structured 
+
+interviews were used to increase the reliability of the data collected 
+[1]. 
+to  obtain  an  understanding  of  the  collected  data  we  use  the 
+phenomenology [5] method. first we sorted the data into different 
+sources  and  put  the  collected  data  onto  paper.  then  we  start  to 
+divide the data into small piles of categories and put a name on each 
+pile, descriptive of the content of the pile. we read each pile over 
+and over until a deeper understanding of the piles was obtained. 
+
+than  one  response  due 
+
+4.  results 
+our sample size was relatively small; however it was large enough 
+to  conduct  relevant  analysis  to  provide  some  awareness  of  the 
+different definitions of project success between different industries. 
+the questionnaire for this study was sent to 15 companies (eight in 
+sweden  and  seven  in  australia)  resulting  in  27  responses.  some 
+companies  provided  more 
+their 
+involvement in a variety of different projects. thus, it was possible 
+to treat the responses as independent of one another for the purposes 
+of statistical analysis. the industry-wise spread of responses was: 10 
+from 
+(1  market-driven 
+development,  8  mix  of  bespoke  and  market-driven  development, 
+and  1  in-house  development),  9  from  the  consulting  industry  (3 
+bespoke  development,  2  market-driven  development,  2  mix  of 
+bespoke  and  market-driven  development,  and  2 
+in-house 
+development), and 8 from the financial services industry (6 in-house 
+development,  1  market-driven  development,  and  1  bespoke 
+development). 
+
+industry 
+
+the 
+
+telecommunications 
+
+to 
+
+4.1  demographics and project background 
+although from different industries, the subjects of this study shared 
+commonalities  in  terms  of  their  backgrounds.  about  half  of  the 
+subjects had a bachelors degree and 55% of them were managers. 
+in  addition,  about  75%  of  the  subjects  were  male  and  25%  were 
+female. the average age group for the financial services was 36-40 
+years while the average years the subjects had spent working at their 
+current  company  was  16  years.  notably,  for  the  consulting  and 
+telecommunications  industries  the  average  age of participants was 
+31-35  years.  projects  in  financial  services  typically  involved  35 
+people with project duration averaging 12 months. in the consulting 
+industry  team  size  averaged  19  people  with  an  average  project 
+duration  of  16  months.  in  the  telecommunications  industry  the 
+average team had 61 people with average project duration being 13 
+months. all three industries had approximately 75% success rate for 
+their software projects. 
+
+4.2  software project success factors 
+in analysing research question 1, this section examines the project 
+success factors for three industry types. after detailed examination 
+of the literature, we considered 15 factors related to project success 
+and failure, as illustrated in table 2. we asked subjects to examine 
+each factor and decide which factors most strongly characterized the 
+projects  that  they  participated  in.  table  2  presents  the  number  of 
+successful and failed projects that were characterized by each factor, 
+sorted by industry. we found that the factors had differing effects on 
+project success and failure depending on the industry concerned. for 
+example,  in  the  financial  services  industry,  33%  of  all  successful 
+projects changed their project manager, whereas in failed projects, 
+100% of the projects changed their project manager. although this 
+seems to be an interesting result, when we examine the results from 
+
+enough time for requirements elicitation 
+
+the consulting and telecommunications industries, the findings were 
+not  necessarily  consistent  with  the  financial  services  industry.  in 
+other  words,  in  both  the  consulting  and  telecommunications 
+industries, although 50% of the failed projects changed their project 
+manager,  for  successful  projects,  this  was  only  57%  and  63% 
+respectively. the following summarizes our findings. 
+financial services 
+in  the  financial  services  industry,  the  factors  that  influenced  most 
+project success were: 
+  complete and accurate requirements from project start 
+  good schedule estimates 
+ 
+  well-defined project scope 
+  rewarding staff for working long hours 
+identifying risk before the start of the project was a factor that most 
+successful  projects  fulfilled  in  the  financial  services  industry. 
+however,  since 40% of failed projects also identified risks before 
+project start, it was not possible to state that risk identification was 
+related  to  project  success.  the  two  factors  that  were  related  to 
+project failure were: 
+  changing the project manager 
+  adding extra personnel to meet schedule estimates 
+we  found  out  that  the  remaining  factors  had  no  effect  on  project 
+success or project failure for financial services. they were: 
+ 
+  complete requirements (when not complete from project start) 
+
+support for working long hours 
+
+during the project 
+
+  use of a specific method for requirements gathering 
+ 
+project manager understood the customers problem 
+  customer/user involvement 
+  commitment and support from sponsor/project champion 
+  risk identification before project start 
+subjects were asked who was responsible for estimating the project 
+schedule however, due to the many variations and combinations of 
+answers  we  received;  it  was  not  possible  to  find  any  patterns  in 
+terms of a) who was consistently responsible for estimation and b) a 
+particular  person  consistently  being  responsible  project  success  or 
+failure. 
+consulting  
+as  illustrated  in  table  2,  the  following  factors  affected  project 
+success: 
+  complete and accurate requirements from project start 
+ 
+  good schedule estimates 
+since half of all failed projects for the consulting industry had a well 
+defined  project  scope,  it  was  not  possible  to  conclude  that  a  well 
+defined project scope was related to project success. 
+we  found  that  the  following  two  factors  played  a  major  role  in 
+project failure: 
+ 
+  adding extra personnel to meet schedule estimates 
+
+project manager support working long hours 
+
+enough time for requirements elicitation 
+
+the 
+
+factors 
+
+industry, 
+
+the 
+
+it  was  not  possible  to  relate  staff  rewarded  for  long  hours  to 
+project failure because half of all successful projects rewarded their 
+staff for working long hours. interestingly, more failed projects had 
+an experienced project manager than did the successful projects. as 
+in the case of the financial services industry, there were no pattern 
+with respect to who was responsible for estimating project schedules 
+or  to  indicate  that  a  specific  person  consistently  led  to  project 
+success or failure due to the many variations and combinations of 
+answers we received. 
+telecommunication industry 
+for 
+telecommunication 
+influenced project success: 
+  complete and accurate requirements from project start 
+  completing  the  requirements  (if  not  complete  from  project 
+
+following 
+
+start) during the project 
+enough time for requirements elicitation 
+
+ 
+  use of a specific method for requirements gathering 
+we were unable to identify any specific methods that were used for 
+requirements gathering due to there being too many variations in the 
+answers received from subjects. furthermore, no patterns could be 
+found based on a) who was consistently responsible for estimation 
+and  b)  a  particular  person  consistently  being  responsible  project 
+success  or  failure.  commitment  and  support  from  sponsor/project 
+champion  may  be  related  to  project  success  since  100%  of  all 
+successful projects had obtained such a commitment. however, half 
+of  all  the  failed  projects  also  had  commitment  and  support  from 
+sponsors/project champions. therefore, we could not conclude that 
+this factor was related to project success for the telecommunications 
+industry.  additionally,  60%  of  all  projects  used  their  project 
+manager for creating the schedule. eighty-six of these projects were 
+successful. thus, the use of a project manager to create the schedule 
+was positively related to project success. 
+none of the factors were found to be related to project failure, i.e. 
+the  remaining  11  factors  (table  2)  did  not  have  any  effect  on 
+
+project  success  or  failure  for  the  telecommunications  industry. 
+furthermore,  more  failed  than  successful  projects  had  a  well 
+defined project scope. this was not inline with previous findings 
+in the literature [14, 24] that suggested the importance of a well 
+defined project scope in achieving project success. 
+4.3  contrasting industry perceptions of 
+project success 
+this section refers to research question 2, i.e. how project success is 
+defined by the industry. based on detailed examination of empirical 
+work  in  literature  and  after  conducting  three  pilot  studies,  we 
+identified 18 factors that were related to project success. we asked 
+subjects  to  select  the  three  most  important  as  well  as  three  least 
+important  factors  for  a  project  to  be  successful  based  on  their 
+personal  beliefs.  the  findings  for  all  three  industry  types  are 
+presented in table 3. 
+
+from  table  3  we  see  that  subjects  from  both  the  consulting  and 
+telecommunications  industries  agreed  that  understanding  the 
+customers  problem  was  an  important  factor  in  project  success. 
+apart from this agreement, each industry felt that different factors 
+characterized  successful  projects.  interestingly,  not  a  single 
+respondent from any industry thought that good schedule was an 
+important factor for project success. this was an interesting finding 
+since the subjects personal views of a good schedule differed from 
+the results they provided when asked about the characteristics of the 
+last  project  they  participated  in.  that  is,  subjects  from  financial 
+services  and  consulting  industries  had  stated  earlier  that  good 
+schedule  estimates  were  related  to  project  success  for  the  last 
+software project they were involved in (see table 2). furthermore, 
+subjects  from  the  financial  services  considered  a  committed 
+sponsor and overall good requirements as among the three most 
+important factors for project success, while these two factors were 
+considered  among  the  three  least  important  by  subjects  from  the 
+consulting industry. 
+
+table 2. percentage of projects fulfilling each factor 
+factor 
+
+ 
+project changed pm 
+pm supported long hours 
+staff rewarded for long hours 
+use of specific requirements method 
+completed and accurate requirements form the start 
+     - if not, completed during project 
+enough allocated time for requirements elicitation 
+project's scope well defined 
+extra personnel added to met schedule timetable 
+commitment  and  support 
+champion 
+experience project manager 
+project manager understood the customers problem 
+customer involved in the project 
+risk identification before project start 
+good schedule estimations 
+
+from  sponsor/project 
+
+financial services 
+
+consulting industry 
+
+successful 
+
+33% 
+50% 
+17% 
+100% 
+17% 
+100% 
+67% 
+83% 
+33% 
+100% 
+
+90% 
+80% 
+80% 
+70% 
+60% 
+
+failed 
+100% 
+50% 
+0% 
+100% 
+0% 
+100% 
+0% 
+0% 
+100% 
+100% 
+
+70% 
+90% 
+70% 
+40% 
+20% 
+
+successful 
+
+57% 
+33% 
+50% 
+100% 
+29% 
+100% 
+71% 
+83% 
+29% 
+71% 
+
+40% 
+70% 
+60% 
+80% 
+80% 
+
+failed 
+50% 
+100% 
+100% 
+100% 
+0% 
+100% 
+0% 
+50% 
+100% 
+100% 
+
+50% 
+60% 
+60% 
+60% 
+30% 
+
+telecommunication 
+industry 
+successful 
+
+63% 
+100% 
+50% 
+100% 
+29% 
+67% 
+50% 
+38% 
+71% 
+100% 
+
+80% 
+70% 
+80% 
+80% 
+60% 
+
+failed 
+50% 
+100% 
+50% 
+0% 
+0% 
+0% 
+0% 
+50% 
+100% 
+50% 
+
+60% 
+40% 
+50% 
+50% 
+40% 
+
+another  interesting  difference  was  in  how  the  industries  viewed 
+good  relations  between  personnel  as  affecting  project  success. 
+while it was viewed as the most important factor for project success 
+in  the telecommunications industry, the financial services subjects 
+considered it to be one of the least important factors. furthermore, 
+financial services subjects considered good estimations as one of the 
+three least important factors bearing on project success. not a single 
+subject from financial services considered good estimates as being 
+an important factor, which is surprising since good estimations is 
+mentioned  in  previous  literature  [23]  as  an  important  factor  for 
+project success. 
+subjects  from  financial  services  personally  viewed  customer 
+involvement and a committed sponsor as the two most important 
+factors  for  project  success,  which  was  not  inline  with  the 
+characteristics of their latest project (table 2). although 80% of all 
+successful  projects  involved  the  customer  and  100%  of  the 
+successful ones had commitment from a sponsor, these factors could 
+not be conclusively stated as important factors for project success. 
+this is because 70% of all failed projects also involved the customer 
+while 100% of failed projects had commitment from a sponsor. 
+the  consulting  industry  subjects  personal  views  indicated  that 
+understanding the customers problem was an unimportant factor 
+for  project  success.  this  did  not  align  with  the  characteristics  of 
+their 
+the 
+customers problem was not a factor related to project success for 
+subjects from the consulting industry, it was still an important factor 
+
+latest  project  (table  2).  although  understanding 
+
+in general. this is illustrated in table 2 where 70% of all successful 
+projects involved an understanding of the customers problem. 
+subjects  from  the  telecommunications  industry  personally  viewed 
+complete and accurate requirements as a success factor. this was 
+inline  with  the  characteristics  of  their  latest  project,  allowing  a 
+positive relationship to be inferred between complete and accurate 
+requirements  and  project  success  (table  2).  furthermore,  the 
+subjects considered understanding the customers problem as an 
+important factor for project success. even though understanding the 
+customers  problem  is  related  to  project  success  based  on  the 
+characteristics  of  their  latest  project,  table  2  illustrates  the 
+importance of this factor (70% of the successful projects understood 
+the customers problem). 
+
+4.4  software product success factors 
+in  analyzing  research  question  3,  this  section  examines  how 
+product  success  is  defined  by  subjects  from  all  three  industries. 
+we  identified  10  potential  factors  from  previous  literature.  the 
+subjects  were  asked  to  rank  the  importance  of  each  factor  for 
+product success by assigning points to each factor. they were told 
+no  two factors could be assigned  with the same amount of points 
+and  no  factor  could have a zero value. table 4 presents the three 
+most and least important factors for product success and how many 
+points (percentage of total points spent by each industry) each factor 
+received from the subjects. 
+
+table 3. software project success factors according to software practitioners 
+ 
+three  most  important 
+success factors 
+
+financial services 
+customer involvement 
+committed sponsor 
+
+consulting  industry 
+very good project manager 
+understanding customers problem 
+
+overall good requirements 
+
+well defined communication 
+
+ 
+three  least  important 
+success factors 
+
+ 
+good schedule 
+good relation between personnel 
+good estimates 
+
+ 
+good schedule 
+committed sponsor 
+overall good requirements 
+
+ 
+table 4. software product success factors according to software practitioners 
+
+ 
+
+financial services 
+
+consulting  industry 
+
+three  most  important 
+success factors 
+
+ 
+three  least  important 
+success factors 
+
+satisfied customer (20%) 
+the product works (15%) 
+
+satisfied customer (22%) 
+great quality (17%) 
+satisfied top management (13%)  economic benefit for the supplier (13%) 
+ 
+project team satisfaction (1%) 
+good reputation for the supplier 
+(4%) 
+many sold copies (4%) 
+
+ 
+project team satisfaction (1%) 
+satisfied top management (2%) 
+
+many sold copies (4%) 
+
+telecommunication  industry 
+good relation between personnel 
+understanding customers 
+problem 
+complete and accurate 
+requirements 
+ 
+good schedule 
+experienced project manager 
+committed sponsor 
+
+telecommunication  
+industry 
+satisfied customer (30%) 
+customer comes back (18%) 
+the product works (15%) 
+ 
+many sold copies (4%) 
+economic benefit for the 
+supplier (5%) 
+satisfied top management 
+(5%) 
+
+the results show that the subjects from all three industries agreed 
+that a satisfied customer was the most important factor for product 
+success. subjects from both the consulting and telecommunications 
+industries  considered  a  working  product  as  an  important  factor. 
+furthermore,  subjects  from  both 
+the  financial  services  and 
+consulting  industries  considered  project  team  satisfaction  as 
+unimportant  for  product  success.  also  among  the  least  important 
+factors for product success (as agreed by the various industries) was 
+many sold copies. 
+the  financial  services  subjects  felt  that  the  satisfaction  of  top 
+management was one of the most important factors in determining 
+product  success,  while  the  consulting  and  telecommunications 
+industry subjects considered this factor as unimportant. in addition, 
+consulting  industry  subjects  considered  economic  benefits  for  the 
+supplier  as  important.  however,  the  telecommunications  industry 
+subjects  saw  this  as  unimportant  for  achieving  product  success. 
+furthermore,  financial  services subjects did not consider the good 
+reputation of the supplier as an important factor for product success. 
+in fact, it was seen as one of the three least important factors. 
+
+5.  discussion 
+the  section  presents  a  discussion  around  perceived  relationships 
+based  on  the  results  presented  in  section  4.  we  were  unable  to 
+conduct  statistical  calculations  to  uncover  significant  connections 
+between  factors  and  project  success  due  to  the  limited  number  of 
+data points. all stated relations between factors and project success 
+or failure were arrived at through the use of deductive logic. 
+
+5.1  effect of certain factors on the success or 
+failure of projects  
+there  were  both  differences  and  similarities  between  the  industry 
+types when it came to perceptions of what affect certain factors had 
+on project success and failure. there were two factors that all three 
+industry  types  considered  as  important  for  project  success:  (1) 
+complete  and  accurate  requirements  from  project  start  and  (2) 
+having  enough  time  for  requirements  elicitation.  it  was  not 
+surprising  to  see  that  complete  and  accurate  requirements  lead  to 
+project success, confirming what was stated in the literature [17, 20, 
+23,  24].  in  this  research  study  not  a  single  failed  project  and  less 
+than  a  third  of  the  successful  projects  started  with  complete 
+requirements.  since  the  importance  of  complete  requirements  is 
+well  known,  why  do  projects  start  without  complete  and  accurate 
+requirements?  one  explanation  could  be  time  to  market.  it  is 
+important 
+time,  otherwise 
+competitors may release it first or the software may be too old or no 
+longer meet customer requirements. another explanation could be 
+that  requirements  elicitation  is  a  continual  process,  for  example, 
+prototyping. in fact, one subject stated: 
+they can never be completed...there is always more... 
+alternatively  it  could  be  the  lack  of  time  for  requirements 
+elicitation.  more  than  half  of  the  successful  projects  from  each 
+industry  had  enough  time  for  requirements  elicitation.  however, 
+none  of  the  failed  projects  from  any  industry  type  had  time  for 
+requirements  elicitation.  this  result  could  explain  why  the  failed 
+projects  started  without  complete  requirements.  why  would  a 
+supplier  start  projects  without  enough  time  for  requirements 
+elicitation?  is 
+it  because  of  pressure  from  customers  and 
+stakeholders  etc.?  what  is  surprising  is  that  completion  of 
+
+to  release  software  at 
+
+the  right 
+
+requirements during the project itself was only found to be related to 
+the  success  of  projects  in  the  telecommunications  industry.  this 
+factor was reported by subjects as having no effect on the success of 
+software  in  the  financial  services  and  consulting  industries.  one 
+explanation for this difference is that requirements were completed 
+during the project for both the successful and failed projects for the 
+financial services and consulting and therefore could not be seen as 
+a success factor. 
+subjects from both the financial services and consulting industries 
+considered  a  good  schedule  to  be  an  important  factor  in  project 
+success, which aligned with findings in the literature [24]. however, 
+subjects from the telecommunications industry did not agree on this 
+point. a well-defined project scope is stated in the literature [19, 20] 
+as a success factor, but this study shows that only subjects from the 
+financial  services  industry  supported  such  a  finding.  more  failed 
+than  successful  projects  had  a  well-defined  project  scope  in  the 
+experience of subjects from the telecommunications industry. this 
+was surprising because, if there is no clear vision of the project it 
+may  lead  to  poorly  defined  goals,  poor  requirements,  unrealistic 
+deadlines, and a poor project plan [3]. it is also common sense that 
+if you do not know what should be included in the project, then it is 
+difficult to deliver on time, within budget, and what the customer 
+wants.  
+adding extra personnel to meet the project schedule was found to be 
+related  to  project  failure  in  the  financial  services  and  consulting 
+industries. adding more personnel to a late project only increased 
+the risk of project failure [3]. however, adding more personnel did 
+not always lead to project failure, as illustrated in table 2. it would 
+be  interesting  to  find  out  at  what  stage  the  extra  personnel  were 
+added  to  successful  projects.  if  they  were  added  during  the 
+requirements  elicitation  phase  they  may  not  affect  the  project  as 
+much  since  it  is  an  early  phase  of  the  project.  alternatively,  the 
+successful projects may have merely added more software testers to 
+run test cases. this would not affect the success of a project as much 
+as, for example, a new developer having to learn the code in detail 
+with assistance from others. for the consulting industry, support for 
+working long hours seems to be related to project failure. however, 
+based  on  the  results  in  this  study  it  was  not  possible  to  state 
+conclusively  whether  supporting  working  long  hours  affected 
+project success. this is because the results merely indicated that the 
+project manager supported working long hours, not if they actually 
+worked long hours. as one subject stated: 
+pm supported, but was no need for long hours 
+changing the project manager may be related to project failure for 
+the financial services industry. however, it was not possible to state 
+conclusively in this study that this was the case, as there were no 
+follow-up  questions  about  why  the  project  manager  was  changed. 
+this is one of the issues that need to be studied further in future. 
+although  the  literature  [20]  emphasizes  end  user  (customer) 
+involvement as an important factor for project success, this finding 
+was  not  reflected  in  this  study.  another  surprising  finding  was 
+related to the absence of a relationship between experienced project 
+managers and successful projects, which was strongly emphasized 
+in [20, 23, 24]. it is also surprising because the subjects commented 
+the importance of an experienced project manager when asked why 
+their project was successful. one subject said: 
+
+ ...an experienced pm stepped into the arena that was experienced 
+enough 
+to  question  customer  originally  requirements,  own 
+organization  estimates  etc.  and  creating  a  good  (open,  honest) 
+communication climate. 
+one explanation for this finding in  terms of the financial services 
+and telecommunications industries is that most of the successful and 
+failed projects had experienced project managers (table 2). for the 
+consulting  industry  more  failed  projects  had  experienced  project 
+managers than successful ones. one reason could be the nature of 
+the projects themselves. for instance, the failed projects could have 
+been so called breakthrough projects, seen as difficult projects, or 
+using new and unknown technology which also has higher risk of 
+failure.  
+
+5.2  important factors for project success 
+the  various  industry  subjects  had  the  same  perceptions  about  the 
+three  most  important  characteristics  for  a  successful  project,: 
+meeting business objectives, on time and within budget completion, 
+and meeting quality requirements. this definition is inline with the 
+standish  group  [18]  definition.  this  means  that  the  literature  and 
+industry use the same definition. however, it is not always easy to 
+define what a successful project is. even if the project fulfills all the 
+requirements for a successful project, it can still be a failure. this 
+statement is supported by one of the subjects that said: 
+if  a  project  is  run  perfectly  according  to  books  its  a  good 
+project, but not necessarily a successful one 
+the subjects also support baccarini [2] definition of project success, 
+which is illustrated in section 2.2. the subjects explained why their 
+project was successful: 
+business people still using the product after 2 years 
+delivered a successful product to a previous customer 
+one subject explained why the project failed: 
+when  software  finally  was  delivered,  business  situation  had 
+changed which meant that the product was never used 
+there was a difference between financial services, consulting, and 
+telecommunications industries when it came to the subjects listing 
+the most important factors for project success (table 3). 
+the  financial  services  industry  subjects  were  the  only  ones  to 
+consider  customer  involvement  as  important.  one  explanation  for 
+this  could  be  that  the  consulting  industry  considers  this  factor  as 
+obvious  since  they  are  hired  directly  by  their  customers.  the 
+telecommunications industry on the other hand has a different kind 
+of  customer-supplier  relationship.  most  of  the  projects  (80%)  in 
+telecommunication  industry  had  a  mix  of  bespoke  and  market 
+driven  customer-supplier  relationship,  which  is  not  the  case  in 
+financial  services  or  consulting  industry.  this  may  be  the 
+explanation  to  why  the  subjects  from  telecommunication  industry 
+do not see customer involvement as important. another explanation 
+could  be  that  the  subjects  considered  understanding  customers 
+problem as an important factor for project success. if the problem 
+is understood, it may not be needed for the customer to be involved. 
+furthermore,  subjects  from  the  financial  services  industry  did  not 
+view understanding the customers problem as important, while the 
+consulting and telecommunications industries did. one explanation 
+for  this  could  be  that  the  financial  services  interpreted  the 
+
+importance of ensuring customer involvement (important factor for 
+project  success  according  to  financial  services)  as  a  way  to 
+understand the customers problem. if the customer is involved, the 
+supplier  has  the  ability  to  ask  questions,  which  is  the  same  as 
+understanding  the  problem.  that  the  financial  services  consider 
+customer involvement as an important factor for project success is 
+not inline with the findings from a study by [17].  
+another  interesting  finding  is  how  subjects  from  the  financial 
+services  and  telecommunications  industries  rate  the  influence  of 
+good relations between personnel on project success. this factor 
+was seen as the most important factor for project success by subjects 
+from  the  telecommunications  industry,  while  subjects  from  the 
+financial  services  industry  saw  this  as  one  of  the  least  important 
+factors. it is surprising to see that a good schedule is not seen as 
+an  important  factor  for  any  of  the  industries.  having  a  good 
+schedule is stated in literature [20] as an important factor for project 
+success.  subjects  from  the  financial  services  industry  considered 
+overall good requirements and committed sponsor/champion as 
+important factors for project success. these two factors were seen as 
+two of the three least important factors by subjects in the consulting 
+industry,  while  subjects  in  the  telecommunications  industry  rated 
+committed  sponsor/champion  among  the  three  least  important 
+factors  for  project  success.  subjects  from  the  consulting  industry 
+were  the  only  ones  to  view  very  good  project  managers  as  an 
+important factor for project success. this is surprising considering 
+the  results  presented  in  table  2  which  shows  that  the  consulting 
+industry had fairly inexperienced project managers involved in their 
+successful projects. 
+
+the  consulting  and 
+
+5.3  important factors for product success 
+there were interesting findings when comparing the personal views 
+of subjects across all three industries on what constituted important 
+success  factors  for  products.  firstly,  all  subjects  considered  a 
+satisfied  customer  as  being  the  most  important  factor  for  product 
+success. this is not surprising; if the customer is unhappy they may 
+not return to the supplier in the future. in addition, subjects from the 
+financial  services  industry  considered  great  quality  as  important, 
+while  subjects  from 
+telecommunications 
+industries considered a working product as an important factor for 
+product  success.  this  result  may  be  due  to  differences  in  their 
+interpretation of the meaning of great quality (great quality may 
+include a working product). this was supported by two statements 
+from the subjects: 
+quality of the product kept to customers expectations 
+delivering good-enough quality products that satisfy requirements 
+and that is perceived by the customer to be of high quality and 
+meet requirements. 
+furthermore,  subjects 
+industry 
+considered a satisfied organization/top management as an important 
+factor  for  product  success  while  subjects  from  the  consulting  and 
+telecommunications industries saw this as one of the least important 
+factors. one possible explanation for this result may be related to 
+what category the different projects from each industry belongs to. 
+in financial services, 75% of the participated projects are in-house 
+projects,  while  this  figure  is  only  10%  for  telecommunications 
+industry  and  22%  for  the  consulting.  since  a  majority  of  the 
+financial  services  projects  are  in-house,  the  organization/top 
+management needs to be satisfied with the developed system to be 
+
+financial  services 
+
+from 
+
+the 
+
+in 
+
+from 
+
+subjects 
+
+received 
+
+able to consider the product successful. another difference between 
+responses 
+the  consulting  and 
+telecommunications  industries  was  the  economic  benefits  for  the 
+supplier. while subjects from the consulting industry saw this factor 
+as  the  third  most  important  for  project  success,  subjects  from  the 
+telecommunications industry considered economic benefits to be the 
+second  least  important  success  factor  for  product  success.  our 
+findings were consistent with literature i.e. it is not easy to define a 
+successful  product.  one  subject  indicated  that  the  word  success 
+needs  to  be  defined  before  it  is  possible  to  ask  what  a  successful 
+product is: 
+can not be answered it depends on what type you produces, there 
+are excellent products that does not sell anything and vise versa. so 
+the word success has to be defined 
+another subject defined a successful product in the case of a mix of 
+bespoke and market-driven development as: 
+mix of bespoke and market driven is successful if the product is 
+actually used by a customer 
+the following section focuses on validity threats of this study. 
+
+industry  experience,  and  roles 
+
+6.  validity 
+four types of threats should be addressed in this study [26].  
+internal validity: this threat is related to issues that may affect the 
+causal relationship between treatment and outcome. we believe that 
+there  is  low  threat  to  internal  validity  in  this  study.  the  research 
+instrument  in  this  study  was  developed  with  close  reference  to 
+literature  relating  to  success  factors  for  projects  and  products.  in 
+addition,  several  pilot  studies  were  performed  to  ensure  that  the 
+questions  in  the  research  instrument  related  to  the  stated  research 
+objectives  of  this  research  study.  the  selected  participants  in  this 
+study  had  to  participate  in  at  least  one  completed  (delivered  or 
+in  academic 
+cancelled)  software  project.  the  differences 
+backgrounds, 
+in  participants 
+organizations were also documented. 
+external  validity:  this  threat  is  concerned  with  the  ability  to 
+generalize the findings beyond the actual study. there are two such 
+threats to external validity that are relevant for this study: interaction 
+of selection and treatment, and interaction of history and treatment 
+[26].  the  participants  selected  for  this  study  were  from  different 
+geographic  locations  in  sweden  and  australia.  both  male  and 
+female  participants  were  represented.  companies  were  selected 
+through a random selection technique. the sample size was another 
+threat to the external validity of this study. the small sample size in 
+this study may affect the conclusions and hence we may not be able 
+to generalize the results to the whole software engineering industry. 
+the  timing  of  the  study  may  be  a  threat  to  external  validity. 
+however,  this  study  is  based  on  data  from  already  completed 
+(delivered or cancelled) software projects. another aspect is that the 
+subject  latest  completed  software  projects  should  be  referred  to 
+when answering the questions. this would minimize the threat that 
+the software practitioners may have forgotten what really happened 
+in the project. 
+construct validity: this threat is concerned with issues related to 
+the design of the study and social threats. this study was carefully 
+designed,  with  the  design  being  piloted and a detailed analysis of 
+constructs  such  as  different  definitions  of  projects  considered.  to 
+
+towards 
+
+their  attitude 
+
+the  result  depending  on 
+
+avoid  evaluation  apprehension,  complete  anonymity  from  other 
+participants  and 
+the  companies  was  guaranteed.  hypothesis 
+guessing (where a participant tries to guess the hypothesis and then 
+support 
+the 
+hypothesis)  can  mean  that  participants  introduce  bias  to  the 
+collected data in this research. this is a threat to our study. another 
+validity  threat  lies  in  the  question  that  asked  subjects  to  rank  and 
+include  additional  factors  if  the  list  provided  to  them  was 
+inadequate. subjects may have thought that it was easier to rank the 
+provided  factors  than  propose  new  factors.  this  means  that 
+important success factors may be missing.  
+conclusion  validity:  threats  to  conclusion  validity  arise  from  a 
+lack  of  statistical  calculations  or  misuse  of  statistical  assumptions 
+that lead to incorrect conclusions by the researcher. there is a risk 
+that conclusions from this study are inaccurate due to low statistical 
+power.  no  statistical  calculations  are  used  to  find  patterns  in  the 
+results. instead, deductive logic was used because of the limited data 
+points in some categories. to obtain highly reliable measures and to 
+avoid poor question wording and poor layout (which may introduce 
+bias  into  the  collected  data,  confuse  the  participant  and  lead  to 
+unsuitable answers) several pilot studies were conducted. to avoid 
+threats from treatment implementation emailed questionnaires were 
+used as often as possible. however, when the participant requested 
+an interview, questions were asked in exactly the same way as they 
+were asked in the questionnaire, reducing bias in the collected data. 
+7.  conclusion 
+this  research  set  out  to  investigate  software  project  and  product 
+success factors in the australian and swedish software industries.  
+generally speaking, our findings complement the results from other 
+studies. that is, a well defined project scope, complete and accurate 
+requirements, 
+customer/user 
+involvement  and  so  forth  are  perceived  as  contributing  to  project 
+success.  similarly  adding  extra  personnel  to  meet  schedule 
+estimations is perceived as contributing to the likelihood of project 
+failure, which was also discussed in previous studies. 
+our contribution is the discovery that there are differences in which 
+factors  are  important  for  project/product  success  across  industries. 
+this indicates that we need to take into account the industry type 
+when  addressing  project/project  success  factors.  the  current 
+definition of what factors are important for software project/product 
+success does not consider what type of system is being developed 
+(e.g.  a  simple  game,  a  life  saving  system,  nuclear  reactor  system 
+etc.). nor does the definition consider whether the system is being 
+developed  from  scratch  or  whether  the  project  merely  involves 
+adding/updating the features and functionality of an already existing 
+system. in summary, our findings indicate that software developers 
+in  the  financial  services,  consulting,  and  telecommunications 
+industries identify different factors as important for software project 
+success. 
+additional data is required to achieve more generalizable results. as 
+previously discussed, a larger sample size and statistical calculations 
+would  be  of  great  value.  in  addition,  studying  the  same  types  of 
+projects from each industry will increase the validity of the results. 
+future  studies  will 
+investigation  of  software 
+project/product  success  factors  for  various  customer  supplier 
+relationships. 
+
+estimations, 
+
+schedule 
+
+good 
+
+involve 
+
+the 
+
+8.  acknowledgement 
+we would like to thank all of the participants and their companies 
+(both from sweden and australia) who have helped in making the 
+data  collection  possible  for  this  research.  furthermore,  we  would 
+like to thank irem sevinc for proofreading this paper and providing 
+access to some of software companies in australia. 
+9.  references 
+[1]  babbie, e. the practice of social research, wadsworth, usa, 
+
+2004. 
+
+[2]  baccarini, d. the logical framework method for defining 
+
+project success. project management journal, 30, 4 (dec. 
+1999), 25-32. 
+
+[3]  berntsson-svensson, r. successful software projects and 
+
+products. master thesis, blekinge institute of technology, 
+ronneby, sweden, 2006. 
+
+[4]  brooks, f.p. the mythical man-month: essays on software 
+
+engineering, addison wesley longman, united states of 
+america, 1995. 
+
+[5]  dahlberg, k., drew, n. and nystrom, m. reflective life world 
+
+research, studentlitterature, lund, 2001. 
+
+[6]  glass, r.l. editor's corner - software runaways - some 
+
+surprising findings. journal of systems and software, 41, 2 
+(may 1998), 75-77. 
+
+[7]  gobeli, d.h., koenig, h.f., and bechinger i. managing 
+
+conflict in software development teams: a multilevel analysis  
+an examination and empirical developments. journal of 
+product innovation management, 15, 5 (sep. 1998), 423-435. 
+
+[8]  jones, c. patterns of large software systems: failure and 
+
+success. computer, 28, 3 (mar. 1995), 86-87. 
+
+[9]  kerzner, h. project management: a systems approach to 
+
+planning, scheduling, and controlling, van nostrand 
+reinhold, united states of america, 1995. 
+
+[10] kotonya, g., and sommerville, i. requirements engineering  
+processes and techniques, john wiley & sons ltd., uk, 1998. 
+
+[11] lewis, j.p. project planning, scheduling, and control: a 
+hands-on guide to bringing projects in on time and on 
+budget, the mcgraw-hill companies, inc., usa, 2001. 
+
+[12] linberg, k.r. software developer perceptions about software 
+project failure: a case study. journal of systems and software, 
+49, 2-3 (dec. 1999), 177-192. 
+
+[13] nah, f.f-h., lau, j.l-s., kuang j. critical factors for 
+
+successful implementation of enterprise systems. business 
+process management journal, 7, 3 (jan. 2001), 285-296. 
+
+ 
+
+[14] milis, k., and mercken, r. success factors regarding the 
+
+implementation of ict investment projects. int. journal of 
+production economics, 80, 1 (nov. 2002), 105-177. 
+
+[15] pinkerton, w.j. project management: achieving project-
+
+bottom line success, mcgraw hill, new york, 2003. 
+
+[16] procaccino, j.d., verner, j.m., overmyer, s.p., and darter, 
+
+m.e. case study: factors for early prediction of software 
+development success. information and software technology, 
+44, 1 (jan. 2002), 53-62. 
+
+[17] procaccino, j.d., verner, j.m., shelfer, j.m., and gefen, d. 
+
+what do software practitioners really think about project 
+success: an exploratory study. journal of systems and 
+software, 78, 2 (nov. 2005), 194-203. 
+
+[18] standish group, chaos, http://www.standishgroup.com/ 
+
+sample_research/chaos_1994_1.php (accessed feb 16, 2006). 
+
+[19] standish group, chaos, http://www.standishgroup.com/ 
+
+sample_research/pdfpages/chaos1999.pdf (accessed feb 16, 
+2006). 
+
+[20] standish group, chaos, http://standishgroup.com/ 
+
+sample_research/pdfpages/extreme_chaos.pdf (accessed feb 
+16, 2006). 
+
+[21] sun, h. and wing, w.c. critical success factors from new 
+
+product development in the hong kong toy industry. 
+technovation, 25, 3 (mar. 2005), 293-303. 
+
+[22] van der westhuizen, d. and fitzgerald, e.p. defining and 
+measuring project success. in proceedings of the european 
+conference on is management, leadership and governance 
+(ecmlg05) (reading, uk, july 7-8, 2005). 
+
+[23] verner, j.m. and cerpa, n. australian software development: 
+
+what software project management practices lead to 
+success? in proceedings of the 16th australian software 
+engineering conference (aswec06) (brisbane, australia, 
+march 29-april 1, 2005). ieee, 2005, 70-77. 
+
+[24] verner, j.m., and evanco, w.m. in-house software 
+
+development: what project management practices lead to 
+success? ieee software, 22, 1 (jan-feb. 2005), 86-93. 
+
+[25] wallin, c., larsson, s., ekdahl, f. and crnkovic, i. combining 
+models for business decisions and software development. in 
+proceedings of the 28th euromicro conference (dortmund, 
+germany). ieee, 2002, 266-271. 
+
+[26] wohlin, c., runeson, p., host, m., ohlsson, m.c., regnell, b., 
+and wesslen, a. experimentation in software engineering: an 
+introduction, kluwer academic publisher, usa, 2000. 
+
+[27] yourdon, e. making death march projects pay off. 
+
+datamation, 43, 4 (apr. 1997), 116-12 
+
+ 
+
+

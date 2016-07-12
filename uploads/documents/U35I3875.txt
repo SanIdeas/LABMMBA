@@ -1,0 +1,896 @@
+calidad de software 
+
+ingenieria	de	so-ware	
+
+marcello visconti 
+hernan astudillo & gaston marquez 
+departamento de informatica 
+universidad tecnica federico santa maria 
+
+utfsm-di-2016 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+aseguramiento de calidad de software 
+
+ objeevo	de	ingenieria	de	so-ware	
+
+ producir	consistentemente	so-ware	de	calidad	
+
+ calidad	engloba	todo	el	proceso,	y	esta	determinada	por	
+factores	directos	e	indirectos	
+ calidad	
+
+ concepto	complejo	y	mulefaceeco	
+ diversas	perspecevas	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+2 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+ puede	ser	reconocida	pero	no	denida	
+ grado	de	adecuacion	al	proposito	
+
+visiones de calidad 
+ vision	trascendental	
+ vision	del	usuario	
+ vision	del	productor	
+ vision	del	producto	
+ vision	basada	en	valor	
+
+ conformidad	con	la	especicacion	
+ ligada	a	caracterisecas	inherentes	del	mismo	
+
+ cuanto	el	cliente	esta	dispuesto	a	pagar?	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+3 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+modelos de calidad de software 
+ modelo	de	calidad	
+ atributo	de	calidad	
+
+ taxonomia	de	atributos	de	calidad	y	sus	relaciones	
+
+ caracterizacion	especica	o	propiedad	de	un	proceso	o	producto	
+
+ puede	ser	medido	u	observado	
+
+
+incluyen	las	tradicionalmente	llamadas	iliees	
+
+ cada	atributo	de	calidad	puede	tener	varias	metricas	
+
+ cada	metrica	dene	
+
+ una	medida	o	escala	(cuanetaeva	o	cualitaeva)	
+ un	metodo	o	tecnica	para	observar	o	medir	el	atributo	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+4 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+modelo de calidad  nota 
+
+ metricas	internas	
+
+ medicion	de	atributos	del	so-ware	por	si	mismo	
+ aplicadas	durante	la	construccion	del	sistema	
+ ej:	desempeno	de	un	subsistema,	complejidad	del	codigo,	tamano	
+
+ metricas	externas	
+
+ medicion	de	atributos	visibles	externamente	
+ requieren	evaluar	al	so-ware	en	su	contexto	
+aplicadas	a	un	producto	de	so-ware	en	ejecucion	
+ ej:	funcionalidad,	conabilidad,	desempeno	
+
+
+
+ metricas	comunes	
+
+
+
+ tamano	
+ complejidad	
+ modularidad	
+cohesion	
+acoplamiento	
+
+
+
+
+de	modulos,	del	diseno	mismo,	del	codigo	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+5 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+modelo de calidad de mccall 
+
+facilidad de mantenimiento 
+(puedo corregirlo?) 
+flexibilidad (puedo cambiarlo?) 
+
+facilidad de prueba (puedo probarlo?) 
+
+revision 
+
+del 
+
+producto 
+
+portabilidad 
+(podre usarlo en otra maquina?) 
+
+reusabilidad 
+(podre reusar alguna parte del software?) 
+
+interoperabilidad 
+(podre hacerlo interactuar  
+con otro sistema?) 
+
+transicion 
+
+del 
+
+producto 
+
+operacion 
+
+del 
+
+producto 
+
+correccion (hace lo que quiero?) 
+confiabilidad (lo hace de forma confiable todo el tiempo?) 
+eficiencia (se ejecutara en mi hardware lo mejor que pueda?) 
+integridad (es seguro?) 
+facilidad de uso (esta disenado para ser usado?) 
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+6 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+modelo de calidad de mccall 
+
+traceability
+
+7 
+
+correctness
+
+reliability
+
+efficiency
+
+integrity
+
+usability
+
+maintainability
+
+testability
+
+flexibility
+
+portability
+
+reusability
+
+interoperability
+
+completeness
+consistency
+
+accuracy
+
+error tolerance
+
+execution efficiency
+storage efficiency
+
+access control
+access audit
+operability
+
+training
+
+communicativeness
+
+simplicity
+
+conciseness
+
+instrumentation
+
+self-descriptiveness
+
+expandability
+
+generality
+modularity
+
+software system
+
+independence
+
+machine
+
+independence
+
+communications
+
+commonality
+
+data commonality
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+7 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+modelo de calidad de boehm 
+
+8 
+
+portability
+
+as-is
+
+usefulness
+
+reliability
+
+efficiency
+
+human
+
+engineering
+
+testability
+
+maintainability
+
+understandability
+
+modifiability
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+sesion 15 
+
+device
+
+independence
+
+self-containedness
+
+accuracy
+
+completeness
+
+robustness/integrity
+
+consistency
+
+accountability
+
+device efficiency
+
+accessibility
+
+communicativeness
+self-descriptiveness
+
+structuredness
+conciseness
+legibility
+
+augmentability
+
+8 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+iso 9126 (1991 & 2001) 
+
+9 
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+9 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+iso 9126 (1991 & 2001) 
+
+ p.ej.	portabilidad	
+
+ 6	caracterisecas	
+ 22	sub-caracterisecas	
+ p.ej.	adaptabilidad	
+ atributos	
+
+ enedad	que	se	puede	
+vericar	o	medir	en	
+producto	de	so-ware	
+
+ no	denidos	por	el	estandar:	
+ p.ej.	plataformas	
+
+dependen	del	producto	
+
+functionality
+
+reliability
+
+usability
+
+efficiency
+
+maintainability
+
+portability
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+10 
+
+suitability
+accuracy
+
+interoperability
+
+security
+maturity
+
+fault-tolerance
+recoverability
+
+understandability
+
+learnability
+operability
+
+time behavior
+
+resource behavior
+
+analyzability
+changeability
+
+stability
+testability
+adaptability
+installability
+conformance
+replaceability
+
+10 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+iso 25010 (2011) 
+
+ 8	caracterisecas	
+ 31	sub-caracterisecas	
+
+functional 
+suitability
+
+reliability
+
+usability
+
+performance 
+
+efficiency
+
+maintainability
+
+portability
+
+compatibility
+
+security
+
+|
+
+11 
+
+func. appropriateness
+
+func. correctness
+func. completeness
+
+availability
+
+maturity
+
+fault-tolerance
+recoverability
+
+understandability
+
+learnability
+operability
+
+time behavior
+
+resource behavior
+
+capacity
+
+analyzability
+modifiability
+modularity
+testability
+reusability
+adaptability
+installability
+replaceability
+co-existence
+interoperability
+confidentiality
+
+integrity
+
+non-repudiation
+accountability
+
+authenticity
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+11 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+iso 25010 
+ sub-caracteriseca	conformidad	(conformance)	
+
+ se	aplica	a	todas	las	caracterisecas	
+ p.ej.	conformidad	a	la	legislacion	referente	a	usabilidad	y	
+abilidad	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+12 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+atributos de calidad (microsoft) 
+
+ availability	
+ conceptual	integrity	
+
+interoperability	
+ maintainability	
+ manageability	
+ performance	
+ reliability	
+ reusability	
+ scalability	
+ security	
+ supportability	
+ testability	
+ user	experience	/	usability	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+13 
+
+https://msdn.microsoft.com/en-us/library/ee658094.aspx (r. 11-2015) 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+14 
+
+problema: a nadie le importa! 
+ a	nadie	le	importa	conabilidad,	eciencia,	portabilidad	y	
+mantenibilidad	
+ a	nadie	le	importan	todos	ellos	
+
+ las	personas	(stakeholders,	lectores)	solo	se	preocupan	de	
+algunas	categorias	
+ tendria	mas	senedo	denir	calidad	basada	en	el	lector	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+14 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+ejercicio 
+ modelo	de	calidad	para	siga	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+15 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+modelo de calidad 5 niveles 
+
+end users
+
+analysts
+
+qa
+
+sysadmins
+
+developers
+
+peer architects
+
+proj. managers
+
+(functionality)
+
+(reliability)
+
+computations
+
+(usability)
+
+deployables
+
+software
+
+architecture
+specification
+
+architecture
+
+process
+
+(efficiency)
+
+((installability))
+
+((operability))
+
+buildability
+
+((testability))
+
+(maintainability)
+
+((analyzability))
+
+manageability
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+16 
+
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+aseguramiento de 
+calidad de software 
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+
+17 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+aseguramiento de calidad de software 
+
+ so-ware	quality	assurance	(sqa)	
+
+ acciones	sistemaecas	y	planicadas	requeridas	para	asegurar	
+la	calidad	de	so-ware	
+
+ grupo	de	sqa	
+
+ objeevos:	planicar,	desarrollar	y	controlar	el	proceso	de	
+vericacion	y	validacion	
+ acevidades:	aplicacion	de	metodos,	revisiones	e	inspecciones,	
+teseng,	estandares,	control	de	cambios,	mediciones,	registro	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+18 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+verificacion y validacion 
+ vericacion	--	estamos	construyendo	el	producto	
+correctamente?	
+ validacion	--	estamos	construyendo	el	producto	
+correcto?	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+19 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+revisiones de software [1/3] 
+ idea	clave:	someter	a	chequeo	uno	o	mas	productos	de	trabajo	
+ descubrimiento	temprano	de	defectos	
+
+ actuan	como	ltro	
+
+ gran	impacto	en	los	costos	de	teseng	y	mantencion	
+ defectos	de	so-ware	eenen	efecto	de	amplicacion	
+ permiten	evitar	microcascadas	
+
+ tres	epos	(d.	galin):	
+
+ formal:	solo	producto	de	trabajo	aprobado	puede	conenuar	a	siguientes	fases	o	tareas	del	desarrollo	
+
+ revisiones	formales	de	diseno	
+ revisiones	por	pares	
+
+inspecciones	
+
+
+ caminatas	de	codigo/texto	
+
+ revisiones	por	expertos	
+
+ caso	ideal:	externos	a	la	organizacion		
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+20 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+revisiones de software [2/3] 
+ objeevos	
+
+ detectar	errores	en	la	logica,	funcion	o	implementacion	
+ vericar	saesfaccion	de	requerimientos	
+ asegurar	cumplimiento	de	estandares	
+ fomentar	uniformidad	
+ hacer	proyectos	mas	manejables	
+
+ herramientas	relacionadas	
+
+ issue	trackers	(ej:	jira,	manes	bug	tracker,	taiga,...)	
+ code	reviewers	(ej:	upsource,...)	
+ discusion	colaboraeva	(ej:	conuence,	taiga...)	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+21 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+revisiones de software [3/3] 
+ guia	de	accion	
+ llevar	registro	
+ limitar	tamano	del	grupo	
+ denir	tamano,	
+ exigir	preparacion	previa	
+conformacion	y	duracion	
+ revisar	producto,	no	
+ denir	checklists	
+ asignar	recursos	
+productor	
+ establecer	agenda	
+ entrenar	a	los	revisores	
+ limitar	debates	y	rebates	
+ revisar	las	revisiones	
+ enunciar	problemas,	no	
+resolverlos	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+22 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+inspecciones fagan 
+ desarrolladas	en	1972,	por	michael	fagan	
+ benecios:	prevencion	y	reduccion	de	defectos,	y	por	
+ende	de	costos	
+ proceso	de	inspeccion	en	6	etapas	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+23 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+inspecciones fagan 
+ etapas	
+
+disponibilidades,	fechas)	
+
+lector,	tester,	moderador)	
+
+1. planeacion:	preparacion	logiseca	(materiales,	
+2. overview:	conocimiento	general,	asignacion	de	roles	(autor,	
+3. preparacion:	estudio	del	material	a	ser	inspeccionado	
+4.
+inspeccion:	busqueda	de	defectos	
+5. retrabajo:	hacer	las	correcciones	
+6.
+
+iteracion:	vericacion	de	lo	realizado,	y	de	la	no	introduccion	
+de	efectos	secundarios	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+24 
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	16:	calidad	de	so-ware	
+
+otras formas de revision 
+ talleres	de	patrones	de	diseno	
+ lectura	dirigida	de	casos	de	uso	
+
+sesion 15 
+
+ingenieria de software - 2016 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+25 
+
+calidad de software 
+
+ingenieria	de	so-ware	
+
+marcello visconti 
+hernan astudillo & gaston marquez 
+departamento de informatica 
+universidad tecnica federico santa maria 
+
+utfsm-di-2016 
+
+

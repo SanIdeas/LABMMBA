@@ -1,0 +1,473 @@
+ingenieria de software 
+
+tes$ng	
+
+hernan	astudillo	&	gaston	marquez	
+departamento	de	informa/ca	
+universidad	tecnica	federico	santa	maria	
+
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+contexto [1] 
+ adsw	
+
+ validacion	del	proyecto?	
+ si	fue	validado,	como	se	hizo?	
+ algunas	ideas:	prueba	y	error,	mul$ples	accesos,	otros	
+
+ exis$ra	 algun	 proceso/modelo	 que	 ayude	 a	 realizar	 pruebas	 y	
+asegurarnos	 que	 nuestro	 sistema	 de	 so9ware	 fallara	 lo	 menos	
+posible?	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	10	-	diseno-reuso	de	so9ware	
+
+contexto [2] 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+tes7ng	process	
+
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+el proceso de prueba [1] 
+ existen	dos	enfoques	a	la	hora	de	hablar	de	pruebas	
+
+ prueba	de	componentes	
+
+ se	verica	individualmente	cada	componente	
+ se	analiza	la	responsabilidad	del	desarrollo	del	componente	
+ las	pruebas	se	realizan,	generalmente,	de	la	experiencia	de	los	desarrolladores	
+
+ prueba	del	sistema	
+
+sistemas	
+
+ se	 hace	 prueba	 a	 un	 grupo	 de	 componentes	 integrados	 para	 crear	 sistemas	 o	 sub-
+ la	responsabilidad	de	la	prueba	se	traspasa	a	un	equipo	
+ los	test	se	basan	en	la	especicacion	del	sistema	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+el proceso de prueba [2] 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+defectos de las pruebas 
+ el	obje$vo	de	las	pruebas	es	encontrar	 	defectos	en	los	sistemas	de	
+so9ware	
+ una	prueba	exitosa	es	una	prueba	en	donde	se	encuentran	las	causas	
+que	producen	un	comportamiento	anomalo	en	un	so9ware	
+ pero,	 la	 prueba	 solo	 muestra	 la	 presencia	 de	 un	 defecto,	 no	 la	
+solucion	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+objetivos de las pruebas 
+ validacion	
+
+ defectos	
+
+ demostrar	 a	 los	 desarrolladores	 y	 el	 sistema	 que	 los	 requerimientos	
+establecidos	han	sido	realizados	exitosamente	
+ una	prueba	exitosa	demuestra	que	el	sistema	de	so9ware	funciona	como	se	
+habia	establecido	
+
+ descubrir	 una	 falta	 o	 defecto	 en	 el	 sistema	 de	 so9ware	 donde	 el	
+comportamiento	 es	 incorrecto	 o	 no	 es	 conforme	 a	 las	 especicaciones	
+establecidas	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+el proceso de testing de software 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+politicas de pruebas 
+ solamente	una	prueba	exhaus$va	de	prueba	puede	mostrar	que	un	
+sistema	de	so9ware	esta	libre	de	defectos.	sin	embargo,	una	prueba	
+exhaus$va	es	imposible	
+ las	 poli$cas	 de	 pruebas	 denen	 los	 enfoques	 que	 deben	 ser	
+u$lizados	al	momento	de	seleccionar	las	pruebas	en	un	sistema	
+ todas	las	funcionalidades	accedidas	a	traves	de	menu	deben	ser	testeadas	
+ las	 combinaciones	 de	 funcionalidad	 accedidas	 a	 traves	 del	 mismo	 menu	
+deben	ser	testeadas	
+ cuando	 el	 usuario	 ingresa	 pe$ciones	 al	 sistema,	 todas	 las	 funcionalidades	
+deben	ser	testeadas	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+prueba del sistema 
+ involucra	la	integracion	de	componentes	para	crear	sistemas	o	sub-
+sistemas	
+ se	denen	dos	fases	
+
+ pruebas	 de	 integracion:	 el	 equipo	 de	 tes$ng	 $ene	 acceso	 a	 todo	 el	 codigo	
+fuente	del	sistema.	el	sistema	es	testeado	en	funcion	de	la	integracion	de	los	
+componentes	
+ pruebas	de	entrega:	el	equipo	de	tes$ng	prueba	el	sistema	completo	para	ser	
+entregado	como	una	caja	negra	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+pruebas de integracion 
+ involucra	la	creacion	del	sistema	desde	sus	componentes	y	se	hacen	
+pruebas	 para	 iden$car	 problemas	 que	 puedan	 surgir	 desde	 la	
+interaccion	de	los	componentes	
+ integracion	top-down	
+
+ desarrollo	del	esqueleto	del	sistema	y	se	agregan	componentes	
+
+ integracion	bo_om-up	
+
+la	
+
+ integra	
+funcionalidades	
+ para	 simplicar	
+incrementalmente	
+
+infraestructura	 de	 componentes	 y	
+
+luego	 se	
+
+le	 agregan	
+
+las	 pruebas,	 el	 sistema	 debe	 ser	
+
+integrado	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+pruebas de integracion incremental 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+enfoques de las pruebas 
+ validacion	de	la	arquitectura	
+
+ la	integracion	top-down	es	mejor	para	descubrir	errores	en	una	arquitectura	
+de	so9ware	
+
+ demostracion	del	sistema	
+
+ la	integracion	top-down	permite	una	demostracion	temprana	en	los	inicios	
+de	la	fase	de	desarrollo	
+ test	de	implementacion	
+
+ la	integracion	bo_om-up	es	u$l	
+	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+entregas de pruebas 
+ el	proceso	de	entregas	de	pruebas	de	un	sistema	debe	ser	distribuido	
+a	los	clientes	
+ el	principal	obje$vo	de	lo	anterior	es	entregar	conanza	al	cliente	de	
+que	el	sistema	cumple	los	requisitos	establecidos	
+ las	 entregas	 de	 pruebas	 son	 usualmente	 cajas	 negras	 o	
+funcionalidades	
+ basadas	en	la	especicacion	del	sistema		
+ los	testers	no	saben	lo	que	con$ene	la	implementacion	del	sistema	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+black-box testing 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+casos de uso [1] 
+ los	 casos	 de	 uso	 pueden	 ser	 la	 base	 para	 derivar	 pruebas	 en	 el	
+sistema	de	so9ware	
+ estos	 ayudan	 a	 iden$car	 operaciones	 que	 pueden	 ser	 testeadas	 y	
+ayudan	al	diseno	de	los	casos	de	prueba	
+ ademas,	 con	 la	 ayuda	 de	 los	 diagramas	 de	 secuencias,	 se	 pueden	
+realizar	entradas	y	salidas	para	realizar	pruebas	de	tes$ng	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+casos de uso [2] 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+guias para testing [1] 
+ las	 guias	 que	 se	 describiran	 a	 con$nuacion	 son	 propuesta	 por	
+sommerville	[sommerville,	2004]	las	cuales	describen	consejos	para	
+elegir	la	mejor	prueba	para	encontrar	defectos	
+ elegir	las	entradas	que	fuercen	al	sistema	a	generar	un	error	
+ disenar	entradas	que	cause	saturacion	del	buer	
+ repe$r	los	puntos	anteriores	varias	veces	
+ forzar	salidas	invalidas	del	sistema	
+ probar	dichas	salidas	con	grandes	y	pequenos	volumenes	de	datos	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+guias para testing [2] 
+ qa	framework:	test	guidelines	(
+h_p://www.w3.org/tr/2004/wd-qaframe-test-20040225/)	
+ segun	so9ware	tes$ng	mentor	[h_p://www.so9waretes$ngmentor.com/
+ar$cles/guidelines-for-so9ware-tes$ng/,	2016],	algunas	guias	prac$cas	
+para	tes$ng	son:	
+1. la	prueba	debe	descubrir	defectos	y	mejorar	la	calidad	del	so9ware	
+2. la	prueba	debe	ser	realizado	a	traves	del	ciclo	de	vida	del	so9ware	
+3. la	prueba	se	debe	hacer	mediante	la	caja	negra	y	blanca	
+
+ white-box	tes$ng	consiste	en	pruebas	estructurales	del	sistema	de	so9ware,	las	cuales	
+
+prueban	la	logica	interna	del	sistema		
+
+4. la	prueba	debe	ser	ejecutado	bajo	la	logica	del	negocio	
+5. la	prueba	debe	ser	ejecutado	ecientemente	con	el	obje$vo	de	reducir	el	riesgo	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+so?ware	tes7ng	life	cycle	stlc	
+
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+stlc 
+ hasta	el	momento,	se	ha	visto	que	tes$ng	es	una	serie	de	ac$vidades	
+ pero,	son	ac$vidades	metodologicas	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+analisis de requisitos 
+ durante	esta	fase	se	estudian	los	requisitos	desde	el	punto	de	vista	
+del	tes$ng	con	el	obje$vo	de	iden$car	requisitos	testeables.	
+ ac7vidades	
+
+ iden$car	$pos	de	prueba	
+ recopilar	datos	sobre	el	establecimiento	de	prioridades	y	el	enfoque	
+ iden$car	ambientes	de	prueba	en	donde	se	detalle	que	se	va	a	probar	
+
+ requirement	tracebility	matrix	(rtm,	
+h_p://www.guru99.com/traceability-matrix.html)	
+
+ entregables	
+
+ necesidad	
+ curiosidad	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+plan de prueba 
+ en	esta	fase,	se	discute	el	plan	estrategico	de	las	pruebas	
+ tipicamente,	en	esta	etapa	el	analista	qa	determina	el	esfuerzo	y	costos	es$mados	del	
+proyecto	y	como	se	prepara	y	termina	el	plan	
+ ac7vidades	
+
+ preparacion	del	plan	
+ seleccion	de	herramienta	
+ test	de	esfuerzo	y	es$macion	
+ la	planicacion	de	recursos	y	la	determinacion	de	funciones	y	responsabilidades	
+ entrenamiento	
+
+ plan	 de	 pruebas	 (h_p://www.guru99.com/what-everybody-ought-to-know-about-test-
+ es$macion	del	esfuerzo	(h_p://www.guru99.com/an-expert-view-on-test-es$ma$on.html)	
+
+planing.html)	
+
+ entregables	
+
+ necesidad	
+
+ vision	holis$ca	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+desarrollo de casos de prueba 
+ esta	fase	involucra	la	creacion,	vericacion	y	trabajo	de	los	casos	de	prueba	
+ se	iden$can	los	datos	de	prueba	
+ ac7vidades	
+
+ creacion	de	casos	de	prueba	
+ revisar	las	bases	de	los	casos	de	prueba	
+ creacion	de	datos	de	prueba	(si	es	necesario)	
+
+ entregables	
+
+ casos/scripts	de	prueba	
+ datos	de	prueba	
+
+ necesidad	
+
+ crea$vidad	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+configuracion del ambiente de prueba 
+ la	 conguracion	 del	 ambiente	 de	 prueba	 decide	 las	 condiciones	 del	
+hadware	o	so9ware	donde	el	sistema	sera	probado	
+ ac7vidades	
+
+ entender	la	arquitectura,	conguracion	del	ambiente	y	preparar	hadware	y	so9ware	
+por	cada	requerimiento	que	sera	probado	
+ realizar	pequenas	pruebas	del	sistema	(para	ver	si	todo	esta	bien	con	el	ambiente	
+de	prueba)	
+ entregables	
+
+ ambiente	listo	con	los	datos	de	prueba	establecidos	
+ resultados	de	las	pequenas	pruebas	
+
+ necesidad	
+
+ conocer	la	tolerancia	del	sistema	de	so9ware	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+ejecucion de la prueba 
+ durante	esta	fase,	el	equipo	se	preocupa	del	plan	de	prueba	y	los	casos	de	prueba	
+ cualquier	detalle	encontrado	en	las	pruebas,	se	debe	reportar	al	equipo	de	tes$ng	
+ ac7vidades	
+
+ ejecutar	pruebas	acordes	al	plan	
+ documentar	los	resultados	
+ mapear	defectos	a	casos	de	pruebas	establecidos	en	rtm	
+ seguir	los	defectos	
+
+ entregables	
+
+ rtm	completa	
+ casos	de	pruebas	actualizados	
+ reporte	de	defectos	
+
+ necesidad	
+ paciencia		
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so9ware		sesion	1:	introduccion	
+ingenieria	de	so9ware		sesion	12	-		tes$ng	
+
+cierre del ciclo 
+ el	equipo	de	tes$ng	conoce,	discute	y	analiza	los	artefactos	del	tes$ng	con	
+el	obje$vo	de	iden$car	estrategias	que	se	pueden	implementar	a	futuro	
+ ac7vidades	
+
+ evaluar	 el	 ciclo	 completo	 basado	 en	 atributos	 como:	 $empo,	 costo,	 so9ware,	
+obje$vos	del	negocio,	otros	
+ preparar	metricas	de	prueba	
+ documentar	lo	aprendido	en	el	proyecto	
+
+ entregables	
+
+ reporte	de	cierre	de	pruebas	
+ metricas	de	prueba	
+
+ necesidad	
+
+ diplomacia	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria de software 
+
+tes$ng	
+
+hernan	astudillo	&	gaston	marquez	
+departamento	de	informa/ca	
+universidad	tecnica	federico	santa	maria	
+
+utfsm-di-2016	
+
+

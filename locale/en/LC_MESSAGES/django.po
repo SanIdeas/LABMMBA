@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-03 03:27-0400\n"
-"PO-Revision-Date: 2016-07-03 03:50-0400\n"
+"POT-Creation-Date: 2016-07-05 00:43-0400\n"
+"PO-Revision-Date: 2016-07-05 00:50-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,39 +18,37 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 
 #: .\crossref\views.py:54
-#, fuzzy
-#| msgid "Debes iniciar sesion."
 msgid "Debe iniciar sesion."
 msgstr "You must log in"
 
-#: .\drive\views.py:162
+#: .\drive\views.py:164
 msgid "Para continuar debes enlazar tu cuenta de Google Drive"
 msgstr "Link your Google Drive account to continue"
 
-#: .\drive\views.py:173
+#: .\drive\views.py:175
 msgid "El link ingresado no contiene documentos compatibles"
 msgstr "The Link does not have compatible documents"
 
-#: .\drive\views.py:186
+#: .\drive\views.py:188
 msgid "No existen archivos compatibles en el enlace."
 msgstr "There are not compatible files in the link."
 
-#: .\drive\views.py:188
+#: .\drive\views.py:190
 msgid "Error desconocido. Contacta al administrador."
 msgstr "Unkown error. Contact the administrator."
 
-#: .\drive\views.py:191 .\drive\views.py:225
+#: .\drive\views.py:193 .\drive\views.py:230
 msgid "Debes iniciar sesion."
 msgstr "You must log in"
 
-#: .\drive\views.py:219
+#: .\drive\views.py:223
 #, python-format
 msgid ""
 "No se pudo descargar el documento %(title)s debibo a un problema desconocido."
 msgstr ""
 "The document %(title)s could not be downloaded due to an unknown problem"
 
-#: .\drive\views.py:223
+#: .\drive\views.py:228
 msgid ""
 "Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas "
 "tarde."
@@ -76,8 +74,8 @@ msgstr "Our history"
 msgid "Integrantes"
 msgstr "Members"
 
-#: .\templates\about\about.html:18 .\templates\shared\base.html.py:81
-#: .\templates\shared\base.html:96 .\templates\shared\base.html.py:143
+#: .\templates\about\about.html:18 .\templates\shared\base.html.py:83
+#: .\templates\shared\base.html:98 .\templates\shared\base.html.py:145
 msgid "Cooperación"
 msgstr "Cooperation"
 
@@ -101,10 +99,17 @@ msgstr "Generate report"
 msgid "Gestionar Documentos"
 msgstr "Manage Documents"
 
-#: .\templates\intranet\admin.html:32 .\templates\intranet\admin.html.py:34
-#: .\templates\intranet\admin.html:38 .\templates\intranet\admin.html.py:40
+#: .\templates\intranet\admin.html:32 .\templates\intranet\admin.html.py:38
 msgid "Algo"
 msgstr "Something"
+
+#: .\templates\intranet\admin.html:34
+msgid "Administradores"
+msgstr "Administrators"
+
+#: .\templates\intranet\admin.html:40
+msgid "Areas de investigación"
+msgstr "Research areas"
 
 #: .\templates\intranet\admin_setups\users.html:3
 msgid "Pendientes de Aprobación"
@@ -154,7 +159,7 @@ msgstr ""
 "Note that this user has <strong id=\"modal-user-count\"></strong> documents."
 
 #: .\templates\intranet\admin_setups\users.html:107
-#: .\templates\intranet\document_information.html:83
+#: .\templates\intranet\document_information.html:85
 msgid "CONFIRMAR"
 msgstr "CONFIRM"
 
@@ -171,7 +176,7 @@ msgstr "Open Document"
 #: .\templates\intranet\documents.html:47
 #: .\templates\intranet\edit_document_information.html:36
 #: .\templates\intranet\profile.html:77
-#: .\templates\public_search\search.html:56
+#: .\templates\public_search\search.html:63
 msgid "Autor"
 msgstr "Author"
 
@@ -201,6 +206,7 @@ msgid "Agregado el"
 msgstr "Added on"
 
 #: .\templates\intranet\documents.html:9
+#: .\templates\public_search\search.html:25
 #, python-format
 msgid " No se encontraron resultados para %(search)s "
 msgstr "No results for %(search)s found"
@@ -208,6 +214,7 @@ msgstr "No results for %(search)s found"
 #: .\templates\intranet\documents.html:17
 #: .\templates\intranet\documents.html:50 .\templates\intranet\upload.html:43
 #: .\templates\intranet\upload.html:58 .\templates\public_search\search.html:33
+#: .\templates\public_search\search.html:66
 msgid "Dueño"
 msgstr "Owner"
 
@@ -217,21 +224,22 @@ msgid "Extracto"
 msgstr "Abstract"
 
 #: .\templates\intranet\documents.html:43
+#: .\templates\public_search\search.html:59
 msgid "No hay documentos en la base de datos"
 msgstr "There are no documents in the database"
 
 #: .\templates\intranet\documents.html:48 .\templates\intranet\profile.html:78
-#: .\templates\public_search\search.html:57
+#: .\templates\public_search\search.html:64
 msgid "Titulo"
 msgstr "Title"
 
 #: .\templates\intranet\documents.html:49 .\templates\intranet\profile.html:79
-#: .\templates\public_search\search.html:58
+#: .\templates\public_search\search.html:65
 msgid "Año"
 msgstr "Year"
 
 #: .\templates\intranet\documents.html:51 .\templates\intranet\profile.html:81
-#: .\templates\public_search\search.html:59
+#: .\templates\public_search\search.html:67
 msgid "Añadido"
 msgstr "Added"
 
@@ -263,16 +271,16 @@ msgstr "Synthesis of bioactive compounds and biotechnological interest "
 msgid "Biorremediación de Ambientes Contaminados"
 msgstr "Bioremediation of Contaminated Environments"
 
-#: .\templates\intranet\edit_document_information.html:72
+#: .\templates\intranet\edit_document_information.html:74
 msgid "Escribe una palabra clave"
 msgstr "Write a keyword"
 
-#: .\templates\intranet\edit_document_information.html:85
+#: .\templates\intranet\edit_document_information.html:87
 #: .\templates\intranet\profile.html:14
 msgid "Aceptar"
 msgstr "Accept"
 
-#: .\templates\intranet\edit_document_information.html:91
+#: .\templates\intranet\edit_document_information.html:93
 #: .\templates\intranet\profile.html:15
 msgid "Cancelar"
 msgstr "Cancel"
@@ -339,16 +347,16 @@ msgid "Privado"
 msgstr "Private"
 
 #: .\templates\intranet\shared.html:62 .\templates\intranet\shared.html:116
-#: .\templates\shared\base.html.py:58 .\templates\shared\base.html:110
+#: .\templates\shared\base.html.py:60 .\templates\shared\base.html:112
 msgid "Ingresar"
 msgstr "Log in"
 
 #: .\templates\intranet\shared.html:64 .\templates\intranet\shared.html:119
-#: .\templates\shared\base.html.py:60 .\templates\shared\base.html:112
+#: .\templates\shared\base.html.py:62 .\templates\shared\base.html:114
 msgid "Cerrar Sesión"
 msgstr "Logout"
 
-#: .\templates\intranet\shared.html:86 .\templates\public_search\search.html:13
+#: .\templates\intranet\shared.html:86 .\templates\public_search\search.html:17
 msgid "Ingresa tu busqueda aquí"
 msgstr "Enter your search here"
 
@@ -469,7 +477,7 @@ msgstr "last activity"
 
 #: .\templates\login\login.html:9
 msgid "Ingresar al sistema"
-msgstr "Enter the Intranet"
+msgstr "Log in Intranet"
 
 #: .\templates\login\login.html:10
 msgid "Ingresa tus datos para acceder a la base de datos de Labmmba"
@@ -507,28 +515,28 @@ msgstr "Country"
 msgid "Selecciona un area"
 msgstr "Select an area"
 
-#: .\templates\public_search\search.html:7 .\templates\shared\base.html:87
-#: .\templates\shared\base.html.py:102 .\templates\shared\base.html:149
+#: .\templates\public_search\search.html:10 .\templates\shared\base.html:89
+#: .\templates\shared\base.html.py:104 .\templates\shared\base.html:151
 msgid "Publicaciones"
 msgstr "Publications"
 
-#: .\templates\shared\base.html:80 .\templates\shared\base.html.py:95
-#: .\templates\shared\base.html:142
+#: .\templates\shared\base.html:82 .\templates\shared\base.html.py:97
+#: .\templates\shared\base.html:144
 msgid "Areas de Investigación"
 msgstr "Research areas"
 
-#: .\templates\shared\base.html:82 .\templates\shared\base.html.py:97
-#: .\templates\shared\base.html:144
+#: .\templates\shared\base.html:84 .\templates\shared\base.html.py:99
+#: .\templates\shared\base.html:146
 msgid "Sobre Nosotros"
 msgstr "About us"
 
-#: .\templates\shared\base.html:83 .\templates\shared\base.html.py:98
-#: .\templates\shared\base.html:145
+#: .\templates\shared\base.html:85 .\templates\shared\base.html.py:100
+#: .\templates\shared\base.html:147
 msgid "Ubicación"
 msgstr "Location"
 
-#: .\templates\shared\base.html:85 .\templates\shared\base.html.py:100
-#: .\templates\shared\base.html:147
+#: .\templates\shared\base.html:87 .\templates\shared\base.html.py:102
+#: .\templates\shared\base.html:149
 msgid "Intranet"
 msgstr "Intranet"
 

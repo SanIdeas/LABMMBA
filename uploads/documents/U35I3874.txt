@@ -1,0 +1,1057 @@
+reuso + desarrollo 
+
+basado en componentes 
+
+(cbd) 
+
+ingenieria	de	so-ware	
+
+hernan	astudillo	&	gaston	marquez	
+departamento	de	informa/ca	
+universidad	tecnica	federico	santa	maria	
+
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 diseno y reuso 
+
+ tecnicas	de	diseno	han	sido	hechas	para	hacer	sistemas	desde	cero	
+ ...pero	la	mayoria	de	los	sistemas	reales	son	modicaciones	o	reemplazos	de	
+otros	sistemas	
+
+ uso	de	componentes	cots	
+
+ commercial	o-the-shelf	components	
+ comerciales	o	libres	(open	source)	
+
+ el	problema	del	disenador	es	diferente	al	problema	del	programador	
+
+ un	problema	de	opymizacion	vs	
+ un	problema	de	seleccion	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+2	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 escalas de reuso 
+
+ componentes		piezas	reuylizables	
+
+ so-ware	empaquetado	
+
+ framework	para	un	dominio	
+
+ so-ware	+	diseno	
+ patrones	de	diseno	
+
+ heurisycas	sistemayzadas	
+
+ arquitecturas	de	referencia	y	modelos	de	componentes	
+
+ vocabulario	y	permiten	intercambio	inter-organizacional	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+3	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 contexto 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+piezas reutilizables 
+
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 componentes 
+
+ componente	[whitehead]	
+
+ pieza	separable	(independiente	del	contexto)	de	so-ware	ejecutable	
+ ...que	yene	senydo	como	unidad	
+ ...y	puede	interoperar	con	otros	componentes	
+ ...dentro	de	un	ambiente	de	apoyo	
+ ...y	es	accesable	solo	via	sus	interfaces	
+ ...y	esta	listo	para	usar	(aparte	de	instalacion	y	conguracion)	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+6	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 productos 
+
+ categorias	de	productos	
+
+ empaquetados	por	ypo	de	problema	y	de	solucion	
+
+ tipos	de	solucion:	tecnologias	
+
+ middleware	
+ mom,	bd,	directory	servers,	monitores	transaccionales,	workow...	
+
+ tipos	de	problemas:	servicios	del	negocio	
+
+ paquetes	
+ erp	(enterprise	resource	planning),	crm	(customer	relayonship	
+management)...	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+7	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 disenos reutilizables 
+
+ disenos	reuylizables	
+
+ aplicaciones	o	sistemas	incompletos	
+
+ frameworks	
+ esylos	
+ patrones	
+ lineas	de	productos	
+
+ formas	lpicas	de	sistemas	
+
+ heurisycas	para	solucion	con	formas	lpicas	
+
+ generalizaciones	de	aplicaciones	exitosas	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+8	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 object-oriented frameworks [1] 
+
+ framework	orientado	a	objetos	
+
+ diseno	reusable...	
+ que	modela	parte	de	un	sistema	de	so-ware...	
+ con	un	conjunto	de	clases	abstractas...	
+ que	encarnan	la	colaboracion	entre	sus	instancias	
+
+ forma	de	(re)uso	
+
+ hot	spots:	clases	abstractas	
+ construir	sub-clases	especicas	al	sistema	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+9	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 object-oriented frameworks [2] 
+
+ resultan	de	procesos	de	analisis	de	dominio	
+ reducir	el	esfuerzo	de	desarrollo	porque	permiten	reusar	diseno	y	
+codigo	
+ dipcil	desarrollarlos	porque	deben	ser	faciles	de	usar	y	tener	poder	
+expresivo	para	cubrir	variaciones	del	dominio	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+10	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 ejemplos de frameworks [1] 
+
+ ant	
+
+ herramienta	open	source	uylizada	en	la	compilacion	y	creacion	de	programas	
+java	
+ escrito	en	xml	y	java		ofrece	una	solucion	interoperable	al	nivel	de	sistema	
+operayvo	(gracias	a	java)	y	conguraciones	descripyvas	(gracias	a	xml)	
+ se	usa	creando	nuevas	clases	que	especializan	las	clases	del	framework	
+ htp://ant.apache.org/		
+
+ ampliamente	usado	por	desarrolladores	java	(aunque	no	sepan	que	
+es	un	framework!)	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+11	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 ejemplos de frameworks [2] 
+
+ hibernate	
+
+ persistencia	objeto/relacional	y	servicio	de	consultas	para	java	y	.net	
+ permite	desarrollar	clases	siguiendo	el	paradigma	oo	y	expresar	consultas	en	
+hql	(extension	propia	y	portable	de	sql),	en	sql	nayvo,	o	con	un	criterio	oo		
+ htp://www.hibernate.org/		
+
+ ampliamente	usado	por	proyectos	open	source	y	propietarios	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+12	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 ejemplos de frameworks [3] 
+
+ struts	
+
+ framework	y	toolkit	open	source	que	ayuda	a	desarrolladores	a	construir	
+aplicaciones	para	la	web		
+ arquitecturas	de	aplicacion	basadas	en	el	enfoque	model	2,	una	variacion	
+del	paradigma	de	diseno	clasico	mvc		
+ usando	model	2,	un	servlet	(o	equivalente)	maneja	la	ejecucion	de	la	logica	de	negocio,	
+
+y	la	logica	de	presentacion	reside	principalmente	en	server	pages	
+
+ htp://struts.apache.org/		
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+13	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 ejemplos de frameworks [4] 
+
+ spring	
+
+ sistema	para	ensamblar	componentes	via	archivos	de	conguracion	
+ puede	ser	usado	en	conjunto	con	otros	frameworks	
+ es	modular	y	ha	sido	dividido	logicamente	en	paquetes	independientes,	los	
+que	pueden	funcionar	independientemente	
+ esta	basado	en	el	patron	inversion	of	control/dependency	injecyon	
+ para	j2ee:	htp://www.springframework.org/		
+ para	.net:	htp://www.springframework.net/		
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+14	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 ejemplos de frameworks [5] 
+
+ spring	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+15	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 catalogos de componentes 
+
+ en	la	actualidad,	se	considera	mala	pracyca	desarrollar	una	aplicacion	
+entera	desde	cero	(salvo	que	sea	muy	especial)	
+ lo	primero	es	buscar	componentes	o	frameworks	que	sea	posible	reusar	
+
+ hay	tantos	componentes,	que	se	requiere	organizarlos	
+
+ existen	numerosos	catalogos	de	componentes	(ver	proximas	transparencias)	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+16	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 catalogos [1] 
+
+ sourceforge	
+
+ htps://sourceforge.net	
+ un	siyo	web	de	desarrollo	de	so-ware	open	source,	ofrece	hosyng	a	mas	de	
+100.000	proyectos	y	yene	sobre	1.000.000	de	usuarios	registrados	con	
+manejo	de	proyectos,	versiones,	comunicacion	y	codigo	centralizado	
+ gran	repositorio	de	codigo	y	aplicaciones	open	source	de	disyntas	categorias	
+(clustering,	bd,	juegos,	empresariales,	mulymedia,	nancieros,	seguridad,	
+sysadmin,	voip,...)	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+17	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 catalogos [2] 
+
+ freecode	(era	freshmeat)	
+ htp://www.freecode.com		
+ gran	indice	de	so-ware	open	source	para	unix	y	cross-pla{orm,	temas	
+visuales,	y	so-ware	para	palmos	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+18	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 catalogos [3] 
+
+ objectweb	
+
+ htp://asm.ow2.org	
+ comunidad	de	so-ware	open	source	cuyo	objeyvo	es	el	desarrollo	de	
+middleware	distribuido	open	source,	en	la	forma	de	componentes	adaptables	
+y	exibles	
+ componentes	van	desde	frameworks	de	so-ware	especicos	a	protocolos	
+para	plataformas	integradas	
+ creada	a	nes	de	1999	por	bull,	france	telecom	r&d	e	inria	(hosyng	
+provisto	por	inria);	en	2003	paso	a	ser	un	consorcio	internacional	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+19	
+
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+patrones de diseno 
+
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones de diseno 
+
+ denicion	
+
+ ventajas	
+
+ an	object-oriented	design	patern	describes	communicayng	objects	and	
+classes	that	are	customized	to	solve	a	generic	design	problem	in	a	parycular	
+context	[gamma95]	
+
+ idea	abstracta	reusable	
+ vocabulario	de	comunicacion	
+ bloques	basicos	
+ capturan	mejores	pracycas	de	diseno	
+ heurisycas	sistemayzadas	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+21	
+
+sesion	10	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [1] 
+
+ patron	de	diseno	creacional	
+ proposito:	proveer	una	interfaz	para	crear	familias	de	objetos	
+dependientes	sin	especicar	(al	cliente)	sus	clases	concretas	
+ una	clase	abstracta	provee	los	metodos	(a	modo	de	interfaz)	que	son	
+comunes	para	todos	los	ypos	de	productos	
+ varias	clases	(que	representan	los	ypos	de	productos)	heredan	los	
+metodos	desde	la	clase	abstracta	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [2] 
+
+ la	instanciacion	de	la	clase	puede	ser	entendida	como	crear	un	
+producto	en	una	fabrica	
+ esto	es,	entenderemos	al	objeto	como	un	producto	
+ idea	central:	el	cliente,	en	vez	de	crear	directamente	el	objeto	
+uylizando	el	operador	adecuado	(ej:	en	java	el	operador	new),	
+entrega	informacion	a	la	fabrica	sobre	el	ypo	de	producto	que	
+necesita	
+ la	fabrica	instancia	una	nueva	clase	(crea	el	objeto/producto)	y	lo	devuelve	al	
+cliente	
+ el	cliente	uyliza	al	objeto	como	un	producto	abstracto	sin	interesarse	en	la	
+implementacion	concreta	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [3] 
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [4] 
+
+ las	clases	que	parycipan	en	el	patron	son	las	siguientes:	
+
+ abstractfactory:	declara	una	interface	para	los	operadores	que	crean	
+productos	abstractos	
+ concretefactory:	implementa	las	operaciones	para	crear	productos	concretos	
+ abstractproduct:	declara	la	interface	para	un	ypo	de	producto	objeto	
+ product:	dene	un	producto	a	ser	creado	por	el	correspondiente	
+concretefactory,	es	implementado	por	la	interface	abstractproduct	
+ client:	usa	la	interface	declarada	por	la	clases	abstractfactory	y	
+abstractproduct	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [5] 
+
+ el	hecho	de	que	la	fabrica	devuelve	una	referencia	abstracta	al	objeto	
+creado	signica	que	el	cliente	no	yene	conocimiento	del	ypo	de	
+objeto.	
+ una	consecuencia	de	lo	anterior	es	que	cuando	se	necesitan	nuevos	
+ypos	concretos	de	objetos,	todo	lo	que	tenemos	que	hacer	es	
+modicar	el	codigo	de	cliente	y	hacer	uso	de	una	fabrica	diferente,	
+que	es	mucho	mas	facil	que	crear	instancias	de	un	nuevo	ypo.	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [6] 
+
+ la	clase	abstractfactory	es	la	que	determina	el	ypo	real	del	objeto	
+concreto	y	lo	crea,	pero	devuelve	una	referencia	abstracta	al	objeto	
+concreto	recien	creado.	
+ esto	determina	el	comportamiento	del	cliente	que	pide	a	la	fabrica	la	
+creacion	de	un	objeto	de	un	cierto	ypo	abstracto	y	para	devolver	la	
+referencia	a	el,	manteniendo	el	cliente	de	saber	nada	acerca	de	la	
+creacion	real	del	objeto.	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [7] 
+
+abstract	class	abstractproducta{	
+
+	public	abstract	void	operayona1();	
+	public	abstract	void	operayona2();	
+
+};	
+class	producta1	extends	abstractproducta{	
+
+	system.out.println("hello	"+arg);	
+
+	producta1(string	arg){	
+	
+	}	//	implement	the	code	here	
+	public	void	operayona1()	{	};	
+	public	void	operayona2()	{	};	
+
+};	
+class	producta2	extends	abstractproducta{	
+
+	system.out.println("hello	"+arg);	
+
+	producta2(string	arg){	
+	
+	}	//	implement	the	code	here	
+	public	void	operayona1()	{	};	
+	public	void	operayona2()	{	};	
+
+};	
+abstract	class	abstractproductb{	
+
+	//public	abstract	void	operayonb1();	
+	//public	abstract	void	operayonb2();	
+
+};	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [7] 
+
+class	productb1	extends	abstractproductb{	
+
+	productb1(string	arg){	
+	
+	}	//	implement	the	code	here	
+
+	system.out.println("hello	"+arg);	
+
+};	
+class	productb2	extends	abstractproductb{	
+
+	productb2(string	arg){	
+	
+	}	//	implement	the	code	here	
+
+	system.out.println("hello	"+arg);	
+
+};	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+};	
+abstract	class	abstractfactory{	
+
+	abstract	abstractproducta	createproducta();	
+	abstract	abstractproductb	createproductb();	
+
+};	
+class	concretefactory1	extends	abstractfactory{	
+	abstractproducta	createproducta(){	
+	return	new	producta1("producta1");	
+	}	
+	abstractproductb	createproductb(){	
+	return	new	productb1("productb1");	
+	}	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [7] 
+
+class	concretefactory2	extends	abstractfactory{	
+	abstractproducta	createproducta(){	
+	
+	}	
+	abstractproductb	createproductb(){	
+	
+	}	
+
+	return	new	productb2("productb2");	
+
+	return	new	producta2("producta2");	
+
+};	
+//factory	creator	-	indirect	way	of	instanyayng	the	factories	
+class	factorymaker{	
+
+	private	stayc	abstractfactory	pf=null;	
+	stayc	abstractfactory	getfactory(string	choice){	
+	
+	
+	
+	
+
+	if(choice.equals("a")){	
+	
+	}else	if(choice.equals("b")){	
+	
+
+	pf=new	concretefactory1();	
+
+	
+
+	pf=new	
+
+concretefactory2();	
+
+	
+	}	
+
+}	
+
+	
+
+	}	return	pf;	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 abstract factory [7] 
+
+//	client	
+public	class	client{	
+
+	abstractproducta	product=pf.createproducta();	
+
+	
+	//more	funcyon	calls	on	product	
+	}	
+
+	public	stayc	void	main(string	args[]){	
+	
+
+	abstractfactory	
+
+pf=factorymaker.getfactory("a");	
+
+}	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 cuando ocupar abstract factory? 
+
+ cuando	el	proyecto	en	el	cual	estamos	trabajando	el	sistema	debe	ser	
+independiente	a	la	forma	en	que	los	productos	trabajan	cuando	son	
+creados	
+ cuando	el	sistema	debe	ser	congurado	para	trabajar	con	varias	
+familias	de	productos	
+ cuando	una	familia	de	productos	esta	disenada	para	funcionar	todos	
+juntas	
+ cuando	se	necesita	la	creacion	de	una	libreria	de	productos,	donde	es	
+solo	relevante	la	interface,	pero	no	la	implementacion	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+patrones de aplicaciones 
+corporativas 
+
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones de aplicaciones corporativas 
+
+ paterns	of	enterprise	applicayon	architecture	
+
+ fowler	et	al.	[fowler	2002]	
+
+ presumen	una	arquitectura	convencional	de	3	capas	
+
+ ofrecen	soluciones	para	3	ypos	de	tecnologia	
+
+ dominio	(negocio)	
+ datos	
+ presentacion	(web)	
+
+ concurrencia	
+ sesiones	y	estados	
+ distribucion	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+34	
+
+sesion	10	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 asumen arquitectura 3 capas 
+
+capa	de		
+
+presentacion	
+
+-	despliegue	de		
+informacion	
+
+-	manejo	de	peyciones		
+
+de	usuario	
+
+capa	de		
+dominio	
+
+-	reglas	de	negocio	
+
+capa	de		
+datos	
+
+-	comunicacion	con	bd		
+-	sistemas	de	mensajeria		
+
+-gesyon	de		
+-transacciones	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+35	
+
+sesion	10	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones de concurrencia 
+
+ control	de	concurrencia	
+ opymista	vs.	pesimista	
+
+ transacciones	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+36	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones de datos 
+
+ mapeos	relacional-objetos	
+
+ campo	idenydad	
+ clave	extranjera	
+ tabla	de	asociaciones	
+ mapeo	de	dependencias	
+ valor	embuydo	
+ herencia	en	una	tabla	
+ clase	en	una	tabla	
+
+ metadatos	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+37	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones de presentacion 
+
+ mvc	
+ vistas:	
+
+ con	planyllas	
+ transformaciones	
+ 2	pasos	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+38	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 dependencias entre componentes de 
+
+mvc 
+
+vista	
+
+controlador	
+
+modelo	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 separacion vista - modelo 
+
+ separacion	esencial	en	el	patron	
+
+ dependencia	unidireccional:	la	vista	depende	del	modelo	
+
+ ventajas	se	derivan	de:	
+
+ saysface	disyntos	intereses	tecnicos	
+
+ presentacion	se	preocupa	de	mecanismos	de	ui	
+ modelo	se	preocupa	de	poliycas	y	reglas	del	negocio	
+
+ saysface	disyntos	intereses	de	usuarios	
+
+ mismo	modelo,	pero	con	disyntos	publicos	objeyvos	
+
+ ej:	vista	operacional	versus	vista	estrategica	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 separacion vista - controlador 
+
+ separacion	menos	importante	
+ en	la	pracyca,	la	mayoria	de	las	aplicaciones	yenen	un	controlador	
+por	vista...	
+ ...	pero	esto	no	es	una	obligacion	
+
+ ventaja	se	deriva	de:	
+
+ podemos	tener	dos	controladores	para	una	vista	
+
+ un	controlador	se	encarga	de	tareas	de	edicion	
+ otro	controlador	se	encarga	de	tareas	de	solo	lectura	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 mvc... patron de diseno? 
+
+ mvc	es	un	patron	de	diseno	que	por	si	solo	es	demasiado	grande	
+ cumple	con	la	denicion	que	hemos	dado	de	un	patron	de	diseno...	
+
+ describe	un	problema	recurrente	
+ entrega	una	propuesta	de	solucion	generica	aplicable	a	este	problema	
+recurrente	
+ sin	embargo,	necesitamos	mas	ayuda	(de	otros	patrones)	para	
+construir	un	sistema	mvc	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones de sesion y estado 
+
+ estado	de	sesion	en	el	cliente	
+ estado	de	sesion	en	el	servidor	
+ estado	de	sesion	en	base	de	datos	
+
+sesion	10	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+43	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 resumen 
+
+ problema	del	disenador	y	programador	dieren	
+
+ un	problema	de	opymizacion	vs	
+ un	problema	de	seleccion	
+
+ soluciones:	piezas	reuylizables	
+
+ cots	
+ frameworks	
+
+ modelos	de	componentes	
+
+ soluciones	mejores:	disenos	reuylizables	
+ patrones	de	diseno	(aplicaciones	incompletas)	
+ patrones	de	aplicaciones	corporayvas	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+44	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones: resumen 
+
+ avance	notable	
+
+ ...desde	reuso	de	codigo	
+ ...a	reuso	de	codigo	con	diseno	
+ ...a	reuso	de	disenos	
+
+ patrones	
+
+ frutos	de	la	experiencia	
+ heurisycas	sistemayzadas	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+45	
+
+sesion	10	
+
+ingenieria	de	so-ware		sesion	1:	introduccion	
+ingenieria	de	so-ware		sesion	15	-	reuso	+	cbd	
+
+	 patrones: resumen 
+
+ avance	notable	
+
+ ...desde	esylos	descripyvos	
+ ...a	patrones	clasicos	de	sistemas	
+ ...a	patrones	dimensionales	
+
+ patrones	
+
+ frutos	de	la	experiencia	
+ heurisycas	sistemayzadas	
+
+ingenieria	de	so-ware	-	2015	
+
+utfsm-di-2016	
+utfsm-di-2016	
+
+46	
+
+sesion	10	
+
+reuso + desarrollo 
+
+basado en componentes 
+
+(cbd) 
+
+ingenieria	de	so-ware	
+
+hernan	astudillo	&	gaston	marquez	
+departamento	de	informa/ca	
+universidad	tecnica	federico	santa	maria	
+
+utfsm-di-2016	
+
+

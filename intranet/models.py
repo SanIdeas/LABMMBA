@@ -16,7 +16,7 @@ class Document(models.Model):
 	title = models.CharField(max_length=300, null=True)
 	author = models.CharField(max_length=100, null=True)
 	date = models.DateField(null=True)
-	abstract = models.CharField(max_length=400, null=True)
+	abstract = models.CharField(max_length=1000, null=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	date_added = models.DateField(auto_now_add=True)
 	drive_id = models.CharField(max_length=100, null=True)
@@ -85,7 +85,7 @@ class Document(models.Model):
 					break
 		#Si el campo contiene el archivo:
 		result_owner = True
-		result_content = False
+		result_content = True
 		exact_content = False
 		extract =  ''
 		if not exact and not result:
@@ -97,13 +97,14 @@ class Document(models.Model):
 						result_owner = False
 
 		#Se revisa el texto plano.
-		#text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
-		#if words in text:
-		#	exact_content = True
-		#else:
-		#	for word in splitted_words:
-		#		if(not(word in text)):
-		#			result_content = False
+		text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
+		print words
+		if words in text:
+			exact_content = True
+		else:
+			for word in splitted_words:
+				if(not(word in text)):
+					result_content = False
 
 		if result_content:
 			if exact_content:
@@ -125,6 +126,8 @@ class Document(models.Model):
 			result = result_owner or result_content
 		if exact_content and not exact:
 			exact = True
+		print 'exact ',exact_content
+		print 'no exact', result_content
 		ret = {'match': result, 'extract': extract, 'exact': exact}
 		return ret
 

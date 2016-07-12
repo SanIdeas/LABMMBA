@@ -54,15 +54,17 @@
 			</div>
 			<div id="keywords">
 				<ul>
-				{% for keyword in document.get_keywords %}
-					<li><a href="#">{{keyword}}</a></li>
-				{% endfor %}
+				{% if document.words %}
+					{% for keyword in document.get_keywords %}
+						<li><a href="#">{{keyword}}</a></li>
+					{% endfor %}
+				{% endif %}
 				</ul>
 			</div>
 		</div>
-		<div class="box" style="height: 200px">
+		<!--<div class="box" style="height: 200px">
 			
-		</div>		
+		</div>-->		
 	</div>
 	<div class="s2">
 		{% if document.owner.id == request.user.id or request.user.is_admin %}
@@ -96,9 +98,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="box" style="height: 200px; width: 100%">
+	<!--<div class="box" style="height: 200px; width: 100%">
 		
-	</div>
+	</div>-->
 </div>
 <script>
 	$('.cancel').click(function(e){

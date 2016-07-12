@@ -95,13 +95,15 @@
 	<h4>{% trans "Procesando" %}</h4>
 </div>
 <script>
-	var get_credentials_link = 'http://nachoherrs.ddns.net{% url 'get_credentials' %}';
+	var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
 	var link_analizer_link = "{% url 'link_analizer' '999' %}";
 	var download_drive_link = "{% url 'download_drive_files' '999' %}";
 	var upload_link = "{% url 'intranet:upload' %}";
 	var static_link = "{% static '999' %}";
 	var crossref_link = "{% url 'crossref:query' '999'%}";
 	var spinner_link = "{% static 'intranet/images/ring.svg' %}"
+	var extract_link = "{% url 'intranet:extract_content' %}"
+	var csrf_token = '{{csrf_token}}';
 	{% if request.user.drive_credentials == None %}
 		PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);
 	{% endif %}

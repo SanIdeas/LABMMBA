@@ -15,7 +15,7 @@
 			</div>
 			<div class="user-body">
 				<h4>{{ user.first_name }} {{ user.last_name }}</h4>
-				<h5>{{ user.area.name }}</h5>
+				<h5>{% trans user.area.name %}</h5>
 				<table>
 					<tr>
 						<td><h4>{{ user.doc_count}}</h4><i class="fa fa-file-text-o"></i><span>{% trans "Documentos" %}</span></td>

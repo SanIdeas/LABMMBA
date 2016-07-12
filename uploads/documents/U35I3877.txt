@@ -1,0 +1,339 @@
+ejercicio qa
+
+ingenieria de software
+
+marcello visconti
+hernan astudillo & gaston marquez
+departamento de informatica
+universidad tecnica federico santa maria
+
+utfsm-di-2016
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+(1) identifique fallas en proyecto propio
+
+ en los grupos formados para el proyecto de isw, realice 
+una lista en donde se describa en que formas en que su 
+sistema puede fallar en proporcionar un servicio eficaz. 
+relacione este ejercicio con aspectos tecnicos.
+
+ realice una lista en donde se describa en que formas en 
+que su sistema puede fallar en proporcionar un servicio 
+eficaz. relacione este ejercicio con aspectos no -tecnicos.
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+2
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+(solucion de asistentes)
+
+ aspectos tecnicos
+
+1. servidor vive en el suelo
+2. servidor se cae en momentos criticos
+3. saturacion por exceso de usuarios
+4. mal calculo de uso de recursos en nube
+5. que no salgan correos de difusion
+
+ aspectos no tecnicos
+
+1. caida del sistema fuente (siendo scrapped)
+2. que fb cierre acceso a sitio de amigosetc
+3. falta de recursos para pagar servidores/nube
+4. cliente encuentra sitio esteticamente desafiado
+5. usuarios no tienen capacitacion
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+3
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+(2) exprese fallas en vocabulario iso
+
+ describa las fallas identificadas
+
+ ...usando el vocabulario de la norma iso 25010
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+4
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 16: calidad de software
+
+5
+
+iso 25010 (2011)
+
+ 8 caracteristicas
+ 31 sub-caracteristicas
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+5
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+(solucion de asistentes)
+
+ aspectos tecnicos
+
+1. servidor vive en el suelo
+2. servidor se cae en momentos criticos
+3. saturacion por exceso de usuarios
+4. mal calculo de uso de recursos en nube
+5. que no salgan correos de difusion
+
+ aspectos no tecnicos
+
+1. caida del sistema fuente (siendo scrapped)
+2. que fb cierre acceso a sitio de amigosetc
+3. falta de recursos para pagar servidores/nube
+4. cliente encuentra sitio esteticamente desafiado
+5. usuarios no tienen capacitacion
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+6
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+(3) identifique calidad por stakeholder
+
+ describa los problemas de calidad identificados
+
+ ...usando el vocabulario de la norma iso 25010
+ ...asociandolo a stakeholders especificso de su proyecto
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+7
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+modelo de calidad 5 niveles
+
+e n d   u s e r s
+
+a n a l y s t s
+
+q a
+
+s y s a d m i n s
+
+d e v e l o p e r s
+
+p e e r   a r c h i t e c t s
+
+p r o j.   m a n a g e r s
+
+( f u n c t i o n a l i t y )
+
+( r e l i a b i l i t y )
+
+c o m p u t a t i o n s
+
+( u s a b i l i t y )
+
+d e p l o y a b l e s
+
+s o ft w a r e
+
+a r c h i t e c t u r e
+s p e c i f i c a t i o n
+
+a r c h i t e c t u r e
+
+p r o c e s s
+
+( e f f i c i e n c y )
+
+( ( i n s t a l l a b il i t y ) )
+
+( ( o p e r a b i l it y ) )
+
+b u i l d a b i l i t y
+
+(( t e s t a b i l i t y ) )
+
+( m a i n t a i n a b i l i t y )
+
+( ( a n a ly z a b i li t y ) )
+
+m a n a g e a b i l i t y
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+8
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 16: calidad de software
+
+(solucion por asistentes)
+
+ busqueda no finaliza en 5segs 
+
+[time efficiency]
+
+ permisos se corrompen en 
+
+runtime [integridad]
+
+ dificil de entrenar admin
+
+[learnability]
+
+ uso poco intutitivo
+[understandability]
+
+ busqueda no arroja todos los 
+resultados [func.correctness]
+
+e n d   u s e r s
+
+a n a l y s t s
+
+q a
+
+s y s a d m i n s
+
+d e v e l o p e r s
+
+p e e r   a r c h i te c t s
+
+ no hay forma de enviar correo en 
+
+lotes [func.completeness]
+
+p r o j.   m a n a g e r s
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+( f u n c ti o n a l i t y )
+
+( r e l i a b i l i t y )
+
+c o m p u t a t io n s
+
+( u s a b i l i t y )
+
+d e p l o y a b l e s
+
+s o f t w a r e
+
+a r c h i t e c t u r e
+s p e c i f i c a t i o n
+
+a r c h i t e c t u r e
+
+p r o c e s s
+
+( e f f i c i e n c y )
+
+(( i n s t a l la b i l i ty ) )
+
+(( o p e r a b i l i ty ) )
+
+b u i ld a b i l i t y
+
+( ( t e s t a b i l i t y ))
+
+( m a i n t a i n a b i l i t y )
+
+( ( a n a l y z a b i l i ty ) )
+
+m a n a g e a b i l i t y
+
+9
+
+ingenieria de software  sesion 1: introduccion
+ingenieria de software  sesion 17: ejercicio qa
+
+moralejas
+
+ la nocion de fallas que tiene un usuario/modelador 
+
+ingenuo es poco precisa
+
+ las fallas son problemas de calidad, expresables por 
+especialistas (nosotros) con vocabulario especializado
+
+ ...que nos permiten saber que medir y como medirlo
+
+ los criterios de calidad son mapeables a stakeholders
+
+(afectados/interesados) especificos
+
+ ...que nos permite saber que criterios importan mas a quienes
+
+sesion 15
+
+ingenieria de software - 2016
+
+utfsm-di-2016
+utfsm-di-2016
+
+10
+
+calidad de software
+
+ingenieria de software
+
+marcello visconti
+hernan astudillo & gaston marquez
+departamento de informatica
+universidad tecnica federico santa maria
+
+utfsm-di-2016
+
+

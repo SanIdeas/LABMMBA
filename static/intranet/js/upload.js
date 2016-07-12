@@ -519,6 +519,7 @@ function drive_request_handler(){
 				response = JSON.parse(xhr.responseText);
 				if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
 					alternator('#success-icon')
+					if(upload_method=='local') extract_content(response['real_ids']);
 					console.log(response);
 				}
 				else if ((response['error'])){
@@ -564,6 +565,7 @@ function drive_request_handler(){
 			if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
 				console.log(response)
 				load_confirmation(response['files'])
+				extract_content(response['real_ids']);
 			}
 			else if ((response['error'])){
 			}
@@ -583,6 +585,8 @@ function drive_request_handler(){
 			var url = download_drive_link.replace('999', ids.join('+'));
 			xhr.open('GET', url, true);
 			xhr.send();
+			$('.upl-hud').addClass('hidden');
+			$('.cssload-loader').removeClass('hidden');
 		}
 	}
 	
@@ -662,7 +666,7 @@ function load_confirmation(files){
 						'</td>',
 					'</tr>',
 					'<tr>',
-						'<td colspan="3" ><textarea class="drive-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
+						'<td colspan="3"><textarea class="drive-field abstract-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
 					'</tr>',
 				'</table>']
 	}
@@ -724,7 +728,7 @@ function load_confirmation(files){
 						'</td>',
 					'</tr>',
 					'<tr>',
-						'<td colspan="3" ><textarea class="drive-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
+						'<td colspan="3"><textarea class="drive-field abstract-field" name="abstract$id" placeholder="Abstract">$abstract</textarea></td>',
 					'</tr>',
 				'</table>']
 	}
@@ -735,7 +739,12 @@ function load_confirmation(files){
 		ids.push(files[i]['id']);
 
 	}
-
+	$('.abstract-field').each(function(){
+		if($(this).val() == ''){
+			$(this).addClass('loading-abs').prop('disabled','true');
+			$(this).closest('td').addClass('loading-abs-wrp');
+		}
+	});
 	$('.title-field').each(function(){
 		crossref_query($(this).val(), $(this).attr('doc-id'), true);
 	});
@@ -809,4 +818,32 @@ function crossref_query(query, doc_id, is_drive){
 			}
 	}
 	xhr.send(null);
+}
+
+function extract_content(ids){
+	var form = new FormData();
+	form.append('ids', ids);
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', extract_link , true);
+	xhr.setRequestHeader("X-CSRFToken", csrf_token);
+	if (upload_method =="local"){
+		console.log('se envian ids:' + ids);
+		xhr.send(form);
+	}
+	else{
+		console.log('se envian ids de drive: ' + ids);
+		xhr.onload = function(){
+			var response = JSON.parse(xhr.responseText);
+			if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
+				abs = response['abstracts'];
+				console.log(abs);
+				for (var i=0; i < abs.length; i++){
+					var field = $('.abstract-field[name="abstract' + abs[i]['id'] + '"]');
+					field.prop('disabled', false).removeClass('loading-abs').val(abs[i]['abstract']);
+					field.closest('td').removeClass('loading-abs-wrp');
+				}
+			}
+		}
+		xhr.send(form);
+	}
 }
