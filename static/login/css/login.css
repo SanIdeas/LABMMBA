@@ -3,33 +3,6 @@
 	margin: 0 auto;
 }
 
-#lower-bar{
-	width: 100%;
-	height: 5px;
-}
-
-.bar{
-	float: left;
-	width: 25%;
-	height: 100%;
-}
-
-#red-bar{
-	background-color: #E0424E;
-}
-
-#green-bar{
-	background-color: #009065;
-}
-
-#yellow-bar{
-	background-color: #F2AE47;
-}
-
-#blue-bar{
-	background-color: #006E9C;
-}
-
 .login-row:last-child > span{
 	font-size: 10pt;
 }
@@ -68,4 +41,12 @@
 .login-input > input[type="submit"]:hover{
 	transition: all 0.3s;
 	background-color: #0077ad;
+}
+
+.message-error{
+	color: #e0424e;
+    position: absolute;
+    font-weight: normal;
+    margin: 0;
+    font-size: 14px;
 }

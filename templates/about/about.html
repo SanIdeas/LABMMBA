@@ -3,26 +3,23 @@
 {% block content %}
 {% load i18n %}
 
-<div class="title-section">
-	<div class="title-label"><h1>{% trans "Quiénes Somos" %}</h1></div>
+<div class="title main">
+	<div class="label"><h1>{% trans "Quiénes Somos" %}</h1></div>
 </div>
 
 <div class="grid row">
-	<div id="content">
-		<div id="content-menu">
+	<div class="content">
+		<div class="menu">
 			<ul>
-				<li class="menu-row menu-head"><a href="{% url 'home' %}">Labmmba</a></li>
-				<li class="menu-row"><a href="{% url 'about' %}">{% trans "Quiénes Somos" %}</a></li>
-				<li class="menu-row"><a href="#">{% trans "Nuestra Historia" %}</a></li>
-				<li class="menu-row"><a href="#">{% trans "Integrantes" %}</a></li>
-				<li class="menu-row"><a href="#">{% trans "Cooperación" %}</a></li>
+				<li class="option head"><a href="{% url 'home' %}">Labmmba</a></li>
+				<li class="option"><a href="{% url 'about' %}">{% trans "Quiénes Somos" %}</a></li>
+				<li class="option"><a href="#">{% trans "Nuestra Historia" %}</a></li>
+				<li class="option"><a href="#">{% trans "Integrantes" %}</a></li>
+				<li class="option"><a href="#">{% trans "Cooperación" %}</a></li>
 			</ul>
 		</div>
-		<div id="content-body">
-			<div  id="title">
-				<h1>{% trans "Nuestra historia" %}:</h1>
-				<div class="clear"></div>
-			</div>
+		<div class="body">
+			<h1 class="title sub">{% trans "Nuestra historia" %}:</h1>
 			<p>
 				En 1997 se crea el primer laboratorio del área biológica de la Universidad Técnica Federico Santa María: El laboratorio de Microbiología Molecular y Biotecnología Ambiental (MMBA). En Octubre de ese año, este laboratorio cuenta con dos investigadores (Michael Seeger y Myriam Gonzalez), dos proyectos interinstitucionales y un espacio físico de 36 [m2].
 			</p>
@@ -95,7 +92,6 @@
 				Las investigaciones del laboratorio han sido financiadas con el apoyo de diversas instituciones tales como Fondecyt, Fundación Andes, Conicyt – BMBF, European Union (INCO), Mineduc, Núcleo Milenio EMBA, PBCT, UTFSM, Texas A&M University, U. Austral, Instituto Milenio (CBB) y Perkin Elmer Chile.
 			</p>
 		</div>
-		<div class="clear"></div>
 	</div>
 </div>
 

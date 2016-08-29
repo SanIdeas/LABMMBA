@@ -9,7 +9,6 @@ from django.core.files import File
 from intranet.views import get_metadata, strip_accents, convert_pdf_to_txt
 from intranet.forms import DocumentForm
 from intranet.models import Document
-from PIL import Image
 import httplib2, urllib, cStringIO
 import re, io, os, tempfile, datetime, base64, cPickle, ast, json
 from django.utils.translation import ugettext as _

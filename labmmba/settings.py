@@ -138,7 +138,9 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'login.User'
 
-MEDIA_ROOT = 'C:/Users/herna/Desktop/git/ISW'
+############# UBICACION DEL PROYECTO #############
+MEDIA_ROOT = 'C:/Users/herna/Desktop/git/ISW/'
+##################################################
 
 #Originalmente django serializa en JSON desde Django 1.6+
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

@@ -24,17 +24,17 @@ from datetime import date, timedelta
 from django.utils import timezone
 from collections import Counter
 from itertools import chain
-from django.utils.translation import ugettext as _
-import Levenshtein, random
+from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
+#import Levenshtein, random
 from django.db import connection
+from django.conf import settings
 
-# Create your views here.
 
 #Retorna el porcentaje de similitud entre dos strings.
 #Se utiliza el algoritmo de Levenshtein ya que tiene mejor rendimiento. Fuente:
 #http://stackoverflow.com/questions/6690739/fuzzy-string-comparison-in-python-confused-with-which-library-to-use
-def similar(a, b):
-	return Levenshtein.ratio(a, b)
+#def similar(a, b):
+#	return Levenshtein.ratio(a, b)
 
 def strip_accents(s):
 	s = s.decode("cp1252")  # decode from cp1252 encoding instead of the implicit ascii encoding used by unicode()
@@ -250,16 +250,16 @@ def upload(request):
 						document.owner.update_activity().doc_number('+')
 						document.format_filename()
 						real_ids.append(document.id)
-						#try:
-						#	text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-						#	text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
-						#	text_file.write(text_from_file.lower())
-						#	text_file.close()
-						#except:
-						#	text_file =  open(document.document.url.replace('pdf', 'txt'), 'w')
-						#	text_file.close()
-						#document.save_abstract()
-						#document.keywords()
+						try:
+							text_file = open(settings.MEDIA_ROOT + document.document.url.replace('pdf', 'txt'), 'w')
+							text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+							text_file.write(text_from_file.lower())
+							text_file.close()
+						except:
+							text_file =  open(settings.MEDIA_ROOT + document.document.url.replace('pdf', 'txt'), 'w')
+							text_file.close()
+						document.save_abstract()
+						document.keywords()
 					else:
 						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error':str(form.errors)}})
 				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'real_ids': real_ids})
@@ -297,10 +297,10 @@ def pdf_viewer(request, title=None, author=None):
 	if document is not None:
 		if ((document.type and request.user.is_authenticated()) or not document.type):
 			#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
-			with open(document.document.url, 'rb') as pdf:
+			with open(settings.MEDIA_ROOT + document.document.url, 'rb') as pdf:
 				response =  HttpResponse(pdf.read(), content_type='application/pdf')
 				response['Content-Disposition'] = 'inline;filename="some_file.pdf"'.replace('some_file',title)
-				response['Content-Length'] = os.stat(document.document.url).st_size
+				response['Content-Length'] = os.stat(settings.MEDIA_ROOT + document.document.url).st_size
 				return response
 			pdf.close()
 		else:
