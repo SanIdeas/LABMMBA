@@ -1,0 +1,90 @@
+@import "shared/constants.less";
+html,body{
+	overflow: hidden;
+}
+
+.brand{
+	padding: 10px 20px !important;
+	margin-bottom: 0 !important;
+
+	& img{
+		height: 45px;
+	}
+
+
+}
+
+.mobile-brand{
+
+	@media @smartphones-700{
+		width: 100% !important;
+
+		& img{
+			margin: 0 auto !important;
+			height: 33px;	
+		}
+	}
+}
+
+.bar{
+	width: 100%;
+	height: 5px;
+
+	& > div{
+		float: left;
+		width: 25%;
+		height: 100%;
+
+		&.red{
+			background-color: @red-color;
+		}
+		&.green{
+			background-color: @green-color;
+		}
+		&.blue{
+			background-color: @blue-color;
+		}
+		&.yellow{
+			background-color: @yellow-color;
+		}
+	}
+}
+
+#content{
+	display: flex;
+}
+
+.sidebar{
+	min-width: 245px;
+	height: 100%;
+	background-color: @usm-background;
+	display: block;
+
+	&.left{
+		float: left;
+	}
+
+	&.right{
+		float: right;
+	}
+
+	@media @smartphones-700{
+		display: none;
+	}
+}
+
+.intranet{
+	&.body{
+		background-color: yellow;
+		height: 100%;
+		width: 100%
+	}
+
+	&.left{
+		float: left;
+	}
+
+	&.right{
+		float: right;
+	}
+}

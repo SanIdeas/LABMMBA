@@ -5,33 +5,38 @@
 		{% load i18n %}
 		{% load tags %}
 		{% get_current_language as lang %}
-		<title>Laboratorio de Microbiología Molecular y Biotecnología Ambiental | Universidad Técnica Federíco Santa María</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+		<meta name="author" content="Ilógica - www.ilogica.cl"/>
+		<meta name="title" content="Inicio · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María."/>
+		<meta property="og:title" content="Inicio · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+		<meta property="og:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María."/>
+		<meta property="og:type" content="website"/>
+		<meta property="og:url" content="www.labmmba.utfsm.cl"/>
+		<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}"/>
+		<meta property="og:site_name" content="Inicio · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+		<meta property="og:locale" content="es_ES"/>
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Inicio · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María">
+		<meta name="twitter:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María.">
+		<meta name="twitter:image:src" content="">
+		<meta name="twitter:domain" content="s">
+		<meta name="apple-mobile-web-app-title" content="USM"/>
+		<link rel="stylesheet" media="screen" href="{% static 'usm_theme/css/royalslider.css' %}"/>
+		<link rel="stylesheet" media="screen" href="{% static 'usm_theme/css/fancybox.css' %}"/>
+		<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
+		<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
+		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
+		<script src="{% static 'usm_theme/js/functions.js' %}"></script>
+		<link rel="shortcut icon" href="{% static 'usm_theme/img/icon/favicon.png' %}"/>
+		<link rel="image_src" href=""/>
+		<link rel="apple-touch-icon" href="{% static 'usm_theme/img/icon/ilogica-icon.png' %}"/>
+		<title>Intranet · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
 		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
-		
-		<!-- Twitter Card data -->
-		<meta name="twitter:card" value="summary">
-
-		<!-- Open Graph data -->
-		<meta property="og:title" content="Laboratorio de Microbiología Molecular y Biotecnología Ambiental" />
-		<meta property="og:type" content="article" />
-		<!--<meta property="og:url" content="http://www.ejemplo.com/" />-->
-		<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}" />
-		<meta property="og:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
-		<!-- Stylesheets -->
-		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/main.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/header.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/body.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'shared/css/footer.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'login/css/signup.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/shared.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/documents.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/users.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/upload.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/profile.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/document_information.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/private.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/style.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/plus-font.css' %}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="icon" href="{% static 'shared/images/icon.ico' %}">
@@ -40,188 +45,82 @@
 		<!--Javascript-->
 		<script>var current_lang = "{{lang}}"</script>
 		<script src="{% url 'javascript-catalog' %}"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-		<script src="{% static 'intranet/js/upload.js' %}"></script>
-		<script src="{% static 'intranet/js/admin.js' %}"></script>
-		<script src="{% static 'intranet/js/profile.js' %}"></script>
-		<script src="{% static 'intranet/js/shared.js' %}"></script>
 		<script src="{% static 'intranet/js/Chart.min.js' %}"></script>
 		<script src="{% static 'intranet/js/pdf.js' %}"></script>
 	</head>
-	<body>
-		<div id="header">
-			<div id="top-bar">
-				<div id="top-bar-grid" class="grid">
-					<ul id="breadcrumbs">
-						<li><a href="http://www.usm.cl">USM.cl</a></li>
-						<li><a href="{% url 'home' %}">Laboratorio de Microbiología Molecular y Biotecnología Ambiental</a></li>
-					</ul>
-					<ul id="top-bar-nav">
-						{% if request.user.is_authenticated == False %}
-							<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
-						{% else %}
-							<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
-							<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
-						{% endif %}
-						{% if lang == "es" %}
-							<li><a href="{% translate_url 'en' %}">English version</a></li>
-						{% else %}
-							<li><a href="{% translate_url 'es' %}">Versión en Español</a></li>
-						{% endif %}
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<div id="bottom-header">
-				<div id="top-wrapper">
-					<a id="logo" href="/"><img src="/static/shared/images/logo Labmmba.png" alt="Laboratorio de Microbiología Molecular y Biotecnología Ambiental"></a>
-					<button id="resp-btn-menu"><i class="fa fa-bars"></i></button>
-					<div id="helper-wrapper" class="hidden">
-						<ul id="helper">
-							<!--Resultados de ayuda-->
-						</ul>
-					</div>
-					<div class="search-bar">
-						<input id="search-field" type="text" placeholder="{% trans 'Ingresa tu busqueda aquí' %}">
-						<i class="fa fa-search"></i>
-						<div class="clear"></div>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div id="responsive-menu" class="responsive-menu-close">
-			<ul>
-				{% url 'intranet:home' as intranet%}
-				<li class="{% if intranet == request.path%} rsp-selected {%endif%}"><a href="{{intranet}}">{% trans "Inicio" %}</a></li>
-				{% url 'intranet:documents' as documents_view%}
-				<li class="{% if documents_view == request.path%} rsp-selected {%endif%}"><a href="{{documents_view}}">{% trans "Documentos" %}</a></li>
-				{% url 'intranet:profile' request.user.id as profile%}
-				<li class="{% if profile == request.path%} rsp-selected {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
-				{% if not request.user.is_admin %}
-					{% url 'intranet:users' as users_view%}
-					<li class="{% if users_view == request.path%} rsp-selected {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
-				{% endif %}
-				{% url 'intranet:upload' as upload%}
-				<li class="{% if upload == request.path%} rsp-selected {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
-				{% if request.user.is_admin %}
-					{% url 'intranet:admin' as admin%}
-					<li class="{% if admin == request.path%} rsp-selected {%endif%}"><a href="{{admin}}">{% trans "Administrador" %}</a></li>
-				{% endif %}
-				<li><a href="{% url 'home' %}">{% trans "Volver a la página principal" %}</a></li>				
-			</ul>
-			<ul>
-				{% if request.user.is_authenticated == False %}
-					<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
-				{% else %}
-					<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
-					<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
-				{% endif %}
-			</ul>
-		</div>
-		<div id="content-wrapper">
-			<div id="content-grid">
-				<div id="intranet-content">
-					<div id="left-menu">
-						<div class="menu-section">
-							<ul>
-								<li class="section-head"><h3>{% trans "Enlaces" %}</h3></li>
-								{% url 'intranet:home' as intranet%}
-								<li class="section-row {% if intranet == request.path%} selected {%endif%}"><a href="{{intranet}}">{% trans "Inicio" %}</a></li>
-								{% url 'intranet:documents' as documents_view%}
-								<li class="section-row {% if documents_view == request.path%} selected {%endif%}"><a href="{{documents_view}}">{% trans "Documentos" %}</a></li>
-								{% url 'intranet:profile' request.user.id as profile%}
-								<li class="section-row {% if profile == request.path%} selected {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
-								{% if not request.user.is_admin %}
-									{% url 'intranet:users' as users_view%}
-									<li class="section-row {% if users_view == request.path%} selected {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
-								{% endif %}
-								{% url 'intranet:upload' as upload%}
-								<li class="section-row {% if upload == request.path%} selected {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
-								{% if request.user.is_admin %}
-									{% url 'intranet:admin' as admin%}
-									<li class="section-row {% if admin == request.path%} selected {%endif%}"><a href="{{admin}}">{% trans "Administrador" %}</a></li>
-								{% endif %}
+	<body class="seccion">
+		<header id="header" class="wfull main-nav clear">
+			<div class="row top-bar">
+				<div class="grid">
+					<div class="row">
+						<div class="c12">
+							<div class="mobile-nav-wrapper clear">
+								<div class="mobile-top-bar clear">
+									<a class="mobile-brand notrans" href="index.html"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
+									<a id="mobile-nav">&#9776;</a>
+								</div>
+								<div class="mobile-nav notrans">
+									<ul class="mobile-main-nav clear">
+										{% url 'intranet:home' as intranet%}
+											<li class="{% if intranet == request.path%} current {%endif%}"><a href="{{intranet}}">{% trans "Inicio" %}</a></li>
+										{% url 'intranet:documents' as documents_view%}
+											<li class="{% if documents_view == request.path%} current {%endif%}"><a href="{{documents_view}}">{% trans "Documentos" %}</a></li>
+										{% url 'intranet:profile' request.user.id as profile%}
+											<li class="{% if profile == request.path%} current {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
+										{% if not request.user.is_admin %}
+											{% url 'intranet:users' as users_view%}
+											<li class="{% if users_view == request.path%} current {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
+										{% endif %}
+										{% url 'intranet:upload' as upload%}
+											<li class="{% if upload == request.path%} current {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
+										{% if request.user.is_admin %}
+											{% url 'intranet:admin' as admin%}
+											<li class="{% if admin == request.path%} current {%endif%}"><a href="{{admin}}">{% trans "Administrador" %}</a></li>
+										{% endif %}
+										<li><a href="{% url 'webpage:home' %}">{% trans "Volver a la página principal" %}</a></li>
+									</ul>
+									<ul class="mobile-top-nav clear">
+										{% if request.user.is_authenticated == False %}
+											<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
+										{% else %}
+											<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+											<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
+										{% endif %}
+										<li><a href="http://www.usm.cl/en/">English version</a></li>
+									</ul>
+								</div>
+							</div>
+							<a class="tablet-nav">&#9660;</a>
+							<ul class="breadcrumbs clear">
+								<li><a href="http://www.usm.cl/">USM.cl</a></li>
+								<li><a href="index.html"> · Nombre del sitio</a></li>
+							</ul>
+							<ul class="top-nav clear notrans">
+								<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
+								<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
+								<li><a href="http://www.usm.cl/contacto/">Contacto</a></li>
+								<li><a href="http://www.usm.cl/en/">English version</a></li>
 							</ul>
 						</div>
-						<div class="clear"></div>
 					</div>
-					<div id="page-body">
-					{% if search %}
-						{% if documents %}
-							<div id="filters-v2" class="noselect">
-								<form action="" method="GET" id="filter-form">
-								<h4>{% trans "Refinar busqueda" %}</h4>
-								<ul>
-									<li>
-										{% trans "AUTOR" %}
-										<ul>
-											{% for ath, count, selected in authors %}
-												{% if ath %}
-													<li><label for="checkbox-ath{{ath}}"><input id="checkbox-ath{{ath}}" name="author" value="{{ath}}" type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span>{{ath}} ({{count}})</span></label></li>
-												{% elif authors|length == 1  %}
-													<li><span>-</span></li>
-												{% endif %}
-											{% endfor %}
-										</ul>
-									</li>
-									<li>
-										{% trans "DUEÑO" %}
-										<ul>
-											{% for own, count, selected in owners %}
-												{% if own %}
-													<li><label for="checkbox-owner{{own.id}}"><input id="checkbox-owner{{own.id}}" name="owner" value="{{own.id}}" type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{own.first_name}} {{own.last_name}} ({{count}})</span></label></li>
-												{% elif owners|length == 1  %}
-													<li><span>-</span></li>
-												{% endif %}
-											{% endfor %}
-										</ul>
-									</li>
-									<li>
-										{% trans "CATEGORÍA" %}
-										<ul>
-											{% for cat, count, selected in categories %}
-												{% if cat %}
-													<li><label for="checkbox-cat{{cat.id}}"><input id="checkbox-cat{{cat.id}}" name="category" value="{{cat.id}}"type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{cat.name}} ({{count}})</span></label></li>
-												{% elif categories|length == 1 %}
-													<li><span>-</span></li>
-												{% endif %}
-											{% endfor %}
-										</ul>
-									</li>
-									<li>
-										{% trans "AÑO" %}
-										<ul>
-											{% for year, count, selected in years %}
-												{% if year %}
-													<li><label for="checkbox-year{{year}}"><input id="checkbox-year{{year}}" name="date" value="{{year}}"type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{year}} ({{count}})</span></label></li>
-												{% elif years|length == 1 %}
-													<li><span>-</span></li>
-												{% endif %}
-											{% endfor %}
-										</ul>
-									</li>
-								</ul>
-								</form>
-							</div>
-						{% endif %}
-					{% endif %}
-						<div id="main-wrapper">
-							{% block content %}{% endblock %}
-						</div>
-					</div>
-					<div class="clear"></div>
 				</div>
 			</div>
-		</div>
-		<div id="lower-bar">
-			<div id="red-bar" class="bar"></div>
-			<div id="green-bar" class="bar"></div>					
-			<div id="yellow-bar" class="bar"></div>	
-			<div id="blue-bar" class="bar"></div>	
+			<div class="c12 brand row nav">
+				<a class="notrans" href="index.html"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
+			</div>
+		</header>
+		<section id="content" class="wfull">	
+			<div class="sidebar left"></div>
+			<div class="intranet body right"></div>
+							 
+		</section>
+		<div class="bar">
+			<div class="red""></div>
+			<div class="green""></div>					
+			<div class="yellow""></div>	
+			<div class="blue""></div>	
 		</div>	
 	</body>
 	<script>var helper_link = '{% url 'intranet:helper' 999 %}'; var document_link = '{% url 'intranet:document' 888 999 %}'</script>
-	<script src="{% static 'intranet/js/shared_events.js' %}"></script>
+	<script src="{% static 'intranet/js/shared_init.js' %}"></script>
 </html>
