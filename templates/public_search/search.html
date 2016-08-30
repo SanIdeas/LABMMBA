@@ -1,95 +1,99 @@
 {% extends 'shared/base.html' %}
+{% load staticfiles %}
 {% load i18n %}
 {% get_current_language as lang %}	
 
 
 
 {% block content %}
-
-<div class="title-section">
-	<div class="title-label"><h1>{% trans "Publicaciones" %}</h1></div>
-</div>
-
-<div class="grid row">
-	<div id="content">
-
-		<div class="search-bar" style="width: 100%;max-width: none; margin-bottom: 10px">
-			<input id="search-field" type="text" placeholder="{% trans 'Ingresa tu busqueda aquí' %}">
-			<i class="fa fa-search"></i>
-			<div class="clear"></div>
-		</div>
-
-		<div class="result">
-		{% if search %}
-			{% if not documents %}
-				<h5 class="documents-message">{% blocktrans %} No se encontraron resultados para {{ search }} {% endblocktrans %}</h5>
-			{% else %}
-				<ul style="padding:0">
-					{% for document in documents %}
-					<li class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-						<h4 class='text-result'> {{ document.title }} </h4>
-						<span class='text-result'> {{ document.author }} -</span>
-						<span class='text-result'> {{ document.date }} </span>
-						<p><strong>{% trans "Dueño" %}:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
-						<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
-						{% if document.extract|length > 0 %}
-							<p class="long-text"><strong>{% trans "Extracto" %}:</strong><span class='text-result'> {{ document.extract }}</span></p>
-						{% endif %}
-					</li>
-					{% endfor %}
-					<script>
-						var search = '{{ search }}'.split(' ');
-						console.log(search)
-						$('.text-result').each(function(){
-							for ( var i = 0; i< search.length; i++){
-								var html = $(this).html();
-								console.log(search[i])
-								var re = new RegExp('^' + search[i] + '| ' + search[i], 'gi')
-								$(this).html(html.replace(re, ' <span class="word-result">' + '$&'.replace(' ', '') + '</span> '));
-							}
-						});
-					</script>
-				</ul>
-			{% endif %}
+<section id="content" class="wfull">
+    <div id="title">
+        <div class="grid">
+            <div class="row">
+                <h1 class="c12">{% trans "Publicaciones" %}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+    	<div class="row">
+    		<form class="clear c12">
+	    		<div class="c12"><input id="search" type="text" class="text" placeholder="{% trans 'Ingresa tu busqueda aquí' %}"/></div> 			
+    		</form>
+    	</div>
+		<div class="row">
+			<section class="content eventos c8">
+				{% for document in documents%}
+					 <div class="evento"">
+				        <a class="clear closed">
+				            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
+				            <h4>{{ document.title }}</h4>
+				            <span class="icon">+</span>
+				        </a>
+				        <div class="content" style="display:none;">
+				            <div class="meta">
+				                <p><strong>Dueño: </strong>{{ document.owner.first_name }} {{ document.owner.last_name }}</p>
+				                <p><strong>Añadido: </strong>{{ document.date_added }}</p>
+				            	<p>
+						            <sup class="button">
+						            	<a href="{% url 'intranet:viewer' document.author document.title %}">ver documento</a>
+						            </sup>
+						        </p>
+				            </div>
+				            <div class="details">
+				                <p>{{ document.abstract }}</p>
+				            </div>
+				        </div>
+				    </div>
+				{% endfor %}
+				{% if not documents %}
+					<div class="c12"><h2 class="documents-message">{% trans "No se encontraron documentos" %}</h2></div>
+				{% else %}
+			    <div class="clear">
+			        <div id="wp_page_numbers">
+			            <ul>
+			                <li class="active_page"><a href="#">1</a></li>
+			                <li><a href="#">2</a></li>
+			                <li><a href="#">3</a></li>
+			                <li><a href="#">4</a></li>
+			                <li><a href="#">Siguiente</a></li>
+			            </ul>
+			            <div style="float: none; clear: both;"></div>
+			        </div>
+			    </div>
+			    {% endif %} 
+			</section>
+			<section id="sidebar" class="c4">
+	            <form action="http://www.eventos.usm.cl/eventos/" class="clear search-by-dates accordion" method="get">
+	                <a class="toggle acc-header">Filtros<span class="icon">+</span><span class="icon">+</span></a>
+	                <div class="acc-content" style="display: none;">
+	                    <input type="text" class="text dates from placeholder hasDatepicker" name="date_from" readonly="true" placeholder="Fecha desde" id="dp1472498701480">
+	                    <input type="text" class="text dates to placeholder hasDatepicker" name="date_to" readonly="true" placeholder="Fecha hasta" id="dp1472498701481">
+	                    <input type="submit" class="submit button" value="Buscar">
+	                </div>
+	            </form>
+	            <div class="links clear box">
+	                <h3>Categorias</h3>
+	                <a class="clear external" href="#" target="_blank">Microbiologia Molecular</a>
+	                <a class="clear external" href="#" target="_blank">Biotecnologia Ambiental</a>
+	            </div>
+			</section>
 			<script>
-				$('#search-field').val('{{search}}');
+				$('#search').val('{{search}}');
 			</script>
-		{% else %}
-			{% if not documents %}
-				<h5 class="documents-message">{% trans "No hay documentos en la base de datos" %}</h5>
-			{% else %}
-				<table>
-					<tr>
-						<th class="col1">{% trans "Autor" %}</th>
-						<th class="col2">{% trans "Titulo" %}</th>
-						<th class="col3">{% trans "Año" %}</th>
-						<th class="col4">{% trans "Dueño" %}</th>
-						<th class="col5">{% trans "Añadido" %}</th>
-					</tr>
-					{% for document in documents%}
-						<tr class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-							<td class="col1">{{ document.author }}</td>
-							<td class="col2">{{ document.title }}</td>
-							<td class="col3">{{ document.date|date:"Y" }}</td>
-							<td class="col4">{{ document.owner_name }}</td>
-							<td class="col5">{{ document.date_added }}</td>
-						</tr>
-					{% endfor %}
-				</table>
-			{% endif %}
-		{% endif %}
-		<script>
-				var current_lang = "{{lang}}"
-				$('.search-result').click(function(){
-					console.log(encodeURIComponent($(this).attr('doc-title')));
-					window.open("{% url 'intranet:viewer' 999 888 %}".replace('888', encodeURIComponent($(this).attr('doc-title'))).replace('999', encodeURIComponent($(this).attr('doc-author'))), '_blank');
-				});
-				$('#search-field').keypress(function(e){
-					if(e.which == 13 && $(this).val() != ''){
-						window.location.href = "/" + current_lang + "/publications/search/999/".replace('999', $(this).val());
-					}
-				});
-			</script>	
+    	</div>
+	</div>
+</section>
+
+
+<script>
+	var current_lang = "{{lang}}"
+	$('#search').keypress(function(e){
+		if(e.which == 13 && $(this).val() != ''){
+			e.preventDefault();
+			window.location.href = "/" + current_lang + "/publications/search/999/".replace('999', $(this).val());
+		}
+	});
+</script>	
 		</div>
 	</div>
 </div>

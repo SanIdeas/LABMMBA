@@ -1,0 +1,92 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+
+<div id="slider" class="royalSlider rsDefault">
+<figure class="rsContent">
+	<img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit."/>
+	<figcaption class="grid rsABlockContainer">
+		<div class="rsABlock top right" data-move-effect="right">
+			<div class="subnav dark">
+				<h3 class="clear"><span>Sobre el laboratorio</span></h3>
+				<ul class="clear">
+					<li><a class="anchor" href="#aboutUs">{% trans "Sobre Nosotros" %}</a></li>
+					<li><a class="anchor" href="#research">{% trans "Investigación" %}</a></li>
+					<li><a class="anchor" href="#cooperation">{% trans "Cooperación" %}</a></li>
+				</ul>
+			</div>
+		</div>
+	</figcaption>   
+</figure>  
+</div>
+<section id="content" class="wfull">
+	<div class="grid">
+		<div class="row">
+			<h1 class="c12">Sobre <element></element> Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>
+		</div>
+		<div class="row">
+			<div class="s3 c9">
+				<p>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="s1 c11">
+				<div class="clear">
+					<section class="c6 circle" id="aboutUs">
+						<div class="row trans">
+							<div class="c4 img"><img src="{% static 'usm_theme/img/thumbnail_1.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing."/></div>
+							<div class="c8 items">
+								<h3>Sobre nosotros</h3>
+								<ul>
+									<li><a href="{% url 'webpage:us' %}">Quíenes Somos</a></li>
+									<li><a href="{% url 'webpage:history' %}">Nuestra Historia</a></li>
+									<li><a href="#">Integrantes</a></li>
+									<li><a href="#">Ubicación</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section class="c6 circle" id="research">
+						<div class="row trans">
+							<div class="c4 img"><img src="{% static 'usm_theme//img/thumbnail_2.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing."/></div>
+							<div class="c8 items">
+								<h3>Investigación</h3>
+								<ul>
+									<li><a href="#">Areas de Investigación</a></li>
+									<li><a href="#">Links de Interes</a></li>
+									<li><a href="#">Patentes</a></li>
+									<li><a href="#">Proyectos</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="clear">
+					<section class="c6 circle" id="cooperation">
+						<div class="row trans">
+							<div class="c4 img"><img src="{% static 'usm_theme//img/thumbnail_3.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing."/></div>
+							<div class="c8 items">
+								<h3>Cooperación Científica</h3>
+								<ul>
+									<li><a href="">Nacional</a></li>
+									<li><a href="">Internacional</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="c12">
+				<ul id="bottom-nav" class="clear">
+					<li><a class="red" href="section.html">Lorem ipsum</a></li>
+					<li><a class="orange" href="section.html">Laboriosam quasi tempore</a></li>
+					<li><a class="yellow" href="section.html">Quidem cupiditate</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

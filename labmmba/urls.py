@@ -10,8 +10,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r'^', include('home.urls')),
-    url(r'^about/', include('about.urls')),
+    url(r'^', include('webpage.urls', namespace="webpage")),
     url(r'^intranet/', include('intranet.urls', namespace="intranet")),
     url(r'^login/', include('login.urls')),
     url(r'^publications/', include('public_search.urls')),

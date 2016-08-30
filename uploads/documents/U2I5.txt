@@ -1,0 +1,155 @@
+sistemas de gestion
+
+la estrategia de los cambios: la capacidad estrategica de una organizacion
+
+mucho se habla de las consecuencias de realizar cambios y del miedo a afrontarlas, a pesar de los grandes benecios que
+estos pueden traer. una organizacion no puede sobrevivir sin cambios, porque estos son la clave del exito, siendo practi-
+camente el recurso mas importante que tienen a su disposicion. el presente documento se centrara en analizar los efectos
+que tienen sobre una organizacion y de que forma se pueden llevar a cabo de manera exitosa utilizando como referencia al
+departamento de informatica1 de la utfsm.
+keywords: cambios, estrategias, clave del exito.
+
+no hay cambios sin una estrategia clara y robusta, una lista
+de procedimientos o etapas que aseguren el alcance de los ob-
+jetivos propuestos. pero, por que hacer cambios?. creer que la
+organizacion esta bien tal como esta y que las unicas estrate-
+gias a seguir deben ser de mejoramiento es un pensamiento
+errado. si una organizacion se conforma con lo que es hasta
+el momento, sin considerar la volatilidad del mercado su fra-
+caso es inminente. tal como menciona el articulo las 5 causas
+mas frecuentes de fracaso empresarial,3 la principal causa de
+fracaso es centrarse demasiado en el "aqui y ahora" sin consid-
+erar los cambios que se generan en la industria, creyendo que
+la competencia esta dormida, permitiendoles llevar una ven-
+taja signicativa. el problema no solo radica en los competi-
+dores, otros factores como creer que el cliente no cambia su
+forma de pensar o actuar, o que las oportunidades que apare-
+cen no son sucientes para ir mas alla, tambien denen el fu-
+turo de la organizacion.
+para lograr cambios exitosos, existen herramientas que facil-
+itan la elaboracion de estrategias, una de ellas es la plantilla
+de mision, en la cual se denen los cambios que se desean re-
+alizar. la mision describe el cambio estrategico,4 senalando
+desde donde hasta donde se quiere llegar. solo se podra dar
+por concluida la estrategia cuando exista una agenda estrateg-
+ica en la que se denan los impulsos o iniciativas estrategicas
+a desarrollar.2 para esta tarea se utiliza la carta magica o carta
+de navegacion, en la cual se denen las etapas con orden de
+prioridad, quienes son los encargados de cada una y a que area
+estan enfocadas.
+finalmente, las etapas mas importantes de un proceso es-
+trategico satisfactorio estan denidas de la siguiente forma:2
+vision de la empresa (1), analisis externo (2), escrutinio interno
+(3), mision (4), formulacion de la estrategia de negocios (5),
+programacion estrategica (6) y control de gestion (7).
+para efectos del departamento de informatica, debemos con-
+siderar que sus principales clientes y futuros clientes son es-
+tudiantes, personas entre 18 y 27 anos de edad. si bien, exis-
+ten personas fuera del rango, son la minoria. a raiz de esto,
+el departamento debe tratar con personas jovenes que estan
+a la vanguardia de la tecnologia, por lo que deben ir actu-
+alizando las formas de llegar a ellos con bastante frecuencia
+ya que de lo contrario, perderian presencia en el ambito uni-
+versitario provocando que los jovenes preeran otras institu-
+
+ciones y se genere una mala imagen para la carrera. para mit-
+igar este problema, el departamento debe elaborar un plan de
+accion estrategico, en el que se implementen cambios en la
+estructura comunicacional para asi poder tener una ventaja
+competitiva frente a otras universidades. los pasos anterior-
+mente mencionados son los que se deben seguir. de forma
+breve, en la primera etapa, vision de la empresa, el di1 de-
+beria hacer el rayado de cancha y proponerse ser una orga-
+nizacion moderna, a la vanguardia en tecnologias comunica-
+cionales. una vez hecho esto, deben considerar las oportu-
+nidades y amenazas del medio externo, cuales son las tenden-
+cias de la industria y ver que considerar (2). una vez hecho el
+analisis externo, siguedi el analisis interno (3), en el que deben
+tomarse en cuenta las fortalezas y debilidades de la organi-
+zacion, y que areas deben focalizarse para marcar al diferencia.
+para nalizar, el di1 debera denir los cambios que deben re-
+alizar considerando todo lo anterior y cuales son sus objetivos.
+luego, utilizando las herramientas antes mencionadas, se de-
+bera confeccionar una agenda estrategica y ponerla en mar-
+cha.
+a modo de conclusion, es claro que el departamento deberia
+implementar nuevas tecnicas en sus actuales sistemas de co-
+municacion masiva. un ejemplo de esto, es hacer mas atrac-
+tivos los correos que envia el departamento a sus alumnos.
+paralelo a esto, una opcion que deberian considerar es el uso
+de redes sociales para la difusion de actividades e informacion
+ya que es algo que la mayoria de los jovenes usa. actualmente,
+el di1 realizo un gran cambio en su plataforma web. un nuevo
+diseno, moderno y atractivo que ayudara a mejorar la imagen y
+comunicacion con futuros alumnos e interesados en el depar-
+tamento. este tipo de cambios son los que se deben realizar,
+acorde a los tiempos actuales.
+como podemos ver, sin cambios las organizaciones no se-
+rian mejores cada dia. esa capacidad para generar cambios es
+algo fundamental, esa capacidad estrategica que le da un valor
+agregado a la organizacion, que es capaz de adaptarse al medio
+y afrontar dicultades. es esencial centrarse en los objetivos,
+en los clientes y en el entorno, ya que de lo contrario, nues-
+tra organizacion muere. sin embargo, aun queda interrogante,
+que tan exible debe ser una organizacion en respuesta a los
+cambios de su entorno?
+
+somos,
+
+de
+
+informatica.
+
+departamento
+
+1 quienes
+presentacion-del-departamento
+2 no hay estrategia sin cambio..., nicolas majluf, antonio kovacevic. el mercurio. 26 de abril de 2016
+3 las
+las-5-causas-mas-frecuentes-del-fracaso-empresarial/. 31 de octubre de 2011
+4 cambio estrategico, laura fernandez. descuadrando. http://descuadrando.com/cambio_estrategico. 26 de mayo de 2012
+
+https://www.inf.utfsm.cl/quienes-somos/
+
+http://www.emprenderalia.com/
+
+fracaso
+
+empresarial,
+
+colaboradores.
+
+5
+
+causas mas
+
+frecuentes
+
+de
+
+hernan herreros nino
+22 de agosto de 2016
+hernan.herreros.13@sansano.usm.cl
+
+tiempos sct
+
+planicacion
+
+busqueda de informacion
+
+0.2 hr
+
+0.3 hr
+
+analisis desarrollo
+1.5 hr
+
+1.5 hr
+
+total:
+
+edicion
+0.6 hr
+4.1 hrs
+
+

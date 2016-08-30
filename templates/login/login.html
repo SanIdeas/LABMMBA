@@ -3,35 +3,31 @@
 {% block content %}
 {% load i18n %}
 
-<div class="grid row">
-	<div id="content">
-		<div class="login-row">
-			<h1>{% trans "Ingresar al sistema" %}</h1>
-			<span>{% trans "Ingresa tus datos para acceder a la base de datos de Labmmba" %}</span>
-			<form action="{% url 'login' %}" method="POST">
-				<div class="row">
-					<div class="login-input">
-						<span>{% trans "Correo electronico" %}</span>
-						<input type="email" name="email" required>						
-					</div>
-					<div class="login-input">
-						<span>{% trans "Contraseña" %}</span>
-						<input type="password" name="password" required>						
-					</div>
-					<div class="login-input">
-						<input type="submit" value="Enviar">
-						{% if message %}
-							<h5 class="message-{{ message.type }}">{{ message.content }}</h5>
-						{% endif %}						
-					</div>
-				</div>
-				{% csrf_token %}
-
-			</form>
-		</div>
-		<div class="login-row row grid">
-			<span>{% trans "¿No posees cuenta?. Registrate" %} <a class="simple-link" href="{% url 'signup' %}">{% trans "aquí" %}</a></span>
+<section id="content" class="wfull">
+	<div class="grid">
+		<div class="row">
+			<div class="s3 c6">
+				<h2>{% trans "Ingresar al sistema" %}</h2>
+				<p>{% trans "Ingresa tus datos para acceder a la base de datos de Labmmba" %}</p>
+				<form class="clear c12" action="{% url 'login' %}" method="POST">
+					{% csrf_token %}
+                    <div class="row">
+                        <div class="c12"><input type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}"/></div>
+                        <span class="error"> </span>
+                    </div>
+                    <div class="row">
+                        <div class="c12"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="c12"><input type="submit" class="submit trans" value="Enviar"/></div>
+                        {% if message %}
+							<span class="error">{{ message.content }}</span>
+						{% endif %}	
+						<span>{% trans "¿No posees cuenta?. Registrate" %} <a  href="{% url 'signup' %}">{% trans "aquí" %}</a></span>
+                    </div>
+                </form>
+			</div>
 		</div>
 	</div>
-</div>
+</section>
 {% endblock %}

@@ -42,7 +42,7 @@ def search(request, search=None):
             years = filters_selected(Counter(years).most_common(), request, 'date')
             owners = filters_selected(Counter(owners).most_common(), request, 'owner')
             categories = filters_selected(Counter(categories).most_common(), request, 'category')
-        parameters = {'current_view': 'intranet', 'documents': documents}
+        parameters = {'current_view': 'publications', 'documents': documents, 'body': 'eventos'}
         if search is not None:
             parameters['authors'] = authors
             parameters['years'] = years
