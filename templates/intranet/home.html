@@ -2,37 +2,80 @@
 {% load staticfiles %}
 {% block content %}
 {% load i18n %}
-
-
-
-
-
-
-
-
-<div id="home-header">
+<div class="title">
 	<h3>{% trans "Resumen de actividad" %}</h3>
 </div>
+<div class="intranet row">
+    <div class="c12">
+        <div class="intranet box">
+            <h4>Usuarios registrados</h4>
+            <div class="users">
+                <ul>
+                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_1.jpg' %}"></a></li>
+                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_3.jpg' %}"></a></li>
+                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_1.jpg' %}"></a></li>
+                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_3.jpg' %}"></a></li>
+                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_1.jpg' %}"></a></li>
+                    <li><div><h2>5 más</h2></div></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <button class="trans">Ver todos los usuarios</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="intranet row">
+    <div class="c7">
+        <div class="intranet box">
+            <div class="counter">
+                <h1>10000</h1>
+                <h3>Documentos</h3>
+            </div>
+        </div>
+        <div class="intranet box">
+            <h4>Titulo de la caja</h4>
+            <div class="info">
+                
+            </div>
+            <div class="btn">
+                <button class="trans">Link de interes</button>
+            </div>
+        </div>
+    </div>
+    <div class="c5">
+        <div class="intranet box">
+           <div class="chart">
+                <canvas id="months_chart"></canvas> 
+            </div>
+            <div class="description">
+                <span>Publicaciones de los ultimos 6 meses</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="c12">
+    <div class="c6">
+        <div class="chart">
+            <canvas id="months_chart"></canvas> 
+        </div>
+    </div>
 
-<div class="chart-box right">
-	<div class="chart-title"><h4>{% trans "Documentos agregados" %}</h4></div>
-	<div class="chart">
-		<canvas id="chart1"></canvas>	
-	</div>
-	<div class="separator"></div>
-	<div class="chart-text"><span>{% trans "Actividad de los ultimos 6 meses" %}</span></div>
 </div>
 
-<div class="chart-box left">
-	<div class="chart-title"><h4>{% trans "Categorias Populares" %}</h4></div>
+<div class="c6">
 	<div class="chart">
-		<canvas id="chart2"></canvas>		
+		<canvas id="months_chart"></canvas>	
 	</div>
-	<div class="separator"></div>
-	<div class="chart-text"><span>{% blocktrans with number=number_categories %}Selección de las {{ number }} categorias mas populares{% endblocktrans %}</span></div>
 </div>
+
+<div class="c6">
+	<div class="chart">
+		<canvas id="categories_chart"></canvas>		
+	</div>
+</div>-->
 <script>
-var ctx = document.getElementById("chart1");
+var ctx = document.getElementById("months_chart");
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -70,7 +113,7 @@ var myChart = new Chart(ctx, {
     	}
     }
 });
-var ctx2 = document.getElementById("chart2");
+var ctx2 = document.getElementById("categories_chart");
 var myChart2 = new Chart(ctx2, {
     type: 'pie',
     data: {

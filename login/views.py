@@ -71,4 +71,4 @@ def signup(request):
 def logout(request):
 	if request.user.is_authenticated() is not None:
 		auth_logout(request)
-		return HttpResponseRedirect(reverse('home'))
+		return HttpResponseRedirect(reverse('webpage:home'))

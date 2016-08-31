@@ -1,5 +1,7 @@
 html,body{overflow:hidden}
-.brand{padding:10px 20px !important;margin-bottom:0 !important}.brand img{height:45px}
+.noselect{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+.brand{padding:10px 20px !important;margin-bottom:0 !important}.brand a{float:left}
+.brand img{height:45px}
 @media screen and (max-width: 700px){.mobile-brand{width:100% !important}.mobile-brand img{margin:0 auto !important;height:33px}}
 .bar{width:100%;height:5px}.bar>div{float:left;width:25%;height:100%}.bar>div.red{background-color:#e0424e}
 .bar>div.green{background-color:#009065}
@@ -9,9 +11,30 @@ html,body{overflow:hidden}
 .sidebar{min-width:245px;height:100%;background-color:#f5f5f5;display:block}.sidebar.left{float:left}
 .sidebar.right{float:right}
 @media screen and (max-width: 700px){.sidebar{display:none}}
-.intranet.body{background-color:#ff0;height:100%;width:100%}
+.intranet.row{margin-bottom:0 !important}
+.intranet.body{height:100%;width:100%;background-color:#f1f2f4;overflow:auto}.intranet.body .title{padding:6.5px 15px;text-align:center;background-color:#f1f2f4;margin-bottom:20px;border-bottom:1px solid #d2d2d2}.intranet.body .title h3{margin:0;font-weight:normal}
+@media screen and (max-width: 700px){.intranet.body{padding:0}}
 .intranet.left{float:left}
 .intranet.right{float:right}
+.intranet.box{border:1px solid #e9edf0;box-shadow:0 0 2px rgba(0,0,0,0.05);background-color:#fff;margin-bottom:20px;border-radius:10px;overflow:hidden}.intranet.box.border.bottom{border-bottom-color:#f2ae47}
+.intranet.box>h4{margin:0;padding:17px;font-weight:400;border-bottom:1px solid #e2e2e2}
+.intranet.box>.info{height:50px}
+.intranet.box>.chart{padding:10px}
+.intranet.box>.users{overflow-x:auto;-webkit-overflow-scrolling:touch}.intranet.box>.users::-webkit-scrollbar{height:3px;width:5px;background-color:transparent}
+.intranet.box>.users::-webkit-scrollbar-thumb{background-color:#d2d2d2;border-radius:15px}
+.intranet.box>.users ul{white-space:nowrap;padding:0}.intranet.box>.users ul li{display:inline-block;margin:0;height:100px;width:100px;margin-left:20px;margin-right:20px;position:relative}
+.intranet.box>.users ul li img{width:100%;border-radius:50%}
+.intranet.box>.users ul li div{background-color:#f5f5f5;width:100%;top:0;height:100%;border-radius:50%;display:flex;position:absolute;justify-content:center}.intranet.box>.users ul li div h2{font-weight:normal;color:#c3c3c3;display:table-cell;align-self:center}
+.intranet.box>.btn button{padding:5px;background:none;width:100%;border:none;color:#777;border-top:1px solid #e2e2e2}.intranet.box>.btn button:hover{background-color:#f9f9f9}
+.intranet.box>.counter{position:relative;overflow:hidden;background-color:#f5c377;color:#fcedd6}.intranet.box>.counter>h1{padding-left:10%;font-size:50px;margin:0;position:relative;margin-top:6px}
+.intranet.box>.counter>h3{margin:0;margin-left:15%}
+.intranet.box>.counter:after{position:absolute;right:15px;height:100%;font-size:64px;color:#fcedd6;bottom:-15px;content:"\f15b ";font:normal normal normal 123px/1 FontAwesome}
+.intranet.box>.description{width:100%;border-top:1px solid #e2e2e2;padding:10px;text-align:center}
+#sidebar{padding:0 !important;position:relative;border-right:1px solid #e9edf0}#sidebar a:hover{background-color:#edf4f5 !important}
+#sidebar .utfsm{width:245px;opacity:.5;bottom:0;position:absolute;margin-bottom:5px}@media screen and (max-height: 470px){#sidebar .utfsm{display:none}}
+#search{display:flex;margin-left:225px;width:50%;border-radius:5px;overflow:hidden}
+.search.field{width:100% !important}
+.search.send{width:120px !important;padding:11px !important;float:right !important}
 @font-face{font-family:'FontAwesome';src:url('../fonts/fontawesome-webfont.eot?v=4.6.3');src:url('../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'),url('../fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'),url('../fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'),url('../fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype'),url('../fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .fa-lg{font-size:1.3333333333333333em;line-height:.75em;vertical-align:-15%}
 .fa-2x{font-size:2em}

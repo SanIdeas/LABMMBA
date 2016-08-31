@@ -56,7 +56,7 @@
 						<div class="c12">
 							<div class="mobile-nav-wrapper clear">
 								<div class="mobile-top-bar clear">
-									<a class="mobile-brand notrans" href="index.html"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
+									<a class="mobile-brand notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
 									<a id="mobile-nav">&#9776;</a>
 								</div>
 								<div class="mobile-nav notrans">
@@ -86,32 +86,65 @@
 											<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
 											<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 										{% endif %}
-										<li><a href="http://www.usm.cl/en/">English version</a></li>
+										{% if lang == "es" %}
+											<li><a href="{% translate_url 'en' %}">English version</a></li>
+										{% else %}
+											<li><a href="{% translate_url 'es' %}">Versión en Español</a></li>
+										{% endif %}
 									</ul>
 								</div>
 							</div>
 							<a class="tablet-nav">&#9660;</a>
 							<ul class="breadcrumbs clear">
 								<li><a href="http://www.usm.cl/">USM.cl</a></li>
-								<li><a href="index.html"> · Nombre del sitio</a></li>
+								<li><a href="{% url 'webpage:home' %}">Laboratorio de Microbiología Molecular y Biotecnología Ambiental</a></li>
 							</ul>
 							<ul class="top-nav clear notrans">
-								<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
-								<li><a href="http://www.directorio.usm.cl/">Directorio</a></li>
-								<li><a href="http://www.usm.cl/contacto/">Contacto</a></li>
-								<li><a href="http://www.usm.cl/en/">English version</a></li>
+								{% if request.user.is_authenticated == False %}
+									<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
+								{% else %}
+									<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+									<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
+								{% endif %}
+								{% if lang == "es" %}
+									<li><a href="{% translate_url 'en' %}">English version</a></li>
+								{% else %}
+									<li><a href="{% translate_url 'es' %}">Versión en Español</a></li>
+								{% endif %}
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="c12 brand row nav">
-				<a class="notrans" href="index.html"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
+				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
+				<form id="search"><input type="text" class="text search field" placeholder="Ingresa aquí tu busqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
 			</div>
 		</header>
 		<section id="content" class="wfull">	
-			<div class="sidebar left"></div>
-			<div class="intranet body right"></div>
+			<div id="sidebar" class="sidebar left">
+				<div class="links clear box">
+                    <h3>Menu</h3>
+                    {% url 'intranet:home' as intranet%}
+					<a class="clear {% if intranet == request.path%} selected {%endif%}" href="{{intranet}}">{% trans "Inicio" %}</a>
+					{% url 'intranet:documents' as documents_view%}
+					<a class="clear {% if documents_view == request.path%} selected {%endif%}" href="{{documents_view}}">{% trans "Documentos" %}</a>
+					{% url 'intranet:profile' request.user.id as profile%}
+					<a class="clear {% if profile == request.path%} selected {%endif%}" href="{{profile}}">{% trans "Mi perfil" %}</a>
+					{% if not request.user.is_admin %}
+						{% url 'intranet:users' as users_view%}
+						<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">{% trans "Usuarios" %}</a>
+					{% endif %}
+					{% url 'intranet:upload' as upload%}
+					<a class="clear {% if upload == request.path%} selected {%endif%}" href="{{upload}}">{% trans "Subir documento" %}</a>
+					{% if request.user.is_admin %}
+						{% url 'intranet:admin' as admin%}
+						<a class="clear {% if admin == request.path%} selected {%endif%}" href="{{admin}}">{% trans "Administrador" %}</a>
+					{% endif %}
+                </div>
+                <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">
+			</div>
+			<div class="intranet body right">{%block content%}{%endblock%}</div>
 							 
 		</section>
 		<div class="bar">
