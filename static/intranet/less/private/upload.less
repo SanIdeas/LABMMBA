@@ -1,0 +1,57 @@
+@keyframes exit_up{
+	0%{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	100%{
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+}
+
+.upload{
+	&.option{
+		height: 100px;
+		display: flex;
+    	justify-content: flex-end;
+    	cursor: pointer;
+		& i{
+			font-size: 50pt;
+			align-self: center;
+		}
+
+		& h5{
+			margin-right: 10px;
+			font-size: 15pt;
+			align-self: center;
+		}
+
+		& img{
+    		margin: auto auto auto 0px;
+		}
+		@media @smartphones-700{
+			justify-content: center;
+
+			& img{
+				margin: auto;
+			}
+		}
+
+	}
+
+	&.hover{
+		&:hover{
+			background-color: @gray-color;
+		}
+	}
+
+	&.animation{
+		&.exit{
+			animation-name: exit_up;
+			animation-duration: 0.2s;
+			animation-fill-mode: forwards;
+			animation-timing-function: ease-in-out;
+		}
+	}
+}

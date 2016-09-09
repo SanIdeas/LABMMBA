@@ -1,0 +1,161 @@
+@import "shared/constants.less";
+form{
+	& .c12{
+		padding: 0px 20px !important;
+	}
+}
+
+.document{
+	.text:focus{
+		background: @fields-background !important;
+	}
+
+	&.head{
+		padding: 6.5px 15px;
+    	text-align: center;
+
+    	& textarea{
+    		overflow: hidden;
+    		width: 80%;
+    		resize: none;
+    		margin:0;
+    		border: none;
+    		text-align: center;
+    		min-height: 30px;
+    		background: @fields-background;
+    	}
+
+    	& input {
+    		-webkit-appearance: none;
+    		border: none;
+    		outline: none;
+    	}
+
+    	& select{
+    		max-width: 100%;
+    		width: inherit !important;
+    	}
+	}
+
+	&.download{
+		.colored_box(@red-color, "\f1c1");
+		cursor: pointer;
+		& div{
+			display: flex;
+		    position: relative;
+		    width: auto;
+		    height: auto;
+		    justify-content: flex-start;
+		    @media @smartphones-1270{
+		    	& span{
+		    		display: none;
+		    	}
+		    }
+		}
+		&:hover{
+			background-color: @red-color;
+		}
+		& a{
+		    color: inherit;
+			text-decoration: none;
+			&:hover{
+				text-decoration: none !important;
+			}
+		}
+	}
+
+	&.table{
+		& table{
+			margin: 0 !important;
+		}
+		& td{
+			border: none !important;
+		}
+	}
+
+	&.owner{
+		& .image{
+			padding: 20px;
+    		background-color: #525252;
+			
+			& img{
+				width: 31%;
+			    position: relative;
+			    border-radius: 50%;
+			    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+			}
+		}
+
+		& h3, h5{
+			text-align: center;
+		}
+
+		& h3{
+			margin-bottom: 0px;
+		    margin-top: 0px;
+		    font-size: 20pt;
+		}
+
+		& h5{
+			font-weight: normal;
+			margin-top: 0px;
+    		margin-bottom: 0;
+		}
+	}
+
+	&.keywords{
+		& ul{
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+
+		    & li{
+    			display: inline-block;
+    			padding: 10px;
+    			margin: 0;
+		    }
+		}
+	}
+
+	&.controls{
+		& a{
+		    width: 50%;
+		    display: block;
+		    float: left;
+		    text-align: center;
+		    padding: 15px;
+		    box-sizing: border-box;
+
+		    &:nth-child(1){
+		    	border-right: 1px solid #d2d2d2;
+		    }
+
+		    &:hover{
+		    	background-color: darken(#fff, 2%)
+		    }
+
+		}
+	}
+
+	&.modal{
+		overflow: hidden;
+		& h2{
+			margin-top: 0;
+			width: 600px;
+		}
+		& h3{
+		    margin-bottom: 0;
+			text-align: center;
+		}
+
+		& h5{
+		    font-weight: normal;
+		    margin: 0;
+		    text-align: center;
+		}
+
+		& div{
+			padding: 18px 0px 0px 0px;
+		}
+	}
+}

@@ -26,10 +26,6 @@
 		<meta name="apple-mobile-web-app-title" content="USM"/>
 		<link rel="stylesheet" media="screen" href="{% static 'usm_theme/css/royalslider.css' %}"/>
 		<link rel="stylesheet" media="screen" href="{% static 'usm_theme/css/fancybox.css' %}"/>
-		<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
-		<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
-		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
-		<script src="{% static 'usm_theme/js/functions.js' %}"></script>
 		<link rel="shortcut icon" href="{% static 'usm_theme/img/icon/favicon.png' %}"/>
 		<link rel="image_src" href=""/>
 		<link rel="apple-touch-icon" href="{% static 'usm_theme/img/icon/ilogica-icon.png' %}"/>
@@ -45,8 +41,13 @@
 		<!--Javascript-->
 		<script>var current_lang = "{{lang}}"</script>
 		<script src="{% url 'javascript-catalog' %}"></script>
-		<script src="{% static 'intranet/js/Chart.min.js' %}"></script>
-		<script src="{% static 'intranet/js/pdf.js' %}"></script>
+		<script src="{% static 'intranet/js/vendor/Chart.min.js' %}"></script>
+		<script src="{% static 'intranet/js/vendor/autosize.js' %}"></script>
+		<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
+		<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
+		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
+		<script src="{% static 'usm_theme/js/functions.js' %}"></script>
+		{% block extra_js %}{% endblock %}
 	</head>
 	<body class="seccion">
 		<header id="header" class="wfull main-nav clear">
@@ -118,7 +119,7 @@
 			</div>
 			<div class="c12 brand row nav">
 				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
-				<form id="search"><input type="text" class="text search field" placeholder="Ingresa aquí tu busqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
+				<form id="search" url="{% url 'intranet:intranet_search' 999 %}"><input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
 			</div>
 		</header>
 		<section id="content" class="wfull">	
@@ -144,7 +145,7 @@
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">
 			</div>
-			<div class="intranet body right">{%block content%}{%endblock%}</div>
+			<div class="intranet body">{%block content%}{%endblock%}</div>
 							 
 		</section>
 		<div class="bar">

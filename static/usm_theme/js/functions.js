@@ -149,7 +149,7 @@ $(document).ready(function(){
 	});
 
 	// Set placeholder value to input fields.
-	$('[placeholder]').focus(function() {
+	/*$('[placeholder]').focus(function() {
 		var input = $(this);
 		if (input.val() == input.attr('placeholder')) {
 			input.val('');
@@ -167,7 +167,7 @@ $(document).ready(function(){
 				input.val('');
 			}
 		})
-	});
+	});*/
 
 	// Accordion
 	$('.accordion .acc-header').append('<span class="icon">+</span>');

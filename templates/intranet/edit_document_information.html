@@ -5,131 +5,145 @@
 {% load i18n %}
 <form action="" method="POST">
 {% csrf_token %}
-<div id="doc-container">
-	<div class="box">
-		<h2><input type="text" name="title" class="edit-field-title" value="{{document.title}}"></h2>
-		<h5>
-			<select name="category" class="edit-field select-field" required>
-				<option value="" disabled > {% trans "Selecciona una categoria" %}</option>
-				<option value="1" {% if document.category.id = 1 %} selected {% endif %}>{% trans "Microbiología Molecular" %}</option>
-				<option value="2" {% if document.category.id = 2 %} selected {% endif %}>{% trans "Biotecnología Ambiental" %}</option>
-				<option value="3" {% if document.category.id = 3 %} selected {% endif %}>{% trans "Bionanotecnología" %}</option>
-				<option value="4" {% if document.category.id = 4 %} selected {% endif %}>{% trans "Genómica Funcional y Proteómica" %}</option>
-				<option value="5" {% if document.category.id = 5 %} selected {% endif %}>{% trans "Síntesis de compuestos bioactivos y de interés biotecnológico" %}</option>
-				<option value="6" {% if document.category.id = 6 %} selected {% endif %}>{% trans "Biorremediación de Ambientes Contaminados" %}</option>
-			</select>
-		</h5>
-		<h5>{{document.date.year}}</h5>
-		<div id="type-wrapper" class="{{document.privacy}}"></div>
-	</div>
-	<div class="s2">
-		<div class="box">
-			<div id="doc-abstract">
-				<textarea name="abstract" id="abstract-edit">{{ document.abstract }}</textarea>
+<div class="title">
+	<h3>{% trans "Editar documento" %}</h3>
+</div>
+<div class="intranet row">
+	<div class="c12">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document head">
+				<h2><textarea name="title" rows="1" required>{{document.title}}</textarea></h2>
+				<h5>
+					<select name="category" required>
+						<option value="" disabled > {% trans "Selecciona una categoria" %}</option>
+						<option value="1" {% if document.category.id = 1 %} selected {% endif %}>{% trans "Microbiología Molecular" %}</option>
+						<option value="2" {% if document.category.id = 2 %} selected {% endif %}>{% trans "Biotecnología Ambiental" %}</option>
+						<option value="3" {% if document.category.id = 3 %} selected {% endif %}>{% trans "Bionanotecnología" %}</option>
+						<option value="4" {% if document.category.id = 4 %} selected {% endif %}>{% trans "Genómica Funcional y Proteómica" %}</option>
+						<option value="5" {% if document.category.id = 5 %} selected {% endif %}>{% trans "Síntesis de compuestos bioactivos y de interés biotecnológico" %}</option>
+						<option value="6" {% if document.category.id = 6 %} selected {% endif %}>{% trans "Biorremediación de Ambientes Contaminados" %}</option>
+					</select>
+				</h5>
+				<h5>{{document.date.year}}</h5>
+				<div id="type-wrapper" class="{{document.privacy}}"></div>
+				<div class="intranet separator"></div>
+				<textarea name="abstract">{{ document.abstract }}</textarea>			
 			</div>
-			<div class="separator"></div>
-			<a href="{% url 'intranet:viewer' document.author document.title %}" target="_blank" id="open-doc" class="submit-btn">{% trans "Abrir Documento" %}</a>
-			<div class="separator"></div>
-			<div id="doc-information">
+		</div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c7">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+            <div class="document download trans">
+				<a href="{% url 'intranet:viewer' document.author document.title %}">
+	                <div>
+	                    <h1>{% trans "Ver <span>Documento</span>" %}</h1>
+	                </div>
+	            </a>
+            </div>
+        </div>
+        <!-- Fin de la caja -->
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document table">
 				<table>
 					<tr>
 						<td><strong>{% trans "Autor" %}:</strong></td>
-						<td><input type="text" class="edit-field" name="author" value="{{document.author}}"></td>
+						<td><input type="text" class="text" name="author" value="{{document.author}}"></td>
 					</tr>
 					<tr>
 						<td><strong>{% trans "Publicado el" %}:</strong></td>
-						<td><input type="date" class="edit-field" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
+						<td><input type="date" class="text" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
 					</tr>
+					{% if document.pages %}
 					<tr>
 						<td><strong>{% trans "Paginas" %}:</strong></td>
-						<td><input type="text" class="edit-field" name="pages" {% if document.pages %} value="{{document.pages}}" {% endif %}></td>
+						<td><input type="text" class="text" name="pages" {% if document.pages %} value="{{document.pages}}" {% endif %}></td>
 					</tr>
+					{% endif %}
+					{% if document.issn %}
 					<tr>
 						<td><strong>{% trans "ISSN" %}:</strong></td>
-						<td><input type="text" class="edit-field" name="issn" {% if document.issn %} value="{{document.issn}}" {% endif %}></td>
+						<td><input type="text" class="text" name="issn" {% if document.issn %} value="{{document.issn}}" {% endif %}></td>
 					</tr>
+					{% endif %}
+					{% if document.doi %}
 						<tr>
 							<td><strong>{% trans "DOI" %}:</strong></td>
-							<td><input type="text" class="edit-field" name="doi" {% if document.doi %} value="{{document.doi}}" {% endif %}></td>
+							<td><input type="text" class="text" name="doi" {% if document.doi %} value="{{document.doi}}" {% endif %}></td>
 						</tr>
-					<tr>
-						<td><strong>{% trans "Agregado el" %}:</strong></td>
-						<td><input type="date" class="edit-field" name="date_added" value="{{document.date_added|date:'Y-m-d'}}"></td>
-					</tr>
+					{% endif %}
 				</table>
 			</div>
-			<div id="keywords">
-				<ul>
+		</div>
+		<!-- Fin de la caja -->
+        <!-- Nueva caja -->
+        <div class="intranet box">
+        	<div class="document keywords">
+        		<ul>
 				{% if document.words %}
 					{% for keyword in document.get_keywords %}
-						<li><a class="rm-keyword" href="#">{{keyword}}</a></li>
+						<li><a class="rm-keyword" >{{keyword}}</a></li>
 					{% endfor %}
 				{% endif %}
-					<li></i><input id="input-kwds" placeholder="{% trans 'Escribe una palabra clave' %}" type="text"></li>
+					<li></i><input id="inputKW" class="text" placeholder="{% trans 'Escribe una palabra clave' %}" type="text"></li>
 				</ul>
+        	</div>
+        </div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c5">
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document owner">
+				<div class="image">
+					{% if document.owner.profile_picture %}
+						<img src="{% static document.owner.filename %}"> 
+					{% else %} 
+						<img src="{% static 'intranet/images/default.png' %}">
+					{% endif%}
+				</div>				
+				<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
+				<h5>{{document.owner.area.name}}</h5>
+				<h5>{{document.owner.institution}}</h5>
 			</div>
 		</div>
-		<!--<div class="box" style="height: 200px">
-			
-		</div>-->		
-	</div>
-	<div class="s2">
-		{% if document.owner.id == request.user.id or request.user.is_admin %}
-			<div class="box document-optns-wrpr">
-				<a class="btn-document" href="#">
-					<span class="accept-document">
-					  <input type="submit" class="accept-document" value="{% trans 'Aceptar' %}">
-					</span>
-				</a>
-				</br>
-				<a class="btn-document" href="{% url 'intranet:document' document.author document.title %}">
-					<span class="cancel-document">
-					  {% trans "Cancelar" %}
-					</span>
-				</a>
-			</div>		
-		{% endif %}
-		<div class="box">
-			<div id="owner-wrapper">
-				<div id="owner-information">
-					<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
-					<h5>{{document.owner.simplify_institution}} - {{document.owner.area.name}}</h5>
-				</div>
-				<div id="owner-img">
-					<div {% if document.owner.profile_picture %} style="background-image: url('{% static document.owner.filename %}');" {% else %} style="background-image: url('{% static 'intranet/images/default.png' %}');" {% endif%}></div>
-				</div>
+        <!-- Fin de la caja -->
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document controls">
+				<a id="submitForm">{% trans "Guardar" %}</a>
+				<a class="modal" href="{% url 'intranet:document' document.author document.title %}">{% trans "Cancelar" %}</a>
 			</div>
 		</div>
+        <!-- Fin de la caja -->
 	</div>
-	<!--<div class="box" style="height: 200px; width: 100%">
-		
-	</div>-->
 </div>
 <input type="hidden" name="words" id="kwrds-field">
 </form>
 <script>
+	autosize(document.querySelectorAll('textarea'));
+
 	function update_kwrds(){
 		kwrds = [];
 		$('.rm-keyword').each(function(){
 			kwrds.push($(this).text());
 		})
 		$('#kwrds-field').val(kwrds.join(','));
-	}
-	var text = $('#abstract-edit').val();
-	var kwrds = [];
-    matches = text.match(/\n/g),
-    breaks = matches ? matches.length : 2;
-    $('#abstract-edit').attr('rows',breaks + 2);
-    update_kwrds();
-    $('.rm-keyword').on('click', function(e){
-    	e.preventDefault();
-    	$(this).closest('li').remove();
-    	update_kwrds();
-    });
+		}
 
-    $('#input-kwds').keypress(function(e) {
+	update_kwrds();
+	$('.rm-keyword').on('click', function(e){
+		e.preventDefault();
+		$(this).closest('li').remove();
+		update_kwrds();
+	});
+
+	$('#inputKW').keypress(function(e) {
 	    if(e.which == 13) {
-    		e.preventDefault();
+			e.preventDefault();
 	        $("<li><a class='rm-keyword' href='#'>" + $(this).val().toLowerCase() + "</a></li>").insertBefore($(this).closest('li'));
 	        $(this).val('');
 		    update_kwrds();
@@ -137,9 +151,15 @@
 		    $('.rm-keyword').on('click', function(e){
 		    	e.preventDefault();
 		    	$(this).closest('li').remove();
-    			update_kwrds();
+				update_kwrds();
 		    });
 	    }
 	});
+
+	$('#submitForm').click(function(e){
+		e.preventDefault();
+		$('form').submit();
+	});
 </script>
+
 {% endblock %}

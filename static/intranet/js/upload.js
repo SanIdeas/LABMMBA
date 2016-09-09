@@ -291,7 +291,6 @@ function filesHandler(){
 			files[key_count] = new_files[i];
 			getMeta(key_count, new_files[i]);
 			key_count++;
-			console.log(files[key_count]);
 			if(Object.size(files) == 1)
 				$('#local-submit').prop('disabled', false).removeClass('disabled');
 		}

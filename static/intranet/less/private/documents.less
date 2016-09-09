@@ -1,0 +1,83 @@
+.documents{
+	&.message{
+		margin: 0;
+	    font-size: 312%;
+	    color: #ababab;
+	    font-weight: bold !important;
+	}
+	&.description{
+		margin: 0;
+	    padding-left: 10px;
+	    font-weight: normal;
+	    font-size: 108%;
+	}
+
+	@media @smartphones-1060{
+		&.message{
+		    text-align: center;
+		    font-size: 164%;
+		}
+		&.description{
+		    padding-left: 0px;
+		    text-align: center;
+		    font-size: 100%;
+		}
+	}
+
+	@media @smartphones-375{
+		&.message{
+		    text-align: center;
+		    font-size: 135%;
+		}
+		&.description{
+		    padding-left: 0px;
+		    text-align: center;
+		    font-size: 60%;
+		}
+	}
+
+	&.table{
+		& td, th{
+			border: none;
+		}
+
+		& .document{
+			cursor: pointer;
+			&:hover td{
+				background-color: @fields-background;
+			}
+		}
+
+		@media @smartphones-700{
+			& .head{
+				display: none;
+			}
+
+			& td{
+				width: 100%;
+				float: left;
+				white-space: normal;
+
+				&.col1{
+				    padding-bottom: 0;
+					font-size: 12px;
+				}
+				&.col2{
+					font-weight: bold;
+    				padding: 0px 12px;
+				}
+				&.col3{
+				    padding-top: 0px;
+					font-size: 12px;
+				}
+				&.col4{
+					padding-bottom: 0px;
+				}
+				&.col5{
+					padding-top: 0px
+				}
+			}
+
+		}
+	}
+}

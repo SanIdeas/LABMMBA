@@ -3,22 +3,39 @@
 {% load staticfiles %}
 {% block content %}
 {% load i18n %}
-<div id="doc-container">
-	<div class="box">
-		<h2>{{document.title}}</h2>
-		<h5>{{document.category.name}}</h5>
-		<h5>{{document.date.year}}</h5>
-		<div id="type-wrapper" class="{{document.privacy}}"></div>
-	</div>
-	<div class="s2">
-		<div class="box">
-			<div id="doc-abstract">
-				{{ document.abstract }}
+<div class="title">
+	<h3>{% trans "Información del documento" %}</h3>
+</div>
+<div class="intranet row">
+	<div class="c12">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document head">
+				<h2>{{document.title}}</h2>
+				<h5>{{document.category.name}}</h5>
+				<h5>{{document.date.year}}</h5>
+				<div id="type-wrapper" class="{{document.privacy}}"></div>
+				<div class="intranet separator"></div>
+				{{ document.abstract }}				
 			</div>
-			<div class="separator"></div>
-			<a href="{% url 'intranet:viewer' document.author document.title %}" target="_blank" id="open-doc" class="submit-btn">{% trans "Abrir Documento" %}</a>
-			<div class="separator"></div>
-			<div id="doc-information">
+		</div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c7">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+            <div class="document download trans">
+				<a href="{% url 'intranet:viewer' document.author document.title %}">
+	                <div>
+	                    <h1>{% trans "Ver <span>Documento</span>" %}</h1>
+	                </div>
+	            </a>
+            </div>
+        </div>
+        <!-- Fin de la caja -->
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document table">
 				<table>
 					<tr>
 						<td><strong>{% trans "Autor" %}:</strong></td>
@@ -43,7 +60,7 @@
 					{% if document.doi %}
 						<tr>
 							<td><strong>{% trans "DOI" %}:</strong></td>
-							<td><a href="{{document.url}}" target="_blank">{{document.doi}}</a></td>
+							<td><a href="{{document.url}}">{{document.doi}}</a></td>
 						</tr>
 					{% endif %}
 					<tr>
@@ -52,72 +69,72 @@
 					</tr>
 				</table>
 			</div>
-			<div id="keywords">
-				<ul>
+		</div>
+		<!-- Fin de la caja -->
+        <!-- Nueva caja -->
+        <div class="intranet box">
+        	<div class="document keywords">
+        		<ul>
 				{% if document.words %}
 					{% for keyword in document.get_keywords %}
 						<li><a href="#">{{keyword}}</a></li>
 					{% endfor %}
 				{% endif %}
-				</ul>
+        	</div>
+        </div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c5">
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document owner">
+				<div class="image">
+					{% if document.owner.profile_picture %}
+						<img src="{% static document.owner.filename %}"> 
+					{% else %} 
+						<img src="{% static 'intranet/images/default.png' %}">
+					{% endif%}
+				</div>				
+				<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
+				<h5>{{document.owner.area.name}}</h5>
+				<h5>{{document.owner.institution}}</h5>
 			</div>
 		</div>
-		<!--<div class="box" style="height: 200px">
-			
-		</div>-->		
-	</div>
-	<div class="s2">
-		{% if document.owner.id == request.user.id or request.user.is_admin %}
-			<div class="box document-optns-wrpr">
-				<a class="btn-document" href="{% url 'intranet:edit_document' document.author document.title %}">
-					<span class="fa-stack fa-lg edit-document">
-					  <i class="fa fa-square fa-stack-2x"></i>
-					  <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-				<a class="btn-document cancel" href="">
-					<span class="fa-stack fa-lg remove-document">
-					  <i class="fa fa-square fa-stack-2x"></i>
-					  <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-					</span>
-				</a>
-				<div id="cancel-confirm">
-					<h3>{% trans "CONFIRMAR" %}</h3>
-				</div>
-			</div>		
-		{% endif %}
-		<div class="box">
-			<div id="owner-wrapper">
-				<div id="owner-information">
-					<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
-					<h5>{{document.owner.simplify_institution}} - {{document.owner.area.name}}</h5>
-				</div>
-				<div id="owner-img">
-					<div {% if document.owner.profile_picture %} style="background-image: url('{% static document.owner.filename %}');" {% else %} style="background-image: url('{% static 'intranet/images/default.png' %}');" {% endif%}></div>
-				</div>
+        <!-- Fin de la caja -->
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document controls">
+				<a href="{% url 'intranet:edit_document' document.author document.title %}">{% trans "Editar" %}</a>
+				<a class="modal" href="#confirmModal">{% trans "Eliminar" %}</a>
 			</div>
 		</div>
+        <!-- Fin de la caja -->
 	</div>
-	<!--<div class="box" style="height: 200px; width: 100%">
-		
-	</div>-->
 </div>
+
+<div style="display:none!important">
+	<div class="document modal" id="confirmModal">
+		<h2>{% trans "¿Estas seguro?" %}</h2>
+		<p>{% trans "Estas a punto de eliminar el documento:" %}</p>
+		<h3>{{document.title}}</h3>
+		<h5>{{document.author}}</h5>
+		<div><a class="cancel">CONFIRMAR</a></div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 	$('.cancel').click(function(e){
-		e.preventDefault();
-		$('.btn-document').addClass('btns-delete-hidden');
-		$('#cancel-confirm').addClass('cancel-confirm-visible');
-		setTimeout(function(){
-			$(window).on('click', function(e){
-				if(!($('#cancel-confirm').is(e.target) || $('#cancel-confirm').children().is(e.target))){
-					$('.btn-document').removeClass('btns-delete-hidden');
-					$('#cancel-confirm').removeClass('cancel-confirm-visible');
-					$(window).off();			
-				}
-			});
-		}, 500);
-	});
-	$('#cancel-confirm').click(function(e){
 		console.log('{{csrf_token}}');
 		$.ajax({
 			url:"{% url 'intranet:edit_document' document.author document.title %}",

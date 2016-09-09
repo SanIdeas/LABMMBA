@@ -2,24 +2,118 @@
 {% load staticfiles %}
 {% block content %}
 {% load i18n %}
+<div class="title">
+	<h3>{% trans "Documentos" %}</h3>
+</div>
 
-<div class="result">
-{% if search %}
-	{% if not documents %}
-		<h5 class="documents-message">{% blocktrans %} No se encontraron resultados para {{ search }} {% endblocktrans %}</h5>
+<div class="intranet row">
+	{% if not search %}
+		<!--Seccion de documentos -->
+		<div class="c12">
+		{% if not documents %}
+			<h1 class="documents message">{% trans "No hemos encontrado documentos" %}</h1>
+			<h5 class="documents description">{% trans "Asegurate de haber subido algun documento. Nuestra base de datos esta vacia" %}</h5>
+		{% else %}
+			<table class="documents table">
+				<tr class="head">
+					<th class="col1">{% trans "Autor" %}</th>
+					<th class="col2">{% trans "Titulo" %}</th>
+					<th class="col3">{% trans "Año" %}</th>
+					<th class="col4">{% trans "Dueño" %}</th>
+					<th class="col5">{% trans "Añadido" %}</th>
+				</tr>
+				{% for document in documents%}
+					<tr class="document noselect" url="{% url 'intranet:document' document.author document.title %}">
+						<td class="col1 trans">{{ document.author }}</td>
+						<td class="col2 trans">{{ document.title }}</td>
+						<td class="col3 trans">{{ document.date|date:"Y" }}</td>
+						<td class="col4 trans">{{ document.owner_name }}</td>
+						<td class="col5 trans">{{ document.date_added }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+		</div>
+		<!--Fin seccion de documentos-->
 	{% else %}
-		<ul>
+		<!--Seccion de resultados de buscqueda-->
+		<script>$('#searchPhrase').val('{{search}}');</script>
+		{% if not documents %}
+			<div class="c12">
+				<h1 class="documents message">{% trans "No encontramos resultados para tu busqueda" %}</h1>
+				<h5 class="documents description">{% trans "Asegurate de haber escrito correctamente el autor y/o titulo" %}</h5>
+			</div>
+		{% else %}
+		<div class="c3">
+			<div id="filters-v2" class="noselect">
+			<form action="" method="GET" id="filter-form">
+			<h4>{% trans "Refinar busqueda" %}</h4>
+			<ul>
+				<li>
+					{% trans "AUTOR" %}
+					<ul>
+						{% for ath, count, selected in authors %}
+							{% if ath %}
+								<li><label for="checkbox-ath{{ath}}"><input id="checkbox-ath{{ath}}" name="author" value="{{ath}}" type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span>{{ath}} ({{count}})</span></label></li>
+							{% elif authors|length == 1  %}
+								<li><span>-</span></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+				<li>
+					{% trans "DUEÑO" %}
+					<ul>
+						{% for own, count, selected in owners %}
+							{% if own %}
+								<li><label for="checkbox-owner{{own.id}}"><input id="checkbox-owner{{own.id}}" name="owner" value="{{own.id}}" type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{own.first_name}} {{own.last_name}} ({{count}})</span></label></li>
+							{% elif owners|length == 1  %}
+								<li><span>-</span></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+				<li>
+					{% trans "CATEGORÍA" %}
+					<ul>
+						{% for cat, count, selected in categories %}
+							{% if cat %}
+								<li><label for="checkbox-cat{{cat.id}}"><input id="checkbox-cat{{cat.id}}" name="category" value="{{cat.id}}"type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{cat.name}} ({{count}})</span></label></li>
+							{% elif categories|length == 1 %}
+								<li><span>-</span></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+				<li>
+					{% trans "AÑO" %}
+					<ul>
+						{% for year, count, selected in years %}
+							{% if year %}
+								<li><label for="checkbox-year{{year}}"><input id="checkbox-year{{year}}" name="date" value="{{year}}"type="checkbox" class="filter-checkbox" {% if selected %} checked {% endif %}><span> {{year}} ({{count}})</span></label></li>
+							{% elif years|length == 1 %}
+								<li><span>-</span></li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+			</form>
+		</div>
+		</div>
+		<div class="c9">
+			<ul>
 			{% for document in documents %}
-			<li class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-				<h4 class='text-result'> {{ document.title }} </h4>
-				<span class='text-result'> {{ document.author }} -</span>
-				<span class='text-result'> {{ document.date }} </span>
-				<p><strong>{% trans "Dueño" %}:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
-				<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
-				{% if document.extract|length > 0 %}
-					<p class="long-text"><strong>{% trans "Extracto" %}:</strong><span class='text-result'> {{ document.extract }}</span></p>
-				{% endif %}
-			</li>
+				<li class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
+					<h4 class='text-result'> {{ document.title }} </h4>
+					<span class='text-result'> {{ document.author }} -</span>
+					<span class='text-result'> {{ document.date }} </span>
+					<p><strong>{% trans "Dueño" %}:</strong> <span class='text-result'>{{ document.owner_name }}</span></p>
+					<!--<p><strong>Resumen:</strong> ... adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>-->
+					{% if document.extract|length > 0 %}
+						<p class="long-text"><strong>{% trans "Extracto" %}:</strong><span class='text-result'> {{ document.extract }}</span></p>
+					{% endif %}
+				</li>
 			{% endfor %}
 			<script>
 				var search = '{{ search }}'.split(' ');
@@ -29,43 +123,18 @@
 						var html = $(this).html();
 						console.log(search[i])
 						var re = new RegExp('^' + search[i] + '| ' + search[i], 'gi')
-						$(this).html(html.replace(re, ' <span class="word-result">' + '$&'.replace(' ', '') + '</span> '));
+						$(this).html(html.replace(re, ' <span class="documentos highlight">' + '$&'.replace(' ', '') + '</span> '));
 					}
 				});
 			</script>
 		</ul>
-	{% endif %}
-	<script>
-		$('#search-field').val('{{search}}');
-	</script>
-{% else %}
-	{% if not documents %}
-		<h5 class="documents-message">{% trans "No hay documentos en la base de datos" %}</h5>
-	{% else %}
-		<table>
-			<tr>
-				<th class="col1">{% trans "Autor" %}</th>
-				<th class="col2">{% trans "Titulo" %}</th>
-				<th class="col3">{% trans "Año" %}</th>
-				<th class="col4">{% trans "Dueño" %}</th>
-				<th class="col5">{% trans "Añadido" %}</th>
-			</tr>
-			{% for document in documents%}
-				<tr class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-					<td class="col1">{{ document.author }}</td>
-					<td class="col2">{{ document.title }}</td>
-					<td class="col3">{{ document.date|date:"Y" }}</td>
-					<td class="col4">{{ document.owner_name }}</td>
-					<td class="col5">{{ document.date_added }}</td>
-				</tr>
-			{% endfor %}
-		</table>
-	{% endif %}
+		</div>
+		{% endif %}
+		
 {% endif %}
 <script>
-		$('.search-result').click(function(){
-			console.log(encodeURIComponent($(this).attr('doc-title')));
-			window.open("{% url 'intranet:document' 999 888 %}".replace('888', encodeURIComponent($(this).attr('doc-title'))).replace('999', encodeURIComponent($(this).attr('doc-author'))), '_blank');
+		$('tr.document').click(function(){
+			window.open($(this).attr('url'), "_self");
 		});
 	</script>	
 </div>

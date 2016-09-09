@@ -6,7 +6,9 @@
 	<h3>{% trans "Resumen de actividad" %}</h3>
 </div>
 <div class="intranet row">
-    <div class="c12">
+    <!-- Seccion izquierda -->
+    <div id="lCol" class="c7">
+        <!-- Nueva linea -->
         <div class="intranet box">
             <h4>Usuarios registrados</h4>
             <div class="users">
@@ -23,57 +25,49 @@
                 <button class="trans">Ver todos los usuarios</button>
             </div>
         </div>
-    </div>
-</div>
-<div class="intranet row">
-    <div class="c7">
+        <!-- Nueva linea -->
         <div class="intranet box">
             <div class="counter">
-                <h1>10000</h1>
-                <h3>Documentos</h3>
+                <div>
+                    <h1>10000</h1>
+                    <h3>Documentos</h3>
+                </div>
             </div>
         </div>
+        <!-- Nueva linea -->
         <div class="intranet box">
-            <h4>Titulo de la caja</h4>
+            <h4>Últimas publicaciones</h4>
             <div class="info">
                 
             </div>
             <div class="btn">
-                <button class="trans">Link de interes</button>
+                <button class="trans">Ver publicaciones</button>
             </div>
         </div>
     </div>
-    <div class="c5">
+    <!-- Seccion derecha -->
+    <div id="rCol" class="c5">
+    <!-- Nueva linea -->
         <div class="intranet box">
-           <div class="chart">
+            <div class="chart">
                 <canvas id="months_chart"></canvas> 
             </div>
             <div class="description">
                 <span>Publicaciones de los ultimos 6 meses</span>
             </div>
         </div>
-    </div>
-</div>
-<!--<div class="c12">
-    <div class="c6">
-        <div class="chart">
-            <canvas id="months_chart"></canvas> 
+        <!-- Nueva linea -->
+        <div class="intranet box">
+            <div class="chart">
+                <canvas id="categories_chart" style="position:relative"></canvas> 
+            </div>
+            <div class="description">
+                <span>Categorias</span>
+            </div>
         </div>
     </div>
-
 </div>
 
-<div class="c6">
-	<div class="chart">
-		<canvas id="months_chart"></canvas>	
-	</div>
-</div>
-
-<div class="c6">
-	<div class="chart">
-		<canvas id="categories_chart"></canvas>		
-	</div>
-</div>-->
 <script>
 var ctx = document.getElementById("months_chart");
 var myChart = new Chart(ctx, {

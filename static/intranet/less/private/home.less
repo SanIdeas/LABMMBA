@@ -1,6 +1,73 @@
 @import "shared/constants.less";
+/*!
+*	 /$$        /$$$$$$  /$$$$$$$  /$$      /$$ /$$      /$$ /$$$$$$$   /$$$$$$ 
+*	| $$       /$$__  $$| $$__  $$| $$$    /$$$| $$$    /$$$| $$__  $$ /$$__  $$
+*	| $$      | $$  \ $$| $$  \ $$| $$$$  /$$$$| $$$$  /$$$$| $$  \ $$| $$  \ $$
+*	| $$      | $$$$$$$$| $$$$$$$ | $$ $$/$$ $$| $$ $$/$$ $$| $$$$$$$ | $$$$$$$$
+*	| $$      | $$__  $$| $$__  $$| $$  $$$| $$| $$  $$$| $$| $$__  $$| $$__  $$
+*	| $$      | $$  | $$| $$  \ $$| $$\  $ | $$| $$\  $ | $$| $$  \ $$| $$  | $$
+*	| $$$$$$$$| $$  | $$| $$$$$$$/| $$ \/  | $$| $$ \/  | $$| $$$$$$$/| $$  | $$
+*	|________/|__/  |__/|_______/ |__/     |__/|__/     |__/|_______/ |__/  |__/
+*
+* Página desarrollada estudiantes de Ingeniería Civil Informática de la Universidad Técnica Federico Santa María, Chile.
+*
+*	Miembros:
+* 		- Hernán Herreros Niño - hernan.herreros.13@sansano.usm.cl
+*		- Alex Balladares Rojas - alex.balladares.13@sansano.usm.cl
+*		- Ricardo Gamboa Arias - ricardo.gamboa.13@sansano.usm.cl
+*
+*
+*	Se utilizó el tema base de la UTFSM proporcioado por ILOGICA.
+*/
 html,body{
 	overflow: hidden;
+}
+
+.colored_box(@color, @icon){
+	position: relative;
+	overflow: hidden;
+	background-color: lighten(@color, 10%);
+	color: lighten(@color, 30%);
+
+	& div{
+		display: flex;
+	    position: relative;
+	    width: 200px;
+	    height: 104px;
+	    justify-content: flex-end;
+
+	    @media @smartphones-700{
+	    	width: 160px;
+	    }
+	}
+
+	& h1{
+	    padding-left: 10%;
+	    font-size: 50px;
+	    margin: 0;
+	    position: relative;
+	    align-self: baseline;
+	    margin-top: 6px;
+	}
+
+	& h3{
+	    position: absolute;
+	    bottom: 19px;
+	    right: 0;
+	    margin: 0;
+			
+	}
+	&:after{
+		position: absolute;
+	    right: 15px;
+	    height: 100%;
+	    font-size: 64px;
+	    color: lighten(@color, 30%);
+	    bottom: -15px;
+	    content: @icon;
+	    font: normal normal normal 123px/1 FontAwesome;
+
+	}
 }
 
 
@@ -96,13 +163,16 @@ html,body{
 		height: 100%;
 		width: 100%;
 		background-color: #f1f2f4;
-		overflow: auto;
+		overflow-y: auto;
+		position: relative;
+		-webkit-overflow-scrolling: touch;
 		& .title{
 			padding: 6.5px 15px;
 		    text-align: center;
 		    background-color: #f1f2f4;
 		    margin-bottom: 20px;
 		    border-bottom: 1px solid #d2d2d2;
+			background-color: #f1f2f4;
 			& h3{
 				margin: 0;
 				font-weight: normal;
@@ -122,13 +192,31 @@ html,body{
 		float: right;
 	}
 
+	&.filling{
+	    background: transparent;
+	    border: none;
+	    box-shadow: none;
+	    opacity: 0.1;
+	    display: none;
+	    @media @smartphones-700{
+	    	display: none !important;
+	    }
+	}
+
+	&.separator{
+		margin: 20px auto;
+		width: 70%;
+		border-top:2px solid #d2d2d2;
+	}
+
 	&.box{
 		border: 1px solid @fields-background;
 		box-shadow: 0 0 2px rgba(0,0,0,.05);	
 		background-color: #fff;
 		margin-bottom: 20px;
-		border-radius: 10px;
+		//border-radius: 10px;
 		overflow: hidden;
+		position: relative;
 		&.border{
 			&.bottom{
 				border-bottom-color: @yellow-color;
@@ -137,7 +225,7 @@ html,body{
 
 		& > h4{
 			    margin: 0;
-			    padding: 17px;
+			    padding: 10px;
 			    font-weight: 400;
 			    border-bottom: 1px solid #e2e2e2;
 		}
@@ -152,7 +240,6 @@ html,body{
 
 		& > .users{
 			overflow-x: auto;
-			-webkit-overflow-scrolling: touch;
 			&::-webkit-scrollbar {
 			    height: 3px;
 			    width: 5px;
@@ -166,6 +253,7 @@ html,body{
 			& ul{
 				white-space: nowrap;
 				padding: 0;
+				margin: 3px;
 				& li{
 					display: inline-block;
 					margin: 0;
@@ -174,6 +262,7 @@ html,body{
 					margin-left: 20px;
 					margin-right: 20px;
 					position: relative;
+					vertical-align: middle;
 					& a{
 					}
 					& img{
@@ -215,35 +304,7 @@ html,body{
 			}
 		}
 		& > .counter{
-			position: relative;
-			overflow: hidden;
-			background-color: lighten(@yellow-color, 10%);
-			color: lighten(@yellow-color, 30%);
-
-			& > h1{
-			    padding-left: 10%;
-			    font-size: 50px;
-			    margin: 0px;
-			    position: relative;
-			    margin-top: 6px;
-			}
-
-			& > h3{
-				margin: 0;
-				margin-left: 15%;
-					
-			}
-			&:after{
-				position: absolute;
-			    right: 15px;
-			    height: 100%;
-			    font-size: 64px;
-			    color: lighten(@yellow-color, 30%);
-			    bottom: -15px;
-			    content: "\f15b ";
-			    font: normal normal normal 123px/1 FontAwesome;
-
-			}
+			.colored_box(@yellow-color, "\f15b ");
 		}
 
 		& > .description{
@@ -297,3 +358,8 @@ html,body{
 	}
 }
 
+.c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12{
+	@media @smartphones-700{
+		margin-bottom: 0px !important;
+	}
+}

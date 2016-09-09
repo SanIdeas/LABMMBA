@@ -3,20 +3,10 @@ var files = {}, key_count = 0;
 var state = ''; //Define el estado. Si es 'single' significa que se esta mostrando un solo archivo gdrive. Si es 'multi' significa que se estan mostrando multiples archivos gdrive. si es 'confirm' significa que se esta en la ventana de confirmacion.
 var upload_method = '';
 var selector_type_event;
-$('.upload-selector').click(function(){
-	if($(this).hasClass('unselect')){
-		$(this).removeClass('unselect');
-		methodSwitcher($(this).attr('upload-method'));
-	}
-	else if($(this).attr('frst')){
-		$('.upload-selector').removeAttr('frst');
-		methodSwitcher($(this).attr('upload-method'));
-	}
-
-	if ($(this).attr('upload-method') == 'local')
-		$('.upload-selector[upload-method="drive"]').addClass('unselect');
-	else
-		$('.upload-selector[upload-method="local"]').addClass('unselect');
+$('.upload.option').click(function(){
+	$('.upload.selector').addClass('animation exit');
+	upload_method = "local";
+	state="confirm";
 });
 
 $('#add-btn').click(function(){
