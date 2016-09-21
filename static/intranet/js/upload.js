@@ -1,12 +1,6 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
 var crossref_timeout, crossref_busy = false;
-(function($){
-	//Resetea el input de archivo
-	$.fn.resetInput = function(){
-		this.wrap('<form>').closest('form').get(0).reset();
-		this.unwrap();
-	};
-})(jQuery);
+
 
 Object.size = function(obj) {
     var size = 0, key;
@@ -29,10 +23,6 @@ function formatSizeUnits(bytes){
 }
 
 
-/*Metodos para eliminar elementos*/
-Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-}
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
     for(var i = this.length - 1; i >= 0; i--) {
         if(this[i] && this[i].parentElement) {
@@ -101,30 +91,7 @@ function replaceValues(object){
 	}
 }
 
-function getMeta(index, file){
-	var reader  = new FileReader();
-				
-	reader.addEventListener("load", function () {
-		PDFJS.getDocument(convertDataURIToBinary(reader.result)).then(function (pdfDoc_) {
-		    pdfDoc = pdfDoc_;   
-		    pdfDoc.getMetadata().then(function(stuff) {
-		        //console.log(stuff); // Metadata object here
-		        return addDocument(index, file.name, stuff['info']);
-		    }).catch(function(err) {
-		       console.log('Error getting meta data');
-		       console.log(err);
-		    });
 
-		   // Render the first page or whatever here
-		   // More code . . . 
-		}).catch(function(err) {
-		    console.log('Error getting PDF from ' + url);
-		    console.log(err);
-		});
-	}, false);
-
-	reader.readAsDataURL(file);
-}
 
 function methodSwitcher(method){
 	upload_method  = method;
@@ -139,163 +106,7 @@ function methodSwitcher(method){
 	}
 }
 
-function addDocument(index, filename, object){
-	if (current_lang == 'es'){
-		var code = ['<div class="document-frame animation-down" doc-index="$index">',
-					'<div class="frame-header">',
-						'<h5 class="frame-title">$filename</h5>',
-						'<select class="type-select field" name="type$index" required>',
-							'<option value="" disabled selected>Selecciona privacidad</option>',
-							'<option value="0">Público</option>',
-							'<option value="1">Privado</option>',
-						'</select>',
-						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
-						'<div class="clear"></div>',
-					'</div>',
-					'<ul class="frame-data">',
-						'<li><strong>Titulo:</strong> <input type="text" class="field" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
-						'<li><strong>Autor:</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="Ej: Juan Perez" required></li>',
-						'<li><strong>Fecha de creación:</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="Ej: 2016" required></li>',
-						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
-						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
-						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
-						'<li><strong>Paginas:</strong><input type="text" class="field" name="pages$index" placeholder="No requerido"></li>',
-						'<li><strong>Area:</strong>',
-							'<select name="category$index" class="field form-select" required>',
-								'<option value="" disabled selected>Selecciona una categoria</option>',
-								'<option value="1">Microbiología Molecular</option>',
-								'<option value="2">Biotecnología Ambiental</option>',
-								'<option value="3">Bionanotecnología</option>',
-								'<option value="4">Genómica Funcional y Proteómica</option>',
-								'<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>',
-								'<option value="6">Biorremediación de Ambientes Contaminados</option>',
-							'</select>',
-						'</li>',
-					'</ul>',
-				'</div>']
-	}
-	else if (current_lang == 'en'){
-		var code = ['<div class="document-frame animation-down" doc-index="$index">',
-					'<div class="frame-header">',
-						'<h5 class="frame-title">$filename</h5>',
-						'<select class="type-select field" name="type$index" required>',
-							'<option value="" disabled selected>' + gettext('Selecciona privacidad') + '</option>',
-							'<option value="0">' + gettext('Público') + '</option>',
-							'<option value="1">' + gettext('Privado') + '</option>',
-						'</select>',
-						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
-						'<div class="clear"></div>',
-					'</div>',
-					'<ul class="frame-data">',
-						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-id="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
-						'<li><strong>' + gettext('Autor') + ':</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="' + gettext('Ej: Juan Perez') + '" required></li>',
-						'<li><strong>' + gettext('Fecha de creación') + ':</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="' + gettext('Ej: 2016-12-30') + '" required></li>',
-						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
-						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
-						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
-						'<li><strong>Paginas:</strong><input type="text" class="field" name="pages$index" placeholder="No requerido"></li>',
-						'<li><strong>' + gettext('Area') + ':</strong>',
-							'<select name="category$index" class="field form-select" required>',
-								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
-								'<option value="1">' + gettext('Microbiología Molecular') + '</option>',
-								'<option value="2">' + gettext('Biotecnología Ambiental') + '</option>',
-								'<option value="3">' + gettext('Bionanotecnología') + '</option>',
-								'<option value="4">' + gettext('Genómica Funcional y Proteómica') + '</option>',
-								'<option value="5">' + gettext('Síntesis de compuestos bioactivos y de interés biotecnológico') + '</option>',
-								'<option value="6">' + gettext('Biorremediación de Ambientes Contaminados') + '</option>',
-							'</select>',
-						'</li>',
-					'</ul>',
-				'</div>']
-	}
-	code = code.join('').replace(/\$index/g, index).replace(/\$filename/g, filename).replace(/\$title/g, object['Title'] ? object['Title']:'').replace(/\$author/g, object['Author'] ? object['Author']:'').replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
-	console.log(object['CreationDate']);
-	$('#confirm-form').append(code);
-	crossref_query(object['Title'] ? object['Title']:'', index, false);
-	$('#confirm-form').off();
-	$('#confirm-form').keydown(function(e){
-		if(event.keyCode == 13) {
-		  event.preventDefault();
-		  return false;
-		}
-	});
-	$('.close-btn').off();
-	$('.close-btn').click(function(){
-		console.log("delete");
-		$('.document-frame[doc-index="' + $(this).attr('doc-index') + '"]').remove();
-		delete files[$(this).attr('doc-index')];
-		if(Object.size(files) == 0)
-			$('#local-submit').prop('disabled', true).addClass('disabled');
-	});
-	$('.type-select').off();
-	$('.type-select').change(function(){
-				if($(this).val() == "0")
-					$(this).closest('.frame-header').addClass('public-type').removeClass('private-type');
-				else
-					$(this).closest('.frame-header').addClass('private-type').removeClass('public-type');
-	});
-	$('.field[field-name="title"]').off();
-	$('.field[field-name="title"]').on('input', function(){
-		if(!crossref_busy){
-			crossref_busy = true;
-			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
-			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
-			var $this = $(this)
-			crossref_timeout = setTimeout(function(){
-				if($this.val() == ''){
-					crossref_busy = false;
-					$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').removeClass('hidden');
-					$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
-				}
-				else{
-					console.log($this.attr('doc-id'));
-					crossref_query($this.val(), $this.attr('doc-id'), false);
-				}
-			}, 2000);
-		}
-	});
-	$('.field[field-name="title"]').focus(function(e){
-		$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
-	});
-	$('.field[field-name="title"]').keyup(function(e){
-		if(e.which == 27 || e.which == 13){
-			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
-			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
-		}
-	});
-	$('.field[field-name="title"]').focusout(function(e){
-		var $this = $(this)
-		setTimeout(function(){
-			$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
-			$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');			
-		}, 100);
-	});
 
-}
-function filesHandler(){
-	var new_files = document.getElementById('mult-files').files;
-	var files_names = [];
-	for(var i = 0; i < files.length; i++){
-		files_names.push(files[i].name);
-	}
-	for (var i = 0; i < new_files.length; i++){
-		var exists = false
-		for(var key in files){
-			if(files.hasOwnProperty(key)){
-				if(files[key].name == new_files[i].name){
-					exists = true;
-				}
-			}
-		}
-		if(!exists){
-			files[key_count] = new_files[i];
-			getMeta(key_count, new_files[i]);
-			key_count++;
-			if(Object.size(files) == 1)
-				$('#local-submit').prop('disabled', false).removeClass('disabled');
-		}
-	}
-}
 
 
 //http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
@@ -785,39 +596,7 @@ function load_confirmation(files){
 	section.append('<input class="confirmation-frame" type="hidden" value="' + ids.join(',') + '" name="id">');
 }
 
-function crossref_query(query, doc_id, is_drive){
-	if(is_drive)
-		cls = 'drive-field';
-	else
-		cls = 'field';
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', crossref_link.replace('999', query) , true);
-	xhr.onload = function(){
-		var response = xhr.responseText;
-		if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
-				$('.crossref-list[doc-id="' + doc_id +'"]').children().remove();
-				$('.crossref-list[doc-id="' + doc_id +'"]').append(response);
-				$('.loader').addClass('hidden');
-				crossref_busy = false;
-				$('.crossref-row').off();
-				$('.crossref-row').click(function(e){
-					if(is_drive)
-						var doc = $(this).closest('ul').attr('doc-id').replace('drive', '');
-					else
-						var doc = $(this).closest('ul').attr('doc-id');
-					console.log('.' + cls + '[name="title' + doc + '"]');
-					$('.' + cls + '[name="title' + doc + '"]').val($(this).attr('title'));
-					$('.' + cls + '[name="author' + doc + '"]').val($(this).attr('author'));
-					$('.' + cls + '[name="date' + doc + '"]').val($(this).attr('date'));
-					$('.' + cls + '[name="issn' + doc + '"]').val($(this).attr('issn'));
-					$('.' + cls + '[name="doi' + doc + '"]').val($(this).attr('doi'));
-					$('.' + cls + '[name="url' + doc + '"]').val($(this).attr('url'));
-					$('.' + cls + '[name="pages' + doc + '"]').val($(this).attr('pages'));
-				});
-			}
-	}
-	xhr.send(null);
-}
+
 
 function extract_content(ids){
 	var form = new FormData();

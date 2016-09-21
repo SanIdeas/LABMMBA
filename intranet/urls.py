@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^profile/$', views.profile, name="profile"),
     url(r'^upload/extract/$', views.extract_content_and_keywords, name='extract_content'),
     url(r'^upload/$', views.upload, name='upload'),
+    url(r'^upload/local/$', views.upload_local, name="local_upload"),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
     url(r'^profile/update/picture/$', views.update_profile_picture, name='update_picture'),
     url(r'^profile/(?P<user_id>.*)/$', views.profile, name='profile'),
@@ -21,4 +22,5 @@ urlpatterns = [
     url(r'^admin/(?P<setup>.*)/$', views.admin, name='admin_setup'),
     url(r'^admin/$', views.admin, name='admin'),
     url(r'^helper/(?P<search>.*)/$', views.search_helper, name="helper"),
+
 ]

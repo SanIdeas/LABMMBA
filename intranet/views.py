@@ -266,6 +266,9 @@ def upload(request):
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
+def upload_local(request):
+	return render(request, 'intranet/upload_sections/local.html',)
+
 def extract_content_and_keywords(request):
 	if request.user.is_authenticated() == True:
 		if request.POST['ids']:

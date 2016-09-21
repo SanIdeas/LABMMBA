@@ -12,31 +12,22 @@
 
 <div class="intranet row upload selector">
 	<div class="c6 upload hover trans">
-		<div class="upload option clear">
+		<div id="local" class="upload option clear" upload-type="local">
 			<h5>{% trans "Archivos locales" %}</h5>
 			<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 		</div>		
 	</div>
 	<div class="c6 upload hover trans">
-		<div class="upload option clear">
+		<div class="upload option clear" upload-type="drive">
 			<img src="{% static 'intranet/images/google-drive-logo-lockup.png' %}">
 		</div>
 	</div>
 </div>
-<!--######################################-->
-<div class="upload-body  upl-hud" upload-method="local">
-	<div id="btn-wrapper"><button id="add-btn">{% trans "Añadir documentos" %}</button></div>
-	<input id="mult-files" type="file"accept="application/pdf" style="display: none" multiple>
-	<h5 id="message" class="hidden"></h5>
-	<form id="confirm-form">
-		{%csrf_token%}
-	</form>
-	<div class="submit-row">
-		<button id="local-submit" class="submit-btn disabled" disabled>{% trans "Confirmar" %}</button>
-		<div class="clear"></div>
-	</div>
+<div class="upload section">
+	
 </div>
-<!--######################################-->
+
+<!-- Enlaces de utilidad -->
 
 <script>
 	var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
@@ -52,8 +43,24 @@
 		PopupCenter(get_credentials_link, 'Iniciar sesion en Google Drive', 650, 700, false);
 	{% endif %}
 </script>
-<div class="clear"></div>
 
 <script src="{% static 'intranet/js/upload_events.js' %}"></script>
-
+<script>
+	var localSection = "{% url 'intranet:local_upload' %}";
+	/* $('#local').click(); */
+</script>
+<!--######################################
+<div class="upload-body  upl-hud" upload-method="local">
+	<div id="btn-wrapper"><button id="add-btn">{% trans "Añadir documentos" %}</button></div>
+	
+	<h5 id="message" class="hidden"></h5>
+	<form id="confirm-form">
+		{%csrf_token%}
+	</form>
+	<div class="submit-row">
+		<button id="local-submit" class="submit-btn disabled" disabled>{% trans "Confirmar" %}</button>
+		<div class="clear"></div>
+	</div>
+</div>
+######################################-->
 {% endblock %}

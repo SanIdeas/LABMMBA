@@ -1,3 +1,5 @@
+@import "shared/constants.less";
+
 @keyframes exit_up{
 	0%{
 		opacity: 1;
@@ -9,8 +11,36 @@
 	}
 
 }
+@keyframes enter_up{
+	0%{
+		visibility: hidden;
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100%{
+		visibility: visible;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+
+}
+
+@keyframes enter_down{
+	0%{
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+
+}
 
 .upload{
+	&.selector{
+		position: absolute;
+	}
 	&.option{
 		height: 100px;
 		display: flex;
@@ -37,7 +67,97 @@
 				margin: auto;
 			}
 		}
+	}
 
+	&.section{
+		width: 100%;
+		visibility: hidden;
+		position: absolute;
+	}
+
+	&.title{
+		& h1{
+			margin-top: 0;
+		}
+		& h4{
+			font-weight: normal;
+		}
+
+		@media @smartphones-700{
+			& h1{
+				font-size: 16pt;
+			}
+
+			& h4{
+				font-size: 6pt;
+			}
+		}
+	}
+
+	&.button{
+		background: none;
+		padding: 10px;
+		border: none;
+
+		&.add{
+			background-color: lighten(@blue-color, 5%);
+			color: #fff;
+
+			&:hover{
+				background-color: darken(@blue-color, 5%);
+			}
+		}
+		&.send{
+			background-color: lighten(@blue-color, 10%);
+			color: #fff;
+
+			&:hover{
+				background-color: darken(@blue-color, 5%);
+			}
+		}
+
+	}
+
+	&.files{
+		margin-top: 20px;
+		& .file{
+			&.wrapper{
+				padding: 0px !important;
+				height: auto;
+			}
+
+			&.head{
+				padding: 0px !important;
+				& button{
+					background: none;
+				    border: none;
+				    float: right;
+				    font-weight: normal;
+				    padding: 12px 15px;
+				    line-height: 1px;
+				    font-size: 15pt;
+				    color: #777;
+				}
+			}
+
+			&.field{
+				padding: 0px 20px;
+			    border-bottom: 1px solid #dedede;
+				padding: 10px  0px !important;
+				& strong{
+					padding: 10px;
+					display: block;
+				}
+				& .field{
+					width: 100%;
+				}
+
+				& .crossref{
+					position: absolute;
+					width: 100%;
+				}
+			}
+		}
 	}
 
 	&.hover{
@@ -48,10 +168,28 @@
 
 	&.animation{
 		&.exit{
-			animation-name: exit_up;
-			animation-duration: 0.2s;
-			animation-fill-mode: forwards;
-			animation-timing-function: ease-in-out;
+			&.up{
+				animation-name: exit_up;
+				animation-duration: 0.2s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+			}
 		}
+		&.enter{
+			&.up{
+				animation-name: enter_up;
+				animation-duration: 0.2s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+			}
+
+			&.down{
+				animation-name: enter_down;
+				animation-duration: 0.2s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+			}
+		}
+
 	}
 }

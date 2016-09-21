@@ -57,24 +57,18 @@
 						<td><strong>{% trans "Publicado el" %}:</strong></td>
 						<td><input type="date" class="text" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
 					</tr>
-					{% if document.pages %}
 					<tr>
 						<td><strong>{% trans "Paginas" %}:</strong></td>
 						<td><input type="text" class="text" name="pages" {% if document.pages %} value="{{document.pages}}" {% endif %}></td>
 					</tr>
-					{% endif %}
-					{% if document.issn %}
 					<tr>
 						<td><strong>{% trans "ISSN" %}:</strong></td>
 						<td><input type="text" class="text" name="issn" {% if document.issn %} value="{{document.issn}}" {% endif %}></td>
 					</tr>
-					{% endif %}
-					{% if document.doi %}
 						<tr>
 							<td><strong>{% trans "DOI" %}:</strong></td>
 							<td><input type="text" class="text" name="doi" {% if document.doi %} value="{{document.doi}}" {% endif %}></td>
 						</tr>
-					{% endif %}
 				</table>
 			</div>
 		</div>
