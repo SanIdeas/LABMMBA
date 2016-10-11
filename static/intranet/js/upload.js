@@ -1,5 +1,5 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
-var crossref_timeout, crossref_busy = false;
+
 
 
 Object.size = function(obj) {
@@ -21,6 +21,17 @@ function formatSizeUnits(bytes){
         else                        {bytes='0 byte';}
         return bytes;
 }
+
+
+//Remueve un elemento de la pantalla con una animacion
+function removeElement(class_){
+	$(class_).removeClass("animation enter down");
+	$(class_).addClass('animation exit up');
+	setTimeout(function(){
+		$(class_)[0].remove();	
+	}, 200);
+}
+
 
 
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {

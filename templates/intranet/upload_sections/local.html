@@ -13,78 +13,13 @@
 <input id="input-files" type="file" accept="application/pdf" style="display: none" multiple>
 <div class="intranet row upload files">
 	<form id="form">
-		<div class="s1 c10 intranet box upload file wrapper animation enter down">
-			<div class="c12 upload file head">
-				<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>
-			</div>
-			<div class="c12 upload file field">
-				<div class="c3">
-					<strong>Titulo:</strong> 
-				</div>
-				<div class="c9">
-					<input type="text" class="field text" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>
-					<div class="crossref hidden" doc-id="$index">
-						<div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div>
-						<div class="crossref-list-wrapper">
-							<ul class="crossref-list" doc-id="$index">
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="c12 upload file field">
-				<div class="c3">
-					<strong>Autor:</strong> 
-				</div>
-				<div class="c9">
-					<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>
-				</div>
-			</div>
-			<div class="c12 upload file field">
-				<div class="c3">
-					<strong>Autor:</strong> 
-				</div>
-				<div class="c9">
-					<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>
-				</div>
-			</div>
+		
+		<!-- Aqui se agregan los formularios de cada documento -->
+		<div class="upload empty">
+			<img src="{% static 'intranet/images/directorio_vacio.png' %}">
+			<h3>No has agregado documentos</h3>
 		</div>
-		<div class="s1 c10 intranet box upload file wrapper animation enter down">
-			<div class="c12 upload file head">
-				<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>
-			</div>
-			<div class="c12 upload file field">
-				<div class="c3">
-					<strong>Titulo:</strong> 
-				</div>
-				<div class="c9">
-					<input type="text" class="field text" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>
-					<div class="crossref hidden" doc-id="$index">
-						<div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div>
-						<div class="crossref-list-wrapper">
-							<ul class="crossref-list" doc-id="$index">
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="c12 upload file field">
-				<div class="c3">
-					<strong>Autor:</strong> 
-				</div>
-				<div class="c9">
-					<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>
-				</div>
-			</div>
-			<div class="c12 upload file field">
-				<div class="c3">
-					<strong>Autor:</strong> 
-				</div>
-				<div class="c9">
-					<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>
-				</div>
-			</div>
-		</div>
+		
 	</form>
 </div>
 

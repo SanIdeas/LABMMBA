@@ -140,6 +140,17 @@
 				}
 			}
 
+			&.filename{
+				& *{
+					font-weight: normal !important;
+					color: lighten(#777, 10%);
+					margin: 0;
+					white-space: nowrap;
+				    text-overflow: ellipsis;
+				    overflow: hidden;
+				}
+			}
+
 			&.field{
 				padding: 0px 20px;
 			    border-bottom: 1px solid #dedede;
@@ -191,5 +202,19 @@
 			}
 		}
 
+	}
+
+	&.empty{
+		& > img{
+			width: 154px;
+		}
+
+		& > h3{
+			text-align: center;
+		    font-weight: normal;
+		    font-size: 16pt;
+		    margin: 0;
+		    color: #b4b5b4;
+		}
 	}
 }

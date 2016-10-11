@@ -1,13 +1,9 @@
 //PopupCenter('http://127.0.0.1:8000{% url 'get_credentials' %}', 'Iniciar sesion en Google Drive', 650, 700)
 var state = ''; //Define el estado. Si es 'single' significa que se esta mostrando un solo archivo gdrive. Si es 'multi' significa que se estan mostrando multiples archivos gdrive. si es 'confirm' significa que se esta en la ventana de confirmacion.
-
 /* Escucha la los click sobre las opciones iniciales */
 $('.upload.option').click(function(){
 	/* Una vez hecho el click, las opciones se desvanecen hacia arriba y son eliminadas a los 200 ms */
-	$('.upload.selector').addClass('animation exit up');
-	setTimeout(function(){
-		$('.upload.selector')[0].remove();	
-	}, 200);
+	removeElement('.upload.selector');
 	
 	/* Dependiendo del tipo del boton, se llaman funciones diferentes */
 	if($(this).attr("upload-type") == "local")
