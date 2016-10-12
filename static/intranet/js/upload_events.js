@@ -3,7 +3,7 @@ var state = ''; //Define el estado. Si es 'single' significa que se esta mostran
 /* Escucha la los click sobre las opciones iniciales */
 $('.upload.option').click(function(){
 	/* Una vez hecho el click, las opciones se desvanecen hacia arriba y son eliminadas a los 200 ms */
-	removeElement('.upload.selector');
+	hideElement('.upload.selector', true);
 	
 	/* Dependiendo del tipo del boton, se llaman funciones diferentes */
 	if($(this).attr("upload-type") == "local")
@@ -30,6 +30,9 @@ function loadLocalUploader(){
 
 /* Funcion encargada de solicitar la seccion de subida por Google Drive */
 function loadDriveUploader(){}
+
+
+
 
 //Envia la solicitud con en enlace a Google Drive
 $('#drive-link').change(function(){

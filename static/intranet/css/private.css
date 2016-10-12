@@ -74,24 +74,35 @@ form .c12{padding:0 20px !important}
 .upload.option h5{margin-right:10px;font-size:15pt;align-self:center}
 .upload.option img{margin:auto auto auto 0}
 @media screen and (max-width: 700px){.upload.option{justify-content:center}.upload.option img{margin:auto}}
+.upload.empty{position:absolute;width:100%}
 .upload.section{width:100%;visibility:hidden;position:absolute}
 .upload.title h1{margin-top:0}
 .upload.title h4{font-weight:normal}
 @media screen and (max-width: 700px){.upload.title h1{font-size:16pt} .upload.title h4{font-size:6pt}}
 .upload.button{background:none;padding:10px;border:none}.upload.button.add{background-color:#0080b6;color:#fff}.upload.button.add:hover{background-color:#005c83}
 .upload.button.send{background-color:#0092cf;color:#fff}.upload.button.send:hover{background-color:#005c83}
-.upload.files{margin-top:20px}.upload.files .file.wrapper{padding:0 !important;height:auto}
+.upload.button.send.disabled{background-color:#686868}
+.upload.files{margin-top:20px}.upload.files .file.wrapper{padding:0 !important;height:auto;overflow:visible}
 .upload.files .file.head{padding:0 !important}.upload.files .file.head button{background:none;border:none;float:right;font-weight:normal;padding:12px 15px;line-height:1px;font-size:15pt;color:#777}
 .upload.files .file.filename *{font-weight:normal !important;color:#919191;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
 .upload.files .file.field{padding:0 20px;border-bottom:1px solid #dedede;padding:10px 0 !important}.upload.files .file.field strong{padding:10px;display:block}
 .upload.files .file.field .field{width:100%}
-.upload.files .file.field .crossref{position:absolute;width:100%}
+.upload.files .file.field .crossrefWrapper{position:relative}
+.upload.files .file.field .crossref{position:absolute;width:100%;z-index:99;box-shadow:0 6px 10px rgba(0,0,0,0.3);background-color:#fff;padding:5px;box-sizing:border-box;overflow:hidden;transition:height .2s ease-in-out}.upload.files .file.field .crossref .records{height:100%}.upload.files .file.field .crossref .records.topbar{width:100%;height:45px;position:relative}.upload.files .file.field .crossref .records.topbar button{background:none;border:none;float:right;font-weight:normal;padding:12px 15px;line-height:1px;font-size:15pt}.upload.files .file.field .crossref .records.topbar button>i{color:#777}
+.upload.files .file.field .crossref .records.topbar .fa-check{color:#00c389;top:0;line-height:45px;font-size:20pt;position:absolute}
+.upload.files .file.field .crossref .records.list{display:flex;width:100%;max-height:295px;overflow-y:scroll}.upload.files .file.field .crossref .records.list .root{list-style:none;margin:0;padding:0;width:100%}
+.upload.files .file.field .crossref .records.list li{padding:10px;border-bottom:1px solid #eee;transition:all .3s ease;cursor:pointer}.upload.files .file.field .crossref .records.list li>h4{margin:0}
+.upload.files .file.field .crossref .records.list li>span{width:100%}
+.upload.files .file.field .crossref .records.list li:hover{background-color:#eee}
+.upload.hidden{height:0;visibility:hidden}
+.upload.display{max-height:350px;visibility:visible}
 .upload.hover:hover{background-color:#eee}
 .upload.animation.exit.up{animation-name:exit_up;animation-duration:.2s;animation-fill-mode:forwards;animation-timing-function:ease-in-out}
 .upload.animation.enter.up{animation-name:enter_up;animation-duration:.2s;animation-fill-mode:forwards;animation-timing-function:ease-in-out}
 .upload.animation.enter.down{animation-name:enter_down;animation-duration:.2s;animation-fill-mode:forwards;animation-timing-function:ease-in-out}
 .upload.empty>img{width:154px}
 .upload.empty>h3{text-align:center;font-weight:normal;font-size:16pt;margin:0;color:#b4b5b4}
+.field{transtion:background-color .2s ease}.field.required{background-color:#fdf1f2}
 @font-face{font-family:'FontAwesome';src:url('../fonts/fontawesome-webfont.eot?v=4.6.3');src:url('../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'),url('../fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'),url('../fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'),url('../fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype'),url('../fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .fa-lg{font-size:1.3333333333333333em;line-height:.75em;vertical-align:-15%}
 .fa-2x{font-size:2em}

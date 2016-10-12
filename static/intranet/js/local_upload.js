@@ -1,6 +1,7 @@
 var files = {}; /* Objeto que almacena los archivos que el usuario ha subido */
 var key_count = 0; /* Contador que define la posicion de cada archivo que es insertado en el objeto 'files' */
 var crossref_timeout, crossref_busy = false;
+var last_cr_query = "";
 (function($){
 	/* Resetea el input de archivos */
 	$.fn.resetInput = function(){
@@ -9,10 +10,20 @@ var crossref_timeout, crossref_busy = false;
 	};
 })(jQuery);
 
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 /* Escucha a los botones 'Agregar Documentos' y 'Enviar Documentos' */
 $('.upload.button').click(function(){
 	if($(this).hasClass("add"))
 		$('#input-files').click();
+	if($(this).hasClass("send"))
+		sendDocuments();
 });
 
 /* Cuando el estado del input de archivos cambie, es decir, cuando contenga nuevos archivos */
@@ -51,8 +62,8 @@ function filesHandler(){
 			key_count++;
 
 			 /* Si la cantidad de archivos es mayor a 0, se habilita el boton para enviar */
-			if(Object.size(files) > 0)
-				$('#local-submit').prop('disabled', false).removeClass('disabled');
+
+			checkFilesSize();
 		}
 	}
 }
@@ -98,10 +109,23 @@ function addDocument(key_count, filename, object){
 							'<strong>Titulo:</strong>' ,
 						'</div>',
 						'<div class="c9">',
-							'<div>',
-								'<input type="text" class="field text" value="$title" field-name="title" doc-id="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>',
+							'<div class="upload crossrefWrapper">',
+								'<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>',
 								//crossref
-								'<div class="crossref hidden" doc-id="$index">',
+								'<div class="upload crossref hidden" doc-index="$index">',
+									'<div class="upload records">',
+										'<div class="upload records topbar">',
+											// Cabecera del cuadro
+											'<i class="upload fa fa-check" doc-index="$index" aria-hidden="true"></i>',
+											'<i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>',
+											'<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
+										'</div>',
+										'<div class="upload records list">',
+											'<ul class="upload records root" doc-index="$index">',
+											//Lista de sugerencias
+											'</ul>',
+										'</div>',
+									'</div>',
 								'</div>',
 							'</div>',
 
@@ -192,7 +216,7 @@ function addDocument(key_count, filename, object){
 						'<div class="clear"></div>',
 					'</div>',
 					'<ul class="frame-data">',
-						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-id="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" autocomplete="off" required><div class="crossref-wrapper hidden" doc-id="$index"><div class="loader hidden" doc-id="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-id="$index"></ul></div></div></li>',
+						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-index="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" autocomplete="off" required><div class="crossref-wrapper hidden" doc-index="$index"><div class="loader hidden" doc-index="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-index="$index"></ul></div></div></li>',
 						'<li><strong>' + gettext('Autor') + ':</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="' + gettext('Ej: Juan Perez') + '" required></li>',
 						'<li><strong>' + gettext('Fecha de creación') + ':</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="' + gettext('Ej: 2016-12-30') + '" required></li>',
 						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
@@ -236,10 +260,11 @@ function addDocument(key_count, filename, object){
 
 	/* Se configura la accion del boton Cruz */
 	$('.upload.delete').off();
-	$('.upload.delete').click(function(){
-		event.preventDefault();
-		removeElement('.upload.file[doc-index="' + $(this).attr('doc-index') + '"]')
+	$('.upload.delete').click(function(e){
+		e.preventDefault();
+		hideElement('.upload.file[doc-index="' + $(this).attr('doc-index') + '"]', true)
 		delete files[$(this).attr('doc-index')];
+		checkFilesSize();
 		if(Object.size(files) == 0)
 			$('#local-submit').prop('disabled', true).addClass('disabled');
 	});
@@ -249,7 +274,11 @@ function addDocument(key_count, filename, object){
 
 }
 
-function crossref_query(query, doc_id, is_drive){
+function crossref_query(query, doc_id, open = true){
+	// Se muestra el icono que gira y se remueve el check
+	$('.upload.fa-check[doc-index="' + doc_id +'"]').addClass('hidden');
+	$('.upload.loader[doc-index="' + doc_id +'"]').removeClass('hidden');
+
 	$.ajax({
 		url: crossref_link.replace('999', query),
 		method: 'GET'
@@ -258,90 +287,121 @@ function crossref_query(query, doc_id, is_drive){
 		}*/
 	}).done(function(response){
 		if(!response['error']) {
-			$('.crossref-list[doc-id="' + doc_id +'"]').children().remove();
-			$('.crossref-list[doc-id="' + doc_id +'"]').append(response);
-			$('.loader').addClass('hidden');
-			crossref_busy = false;
+			toggleCrossref(doc_id, open);
+			$('.upload.records.root[doc-index="' + doc_id +'"]').children().remove();
+			$('.upload.records.root[doc-index="' + doc_id +'"]').append(response);
+
 			$('.crossref-row').off();
 			$('.crossref-row').click(function(e){
-				if(is_drive)
-					var doc = $(this).closest('ul').attr('doc-id').replace('drive', '');
-				else
-					var doc = $(this).closest('ul').attr('doc-id');
-				console.log('.' + cls + '[name="title' + doc + '"]');
-				$('.' + cls + '[name="title' + doc + '"]').val($(this).attr('title'));
-				$('.' + cls + '[name="author' + doc + '"]').val($(this).attr('author'));
-				$('.' + cls + '[name="date' + doc + '"]').val($(this).attr('date'));
-				$('.' + cls + '[name="issn' + doc + '"]').val($(this).attr('issn'));
-				$('.' + cls + '[name="doi' + doc + '"]').val($(this).attr('doi'));
-				$('.' + cls + '[name="url' + doc + '"]').val($(this).attr('url'));
-				$('.' + cls + '[name="pages' + doc + '"]').val($(this).attr('pages'));
+				//Cuando se hace click sobre una sugerencia, se rellenan los datos
+				var index = $(this).closest('ul').attr('doc-index');
+				console.log('.field[name="title' + index + '"]');
+				$('.field[name="title' + index + '"]').val($(this).attr('title'));
+				$('.field[name="author' + index + '"]').val($(this).attr('author'));
+				$('.field[name="date' + index + '"]').val($(this).attr('date'));
+				$('.field[name="issn' + index + '"]').val($(this).attr('issn'));
+				$('.field[name="doi' + index + '"]').val($(this).attr('doi'));
+				$('.field[name="url' + index + '"]').val($(this).attr('url'));
+				$('.field[name="pages' + index + '"]').val($(this).attr('pages'));
 			});
+			// Se meuestra el icono check
+			$('.upload.fa-check[doc-index="' + doc_id +'"]').removeClass('hidden');
 		}
+		$('.upload.loader[doc-index="' + doc_id +'"]').addClass('hidden');
+		//Comprueba si hubo un cambio en el campo de texto desde que mando la solicitud
+		if(last_cr_query.localeCompare(query) != 0){
+			console.log("entra");
+			crossref_query(last_cr_query, doc_id);
+		}
+		else
+			crossref_busy = false;
+
 	});		
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', crossref_link.replace('999', query) , true);
-	xhr.onload = function(){
-		if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
-				$('.crossref-list[doc-id="' + doc_id +'"]').children().remove();
-				$('.crossref-list[doc-id="' + doc_id +'"]').append(response);
-				$('.loader').addClass('hidden');
-				crossref_busy = false;
-				$('.crossref-row').off();
-				$('.crossref-row').click(function(e){
-					if(is_drive)
-						var doc = $(this).closest('ul').attr('doc-id').replace('drive', '');
-					else
-						var doc = $(this).closest('ul').attr('doc-id');
-					console.log('.' + cls + '[name="title' + doc + '"]');
-					$('.' + cls + '[name="title' + doc + '"]').val($(this).attr('title'));
-					$('.' + cls + '[name="author' + doc + '"]').val($(this).attr('author'));
-					$('.' + cls + '[name="date' + doc + '"]').val($(this).attr('date'));
-					$('.' + cls + '[name="issn' + doc + '"]').val($(this).attr('issn'));
-					$('.' + cls + '[name="doi' + doc + '"]').val($(this).attr('doi'));
-					$('.' + cls + '[name="url' + doc + '"]').val($(this).attr('url'));
-					$('.' + cls + '[name="pages' + doc + '"]').val($(this).attr('pages'));
-				});
-			}
-	}
-	xhr.send(null);
 }
 
 function enableCrossref(){
+
 	$('.field[field-name="title"]').off();
 	$('.field[field-name="title"]').on('input', function(){
+		last_cr_query = $(this).val();
 		if(!crossref_busy){
 			crossref_busy = true;
-			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
-			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+
+			toggleCrossref($(this).attr('doc-index'), true);
 			var $this = $(this)
 			crossref_timeout = setTimeout(function(){
 				if($this.val() == ''){
 					crossref_busy = false;
-					$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').removeClass('hidden');
-					$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
 				}
 				else{
-					console.log($this.attr('doc-id'));
-					crossref_query($this.val(), $this.attr('doc-id'), false);
+					console.log($this.val());
+					crossref_query($this.val(), $this.attr('doc-index'));
 				}
-			}, 2000);
+			}, 500);
 		}
 	});
+
+	//Al hacer click sobre el campo de texto, si hay textos de sugerencia, se muestran.
 	$('.field[field-name="title"]').focus(function(e){
-		$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').removeClass('hidden');
+		var cr = $('.crossref[doc-index="' + $(this).attr('doc-index') +'"]');
+		console.log(cr.find('.upload.records.list').find('li').length);
+		if(cr.find('.upload.records.list').find('li').length > 0)
+			toggleCrossref($(this).attr('doc-index'), true, false);
 	});
+	
+	// Cuando se presiona esc o enter, se esconde el cuadro.
 	$('.field[field-name="title"]').keyup(function(e){
 		if(e.which == 27 || e.which == 13){
-			$('.crossref-wrapper[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
-			$('.loader[doc-id="' + $(this).attr('doc-id') +'"]').addClass('hidden');
+			toggleCrossref($(this).attr('doc-index'));
 		}
 	});
+
+
+	//Cuando se sale el cursor del campo de texto, se esconde el cuadro
 	$('.field[field-name="title"]').focusout(function(e){
 		var $this = $(this)
 		setTimeout(function(){
-			$('.crossref-wrapper[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');
-			$('.loader[doc-id="' + $this.attr('doc-id') +'"]').addClass('hidden');			
+			toggleCrossref($this.attr('doc-index'));			
 		}, 100);
+	});
+}
+
+// Se encarga de mostrar o eliminar el mensaje "no has agregado documentos"
+function checkFilesSize(){
+	if(Object.size(files) == 0){
+		addElement(".upload.empty");
+		$('.upload.button.send').prop('disabled', true).addClass('disabled');				
+	}
+	else{
+		hideElement(".upload.empty", false);
+		$('.upload.button.send').prop('disabled', false).removeClass('disabled');	
+	}
+}
+
+function sendDocuments(){
+	var form = new FormData($('#form')[0]);
+	console.log(Object.keys(files));
+	form.append('local_ids', Object.keys(files).join(','));
+	for(var id in files){
+		if (files.hasOwnProperty(id)){
+			form.append('document'+id.toString(), files[id]);
+		}
+	}
+	var form_status = $('#form')[0].checkValidity();
+	console.log(form_status);
+	if(!form_status)
+		checkEmptyFields();
+}
+
+function checkEmptyFields(){
+	$(".field").each(function(i, field){
+		if (($(field).val() == null || $(field).val() == '') && $(field).prop('required') == true){
+			$(field).addClass("required");
+			$(field).on('input', function(){
+				if($(this).hasClass('required'))
+					$(this).removeClass('required');
+				$(this).off();
+			});	
+		}
 	});
 }

@@ -8,7 +8,7 @@
 </div>
 <div class="intranet row">
 		<button class="c6 upload button add hover trans">Agregar Documento</button>	
-		<button class="c6 upload button send hover trans">Enviar Documentos</button>
+		<button class="c6 upload button send hover trans disabled" disabled="true">Enviar Documentos</button>
 </div>
 <input id="input-files" type="file" accept="application/pdf" style="display: none" multiple>
 <div class="intranet row upload files">
@@ -19,6 +19,8 @@
 			<img src="{% static 'intranet/images/directorio_vacio.png' %}">
 			<h3>No has agregado documentos</h3>
 		</div>
+
+		
 		
 	</form>
 </div>

@@ -4,6 +4,7 @@
 {% block extra_js %}
 	 <script src="{% static 'intranet/js/vendor/pdf.js' %}"></script> 
 	 <script src="{% static 'intranet/js/upload.js' %}"></script>
+	 <script src="{% static 'intranet/js/animations.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div class="title">
@@ -47,7 +48,7 @@
 <script src="{% static 'intranet/js/upload_events.js' %}"></script>
 <script>
 	var localSection = "{% url 'intranet:local_upload' %}";
-	$('#local').click();
+	//$('#local').click();
 </script>
 <!--######################################
 <div class="upload-body  upl-hud" upload-method="local">

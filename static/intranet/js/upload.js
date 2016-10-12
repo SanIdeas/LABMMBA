@@ -1,15 +1,6 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
 
 
-
-Object.size = function(obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
-
 //Para formatear Bytes a diferentes unidades.
 //http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
 function formatSizeUnits(bytes){
@@ -21,17 +12,6 @@ function formatSizeUnits(bytes){
         else                        {bytes='0 byte';}
         return bytes;
 }
-
-
-//Remueve un elemento de la pantalla con una animacion
-function removeElement(class_){
-	$(class_).removeClass("animation enter down");
-	$(class_).addClass('animation exit up');
-	setTimeout(function(){
-		$(class_)[0].remove();	
-	}, 200);
-}
-
 
 
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
