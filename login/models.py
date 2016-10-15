@@ -1,19 +1,3 @@
-# Copyright (C) 2010 Google Inc. 
-# 
-# Licensed under the Apache License, Version 2.0 (the "License"); 
-# you may not use this file except in compliance with the License. 
-# You may obtain a copy of the License at 
-# 
-#      http://www.apache.org/licenses/LICENSE-2.0 
-# 
-# Unless required by applicable law or agreed to in writing, software 
-# distributed under the License is distributed on an "AS IS" BASIS, 
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-# See the License for the specific language governing permissions and 
-# limitations under the License.  
-# OAuth 2.0 utilities for Django. 
-# Utilities for using OAuth 2.0 in conjunction with the Django datastore. 
-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -48,7 +32,7 @@ class CredentialsField(models.Field):
         return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, institution, country, area, career, password=None, is_active=True, is_admin=None):
+    def create_user(self, email, first_name=None, last_name=None, institution=None, country=None, area=None, career=None, password=None, is_active=False, is_admin=False):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -62,33 +46,26 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             institution=institution,
             country=country,
-            is_admin = is_admin if is_admin else False,
+            is_admin = is_admin,
             area=area,
             career=career,
-            is_active=False,
+            is_active=is_active,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, institution, country, area, career, password):
+    def create_superuser(self, email,password = None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         user = self.create_user(email,
             password=password,
-            first_name=first_name,
-            last_name=last_name,
-            institution=institution,
-            country=country,
-            area=None,
             is_admin=True,
-            career=career,
             is_active=True,
         )
-        user.is_admin = True
         user.save(using=self._db)
         return user
 
@@ -101,13 +78,12 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    drive_credentials = CredentialsField(null=True)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    institution = models.CharField(max_length=50)
-    country = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, null=True)
+    last_name = models.CharField(max_length=20, null=True)
+    institution = models.CharField(max_length=50, null=True)
+    country = models.CharField(max_length=20, null=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
-    career = models.CharField(max_length=40)
+    career = models.CharField(max_length=40, null=True)
     is_active = models.BooleanField(default=False)
     is_blocked = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -115,12 +91,13 @@ class User(AbstractBaseUser):
     profile_picture = models.FileField(upload_to='static/profile_pictures/', max_length=500, null=True)
     doc_count = models.IntegerField(default=0)
     drive_credentials = models.BinaryField(null=True)
+    access_token = models.CharField(max_length=128, null=True)
 
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'institution', 'country', 'area', 'career']
+    REQUIRED_FIELDS = []
 
     def update_activity(self):
         self.last_activity = timezone.localtime(timezone.now())

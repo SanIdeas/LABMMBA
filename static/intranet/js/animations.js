@@ -1,18 +1,24 @@
 
 //Remueve un elemento de la pantalla con una animacion
 function hideElement(class_, remove){
-	$(class_).removeClass("animation enter down");
-	$(class_).addClass("animation exit up");
-	if(remove){
-		setTimeout(function(){
-			$(class_)[0].remove();	
-		}, 200);
-	}
+	element = $(class_);
+	element.removeClass("upload animation enter down");
+	element.addClass("upload animation exit up");
+	setTimeout(function(){
+		if(remove){
+			$(class_)[0].remove();
+			console.log("remove");
+		}
+		else
+			$(class_).addClass("hidden");	
+	}, 200);
 }
 
 function addElement(class_){
-	$(class_).removeClass("animation exit up");
-	$(class_).addClass('animation enter down');
+	element = $(class_);
+	element.removeClass("hidden").removeClass("dn"); //Por si acaso
+	element.removeClass("upload animation exit up");
+	element.addClass('upload animation enter down');
 }
 
 // Show hace que solo se muestre. Por lo tanto si el cuadro ya es visible no desaparecera

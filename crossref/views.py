@@ -25,8 +25,11 @@ def query(request, query=None):
 				timestamp = time.gmtime(int(r['created']['timestamp'])/1000)
 				r['date'] = time.strftime('%Y-%m-%d', timestamp)
 				r['year'] = timestamp.tm_year
-				response.append(r)
 				count  = count + 1
+				authors = getAuthors(r)
+				if(authors):
+					r['author'] = authors
+				response.append(r)
 				#if 'author' in r:
 				#	given = r['author'][0]['given'] if 'given' in r['author'][0] else ''
 				#	family = r['author'][0]['family'] if 'family' in r['author'][0] else ''
@@ -53,3 +56,15 @@ def query(request, query=None):
 	else:
 		return JsonResponse({'error': True, 'message':  _('Debe iniciar sesion.')})
 
+
+def getAuthors(object):
+	try:
+		output = []
+		authors = object['author']
+		for  author in authors:
+			name = author['given'] + " " + author['family']
+			output.append(name)
+		return ', '.join(output)
+	except Exception as error:
+		print "Error al obtener los autores: " + repr(error)
+		return None

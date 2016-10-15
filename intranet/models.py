@@ -14,7 +14,7 @@ class Document(models.Model):
 	category = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
 	type = models.BooleanField()
 	title = models.CharField(max_length=300, null=True)
-	author = models.CharField(max_length=100, null=True)
+	author = models.CharField(max_length=300, null=True)
 	date = models.DateField(null=True)
 	abstract = models.CharField(max_length=1000, null=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)

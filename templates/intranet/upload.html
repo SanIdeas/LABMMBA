@@ -24,7 +24,20 @@
 		</div>
 	</div>
 </div>
-<div class="upload section">
+<div class="upload hidden dn" id="success-icon">
+	<div id="loading-bar"></div>
+	<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+	<h4>{% trans "Subida exitosa. Tus documentos estarán disponibles en breve." %}</h4>
+</div>
+<div class="cssload-loader-wrapper upload hidden">
+	<div class="cssload-loader">
+		<div class="cssload-inner cssload-one"></div>
+		<div class="cssload-inner cssload-two"></div>
+		<div class="cssload-inner cssload-three"></div>
+	</div>	
+	<h4>{% trans "Ten paciencia. Los documentos estan cargandose." %}</h4>
+</div>
+<div class="upload section hidden">
 	
 </div>
 

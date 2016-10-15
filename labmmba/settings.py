@@ -28,6 +28,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'dev.sanideas@gmail.com'
+EMAIL_HOST_PASSWORD = 'Botaldo2015'
+EMAIL_PORT = 587
+
+# DEFAULT_CHARSET
+
+DEFAULT_CHARSET = 'utf-8'
+
 
 # Application definition
 

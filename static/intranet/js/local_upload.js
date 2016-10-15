@@ -262,7 +262,8 @@ function addDocument(key_count, filename, object){
 	$('.upload.delete').off();
 	$('.upload.delete').click(function(e){
 		e.preventDefault();
-		hideElement('.upload.file[doc-index="' + $(this).attr('doc-index') + '"]', true)
+		hideElement('.file[doc-index="' + $(this).attr('doc-index') + '"]', true);
+		console.log('.file[doc-index="' + $(this).attr('doc-index') + '"]');
 		delete files[$(this).attr('doc-index')];
 		checkFilesSize();
 		if(Object.size(files) == 0)
@@ -389,8 +390,42 @@ function sendDocuments(){
 	}
 	var form_status = $('#form')[0].checkValidity();
 	console.log(form_status);
+
+	//Si no esta completo el formulario, se resaltan los campos faltantes
 	if(!form_status)
 		checkEmptyFields();
+
+	//De lo contrario, se envia la solicitud
+	else{
+		// Mientras se realiza la subida, se oculta el formulario
+		hideElement(".upload.section", false);//false: no se elimina el elemento
+		//Se muestra la animacion de loading
+		addElement(".cssload-loader-wrapper");
+		$.ajax({
+			url: upload_link,
+			type: 'POST',
+			data: form,
+			processData: false,
+			contentType: false
+		}).done(function(response){
+			console.log(response);
+			if(!response['error']) {
+				hideElement(".cssload-loader-wrapper", true);
+				addElement("#success-icon");
+				setTimeout(function(){window.location.href = upload_link;}, 1000);
+			}
+			else{
+				//hubo un error, se muestra el mensaje y el formulario
+				$('.upload.message').html("").append(response['message']);
+				addElement(".upload.section");
+				hideElement(".cssload-loader-wrapper", false);
+			}		
+		}).error(function(xhr, status, error){
+				$('.upload.message').html("").append(error);
+				addElement(".upload.section");
+				hideElement(".cssload-loader-wrapper", false);
+		});
+	}
 }
 
 function checkEmptyFields(){

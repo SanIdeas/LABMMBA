@@ -13,16 +13,13 @@
 <input id="input-files" type="file" accept="application/pdf" style="display: none" multiple>
 <div class="intranet row upload files">
 	<form id="form">
-		
+		{% csrf_token %}
+		<span class="upload message"></span>
 		<!-- Aqui se agregan los formularios de cada documento -->
 		<div class="upload empty">
 			<img src="{% static 'intranet/images/directorio_vacio.png' %}">
 			<h3>No has agregado documentos</h3>
 		</div>
-
-		
-		
 	</form>
 </div>
-
 <script src="{% static 'intranet/js/local_upload.js' %}"></script>

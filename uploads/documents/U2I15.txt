@@ -1,0 +1,799 @@
+electronic journal of biotechnology issn: 0717-3458                                                                                       vol.11 no.5, special issue, 2008 
+ 2008 by pontificia universidad catolica de valparaiso -- chile                                            
+doi: 10.2225/vol11-issue5-fulltext-4                                                                                                                        research article 
+ 
+ 
+
+novel s-triazine-degrading bacteria isolated from agricultural soils of 
+
+central chile for herbicide bioremediation 
+
+marcela hernandez garcia 
+
+programa de doctorado en ciencias de recursos naturales 
+
+universidad de la frontera, temuco 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental 
+
+millennium nucleus of microbial ecology and 
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: mthernan@ufro.cl 
+veronica morgante 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental  
+
+millennium nucleus of microbial ecology and  
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: veronica.morgante@gmail.com 
+
+marcela avila perez# 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental  
+
+millennium nucleus of microbial ecology and 
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: avila@science.uva.nl 
+
+patricio villalobos biaggini 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental  
+
+millennium nucleus of microbial ecology and 
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: patricio.villalobos@usm.cl 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental  
+
+pola miralles noe 
+
+millennium nucleus of microbial ecology and 
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: pola_miralles@yahoo.es 
+myriam gonzalez vergara 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental  
+
+millennium nucleus of microbial ecology and 
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+this paper is available on line at http://www.ejbiotechnology.info/content/vol11/issue5/full/4/ 
+
+hernandez garcia, m. et al. 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: myriam.gonzalez@usm.cl 
+michael seeger pfeiffer* 
+
+laboratorio de microbiologia molecular y biotecnologia ambiental  
+
+millennium nucleus of microbial ecology and 
+environmental microbiology and biotechnology  
+
+departamento de quimica 
+
+universidad tecnica federico santa maria 
+
+av. espana 1680, valparaiso, chile  
+
+tel: 56 32 2654236  
+fax: 56 32 2654782 
+
+e-mail: michael.seeger@usm.cl 
+
+present  address:  #laboratory  for  molecular  microbial  physiology.  swammerdam  institute  for  life  sciences,  nieuwe  achtergracht  166,  1018  wv 
+amsterdam, the netherlands, tel: 31 20 5257053, fax: 31 20 5257056, e-mail: avila@science.uva.nl.  
+
+financial  support:  ms  acknowledges  financial  support  from  millennium  nucleus  emba  p04/007-f,  ica4-ct-2002-10011  (european  union),  usm 
+130522 and usm 130836 grants. mh, vm and pv acknowledge conicyt and mecesup-ucv-0206 fellowships.  
+
+keywords: arthrobacter, biodegradation, bioremediation, simazine, stenotrophomonas, s-triazine. 
+
+abbreviations:  am: atrazine medium 
+
+ardra: amplified ribosomal dna restriction analysis
+cfu: colony forming unit 
+lb: luria bertani 
+pcr: polymerase chain reaction 
+tsa: tryptic soy agar 
+
+ 
+s-triazine-degrading  bacterial  strains  were  isolated 
+from  long-term  simazine-treated  agricultural  soils  of 
+central  chile.  the  number  of  culturable  heterotrophic 
+bacteria of these agricultural soils (7 x 106 cfu/g of dry 
+soil)  was  not  affected  by  simazine  application  on  field. 
+the simazine-degrading bacterial strains p51, p52 and 
+c53  were  isolated  by  enrichment  in  minimal  medium 
+using simazine as the sole nitrogen source. resting cells 
+of  strains  p51  and  p52  degraded  >80%  of  simazine 
+within  48  hrs,  whereas  strain  c53  was  able  to  remove 
+>60% of the herbicide. the atza and atzd genes of the s-
+triazine  upper  and  lower  catabolic  pathways  were 
+detected  in  strains  p51  and  c53,  while  only  atzd  gene 
+was  observed  in  strain  p52.  to  compare  the  bacterial 
+16s  rrna  gene  sequence  structure,  ardra  were 
+performed  using  the  restriction  enzymes  msp1  and 
+hha1. ardra indicated that strain p52 was a different 
+ribotype  than  c53  and  p51  strains.  for  further 
+characterization  the  novel  isolates  were  identified  by 
+16s rrna gene sequencing. strains c53 and p51 belong 
+to  the  genus  stenotrophomonas  and  the  strain  p52 
+belongs to the genus arthrobacter. s -triazine-degrading 
+bacterial strains isolated from contaminated soils could 
+be  used  as  biocatalysts  for  bioremediation  of  these 
+herbicides. 
+
+soil  decontamination  is  one  of  the  main  environmental 
+challenges for the third millennium to safeguard the planet. 
+the herbicides  are the most  abundant  agrochemicals used  
+
+*corresponding author 
+
+worldwide  and  their  application  has  increased  in  the  last 
+decades. the united states is the main herbicide consumer, 
+with an annual application of around 205,000 tons (kiely et 
+al.  2004).  the  european  union  registered  an  annual 
+consumption of around 130,000 tons of herbicides between 
+1990 and 2000 (fao, 2006), wherein france (26%), united 
+kingdom (17%) and italy (12%) head the herbicide usage. 
+in south america, the annual use of herbicides was around 
+60,000  tons  between  1990  and  2000  (figure  1).  brazil 
+(38%), argentina (28%) and colombia (18%) are the main 
+herbicide consumers in south america. 
+
+ 
+figure 1. south americas herbicide consumption from 1990 
+to  2001.  food  and  agriculture  organization  of  the  united 
+nations, 2006. statistical database, fao, rome, italy. 
+
+7 
+
+hernandez garcia, m. et al. 
+
+ 
+figure 2. chemical structures of s-triazines. members of s-
+triazine  herbicides  differ  by  their  r1,  r2  y  r3  groups  the  s-
+triazine ring.  
+
+s-triazine compounds have been used for weed control in 
+many  countries  for  more  than  40  years  (wackett  et  al. 
+2002;  dinamarca  et  al.  2007).  these  synthetic  and 
+chlorinated herbicides (figure 2) inhibit the photosynthetic 
+electron transfer in target plants (rousseaux et al. 2001). s-
+triazines  have  been  applied  as  pre-  and  post-emergence 
+herbicides  for  broadleaf  and  grassy  weed  control  in  corn, 
+citrus, alfalfa, grapes, avocado and olives crops (wackett et 
+al. 2002; cooman et al. 2005). their non-agricultural uses 
+include  weed  control  on  right-of-ways,  ornamental  trees 
+and golf fairways. in 2001, the european union reported a 
+list  of  priority  hazardous  substances  (european  union, 
+2001). atrazine and simazine have been included in this list 
+due 
+leaching 
+capacity and potential to adsorb onto soils and sediments. 
+commonly,  s-triazine  herbicides  detected  in  water  exceed 
+the  maximum  contaminant  levels  allowed  for  drinking 
+water  in  european  union  (0.1  g/l)  and  usa  (3.0  g/l) 
+(rousseaux  et  al.  2001).  although  s-triazines  have  been 
+prohibited in many european countries, in chile there are 
+no restrictions  for  their use and  atrazine  and  simazine  are 
+the  most  frequently  applied  herbicides  in  agriculture  and 
+forestry. s-triazine  consumption  in  chile  was  around  350 
+tons during 2004 (dinamarca et al.2007), which represents 
+10%  of  the  herbicide  usage.  s-triazine  herbicides  have 
+been  recently  detected  as  contaminants  in  agricultural 
+watersheds in south-central chile (cooman et al. 2005).  
+
+toxicity,  moderate 
+
+their  persistence, 
+
+to 
+
+the 
+
+from 
+
+s-triazine  herbicides 
+
+degradation  by  microorganisms  is  the  primary  removal 
+mechanism  of 
+soil 
+(newcombe  and  crowley,  1999;  dinamarca  et  al.  2007; 
+hernandez et al. 2008a). for environmental bioremediation, 
+the  isolation  of  microorganisms  capable  of  degrading  the 
+target  pollutant  is  important.  a  number  of  s-triazine-
+degrading bacteria have been described (mandelbaum et al. 
+1995;  devers  et  al.  2007;  hernandez  et  al.  2008b).  the 
+bacterial enzymes for s-triazine degradation are encoded by 
+atza, atzb, atzc, atzd, atze and atzf genes (figure 3) (de 
+souza  et  al.  1998;  martinez  et  al.  2001;  iwasaki  et  al. 
+2007). 
+the aim of this study was to isolate novel bacterial strains 
+capable to degrade s-triazines from agricultural soils in the 
+quillota valley, central chile. for enrichment and isolation 
+of  bacterial  strains,  long-term  simazine  treated  soils  were 
+used.  physiological,  biochemical  and  molecular  studies 
+were  carried  out  to  characterize  and  identify  bacterial 
+isolates, which could be used as novel biocatalysts for soil 
+bioremediation. 
+materials and methods 
+materials 
+commercial simazine (gesatop wp90) was purchased from 
+syngenta  (greensboro,  united  states).  simazine  (99% 
+pure)  and  standard  simazine  (>99%  pure)  were  obtained 
+from  atanor 
+(buenos  aires,  argentina)  and  dr. 
+ehrensdorfer-schafers  gmbh 
+(augsburg,  germany), 
+respectively.  
+soil sampling 
+soil were sampled from agricultural sites in quillota valley, 
+central chile. the sampling sites were an avocado (persea 
+americana)  and  a  persimmon  (diospyros  chinensis) 
+plantations 
+treated  with 
+commercial simazine for more than 20 years, according to 
+farming  practices  for  the  control  of  annual  weeds.  soil 
+samples were collected in december 2002 from the top soil 
+stratum  (0-20  cm).  samples  were  sieved,  air  dried  and 
+stored at 4oc.  
+
+that  have  been  annually 
+
+ 
+
+ 
+
+ 
+
+ 
+
+table 1. biochemical and physiological characterization of the novel bacterial strains isolated from agricultural soil. 
+
+strain 
+
+gram 
+
+catalase 
+
+oxidase 
+
+motility 
+
+p51 
+
+p52 
+
+c53 
+
+- 
+
++ 
+
+- 
+
++ 
+
++ 
+
++ 
+
+- 
+
+- 
+
+- 
+
++ 
+
+- 
+
++ 
+
+2
+
+novel s-triazine-degrading bacteria isolated from chilean agricultural soils 
+
+the  morphology  of  bacterial  colonies  on  tsa  plates  was 
+observed. the bacterial growth in luria bertani (lb) broth 
+(tryptone  10  g/l,  yeast  extract  5  g/l,  nacl  5  g/l) 
+supplemented with simazine (2.5 mm) was determined by 
+measuring  turbidity  at  600  nm.  for  electron  microscopy, 
+bacterial  cells  grown  in  am  medium  with  simazine  were 
+treated  and  observed  with  a  zeiss  em900  electron 
+microscope as described previously (camara et al. 2004).  
+analysis of simazine degradation 
+cells  grown  in  lb  broth  supplemented  with  simazine  at 
+30oc  until  exponential  phase,  were  washed  and 
+resuspended in 10 mm sodium phosphate buffer (ph 7.0) to 
+a  turbidity600nm  of  ~5.  resting  cells  were  incubated  with 
+simazine ( 0.5 mm ) for 48 hrs.  
+
+liquid 
+
+chromatography 
+
+simazine was extracted with isooctane and quantified using 
+high-performance 
+(hplc) 
+(martinez  et  al.  2007;  hernandez  et  al.  2008b).  samples 
+were  analyzed  using  a  beckman  liquid  chromatograph 
+equipped  with  a  diode  array  detector  and  a  rp-
+c18/lichrospher 5-m column (supelco, bellefonte, usa). 
+the chromatograph was operated at room temperature and 
+uv detection at 230 nm. the samples were eluted at a flow 
+rate  of  0.5  ml/min  using  a  mobile  phase  containing  67% 
+(v/v)  acetonitrile,  32.5%  (v/v)  water  and  0.5%  (v/v) 
+phosphoric  acid  (ph  2.0).  the  flow  rate  was  1  ml/min. 
+simazine was identified and quantified by comparison with 
+an authentic standard. 
+analysis of catabolic atz genes  
+the  atza  and  atzd  genes  were  amplified  by  polymerase 
+chain  reaction  (pcr)  using  specific  primers  as  described 
+(de souza et al. 1998; devers et al. 2004). genomic dna 
+was  prepared  from  single  colonies  resuspended  in  100  l 
+tris-edta  buffer,  heated  at  95oc  for  5  min  and 
+centrifuged  briefly.  the  supernatant  (2.0  l)  was  used  for 
+pcr (25 l final volume).  
+amplified  ribosomal  dna  restriction  analysis 
+(ardra) 
+genomic  dna  was  isolated  from  a  single  colony  grown 
+overnight  in  lb  broth  by  using  wizard  genomic  kit 
+(promega,  madison,  wi,  usa).  16s  rrna  genes  were 
+amplified 
+(5'-
+primers 
+(5'-
+agagtttgatcmtggctcag-3') 
+taq 
+tacggytaccttgttacgactt-3') 
+polymerase  (invitrogen,  carlsbad,  ca,  usa  ).  pcr 
+amplification  were  carried  out  using 
+the  following 
+conditions: 1 cycle of 94oc for 3 min, 30 cycles of 94oc for 
+30  sec,  55oc  for  30  sec,  72oc  for  45  sec,  plus  a  final 
+extension  at  72oc  for  7  min.  the  pcr  products  were 
+digested with the endonucleases mspi and hhai (promega, 
+madison,  wi,  usa),  according  to  the  protocols  of  the 
+manufacturer. ardra profiles (5 l of digested 16s rrna 
+gene  products)  were  visualized  under  uv  light  in  a  3% 
+agarose gel stained with ethidium bromide.  
+
+using 
+
+and 
+
+27f 
+
+1492r 
+and 
+
+ 
+
+lower 
+figure  3.  the  simazine  catabolic  upper  and 
+pathways.  the  catabolic  atz  gene  encoding  the  respective 
+enzyme  is  indicated  at  each  metabolic  step.  pathways 
+substrates and metabolites: 1. simazine; 2. hydroxysimazine; 
+3. n-etilammelide; 4. cyanuric acid; 5. biuret; 6. allophanate. 
+ 
+
+isolation of herbicide-degrading bacteria 
+the isolation of native simazine-degrading bacterial strains 
+was performed by batch enrichment cultivation. 10 g of soil 
+(dry  weight  basis)  was  inoculated  in  90  ml  of  atrazine 
+medium  (am)  (rousseaux  et  al.  2001),  using  commercial 
+simazine as sole nitrogen source. cycloheximide (50 mg/l) 
+was added to the medium to inhibit eukaryotic cell growth. 
+cultures  were  incubated  at  28oc  with  orbital  agitation. 
+enrichment  cultures  were  subcultured  and  isolates  were 
+obtained by spread plating on am agar with simazine (2.5 
+mm). colonies on am agar were purified and maintained 
+on  this  medium.  strains  were  stored  at  -24oc.  the 
+culturable heterotrophic bacteria of soils were estimated by 
+plating on tryptic soy agar (tsa) plates.  
+physiological and biochemical characterization 
+the  isolates  were  characterized  by  conventional  methods: 
+gram staining, catalase and oxidase activities and motility. 
+
+ 
+
+3
+
+hernandez garcia, m. et al. 
+
+table 2. bacterial characterization by 16s rrna gene sequence analysis and pcr-amplification of atza and atzd genes. 
+ 
+
+strain 
+
+identification (16s rrna) 
+
+similarity (%) 
+
+atza gene 
+
+atzd gene 
+
+p51 
+
+p52 
+
+c53 
+
+stenotrophomonas 
+
+arthrobacter 
+
+stenotrophomonas 
+
+> 98 
+
+> 97 
+
+> 99 
+
++ 
+
+- 
+
++ 
+
++ 
+
++ 
+
++ 
+
+identification  of  bacterial  strains  by  16s  rrna 
+gene sequence analysis 
+dna was extracted using the bio101 dna kit for bacteria 
+(qiagen, hilden, germany). for pcr amplification of 16s 
+rrna  genes,  the  27f  and  1492r  primers  were  used. 
+amplification reaction was performed with a dna engine 
+ptc-200  peltier  thermal  cycler 
+(mj  research, 
+massachusetts, usa), with the following program: 1 cycle 
+of 95oc for 5 min; 35 cycles of 95oc for 45 sec; 55oc for 45 
+sec; 72oc for 2 min; followed by a final extension at 72oc 
+for  10  min.  amplification  products  were  visualized  after 
+separation  by  electrophoresis  in  a  1%  agarose  gel  and 
+staining  with  ethidium  bromide.  pcr  16s  rrna  genes 
+were purified, using qiaquick columns and the protocol of 
+the  manufacturer 
+(qiagen,  hilden,  germany),  and 
+sequenced  directly,  using  a  taq  dyedeoxy  terminator 
+cycle  sequencing  kit,  version  3.1,  an  abi  model  3100 
+dna  sequencer  and  the  protocols  of  the  manufacturer 
+(applied biosystems inc., foster city, ca, usa). 
+results and discussion 
+isolation of s-triazine-degrading bacteria 
+the  adaptation  to  long-term  polluted  environmental  sites 
+endows  environmental  microbes  with 
+the  catabolic 
+capabilities for these pollutants. agricultural so ils treated 
+with  the  herbicide  simazine  for  more  than  20  years  were 
+used  for  isolation  of  bacterial  strains  able  to  degrade  s  -
+triazines.  the  number  of  culturable  heterotrophic  bacteria 
+from these agricultural soils was 7 x 106 cfu/g of dry soil. 
+this  number  was  not  affected  by  simazine  application. 
+microbial  communities  from  these  soils  were  enriched 
+under  aerobic  conditions  in  am  broth  using  simazine  as 
+sole  nitrogen  source.  three  bacterial  isolates  capable  of 
+simazine-degradation  were  selected  and  characterized. 
+strains  p51  and  p52  were  isolated  from  an  avocado 
+plantation  soil,  and  strain  c53  was  isolated  from  a 
+persimmon  plantation  soil.  the  bacterial  strains  were 
+characterized  by  biochemical  and  physiological  analyses 
+(table 1). figure 4 shows the colony morphology on tsa 
+medium  and  cell  morphology  observed  by  transmission 
+electronic  microscopy  of  strains  p51  and  p52.  the  three 
+bacterial strains were grown in lb broth supplemented with 
+simazine,  reaching  a  turbidity  600  nm  ~1.2.  degradation  of 
+
+ 
+
+simazine by these strains grown in lb broth with simazine 
+was studied using resting cell assays. the strains p51 and 
+p52 degraded > 80% of simazine (0.5 mm) within 48 hrs, 
+while strain c53 removed > 60% of this herbicide (figure 
+5). the presence of the catabolic atza and atzd genes was 
+analyzed by pcr-amplification using specific primers. the 
+atza and atzd genes encode the first enzyme of the upper 
+and  lower  s-  triazine  catabolic  pathways  (figure  3), 
+respectively (mandelbaum et al. 1995; devers et al. 2007; 
+iwasaki  et  al.  2007).  the  atza  and  atzd  genes  were 
+detected in strains p51 and c53, while only atzd gene was 
+observed in strain p52 (table 2). the isolation of s-triazine-
+degrading  bacteria  has  been  reported,  and  atz  genes  have 
+been determined in some of these isolates (mandelbaum et 
+al. 1995; rousseaux et al. 2001; devers et al. 2007).  
+
+ 
+figure  4.  colony  and  cell  morphology  of  simazine-
+degrading bacterial strains. 
+(a) stenotrophomonas sp. strain p51, colony morphology on 
+tsa medium. 
+(b)  arthrobacter  sp.  strain  p52,  colony  morphology  on  tsa 
+medium. 
+(c) stenotrophomonas sp. strain p51, bacterial morphology of 
+cells  grown  in  am  medium  with  simazine  and  observed  by 
+transmission electronic microscopy. 
+(d) arthrobacter sp. strain p52, bacterial morphology of cells 
+grown  in  am  medium  with  simazine  and  observed  by 
+transmission electronic microscopy. bar represents 1 m. 
+
+4
+
+novel s-triazine-degrading bacteria isolated from chilean agricultural soils 
+
+ardra  
+to further characterize the isolates, comparative analysis of 
+the  16s  rrna  gene  restriction  pattern  (ardra)  of  the 
+three bacterial strains was performed. this method allows a 
+fast  analysis  of  the  16s rrna  gene  sequence  structure  of 
+bacterial  strains.  the  pcr-amplified  16s  rrna  genes  of 
+the three strains were digested using the restriction enzymes 
+msp1  and  hha1.  the  ardra  profiles  of  p51  and  c53 
+strains were similar, suggesting that they are closely related 
+bacteria.  ardra  indicated  that  strain  p52  is  a  different 
+ribotype (figure 6). 
+identification of simazine-degrading bacteria 
+the  16s rrna  gene  of  the  three  isolates  were  sequenced 
+and  analyzed  for  bacterial  identification.  the  strain  c53 
+isolated from persimmon plantation and strain p51 isolated 
+soil  were  classified  as 
+from  avocado  plantation 
+proteobacteria, 
+order 
+xanthomonadales,  family  xanthomonadaceae  and  were 
+most  similar  to  genus  stenotrophomonas,  with  a  high 
+sequence  similarity  (>98%).  both  strains  c53  and  p51 
+differ slightly in their 16s rrna gene sequence. the strain 
+p52 isolated from persimmon plantation soil was classified 
+as 
+order 
+actinomycetales,  family  micrococcaceae  and  was  most 
+similar  to  genus  arthrobacter  with  a  similarity  >  97% 
+(table  2).  s-triazine-degrading  bacterial  strains  belonging 
+to  other  genera,  such  as  pseudomonas,  nocardioides  and 
+agrobacterium,  have  also  been  reported  (mandelbaum  et 
+al. 1995; devers et al. 2007; hernandez et al. 2008b). 
+concluding remarks 
+three bacterial strains capable to degrade simazine and to 
+use it as sole nitrogen source for growth were isolated from 
+herbicide-treated  agricultural  soils  of  central  chile.  these 
+strains  were  characterized  and  identified.  resting  cells  of 
+the  strains  p51,  p52  and  c53  were  able  to  efficiently 
+degrade  simazine.  the  atza  and  atzd  genes  encoding  the 
+
+class  gammaproteobacteria, 
+
+actinobacteria, 
+
+actinobacteria, 
+
+class 
+
+figure  5.  simazine  degradation  by  bacterial  strains  p51, 
+p52 and c53. resting cells of cultures previously grown in lb 
+broth  with  simazine  were  incubated  with  simazine  (0.5  mm). 
+control:  without  cells.  each  value  is  an  average  of  two 
+independent experiments. 
+
+ 
+figure 6. amplified 16s rrna gene restriction analysis of 
+3 isolated bacterial strains. the amplified 16s rrna genes 
+were digested with restriction enzymes hhai and mspi. dna 
+restriction patterns were observed in an agarose gel stained 
+with ethidium bromide. mm: molecular mass standards.  
+ 
+
+to  analyze 
+
+first  enzyme  of  the  upper  and  lower  s-triazine  catabolic 
+pathways  were  detected  in  strains  p51  and  c53.  the 
+bacterial  strain  p52  possesses  the  atzd  gene.  ardra 
+indicated that strain p52 is a different ribotype than strains 
+c53 and p51. by sequence analysis of the 16s rrna genes, 
+strains  c53 and  p51  were  identified  as stenotrophomonas 
+sp.  and  strain  p52  was  identified  as  arthrobacter  sp. 
+further  studies  of  these  simazine-degrading  bacteria  are 
+required 
+their  potential  application  as 
+biocatalysts 
+environments 
+of 
+contaminated with s -triazine herbicides.  
+references 
+camara,  beatriz;  herrera,  cristina;  gonzalez, 
+myriam; couve, eduardo; hofer, bernd and seeger, 
+michael.  from  pcbs  to  highly  toxic  metabolites  by  the 
+biphenyl  pathway.  environmental  microbiology,  august 
+2004, vol. 6, no. 8, p. 842-850.  
+
+bioremediation 
+
+for 
+
+cooman,  katrien;  debels,  patrick;  gajardo, 
+marisol; urrutia, roberto and barra, ricardo. use of 
+daphnia spp. for the ecotoxicological assessment of water 
+quality in an agricultural watershed in south-central chile. 
+archives of environmental contamination and toxicology, 
+june 2005, vol. 48, no. 2, p. 191-200.  
+
+de  souza,  mervyn  l.;  seffernick,  jennifer; 
+martinez,  betsy;  sadowsky,  michael  j.  and 
+wackett,  lawrence  p.  the  atrazine  catabolism  genes 
+atzabc  are  widespread  and  highly  conserved.  journal  of 
+bacteriology, april 1998, vol. 180, no. 7, p. 1951-1954.  
+
+devers,  marion;  soulas,  guy  and  martin-
+laurent,  fabrice.  real-time  reverse  transcription  pcr 
+analysis of expression of atrazine catabolism genes in two 
+bacterial  strains  isolated  from  soil.  journal  microbiology 
+methods, january 2004, vol. 56, no. 1, p. 3-15.  
+
+ 
+
+5
+
+martinez,  paula;  agullo,  loreine;  hernandez, 
+marcela  and  seeger,  michael.  chlorobenzoate  inhibits 
+growth  and  induces  stress  proteins  in  the  pcb-degrading 
+bacterium  burkholderia  xenovorans  lb400.  archives  of 
+microbiology, september 2007, vol. 188, no. 3, p. 289-297.  
+
+newcombe,  david  a.  and  crowley,  david  e. 
+bioremediation  of  atrazine-contaminated  soil  by  repeated 
+applications  of  atrazine-degrading  bacteria.  applied 
+microbiology  and  biotechnology,  february  1999,  vol.  51, 
+no. 6, p. 877-882.  
+
+rousseaux,  sandrine;  hartmann,  alain  and 
+soulas,  guy.  isolation  and  characterisation  of  new 
+gram-negative  and  gram-positive  atrazine  degrading 
+bacteria  from  different  french  soils.  fems  microbiology 
+ecology, july 2001, vol. 36, no. 2-3, p. 211-222. 
+
+wackett,  lawrence  p.;  sadowsky,  michael  j.; 
+martinez,  betsy  and  shapir,  nir.  biodegradation  of 
+atrazine and related s-triazine compounds: from enzymes to 
+field  studies.  applied  microbiology  and  biotechnology, 
+january 2002, vol. 58, no. 1, p. 39-45.  
+ 
+
+hernandez garcia, m. et al. 
+
+devers, marion; azhari, najoi e.; kolic, nikolina-
+udikovic  and  martin-laurent,  fabrice.  detection 
+and organization of atrazine-degrading genetic potential of 
+seventeen  bacterial  isolates  belonging  to  divergent  taxa 
+indicate  a  recent  common  origin  of 
+their  catabolic 
+functions.  fems  microbiology  letters,  august  2007,  vol. 
+273, no. 1, p. 78-86.  
+
+dinamarca,  m.  alejandro;  cereceda-balic, 
+francisco;  fadic,  ximena  and  seeger,  michael. 
+analysis of s-triazine-degrading microbial communities  in 
+soils  using  most-probable-number  enumeration  and 
+tetrazolium-salt detection. international microbiology, july 
+2007, vol. 10, p. 209-215.  
+
+european union. the european parliament and the council 
+of  the  european  union.  decision  2455/2001/ec,  2001, 
+brussels, belgium. 
+
+food and agriculture organization of the united nations. 
+fao  statistic  division  [online].  updated  2008  [cited 
+december  2006].  fao,  rome,  italy.  available  from 
+internet: http://faostat.fao.org/site/423/default.aspx#ancor 
+
+hernandez,  marcela;  morgante,  veronica; 
+flores, cecilia; villalobos, patricio; gonzalez, 
+myriam; miralles, pola; dinamarca, alejandro and 
+seeger, michael. modern approaches for the study of s-
+triazine  herbicide  bioremediation  in  agricultural  soils. 
+journal  of  soil  science  and  plant  nutrition,  september 
+2008a, vol. 8, no. 2, p. 19-30.  
+
+hernandez,  marcela;  villalobos, 
+patricio; 
+morgante,  veronica;  gonzalez,  myriam;  reiff, 
+caroline;  moore,  edward  and  seeger,  michael. 
+isolation  and  characterization  of  a  novel  simazine-
+degrading bacterium from agricultural soil of central chile, 
+pseudomonas  sp.  mhp41.  fems  microbiology  letters, 
+september 2008b, vol. 286, no. 2, p. 184-191.  
+
+iwasaki,  akio;  takagi,  kazuhiro;  yoshioka, 
+yuichi;  fujii,  kunihiko;  kojima,  yuki  and  harada, 
+naoki. isolation and characterization of a novel simazine-
+degrading  -proteobacterium  and  detection  of  genes 
+encoding  s-triazine-degrading  enzymes.  pest  management 
+science, march 2007, vol. 63, no. 3, p. 261-268.  
+
+mandelbaum,  raphi  t.;  allan,  deborah.  l.  and 
+wackett, lawrence p. isolation and characterization of 
+a pseudomonas sp. that mineralizes the s-triazine herbicide 
+atrazine.  applied  and  environmental  microbiology,  april 
+1995, vol. 61, no. 4, p. 1451-1457.  
+
+martinez,  betsy;  tomkins,  jeffrey;  wackett, 
+lawrence  p.;  wing,  rod  and  sadowsky,  michael  j. 
+complete  nucleotide  sequence  and  organization  of  the 
+atrazine catabolic plasmid padp-1 from pseudomonas sp. 
+strain  adp.  journal  of  bacteriology,  october  2001,  vol. 
+183, no. 19, p. 5684-5697.  
+
+ 
+note: electronic journal of biotechnology is not responsible if on-line references cited on manuscripts are not available any more after the date of publication. 
+supported by unesco / mircen network. 
+
+ 
+
+6
+
+

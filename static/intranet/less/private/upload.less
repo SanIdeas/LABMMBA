@@ -41,6 +41,17 @@
 	&.selector{
 		position: absolute;
 	}
+
+	&.message{
+	    width: 100%;
+	    position: relative;
+	    display: block;
+	    text-align: center;
+	    color: #e0424e;
+	    padding: 5px;
+
+	}
+
 	&.option{
 		height: 100px;
 		display: flex;
@@ -76,7 +87,6 @@
 
 	&.section{
 		width: 100%;
-		visibility: hidden;
 		position: absolute;
 	}
 
@@ -259,6 +269,9 @@
 	&.hidden{
     	height: 0px;
     	visibility: hidden;
+    	&.dn{
+    		display: none;
+    	}
     }
 
     &.display{

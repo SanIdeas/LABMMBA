@@ -30,19 +30,25 @@ def login(request):
 				message = {'type': 'error', 'content': 'El administrador ha bloqueado tu cuenta.'}
 				return render(request, 'login/login.html', {'message': message})
 			elif user.is_active:
-				user = authenticate(username=email, password=password)
-				if user is not None:
+				user_ = authenticate(username=email, password=password)
+				if user_ is not None:
 					#Si el usuario es autenticado se inicia sesion.
-					auth_login(request, user)
-					return HttpResponseRedirect(reverse('intranet:home'))
+					auth_login(request, user_)
+					if user.is_admin:
+						return HttpResponseRedirect(reverse('admin:home'))
+					else:
+						return HttpResponseRedirect(reverse('intranet:home'))
 				else:
+					#Si el usuario no fue autenticado, se envia un mensaje de error
 					message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
 					return render(request, 'login/login.html', {'message': message})					
 			else:
+				#Si el usuario no esta activo:
 				message = {'type': 'error', 'content': 'Ten paciencia. Debes ser aprobado por el administrador.'}
 				return render(request, 'login/login.html', {'message': message})
 
 		else:
+			#Si el usuario no existe
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
 			return render(request, 'login/login.html', {'message': message})
 
@@ -57,9 +63,17 @@ def signup(request):
 				    user = None
 
 				if user is  None:
-					user = User.objects.create_user(request.POST['email'], request.POST['first_name'], request.POST['last_name'], request.POST['institution'], request.POST['country'], Area.objects.get(id=request.POST['area']), request.POST['career'], request.POST['password'])
+					user = User.objects.create_user(
+						request.POST['email'], 
+						request.POST['first_name'], 
+						request.POST['last_name'], 
+						request.POST['institution'], 
+						request.POST['country'], 
+						Area.objects.get(id=request.POST['area']), 
+						request.POST['career'], 
+						request.POST['password'])
 					user = authenticate(username=request.POST['email'], password=request.POST['password'])
-					#auth_login(request, user)
+					auth_login(request, user)
 					return HttpResponseRedirect(reverse('login'))
 				else:
 					message = {'type': 'error', 'content': 'El email ' + request.POST['email'] + ' ya existe.'}
@@ -69,6 +83,25 @@ def signup(request):
 
 
 def logout(request):
-	if request.user.is_authenticated() is not None:
+	if request.user.is_authenticated():
 		auth_logout(request)
 		return HttpResponseRedirect(reverse('webpage:home'))
+
+def register(request, token = None):
+	print token
+	if request.user.is_authenticated():
+		return HttpResponseRedirect(reverse('intranet:home'))
+	elif token is not None:
+		user = None
+		try:
+			user  = User.objects.get(access_token=token)
+		except Exception as error:
+			print error
+			
+		if user is not None:
+			return render(request, 'login/signup.html')
+		else:
+			return HttpResponseRedirect(reverse('webpage:home'))
+	else:
+		return HttpResponseRedirect(reverse('webpage:home'))
+

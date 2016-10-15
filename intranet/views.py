@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from login.models import Area
-from django.http import HttpResponseRedirect, HttpResponse
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from intranet.forms import DocumentForm
 from intranet.models import Document
@@ -96,7 +95,7 @@ def filters_selected(list, request, name):
 	return list
 
 def home(request):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		start_date = (date.today() - timedelta(5*365/12))
 		n = start_date.month#Initial Month
 		categories = Document.objects.values('category').annotate(count=Count('category'))
@@ -133,7 +132,7 @@ def home(request):
 		return HttpResponseRedirect(reverse('login'))
 
 def documents(request, search=None):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		kwargs = get_filters(request)
 		all_docs = Document.objects.filter(**kwargs)
 		if search is None: #Si no es una busqueda
@@ -176,7 +175,7 @@ def documents(request, search=None):
 		return HttpResponseRedirect(reverse('login'))
 
 def profile(request, user_id):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		try:
 			if request.user.is_admin:
 				profile = User.objects.get(id=user_id)
@@ -190,12 +189,12 @@ def profile(request, user_id):
 		return HttpResponseRedirect(reverse('login'))
 
 def update_profile_picture(request):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		User.objects.get(id=request.user.id).update_picture(request.FILES['picture'])
 		return HttpResponseRedirect(reverse('intranet:profile', args={request.user.id}))
 
 def upload(request):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		#Document.objects.all().delete()
 		#User.objects.all().delete()
 		if request.method == "GET":
@@ -217,6 +216,7 @@ def upload(request):
 					document.pages = request.POST['pages' + id]
 					document.save()
 				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
+			#Local_ids son las ids de los archivos locales del usuario
 			elif 'local_ids' in request.POST:
 				local_ids = request.POST['local_ids'].split(',')
 				real_ids=[]
@@ -237,7 +237,7 @@ def upload(request):
 						'owner': request.user.id,
 						'issn': request.POST['issn' + id],
 						'doi': request.POST['doi' + id],
-						'url': request.POST['url' + id],
+						'url': "http://dx.doi.org/" + request.POST['doi' + id],
 						'pages': request.POST['pages' + id],
 						}
 					files = {
@@ -270,7 +270,7 @@ def upload_local(request):
 	return render(request, 'intranet/upload_sections/local.html',)
 
 def extract_content_and_keywords(request):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		if request.POST['ids']:
 			abstracts = []
 			for id in request.POST['ids'].split(','):
@@ -312,7 +312,7 @@ def pdf_viewer(request, title=None, author=None):
 		return HttpResponse(_('No se encontraron documentos con el nombre: %(title)s') % {'title': title})
 
 def users(request):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		users = User.objects.filter(is_admin=False)
 		for user in users:
 			user.last_activity = (timezone.localtime(timezone.now()).date() - user.last_activity).days
@@ -322,7 +322,7 @@ def users(request):
 
 
 def document(request, title=None, author=None):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		try:
 			document = Document.objects.get(title=title, author=author)
 		except Document.DoesNotExist:
@@ -334,7 +334,7 @@ def document(request, title=None, author=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 def edit_document(request, title=None, author=None):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		try:
 			if request.user.is_admin:
 				document = Document.objects.get(title=title, author=author)
@@ -370,7 +370,7 @@ def edit_document(request, title=None, author=None):
 
 
 def search_helper(request, search=None):
-	if request.user.is_authenticated() == True:
+	if request.user.is_authenticated():
 		doc = Document.objects.values('title', 'author').filter(reduce(operator.and_, (Q(title__contains=x) for x in search.split(' '))))
 		response = {'error': False, 'list': list(doc)}
 		return JsonResponse(response)
@@ -378,7 +378,7 @@ def search_helper(request, search=None):
 		return HttpResponseRedirect(reverse('login'))
 
 def admin(request, setup=None, user_id=None, delete=False, activate=False, block=False, unblock=False):
-	if request.user.is_authenticated() == True and request.user.is_admin:
+	if request.user.is_authenticated() and request.user.is_admin:
 		if request.method == "GET":
 			if activate:
 				user = User.objects.get(id=user_id)
