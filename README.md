@@ -18,7 +18,7 @@ Se utilizaron las siguientes tecnologías para desarrollar el sitio:
 
 Equipo de desarrollo compuesto por estudiantes de Ingeniería Civil Informática de la Universidad Técnica Federico Santa María:
 
-- Ricardo Gamboa Arias - [ricardo.gamboa.13@sansano.usm.cl](mailto:ricardo.gamboa.13@sansano.usm.cl) 
+- Ricardo Gamboa Arias - [ricardo.gamboa.12@sansano.usm.cl](mailto:ricardo.gamboa.12@sansano.usm.cl) 
 - Alex Balladares Rojas - [alex.balladares.13@sansano.usm.cl](mailto:alex.balladares.13@sansano.usm.cl)
 - Hernán Herreros Niño - [hernan.herreros.13@sansano.usm.cl](mailto:hernan.herreros.13@sansano.usm.cl) 
 
