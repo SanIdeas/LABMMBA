@@ -52,15 +52,17 @@ def login(request):
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
 			return render(request, 'login/login.html', {'message': message})
 
+
+# Ya no sirve!!
 def signup(request):
 	if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
 			if request.method == "GET":
 				return render(request, 'login/signup.html', {'areas': Area.objects.all()})
 			else:
 				try:
-				    user = User.objects.get(email=request.POST['email'])
+					user = User.objects.get(email=request.POST['email'])
 				except User.DoesNotExist:
-				    user = None
+					user = None
 
 				if user is  None:
 					user = User.objects.create_user(
@@ -88,20 +90,73 @@ def logout(request):
 		return HttpResponseRedirect(reverse('webpage:home'))
 
 def register(request, token = None):
-	print token
-	if request.user.is_authenticated():
-		return HttpResponseRedirect(reverse('intranet:home'))
-	elif token is not None:
-		user = None
-		try:
-			user  = User.objects.get(access_token=token)
-		except Exception as error:
-			print error
-			
-		if user is not None:
-			return render(request, 'login/signup.html')
+	if token == "":
+		token = None
+	if not request.user.is_authenticated():
+		if request.method == "GET":
+			if token is not None:
+				user = None
+				try:
+					user  = User.objects.get(access_token=token)
+				except Exception as error:
+					print error
+					
+				if user is not None:
+					if user.is_registered:
+						#Aqui deberia decirle al usuario que este usuario ya esta registrado
+						print "usuario ya registrado"
+						return HttpResponseRedirect(reverse('webpage:home'))
+					else:
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token})
+				else:
+					#Aqui deberia decirle al usuario que el token no es valido
+					return HttpResponseRedirect(reverse('webpage:home'))
+			else:
+				# Aqui deberia decirle al usuario que el token de registro no existe o algo por el estilo
+				return HttpResponseRedirect(reverse('webpage:home'))
+		elif request.method == "POST":
+			# 
+			user = None
+			try:
+				user  = User.objects.get(email= request.POST['email'], access_token=request.POST['access_token'])
+			except Exception as error:
+				print "Error: " + str(error)
+
+			if user is not None:
+				if not  user.is_registered:
+					registration = user.complete_registration(
+						request.POST['first_name'],
+						request.POST['last_name'],
+						request.POST['institution'],
+						request.POST['country'],
+						request.POST['area'],
+						request.POST['career'],
+						request.POST['password'])
+					if registration:
+						# Registro exitoso. Se inicia sesion
+						user_ = authenticate(username=request.POST['email'], password=request.POST['password'])
+						#Si el usuario es autenticado se inicia sesion.
+						auth_login(request, user_)
+						print "registro exitoso"
+						return HttpResponseRedirect(reverse('intranet:home'))
+					else:
+						# Falto un campo
+						print "falta un campo"
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all()})
+				else:
+					# El usuario ya esta registrado, por lo tanto, se le redirecciona al login
+					print "usuario ya registrado"
+					return HttpResponseRedirect(reverse('login'))
+
+
+			else:
+				# Deberia llevar a una pagina de error: token y/o correo electronico incorrecto.
+				print "token y/o correo electronico incorrecto."
+				return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all()})
 		else:
+			# si no es GET o POST, se redirecciona a la pagina de inicio
 			return HttpResponseRedirect(reverse('webpage:home'))
+
 	else:
 		return HttpResponseRedirect(reverse('webpage:home'))
 

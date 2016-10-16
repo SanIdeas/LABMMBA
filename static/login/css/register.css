@@ -1,0 +1,54 @@
+.signup-row{
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.signup-row > h1{
+	font-weight: normal;
+	margin: 0;
+}
+
+#left-form{
+	width: 50%;
+	float: left;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+
+#right-form{
+	padding-left: 10px;
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+}
+
+.signup-submit{
+	padding-bottom: 20px;
+}
+
+.select{
+	width: 100%;
+	outline: none;
+	padding: 5px;
+	border-radius: 3px;
+	border: 1px solid #C9C9C9;
+	box-sizing: border-box;
+}
+
+@media screen and (max-width: 490px){
+	#left-form{
+		width: 100%;
+		float: left;
+		padding-right: 0px;
+	}
+
+	#right-form{
+		padding-left: 0px;
+		width: 100%;
+		float: left;
+	}
+
+	#right-form .login-input:first-child{
+		margin-top: 0px;
+	}
+}

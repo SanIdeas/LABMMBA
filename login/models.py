@@ -32,7 +32,18 @@ class CredentialsField(models.Field):
         return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name=None, last_name=None, institution=None, country=None, area=None, career=None, password=None, is_active=False, is_admin=False):
+    def precreate_user(self, email, access_token,):
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(
+            email=self.normalize_email(email),
+            access_token=access_token
+        )
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, first_name=None, last_name=None, institution=None, country=None, area=None, career=None, password=None, is_admin=False):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -49,7 +60,6 @@ class UserManager(BaseUserManager):
             is_admin = is_admin,
             area=area,
             career=career,
-            is_active=is_active,
         )
 
         user.set_password(password)
@@ -64,7 +74,6 @@ class UserManager(BaseUserManager):
         user = self.create_user(email,
             password=password,
             is_admin=True,
-            is_active=True,
         )
         user.save(using=self._db)
         return user
@@ -84,7 +93,7 @@ class User(AbstractBaseUser):
     country = models.CharField(max_length=20, null=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
     career = models.CharField(max_length=40, null=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_blocked = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     last_activity = models.DateField(auto_now=True)
@@ -92,6 +101,7 @@ class User(AbstractBaseUser):
     doc_count = models.IntegerField(default=0)
     drive_credentials = models.BinaryField(null=True)
     access_token = models.CharField(max_length=128, null=True)
+    is_registered = models.BinaryField(null=False)
 
 
     objects = UserManager()
@@ -133,4 +143,18 @@ class User(AbstractBaseUser):
             for i in self.institution.upper().split():
                 output += i[0]
             return output
+
+    def complete_registration(self, first_name=None, last_name=None, institution=None, country=None, area=None, career=None, password=None):
+        if not first_name and not last_name and not institution and not country and not area and not career and not password:
+            return False
+        self.first_name = first_name
+        self.last_name = last_name
+        self.institution = institution
+        self.country = country
+        self.area = Area.objects.get(id=area)
+        self.career = career
+        self.set_password(password)
+        self.is_registered = True
+        self.save()
+        return True
 

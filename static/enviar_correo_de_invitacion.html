@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Enviar Correos de invitación</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<style>
+		html{
+			height: 100%;
+		}
+		body{
+			background-color: #66b4b4;
+			display: flex;
+			justify-content: center;
+			height: 100%;
+			margin: 0;
+			font-family: 'Open Sans', sans-serif; color:#777;
+		}
+		form{
+			align-self: center;
+			width: 1000px;
+		}
+		#wrapper{
+			background-color: #e5f2f2;
+			border: 1px solid #329b9b;
+			width: 100%;
+			display: inline-flex;
+			overflow:  hidden;
+			border-radius: 	10px;
+		}
+		#wrapper:after{
+			content: "";
+			display: inline-table;
+			clear: both;
+		}
+		#wrapper:before{
+			content: "";
+			display: inline-table;
+			clear: both;
+		}
+		input[type="text"]{
+			box-sizing: border-box;
+			float: left;
+			display: flex;
+			width: 100%;
+			border: none;
+			background-color: transparent;
+			padding: 10px;
+			outline: none;
+		}
+		input[type="submit"]{
+			float: right;
+			width: 80px;
+			background-color: #7fc0c0;
+			border: none;
+			outline: none;
+			color: white;
+			font-size: 12pt;
+			cursor: pointer;
+			transition: background-color .2s ease;
+		}
+		input[type="submit"]:active{
+			background-color: #329b9b;
+		}
+		input[type="submit"]:hover{
+			background-color: #4ca7a7;
+		}
+		span{
+			color: white;
+			font-size: 9pt;
+			color: #e5f2f2;
+		}
+		h3{
+			font-size: 20pt;
+			font-weight: normal;
+			position: absolute;
+			color: #e5f2f2;
+		}
+		h5{
+			font-size: 10pt;
+			font-weight: normal;
+			position: absolute;
+			margin-top: 70px;
+			color: #e5f2f2;
+		}
+
+	</style>
+</head>
+<body>
+	<h3>Correos electronicos de prueba</h3>
+	<h5>Esta estupida herramienta sirve para enviar correos de invitación de prueba desde la página de LABMMBA</h5>
+	<form action="http://localhost:8000/es/administrator/invitation/" method="POST">
+		<div id="wrapper">
+			<input type="text" name="email">
+			<input type="submit">
+		</div>
+		<span>Ingresa las direcciones de correo electronico separadas por coma ( , )</span>
+	</form>
+</body>
+</html>

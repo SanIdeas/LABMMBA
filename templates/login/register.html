@@ -9,10 +9,11 @@
 			<div class="s1 c10">
 				<h2>{% trans "Registro" %}</h2>
 				<p>{% trans "Crea una cuenta de usuario en el sistema Labmmba" %}</p>
-				<form class="clear c12" action="{% url 'signup' %}" method="POST">
+				<form class="clear c12" action="{% url 'register' %}" method="POST">
 					{% csrf_token %}
+                         <input type="hidden" name="access_token" value="{{ token }}">
 					<div class="row">
-                        <div class="c6"><input type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required/></div>
+                        <div class="c6"><input value="{{ user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required readonly/></div>
                         <div class="c6"><input type="text" name="institution" class="text" placeholder="{% trans 'Institución' %}" required/></div>
                     </div>
                     <div class="row">
@@ -31,7 +32,7 @@
                     	</div>
                     </div>
                     <div class="row">
-                    	<div class="c6"><input type="password" name="password" class="text" placeholder="{% trans 'Nombre' %}" required/></div>
+                    	<div class="c6"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}" required/></div>
                     	<div class="c6"><input type="text" name="career" class="text" placeholder="{% trans 'Carrera' %}" required/></div>
                     </div>
                     <div class="row">

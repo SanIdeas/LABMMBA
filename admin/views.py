@@ -39,6 +39,7 @@ def sendInvitation(request):
 				connection = get_connection()
 				connection.open()
 
+				# Se lee la plantilla de correos electronicos
 				body = open(settings.MEDIA_ROOT + "/static/email_template/invitation_template.html", 'r')
 				html = body.read().decode('UTF-8')
 				body.close()
@@ -55,16 +56,24 @@ def sendInvitation(request):
 							output += "<h5 style='font-weight: normal'>" + email + "  -  " + token + "</h5>"
 							break
 					# Crear usuario en la base de datos con su respectivo token, correo electronico y nombre
-					
-					message = EmailMultiAlternatives(subject, text, from_email, [email])
-					message.attach_alternative(html.replace('$token', token), 'text/html')
-					message.send()
+					user = None
+					try:
+						user = User.objects.get(email=email)
+					except Exception as error:
+						print error
+					if user is None:
+						User.objects.precreate_user(email, token)					
+						message = EmailMultiAlternatives(subject, text, from_email, [email])
+						message.attach_alternative(html.replace('$token', token), 'text/html')
+						message.send()
+					else:
+						print "El usuario " + email + " ya existe"
 				connection.close()
 				return JsonResponse({'error': False, 'message': _('Eres Administrador y es una solicitud POST')})
 			
 			else:
 				return JsonResponse({'error': False, 'message':_('Eres administrador y no es una solicitud POST')})
-		elif not request.user.is_admin():
+		elif not request.user.is_admin:
 			return JsonResponse({'error': True, 'message':_('Debes ser administrador.')})
 
 	else:
