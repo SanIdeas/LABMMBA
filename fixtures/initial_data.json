@@ -1,0 +1,49 @@
+[
+  {
+    "model": "login.area",
+    "pk": 1,
+    "fields": {
+      "name": "Microbiología Molecular"
+    }
+  },
+
+  {
+    "model": "login.area",
+    "pk": 2,
+    "fields": {
+      "name": "Biotecnología Ambiental"
+    }
+  },
+
+  {
+    "model": "login.area",
+    "pk": 3,
+    "fields": {
+      "name": "Bionanotecnología"
+    }
+  },
+
+  {
+    "model": "login.area",
+    "pk": 4,
+    "fields": {
+      "name": "Genómica Funcional y Proteómica"
+    }
+  },
+
+  {
+    "model": "login.area",
+    "pk": 5,
+    "fields": {
+      "name": "Síntesis de compuestos bioactivos y de interés biotecnológico"
+    }
+  },
+
+  {
+    "model": "login.area",
+    "pk": 6,
+    "fields": {
+      "name": "Biorremediación de Ambientes Contaminados"
+    }
+  }
+]
