@@ -103,20 +103,25 @@ def children_list(folder_id, service):
     return files
 
 
-
+# Se obtiene el servicio de Google Drive
 def get_drive_service(request):
+	# Si el usuario no tiene credenciales, retorna false
     if request.user.drive_credentials == None:
         return False
     elif request.user.credentials()._expires_in() < 10:
+    	#Si las credenciales expiran en menos de 10 segundos (segundos?) se actualizan
         user = User.objects.get(id=request.user.id)
         credentials = request.user.credentials()
         credentials.refresh(httplib2.Http())
+        #Se serializa la credencial y se almacena en la base de datos
         user.drive_credentials = base64.b64encode(cPickle.dumps(credentials))
         user.save()
     else:
+    	# Si las credenciales son validas, se utilizan
         credentials = request.user.credentials()
     http_auth = credentials.authorize(httplib2.Http())
     drive_service = build('drive', 'v2', http=http_auth)
+    # Se retorna el servicio
     return drive_service
 
 
@@ -129,24 +134,30 @@ def oauth2callback(request):
     user.save()
     return HttpResponse('<script type="text/javascript">window.close()</script>')
 
+
+# Primera llamada para obtener credenciales de Google Drive
 def get_credentials(request):
     if request.user.is_authenticated():
         if request.user.drive_credentials == None:
             auth_uri = flow.step1_get_authorize_url()
+            # Retorna la url con el login de Google
             return HttpResponseRedirect(auth_uri)
         else:
+        	# Si el usuario ya tiene las credenciales, es redireccinado al analizador de enlaces
             return HttpResponseRedirect(reverse('link_analizer', args={''}))
     else:
+    	# Si el usuario no inicio sesion, se le hace saber
         response = {'error': True, 'message':'Debes iniciar sesion.'}
         return JsonResponse(response)
 
 
-
+# Segunda llamada. Se analizan los enlaces y se obtiene el servicio
 def link_analizer(request, link=None):
     if request.user.is_authenticated():
         if not link:
             return JsonResponse({'error': True, 'message':'Debes anadir un enlace de Google Drive a la solicitud.'})
 
+        # Se intenta reconocer el enlace de Google Drive
         try:
             drive_id = re.match('https:\/\/drive\.google\.com\/.*\?id=([^&]*)\&?', link).groups()[0]
         except:
@@ -158,17 +169,22 @@ def link_analizer(request, link=None):
 
         try:
             #request.user.credentials().revoke(httplib2.Http())
+            # Se obtiene acceso al servicio de Google Drive
             service = get_drive_service(request)
             if not service:
                 return JsonResponse({'error': True, 'message':_('Para continuar debes enlazar tu cuenta de Google Drive'), 'code': 'gglir'})
             param={}
+            # Se definen los parametros que se quieren recibir
             param['fields'] = 'fileSize,id,modifiedDate,ownerNames,title,mimeType,owners/emailAddress,thumbnailLink,downloadUrl'
+            # Se envia la solicitud
             file = service.files().get(fileId=drive_id, **param).execute()
+            # Se filtra por archivos PDF o Carpeta	
             if file['mimeType'] == 'application/pdf':
                 file['ownerNames'] = file['ownerNames'][0]
                 response = {'file': file, 'type': 'PDF Document', 'link': link, 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
 
             elif file['mimeType'] == 'application/vnd.google-apps.folder':
+            	# Si es una carpeta, se llama a la funcion children_list
                 response = {'files': children_list(drive_id, service), 'folder_name': file['title'], 'type': 'Folder', 'link': link, 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
             else:
                 return JsonResponse({'error': True, 'message':_('El link ingresado no contiene documentos compatibles')})  

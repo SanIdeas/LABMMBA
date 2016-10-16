@@ -37,6 +37,38 @@
 
 }
 
+@keyframes loading_blue{
+	0%{
+		width: 0%;
+		z-index: 99;
+	}
+	25%{
+		width: 100%;
+	}
+	50%{
+		width: 100%
+	}
+	100%{
+		width: 100%
+	}
+}
+
+@keyframes loading_red{
+	0%{
+		width: 0%;
+	}
+	25%{
+		width: 0%;
+		z-index: 99;
+	}
+	50%{
+		width: 100%
+	}
+	100%{
+		width: 100%
+	}
+}
+
 .upload{
 	&.selector{
 		position: absolute;
@@ -323,6 +355,66 @@
 		    font-size: 16pt;
 		    margin: 0;
 		    color: #b4b5b4;
+		}
+	}
+
+	&.drive{
+		&.link{
+			text-align: center;
+			margin-bottom: 20px;
+		}
+		&.plus{
+			text-align: center;
+		}
+		&.logo{
+			font-family: 'Product Sans', Arial, sans-serif;
+			& .e{
+				transform: rotate(-16deg);
+			    position: relative;
+			    display: inline-block;
+			}
+		}
+		&.loading{
+			    width: 100%;
+			    display: flex;
+			    position: relative;
+			    justify-content: center;
+			& *{
+			    height: 2px;
+			    width: 76%;
+			    position: absolute;
+			    align-self: center;
+			}
+
+			& .blue{
+				background-color: @blue-color;
+				animation-name: loading_blue;
+				animation-duration: 4s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease-in-out;
+			}
+			& .red{
+				background-color: @red-color;
+				animation-name: loading_red;
+				animation-duration: 0.2s;
+				animation-fill-mode: forwards;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease-in-out;
+			}
+			& .yellow{
+				background-color: @yellow-color;
+				animation-name: loading_yellow;
+				animation-duration: 0.2s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+			}
+			& .green{
+				background-color: @green-color;
+				animation-name: loading_green;
+				animation-duration: 0.2s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in-out;
+			}
 		}
 	}
 }

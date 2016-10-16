@@ -18,9 +18,6 @@ function loadLocalUploader(){
 	$.ajax({
 		url: localSection,
 		method: 'GET'
-		/*beforeSend: function(xhr){
-			xhr.setRequestHeader("X-CSRFToken", csrf_token);
-		}*/
 	}).done(function(html){
 		$('.upload.section').append(html); 
 		/* Una vez cargada la respuesta, se muestra en frontend con una animacion */
@@ -29,7 +26,16 @@ function loadLocalUploader(){
 }
 
 /* Funcion encargada de solicitar la seccion de subida por Google Drive */
-function loadDriveUploader(){}
+function loadDriveUploader(){
+	$.ajax({
+		url: driveSection,
+		method: 'GET'
+	}).done(function(html){
+		$('.upload.section').append(html); 
+		/* Una vez cargada la respuesta, se muestra en frontend con una animacion */
+		$('.upload.section').addClass('animation enter up');
+	});	
+}
 
 
 

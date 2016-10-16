@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^upload/extract/$', views.extract_content_and_keywords, name='extract_content'),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^upload/local/$', views.upload_local, name="local_upload"),
+    url(r'^upload/drive/$', views.upload_drive, name="drive_upload"),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
     url(r'^profile/update/picture/$', views.update_profile_picture, name='update_picture'),
     url(r'^profile/(?P<user_id>.*)/$', views.profile, name='profile'),

@@ -267,7 +267,10 @@ def upload(request):
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
 def upload_local(request):
-	return render(request, 'intranet/upload_sections/local.html',)
+	return render(request, 'intranet/upload_sections/local.html')
+
+def upload_drive(request):
+	return render(request, 'intranet/upload_sections/drive.html')
 
 def extract_content_and_keywords(request):
 	if request.user.is_authenticated():
