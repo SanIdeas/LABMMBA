@@ -10,26 +10,6 @@ import oauth2client, base64, cPickle, re
 
 # Create your models here.
 
-class CredentialsField(models.Field): 
-    
-    def __init__(self, *args, **kwargs): 
-        if 'null' not in kwargs: 
-            kwargs['null'] = True 
-        super(CredentialsField, self).__init__(*args, **kwargs) 
-    
-    def get_internal_type(self): 
-        return "TextField" 
- 
-    def to_python(self, value): 
-        if value is None: 
-            return None 
-        if isinstance(value, oauth2client.client.Credentials): 
-            return value 
-        return cPickle.loads(base64.b64decode(value)) 
-    def get_db_prep_value(self, value, connection, prepared=False): 
-        if value is None: 
-            return None 
-        return base64.b64encode(cPickle.dumps(value)) 
 
 class UserManager(BaseUserManager):
     def precreate_user(self, email, access_token,):

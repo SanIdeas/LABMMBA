@@ -14,6 +14,113 @@ Object.size = function(obj) {
     return size;
 };
 
+$(document).ready(function(){
+	// Se define una altura inicial para que la animacion se vea
+	$('.drive.plus').height($('.drive.plus').height());
+})
+
+$('.drive.form').submit(function(){
+	return false;
+});
+
+//Envia la solicitud con en enlace a Google Drive
+$('.link').change(function(){
+	if($(this).val() != "")
+		sendLink(link_analizer_link.replace('999', encodeURIComponent($(this).val())));
+	//window.open("{% url 'link_analizer' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
+});
+
+$('.drive.btn').click(function(){
+	$('.erasable').animate({
+		top: '-10px',
+		opacity: '0'
+	}, 200, function(){
+		$(this).remove();
+	});
+	userFiles();
+});
+
+
+function sendLink(url){
+	// Se activa la barra de carga
+	$('.loading').removeClass("hidden");
+	// Se desactiva el campo de texto hasta obtener una respuesta
+	$('.drive.link').prop("disabled", true);
+	$.ajax({
+		url: url,
+		method: 'GET'
+	}).done(function(response){
+		$('.loading').addClass("hidden");
+		$('.drive.link').prop("disabled", false);
+		console.log(response);
+		if(!response['error'])
+			$('.message').html("");
+		else
+			$('.message').html(response['message']);
+	});
+}
+
+function userFiles(folderId = ""){
+	// Se activa la barra de carga
+	$('.loading').removeClass("hidden");
+	// Se desactiva el campo de texto hasta obtener una respuesta
+	$('.drive.link').prop("disabled", true);
+	$.ajax({
+		url: user_files_link.replace('999', folderId),
+		method: 'GET'
+	}).done(function(response){
+		console.log(response);
+		if(!response['error']){
+			// Se llama a la funcion userFilesHandler para mostrar la lista al usuario
+			if (userFilesHandler(response['list'])){
+				$('.loading').addClass("hidden");
+				$('.drive.link').prop("disabled", false);
+				// Mientras el boton + siga vivo:
+				if($('.drive.btn').length){
+					// Se hace desaparecer el boton con una animacion
+					$('.drive.btn').animate({
+						opacity: '0'
+					}, 200, function(){
+						// Una vez terminada la animacion se elimina el boton y se expande el cuadro
+						$(this).remove();
+						$('.drive.plus').animate({
+							height: $('.drive.list').height().toString() + 'px'
+						}, 400);
+					});
+				}
+				else{
+					// Se expande el cuadro
+					$('.drive.plus').animate({
+						height: $('.drive.list').height().toString() + 'px'
+					}, 400);
+				}
+			}
+		}
+		else
+			$('.message').html(response['message']);
+	});
+}
+
+function userFilesHandler(files){
+	$('.drive.list').children().remove();
+	template = [
+		'<li onclick="$onclick">',
+			'<i class="fa fa-$icon" aria-hidden="true"></i>',
+			'<span>$name</span>',
+		'</li>'];
+	for(var i = 0; i < files.length; i++){
+		code = template.join('');
+		if(files[i]['isFolder']){
+			code = code.replace('$icon', 'folder').replace('$onclick', "userFiles('" + files[i]['id'] + "')");
+		}
+		else{
+			code = code.replace('$icon', 'file-pdf-o').replace('onclick="$onclick"', "");
+		}
+		code = code.replace('$name', files[i]['title']);
+		$('.drive.list').append(code);
+	}
+	return true;
+}
 
 /* Muestra en pantalla el formulario del documento */
 function addDocument(key_count, filename, object){
@@ -194,7 +301,6 @@ function addDocument(key_count, filename, object){
 
 	// Se activa crossref
 	enableCrossref("class");
-
 }
 
 function crossref_query(query, doc_id, open = true){
