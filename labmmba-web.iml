@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="django" name="Django">
+      <configuration>
+        <option name="rootFolder" value="$MODULE_DIR$/drive" />
+        <option name="settingsModule" value="settings.py" />
+        <option name="manageScript" value="manage.py" />
+        <option name="environment" value="&lt;map/&gt;" />
+        <option name="commandsToSkip" value="" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="TemplatesService">
+    <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/templates/login" />
+        <option value="$MODULE_DIR$/templates/shared" />
+        <option value="$MODULE_DIR$/templates/webpage" />
+        <option value="$MODULE_DIR$/templates/webpage/about" />
+        <option value="$MODULE_DIR$/templates/crossref" />
+        <option value="$MODULE_DIR$/templates/intranet" />
+        <option value="$MODULE_DIR$/templates/intranet/admin_setups" />
+        <option value="$MODULE_DIR$/templates/intranet/upload_sections" />
+        <option value="$MODULE_DIR$/templates/public_search" />
+      </list>
+    </option>
+  </component>
+</module>
