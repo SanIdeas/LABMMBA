@@ -23,7 +23,7 @@ function addElement(class_){
 
 // Show hace que solo se muestre. Por lo tanto si el cuadro ya es visible no desaparecera
 function toggleCrossref(index, show = false, setfocus = true){
-	var cr = $('.crossref[doc-index="$index"'.replace('$index', index));
+	var cr = $('.crossref[doc-index="$index"]'.replace('$index', index));
 	if(show){
 		cr.removeClass("hidden").addClass("display");
 		if(setfocus)

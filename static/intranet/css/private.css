@@ -13,6 +13,7 @@ html,body{overflow:hidden}
 @media screen and (max-width: 700px){.sidebar{display:none}}
 .intranet.row{margin-bottom:0 !important}
 .intranet.body{height:100%;width:100%;background-color:#f1f2f4;overflow-y:auto;position:relative;-webkit-overflow-scrolling:touch}.intranet.body .title{padding:6.5px 15px;text-align:center;background-color:#f1f2f4;margin-bottom:20px;border-bottom:1px solid #d2d2d2;background-color:#f1f2f4}.intranet.body .title h3{margin:0;font-weight:normal}
+.intranet.body .title.nomargin{margin:0}
 @media screen and (max-width: 700px){.intranet.body{padding:0}}
 .intranet.left{float:left}
 .intranet.right{float:right}
@@ -69,7 +70,7 @@ form .c12{padding:0 20px !important}
 .document.modal h3{margin-bottom:0;text-align:center}
 .document.modal h5{font-weight:normal;margin:0;text-align:center}
 .document.modal div{padding:18px 0 0 0}
-@keyframes exit_up{0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-10px)}}@keyframes enter_up{0%{visibility:hidden;opacity:0;transform:translateY(10px)} 100%{visibility:visible;opacity:1;transform:translateY(0)}}@keyframes enter_down{0%{opacity:0;transform:translateY(-10px)} 100%{opacity:1;transform:translateY(0)}}@keyframes loading_blue{0%{width:0;z-index:99} 25%{width:100%} 50%{width:100%} 100%{width:100%}}@keyframes loading_red{0%{width:0} 25%{width:0;z-index:99} 50%{width:100%} 100%{width:100%}}.upload.selector{position:absolute}
+@keyframes exit_up{0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-10px)}}@keyframes enter_up{0%{visibility:hidden;opacity:0;transform:translateY(10px)} 100%{visibility:visible;opacity:1;transform:translateY(0)}}@keyframes enter_down{0%{opacity:0;transform:translateY(-10px)} 100%{opacity:1;transform:translateY(0)}}@keyframes loading_red{0%{width:0} 14%{width:100%} 28%{width:100%} 42%{width:100%} 56%{width:100%} 70%{width:0} 84%{width:0} 98%{width:0} 100%{width:0}}@keyframes loading_green{0%{width:0} 14%{width:0} 28%{width:100%} 42%{width:100%} 56%{width:100%} 70%{width:100%} 84%{width:0} 98%{width:0} 100%{width:0}}@keyframes loading_yellow{0%{width:0} 14%{width:0} 28%{width:0} 42%{width:100%} 56%{width:100%} 70%{width:100%} 84%{width:100%} 98%{width:0} 100%{width:0}}@keyframes loading_blue{0%{width:0} 14%{width:0} 28%{width:0} 42%{width:0} 56%{width:100%} 70%{width:100%} 84%{width:100%} 98%{width:100%} 100%{width:0}}@keyframes loading_background{0%{background-color:transparent} 25%{background-color:transparent} 50%{background-color:transparent} 75%{background-color:transparent} 100%{background-color:#006e9c}}.upload.selector{position:absolute}
 .upload.message{width:100%;position:relative;display:block;text-align:center;color:#e0424e;padding:5px}
 .upload.option{height:100px;display:flex;justify-content:flex-end;cursor:pointer}.upload.option i{font-size:50pt;align-self:center}
 .upload.option h5{margin-right:10px;font-size:15pt;align-self:center}
@@ -77,7 +78,7 @@ form .c12{padding:0 20px !important}
 @media screen and (max-width: 700px){.upload.option{justify-content:center}.upload.option img{margin:auto}}
 .upload.empty{position:absolute;width:100%}
 .upload.section{width:100%;position:absolute}
-.upload.title h1{margin-top:0}
+.upload.title h1{margin:0}
 .upload.title h4{font-weight:normal}
 @media screen and (max-width: 700px){.upload.title h1{font-size:16pt} .upload.title h4{font-size:6pt}}
 .upload.button{background:none;padding:10px;border:none}.upload.button.add{background-color:#0080b6;color:#fff}.upload.button.add:hover{background-color:#005c83}
@@ -103,15 +104,19 @@ form .c12{padding:0 20px !important}
 .upload.animation.enter.down{animation-name:enter_down;animation-duration:.2s;animation-fill-mode:forwards;animation-timing-function:ease-in-out}
 .upload.empty>img{width:154px}
 .upload.empty>h3{text-align:center;font-weight:normal;font-size:16pt;margin:0;color:#b4b5b4}
-.upload.drive.link{text-align:center;margin-bottom:20px}
-.upload.drive.plus{text-align:center}
+.upload.drive.form .link{text-align:center}
+.upload.drive.form>.message{margin:0;text-align:center;min-height:20px;font-weight:normal;color:#e0424e;background-color:#f8f8f8}
+.upload.drive.list{list-style:none;text-align:left;margin:0}.upload.drive.list li{margin:0;padding:10px;border-bottom:1px solid #eee;background-color:transparent;transition:background-color .3s ease}.upload.drive.list li:hover{background-color:#eee}
+.upload.drive.plus{text-align:center;cursor:pointer;padding:5px;overflow:hidden}.upload.drive.plus>button{background-color:transparent;border:none;color:#777}
 .upload.drive.logo{font-family:'Product Sans',Arial,sans-serif}.upload.drive.logo .e{transform:rotate(-16deg);position:relative;display:inline-block}
-.upload.drive.loading{width:100%;display:flex;position:relative;justify-content:center}.upload.drive.loading *{height:2px;width:76%;position:absolute;align-self:center}
-.upload.drive.loading .blue{background-color:#006e9c;animation-name:loading_blue;animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
-.upload.drive.loading .red{background-color:#e0424e;animation-name:loading_red;animation-duration:.2s;animation-fill-mode:forwards;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
-.upload.drive.loading .yellow{background-color:#f2ae47;animation-name:loading_yellow;animation-duration:.2s;animation-fill-mode:forwards;animation-timing-function:ease-in-out}
-.upload.drive.loading .green{background-color:#009065;animation-name:loading_green;animation-duration:.2s;animation-fill-mode:forwards;animation-timing-function:ease-in-out}
+.upload.drive.loading{height:5px}.upload.drive.loading.hidden>div{display:none}
+.upload.drive.loading>div{width:100%;height:3px;display:flex;justify-content:flex-end;position:relative;animation-name:loading_background;animation-duration:4s;animation-fill-mode:forwards;animation-timing-function:cubic-bezier(.4, 0, .2, 1)}.upload.drive.loading>div *{height:100%;width:76%}
+.upload.drive.loading>div .blue{background-color:#006e9c;animation-name:loading_blue;animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(.4, 0, .2, 1)}
+.upload.drive.loading>div .red{background-color:#e0424e;animation-name:loading_red;animation-duration:4s;animation-fill-mode:forwards;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(.4, 0, .2, 1)}
+.upload.drive.loading>div .yellow{background-color:#f2ae47;animation-name:loading_yellow;animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(.4, 0, .2, 1)}
+.upload.drive.loading>div .green{background-color:#009065;animation-name:loading_green;animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(.4, 0, .2, 1)}
 .field{transtion:background-color .2s ease}.field.required{background-color:#fdf1f2}
+.erasable{position:relative}
 #success-icon>h4{width:100%;text-align:center;font-weight:normal;font-size:14pt}
 .checkmark__circle{stroke-dasharray:166;stroke-dashoffset:166;stroke-width:2;stroke-miterlimit:10;stroke:#f2ae47;fill:none;animation:stroke .6s cubic-bezier(.65, 0, .45, 1) forwards}
 .checkmark{width:56px;height:56px;border-radius:50%;display:block;stroke-width:2;stroke:#fff;stroke-miterlimit:10;margin:0 auto;margin-top:8%;box-shadow:inset 0 0 0 #f2ae47;animation:fill .4s ease-in-out .4s forwards,scale .3s ease-in-out .9s both}

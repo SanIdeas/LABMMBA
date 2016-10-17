@@ -102,12 +102,14 @@
 		</div>
         <!-- Fin de la caja -->
         <!-- Nueva caja -->
+		{% if request.user == document.owner %}
 		<div class="intranet box">
 			<div class="document controls">
 				<a href="{% url 'intranet:edit_document' document.author document.title %}">{% trans "Editar" %}</a>
 				<a class="modal" href="#confirmModal">{% trans "Eliminar" %}</a>
 			</div>
 		</div>
+		{% endif %}
         <!-- Fin de la caja -->
 	</div>
 </div>
