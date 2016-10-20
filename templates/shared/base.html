@@ -53,8 +53,12 @@
 									<li {% if current_view == "news" %} class="current" {% endif %}><a href="#">Noticias</a></li>
 									<li {% if current_view == "about" %} class="current" {% endif %}><a href="{% url 'webpage:about' %}">{% trans "Sobre el laboratorio" %}</a></li>
 									{% if request.user.is_authenticated == True %}
-										<li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
-									{% else %}
+                                        {% if request.user.is_admin == True %}
+                                            <li {% if current_view == "administration" %} class="current" {% endif %}><a href="{% url 'admin:home' %}">{% trans "Administración" %}</a></li>
+                                        {% else %}
+                                            <li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                                        {% endif %}
+                                    {% else %}
 										<li {% if current_view == "publications" %} class="current" {% endif %}><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
 									{% endif %}
 								</ul>
@@ -110,7 +114,11 @@
 						<li {% if current_view == "news" %} class="current" {% endif %}><a href="#">Noticias</a></li>
 						<li {% if current_view == "about" %} class="current" {% endif %}><a href="{% url 'webpage:about' %}">{% trans "Sobre el laboratorio" %}</a></li>
 						{% if request.user.is_authenticated == True %}
-							<li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                            {% if request.user.is_admin == True %}
+                                <li {% if current_view == "administration" %} class="current" {% endif %}><a href="{% url 'admin:home' %}">{% trans "Administración" %}</a></li>
+                            {% else %}
+                                <li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                            {% endif %}
 						{% else %}
 							<li {% if current_view == "publications" %} class="current" {% endif %}><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
 						{% endif %}
@@ -128,7 +136,11 @@
 					<li {% if current_view == "news" %} class="current" {% endif %}><a href="#">Noticias</a></li>
 					<li {% if current_view == "about" %} class="current" {% endif %}><a href="{% url 'webpage:about' %}">{% trans "Sobre el laboratorio" %}</a></li>
 					{% if request.user.is_authenticated == True %}
-						<li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                        {% if request.user.is_admin == True %}
+                            <li {% if current_view == "administration" %} class="current" {% endif %}><a href="{% url 'admin:home' %}">{% trans "Administración" %}</a></li>
+                        {% else %}
+                            <li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                        {% endif %}
 					{% else %}
 						<li {% if current_view == "publications" %} class="current" {% endif %}><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
 					{% endif %}

@@ -1,6 +1,6 @@
-{% extends 'intranet/shared.html' %}
+{% extends 'admin/shared.html' %}
 {% load staticfiles %}
-{% block css %} <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/admin.css' %}"> {% endblock %}
+{% block css %} <link rel="stylesheet" type="text/css" href="{% static 'admin/css/admin.css' %}"> {% endblock %}
 {% block content %}
 {% load i18n %}
 <div id="adm-selectors-wpr">
@@ -52,9 +52,9 @@
 	</div>
 </div>
 
-<script src="{% static 'intranet/js/admin_events.js' %}"></script>
+<script src="{% static 'admin/js/admin_events.js' %}"></script>
 <script>
-	var setup_link="{% url 'intranet:admin_setup' 999 %}";
+	var setup_link="{% url 'admin:setup' 999 %}";
 	var csrf_token = '{{csrf_token}}';
 </script>
 {% endblock %}

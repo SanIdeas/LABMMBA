@@ -2,7 +2,358 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="727889f7-d9cd-42ac-a1be-2697eaba568d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labmmba/settings.py" afterPath="$PROJECT_DIR$/labmmba/settings.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/000-default.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/405367-laboratory-2880x1800.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/Characterization of copper-resistant bacteria and bacterial communities from copper-polluted agricultural soils of central Chile.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/IMG_1567.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/L2a- Iterative  Incremental Development - A Brief History [Larman,Basili IEEE.Computer 2003] (10pp).pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/L4a- What Do We Know about Software Development in Startups¿ [Giardino+ IEE.SW 2014].pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/Novel s-triazine-degrading bacteria isolated from agricultural soils of central Chile for herbicide bioremediation.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/The Homogentisate and Homoprotocatechuate Central Pathways Are Involved in 3- and 4-Hydroxyphenylacetate Degradation by Burkholderia xenovorans LB400.PDF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Labmmba icon.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/gradiente.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba - copia.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/laboratorio.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/logo Labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/logo Labmmba.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/client_secret.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/client_secret_old.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fixtures/initial_data.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/forms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/locale/en/LC_MESSAGES/django.mo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/locale/en/LC_MESSAGES/django.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/0002_auto_20161012_2058.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/templatetags/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/templatetags/tags.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba-web.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/settings.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/wsgi.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/djangojs.mo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/djangojs.po" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/forms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0002_auto_20161013_1827.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0003_auto_20161015_1946.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/chrome_driver/chromedriver.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/email_template/invitation_template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/enviar_correo_de_invitacion.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/admin.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/document_information.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/documents.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/home [Diseño antiguo].css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/home.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/plus-font.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/private.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/profile.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/shared.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/upload.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/upload[Diseño antiguo].css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/users - copia.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/users.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/LABMMBA-filling.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/LABMMBA-filling.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/background-picture.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/background-picture2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/directorio_vacio.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/google-drive-logo-lockup.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/pdf_icon.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/ring.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/title_bk_1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/title_bk_2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/title_bk_3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/utfsm_gray.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/admin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/admin_events.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/animations.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/documents_events.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/dragdealer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/drive_upload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/home_init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/local_upload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/profile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/shared.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/shared_init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/upload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/upload_events.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/Chart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/autosize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/pdf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/pdf.worker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/animated.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/bordered-pulled.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/core.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/fixed-width.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/font-awesome.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/icons.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/larger.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/list.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/path.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/rotated-flipped.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/screen-reader.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/stacked.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/variables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/document.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/documents.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/home.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/status_animations.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/upload.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/shared/constants.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/login.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/register.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/signup.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/profile_pictures/Burton.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/css/public.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/drive_dark-med.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/drive_white-med.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/gradiente.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/header-usm.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home_original.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/icon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/lOGOV2-Labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/lOGOV2-Labmmba2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/lOGOV2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/labmmba1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/logo120x120.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/logo_labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/mendeley.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/animated.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/bordered-pulled.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/core.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/fixed-width.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/font-awesome.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/icons.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/larger.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/list.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/path.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/rotated-flipped.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/screen-reader.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/stacked.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/variables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/body.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/footer.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/header.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/login.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/main.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/signup.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/shared/constants.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/css/fancybox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/css/royalslider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/access.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/category.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/featured-news-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/news-single.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/news-thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/color-bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_loading@2x.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_overlay.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_sprite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_sprite@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-estudia-en-valparaiso.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-g9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-mecesup.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-universia.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-universidad-acreditada.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/grab.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/grabbing.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/header-usm-labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/header-usm.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/headers/header.w1000.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/headers/header.w1600.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/headers/header.w700.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon-eventos-evento.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon-eventos-evento@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/apple-touch-icon-114x114-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/apple-touch-icon-57x57-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/apple-touch-icon-72x72-precomposed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/ilogica.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/ilogica@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/mobile-header-usm-labmmba.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/mobile-header-usm-labmmba.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/mobile-header-usm.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/pdf-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/pdf-icon@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/preloader.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/rs-default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-background@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-dark-background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-dark-background@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/thumbnail_1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/thumbnail_2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/thumbnail_3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/fancybox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/functions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/html5shiv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/royalslider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/crossref/template.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/Characterization_of_copper-resistant_bacteria_and_bacterial_communities_from_copper-polluted_agricultural_soils_of_central_Chile.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/U1I12.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/admin.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/admin_setups/users.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/document_information.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/documents.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/edit_document_information.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/home.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/profile.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/shared.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/upload.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/upload_sections/drive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/upload_sections/local.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/users.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/login/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/login/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/login/register.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/public_search/search.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/shared/base.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/about.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/about/history.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/about/us.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/home.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/members.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/research.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/L2a-_Iterative__Incremental_Development_-_A_Brief_History_LarmanBasili_IEEE.Computer_2003_10pp.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I10.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I10.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I11.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I11.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I12.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I12.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I13.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I13.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I14.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I14.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I15.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I15.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I16.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I16.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I17.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I17.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I18.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I18.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I3.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I4.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I5.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I6.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I6.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I7.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I7.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I8.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I8.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I9.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I9.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/views.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="labmmba-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,35 +369,89 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="labmmba-web" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labmmba/urls.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/intranet/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/labmmba/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="151" column="39" selection-start-line="151" selection-start-column="39" selection-end-line="151" selection-end-column="39" />
+            <state relative-caret-position="195">
+              <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
               <folding>
-                <element signature="e#308#317#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="92" selection-start-line="7" selection-start-column="92" selection-end-line="7" selection-end-column="92" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="607">
+              <caret line="109" column="99" selection-start-line="109" selection-start-column="99" selection-end-line="109" selection-end-column="99" />
+              <folding>
+                <element signature="e#24#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/users.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users_ajax.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="93" selection-start-line="29" selection-start-column="93" selection-end-line="29" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,10 +464,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/login/models.py" />
         <option value="$PROJECT_DIR$/fixtures/initial_data.json" />
         <option value="$PROJECT_DIR$/intranet/fixtures/initial_data.json" />
+        <option value="$PROJECT_DIR$/labmmba/urls.py" />
+        <option value="$PROJECT_DIR$/templates/admin/admin.html" />
+        <option value="$PROJECT_DIR$/static/admin/js/admin_events.js" />
+        <option value="$PROJECT_DIR$/login/models.py" />
+        <option value="$PROJECT_DIR$/templates/admin/users.html" />
+        <option value="$PROJECT_DIR$/templates/shared/base.html" />
+        <option value="$PROJECT_DIR$/intranet/views.py" />
+        <option value="$PROJECT_DIR$/admin/urls.py" />
+        <option value="$PROJECT_DIR$/templates/admin/profile.html" />
+        <option value="$PROJECT_DIR$/templates/admin/shared.html" />
         <option value="$PROJECT_DIR$/labmmba/settings.py" />
+        <option value="$PROJECT_DIR$/admin/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/users_ajax.html" />
+        <option value="$PROJECT_DIR$/static/admin/css/admin.css" />
+        <option value="$PROJECT_DIR$/static/admin/js/admin.js" />
+        <option value="$PROJECT_DIR$/intranet/urls.py" />
       </list>
     </option>
   </component>
@@ -75,6 +494,25 @@
   <component name="ProjectFrameBounds">
     <option name="width" value="1440" />
     <option name="height" value="900" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyInconsistentIndentationInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -102,6 +540,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -110,6 +549,38 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="labmmba-web">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="labmmba-web">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="templates">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="labmmba-web">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="templates">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="admin">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -137,7 +608,37 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="login">
+            <PATH_ELEMENT USER_OBJECT="static">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="admin">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="labmmba-web">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="static">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="admin">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="css">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -165,7 +666,21 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="intranet">
+            <PATH_ELEMENT USER_OBJECT="admin">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="labmmba-web">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT=".idea">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -175,7 +690,6 @@
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,8 +697,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/admin" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.home.html">
+    <configuration default="false" name="home.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/labmmba-web/templates/intranet/home.html">
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -466,6 +991,7 @@
       <setting name="cmdLine" value="run-app" />
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
+      <setting name="depsClasspath" value="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
@@ -748,6 +1274,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -873,6 +1405,14 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.home.html" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.home.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -885,41 +1425,68 @@
       <option name="presentableId" value="Default" />
       <updated>1476559877296</updated>
       <workItem from="1476559878658" duration="4096000" />
+      <workItem from="1476653147225" duration="35389000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4096000" />
+    <option name="totallyTimeSpent" value="39485000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28554216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28554216" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -937,6 +1504,26 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/labmmba/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#65#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labmmba/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#308#317#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -961,29 +1548,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/models - Implementacion Mendeley.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1095">
-          <caret line="125" column="5" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/login/models - Implementacion Mendeley.py" />
     <entry file="file://$PROJECT_DIR$/fixtures/initial_data.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1007,40 +1576,305 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labmmba/fixtures/initial_data.json" />
+    <entry file="file://$PROJECT_DIR$/intranet/fixtures/initial_data.json" />
+    <entry file="file://$PROJECT_DIR$/webpage/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drive/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3600">
+          <caret line="240" column="16" selection-start-line="240" selection-start-column="16" selection-end-line="240" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#35#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labmmba/fixtures/initial_data.json">
+    <entry file="file://$PROJECT_DIR$/intranet/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/intranet/fixtures/initial_data.json">
+    <entry file="file://$PROJECT_DIR$/intranet/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/intranet/admin_setups/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/intranet/shared.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/intranet/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/intranet/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/js/admin_events.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-197">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/usm_theme/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4473">
+          <caret line="319" column="60" selection-start-line="319" selection-start-column="57" selection-end-line="319" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/enviar_correo_de_invitacion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="77" column="11" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-795">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/webpage/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/shared/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="117" column="128" selection-start-line="117" selection-start-column="128" selection-end-line="117" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/labmmba/urls.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intranet/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="187" column="8" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="92" selection-start-line="7" selection-start-column="92" selection-end-line="7" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/home.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/intranet/css/shared.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/shared/css/public.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="327" column="9" selection-start-line="327" selection-start-column="1" selection-end-line="327" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/shared.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="109" column="99" selection-start-line="109" selection-start-column="99" selection-end-line="109" selection-end-column="99" />
+          <folding>
+            <element signature="e#24#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="93" selection-start-line="29" selection-start-column="93" selection-end-line="29" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/labmmba/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="151" column="39" selection-start-line="151" selection-start-column="39" selection-end-line="151" selection-end-column="39" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intranet/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
           <folding>
-            <element signature="e#308#317#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -371,7 +371,7 @@
 	right: 100px;
 }
 
-.setup-delete-box{
+.setup-delete-box, .setup-delete-invitation-box{
 	width: 100%;
 	height: 100%;
 	background-color: #e0424e;
@@ -401,7 +401,7 @@
     cursor: pointer;
 }
 
-.setup-accept-box{
+.setup-forward-box{
 	width: 100%;
 	height: 100%;
 	background-color: #009065;
@@ -537,6 +537,23 @@
 	opacity: 0;
 	visibility: hidden;
 	transition: 0.3s ease;
+}
+
+#users-setup{
+	padding: 20px;
+}
+
+form .text{
+	width: 78%;
+}
+
+form .submit{
+	width: 20%;
+	padding: 10px;
+}
+
+div .row{
+	margin: 0;
 }
 
 @media screen and (max-width:1536px){
