@@ -155,7 +155,7 @@ FIXTURE_DIRS = [
 AUTH_USER_MODEL = 'login.User'
 
 ############# UBICACION DEL PROYECTO #############
-MEDIA_ROOT = 'C:/Users/herna/Desktop/git/ISW/'
+MEDIA_ROOT = 'C:/Users/Ricar/ISW/'
 ##################################################
 
 #Originalmente django serializa en JSON desde Django 1.6+

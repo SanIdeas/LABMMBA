@@ -17,7 +17,7 @@ from django.utils.translation import ugettext as _ # Para traducir un string se 
 def home(request):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
-			return HttpResponse("Eres administrador :D")
+			return render(request, 'admin/home.html')
 		elif not request.user.is_admin:
 			return HttpResponseRedirect(reverse('webpage:home'))
 	else:
