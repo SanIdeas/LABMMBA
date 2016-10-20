@@ -2,358 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="727889f7-d9cd-42ac-a1be-2697eaba568d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/000-default.conf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/405367-laboratory-2880x1800.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/Characterization of copper-resistant bacteria and bacterial communities from copper-polluted agricultural soils of central Chile.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/IMG_1567.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/L2a- Iterative  Incremental Development - A Brief History [Larman,Basili IEEE.Computer 2003] (10pp).pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/L4a- What Do We Know about Software Development in Startups¿ [Giardino+ IEE.SW 2014].pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/Novel s-triazine-degrading bacteria isolated from agricultural soils of central Chile for herbicide bioremediation.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Documentos/The Homogentisate and Homoprotocatechuate Central Pathways Are Involved in 3- and 4-Hydroxyphenylacetate Degradation by Burkholderia xenovorans LB400.PDF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/Labmmba icon.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/gradiente.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba - copia.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/lOGOV2-Labmmba.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/laboratorio.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/logo Labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archivos de prueba - LABMMBA/logo Labmmba.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/apps.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/login/migrations/0002_auto_20161019_2340.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/login/migrations/0004_auto_20161019_2348.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/home.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/profile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/shared.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/users.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/users_ajax.html" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/crossref/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/client_secret.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/client_secret_old.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/drive/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fixtures/initial_data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/forms.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/locale/en/LC_MESSAGES/django.mo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/locale/en/LC_MESSAGES/django.po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/0002_auto_20161012_2058.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/templatetags/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/templatetags/tags.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba-web.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/settings.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/labmmba/wsgi.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/djangojs.mo" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/djangojs.po" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/forms.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0002_auto_20161013_1827.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0003_auto_20161015_1946.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public_search/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/chrome_driver/chromedriver.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/email_template/invitation_template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/enviar_correo_de_invitacion.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/admin.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/document_information.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/documents.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/fonts/icomoon.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/home [Diseño antiguo].css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/home.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/plus-font.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/private.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/profile.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/shared.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/upload.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/upload[Diseño antiguo].css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/users - copia.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/css/users.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/fonts/fontawesome-webfont.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/LABMMBA-filling.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/LABMMBA-filling.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/background-picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/background-picture2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/default.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/directorio_vacio.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/google-drive-logo-lockup.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/pdf_icon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/ring.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/title_bk_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/title_bk_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/title_bk_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/images/utfsm_gray.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/admin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/admin_events.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/animations.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/documents_events.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/dragdealer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/drive_upload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/home_init.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/local_upload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/profile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/shared.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/shared_init.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/upload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/upload_events.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/Chart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/autosize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/pdf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/js/vendor/pdf.worker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/animated.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/bordered-pulled.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/core.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/fixed-width.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/font-awesome.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/icons.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/larger.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/list.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/mixins.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/path.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/rotated-flipped.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/screen-reader.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/stacked.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/font-awesome/variables.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/document.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/documents.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/home.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/status_animations.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/private/upload.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/intranet/less/shared/constants.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/login.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/register.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/css/signup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/login/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/profile_pictures/Burton.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/css/public.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/fonts/fontawesome-webfont.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/drive_dark-med.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/drive_white-med.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/gradiente.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/header-usm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/home_original.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/icon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/lOGOV2-Labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/lOGOV2-Labmmba2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/lOGOV2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/labmmba1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/logo120x120.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/logo_labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/images/mendeley.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/animated.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/bordered-pulled.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/core.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/fixed-width.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/font-awesome.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/icons.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/larger.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/list.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/mixins.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/path.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/rotated-flipped.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/screen-reader.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/stacked.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/font-awesome/variables.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/body.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/footer.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/header.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/login.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/main.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/public/signup.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/shared/less/shared/constants.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/css/fancybox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/css/royalslider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/access.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/category.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/featured-news-thumb.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/news-single.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/demo/news-thumb.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/color-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_loading@2x.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_overlay.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_sprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/fancybox_sprite@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-estudia-en-valparaiso.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-g9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-mecesup.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-universia.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/footer-universidad-acreditada.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/grab.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/grabbing.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/header-usm-labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/header-usm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/headers/header.w1000.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/headers/header.w1600.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/headers/header.w700.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon-eventos-evento.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon-eventos-evento@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/apple-touch-icon-114x114-precomposed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/apple-touch-icon-57x57-precomposed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/apple-touch-icon-72x72-precomposed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/icon/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/ilogica.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/ilogica@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/mobile-header-usm-labmmba.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/mobile-header-usm-labmmba.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/mobile-header-usm.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/pdf-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/pdf-icon@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/preloader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/rs-default.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-background@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-dark-background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/slider-link-dark-background@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/thumbnail_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/thumbnail_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/img/thumbnail_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/fancybox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/functions.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/html5shiv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/usm_theme/js/royalslider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/crossref/template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/Characterization_of_copper-resistant_bacteria_and_bacterial_communities_from_copper-polluted_agricultural_soils_of_central_Chile.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/U1I12.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/admin.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/admin_setups/users.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/document_information.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/documents.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/edit_document_information.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/home.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/profile.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/shared.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/upload.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/upload_sections/drive.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/upload_sections/local.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/intranet/users.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/login/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/login/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/login/register.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/public_search/search.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/shared/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/about.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/about/history.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/about/us.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/home.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/webpage/research.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/L2a-_Iterative__Incremental_Development_-_A_Brief_History_LarmanBasili_IEEE.Computer_2003_10pp.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I10.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I10.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I11.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I11.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I12.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I12.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I13.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I13.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I14.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I14.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I15.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I15.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I16.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I16.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I17.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I17.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I18.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I18.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I3.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I4.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I5.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I5.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I6.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I6.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I7.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I7.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I8.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I8.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I9.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/documents/U2I9.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/views.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/intranet/migrations/0002_auto_20161012_2058.py" afterPath="$PROJECT_DIR$/login/migrations/0003_auto_20161019_2344.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/static/intranet/css/admin.css" afterPath="$PROJECT_DIR$/static/admin/css/admin.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/static/intranet/js/admin.js" afterPath="$PROJECT_DIR$/static/admin/js/admin.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/static/intranet/js/admin_events.js" afterPath="$PROJECT_DIR$/static/admin/js/admin_events.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/intranet/admin.html" afterPath="$PROJECT_DIR$/templates/admin/admin.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/admin.py" afterPath="$PROJECT_DIR$/admin/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/apps.py" afterPath="$PROJECT_DIR$/admin/apps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/models.py" afterPath="$PROJECT_DIR$/admin/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/tests.py" afterPath="$PROJECT_DIR$/admin/tests.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="$PROJECT_DIR$/admin/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="$PROJECT_DIR$/admin/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intranet/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/intranet/migrations/0001_initial.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intranet/urls.py" afterPath="$PROJECT_DIR$/intranet/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intranet/views.py" afterPath="$PROJECT_DIR$/intranet/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labmmba/settings.py" afterPath="$PROJECT_DIR$/labmmba/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/login/migrations/0001_initial.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/models.py" afterPath="$PROJECT_DIR$/login/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/shared/base.html" afterPath="$PROJECT_DIR$/templates/shared/base.html" />
     </list>
     <ignored path="labmmba-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1425,16 +1107,16 @@
       <option name="presentableId" value="Default" />
       <updated>1476559877296</updated>
       <workItem from="1476559878658" duration="4096000" />
-      <workItem from="1476653147225" duration="35389000" />
+      <workItem from="1476653147225" duration="35407000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39485000" />
+    <option name="totallyTimeSpent" value="39503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1444,7 +1126,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28554216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28554216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
