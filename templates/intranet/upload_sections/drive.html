@@ -5,28 +5,38 @@
 <div class="intranet row upload title">
 	<div class="c12">
 		<h1 class="upload drive logo">Googl<span class="e">e</span> Drive</h1>
-		<h4>Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
+		<h4 class="erasable">Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
 	</div>
 </div>
 <div class="intranet row">
-	<form>
-		<input class="text upload drive link" type="text" name="link" placeholder="Introduce en enlace a Google Drive">
-	</form>
+<div class="upload drive loading hidden">
+	<div>
+		<div class="red"></div>
+		<div class="green"></div>
+		<div class="yellow"></div>
+		<div class="blue"></div>
+	</div>
 </div>
-<div class="upload drive loading">
-	<div class="blue"></div>
-	<div class="red"></div>
-	<!--<div class="green"></div>
-	<div class="yellow"></div>-->
+	<form class="upload drive form erasable">
+		<input class="text link" type="text" name="link" placeholder="Introduce en enlace a Google Drive">
+		<h5 class="message"></h5>
+	</form>
 </div>
 
 <div class="intranet row">
-	O selecciona un documento desde tu cuenta:
+	<span class="erasable">O selecciona un documento desde tu cuenta:</span>
 	<div class="intranet box upload drive plus">
-		<span class="fa-stack fa-lg">
-			<i class="fa fa-circle-thin fa-stack-2x"></i>
-			<i class="fa fa-plus" aria-hidden="true"></i>
-		</span>	
+		<button class="upload drive btn">
+			<span class="fa-stack fa-lg">
+				<i class="fa fa-circle-thin fa-stack-2x"></i>
+				<i class="fa fa-plus" aria-hidden="true"></i>
+			</span>	
+		</button>
+		<div class="upload drive user">
+			<ul class="upload drive list">
+				
+			</ul>
+		</div>
 	</div>	
 </div>
 

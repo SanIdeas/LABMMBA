@@ -37,15 +37,6 @@ function loadDriveUploader(){
 	});	
 }
 
-
-
-
-//Envia la solicitud con en enlace a Google Drive
-$('#drive-link').change(function(){
-	initial_drive_request(link_analizer_link.replace('999', encodeURIComponent($(this).val())));
-	//window.open("{% url 'link_analizer' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
-});
-
 /*$('.type-select').change(function(){
 	if($(this).val() == "0")
 		$('.frame-header[doc-index="' + $(this).attr('doc-index') + '"]').addClass('public-type').removeClass('private-type');
