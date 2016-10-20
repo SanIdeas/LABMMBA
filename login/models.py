@@ -101,7 +101,7 @@ class User(AbstractBaseUser):
     doc_count = models.IntegerField(default=0)
     drive_credentials = models.BinaryField(null=True)
     access_token = models.CharField(max_length=128, null=True)
-    is_registered = models.BinaryField(null=False)
+    is_registered = models.BooleanField(default=False)
 
 
     objects = UserManager()
@@ -155,6 +155,7 @@ class User(AbstractBaseUser):
         self.career = career
         self.set_password(password)
         self.is_registered = True
+        self.is_active = True
         self.save()
         return True
 

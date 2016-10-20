@@ -33,7 +33,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'dev.sanideas@gmail.com'
-EMAIL_HOST_PASSWORD = 'Botaldo2015'
+EMAIL_HOST_PASSWORD = 'Bo.//tal/do.2015'
 EMAIL_PORT = 587
 
 # DEFAULT_CHARSET
@@ -94,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'labmmba',
-        'USER': 'root',
-        'PASSWORD': 'samantha',
+        'USER': 'labmmba',
+        'PASSWORD': 'labmmba',
         'HOST': 'localhost',
     }
 }
@@ -155,7 +155,7 @@ FIXTURE_DIRS = [
 AUTH_USER_MODEL = 'login.User'
 
 ############# UBICACION DEL PROYECTO #############
-MEDIA_ROOT = 'C:/Users/herna/Desktop/git/ISW/'
+MEDIA_ROOT = '/Users/Alex/Documents/django/labmmba-web'
 ##################################################
 
 #Originalmente django serializa en JSON desde Django 1.6+

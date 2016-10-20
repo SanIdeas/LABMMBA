@@ -1,0 +1,18 @@
+{% extends 'admin/shared.html' %}
+
+{% block content %}
+{% load i18n %}
+{% load staticfiles %}
+    <div id="users-setup"></div>
+
+<script>var reload = "{% url 'admin:users'%}"</script>
+<script>var activate = "{% url 'admin:activate_user' 999 %}"</script>
+<script>var remove = "{% url 'admin:delete_user' 999 %}"</script>
+<script>var block = "{% url 'admin:block_user' 999 %}"</script>
+<script>var unblock = "{% url 'admin:unblock_user' 999 %}"</script>
+<script>var invitation = "{% url 'admin:invitation' %}"</script>
+<script>
+    var csrf_token = '{{csrf_token}}';
+    reload_setup();
+</script>
+{% endblock %}

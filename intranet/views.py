@@ -95,7 +95,7 @@ def filters_selected(list, request, name):
 	return list
 
 def home(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		start_date = (date.today() - timedelta(5*365/12))
 		n = start_date.month#Initial Month
 		categories = Document.objects.values('category').annotate(count=Count('category'))
@@ -128,11 +128,13 @@ def home(request):
 		names_categories = '"' + '","'.join(names) + '"'
 		count_categories = ','.join(count)
 		return render(request, 'intranet/home.html', {'names_categories': names_categories, 'count_categories': count_categories, 'number_categories': len(names), 'names_months':names_months, 'count_months': count_months })
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 def documents(request, search=None):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		kwargs = get_filters(request)
 		all_docs = Document.objects.filter(**kwargs)
 		if search is None: #Si no es una busqueda
@@ -171,6 +173,8 @@ def documents(request, search=None):
 			parameters['owners'] = owners
 			parameters['search'] = search
 		return render(request, 'intranet/documents.html',parameters)
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
@@ -184,17 +188,17 @@ def profile(request, user_id):
 			documents = Document.objects.filter(owner=user_id)
 			return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
 		except:
-			return HttpResponseRedirect(reverse('intranet:users'))			
+			return HttpResponseRedirect(reverse('intranet:users'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 def update_profile_picture(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		User.objects.get(id=request.user.id).update_picture(request.FILES['picture'])
 		return HttpResponseRedirect(reverse('intranet:profile', args={request.user.id}))
 
 def upload(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		#Document.objects.all().delete()
 		#User.objects.all().delete()
 		if request.method == "GET":
@@ -263,6 +267,8 @@ def upload(request):
 					else:
 						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error':str(form.errors)}})
 				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'real_ids': real_ids})
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
@@ -273,7 +279,7 @@ def upload_drive(request):
 	return render(request, 'intranet/upload_sections/drive.html')
 
 def extract_content_and_keywords(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		if request.POST['ids']:
 			abstracts = []
 			for id in request.POST['ids'].split(','):
@@ -292,6 +298,8 @@ def extract_content_and_keywords(request):
 			return JsonResponse({'error': False, 'abstracts': abstracts})
 		else:
 			return JsonResponse({'error': True})
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
@@ -315,17 +323,19 @@ def pdf_viewer(request, title=None, author=None):
 		return HttpResponse(_('No se encontraron documentos con el nombre: %(title)s') % {'title': title})
 
 def users(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		users = User.objects.filter(is_admin=False)
 		for user in users:
 			user.last_activity = (timezone.localtime(timezone.now()).date() - user.last_activity).days
 		return render(request, 'intranet/users.html', {'users': users})
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 
 def document(request, title=None, author=None):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		try:
 			document = Document.objects.get(title=title, author=author)
 		except Document.DoesNotExist:
@@ -334,10 +344,12 @@ def document(request, title=None, author=None):
 			return render(request, 'intranet/document_information.html', {'current_view': 'intranet', 'document': document})
 		else:
 			return HttpResponse(_('No se encontro el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 def edit_document(request, title=None, author=None):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		try:
 			if request.user.is_admin:
 				document = Document.objects.get(title=title, author=author)
@@ -367,54 +379,19 @@ def edit_document(request, title=None, author=None):
 				return JsonResponse({'error': False})
 		else:
 			return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': title, 'author': author})) #Se redirecciona a la ultima pagina visitada.
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 
 
 def search_helper(request, search=None):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		doc = Document.objects.values('title', 'author').filter(reduce(operator.and_, (Q(title__contains=x) for x in search.split(' '))))
 		response = {'error': False, 'list': list(doc)}
 		return JsonResponse(response)
-	else:
-		return HttpResponseRedirect(reverse('login'))
-
-def admin(request, setup=None, user_id=None, delete=False, activate=False, block=False, unblock=False):
-	if request.user.is_authenticated() and request.user.is_admin:
-		if request.method == "GET":
-			if activate:
-				user = User.objects.get(id=user_id)
-				user.is_active = True
-				user.save()
-				return JsonResponse({'error': False})
-			elif delete:
-				User.objects.get(id=user_id).delete()
-				return JsonResponse({'error': False})
-			elif block:
-				user = User.objects.get(id=user_id)
-				user.is_blocked = True
-				user.save()
-				return JsonResponse({'error': False})
-			elif unblock:
-				user = User.objects.get(id=user_id)
-				user.is_blocked = False
-				user.save()
-				return JsonResponse({'error': False})
-			else:
-				return render(request, 'intranet/admin.html')
-		elif request.method == "POST":
-			try:
-				if setup == 'users':
-					args= {
-					'not_active': User.objects.filter(is_active=False, is_admin=False),
-					'active': User.objects.filter(is_active=True, is_blocked=False, is_admin=False),
-					'blocked': User.objects.filter(is_active=True, is_blocked=True, is_admin=False)
-					}
-				else:
-					args={}
-				return render(request, 'intranet/admin_setups/%(setup)s.html' % {'setup': setup}, args)
-			except:
-				return HttpResponse('<h1>No existe esta configuracion</h1>')
+	elif request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
