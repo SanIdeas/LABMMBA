@@ -100,8 +100,10 @@ function users(){
 
 				if($('#email-invitation').val().length <= 0)	// Abort if email is empty
 					xhr.abort();
-				else
+				else {
 					$('#submit-invitation').val("Enviando...").attr("disabled", true);
+					$('#invitation-error').text("");
+				}
 			}
 		}).done(function(data){
 			reload_setup(data['message']);
