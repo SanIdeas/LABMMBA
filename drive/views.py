@@ -145,6 +145,7 @@ def oauth2callback(request):
 
 # Primera llamada para obtener credenciales de Google Drive
 def get_credentials(request):
+	print request.user.is_authenticated()
 	if request.user.is_authenticated():
 		if request.user.drive_credentials == None:
 			auth_uri = flow.step1_get_authorize_url()
