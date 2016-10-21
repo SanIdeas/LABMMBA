@@ -8,7 +8,7 @@
 		<h4 class="erasable">Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
 	</div>
 </div>
-<div class="intranet row">
+<div class="intranet row light-background">
 <div class="upload drive loading hidden">
 	<div>
 		<div class="red"></div>
@@ -23,8 +23,8 @@
 	</form>
 </div>
 
-<div class="intranet row">
-	<span class="erasable">O selecciona un documento desde tu cuenta:</span>
+<div class="intranet row light-background">
+	<span class="erasable upload drive span-center pad">{% trans 'Tambien puedes seleccionar un documento desde tu cuenta' %}</span>
 	<div class="intranet box upload drive plus">
 		<button class="upload drive btn">
 			<span class="fa-stack fa-lg">
@@ -32,10 +32,28 @@
 				<i class="fa fa-plus" aria-hidden="true"></i>
 			</span>	
 		</button>
-		<div class="upload drive user">
-			<ul class="upload drive list">
-				
-			</ul>
+		<div class="upload drive user hidden">
+			<div class="upload drive breadcrumbs">
+				<div class="crumbs root" bc-id="0">
+					<button onclick="userFiles()">{% trans 'Raiz' %}</button>
+				</div>
+			</div>
+			<table class="upload drive table">
+				<thead>
+					<tr>
+						<th>{% trans 'Nombre' %}</th>
+						<th>{% trans 'Última modificación' %}</th>
+						<th>{% trans 'Tamaño' %}</th>
+					</tr>
+				</thead>
+				<tbody class="upload drive list">
+					<tr class="document">
+						<td> <i class="fa fa-folder" aria-hidden="true"></i> Nombre de documento</td>
+						<td>Ultima fecha de modificacion</td>
+						<td>Tamaño del archivo</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>	
 </div>

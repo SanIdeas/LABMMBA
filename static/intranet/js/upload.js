@@ -1,17 +1,7 @@
-var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
+var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dec."];
 
 
-//Para formatear Bytes a diferentes unidades.
-//http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
-function formatSizeUnits(bytes){
-        if      (bytes>=1000000000) {bytes=(bytes/1000000000).toFixed(2)+' GB';}
-        else if (bytes>=1000000)    {bytes=(bytes/1000000).toFixed(2)+' MB';}
-        else if (bytes>=1000)       {bytes=(bytes/1000).toFixed(2)+' KB';}
-        else if (bytes>1)           {bytes=bytes+' bytes';}
-        else if (bytes==1)          {bytes=bytes+' byte';}
-        else                        {bytes='0 byte';}
-        return bytes;
-}
+
 
 
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
@@ -391,15 +381,6 @@ function drive_request_handler(){
 		}
 	}
 	
-}
-
-//Le da formato a la fecha proporcionada por Google Drive.
-function format_date(date){
-	var date = new Date(date);
-	var day = date.getDate();
-	var month = monthNames[date.getMonth()];
-	var year = date.getFullYear();
-	return formated_date = day + ' ' + month + ' ' + year;
 }
 
 

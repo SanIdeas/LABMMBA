@@ -1,3 +1,5 @@
+var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
+var bCrumbsCount = 0;
 (function($){
 	/* Resetea el input de archivos */
 	$.fn.resetInput = function(){
@@ -14,11 +16,33 @@ Object.size = function(obj) {
     return size;
 };
 
+//Para formatear Bytes a diferentes unidades.
+//http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
+function formatSizeUnits(bytes){
+        if      (bytes>=1000000000) {bytes=(bytes/1000000000).toFixed(0)+' GB';}
+        else if (bytes>=1000000)    {bytes=(bytes/1000000).toFixed(0)+' MB';}
+        else if (bytes>=1000)       {bytes=(bytes/1000).toFixed(0)+' KB';}
+        else if (bytes>1)           {bytes=bytes+' bytes';}
+        else if (bytes==1)          {bytes=bytes+' byte';}
+        else                        {bytes='0 byte';}
+        return bytes;
+}
+
+//Le da formato a la fecha proporcionada por Google Drive.
+function format_date(date){
+	var date = new Date(date);
+	var day = date.getDate();
+	var month = monthNames[date.getMonth()];
+	var year = date.getFullYear();
+	return formated_date = day + ' ' + month + ' ' + year;
+}
+
 $(document).ready(function(){
-	// Se define una altura inicial para que la animacion se vea
+	// Se define una altura inicial del cuadro con el boton 'mas' para que la animacion se vea
 	$('.drive.plus').height($('.drive.plus').height());
 })
 
+// Previene que el formulario se envie.
 $('.drive.form').submit(function(){
 	return false;
 });
@@ -30,9 +54,13 @@ $('.link').change(function(){
 	//window.open("{% url 'link_analizer' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
 });
 
+// Cuando el boton 'mas' es presionado, se ocultan y eliminan algunos elementos con una animacion
 $('.drive.btn').click(function(){
 	$('.erasable').animate({
 		top: '-10px',
+		height: '0px',
+		margin: '0px',
+		padding: '0px',
 		opacity: '0'
 	}, 200, function(){
 		$(this).remove();
@@ -60,7 +88,7 @@ function sendLink(url){
 	});
 }
 
-function userFiles(folderId = ""){
+function userFiles(folderId = "", name = "", bcId = 0){
 	// Se activa la barra de carga
 	$('.loading').removeClass("hidden");
 	// Se desactiva el campo de texto hasta obtener una respuesta
@@ -83,16 +111,26 @@ function userFiles(folderId = ""){
 					}, 200, function(){
 						// Una vez terminada la animacion se elimina el boton y se expande el cuadro
 						$(this).remove();
+						$('.drive.user').removeClass('hidden');
 						$('.drive.plus').animate({
-							height: $('.drive.list').height().toString() + 'px'
+							height: $('.drive.user').height().toString() + 'px'
 						}, 400);
 					});
 				}
 				else{
 					// Se expande el cuadro
+					$('.drive.user').removeClass('hidden');
 					$('.drive.plus').animate({
-						height: $('.drive.list').height().toString() + 'px'
+						height: $('.drive.user').height().toString() + 'px'
 					}, 400);
+				}
+				if(name != ""){
+					// Se agrega la miga de pan
+					addBreadCrumb(folderId, name);
+				}
+				else if(bcId < bCrumbsCount){
+					// Se remueven las migas de pan superiores a la id actual
+					removeBreadCrumbs(bcId);
 				}
 			}
 		}
@@ -104,22 +142,52 @@ function userFiles(folderId = ""){
 function userFilesHandler(files){
 	$('.drive.list').children().remove();
 	template = [
-		'<li onclick="$onclick">',
-			'<i class="fa fa-$icon" aria-hidden="true"></i>',
-			'<span>$name</span>',
-		'</li>'];
+			'<tr class="document" onclick="$onclick">',
+				'<td> <i class="fa fa-$icon" aria-hidden="true"></i> $name </td>',
+				'<td>$date</td>',
+				'<td>$size</td>',
+			'</tr>'];
 	for(var i = 0; i < files.length; i++){
 		code = template.join('');
 		if(files[i]['isFolder']){
-			code = code.replace('$icon', 'folder').replace('$onclick', "userFiles('" + files[i]['id'] + "')");
+			code = code.replace(/\$icon/g, 'folder').replace(/\$onclick/g, "userFiles('" + files[i]['id'] + "', '" + files[i]['title'] + "')").replace(/\$size/g, '-');
 		}
 		else{
-			code = code.replace('$icon', 'file-pdf-o').replace('onclick="$onclick"', "");
+			code = code.replace(/\$icon/g, 'file-pdf-o').replace('onclick="$onclick"', "").replace(/\$size/g, formatSizeUnits(parseInt(files[i]['fileSize'])));
 		}
-		code = code.replace('$name', files[i]['title']);
+		code = code.replace(/\$name/g, files[i]['title'])
+				.replace(/\$date/g, format_date(files[i]['modifiedDate']));
 		$('.drive.list').append(code);
 	}
 	return true;
+}
+
+function addBreadCrumb(folderId, name){
+	code = [
+		'<div class="crumbs step" bc-id="$id">',
+			'<button onclick="userFiles($folderId, ``, $id)">$name</button>',
+		'</div>',
+	];
+
+	code = code.join(' ').replace(/\$id/g, (++bCrumbsCount).toString()).replace('$folderId', "'" + folderId + "'").replace('$name', name);
+	$('.drive.breadcrumbs').append(code);
+
+	$('.crumbs.step[bc-id="' + bCrumbsCount + '"]').animate({
+		left: '0px',
+		opacity: '1'
+	},200);
+}
+
+// Remueve todas las migas de pan con una id superior al parametro 'id' de la funcion
+function removeBreadCrumbs(id){
+	for(var i = bCrumbsCount; id < i; i--){
+		$('.crumbs.step[bc-id="' + i + '"]').animate({
+			left: '-7px',
+			opacity: '0'
+		},200, function(){
+			$(this).remove();
+		});
+	}
 }
 
 /* Muestra en pantalla el formulario del documento */

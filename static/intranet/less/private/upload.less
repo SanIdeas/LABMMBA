@@ -467,7 +467,71 @@
 	}
 
 	&.drive{
+		&.span-center{
+			width: 100%;
+			display: block;
+			text-align: center;
+			&.pad{
+				padding-top: 5px;
+			}
+		}
+		&.breadcrumbs{
+			width: 100%;
+			overflow: hidden;
+			&:after{
+				content: "";
+				display: itable;
+				clear: both;
+			}
+
+			& .crumbs{
+			    display: inline-block;
+				float: left;
+				position: relative;
+				&.step{
+					left: -7px;
+					opacity: 0;
+				}
+				& button{
+					border: none;
+				    padding: 5px 0px 5px 30px;
+				    height: 36px;
+				    position: relative;
+				    background-color: @gray-color;
+				    transition: background-color .3s ease;
+				    &:hover{
+				    	background-color: darken(@gray-color, 10%);
+				    	&:after{
+				    		border-left-color: darken(@gray-color, 10%);
+				    	}
+				    }
+	    			&:before{
+					    content: " ";
+					    height: 0px;
+					    border: solid transparent;
+					    border-left-color: darken(@gray-color, 10%);
+					    position: absolute;
+					    border-width: 21px;
+					    top: -3px;
+					    left: 100%;
+					    z-index: 99;
+	    			}
+	    			&:after{
+					    content: " ";
+						border: solid transparent;
+						border-left-color: @gray-color;
+						height: 0px;
+						position: absolute;
+						border-width: 18px;
+						top: 0px;
+						z-index: 99;
+				    	transition: border-left-color .3s ease;
+	    			}
+	    		}
+			}
+		}
 		&.form{
+			border-bottom: 1px solid #dedede;
 			& .link{
 				text-align: center;
 			}
@@ -480,29 +544,57 @@
 			    background-color: #f8f8f8;
 			}
 		}
-		&.list{
+		&.user{
+			overflow: hidden;
+			&.hidden{
+				height: 0px;
+			}
+		}
+		&.table{
 			list-style: none;
 			text-align: left;
 			margin: 0;
-			& li{
+
+			& .document{
+				transition: background-color .3s ease;
+				cursor: pointer;
+				&:hover{
+					background-color: lighten(@gray-color, 5%);
+				}
+			}
+
+			& th{
+				background-color: #fafafa !important;
+				border: none;
+				border-bottom: 1px solid @gray-color;
+				font-weight: normal;
+			}
+			& td{
+				font-size: 100%;
 				margin: 0px;
 				padding: 10px;
+				border: none;
 				border-bottom: 1px solid @gray-color;
 				background-color: transparent;
-				transition: background-color .3s ease;
+				& > .fa{
+					padding-right: 10px;
+				}
 				&:hover{
-					background-color: @gray-color;
+					background-color: transparent;
+					background: transparent;
 				}
 			}
 		}
 		&.plus{
 			text-align: center;
-			cursor: pointer;
-			padding: 5px;
 		    overflow: hidden;
+		    margin-bottom: 0px;
+		    display: block;
 			& > button{
+				cursor: pointer;
 				background-color: transparent;
 				border: none;
+				padding: 5px;
 				color: #777;
 			}
 		}
@@ -540,38 +632,26 @@
 				& *{
 				    height: 100%;
 				    width: 76%;
-				    //position: absolute;
-				    //align-self: center;
+					animation-duration: 4s;
+					animation-iteration-count: infinite;
+					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				}
 
 				& .blue{
 					background-color: @blue-color;
 					animation-name: loading_blue;
-					animation-duration: 4s;
-					animation-iteration-count: infinite;
-					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				}
 				& .red{
 					background-color: @red-color;
 					animation-name: loading_red;
-					animation-duration: 4s;
-					animation-fill-mode: forwards;
-					animation-iteration-count: infinite;
-					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				}
 				& .yellow{
 					background-color: @yellow-color;
 					animation-name: loading_yellow;
-					animation-duration: 4s;
-					animation-iteration-count: infinite;
-					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				}
 				& .green{
 					background-color: @green-color;
 					animation-name: loading_green;
-					animation-duration: 4s;
-					animation-iteration-count: infinite;
-					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				}
 			}
 		}

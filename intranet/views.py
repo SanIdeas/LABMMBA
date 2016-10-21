@@ -198,6 +198,7 @@ def update_profile_picture(request):
 		return HttpResponseRedirect(reverse('intranet:profile', args={request.user.id}))
 
 def upload(request):
+	print request.user.is_authenticated()
 	if request.user.is_authenticated() and not request.user.is_admin:
 		#Document.objects.all().delete()
 		#User.objects.all().delete()
