@@ -10,4 +10,7 @@ urlpatterns = [
     url(r'users/block/(?P<user_id>.*)$', views.users, {'block': True}, name='block_user'),
     url(r'users/delete/(?P<user_id>.*)$', views.users, {'delete': True}, name='delete_user'),
     url(r'users/activate/(?P<user_id>.*)$', views.users, {'activate': True}, name='activate_user'),
+    url(r'^documents/$', views.documents, name="documents"),
+    url(r'^search/(?P<search>.*)/$', views.documents, name="admin_search"),
+
 ]

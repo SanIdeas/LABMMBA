@@ -13,6 +13,29 @@ from django.views.decorators.csrf import csrf_exempt # SOLO PARA TESTING
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 
 
+from intranet.forms import DocumentForm
+from django.db.models import Q, Count
+from unidecode import unidecode
+import os, sys, json, operator
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfparser import PDFParser
+from django.core.files import File 
+from pdfminer.pdfdocument import PDFDocument
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from cStringIO import StringIO
+import unicodedata, tempfile
+from datetime import date, timedelta
+from django.utils import timezone
+from collections import Counter
+from itertools import chain
+#import Levenshtein, random
+from django.db import connection
+from django.conf import settings
+
+
 # Create your views here.
 
 def home(request):
@@ -20,6 +43,80 @@ def home(request):
 		return HttpResponseRedirect(reverse('admin:users'))
 	else:
 		return HttpResponseRedirect(reverse('webpage:home'))
+
+
+
+def get_filters(rqst):
+	dict = {}
+	for key in rqst.GET:
+		if key == 'date':
+			str = '__year__in'
+		else:
+			str = '__in'
+		if len(rqst.GET.getlist(key)) > 0:
+			dict[key + str] = rqst.GET.getlist(key)
+	return dict
+
+def filters_selected(list, request, name):
+	count = 0
+	for val in list:
+		if val[0] != None:
+			if unicode(val[0]) in request.GET.getlist(name):
+				list[count] = val + (True,)
+			elif name == 'owner' or name == 'category':
+				if unicode(val[0].id) in request.GET.getlist(name):
+					list[count] = val + (True,)
+				else:
+					list[count] = val + (False,)
+					break
+			else:
+				list[count] = val + (False,)
+		count += 1
+	return list
+
+def documents(request, search=None):
+	if request.user.is_admin:
+		kwargs = get_filters(request)
+		all_docs = Document.objects.filter(**kwargs)
+		if search is None: #Si no es una busqueda
+			documents = all_docs
+		else:
+			documents = []
+			high_acc_result = []
+			low_acc_result = []
+			authors = []
+			years = []
+			owners = []
+			categories = []
+			for document in all_docs:
+				result = document.match(search)
+				if result['match']:
+					if result['extract'] != '':
+						setattr(document, 'extract', result['extract'])
+					if result['exact']:
+						high_acc_result.append(document)
+					else:
+						low_acc_result.append(document)
+					authors.append(document.author)
+					years.append(document.date.year)
+					owners.append(document.owner)
+					categories.append(document.category)
+			documents = high_acc_result + low_acc_result
+			authors = filters_selected(Counter(authors).most_common(), request, 'author')
+			years = filters_selected(Counter(years).most_common(), request, 'date')
+			owners = filters_selected(Counter(owners).most_common(), request, 'owner')
+			categories = filters_selected(Counter(categories).most_common(), request, 'category')
+		parameters = {'current_view': 'admin', 'documents': documents}
+		if search is not None:
+			parameters['authors'] = authors
+			parameters['years'] = years
+			parameters['categories'] = categories
+			parameters['owners'] = owners
+			parameters['search'] = search
+		return render(request, 'admin/documents.html',parameters)
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
 
 def users(request, user_id=None, delete=False, activate=False, block=False, unblock=False, profile=False):
 	if request.user.is_authenticated() and request.user.is_admin:

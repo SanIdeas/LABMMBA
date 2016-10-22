@@ -91,3 +91,6 @@ ENV/
 
 #setting locales
 labmmba/settings.py
+
+#documentos subidos
+uploads/documents/
