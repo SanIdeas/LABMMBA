@@ -256,12 +256,12 @@ def upload(request):
 						document.format_filename()
 						real_ids.append(document.id)
 						try:
-							text_file = open(settings.MEDIA_ROOT + document.document.url.replace('pdf', 'txt'), 'w')
-							text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+							text_file = open(document.document.path.replace('pdf', 'txt'), 'w')
+							text_from_file = strip_accents(convert_pdf_to_txt(document.document.path))
 							text_file.write(text_from_file.lower())
 							text_file.close()
 						except:
-							text_file =  open(settings.MEDIA_ROOT + document.document.url.replace('pdf', 'txt'), 'w')
+							text_file =  open(document.document.path.replace('pdf', 'txt'), 'w')
 							text_file.close()
 						document.save_abstract()
 						document.keywords()
@@ -286,12 +286,12 @@ def extract_content_and_keywords(request):
 			for id in request.POST['ids'].split(','):
 				document = Document.objects.get(id=id) 
 				try:
-				    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-				    text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
+				    text_file = open(document.document.path.replace('pdf', 'txt'), 'w')
+				    text_from_file = strip_accents(convert_pdf_to_txt(document.document.path))
 				    text_file.write(text_from_file.lower())
 				    text_file.close()
 				except:
-				    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
+				    text_file = open(document.document.path.replace('pdf', 'txt'), 'w')
 				    text_file.close()
 				document.save_abstract()
 				document.keywords()
@@ -312,10 +312,10 @@ def pdf_viewer(request, title=None, author=None):
 	if document is not None:
 		if ((document.type and request.user.is_authenticated()) or not document.type):
 			#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
-			with open(settings.MEDIA_ROOT + document.document.url, 'rb') as pdf:
+			with open(document.document.path, 'rb') as pdf:
 				response =  HttpResponse(pdf.read(), content_type='application/pdf')
 				response['Content-Disposition'] = 'inline;filename="some_file.pdf"'.replace('some_file',title)
-				response['Content-Length'] = os.stat(settings.MEDIA_ROOT + document.document.url).st_size
+				response['Content-Length'] = os.stat(document.document.path).st_size
 				return response
 			pdf.close()
 		else:

@@ -977,7 +977,7 @@ form .c12 {
 }
 .upload.drive.breadcrumbs:after {
   content: "";
-  display: itable;
+  display: table;
   clear: both;
 }
 .upload.drive.breadcrumbs .crumbs {
@@ -1078,6 +1078,12 @@ form .c12 {
   background-color: transparent;
   background: transparent;
 }
+.upload.drive.table td.check {
+  max-width: 20px;
+}
+.upload.drive.table td.size {
+  transition: background-color 0.3s ease;
+}
 .upload.drive.plus {
   text-align: center;
   overflow: hidden;
@@ -1100,7 +1106,7 @@ form .c12 {
   display: inline-block;
 }
 .upload.drive.loading {
-  height: 5px;
+  height: 3px;
 }
 .upload.drive.loading.hidden > div {
   display: none;

@@ -1,5 +1,6 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
 var bCrumbsCount = 0;
+var doc_selected = {};
 (function($){
 	/* Resetea el input de archivos */
 	$.fn.resetInput = function(){
@@ -20,7 +21,7 @@ Object.size = function(obj) {
 //http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
 function formatSizeUnits(bytes){
         if      (bytes>=1000000000) {bytes=(bytes/1000000000).toFixed(0)+' GB';}
-        else if (bytes>=1000000)    {bytes=(bytes/1000000).toFixed(0)+' MB';}
+        else if (bytes>=1000000)    {bytes=(bytes/1000000).toFixed(1)+' MB';}
         else if (bytes>=1000)       {bytes=(bytes/1000).toFixed(0)+' KB';}
         else if (bytes>1)           {bytes=bytes+' bytes';}
         else if (bytes==1)          {bytes=bytes+' byte';}
@@ -139,26 +140,79 @@ function userFiles(folderId = "", name = "", bcId = 0){
 	});
 }
 
+// Se encarga de recibir la lista de archivos de Google drive y las muestra en pantalla, configurando todo lo necesario
 function userFilesHandler(files){
 	$('.drive.list').children().remove();
 	template = [
-			'<tr class="document" onclick="$onclick">',
+			'<tr class="document" type="$type" title="$title" id="$id" $style size="$rawsize">',
+				'<td class="check"> $checkbox </td>',
 				'<td> <i class="fa fa-$icon" aria-hidden="true"></i> $name </td>',
 				'<td>$date</td>',
-				'<td>$size</td>',
+				'<td class="size">$size</td>',
 			'</tr>'];
 	for(var i = 0; i < files.length; i++){
 		code = template.join('');
 		if(files[i]['isFolder']){
-			code = code.replace(/\$icon/g, 'folder').replace(/\$onclick/g, "userFiles('" + files[i]['id'] + "', '" + files[i]['title'] + "')").replace(/\$size/g, '-');
+			code = code.replace(/\$icon/g, 'folder')
+						.replace(/\$type/g, 'folder')
+						.replace(/\$rawsize/g, '')
+						.replace(/\$size/g, '-');
 		}
 		else{
-			code = code.replace(/\$icon/g, 'file-pdf-o').replace('onclick="$onclick"', "").replace(/\$size/g, formatSizeUnits(parseInt(files[i]['fileSize'])));
+			code = code.replace(/\$icon/g, 'file-pdf-o')
+						.replace(/\$size/g, formatSizeUnits(parseInt(files[i]['fileSize'])))
+						.replace(/\$rawsize/g, files[i]['fileSize'])
+						.replace(/\$type/g, 'file');
 		}
+
+		// Si el archivo esta seleccionado, se pinta de verde
+		if(files[i]['id'] in doc_selected){
+			code = code.replace('$style', 'style="background-color: rgb(207, 234, 226);"')
+						.replace('$checkbox', '<i class="fa fa-check" aria-hidden="true"></i>');
+		}
+		else
+			code = code.replace("$style", "").replace('$checkbox', '');
+
 		code = code.replace(/\$name/g, files[i]['title'])
-				.replace(/\$date/g, format_date(files[i]['modifiedDate']));
+				.replace(/\$date/g, format_date(files[i]['modifiedDate']))
+				.replace(/\$id/g, files[i]['id'])
+				.replace(/\$title/g, files[i]['title']);
+
 		$('.drive.list').append(code);
 	}
+
+	// Se configuran los escucha
+	$('.document').off(); // Se desactivan los anteriores
+	$('.document').click(function(){
+		// Si es una carpeta, se solicitan sus hijos
+		if($(this).attr('type') == 'folder'){
+			userFiles($(this).attr('id'),$(this).attr('title'))
+		}
+		else if($(this).attr('type') == 'file'){
+			if($(this).attr('id') in doc_selected){
+				// Si la id ya existe, se elimina
+				delete doc_selected[$(this).attr('id')];
+				$(this).css('background-color', 'transparent');
+				$(this).children('.check').children().remove();
+			}
+			else{
+				// Si el tamaño es mayor a 2 megabytes, no se permite la seleccion
+				if(parseInt($(this).attr('size')) > 2097152){
+					$(this).children('.size').css('background-color', '#f7cacd');
+					var $this = $(this);
+					setTimeout(function(){
+						$this.children('.size').css('background-color', 'transparent');
+					},500);
+				}
+				// Si la id no existe y es menor a 2 mb, se crea
+				else{
+					doc_selected[$(this).attr('id')] = $(this).attr('title');
+					$(this).css('background-color', '#cfeae2');
+					$(this).children('.check').append('<i class="fa fa-check" aria-hidden="true"></i>');
+				}
+			}
+		}
+	});
 	return true;
 }
 
@@ -178,7 +232,7 @@ function addBreadCrumb(folderId, name){
 	},200);
 }
 
-// Remueve todas las migas de pan con una id superior al parametro 'id' de la funcion
+// Remueve todas las migas de pan que posean una id superior al parametro 'id' de la funcion
 function removeBreadCrumbs(id){
 	for(var i = bCrumbsCount; id < i; i--){
 		$('.crumbs.step[bc-id="' + i + '"]').animate({
