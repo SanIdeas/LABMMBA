@@ -13,8 +13,9 @@ from intranet.models import Document
 import httplib2, urllib, cStringIO
 import re, io, os, tempfile, datetime, base64, cPickle, ast, json
 from django.utils.translation import ugettext as _
+from django.conf import settings
 flow = client.flow_from_clientsecrets(
-	'drive/client_secret.json',
+	settings.DRIVE_JSON_DIR,
 	scope='https://www.googleapis.com/auth/drive.readonly',
 	redirect_uri='http://127.0.0.1:8000/drive/oauth2callback')
 flow.params['include_granted_scopes'] = 'true'

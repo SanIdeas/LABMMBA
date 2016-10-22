@@ -30,20 +30,22 @@ class Document(models.Model):
 	#Retorna el nombre del archivo pdf.
 	def filename(self):
 		return os.path.basename(self.document.name)
+
 	def thumbnail_filename(self):
 		return 'thumbnails/' + os.path.basename(self.thumbnail.name)
 
 	#http://stackoverflow.com/questions/12358920/renaming-files-in-django-filefield
 	def format_filename(self):
-		new_filename='uploads/documents/' + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.pdf'
-		os.rename(self.document.path, (settings.MEDIA_ROOT + '/' + new_filename).replace('/', '\\'))
+		new_filename= settings.DOC_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.pdf'
+		print settings.MEDIA_ROOT + new_filename
+		os.rename(self.document.path, (new_filename))
 		self.document.name = new_filename
 		self.save()
 		return self.document.name
 
 	def format_thumbnail_filename(self):
-		new_filename='static/thumbnails/' + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.jpg'
-		os.rename(self.thumbnail.path, (settings.MEDIA_ROOT + '/' + new_filename).replace('/', '\\'))
+		new_filename= settings.THUMBNAILS_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.jpg'
+		os.rename(self.thumbnail.path, (new_filename))
 		self.thumbnail.name = new_filename
 		self.save()
 		return self.thumbnail.name
@@ -97,7 +99,7 @@ class Document(models.Model):
 						result_owner = False
 
 		#Se revisa el texto plano.
-		text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
+		text = open(self.document.path.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
 		print words
 		if words in text:
 			exact_content = True
@@ -141,7 +143,7 @@ class Document(models.Model):
 		return dic
 
 	def save_abstract(self):
-		text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
+		text = open(self.document.path.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ')
 		initial_index = 0
 		if initial_index + 400 > len(text):
 			end_index = len(text) - 1
@@ -152,7 +154,7 @@ class Document(models.Model):
 		return self.abstract
 
 	def keywords(self):
-		text = open(self.document.url.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ').replace('.', '').replace(',', '')
+		text = open(self.document.path.replace('pdf', 'txt')).read().replace(' \n' , ' ').replace('\n', ' ').replace('  ', ' ').replace('.', '').replace(',', '')
 		reg = re.compile('\S{4,}')
 		c = Counter(ma.group() for ma in reg.finditer(text))
 		keywords = []

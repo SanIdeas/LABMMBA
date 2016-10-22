@@ -480,7 +480,7 @@
 			overflow: hidden;
 			&:after{
 				content: "";
-				display: itable;
+				display: table;
 				clear: both;
 			}
 
@@ -583,6 +583,12 @@
 					background-color: transparent;
 					background: transparent;
 				}
+				&.check{
+					max-width: 20px;
+				}
+				&.size{
+					transition: background-color .3s ease;
+				}
 			}
 		}
 		&.plus{
@@ -607,7 +613,7 @@
 			}
 		}
 		&.loading{
-			height: 5px;
+			height: 3px;
 
 			&.hidden{
 				& > div{
