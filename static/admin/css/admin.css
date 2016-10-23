@@ -395,7 +395,7 @@
     cursor: pointer;
 }
 
-.setup-view-box{
+.setup-view-box, .setup-forward-box{
 	width: 100%;
 	height: 100%;
 	background-color: #f2ae47;
@@ -409,16 +409,6 @@
 	width: 100%;
 	height: 100%;
 	background-color: #006e9c;
-	outline: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-.setup-forward-box{
-	width: 100%;
-	height: 100%;
-	background-color: #009065;
 	outline: none;
     border: none;
     color: white;

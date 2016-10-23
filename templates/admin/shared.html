@@ -74,7 +74,7 @@
 										{% if request.user.is_authenticated == False %}
 											<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 										{% else %}
-                                            <li>{{ user.email }}</li>
+                                            <li><a href="#">{{ user.email }}</a></li>
 											<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 										{% endif %}
 										{% if lang == "es" %}
