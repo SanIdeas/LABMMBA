@@ -6,11 +6,16 @@ function reload_setup(msg){
 			xhr.setRequestHeader("X-CSRFToken", csrf_token);
 		}
 	}).done(function(html){
-		$('#users-setup').children().remove();
-		$('#users-setup').append(html);
+		if(html.redirect)
+			window.location.href = html.redirect;
+		else{
+			$('#users-setup').children().remove();
+			$('#users-setup').append(html);
 
-		if(msg != null)
-			$('#invitation-error').text(msg);
+			if(msg != null)
+				$('#invitation-error').text(msg);
+		}
+
 	});
 }
 

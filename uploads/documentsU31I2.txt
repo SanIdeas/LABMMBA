@@ -1,0 +1,1876 @@
+communications
+
+08/2013 vol.56 no.08
+
+cacm.acm.org 
+
+of the acm
+
+evolutionary 
+robotics
+
+are we free to  
+code the law?
+building web apps  
+for mobile devices
+patient, heal thyself
+is overt censorship  
+a fatal mistake?
+what is a flagship 
+publication?
+
+association for  
+computing machinery
+
+review articles
+
+taking a biologically inspired approach to  
+the design of autonomous, adaptive machines.
+
+doi:10.1145/2493883
+
+by josh c. bongard
+
+evolutionary 
+robotics
+
+the automated design, construction, and deployment 
+of autonomous and adaptive machines is an open 
+problem. industrial robots are an example of 
+autonomous yet nonadaptive machines: they execute 
+the same sequence of actions repeatedly. conversely, 
+unmanned drones are an example of adaptive yet 
+non-autonomous machines: they exhibit the adaptive 
+capabilities of their remote human operators. to date, 
+the only force known to be capable of producing fully 
+autonomous as well as adaptive machines is biological 
+evolution. in the eld of evolutionary robotics,9 one 
+class of population-based metaheuristicsevolutionary 
+algorithmsare used to optimize some or all aspects of 
+an autonomous robot. the use of metaheuristics sets 
+this subeld of robotics apart from the mainstream 
+of robotics research, in which machine learning 
+algorithms are used to optimize the control policya of a 
+robot. as in other branches of computer science the use 
+of a metaheuristic algorithm has a cost and a benet. 
+the cost is that it is not possible to guarantee if (or 
+when) an optimal control policy will be found for a given 
+robot. the benet is few assumptions must be made
+
+a  a control policy is some function that transforms a robots sensor signals into  
+
+commands sent to its motors.
+
+74    communications of the acm   |  august 2013  |  vol. 56  |  no. 8
+
+about  the  problem:  evolutionary  algo-
+rithms  can  improve  both  the  parame-
+ters and the architecture of the robots 
+control  policy,  and  even  the  shape  of 
+the robot itself.
+
+because  the  trial-and-error  nature 
+of  evolutionary  algorithms  requires  a 
+large  number  of  evaluations  during 
+optimization,  in  many  evolutionary 
+robotics  experiments  optimization  is 
+rst  carried  out  in  simulation.  typi-
+cally an evolutionary algorithm gener-
+ates populations of virtual robots that 
+behave  within  a  physics-based  simu-
+lation.b  each  robot  is  then  assigned 
+a tness value based on the quality of 
+its  behavior.  robots  with  low  tness 
+are  deleted  while  the  robots  that  re-
+main are copied and slightly modied 
+in some random manner. the new ro-
+bots are evaluated in the simulator and 
+assigned a tness, and this cycle is re-
+peated until some predetermined time 
+period has elapsed. the most-t robot 
+may then be manufactured as a physi-
+cal  machine  and  deployed  to  perform 
+its evolved behavior.
+
+to illustrate the distinction between 
+mainstream and evolutionary robotics, 
+consider two experiments drawn from 
+the  two  elds.  legged  locomotion
+
+b  interested readers may download and perform 
+their  own  evolutionary  robotics  experiments 
+at http://www.uvm.edu/~ludobots.
+
+  key insights
+
+    manual design of a mobile robot  
+that is autonomous and adaptive is  
+extremely difcult.
+    as an alternative, computers can evolve 
+populations of robots in a simulator 
+to exhibit useful behavior and then 
+manufacture physical versions of the best 
+ones, very much like how farmers breed 
+crops for high yield. this approach is 
+known as evolutionary robotics.
+    this evolutionary approach changes 
+the way we view robotics: rather than 
+machine-learning techniques improving 
+behaviors for a hand-designed robot, 
+focus shifts to creating an evolutionary 
+system that continuously designs and 
+manufactures different robots with 
+increasing abilities.
+
+z
+t
+e
+m
+
+ 
+
+n
+i
+t
+s
+u
+j
+
+ 
+
+y
+b
+
+ 
+
+n
+o
+i
+t
+a
+r
+t
+s
+u
+l
+l
+i
+
+k
+t
+
+ 
+
+t
+i
+d
+e
+r
+c
+
+august 2013  |  vol. 56  |  no. 8  |  communications of the acm    75
+
+review articles
+
+optimizing a control policy that allows 
+a two, four, or six-legged robot to move 
+over rugged terrainis a popular area 
+of study in robotics. in mainstream ro-
+botics,  machine-learning  algorithms 
+can now optimize walking behavior for 
+a physical two-legged robot in a matter 
+of minutes.7 alternatively, a recent in-
+vestigation in simulation has shown if 
+robots are evolved to move over rough 
+terrain,  robots  will  eventually  evolve 
+from  amorphous  shapes  into  robots 
+exhibiting  the  rudiments  of  append-
+ages (figure 1b).1
+
+the former experiment can enable 
+walking  behaviors  for  a  certain  kind 
+of  robot;  the  latter  experiment  can 
+continuously produce different robots 
+adapted  to  different  environments. 
+put  differently,  mainstream  robotics 
+aims  to  continuously  generate  better 
+behavior  for  a  given  robot,  while  the 
+long-term  goal  of  evolutionary  robot-
+ics is to create general, robot-generat-
+ing algorithms.
+
+history
+the goal of articial intelligence, since 
+its beginnings, has been to reproduce 
+aspects  of  human  intelligence  (such 
+as natural language processing or de-
+ductive  reasoning)  in  computers.  in 
+contrast, most roboticists aim to gen-
+erate noncognitive yet adaptive behav-
+ior in robots such as walking or object 
+manipulation.  once  these  simpler 
+behaviors  are  realized  successfully  in 
+robots, it is hoped the behavior-gener-
+ating algorithm will scale to generate 
+ever more complex behavior until the 
+adaptive behavior exhibited by a given 
+robot  might  be  characterized  by  an 
+observer  as  intelligent  behavior.  this 
+operational  denition  of  intelligence 
+bears  a  resemblance  to  the  turing 
+test:  if  a  robot  looks  as  if  it  is  acting 
+intelligently, then it is intelligent.
+
+note  the  emphasis  in  robotics  on 
+behavior: the action of a robot gen-
+erates new sensory stimulation, which 
+in turn affects its future actions. this 
+differs  from  non-embodied  ai  al-
+gorithms,  which  have  no  body  with 
+which  to  affect,  or  be  affected  by  the 
+environment. in non-embodied ai, in-
+telligence is something that arises out 
+of introspection; in robotics, the belief 
+is that intelligence will arise out of ever 
+more  complex  interactions  between 
+the machine and its environment. this 
+
+idea that intelligence is not just some-
+thing contained within the brain of the 
+animal or control policy of a robot but 
+rather is something that emerges from 
+the  interaction  between  brain,  body, 
+and environment, is known as embod-
+ied cognition.27
+
+the very rst experiments in evolu-
+tionary  robotics9  began  to  shed  light 
+on  embodied  cognition.  in  one  set  of 
+experiments  a  robot  equipped  with  a 
+camera  had  to  move  toward  certain 
+shapes and away from others. based on 
+the way the robot evolved to move, the 
+control  policy  of  the  robot  often  only 
+made  use  of  two  small  pixel  patches 
+rather than the entire video stream. in 
+other words, the robot evolved the abil-
+ity to recognize objects through a com-
+bination of motion and sensation. this 
+approach  is  non-intuitive  to  a  human 
+designer,  who  might  implement  ob-
+ject-recognition  algorithms  that  draw 
+on all of the pixels in the video stream.
+
+applications
+evolutionary algorithms have been ap-
+plied  in  several  branches  of  robotics 
+and  thus  evolutionary  robotics  is  not 
+strictly  a  subeld  of  robotics.  when 
+applied  well,  an  evolutionary  ap-
+proach can free the investigator from 
+having to make decisions about every 
+detail  of  the  robots  design.  in  many 
+cases  the  evolutionary  algorithm  dis-
+covers solutions the researcher might 
+not  have  thought  of,  especially  for 
+robots that are non-intuitive for a hu-
+man to control or design. for example 
+it is often difcult to see how best to 
+control  a  soft  robot  (figure  1j)  using 
+traditional  machine  learning  tech-
+niques,  let  alone  determine  the  best 
+combination of soft and rigid materi-
+als for such a robot.
+
+moreover,  ideas  can  ow  not  just 
+from  biology  to  robotics  but  back 
+again:  evolved  robots  that  exhibit 
+traits  observed  in  naturesuch  as 
+a  robot  swarm  that  evolves  coop-
+erative  rather  than  competitive  ten-
+denciesoften  provide  new  ways 
+of  thinking  about  how  and  why  that 
+trait  evolved  in  biological  popula-
+tions. in this way evolutionary robot-
+ics can give back to biology (why did 
+this trait evolve?) or more cognitively 
+oriented  elds  such  as  evolutionary 
+psychology  (why  did  this  cognitive 
+ability evolve?).
+
+76    communications of the acm   |  august 2013  |  vol. 56  |  no. 8
+
+evolutionary  biorobotics.  in  bioro-
+botics,  investigators  implement  ana-
+tomical details from a specic animal 
+in hardware and then use the resulting 
+robot  as  a  physical  model  of  the  ani-
+mal under study. although much work 
+in this area has been dedicated to non-
+human  animals  (see  supplemental 
+material  available  in  the  acm  digital 
+library;  http://dl.acm.org),  many  ro-
+boticists  choose  to  model  the  human 
+animal:  a  humanoid  robot  is  more 
+likely to be able to reach a doorknob, 
+climb  steps,  or  drive  a  vehicle  than  a 
+wheeled robot or one measuring only 
+a few inches in length. the humanoid 
+form,  however,  requires  mastery  of 
+bipedal locomotion, a notoriously dif-
+cult task. as an example, reil et al.30 
+evolved a bipedal robot in simulation 
+that  rst  mastered  walking  and  then 
+evolved  the  ability  to  walk  toward  a 
+sound source.
+
+evolutionary  biorobotics 
+
+in  short,  bioroboticists  attempt  to 
+model, in robot form, the products of 
+evolution:  individual  organisms.  evo-
+lutionary  roboticists  in  contrast  at-
+tempt to re-create the process of evolu-
+tion, which generates robots that may 
+or may not resemble existing animals.
+is  a 
+blend of these two approaches: inves-
+tigators  build  robots  that  resemble 
+a  particular  animal,  and  then  evolve 
+one  aspect  of  the  robots  anatomy 
+to  investigate  how  the  correspond-
+ing  aspect  in  the  animal  might  have 
+evolved.  for  example  long  and  his 
+colleagues19  have  evolved  the  stiff-
+ness  of  articial  tails  attached  to 
+swimming  robots:  robots  with  tails 
+of  differing  stiffness  have  differing 
+abilities  to  swim  fast  or  turn  well. 
+this  provides  a  unique  experimental 
+tool for investigating how backbones 
+originally evolved in early vertebrates.
+developmental robotics. the eld of 
+developmental robotics22 shares much 
+in  common  with  evolutionary  robot-
+ics. practitioners of developmental ro-
+botics  draw  inspiration  from  develop-
+mental psychology and developmental 
+neuroscience:  how  do  infants  gradu-
+ally  mature  into  increasingly  complex 
+and capable adults? like evolutionary 
+robotics, work in developmental robot-
+ics  tends  to  have  either  a  scientic  or 
+an engineering aim. developing robots 
+can be used as scientic tools: they can 
+serve as physical models for investigat-
+
+the evolution  
+of robot bodies 
+and brains differs 
+markedly from  
+all other 
+approaches 
+to robotics in 
+that it does not 
+presuppose  
+the existence of  
+a physical robot.
+
+ing  biological  development.  alterna-
+tively,  engineers  can  draw  on  insights 
+from  biological  development  to  build 
+better robots.
+
+evo-devo-robo.  developmental  ro-
+botics  tends  to  focus  on  post-natal 
+change to a robots body and brain 
+as the robot learns to master a particu-
+lar  skill.  evolutionary  robotics  experi-
+ments on the other hand generate ro-
+bots that become more complex from 
+generation to generation, but typically 
+each individual robot maintains a xed 
+form while it behaves.
+
+biological  systems  however  exhibit 
+change  over  multiple  time  scales:  in-
+dividual organisms grow from infants 
+into  adults,  and  the  developmental 
+program  that  guides  this  change  is  in 
+turn  altered  over  evolutionary  time. 
+this process is known as the evolution 
+of development, or evo-devo. this bio-
+logical phenomenon has recently been 
+exploited  in  evolutionary  robotics:3  at 
+the outset of evolution, robots change 
+from  a  crawling  worm  into  a  legged 
+walking machine over their lifetime. as 
+evolution proceeds, this infant form is 
+gradually lost until, at the end of evolu-
+tion, legged robots exhibit the ability to 
+walk  successfully  without  the  need  to 
+crawl rst. it was found this approach 
+could  evolve  walking  machines  faster 
+than a similar approach that does not 
+lead robots through a crawling stage.
+
+in  the  initial  experiments  of  evo-
+devo-robo,34  the  genetic  instructions 
+were  encoded  as  a  specific  class  of 
+formal  grammars  known  as  linden-
+mayer  systems,  or  l-systems.c  l-sys-
+tems  were  initially  devised  to  model 
+plant  growth:  their  recursive  nature 
+can  produce  fractal  or  otherwise 
+forms.  hornby12  dem-
+symmetric 
+onstrated  that  robots  evolved  using 
+such  grammars  do  indeed  produce 
+repeated  forms  (figure  1a).  he  also 
+showed  this  repetition  can  make  it 
+easier for evolutionary algorithms to 
+improve  such  robots,  compared  to 
+robots  lacking  in  genetically  deter-
+mined self-similarity.
+
+the  evolution  of  robot  bodies 
+and  brains  differs  markedly  from  all 
+other  approaches  to  robotics  in  that 
+it  does  not  presuppose  the  existence 
+
+c  sims work had a large impact on the comput-
+er graphics community and l-systems remain 
+a popular technique within that eld.
+
+review articles
+
+of  a  physical  robot.  rather,  the  user 
+provides  as  input  a  metric  for  mea-
+suring robot performance along with 
+a simulation of the robots task envi-
+ronment, and the algorithm produces 
+as  output  the  body  plan  and  control 
+policy for a robot capable of perform-
+ing  the  task.  this  can  then  be  used 
+to  manufacture  a  physical  version  of 
+the evolved robot. such an algorithm 
+could,  in  principle,  continually  re-
+ceive new desired behaviors and task 
+environments  and  continuously  gen-
+erate novel robots.
+
+in this way, the roboticist can make 
+fewer  assumptions  about  the  nal 
+form  of  the  robot  and  have  greater 
+condence  the  nal  evolved  robot  is 
+better adapted to the environment in 
+which  it  must  operate.  for  example, 
+there is often a debate about whether 
+a wheeled or legged robot is more ap-
+propriate for moving over a given sur-
+face. although not yet demonstrated, 
+an  evolutionary  robotics  algorithm 
+should  generate  wheeled  robots  if 
+supplied with a simulation of at ter-
+rain  and  legged  robots  if  supplied 
+with  a  simulation  of  rugged  terrain. 
+recent  work  in  mainstream  robotics 
+has demonstrated the possible advan-
+tage of combining wheels and legs in 
+the  same  robot:  an  evolutionary  sys-
+tem  should  rediscover  this  manually 
+devised  solution  if  it  is  indeed  supe-
+rior to either wheels or legs alone.
+
+another  advantage  of  this  ap-
+proach  over  mainstream  robotics  is 
+its  potential  for  better  scalability:  by 
+genetically  encoding  assembly  in-
+structions  rather  than  the  blueprint 
+of  a  robot,  more  complex  machines 
+can  be  evolved  with  little  or  no  in-
+crease  in  the  amount  of  information 
+encoded in the genome. for example, 
+consider  an  approach  in  which  ro-
+bots  are  specied  by  a  formal  gram-
+mar  such  that  the  invocation  of  a 
+rewrite  rule  replaces  one  part  of  the 
+robot  with  two  or  more  parts.  thus 
+the more times a given set of rewrite 
+rules  are  invoked,  the  more  complex 
+the resulting robot becomes. if evolu-
+tion  increases  the  number  of  rewrite 
+rule  invocations,  then  simple  robots 
+can evolve into more complex robots 
+with  no  increase  in  the  information 
+content  of  the  underlying  genomes 
+describing those robots.
+
+despite  the  promise  of  this  ap-
+
+august 2013  |  vol. 56  |  no. 8  |  communications of the acm    77
+
+review articles
+
+figure 1. a sampling of representative work in evolutionary robotics.
+
+evolutionary robotics often involves optimizing 
+not only the controller of a robot but also its 
+body plan. formal grammars (a12) and algo-
+rithms that simulate development (b1) have 
+been used to optimize robots in simulation. 
+additive manufacturing has been employed to 
+build physical versions of evolved simu-
+lated robots semiautomatically (c,d18). once 
+deployed as physical machines, evolutionary 
+algorithms have been used to allow damaged 
+robots to recover from injury (e4) as well as 
+ease the transferral of newly evolved control-
+lers from simulation to the physical robot (f16). 
+in addition to locomotion, researchers have 
+evolved more cognitively demanding behaviors 
+such as discriminating between differently 
+shaped objects by manipulating them (g35) or 
+physically demanding tasks like aerial swarm-
+ing (h11). behaviors have also been evolved for 
+robots with non-traditional body plans such as 
+tensegrity robots (i;26 robot built by s. fivat), 
+(b) auberbach and bongard1 
+(a) hornby and pollack12
+soft robots (j32), modular robots (k39) and robot 
+swarms (l33).
+
+(a) hornby and pollack12
+
+(b) auberbach and bongard1 
+
+(a) hornby and pollack12
+
+(a) hornby and pollack12
+
+(b) auberbach and bongard1 
+
+(b) auberbach and bongard1 
+
+(a) hornby and pollack12
+bongard et al.4
+
+bongard et al.4
+
+(b) auberbach and bongard1 
+
+(f) loos et al.16
+
+(f) loos et al.16
+
+bongard et al.4
+
+bongard et al.4
+
+(f) loos et al.16
+
+(f) loos et al.16
+
+(a) hornby and pollack12
+(a) hornby and pollack12
+
+(a) hornby and pollack12
+
+(b) auberbach and bongard1 
+
+(b) auberbach and bongard1 
+(b) auberbach and bongard1
+
+(c)
+
+(c)
+
+(a) hornby and pollack12
+
+(b) auberbach and bongard1 
+
+(a) hornby and pollack12
+
+(c)
+(c)
+
+(b) auberbach and bongard1 
+
+(c)
+the golem project
+the golem project lipson and pollack18
+  lipson and pollack18
+
+(d)
+the golem project
+  lipson and pollack18
+
+(d)
+(d)
+
+(c)
+
+the golem project
+  lipson and pollack18
+
+(d)
+
+(a) hornby and pollack12
+
+bongard et al.4
+
+(b) auberbach and bongard1 
+
+(f) loos et al.16
+
+(c)
+
+(g) tuci et al.35
+
+bongard et al.4
+(c)
+
+(c)
+
+the golem project
+  lipson and pollack18
+
+the golem project
+  lipson and pollack18
+
+(d)
+
+(f) loos et al.16
+
+(d)
+
+(g) tuci et al.35
+
+(e) bongard et al.4
+
+bongard et al.4
+
+bongard et al.4
+
+(a) hornby and pollack12
+
+(b) auberbach and bongard1 
+
+(f) loos et al.16
+
+(f) loos et al.16
+(c)
+
+(f) loos et al.16
+
+(g) tuci et al.35
+
+(h) hauert et al.11
+
+the golem project
+  lipson and pollack18
+
+(g) tuci et al.35
+(d)
+
+(g) tuci et al.35
+
+(c)
+
+(g) tuci et al.35
+
+the golem project
+  lipson and pollack18
+
+(i) paul et al.26
+
+(h) hauert et al.11
+
+(d)
+(h) hauert et al.11
+(j) rieffel et al.32
+
+(k) yim et al.39
+
+(usc polymorphic robotic lab)
+
+bongard et al.4
+
+(f) loos et al.16
+
+(g) tuci et al.35
+
+(i) paul et al.26
+
+(i) paul et al.26
+
+(g) tuci et al.35
+
+(g) tuci et al.35
+
+bongard et al.4
+
+(g) tuci et al.35
+
+(j) rieffel et al.32
+
+(j) rieffel et al.32
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+(k) yim et al.39
+
+(usc polymorphic robotic lab)
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+(l) rubentstein et al.33
+(k) yim et al.39
+
+(usc polymorphic robotic lab)
+
+(h) hauert et al.11
+
+(f) loos et al.16
+
+(h) hauert et al.11
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+(h) hauert et al.11
+(h) hauert et al.11
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+(g) tuci et al.35
+
+(i) paul et al.26
+
+(i) paul et al.26
+
+(j) rieffel et al.32
+
+(j) rieffel et al.32
+
+bongard et al.4
+
+(f) loos et al.16
+
+(k) yim et al.39
+
+(k) yim et al.39
+
+(usc polymorphic robotic lab)
+
+(usc polymorphic robotic lab)
+
+(g) tuci et al.35
+
+(i) paul et al.26
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+(i) paul et al.26
+
+(i) paul et al.2
+
+(i) paul et al.26
+
+(i) paul et al.26
+
+(i) paul et al.26
+
+(j) rieffel et al.32
+
+(j) rieffel et al.32
+
+(k) yim et al.39
+(usc polymorphic robotic lab)
+
+(k) yim et al.39
+(usc polymorphic robotic lab)
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+(j) rieffel et al.32
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+(k) yim et al.39
+
+(usc polymorphic robotic lab)
+
+(l) rubentstein et al.33
+
+(l) rubentstein et al.33
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+(j) rieffel et al.32
+
+(h) hauert et al.11
+(j) rieffel et al.32
+
+(k) yim et al.39
+
+(j) rieffel et al.32
+
+(usc polymorphic robotic lab)
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+(l) rubentstein et al.33
+
+(k) yim et al.39
+
+(usc polymorphic robotic lab)
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+(l) rubentstein et al.33
+
+(l) rubentstein et al.33
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+(i) paul et al.26
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+(j) rieffel et al.32
+
+(k) yim et al.39 
+(k) yim et al.39
+(usc polymorphic robotic lab)
+
+(usc polymorphic robotic lab)
+
+(l) rubentstein et al.33
+
+(l) rubentstein et al.33
+
+78    communications of the acm   |  august 2013  |  vol. 56  |  no. 8
+
+figure 1c,d,f,g,j,k,l reprinted courtesy of ieee.
+
+figure 1e reprinted courtesy of aaas. 
+figure 1h reprinted courtesy of springer.
+
+review articles
+
+proach,  only  a  handful  of  such  al-
+gorithms  have  yet  been  developed. 
+there  are  ve  main  reasons  for  this. 
+first,  implementing  such  an  algo-
+rithm  is  extremely  difcult,  as  it  re-
+quires  a  robust  physics-based  simu-
+lator  that  can  accurately  simulate 
+complex  mechanical  constructs  of 
+arbitrary topology. second, even with 
+todays  available  computing  power  it 
+can  be  computationally  prohibitive 
+to evaluate the thousands or millions 
+of  candidate  robots  required  to  gen-
+erate one of sufcient quality. third, 
+an  evolutionary  algorithm  must  be 
+devised  that  is  expressive  enough  to 
+encode diverse robot forms and evolv-
+able in the sense that successive slight 
+mutations  lead  to  successively  more 
+complex and capable robots. fourth, 
+building  a  physical  copy  of  the  often 
+complex  virtual  robots  produced  by 
+such systems can be prohibitive. and 
+nally,  such  systems  have  yet  to  au-
+tomatically  generate  a  robot  that  is 
+more complex and capable than those 
+designed  and  built  manually.  over-
+coming  these  challenges  remains  a 
+strong focus in the eld.
+
+swarm  robotics.  one  of  the  major 
+challenges in swarm robotics is devis-
+ing a control policy that, when execut-
+ed by all members of the swarm, gives 
+rise  to  some  desired  global  behavior 
+(figure 1l). for example, if one wishes 
+to program a group of robots to move 
+collectively in a way similar to biologi-
+cal  herds,  ocks,  or  schools  of  sh,  it 
+has been shown31 that each robot must 
+balance  attraction  toward  its  local 
+neighbors  with  repulsion  away  from 
+neighbors that are too close.d however, 
+if attraction is weighted too heavily, the 
+swarm can contract into a trafc jam; if 
+repulsion is weighted too strongly the 
+group disperses.
+
+this approach to controlling groups 
+of robots is based on the principle of 
+self-organization  observed  at  many 
+levels of biological systems: biological 
+elements  such  as  cells  or  organisms 
+often  form  into  cohesive  patterns 
+without a central control signal. this 
+approach  is  desirable  in  robotics,  in 
+which  communication  limitations  or 
+
+d  this  basic  algorithm  has  since  become  the 
+cornerstone of computer graphics algorithms 
+which  simulate  the  movement  of  animal  or 
+human groups.
+
+the danger of failure may make desig-
+nating one robot as the leader a dif-
+cult or risky proposition.
+
+evolutionary approaches have been 
+used to optimize individual behaviors 
+within a robot swarm. in the rst such 
+work,29  control  policies  for  homoge-
+neous  robots  evolved  that  allowed 
+them  to  move  in  concert,  despite  the 
+lack of a leader. repeatedly evaluating 
+large  numbers  of  candidate  control-
+lers on groups of physical robots plac-
+es severe demands on the underlying 
+hardware,  so  much  work  in  this  area 
+has  relied  on  simulations  of  robot 
+swarms. this has enabled researchers 
+to investigate more complex group be-
+haviors, such as group hunting.20 such 
+experiments  require  an  understand-
+ing  of  co-evolution:  one  groups  abil-
+ity to overcome a second group makes 
+it  likely  the  second  group  will  evolve 
+to  defend  against  the  original  group. 
+this  in  turn  exerts  pressure  for  the 
+original  group  to  evolve  a  new  strat-
+egy, and so on.
+
+co-evolution requires competition 
+between groups, but also cooperation 
+between  individual  group  members. 
+evolutionary  robotics  has  been  used 
+to  investigate  the  conditions  under 
+which cooperation will arise, and how 
+communication  may  evolve  to  sup-
+port it. in an early study communica-
+tion evolved in groups of male and 
+female  simulated  robots  so  that 
+female  robots  could  call  out  to  and 
+attract males for mating.36 it was ob-
+served  that  different  dialects  would 
+evolve and compete with one another. 
+more recent work with populations of 
+simulated  robots  has  demonstrated 
+how  distinct  communication  strate-
+gies can arise and that there are evolu-
+tionary  advantages  to  more  complex 
+strategies.38  these  and  other  studies 
+may  provide  unique  tools  for  study-
+ing  the  evolution  of  biological  com-
+munication strategies in general, and 
+human  language  in  particular.  such 
+work  could  also  provide  a  physical 
+substrate on which to test hypotheses 
+from game theory that involve decep-
+tion, cooperation, and competition.
+
+modular  robotics.  advancing  tech-
+nology  has  now  made  modular  ro-
+botics  feasible:  individual  robots,  or 
+modules, may dynamically attach and 
+detach  from  one  another  to  create  a 
+robot with a constantly changing form 
+
+(figure  1k).  it  has  been  shown  that 
+evolutionary  algorithms  can  be  used 
+to  optimize  behaviors  for  a  modular 
+robot in a xed form (for example, see 
+zahadat40).  more  recently  evolution-
+ary methods have been used to enable 
+modular robots to self-assemble from 
+their  constituent  parts  or  recongure 
+into  different  functional  forms  (for 
+example,  see  meng23).  continuously 
+evolving  novel  forms  and  associated 
+behaviors  appropriate  for  a  newly  en-
+countered  environment  remains  an 
+open problem in this area.
+
+soft robotics. with the exception of 
+wheeled  vehicles,  robots  are  typically 
+constructed  from  jointed  collections 
+of  rigid  parts,  mirroring  the  skeletal 
+linkages  of  higher  animals  and  hu-
+mans. advances in materials science, 
+however,  have  made  non-traditional 
+robot  body  plans  possible.  as  one 
+example,  the  evolution  of  behaviors 
+for  tensegrity  robots  was  reported  in 
+paul26  (figure  1i).  tensegrity  struc-
+tures are collections of rigid and elas-
+tic  links  attached  in  a  particular  way 
+that  provide  several  advantages  over 
+traditional robots, such as the ability 
+to automatically revert to their default 
+form if perturbed.
+
+soft  robots  are  emerging  as  a  new 
+class  of  machine  that  combines  dis-
+crete  rigid  parts  with  continuous, 
+soft  materials  (figure  1j).  such  ma-
+chines could squeeze through holes, 
+climb  up  walls,  and  ow  around  ob-
+stacles.32 controlling such devices is 
+non-trivial, as motion at one location 
+of the robot can propagate in unantic-
+ipated ways to other parts of the body. 
+despite  this,  rieffel  et  al.32  success-
+fully evolved locomotion for a soft ro-
+bot such that it exploited rather than 
+fought  against  the  synergies  within 
+its body. evolving the architectures of 
+such discrete and continuous devices 
+demands  new  kinds  of  optimization 
+methods.  coupled  with  the  sudden 
+recent interest in this eld13 there are 
+many  contributions  that  computer 
+scientists  interested  in  optimization 
+could make in this area.
+
+formalisms
+evolutionary  robotics  is  a  mostly 
+empirical  endeavor,  although  three 
+formalismsthe  nature  of  computa-
+tion,  dynamical  systems  theory,  and 
+information theoryare beginning to 
+
+august 2013  |  vol. 56  |  no. 8  |  communications of the acm    79
+
+review articles
+
+provide  a  theoretical  foundation  for 
+the eld.
+
+morphological  computation.  as 
+noted  earlier,  evolutionary  robotics 
+builds  on  the  concept  of  embodied 
+cognition,  which  holds  that  intelli-
+gent  behavior  arises  out  of  interac-
+tions  between  brain,  body,  and  en-
+vironment.27 an important corollary 
+of embodied cognition is that, given 
+the right body plan, a robot (or ani-
+mal)  can  achieve  a  given  task  with 
+less  control  complexity  than  an-
+other  robot  with  an  inappropriate 
+body  plan.  for  example,  a  soft  ro-
+bot hand can grip a complex object 
+simply  by  enclosing  it:  the  inner 
+surface  of  the  hand  passively  con-
+forms  to  the  object.  a  robot  hand 
+composed  of  hard  material  must 
+carefully  compute  how  to  grasp  the 
+object.  it  has  been  argued  that  the 
+physical aspect of a robotits mor-
+phologycan actually perform com-
+putations that would otherwise have 
+to be performed by the robots con-
+trol  policy  if  situated  in  an  unsuit-
+able  body  plan.  this  phenomenon 
+computation25 
+of  morphological 
+cannot  be  completely  abstracted 
+away from the physical substrate that 
+gives rise to it in the way a turing ma-
+chine  can.  practitioners  in  this  area 
+would  greatly  benefit  from  the  aid 
+of theoretical computer scientists to 
+formalize this concept.
+
+dynamical systems theory. dynam-
+ical  systems  theory  is  increasingly  a 
+useful  tool  for  creating  controllers 
+for  autonomous  robots.2  often  these 
+controllers  take  the  form  of  articial 
+neural  networks  that  have  their  own 
+intrinsic dynamics: they exhibit com-
+plex  temporal  patterns  spontaneous-
+ly.  evolutionary  algorithms  can  then 
+be  used  to  shape  the  parameters  of 
+these networks such that they can be 
+pushed by incoming sensor stimuli to 
+fall  into  desired  attractor  states.  for 
+example,  a  neural  network  that  falls 
+into  a  periodic  attractor  may  gener-
+ate a rhythmic gait in a legged robot. 
+however,  it  has  been  demonstrated 
+that a one-to-one mapping between a 
+basin of attraction in a neural network 
+and  a  distinct  robot  behavior  may  be 
+overly simplistic,14 indicating there is 
+much work to be done at the interface 
+of dynamical systems theory and evo-
+lutionary robotics.
+
+information theory. typically in an 
+evolutionary  robotics  experiment,  the 
+tness of a robot is measured based 
+on  its  ability  to  perform  a  given  be-
+havior, such as how far it can walk or 
+how  well  it  can  grasp  an  object.  sur-
+prisingly, it has been found that maxi-
+mizing  certain  information-theoretic 
+measures  within  the  neural  network 
+of  evolving  robots  can  lead  to  useful 
+behavior.28  why  information  maxi-
+mization  produces  desired  behaviors 
+rather than useless, random, or unin-
+teresting behavior remains mostly un-
+resolved, although some progress has 
+been made in this direction.8
+
+in addition to helping with the syn-
+thesis of behavior, information theory 
+can also be used to analyze evolved be-
+haviors.  williams  et  al.  have  recently 
+shown37  that  information  owthe 
+transfer of information from one vari-
+able  to  anothercan  be  employed 
+to  measure  how  behaving  robots 
+ofoad  computed  information  to 
+their  body  and/or  their  environment. 
+this  technique  therefore  holds  prom-
+ise for formalizing the concept of mor-
+phological computation.25
+
+challenges
+there are a number of challenges cur-
+rently facing the eld, including trans-
+ferring  evolved  robots  from  simula-
+tion  to  physical  machines;  scalability 
+issues;  and  the  difculty  of  dening 
+appropriate tness functions for auto-
+matically measuring behavior.
+
+the  reality  gap  problem.  both 
+biological and articial evolution are 
+notorious  for  exploiting  the  poten-
+tial  relationship  between  the  animal 
+(or  robot)  and  its  environment  to 
+produce  new  behaviors.  for  instance 
+the  lightweight  property  of  feathers, 
+which  are  thought  to  have  originally 
+evolved for heat regulation, was later 
+exploited for ight.e
+
+as  an  example  of  the  exploitative 
+tendencies  of  evolutionary  algo-
+rithms applied to robots, a robot was 
+initially  designed  to  brachiate  along 
+a  suspended  beam.10  the  robot  was 
+composed  of  a  main  body  slung  un-
+der two arms, and a heavy battery pack 
+attached to the main body. gradually, 
+the evolutionary algorithm discovered 
+
+e  this tendency of evolution to repurpose traits 
+
+is known as exaptation.
+
+80    communications of the acm   |  august 2013  |  vol. 56  |  no. 8
+
+control policies for the robot that ex-
+ploited,  rather  than  fought  against 
+the weight of the batteries. these con-
+trol policies would cause the robot to 
+move such that the battery pack swung 
+forward under the robots body before 
+it  changed  hand  holds.  this  would 
+cause  the  robots  center  of  mass  to 
+move  forward,  thus  requiring  much 
+less  force  to  release  contact  with  the 
+beam  and  grasp  it  further  forward. 
+this mimics the way primates exploit 
+the weight of their bodies like a pen-
+dulum  to  bring  them  into  reach  of  a 
+new  tree  limb.  it  is  also  reminiscent 
+of  the  energy-saving  passive  dynam-
+ics  of  bipedal  locomotion  (see  more 
+details in the supplemental material).
+however, if robots are optimized in 
+a  simulator,  articial  evolution  may 
+exploit  simplications  or  inaccura-
+cies in how physics is simulated. such 
+evolved control policies may then fail 
+to  reproduce  the  desired  behavior 
+when  transferred  from  simulated  to 
+physical robots. for example, if there 
+is no noise in the simulator, a control 
+policy may evolve to generate behavior 
+based  on  a  very  narrow  range  of  sen-
+sor values. if this control policy is then 
+transferred to a physical robot with a 
+sensor that registers a wider range of 
+values  due  to  limitations  in  its  elec-
+tronics or mechanics, the physical ro-
+bot may not behave as intended. this 
+failure  of  evolved  solutions  to  cross 
+the gap from simulation to reality is 
+known  as  the  reality  gap  problem15 
+and  is  one  of  the  major  challenges 
+facing  the  eld.  however,  a  number 
+of  solutions  have  been  proposed  and 
+signicant progress is being made in 
+this area.
+
+in early work, sampling of the physi-
+cal  sensors  was  conducted  and  used 
+to simulate the robots sensors during 
+evolution.24 alternatively, noise can be 
+added to different aspects of the robot 
+and  its  interaction  with  the  environ-
+ment:  noise  can  be  added  to  the  sen-
+sors, to the effects of the motors, or the 
+position of the robot itself.15 this keeps 
+evolution  from  exploiting  artifacts  of 
+the simulation.
+
+however, neither of these approach-
+es scale well. if the robot must interact 
+with  increasingly  complex  and  asym-
+metric  objects,  more  samples  must 
+be taken from the sensors that detect 
+the object: the sensor must be polled 
+
+it was identied 
+early on that the 
+time required to 
+evaluate a single 
+robot might grow 
+exponentially with 
+the number of 
+parameters used 
+to describe its task 
+environment.
+
+at many more distances and positions 
+relative to the object because there are 
+more unique views of the object from 
+the  standpoint  of  the  sensor.  if  noise 
+is  added  to  the  simulation,  each  con-
+trol  policy  must  be  evaluated  several 
+times  such  that  controllers  evolve  to 
+be  robust  to  the  noise  in  the  simula-
+tion.  for  more  complex  robots,  noise 
+must be added to greater numbers and 
+types of sensors and actuators. this re-
+quires even more evaluations to evolve 
+robustness against this larger number 
+of noise sources.
+
+in  more  recent  work  the  typically 
+unidirectional  approach  of  transfer-
+ring evolved control policies from sim-
+ulated to physical machines has been 
+replaced with bidirectional approach-
+es  in  which  optimization  alternates 
+between simulation and reality.4,16 for 
+example,  in  bongard  et  al.4  three  dif-
+ferent  evolutionary  algorithms  were 
+employed. the rst optimized a popu-
+lation of physical simulators to better 
+reect reality: the tness of a simula-
+tor was dened as its ability to predict 
+the  behavior  of  the  physical  robot 
+(figure 1e).
+
+the second evolutionary algorithm 
+optimized  exploratory  behaviors  for 
+the  physical  machine  to  perform. 
+these behaviors were assigned a high 
+tness if, when executed by the physi-
+cal machine, they extracted the most 
+new  information  about  the  way  in 
+which the robot could interact with its 
+environment.  this  new  information 
+then became new training data for the 
+rst evolutionary algorithm. gradual-
+ly,  after  several  alternations  between 
+these  two  optimization  methods,  a 
+physical  simulation  would  automati-
+cally  emerge  that  was  adapted  to  the 
+details  of  the  quadrupedal  physical 
+robot  that  was  used  in  the  experi-
+ment.  the  third  evolutionary  algo-
+rithm  then  uses  this  highly  t  simu-
+lator to evolve control policies for the 
+physical robot, and it was found that 
+many  such  evolved  behaviors  trans-
+ferred  successfully  from  simulation 
+to reality.
+
+this approach turned out to have 
+an  added  advantage  over  previous 
+attempts  to  cross  the  reality  gap: 
+the  robot  could  recover  from  physi-
+cal  damage  such  as  the  mechanical 
+separation  of  one  of  its  four  legs.  if 
+the  robot  experienced  such  damage 
+
+review articles
+
+while  behaving,  the  robot  could  not 
+directly  sense  the  damage  but  there 
+would be an inevitable change in the 
+incoming sensor values. this change 
+would  be  automatically  incorporated 
+by  the  rst  evolutionary  algorithm 
+into  new  simulations:  simulations  of 
+a  three-legged  robot  would  gradually 
+replace  simulations  of  a  four-legged 
+robot.  these  new  simulations  would 
+then be used to evolve new control pol-
+icies for the damaged robot that would 
+allow  it  to  automatically  compensate 
+for its injury.
+
+future work in this area would ben-
+et  from  collaborations  with  develop-
+ers  of  physical  simulation  such  that 
+evolution could alter the physical con-
+stants of the simulation itself, such as 
+those used to model friction, collision, 
+as well as aero- and hydrodynamics.
+
+koos  et  al.16  recently  proposed  a 
+different  approach  to  the  reality  gap 
+problem.  control  policies  evolved  in 
+simulation are transferred to a physical 
+machine (figure 1f), and the disparity 
+between the behavior observed in sim-
+ulation and reality is measured. this is 
+done for several controllers, and the re-
+sulting disparity measures are used to 
+create a model that predicts the dispar-
+ity  of  control  policies  that  have  yet  to 
+be validated on the physical machine. 
+a multi-objective optimization is then 
+employed to maximize the desired be-
+havior  in  simulation  and  to  minimize 
+predicted  disparity:  control  policies 
+are  sought  that  generate  the  desired 
+behavior  in  the  simulated  robot  and 
+are likely to reproduce that behavior in 
+the physical robot.
+
+this  work  attempted  to  address 
+a  seeming  trade-off  between  behav-
+ioral  efficiency  and  transferability: 
+the  more  efficient  the  robot  is  at  ex-
+hibiting  a  desired  behavior  the  less 
+likely  it  is  to  transfer  to  the  physical 
+machine.  for  example  if  fast-legged 
+locomotion is selected for in simula-
+tion, running is more desirable than 
+walking.  however,  running  requires 
+the robots control policy to carefully 
+manage  its  center  of  mass  to  avoid 
+falling.  if  the  mass  distributions  of 
+the simulated and physical robot are 
+slightly  different,  running  behaviors 
+may fail when transferred. this failure 
+is  less  likely  for  walking  behaviors  in 
+which the robots mass distribution is 
+less important.
+
+august 2013  |  vol. 56  |  no. 8  |  communications of the acm    81
+
+one goal in 
+evolutionary 
+robotics in 
+particular, and  
+the eld of 
+evolutionary 
+computation  
+in general, is  
+to create 
+increasingly 
+evolvable 
+algorithms.
+
+review articles
+
+most of the work on the reality gap 
+problem  has  assumed  that  only  the 
+control  policy  of  robots  will  be  trans-
+ferred. lipson and pollack,18 however, 
+integrated  an  evolutionary  robotics 
+simulation  with  rapid  prototyping 
+technology  to  automate  robot  manu-
+facture as well as robot design (figure 
+1c,  1d).  they  rst  evolved  the  body 
+plans  and  control  policies  for  robots 
+composed  of  linked  assemblages  of 
+linear  actuators.  then,  the  3d  archi-
+tectures  of  the  best  of  these  evolved 
+robots were printed out of plastic; mo-
+tors, circuitry, and batteries were then 
+added  by  hand.  many  of  these  auto-
+matically designed and manufactured 
+robots were able to successfully repro-
+duce the locomotion patterns original-
+ly evolved in the simulator.
+
+combinatorics of evaluation. it was 
+identied  early  on  that  the  time  re-
+quired to evaluate a single robot might 
+grow  exponentially  with  the  number 
+of parameters used to describe its task 
+environment.22  for  example,  consider 
+a  robot  that  must  grasp  m  different 
+objects under n different lighting con-
+ditions. each robot must be evaluated 
+for how well it grabs each object under 
+each  lighting  condition,  requiring  mn 
+evaluations per robot. if there are p pa-
+rameters  describing  the  task  environ-
+ment and each parameter has s differ-
+ent  settings,  then  each  robot  must  be 
+evaluated sp times.
+
+this  is  a  serious  challenge  in  the 
+eld that has yet to be resolved. how-
+ever,  one  possible  solution  to  this 
+challenge  may  be  addressed  using 
+co-evolution.  consider  a  population 
+of  robots  and  a  second  population  of 
+task environments competing against 
+one another. the robots evolve to suc-
+ceed  when  exposed  to  environments 
+drawn from the pool of evolving envi-
+ronments,  and  environments  evolve 
+to  foil  the  abilities  of  the  evolving  ro-
+bots.  this  is  not  unlike  prey  evolving 
+to elude predators, while the predators 
+evolve  to  catch  prey.  this  approach 
+could, in the future, be used to evolve 
+robots  that  successfully  generalize 
+against a subset of task environments 
+they might encounter when manufac-
+tured and deployed.
+
+evolvability.  evolving  all  aspects  of 
+a complex machine such as a robot is 
+a  daunting,  high-dimensional  optimi-
+zation  problem.  biological  evolution 
+
+82    communications of the acm   |  august 2013  |  vol. 56  |  no. 8
+
+faces the same challenge yet seems to 
+have addressed it by a process known 
+as  the  evolution  of  evolvability.  a  spe-
+cies  with  high  evolvability  is  dened 
+as one that can more rapidly adapt to 
+changes in its environment than a sim-
+ilar species with lower evolvability.
+
+one  goal  in  evolutionary  robotics 
+in  particular,  and  the  eld  of  evolu-
+tionary  computation  in  general,  is  to 
+create 
+increasingly  evolvable  algo-
+rithms.  rather  than  independently 
+optimizing  individual  parameters  of 
+a candidate solution, such algorithms 
+should  rapidly  discover  useful  aggre-
+gate  patterns  in  candidate  solutions 
+and  subsequently  elaborate  them.  it 
+has been shown, for example, that ge-
+nomes that encode formal grammars 
+produce  robots  with  regular  struc-
+ture, and that such genomes are more 
+evolvable  than  genomes  that  do  not 
+produce regular structures.12
+
+similarly,  when  an  evolutionary 
+algorithm  biased  toward  producing 
+regular  patterns  was  used  to  evolve 
+articial neural networks for robots it 
+was found, again, that such networks 
+more  rapidly  discover  desired  behav-
+ior  compared  to  other  evolutionary 
+methods  that  do  not  generate  such 
+regularity.6  auerbach  and  bongard1 
+have expanded the reach of this evolu-
+tionary algorithm to shape robot body 
+plans as well.
+
+despite these recent advances, little 
+is  known  about  how  to  design  evolu-
+tionary  algorithms  that  reorganize 
+genetic  representations  to  maximize 
+evolvability  and  thus  automatically 
+generate  adaptive  complex  machines 
+in a reasonable amount of time.
+
+fitness function design. the origi-
+nal  and  continued  goal  of  evolution-
+ary robotics is to make as few assump-
+tions about the nal form of the robot 
+or  the  kind  of  behavior  that  should 
+be  generated.  however,  designing  a 
+tness  function  that  rapidly  discov-
+ers  desirable  solutions  without  bias-
+ing  it  toward  particular  solutions  is 
+notoriously  difcult.  for  this  reason 
+there  have  been  efforts  in  the  eld  to 
+eliminate  the  usage  of  a  tness  func-
+tion  altogether.  one  recent  example 
+is  novelty  search,  which  begins  with 
+simple candidate solutions and gradu-
+ally creates more complex solutions as 
+optimization proceeds.17 the tness of 
+any given solution is simply how much 
+
+it  differs  from  previously  generated 
+solutions. this approach was found to 
+produce walking in simulated bipedal 
+robots, a notoriously difcult problem 
+in robotics.
+
+conclusion
+since  its  founding  in  the  early  1990s, 
+evolutionary  robotics  has  remained  a 
+small  but  productive  niche  eld.  al-
+though the eld has yet to evolve a ro-
+bot  that  is  superior  to  one  produced 
+using mainstream optimization meth-
+ods  such  as  reinforcement  learning, 
+the eld has produced a wider variety 
+of robots automatically. depending on 
+how one counts, roboticists have man-
+ually designed and built a few hundred 
+different kinds of robots with human-
+oid or legged or snakelike body plans. 
+evolutionary  methods,  on  the  other 
+hand have produced millions of differ-
+ent kinds of robots that can walk (for 
+example, figure 1ad), swim, or grasp 
+objects.33  it  is  hoped  that  by  explor-
+ing  all  the  different  ways  that  robots 
+achieve  these  basic  competencies  we 
+might gain unique insight into how to 
+scale robots up to perform more com-
+plex  tasks,  like  working  safely  along-
+side a human.
+
+moreover, several recent advances 
+in  fields  outside  of  robotics  are  pro-
+viding  opportunities  to  showcase 
+the  advantages  of  this  evolutionary 
+approach.  advances 
+in  materials 
+science  are  making  soft  robots  and 
+modular  robots  a  reality,  yet  manu-
+ally  designing  and  controlling  such 
+robots  is  much  less  intuitive  than 
+traditional  rigid  and  monolithic  ro-
+bots.  advances  in  automated  fabri-
+cation are bringing the possibility of 
+continuous  and  automated  design, 
+manufacture,  and  deployment  of  ro-
+bots  within  reach.  state-of-the-art 
+evolutionary algorithms and physical 
+simulators  are  making  it  possible  to 
+optimize all aspects of a robots body 
+plan  and  control  policy  simultane-
+ously  in  a  reasonable  time  period. 
+and  finally,  new  insights  from  evo-
+lutionary  biology  and  neuroscience 
+are  informing  our  ability  to  create 
+increasingly  complex,  autonomous, 
+and adaptive machines.
+
+acknowledgments
+this work was supported by the national 
+science  foundation  (nsf)  under  grant  
+
+pecase-0953837,  and  by  the  defense 
+advanced  research  projects  agency 
+(darpa) under grants w911nf-11-1-0076 
+and fa8650-11-1-7155. 
+
+references
+1.  auerbach, j.e. and bongard, j.c. on the relationship 
+
+between environmental and morphological complexity 
+in evolved robots. in proceedings of the 2012 genetic 
+and evolutionary computation conference, 521528.
+2.  beer, r.d. the dynamics of brain-body-environment 
+
+systems: a status report. handbook of cognitive 
+science: an embodied approach (2008), 99120.
+
+3.  bongard, j. morphological change in machines 
+accelerates the evolution of robust behavior. in 
+proceedings of the national academy of sciences 108, 
+4 (2011), 1234.
+
+4.  bongard, j. zykov, v. and lipson, h. resilient machines 
+through continuous self-modeling. science 314 (2006), 
+11181121.
+
+5.  cheney, n., maccurdy, r., clune, j. and lipson, h. 
+unshackling evolution: evolving soft robots with 
+multiple materials and a powerful generative 
+encoding. in proceedings of the genetic and 
+evolutionary computation conference. acm, ny, 2013. 
+
+6.  clune, j., beckmann, b.e., ofria, c. and r.t. pennock, 
+
+r.t. evolving coordinated quadruped gaits with the 
+hyperneat generative encoding. ieee congress on 
+evolutionary computation (2009), 27642771.
+
+7.  collins, s., ruina, a., tedrake, r. and wisse, m. efcient 
+
+bipedal robots based on passive-dynamic walkers. 
+science 307, 5712 (2005), 10821085.
+
+8.  edlund, j.a., chaumont, n., hintze, a., koch, c., tononi, 
+
+g. and adami, c. integrated information increases 
+with tness in the evolution of animats. plos 
+computational biology 7, 10 (2011).
+
+9.  floreano, d. and mattiussi, c. bio-inspired articial 
+intelligence: theories, methods, and technologies. 
+mit press, cambridge, ma, 2008.
+
+10.  frutiger, d.r., bongard, j.c. and iida, f. iterative 
+
+product engineering: evolutionary robot design. in 
+proceedings of the fifth international conference 
+on climbing and walking robots. p. bidaud and f.b. 
+amar, eds. professional engineering publishing, 2002, 
+619629.
+
+11.  hauert, s., zufferey, j.c. and floreano, d. evolved 
+
+swarming without positioning information: 
+an application in aerial communication relay. 
+autonomous robotics 26 (2009), 2132.
+
+12.  hornby, g.s. and pollack, j.b. creating high-level 
+
+components with a generative representation for body-
+brain evolution. articial life 8, 3 (2002), 223246.
+
+13.  iida, f. and laschi, c. soft robotics: challenges and 
+perspectives. procedia computer science 7 (2011), 
+99102.
+
+14.  izquierdo, e. and buhrmann, t. analysis of a 
+
+dynamical recurrent neural network evolved for 
+two qualitatively different tasks: walking and 
+chemotaxis. articial life xi: proceedings of the 
+11th international conference on the simulation and 
+synthesis of living systems. mit press, cambridge, 
+ma, 2008, 257264.
+
+15.  jakobi, n., husbands, p. and harvey, i. noise and the 
+
+reality gap: the use of simulation in evolutionary 
+robotics. advances in articial life (1995), 704720.
+
+16.  koos, s., mouret, j.-m. and s. doncieux, s. the 
+
+transferability approach: crossing the reality gap 
+in evolutionary robotics. ieee transactions on 
+evolutionary computation (2012); doi: 10.1109/
+tevc.2012.2185849.
+
+17.  lehman, j. and stanley, k.o. abandoning objectives: 
+
+evolution through the search for novelty alone. 
+evolutionary computation 19, 2 (2011), 189223.
+18.  lipson, h. and pollack, j.b. automatic design and 
+
+manufacture of articial lifeforms. nature 406 (2000), 
+974978.
+
+19.  long, j. darwins devices: what evolving robots can 
+teach us about the history of life and the future of 
+technology. basic books, 2012.
+
+20.  luke, s. and spector, l. evolving teamwork and 
+
+coordination with genetic programming. in 
+proceedings of the first annual conference on 
+genetic programming. mit press, cambridge, ma, 
+150156. 
+
+21.  lungarella, m., metta, g., pfeifer, r. and sandini, g. 
+
+developmental robotics: a survey. connection science 
+15, 4 (2003), 151190.
+
+22.  mataric, m. and cliff, d. challenges in evolving 
+
+review articles
+
+controllers for physical robots. robotics and 
+autonomous systems 19 (1996), 6784.
+
+23.  meng, y., zhang, y. and jin, y. autonomous self-
+reconguration of modular robots by evolving a 
+hierarchical mechanochemical model. computational 
+intelligence magazine 6, 1 (2011). ieee, 4354.
+
+24.  miglino, o., lund, h.h. and s. nol, s. evolving mobile 
+robots in simulated and real environments. articial 
+life 2, 4 (1995), 417434.
+
+25.  paul, c. morphological computation: a basis for the 
+analysis of morphology and control requirements. 
+robotics and autonomous systems 54, 8 (2006), 
+619630.
+
+26.  paul, c., valero-cuevas, f.j. and lipson, h. design 
+
+and control of tensegrity robots for locomotion. ieee 
+transactions on robotics 22, 5 (2006), 944957.
+
+27.  pfeifer, r. and bongard, j. how the body shapes the 
+
+way we think: a new view of intelligence. mit 
+press, cambridge, ma, 2006.
+
+28. polani, d., sporns, o. and lungarella, m. how 
+
+information and embodiment shape intelligent 
+information processing. in 50 years of articial 
+intelligence, springer, 2007, 99111.
+
+29.  quinn, m. smith, l., mayley, g. and husbands, p. 
+evolving controllers for a homogeneous system 
+of physical robots: structured cooperation with 
+minimal sensors. philosophical transactions of the 
+royal society of london. series a: mathematical, 
+physical and engineering sciences 361, 1811 (2003), 
+23212343.
+
+30.  reil, y. and husbands, p. evolution of central pattern 
+generators for bipedal walking in a real-time physics 
+environment. ieee transactions on evolutionary 
+computation 6, 2 (2002), 159168.
+
+31.  reynolds, c.w. flocks, herds and schools: a 
+
+distributed behavioral model. in acm siggraph 
+computer graphics 21 (1987), 2534.
+
+32.  rieffel, j., saunders, f., nadimpalli, s., zhou, h., 
+
+hassoun, s., rife, j. and trimmer, b. evolving soft 
+robotic locomotion in physx. in proceedings of the 
+11th annual conference companion on genetic and 
+evolutionary computation conference: late breaking 
+papers. acm, ny, 2009, 24992504.
+
+33.  rubenstein, m., ahler, c. and nagpal, r. kilobot: a low-
+cost scalable robot system for collective behanviors. 
+in proceedings of 2012 ieee international 
+conference on robotics and automation. ieee, 
+32933298. 
+
+34.  sims, k. evolving 3d morphology and behaviour by 
+
+competition. articial life. rodney a. brooks and 
+pattie maes, eds, (2009), 2839.
+
+35.  tuci, e., massera, g., and nol, s. active categorical 
+
+perception of object shapes in a simulated 
+anthropomorphic robotic arm. ieee transactions on 
+evolutionary computation 14, 6 (2010), 885899.
+
+36.  werner, g.m. and dyer, m.g. evolution of 
+
+communication in articial organisms. in proceedings 
+of the second international conference of articial 
+life. d. farmer, c. langton, s. rasmussen, and c. 
+taylor, eds, (1991), 659687.
+
+37.  williams, p. and beer, r. information dynamics 
+
+of evolved agents. in proceedings of the 11th 
+international conference on simulation of adaptive 
+behavior. s. doncieux, b. girard, a. guillot, j. hallam, 
+j.-a. meyer, and j-b. mouret, eds. springer, 2010, 
+3849.
+
+38.  wischmann, s., floreano, d. and keller, l. historical 
+
+contingency affects signaling strategies and 
+competitive abilities in evolving populations of 
+simulated robots. in proceedings of the national 
+academy of sciences 109, 3 (2012), 864868.
+
+39.  yim, m., shen, w.m., salemi, b., rus, d., moll, m., 
+lipson, h., klavins, e. and chirikjian, g.s. modular 
+self-recongurable robot systems (grand challenges 
+of robotics). robotics & automation magazine 14, 1 
+(2007). ieee, 4352. 
+
+40. zahadat, p., christensen, d., schultz, u., katebi, s. and 
+
+stoy, k. fractal gene regulatory networks for robust 
+locomotion control of modular robots. in proceedings 
+of the 11th international conference on simulation of 
+adaptive behavior. s. doncieux, b. girard, a. guillot, j. 
+hallam, j.-a. meyer, and j-b. mouret, eds. springer, 
+2010, 544554.
+
+josh c. bongard (josh.bongard@uvm.edu) is director of 
+the morphology, evolution and cognition laboratory in 
+the department of computer science at the university of 
+vermont. he is also a member of the vermont advanced 
+computing core and the complex systems center.
+
+copyright held by owners/author(s).
+
+august 2013  |  vol. 56  |  no. 8  |  communications of the acm    83
+
+

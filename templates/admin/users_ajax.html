@@ -3,9 +3,9 @@
 <div class="row">
     <form id="invitation-form" class="clear c12">
         {% csrf_token %}
-        <input id="email-invitation" type="email" name="email" class="text" placeholder="{% trans 'Invitar Usuarios' %}"/>
-        <input id="submit-invitation" type="submit" class="submit trans" value="Enviar"/>
-        <span>Ingresa las direcciones de correo electrónico separadas por coma ( , )</span>
+        <input id="email-invitation" type="email" name="email" class="text" placeholder="{% trans 'Invitar usuarios' %}"/>
+        <input id="submit-invitation" type="submit" class="submit trans" value="{% trans 'Enviar' %}"/>
+        <span>{% trans 'Ingresa las direcciones de correo electrónico separadas por coma ( , )' %}</span>
         <span id="invitation-error" class="error"></span>
     </form>
 </div>
@@ -14,26 +14,20 @@
 <ul class="setup-user-list">
     {% for user in not_registered %}
         <li>
-            <div class="setup-user-row not_active">
+            <div class="setup-user-invited-row invited">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <div class="setup-user-name">
                     {{user.email}}
                 </div>
             </div>
-            <div class="setup-user-box">
-                <button class="setup-view-box" title="{% trans 'Ver' %}" data-target="{% url 'admin:profile' user.id %}">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
-
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-forward-box" user-email="{{ user.email }}" title="{% trans 'Reenviar' %}">
-                    <i class="fa fa-mail-forward" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="setup-user-box">
+            <div class="setup-invited-user-box">
                 <button class="setup-delete-invitation-box" user-id="{{ user.id }}" title="{% trans 'Eliminar' %}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="setup-invited-user-box">
+                <button class="setup-forward-box" user-email="{{ user.email }}" title="{% trans 'Reenviar' %}">
+                    <i class="fa fa-mail-forward" aria-hidden="true"></i>
                 </button>
             </div>
         </li>

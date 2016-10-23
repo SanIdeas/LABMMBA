@@ -268,12 +268,22 @@
 	transition: transform 0.2s ease-in-out;
 }
 
+.setup-user-list > li:hover > .setup-user-invited-row{
+	transform: translateX(-100px);
+	transition: transform 0.2s ease-in-out;
+}
+
 .setup-user-row-expand-rsp > .setup-user-row{
 	transform: translateX(-150px) !important;
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-row{
+.setup-user-invited-row-expand-rsp > .setup-user-invited-row{
+	transform: translateX(-100px) !important;
+	transition: transform 0.2s ease-in-out;
+}
+
+.setup-user-row, .setup-user-invited-row{
 	padding: 0px 10px;
 	width: 100%;
 	height: 100%;
@@ -302,7 +312,7 @@
     left: -26px;
 }
 
-.not_active:before{
+.invited:before{
 	content: "";
 	position: absolute;
 	height: 100%;
@@ -312,7 +322,7 @@
 	background-color: #006e9c;
 }
 
-.not_active > i{
+.invited > i{
 	color: #006e9c;
 }
 
@@ -344,7 +354,7 @@
 	color: #e0424e;
 }
 
-.setup-user-box{
+.setup-user-box, .setup-invited-user-box{
     padding: 5px 0px;
     height: 100%;
     box-sizing: border-box;
@@ -354,7 +364,7 @@
     right: 0px;
 }
 
-.setup-user-box i{
+.setup-user-box i, .setup-invited-user-box i{
 	width: 100%;
     position: relative;
     height: 100%;
@@ -369,6 +379,10 @@
 
 .setup-user-box:nth-child(3){
 	right: 100px;
+}
+
+.setup-invited-user-box:nth-child(3){
+	right: 50px;
 }
 
 .setup-delete-box, .setup-delete-invitation-box{
@@ -552,8 +566,8 @@ form .submit{
 	padding: 10px;
 }
 
-div .row{
-	margin: 0;
+form row{
+	padding: 0 0 0 0;
 }
 
 @media screen and (max-width:1536px){
