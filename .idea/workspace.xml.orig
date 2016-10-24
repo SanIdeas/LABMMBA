@@ -62,8 +62,13 @@
       <file leaf-file-name="users_ajax.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="315">
+              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+=======
             <state relative-caret-position="225">
               <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -1050,12 +1055,20 @@
       <workItem from="1476653147225" duration="43200000" />
       <workItem from="1477261372956" duration="1664000" />
       <workItem from="1477264108539" duration="555000" />
+<<<<<<< Updated upstream
+      <workItem from="1477286111489" duration="160000" />
+=======
       <workItem from="1477286111489" duration="574000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
+    <option name="totallyTimeSpent" value="49675000" />
+=======
     <option name="totallyTimeSpent" value="50089000" />
+>>>>>>> Stashed changes
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1436,8 +1449,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+        <state relative-caret-position="315">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+=======
         <state relative-caret-position="225">
           <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
