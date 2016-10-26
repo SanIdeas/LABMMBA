@@ -271,7 +271,7 @@
 			}
 
 			&.disabled{
-				background-color: greyscale(lighten(@blue-color, 10%));
+				background-color: greyscale(lighten(@blue-color, 50%));
 			}
 		}
 
@@ -551,16 +551,27 @@
 			}
 		}
 		&.table{
-			list-style: none;
 			text-align: left;
 			margin: 0;
 
 			& .document{
-				transition: background-color .3s ease;
+				transition: background-color .2s ease;
 				cursor: pointer;
 				&:hover{
 					background-color: lighten(@gray-color, 5%);
 				}
+				& > td{
+					&:nth-child(1){
+						width: 1px;
+					}
+					&:nth-child(2){
+					    text-overflow: ellipsis;
+					    overflow: hidden;
+					}
+					&:nth-child(3), &:nth-child(4){
+						width: auto;
+					}
+				} 
 			}
 
 			& th{
@@ -584,7 +595,8 @@
 					background: transparent;
 				}
 				&.check{
-					max-width: 20px;
+					width: 1px;
+					max-width: 1px;	
 				}
 				&.size{
 					transition: background-color .3s ease;
