@@ -1,6 +1,9 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
 var bCrumbsCount = 0;
 var doc_selected = {};
+var crossref_timeout, crossref_busy = false;
+var last_cr_query = "";
+var real_ids;
 (function($){
 	/* Resetea el input de archivos */
 	$.fn.resetInput = function(){
@@ -69,7 +72,18 @@ $('.drive.btn').click(function(){
 	userFiles();
 });
 
+//Cuando el boton 'enviar' es presionado, se envian las id de los archivos que se subiran al sistema
+$('.upload.button.send.first').click(function(){
+	sendIds();
+});
 
+//Cuando el boton 'enviar' es presionado, se envia la informacion actualizada de los documentos
+$('.upload.button.send.second').click(function(){
+	sendCompleteInfo();
+});
+
+
+// Envia el link de Google Drive al servidor
 function sendLink(url){
 	// Se activa la barra de carga
 	$('.loading').removeClass("hidden");
@@ -90,10 +104,7 @@ function sendLink(url){
 }
 
 function userFiles(folderId = "", name = "", bcId = 0){
-	// Se activa la barra de carga
-	$('.loading').removeClass("hidden");
-	// Se desactiva el campo de texto hasta obtener una respuesta
-	$('.drive.link').prop("disabled", true);
+	showLoadingBar();
 	$.ajax({
 		url: user_files_link.replace('999', folderId),
 		method: 'GET'
@@ -102,8 +113,7 @@ function userFiles(folderId = "", name = "", bcId = 0){
 		if(!response['error']){
 			// Se llama a la funcion userFilesHandler para mostrar la lista al usuario
 			if (userFilesHandler(response['list'])){
-				$('.loading').addClass("hidden");
-				$('.drive.link').prop("disabled", false);
+				hideLoadingBar();
 				// Mientras el boton + siga vivo:
 				if($('.drive.btn').length){
 					// Se hace desaparecer el boton con una animacion
@@ -113,17 +123,13 @@ function userFiles(folderId = "", name = "", bcId = 0){
 						// Una vez terminada la animacion se elimina el boton y se expande el cuadro
 						$(this).remove();
 						$('.drive.user').removeClass('hidden');
-						$('.drive.plus').animate({
-							height: $('.drive.user').height().toString() + 'px'
-						}, 400);
+						adjustBoxHeight();
 					});
 				}
 				else{
 					// Se expande el cuadro
 					$('.drive.user').removeClass('hidden');
-					$('.drive.plus').animate({
-						height: $('.drive.user').height().toString() + 'px'
-					}, 400);
+					adjustBoxHeight();
 				}
 				if(name != ""){
 					// Se agrega la miga de pan
@@ -142,9 +148,9 @@ function userFiles(folderId = "", name = "", bcId = 0){
 
 // Se encarga de recibir la lista de archivos de Google drive y las muestra en pantalla, configurando todo lo necesario
 function userFilesHandler(files){
-	$('.drive.list').children().remove();
+	$('.drive.list.nav').children().remove();
 	template = [
-			'<tr class="document" type="$type" title="$title" id="$id" $style size="$rawsize">',
+			'<tr class="document nav" type="$type" title="$title" id="$id" $style size="$rawsize">',
 				'<td class="check"> $checkbox </td>',
 				'<td> <i class="fa fa-$icon" aria-hidden="true"></i> $name </td>',
 				'<td>$date</td>',
@@ -178,12 +184,12 @@ function userFilesHandler(files){
 				.replace(/\$id/g, files[i]['id'])
 				.replace(/\$title/g, files[i]['title']);
 
-		$('.drive.list').append(code);
+		$('.drive.list.nav').append(code);
 	}
 
 	// Se configuran los escucha
-	$('.document').off(); // Se desactivan los anteriores
-	$('.document').click(function(){
+	$('.document.nav').off(); // Se desactivan los anteriores
+	$('.document.nav').click(function(){
 		// Si es una carpeta, se solicitan sus hijos
 		if($(this).attr('type') == 'folder'){
 			userFiles($(this).attr('id'),$(this).attr('title'))
@@ -191,9 +197,7 @@ function userFilesHandler(files){
 		else if($(this).attr('type') == 'file'){
 			if($(this).attr('id') in doc_selected){
 				// Si la id ya existe, se elimina
-				delete doc_selected[$(this).attr('id')];
-				$(this).css('background-color', 'transparent');
-				$(this).children('.check').children().remove();
+				removeFromSelected($(this).attr('id'));
 			}
 			else{
 				// Si el tamaño es mayor a 2 megabytes, no se permite la seleccion
@@ -206,14 +210,26 @@ function userFilesHandler(files){
 				}
 				// Si la id no existe y es menor a 2 mb, se crea
 				else{
-					doc_selected[$(this).attr('id')] = $(this).attr('title');
-					$(this).css('background-color', '#cfeae2');
-					$(this).children('.check').append('<i class="fa fa-check" aria-hidden="true"></i>');
+					addToSelected($(this).attr('id'));
 				}
 			}
 		}
 	});
 	return true;
+}
+
+function showLoadingBar(){
+	// Se activa la barra de carga
+	$('.loading').removeClass("hidden");
+	// Se desactiva el campo de texto hasta obtener una respuesta
+	$('.drive.link').prop("disabled", true);
+}
+
+function hideLoadingBar(){
+	// Se desactiva la barra de carga
+	$('.loading').addClass("hidden");
+	// Se activa el campo de texto (si es que existe)
+	$('.drive.link').prop("disabled", false);
 }
 
 function addBreadCrumb(folderId, name){
@@ -244,17 +260,139 @@ function removeBreadCrumbs(id){
 	}
 }
 
+// Se encarga de agregar el documento al cuadro de seleccionados y al objecto de documentos
+function addToSelected(id){
+	var object = $('#' + id + '.document.nav');
+	doc_selected[id] = object.attr('title');
+
+	// Se crea el documento en el cuadro de seleccionados
+	code = object.wrap('<p/>').parent().html();
+	object.unwrap();
+	code = $('.drive.list.selected').append(code);
+	code.children('#' + id).removeClass('nav').addClass('selected');
+	code.children('#' + id).children('.check').html('<i class="fa fa-times-circle" aria-hidden="true"></i>');
+	
+	// Se pinta el documento de verde en de los directorios de Google Drive
+	object.css('background-color', '#cfeae2');
+	object.children('.check').append('<i class="fa fa-check" aria-hidden="true"></i>');
+
+	checkFilesSize();
+
+	// Se configura el click
+	code.children('#' + id).click(function(){
+		removeFromSelected(id);
+		});
+
+	adjustSelectedBoxHeight();
+}
+
+// Se encarga de eliminar el documento del cuadro de seleccionados y del objeto de documentos
+function removeFromSelected(id){
+	delete doc_selected[id];
+
+	$('#' + id + '.document.nav').css('background-color', 'transparent');
+	$('#' + id + '.document.nav').children('.check').children().remove();
+
+	$('#' + id + '.document.selected').remove();
+
+	adjustSelectedBoxHeight();
+	checkFilesSize();
+
+}
+
+function adjustBoxHeight(plus=0){
+	// Se ajusta el alto del cuadro
+	$('.drive.plus').animate({
+		height: ($('.drive.user').height() + plus).toString() + 'px'
+	}, 200);
+}
+
+function adjustSelectedBoxHeight(){
+	adjustBoxHeight($('.drive.list.selected').height() - $('.drive.selected.wrapper').height());
+	// Se ajusta el alto del cuadro
+	$('.drive.selected.wrapper').animate({
+		height: $('.drive.list.selected').height().toString() + 'px'
+	}, 200);
+}
+
+// Envia las id de los documentos seleccionados al servidor
+function sendIds(){
+	// Muestra la barra de carga
+	showLoadingBar();
+	// Elimina la vista actual
+	hideElement('.upload.drive.plus', true);
+	var ids = [];
+	for (var key in doc_selected) {
+	    if (doc_selected.hasOwnProperty(key)) {
+	        ids.push(key);
+	    }
+	}
+	ids = ids.join('+');
+	url = download_drive_link.replace('999', ids);
+
+	// Solicitud al servidor
+	$.ajax({
+		url: url,
+		method: 'GET'
+	}).done(function(response){
+		handleDocuments(response['files']);
+		hideLoadingBar();
+		real_ids = response['real_ids'].join(',');
+	});
+	console.log("Drive ids: " + ids);
+}
+
+
+function sendCompleteInfo(){
+	var form = new FormData($('#form')[0]);
+	form.append('id', real_ids);
+	var form_status = $('#form')[0].checkValidity();
+	console.log(form_status);
+
+	//Si no esta completo el formulario, se resaltan los campos faltantes
+	if(!form_status)
+		checkEmptyFields();
+	else{
+		$.ajax({
+			url: complete_drive_info_link,
+			method: 'POST',
+			data: form,
+			processData: false,
+			contentType: false,
+		}).done(function(response){
+			console.log(response);
+		});
+	}
+
+}
+
+
+/***********************************************/
+
+function handleDocuments(documents){
+	console.log(documents);
+	for(var i = 0; i < documents.length; i++){
+		addDocument(documents[i]);
+	}
+	/* Se evita la accion del boton Enter */
+	$('#form').keydown(function(e){
+		if(event.keyCode == 13) {
+		  event.preventDefault();
+		  return false;
+		}
+	});
+
+	// Se activa crossref
+	enableCrossref();
+	addElement('.upload.files');
+}
+
+
 /* Muestra en pantalla el formulario del documento */
-function addDocument(key_count, filename, object){
+function addDocument(document){
 	/* Plantilla para el idioma Espanol */
 	if (current_lang == 'es'){
 		var code = ['<div class="s1 c10 intranet box upload file wrapper animation enter down" doc-index="$index">',
-					'<div class="c12 upload file head">',
-						'<button class="upload delete" doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
-					'</div>',
-					'<div class="c12 upload file filename">',
-						'<h3>$filename</h3>',
-					'</div>',
 					'<div class="c12 upload file field">',
 						'<div class="c3">',
 							'<strong>Titulo:</strong>' ,
@@ -390,39 +528,16 @@ function addDocument(key_count, filename, object){
 	}
 	/* Se reemplazan las etiquetas por los Metadatos extraidos */
 	code = code.join('')
-		.replace(/\$index/g, key_count)
-		.replace(/\$filename/g, filename)
-		.replace(/\$title/g, object['Title'] ? object['Title']:'')
-		.replace(/\$author/g, object['Author'] ? object['Author']:'')
-		.replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
+		.replace(/\$index/g, document['id'])
+		.replace(/\$title/g, document['title'] ? document['title']:'')
+		.replace(/\$author/g, document['author'] ? document['author']:'')
+		.replace(/\$date/g, document['date'] ? (document['date'].substr(2, 4) + '-' + document['date'].substr(6, 2) + '-' + document['date'].substr(8, 2) ):'');
 	/* Se agrega al frontend */
 	$('#form').append(code);
 	/* Se realiza la primera consulta a crossref */
-	crossref_query(object['Title'] ? object['Title']:'', key_count, false);
+	crossref_query(document['title'] ? document['title']:'', document['id'], false);
 
-	/* Se evita la accion del boton Enter */
-	$('#form').off();
-	$('#form').keydown(function(e){
-		if(event.keyCode == 13) {
-		  event.preventDefault();
-		  return false;
-		}
-	});
-
-	/* Se configura la accion del boton Cruz */
-	$('.upload.delete').off();
-	$('.upload.delete').click(function(e){
-		e.preventDefault();
-		hideElement('.file[doc-index="' + $(this).attr('doc-index') + '"]', true);
-		console.log('.file[doc-index="' + $(this).attr('doc-index') + '"]');
-		delete files[$(this).attr('doc-index')];
-		checkFilesSize();
-		if(Object.size(files) == 0)
-			$('#local-submit').prop('disabled', true).addClass('disabled');
-	});
-
-	// Se activa crossref
-	enableCrossref("class");
+	
 }
 
 function crossref_query(query, doc_id, open = true){
@@ -470,6 +585,7 @@ function crossref_query(query, doc_id, open = true){
 	});		
 }
 
+// Activa los eventos de Crossref
 function enableCrossref(){
 
 	$('.field[field-name="title"]').off();
@@ -528,4 +644,14 @@ function checkEmptyFields(){
 			});	
 		}
 	});
+}
+
+// Se encarga de habilitar o deshabilitar el boton de enviar
+function checkFilesSize(){
+	if(Object.size(doc_selected) == 0){
+		$('.upload.button.send').prop('disabled', true).addClass('disabled');				
+	}
+	else{
+		$('.upload.button.send').prop('disabled', false).removeClass('disabled');	
+	}
 }

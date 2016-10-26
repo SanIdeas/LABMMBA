@@ -27,6 +27,7 @@ from django.utils.translation import ugettext as _ # Para traducir un string se 
 #import Levenshtein, random
 from django.db import connection
 from django.conf import settings
+import httplib2
 
 
 #Retorna el porcentaje de similitud entre dos strings.
@@ -198,6 +199,9 @@ def update_profile_picture(request):
 		return HttpResponseRedirect(reverse('intranet:profile', args={request.user.id}))
 
 def upload(request):
+	#request.user.credentials().revoke(httplib2.Http())
+	request.user.credentials().refresh(httplib2.Http())
+	print '---------------------------------------', request.user.credentials()._expires_in()
 	print request.user.is_authenticated()
 	if request.user.is_authenticated() and not request.user.is_admin:
 		#Document.objects.all().delete()
@@ -214,10 +218,9 @@ def upload(request):
 					document.date = request.POST['date' + id]
 					document.category = Area.objects.get(id=request.POST['category' + id])
 					document.type = int(request.POST['type' + id])
-					document.abstract = request.POST['abstract' + id]
+					#document.abstract = request.POST['abstract' + id] POR MIENTRAS
 					document.issn = request.POST['issn' + id]
 					document.doi = request.POST['doi' + id]
-					document.url = request.POST['url' + id]
 					document.pages = request.POST['pages' + id]
 					document.save()
 				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})

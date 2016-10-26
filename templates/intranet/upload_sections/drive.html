@@ -33,6 +33,16 @@
 			</span>	
 		</button>
 		<div class="upload drive user hidden">
+			<div class="intranet row">
+					<button class="c12 upload button send first hover trans disabled" disabled="true">Enviar</button>
+			</div>
+			<div class="drive selected wrapper" style="height:0px; overflow:hidden;">
+				<table class="upload drive table">
+					<tbody class="upload drive list selected">
+
+					</tbody>
+				</table>
+			</div>
 			<div class="upload drive breadcrumbs">
 				<div class="crumbs root" bc-id="0">
 					<button onclick="userFiles()">{% trans 'Raiz' %}</button>
@@ -47,7 +57,7 @@
 						<th>{% trans 'Tamaño' %}</th>
 					</tr>
 				</thead>
-				<tbody class="upload drive list">
+				<tbody class="upload drive list nav">
 					<tr class="document">
 						<td> <i class="fa fa-folder" aria-hidden="true"></i> Nombre de documento</td>
 						<td>Ultima fecha de modificacion</td>
@@ -57,6 +67,16 @@
 			</table>
 		</div>
 	</div>	
+</div>
+<div class="intranet row upload files hidden">
+	<div class="intranet row">
+			<button class="c12 upload button send second hover trans disabled" disabled="true">Enviar</button>
+	</div>
+	</br>
+	<form id="form">
+		{% csrf_token %}
+		
+	</form>
 </div>
 
 <script src="{% static 'intranet/js/drive_upload.js' %}"></script>
