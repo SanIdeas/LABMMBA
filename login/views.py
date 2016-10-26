@@ -123,7 +123,7 @@ def register(request, token = None):
 				print "Error: " + str(error)
 
 			if user is not None:
-				if not  user.is_registered:
+				if not user.is_registered:
 					registration = user.complete_registration(
 						request.POST['first_name'],
 						request.POST['last_name'],

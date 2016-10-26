@@ -8,38 +8,10 @@
 		<img src="{% static 'intranet/images/background-picture2.png' %}">
 	</div>
 	<div id="profile-picture">
-		{% if request.user == profile_user %} <div id="edit-btn-wrapper"><i class="fa fa-pencil-square-o"></i></div> {% endif %}
 		<div id="picture-wrapper"><img id="picture-circle" {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}></div>
 	</div>
 </div>
-{% if request.user == profile_user %}
-	<form id="picture_form"  action="{% url 'intranet:update_picture' %}" method="POST" style="display: none" enctype="multipart/form-data">
-		<input id="picture-input" type="file" accept="image/png, image/jpeg" style="display: none" name="picture" required>
-		{% csrf_token %}
-	</form>
-	<script>
-	var prev_picture;
-		$('#edit-btn-wrapper').click(function(){
-			$('#picture-input').click();
-		});
 
-		$('#picture-input').change(function(){
-			$('.btn').addClass('btn-visible');
-			prev_picture = $('#picture-circle').attr('src');
-			readURL(this);
-		});
-
-		$('#cancel-btn').click(function(){
-			closeForm()
-			$('#picture-circle').attr('src', prev_picture);
-			$('.btn').removeClass('btn-visible');
-		});
-
-		$('#accept-btn').click(function(){
-			$('#picture_form').submit();
-		});
-	</script>
-{% endif %}
 <div id="information-section">
 	<table>
 		<tr>
@@ -64,7 +36,7 @@
 		</tr>
 	</table>
 </div>
-{% if request.user == profile_user or request.user.is_admin %}
+{% if request.user.is_admin %}
 	<h3>{% trans "Mis documentos" %}</h3>
 	{% if not documents %}
 		<h5 class="documents-message" >{% trans "No posees documentos" %}</h5>
@@ -94,7 +66,7 @@
 		$('.search-result').click(function(){
 			window.open("{% url 'intranet:document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
 		});
-	</script>	
+	</script>
 {% endif %}
 <div class="clear"></div>
 {% endblock %}

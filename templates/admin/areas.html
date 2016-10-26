@@ -1,0 +1,18 @@
+{% extends 'admin/shared.html' %}
+
+{% block content %}
+{% load i18n %}
+{% load staticfiles %}
+    <div class="title">
+        <h3>{% trans "Administrar Áreas" %}</h3>
+    </div>
+
+    <div id="areas-setup"></div>
+
+<script>var reload = "{% url 'admin:areas'%}"</script>
+<script>var remove = "{% url 'admin:delete_area' 999 %}"</script>
+<script>
+    var csrf_token = '{{csrf_token}}';
+    reload_area_setup();
+</script>
+{% endblock %}

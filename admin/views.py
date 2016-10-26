@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
-from login.models import User
+from login.models import User, Area
 from intranet.models import Document
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
@@ -20,7 +20,6 @@ def home(request):
 		return HttpResponseRedirect(reverse('webpage:home'))
 
 
-
 def get_filters(rqst):
 	dict = {}
 	for key in rqst.GET:
@@ -31,6 +30,7 @@ def get_filters(rqst):
 		if len(rqst.GET.getlist(key)) > 0:
 			dict[key + str] = rqst.GET.getlist(key)
 	return dict
+
 
 def filters_selected(list, request, name):
 	count = 0
@@ -48,6 +48,7 @@ def filters_selected(list, request, name):
 				list[count] = val + (False,)
 		count += 1
 	return list
+
 
 def documents(request, search=None):
 	if request.user.is_authenticated:
@@ -119,7 +120,7 @@ def users(request, user_id=None, delete=False, activate=False, block=False, unbl
 					user.is_blocked = False
 					user.save()
 					return JsonResponse({'error': False})
-				elif profile and request.is_ajax():
+				elif profile:
 					profile = User.objects.get(id=user_id)
 					documents = Document.objects.filter(owner=user_id)
 					return render(request, 'admin/profile.html', {'profile_user': profile, 'documents': documents})
@@ -144,6 +145,7 @@ def users(request, user_id=None, delete=False, activate=False, block=False, unbl
 			return JsonResponse({'redirect': reverse('login')})
 		else:
 			return HttpResponseRedirect(reverse('login'))
+
 
 def sendInvitation(request):
 	if request.user.is_authenticated():
@@ -200,3 +202,40 @@ def sendInvitation(request):
 
 	else:
 		return HttpResponseRedirect(reverse('login'))
+
+
+def areas(request, area_id=None):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				if area_id is not None and request.is_ajax():
+					Area.objects.get(id=area_id).delete()
+					return JsonResponse({'error': False})
+				else:
+					return render(request, 'admin/areas.html')
+
+			elif request.method == "POST" and request.is_ajax():
+				area_name = request.POST.get('name', None)
+				if area_name is not None:
+					try:
+						Area.objects.create(name=area_name)
+						return JsonResponse({'error': False})
+					except Exception:
+						return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
+				else:
+					args = {
+						'areas': Area.objects.all()
+					}
+
+					return render(request, 'admin/areas_ajax.html', args)
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))

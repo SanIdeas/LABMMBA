@@ -252,12 +252,12 @@
 	
 }
 
-.setup-user-list{
+.setup-user-list, .setup-area-list{
 	list-style: none;
 	padding: 0px 20px;
 }
 
-.setup-user-list > li{
+.setup-user-list > li, .setup-area-list > li{
 	padding: 5px 0px;
 	overflow: hidden;
 	position: relative;
@@ -268,7 +268,7 @@
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-list > li:hover > .setup-user-invited-row{
+.setup-user-list > li:hover > .setup-user-invited-row, .setup-area-list > li:hover > .setup-area-row{
 	transform: translateX(-100px);
 	transition: transform 0.2s ease-in-out;
 }
@@ -278,12 +278,12 @@
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-invited-row-expand-rsp > .setup-user-invited-row{
+.setup-user-invited-row-expand-rsp > .setup-user-invited-row, .setup-area-row-expand-rsp > .setup-area-row{
 	transform: translateX(-100px) !important;
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-row, .setup-user-invited-row{
+.setup-user-row, .setup-user-invited-row, .setup-area-row{
 	padding: 0px 10px;
 	width: 100%;
 	height: 100%;
@@ -295,7 +295,11 @@
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-name{
+.setup-user-row > i, .setup-user-invited-row > i, .setup-area-row > i{
+	vertical-align: middle;
+}
+
+.setup-user-name, .setup-area-name{
 	display: inline-block;
     padding: 10px 10px;
     padding-left: 27px;
@@ -303,6 +307,7 @@
     position: relative;
     left: -26px;
     background-color: #f4f9fc;
+	vertical-align: middle;
 }
 
 .setup-user-email{
@@ -310,6 +315,7 @@
     padding: 10px;
     display: inline-block;
     left: -26px;
+	vertical-align: middle;
 }
 
 .invited:before{
@@ -354,7 +360,7 @@
 	color: #e0424e;
 }
 
-.setup-user-box, .setup-invited-user-box{
+.setup-user-box, .setup-invited-user-box, .setup-area-box{
     padding: 5px 0px;
     height: 100%;
     box-sizing: border-box;
@@ -364,7 +370,7 @@
     right: 0px;
 }
 
-.setup-user-box i, .setup-invited-user-box i{
+.setup-user-box i, .setup-invited-user-box i, .setup-area-box i{
 	width: 100%;
     position: relative;
     height: 100%;
@@ -381,7 +387,7 @@
 	right: 100px;
 }
 
-.setup-invited-user-box:nth-child(3){
+.setup-invited-user-box:nth-child(3), .setup-area-box:nth-child(3){
 	right: 50px;
 }
 
@@ -405,7 +411,7 @@
     cursor: pointer;
 }
 
-.setup-edit-box, .setup-block-box, .setup-unblock-box{
+.setup-block-box, .setup-unblock-box{
 	width: 100%;
 	height: 100%;
 	background-color: #006e9c;
@@ -413,6 +419,16 @@
     border: none;
     color: white;
     cursor: pointer;
+}
+
+.setup-edit-box{
+	width: 100%;
+	height: 100%;
+	background-color: #009065;
+	outline: none;
+	border: none;
+	color: white;
+	cursor: pointer;
 }
 
 .disabled{
@@ -475,6 +491,11 @@
     font-weight: normal;
     margin-bottom: 0;
     margin-top: 10px;
+}
+
+#modal-area > h3{
+	text-align: center;
+	font-weight: normal;
 }
 
 #modal-curtain{
@@ -543,7 +564,7 @@
 	transition: 0.3s ease;
 }
 
-#users-setup{
+#users-setup, #areas-setup{
 	padding: 20px;
 }
 
@@ -552,12 +573,9 @@ form .text{
 }
 
 form .submit{
-	width: 20%;
+	width: 21%;
+	min-width: 74px;
 	padding: 10px;
-}
-
-form row{
-	padding: 0 0 0 0;
 }
 
 @media screen and (max-width:1536px){
@@ -581,6 +599,33 @@ form row{
 @media screen and (max-width:530px){
 	.setup-user-email{
 		display: none;
+	}
+
+	.setup-user-name, .setup-area-name{
+		width: 80%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+}
+
+@media screen and (max-width:438px){
+	form .text{
+		width: 72%;
+	}
+
+	form .submit{
+		width: 23%;
+	}
+}
+
+@media screen and (max-width:357px){
+	form .text{
+		width: 100%;
+	}
+
+	form .submit{
+		width: 100%;
 	}
 }
 

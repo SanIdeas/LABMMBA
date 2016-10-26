@@ -12,88 +12,100 @@
 
 <h3 class="setup-subtitle">{% trans "Usuarios Invitados" %}</h3>
 <ul class="setup-user-list">
-    {% for user in not_registered %}
-        <li>
-            <div class="setup-user-invited-row invited">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <div class="setup-user-name">
-                    {{user.email}}
+    {% if not_registered %}
+        {% for user in not_registered %}
+            <li>
+                <div class="setup-user-invited-row invited">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <div class="setup-user-name">
+                        {{user.email}}
+                    </div>
                 </div>
-            </div>
-            <div class="setup-invited-user-box">
-                <button class="setup-delete-invitation-box" user-id="{{ user.id }}" title="{% trans 'Eliminar' %}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="setup-invited-user-box">
-                <button class="setup-forward-box" user-email="{{ user.email }}" title="{% trans 'Reenviar' %}">
-                    <i class="fa fa-mail-forward" aria-hidden="true"></i>
-                </button>
-            </div>
-        </li>
-    {% endfor %}
+                <div class="setup-invited-user-box">
+                    <button class="setup-delete-invitation-box" user-id="{{ user.id }}" title="{% trans 'Eliminar' %}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="setup-invited-user-box">
+                    <button class="setup-forward-box" user-email="{{ user.email }}" title="{% trans 'Reenviar' %}">
+                        <i class="fa fa-mail-forward" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <h1>{% trans 'No hay usuarios invitados en el sistema' %}</h1>
+    {% endif %}
 </ul>
 <h3 class="setup-subtitle">{% trans "Usuarios Activos" %}</h3>
 <ul class="setup-user-list">
-    {% for user in registered %}
-        <li>
-            <div class="setup-user-row active">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <div class="setup-user-name">
-                    {{user.first_name}} {{user.last_name}}
+    {% if registered %}
+        {% for user in registered %}
+            <li>
+                <div class="setup-user-row active">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <div class="setup-user-name">
+                        {{user.first_name}} {{user.last_name}}
+                    </div>
+                    <div class="setup-user-email">
+                        {{user.email}}
+                    </div>
                 </div>
-                <div class="setup-user-email">
-                    {{user.email}}
+                <div class="setup-user-box">
+                    <button class="setup-block-box" user-id="{{ user.id }}" title="{% trans 'Bloquear' %}">
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-block-box" user-id="{{ user.id }}" title="{% trans 'Bloquear' %}">
-                    <i class="fa fa-ban" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-view-box" title="{% trans 'Ver' %}" data-target="{% url 'admin:profile' user.id %}">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-delete-box" user-full-name="{{user.first_name}} {{user.last_name}}" user-id="{{ user.id }}" user-count="{{user.doc_count}}" {% if user.profile_picture %} user-img="{% static user.filename %}" {% else %} user-img="{% static 'intranet/images/default.png' %}" {% endif%} title="{% trans 'Eliminar' %}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
-        </li>
-    {% endfor %}
+                <div class="setup-user-box">
+                    <button class="setup-view-box" title="{% trans 'Ver' %}" data-target="{% url 'admin:profile' user.id %}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="setup-user-box">
+                    <button class="setup-delete-box" user-full-name="{{user.first_name}} {{user.last_name}}" user-id="{{ user.id }}" user-count="{{user.doc_count}}" {% if user.profile_picture %} user-img="{% static user.filename %}" {% else %} user-img="{% static 'intranet/images/default.png' %}" {% endif%} title="{% trans 'Eliminar' %}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <h1>{% trans 'No hay usuarios activos en el sistema' %}</h1>
+    {% endif %}
 </ul>
 <h3 class="setup-subtitle">{% trans "Usuarios Bloqueados" %}</h3>
 <ul class="setup-user-list">
-    {% for user in blocked %}
-        <li>
-            <div class="setup-user-row blocked">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <div class="setup-user-name">
-                    {{user.first_name}} {{user.last_name}}
+    {% if blocked %}
+        {% for user in blocked %}
+            <li>
+                <div class="setup-user-row blocked">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <div class="setup-user-name">
+                        {{user.first_name}} {{user.last_name}}
+                    </div>
+                    <div class="setup-user-email">
+                        {{user.email}}
+                    </div>
                 </div>
-                <div class="setup-user-email">
-                    {{user.email}}
+                <div class="setup-user-box">
+                    <button class="setup-view-box" title="{% trans 'Ver' %}" data-target="{% url 'admin:profile' user.id %}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-view-box" title="{% trans 'Ver' %}" data-target="{% url 'admin:profile' user.id %}">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-unblock-box" user-id="{{ user.id }}" title="{% trans 'Desbloquear' %}">
-                    <i class="fa fa-circle-o" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="setup-user-box">
-                <button class="setup-delete-box" user-full-name="{{user.first_name}} {{user.last_name}}" user-id="{{ user.id }}" user-count="{{user.doc_count}}" {% if user.profile_picture %} user-img="{% static user.filename %}" {% else %} user-img="{% static 'intranet/images/default.png' %}" {% endif%} title="{% trans 'Eliminar' %}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </div>
-        </li>
-    {% endfor %}
+                <div class="setup-user-box">
+                    <button class="setup-unblock-box" user-id="{{ user.id }}" title="{% trans 'Desbloquear' %}">
+                        <i class="fa fa-circle-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="setup-user-box">
+                    <button class="setup-delete-box" user-full-name="{{user.first_name}} {{user.last_name}}" user-id="{{ user.id }}" user-count="{{user.doc_count}}" {% if user.profile_picture %} user-img="{% static user.filename %}" {% else %} user-img="{% static 'intranet/images/default.png' %}" {% endif%} title="{% trans 'Eliminar' %}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <h1>{% trans 'No hay usuarios bloqueados en el sistema' %}</h1>
+    {% endif %}
 </ul>
 
 <div id="modal-curtain" class="curtain-hidden"></div>
@@ -102,7 +114,7 @@
         <h3>{% trans "¿De verdad deseas eliminar a este usuario?" %}</h3>
         <div id="modal-user">
             <div id="modal-user-img"></div>
-            <h4 id="modal-user-name">Hernán Herreros Niño</h4>
+            <h4 id="modal-user-name"></h4>
         </div>
         <h3 id="modal-message">{% trans 'Ten en cuenta que este usuario posee <strong id="modal-user-count"></strong> documentos.' %}</h3>
         <div id="modal-btns">

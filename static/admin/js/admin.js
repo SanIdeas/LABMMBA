@@ -1,3 +1,4 @@
+// Users View
 function reload_setup(msg){
 	$.ajax({
 		url: reload,
@@ -28,12 +29,12 @@ function users(){
 		$(window).on('click', function(e){
 			console.log(touched);
 			if(!(touched.is(e.target) || touched.children().is(e.target))){
-				touched.removeClass('setup-user-row-expand-rsp');		
+				touched.removeClass('setup-user-row-expand-rsp');
 			}
-		});			
+		});
 	}*/
 	$('.setup-view-box').click(function(){
-		window.open($(this).attr('data-target'), '_blank');
+		window.location.href = $(this).attr('data-target');
 	});
 	$('.setup-delete-box').click(function(){
 		$('#modal-user-img').css('background-image', 'url(' + $(this).attr('user-img') + ')');
@@ -61,7 +62,7 @@ function users(){
 			type: 'GET',
 		}).done(function(){
 			reload_setup();
-		});		
+		});
 	});
 	$('.setup-block-box').click(function(){
 		$.ajax({
@@ -112,6 +113,81 @@ function users(){
 			}
 		}).done(function(data){
 			reload_setup(data['message']);
+		});
+	});
+}
+// Areas View
+function reload_area_setup(msg){
+	$.ajax({
+		url: reload,
+		method: 'POST',
+		beforeSend: function(xhr){
+			xhr.setRequestHeader("X-CSRFToken", csrf_token);
+		}
+	}).done(function(html){
+		if(html.redirect)
+			window.location.href = html.redirect;
+		else{
+			$('#areas-setup').children().remove();
+			$('#areas-setup').append(html);
+
+			if(msg != null)
+				$('#add-area-error').text(msg);
+		}
+
+	});
+}
+
+function areas(){
+	/*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && $this.attr('setup-action') =='users') {
+	 $('.asd').click(function(){
+	 touched = $(this);
+	 $(this).addClass('setup-user-row-expand-rsp');
+	 });
+	 $(window).on('click', function(e){
+	 console.log(touched);
+	 if(!(touched.is(e.target) || touched.children().is(e.target))){
+	 touched.removeClass('setup-user-row-expand-rsp');
+	 }
+	 });
+	 }*/
+	$('.setup-delete-box').click(function(){
+		$('#modal-area-name').text($(this).attr('area-name'));
+		$('#modal-user-count').text($(this).attr('area-count'));
+		$('#modal-confirm').attr('area-id', $(this).attr('area-id'));
+		$('#modal-delete-confirm').removeClass('modal-hidden').addClass('modal-visible');
+		$('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
+	});
+	$('#modal-cancel').click(function(){
+		$('#modal-delete-confirm').addClass('modal-hidden').removeClass('modal-visible');
+		$('#modal-curtain').addClass('curtain-hidden').removeClass('curtain-visible');
+	});
+	$('#modal-confirm').click(function(){
+		$.ajax({
+			url: remove.replace('999', $(this).attr('area-id')),
+			type: 'GET'
+		}).done(function(){
+			reload_area_setup();
+		});
+	});
+	$('#add-area-form').submit(function(e){
+		$.ajax({
+			url: reload,
+			type: 'POST',
+			data: $(this).serialize(),
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("X-CSRFToken", csrf_token);
+				e.preventDefault();
+
+				if($('#add-area-name').val().length <= 0)	// Abort if email is empty
+					xhr.abort();
+				else {
+					$('#add-area-submit').val("Agregando...").attr("disabled", true);
+					$('#add-area-error').text("");
+				}
+			}
+		}).done(function(data){
+			reload_area_setup(data['message']);
 		});
 	});
 }

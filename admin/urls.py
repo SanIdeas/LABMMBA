@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'users/activate/(?P<user_id>.*)$', views.users, {'activate': True}, name='activate_user'),
     url(r'^documents/$', views.documents, name="documents"),
     url(r'^search/(?P<search>.*)/$', views.documents, name="admin_search"),
-
+    url(r'^areas/$', views.areas, name="areas"),
+    url(r'areas/delete/(?P<area_id>.*)$', views.areas, name='delete_area')
 ]

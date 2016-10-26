@@ -11,7 +11,7 @@ import os, re, operator
 
 class Document(models.Model):
 	document = models.FileField(upload_to='uploads/documents/', max_length=500)
-	category = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
+	category = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
 	type = models.BooleanField()
 	title = models.CharField(max_length=300, null=True)
 	author = models.CharField(max_length=300, null=True)

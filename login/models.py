@@ -59,7 +59,7 @@ class UserManager(BaseUserManager):
         return user
 
 class Area(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
 class User(AbstractBaseUser):
     email = models.EmailField(
@@ -71,7 +71,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=20, null=True)
     institution = models.CharField(max_length=50, null=True)
     country = models.CharField(max_length=20, null=True)
-    area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
+    area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
     career = models.CharField(max_length=40, null=True)
     is_active = models.BooleanField(default=True)
     is_blocked = models.BooleanField(default=False)

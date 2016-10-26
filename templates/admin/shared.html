@@ -64,10 +64,12 @@
 								</div>
 								<div class="mobile-nav notrans">
 									<ul class="mobile-main-nav clear">
-                                        {% url 'admin:users' as intranet%}
-                                        <li class="{% if intranet == request.path%} current {%endif%}"><a href="{{intranet}}">{% trans "Administrar Usuarios" %}</a></li>
+                                        {% url 'admin:users' as users_view%}
+                                        <li class="{% if users_view == request.path%} current {%endif%}"><a href="{{users_view}}">{% trans "Administrar Usuarios" %}</a></li>
                                         {% url 'admin:documents' as documents_view%}
                                         <li class="{% if documents_view == request.path%} current {%endif%}"><a href="{{documents_view}}">{% trans "Administrar Documentos" %}</a></li>
+                                        {% url 'admin:areas' as areas_view%}
+                                        <li class="{% if areas_view == request.path%} current {%endif%}"><a href="{{areas_view}}">{% trans "Administrar Áreas" %}</a></li>
 										<li><a href="{% url 'webpage:home' %}">{% trans "Volver a la página principal" %}</a></li>
 									</ul>
 									<ul class="mobile-top-nav clear">
@@ -117,10 +119,12 @@
 			<div id="sidebar" class="sidebar left">
 				<div class="links clear box">
                     <h3>Menu</h3>
-                    {% url 'admin:users' as intranet%}
-					<a class="clear {% if intranet == request.path%} selected {%endif%}" href="{{intranet}}">{% trans "Administrar Usuarios" %}</a>
+                    {% url 'admin:users' as users_view%}
+					<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">{% trans "Administrar Usuarios" %}</a>
 					{% url 'admin:documents' as documents_view%}
 					<a class="clear {% if documents_view == request.path%} selected {%endif%}" href="{{documents_view}}">{% trans "Administrar Documentos" %}</a>
+                    {% url 'admin:areas' as areas_view%}
+                    <a class="clear {% if areas_view == request.path%} selected {%endif%}" href="{{areas_view}}">{% trans "Administrar Áreas" %}</a>
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">
 			</div>
