@@ -103,10 +103,13 @@ def children_list(folder_id, service, onlyPDF):
 	param={}
 	param['fields'] = 'fileSize,id,mimeType,ownerNames,modifiedDate,thumbnail,title'
 	for child in children.get('items', []):
-		file = service.files().get(fileId=child['id'], **param).execute()
-		file['ownerNames'] = file['ownerNames'][0]
-		file['isFolder'] = True if file['mimeType'] == 'application/vnd.google-apps.folder' else False
-		files.append(file)
+		# Se comprueba que el documento no exista en la bd
+		document = Document.objects.filter(drive_id=child['id'])
+		if not document:
+			file = service.files().get(fileId=child['id'], **param).execute()
+			file['ownerNames'] = file['ownerNames'][0]
+			file['isFolder'] = True if file['mimeType'] == 'application/vnd.google-apps.folder' else False
+			files.append(file)
 	return files
 
 
@@ -194,12 +197,11 @@ def link_analizer(request, link=None):
 			file = service.files().get(fileId=drive_id, **param).execute()
 			# Se filtra por archivos PDF o Carpeta	
 			if file['mimeType'] == 'application/pdf':
-				file['ownerNames'] = file['ownerNames'][0]
-				response = {'file': file, 'type': 'PDF Document', 'link': link, 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
+				response = {'id': file['id'], 'name': file['title'], 'type': 'document', 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
 
 			elif file['mimeType'] == 'application/vnd.google-apps.folder':
 				# Si es una carpeta, se llama a la funcion children_list
-				response = {'files': children_list(drive_id, service, True), 'folder_name': file['title'], 'type': 'Folder', 'link': link, 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
+				response = {'type': 'folder', 'id': file['id'], 'name': file['title'], 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
 			else:
 				return JsonResponse({'error': True, 'message':_('El link ingresado no contiene documentos compatibles')})  
 
@@ -237,7 +239,7 @@ def download_drive_files(request, ids):
 				fh = tempfile.TemporaryFile()
 				fh.write(content)
 				fh.seek(0)
-				thumbnailLink = file['thumbnailLink'].replace('=s220', '=s320')
+				thumbnailLink = file['thumbnailLink'].replace('=s220', '=s600')
 				file = urllib.urlopen(thumbnailLink).read()
 				img = tempfile.TemporaryFile()
 				img.write(file)

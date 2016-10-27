@@ -24,8 +24,9 @@ class Document(models.Model):
 	words = models.CharField(max_length=200, null=True)
 	issn = models.CharField(max_length=20, null=True)
 	doi = models.CharField(max_length=50, null=True)
-	url = models. CharField(max_length= 50, null=True)
-	pages = models. CharField(max_length= 25, null=True)
+	url = models.CharField(max_length= 50, null=True)
+	pages = models.CharField(max_length= 25, null=True)
+	is_available = models.BooleanField(default=False)
 
 	#Retorna el nombre del archivo pdf.
 	def filename(self):

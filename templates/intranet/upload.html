@@ -39,7 +39,123 @@
 </div>
 <div class="upload section hidden">
 	
-</div>
+</div> 
+<!--<div class="intranet row files upload animation enter down">
+	<div class="intranet row">
+			<button class="c12 upload button send second hover trans">Enviar</button>
+	</div>
+	<br>
+	<form id="form">
+		<input type="hidden" name="csrfmiddlewaretoken" value="hdNp9XhDVyz7n6if3YCV07qhe22tIryC">
+		
+	
+		<div class="s1 c10 intranet box upload file wrapper animation enter down" doc-index="50">
+			<div class="subwrapper">
+			<div class="c3">
+				<img src="{% static 'thumbnails/U2I56.jpg' %}">
+			</div>
+			<div class="c9">
+				<div class="c12 upload file field">
+					<div class="c3"><strong>Titulo:</strong></div>
+					<div class="c9">
+						<div class="upload crossrefWrapper">
+							<input type="text" class="field text" value="Titulo temporal2016-10-26 19:09:30.169000" field-name="title" doc-index="50" name="title50" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required="">
+							<div class="upload crossref hidden" doc-index="50">
+								<div class="upload records">
+									<div class="upload records topbar">
+										<i class="upload fa fa-check" doc-index="50" aria-hidden="true"></i><i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw hidden" doc-index="50"></i>
+										<button doc-index="50"><i class="fa fa-times" aria-hidden="true"></i></button></div>
+									<div class="upload records list">
+										<ul class="upload records root" doc-index="50">
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Autor:</strong>
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" value="Hernán Herreros" name="author50" placeholder="Ej: Juan Perez" required="">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3"><strong>Fecha de creacion:</strong></div>
+					<div class="c9">
+						<input type="date" class="field text" value="16-0-8--12" name="date50" required="">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>DOI:</strong>
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" name="doi50" placeholder="Ej: 10.1109/ms.2006.34" required="">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>ISSN:</strong> 
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" name="issn50" placeholder="No requerido" required="">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Páginas:</strong> 
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" name="pages50" placeholder="No requerido" required="">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Area:</strong> 
+					</div>
+					<div class="c9">
+						<select name="category50" class="field" required="">
+							<option value="" disabled="" selected="">Selecciona una categoria</option>
+							<option value="1">Microbiología Molecular</option>
+							<option value="2">Biotecnología Ambiental</option>
+							<option value="3">Bionanotecnología</option>
+							<option value="4">Genómica Funcional y Proteómica</option>
+							<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>
+							<option value="6">Biorremediación de Ambientes Contaminados</option>
+						</select>
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Privacidad:</strong> 
+					</div>
+					<div class="c9">
+						<select class="type-select field" name="type50" required="">
+							<option value="" disabled="" selected="">Selecciona privacidad</option>
+							<option value="0">Público</option>
+							<option value="1">Privado</option>
+						</select>
+					</div>
+				</div>
+				<div class="c12 upload file field abstract">
+					<div class="c3">
+						<strong>Resumen:</strong> 
+					</div>
+					<div class="c9">
+						<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>
+						<textarea  name="abstract" disabled required></textarea>
+					</div>				
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>-->
+
 
 <!-- Enlaces de utilidad -->
 
@@ -47,7 +163,7 @@
 	var get_credentials_link = 'http://127.0.0.1:8000{% url 'get_credentials' %}';
 	var link_analizer_link = "{% url 'link_analizer' '999' %}";
 	var download_drive_link = "{% url 'download_drive_files' '999' %}";
-	var complete_drive_info_link = "{% url 'intranet:upload' %}";
+	var upload_link = "{% url 'intranet:upload' %}";
 	var static_link = "{% static '999' %}";
 	var crossref_link = "{% url 'crossref:query' '999'%}";
 	var spinner_link = "{% static 'intranet/images/ring.svg' %}"

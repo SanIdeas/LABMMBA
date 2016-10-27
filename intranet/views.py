@@ -137,7 +137,7 @@ def home(request):
 def documents(request, search=None):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		kwargs = get_filters(request)
-		all_docs = Document.objects.filter(**kwargs)
+		all_docs = Document.objects.filter(is_available=True, **kwargs)
 		if search is None: #Si no es una busqueda
 			documents = all_docs
 		else:
@@ -222,6 +222,7 @@ def upload(request):
 					document.issn = request.POST['issn' + id]
 					document.doi = request.POST['doi' + id]
 					document.pages = request.POST['pages' + id]
+					document.is_available = True
 					document.save()
 				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
 			#Local_ids son las ids de los archivos locales del usuario
@@ -247,6 +248,7 @@ def upload(request):
 						'doi': request.POST['doi' + id],
 						'url': "http://dx.doi.org/" + request.POST['doi' + id],
 						'pages': request.POST['pages' + id],
+						'is_available': True,
 						}
 					files = {
 							'document': request.FILES['document'+id]
@@ -282,6 +284,8 @@ def upload_local(request):
 def upload_drive(request):
 	return render(request, 'intranet/upload_sections/drive.html')
 
+# Extrae el contenido de los documentos identificados por las id recibidas
+# Se usa al momento de subir archivos por Google Drive. El cliente llama a esta funcion explicitamente
 def extract_content_and_keywords(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		if request.POST['ids']:
@@ -309,7 +313,7 @@ def extract_content_and_keywords(request):
 
 def pdf_viewer(request, title=None, author=None):
 	try:
-		document = Document.objects.get(title=title, author=author)
+		document = Document.objects.get(title=title, author=author, is_available=True)
 	except Document.DoesNotExist:
 		document = None
 	if document is not None:
@@ -324,7 +328,7 @@ def pdf_viewer(request, title=None, author=None):
 		else:
 			return HttpResponse(_('Debes tener una cuenta para visualizar este archivo.'))
 	else:
-		return HttpResponse(_('No se encontraron documentos con el nombre: %(title)s') % {'title': title})
+		return HttpResponse(_('No se encontraron documentos disponibles con el nombre: %(title)s') % {'title': title})
 
 def users(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
@@ -358,7 +362,7 @@ def edit_document(request, title=None, author=None):
 			if request.user.is_admin:
 				document = Document.objects.get(title=title, author=author)
 			else:
-				document = Document.objects.get(title=title, author=author, owner=request.user)
+				document = Document.objects.get(title=title, author=author, owner=request.user, is_available=True)
 		except:
 			document = None
 		if document:

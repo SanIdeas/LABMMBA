@@ -1,9 +1,4 @@
 {% for r in documents %}
-	<!--<li class="crossref-row" title="{{ r.title.0 }}" author="{{ r.author.0.given }} {{ r.author.0.family }}" date="{{ r.date }}" issn="{{ r.ISSN.0 }}" doi="{{ r.DOI }}" pages="{{ r.page }}" url="{{ r.URL }}">
-		<h3>{{ r.title.0 }}</h3>
-		<span>{{r.year}}</span> {% if r.author %}<span>- {{ r.author.0.given }} {{ r.author.0.family }}</span> {%  endif%}
-		{% if r.ISSN.0 %}<span><strong>ISSN</strong>: {{ r.ISSN.0 }}</span>{% endif %}
-	</li>-->
 	<li class="crossref-row" title="{{ r.title.0 }}" author="{{ r.author }}" date="{{ r.date }}" issn="{{ r.ISSN.0 }}" doi="{{ r.DOI }}" pages="{{ r.page }}" url="{{ r.URL }}">
 		<span>{{r.year}}</span>
 		<h4>{{ r.title.0 }}</h4>
