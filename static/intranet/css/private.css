@@ -734,6 +734,9 @@ form .c12 {
     background-color: #006e9c;
   }
 }
+.upload {
+  position: relative;
+}
 .upload.selector {
   position: absolute;
 }
@@ -1213,6 +1216,42 @@ form .c12 {
 .upload.drive.loading > div .green {
   background-color: #009065;
   animation-name: loading_green;
+}
+.upload.singlefile {
+  text-align: center;
+  padding: 20px;
+}
+.upload.singlefile h5 {
+  width: 100%;
+  font-weight: normal;
+  margin: 2px 0px;
+}
+.upload.singlefile .thumbnail {
+  position: relative;
+  height: 300px;
+  display: flex;
+  background-color: #e9edf0;
+  overflow: hidden;
+}
+@media screen and (max-width: 700px) {
+  .upload.singlefile .thumbnail {
+    position: relative;
+    display: block;
+  }
+}
+.upload.singlefile .thumbnail > img {
+  align-self: baseline;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+}
+.upload.singlefile .content h3 {
+  width: 100%;
+  margin: 0px;
+}
+.upload.singlefile .content button {
+  width: 100%;
+}
+.upload.singlefile.hidden {
+  display: none;
 }
 .field {
   transtion: background-color 0.2s ease;

@@ -164,66 +164,6 @@ def get_credentials(request):
 		response = {'error': True, 'message':'Debes iniciar sesion.'}
 		return JsonResponse(response)
 
-
-# Segunda llamada. Se analizan los enlaces y se obtiene el servicio
-def link_analizer(request, link=None):
-	if request.user.is_authenticated():
-		print "---------", request.user.credentials()
-		if not link:
-			return JsonResponse({'error': True, 'message':'Debes anadir un enlace de Google Drive a la solicitud.'})
-
-		# Se intenta reconocer el enlace de Google Drive
-		try:
-			drive_id = re.match('https:\/\/drive\.google\.com\/.*\?id=([^&]*)\&?', link).groups()[0]
-		except:
-			try:
-				drive_id = re.match('^https:\/\/drive\.google\.com\/file\/d\/(.*)\/view', link).groups()[0]
-			except:
-				return JsonResponse({'error': True, 'message':'El link ingresado no es un enlace a Google Drive'})
-			
-
-		try:
-			#request.user.credentials().revoke(httplib2.Http())
-			# Se obtiene acceso al servicio de Google Drive
-			
-			print "---------", request.user.drive_credentials
-			service = get_drive_service(request)
-			if not service:
-				return JsonResponse({'error': True, 'message':_('Para continuar debes enlazar tu cuenta de Google Drive'), 'code': 'gglir'})
-			param={}
-			# Se definen los parametros que se quieren recibir
-			param['fields'] = 'fileSize,id,modifiedDate,ownerNames,title,mimeType,owners/emailAddress,thumbnailLink,downloadUrl'
-			# Se envia la solicitud
-			file = service.files().get(fileId=drive_id, **param).execute()
-			# Se filtra por archivos PDF o Carpeta	
-			if file['mimeType'] == 'application/pdf':
-				response = {'id': file['id'], 'name': file['title'], 'type': 'document', 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
-
-			elif file['mimeType'] == 'application/vnd.google-apps.folder':
-				# Si es una carpeta, se llama a la funcion children_list
-				response = {'type': 'folder', 'id': file['id'], 'name': file['title'], 'error': False, 'credentials_expires_in': request.user.credentials()._expires_in()}
-			else:
-				return JsonResponse({'error': True, 'message':_('El link ingresado no contiene documentos compatibles')})  
-
-
-			#response['files'][0] = {'name':file['title'], 'size': file['fileSize'], 'content-type': file['mimeType']}
-
-			return JsonResponse(response)   
-		except errors.HttpError, error:
-			print error
-			try:
-				get_error = re.match('(File not found)', error._get_reason()).groups()[0]
-			except:
-				get_error = None
-			if get_error != None:
-				response = {'error': True, 'message':_('No existen archivos compatibles en el enlace.')}
-			else:
-				response = {'error': True, 'message':_('Error desconocido. Contacta al administrador.')}           
-			return JsonResponse(response)
-	else:
-		response = {'error': True, 'message':_('Debes iniciar sesion.')}
-		return JsonResponse(response)
-
 #Recibe las id de los archivos a descargar y retorna un diccionario con las id locales.
 def download_drive_files(request, ids):
 	try:
@@ -261,6 +201,93 @@ def download_drive_files(request, ids):
 		response = {'error': True, 'message':_('Debes iniciar sesion.')}
 		return JsonResponse(response)
 
+
+# Segunda llamada. Se analizan los enlaces y se obtiene el servicio
+def link_analizer(request, link=None):
+	if request.user.is_authenticated():
+		print "---------", request.user.credentials()
+		if not link:
+			return JsonResponse({'error': True, 'message':'Debes anadir un enlace de Google Drive a la solicitud.'})
+
+
+		# Se intenta reconocer el enlace de Google Drive
+		drive_id = re.match('https:\/\/drive\.google\.com\/.*\?id=([^&]*)\&?', link)
+		if not drive_id:
+			drive_id = re.match('^https:\/\/drive\.google\.com\/file\/d\/(.*)\/view', link)
+
+		if drive_id:
+			drive_id = drive_id.groups()[0]
+		print drive_id
+
+		# Si no se pudo obtener la id del archivo o carpeta, se retorna el error
+		if not drive_id:
+			return JsonResponse({'error': True, 'message':'El link ingresado no es un enlace a Google Drive'})
+			
+
+		try:
+			#request.user.credentials().revoke(httplib2.Http())
+
+			# Se obtiene acceso al servicio de Google Drive
+			service = get_drive_service(request)
+			if not service:
+				return JsonResponse({'error': True, 'message':_('Para continuar debes enlazar tu cuenta de Google Drive'), 'code': 'gglir'})
+
+			param={}
+			# Se definen los parametros que se quieren recibir
+			param['fields'] = 'fileSize,id,modifiedDate,ownerNames,title,mimeType,owners/emailAddress,thumbnailLink,downloadUrl'
+			# Se envia la solicitud
+			file = service.files().get(fileId=drive_id, **param).execute()
+			# Se filtra por archivos PDF o Carpeta	
+			if file['mimeType'] == 'application/pdf':
+				document = None
+				try:
+					document = Document.objects.get(drive_id=file['id'])
+				except Exception as error:
+					print error
+
+				# Si el archivo ya existe, se devuelve un error
+				if document:
+					return JsonResponse({'error': True, 'message':_('El documento <strong>' + document.title + '</strong> ya existe')})
+				# Si excede los 2 mb, se devuelve un error
+				if int(file['fileSize'])  > 2097152:
+					return JsonResponse({'error': True, 'message':_('El documento no puede tener un tamano superior a 2 Megabytes.')})
+				response = {
+							'id': file['id'],
+							'name': file['title'],
+							'type': 'document',
+							'date': file['modifiedDate'],
+							'thumbnail': file['thumbnailLink'].replace('=s220', '=s600'),
+							'size': file['fileSize'],
+							'error': False,
+							'credentials_expires_in': request.user.credentials()._expires_in()
+							}
+
+			elif file['mimeType'] == 'application/vnd.google-apps.folder':
+				# Si es una carpeta, retorna el controlador folder_files
+				return folder_files(request, file['id'])
+			else:
+				return JsonResponse({'error': True, 'message':_('El link ingresado no contiene documentos compatibles')})  
+
+
+			#response['files'][0] = {'name':file['title'], 'size': file['fileSize'], 'content-type': file['mimeType']}
+
+			return JsonResponse(response)   
+		except errors.HttpError, error:
+			print error
+			try:
+				get_error = re.match('(File not found)', error._get_reason()).groups()[0]
+			except:
+				get_error = None
+			if get_error != None:
+				response = {'error': True, 'message':_('No existen archivos compatibles en el enlace.')}
+			else:
+				response = {'error': True, 'message':_('Error desconocido. Contacta al administrador.')}           
+			return JsonResponse(response)
+	else:
+		response = {'error': True, 'message':_('Debes iniciar sesion.')}
+		return JsonResponse(response)
+
+
 # Archivos del usuario #
 
 # Formato de la respuesta de los datos del usuario
@@ -285,30 +312,32 @@ def get_user_data(service):
 	param={}
 	param['name'] = about['name']
 	param['picture'] = about['user']['picture']['url'] if 'picture' in about['user'] else None
-	param['folderId'] = about['rootFolderId'] 
+	param['folder_id'] = about['rootFolderId'] 
 	return param
 
 
-def user_files(request, folderId = None):
+def folder_files(request, folder_id = None):
 	if request.user.is_authenticated():
 		service = get_drive_service(request)
-		if not folderId:
+		if not folder_id:
 			# Si no se proporciona la id de alguna carpeta, se obtiene la informacion del usuario
 			# Incluida la id de la carpeta raiz
 			userData = get_user_data(service)
-			folderId = userData['folderId']
+			folder_id = userData['folder_id']
+			title = _('Raiz')
 		else:
 			# Se comprueba que la id corresponde a una carpeta
 			param = {}
-			param['fields'] = 'mimeType'
-			file = service.files().get(fileId = folderId, **param).execute()
+			param['fields'] = 'mimeType,title'
+			file = service.files().get(fileId = folder_id, **param).execute()
+			title = file['title']
 			if file['mimeType'] != 'application/vnd.google-apps.folder':
 				# Si la id no corresponde a una carpeta se retorna un error
 				return JsonResponse({'error': True, 'message':_('Debe ingresar la ID de una carpeta')})
 
 		# En este punto, ya tenemos la id de la carpeta
 		# Se obtiene los archivos de la carpeta, solo del tipo pdf y folder
-		files = children_list(folderId, service, False)
-		return JsonResponse({'error': False, 'list': sorted(files, key = lambda k: int(k['isFolder']), reverse = True)})
+		files = children_list(folder_id, service, False)
+		return JsonResponse({'error': False, 'is_folder': True, 'title': title, 'id': folder_id, 'list': sorted(files, key = lambda k: int(k['isFolder']), reverse = True)})
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
