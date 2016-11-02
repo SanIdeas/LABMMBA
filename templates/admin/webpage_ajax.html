@@ -63,9 +63,9 @@
             forced_root_block : 'h1',
             menubar: false,
             statusbar: false,
-            //content_css: "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}",
+            content_css: "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}",
             toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright outdent indent',
-            readonly: true,
+            //readonly: true,
             language: 'es',
             setup: function(ed){
                 ed.on('loadContent', function(){    // Avoid to loose <h1> class when everything is deleted
@@ -81,7 +81,7 @@
         // Body Editors
         $('#spanish-body-edit, #english-body-edit').tinymce({
             height: 400,
-            //content_css: "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}",
+            content_css: "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}",
             plugins: [
                 'advlist autolink lists link image charmap preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars fullscreen',
@@ -90,7 +90,7 @@
             ],
             toolbar1: 'insertfile undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist',
             toolbar2: 'outdent indent | link image | preview media | forecolor backcolor |',
-            readonly: true,
+            //readonly: true,
             language: 'es',
             setup: function(ed){
                 ed.on('loadContent', function(){    // Avoid to loose <p> class when everything is deleted
