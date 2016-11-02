@@ -2,7 +2,7 @@ var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.",
 var bCrumbsCount = 0;
 var doc_selected = {};
 var crossref_timeout, crossref_busy = false;
-var last_cr_query = "";
+var last_cr_query = {};
 var real_ids;
 (function($){
 	/* Resetea el input de archivos */
@@ -53,8 +53,9 @@ $('.drive.form').submit(function(){
 
 //Envia la solicitud con en enlace a Google Drive
 $('.link').change(function(){
-	if($(this).val() != "")
+	if($(this).val() != ""){
 		sendLink(link_analizer_link.replace('999', encodeURIComponent($(this).val())));
+	}
 	//window.open("{% url 'link_analizer' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
 });
 
@@ -69,7 +70,7 @@ $('.drive.btn').click(function(){
 	}, 200, function(){
 		$(this).remove();
 	});
-	userFiles();
+	getFiles();
 });
 
 //Cuando el boton 'enviar' es presionado, se envian las id de los archivos que se subiran al sistema
@@ -85,10 +86,9 @@ $('.upload.button.send.second').click(function(){
 
 // Envia el link de Google Drive al servidor
 function sendLink(url){
-	// Se activa la barra de carga
-	$('.loading').removeClass("hidden");
-	// Se desactiva el campo de texto hasta obtener una respuesta
-	$('.drive.link').prop("disabled", true);
+	doc_selected = {}
+	checkFilesSize();
+	showLoadingBar();
 	$.ajax({
 		url: url,
 		method: 'GET'
@@ -96,50 +96,71 @@ function sendLink(url){
 		$('.loading').addClass("hidden");
 		$('.drive.link').prop("disabled", false);
 		console.log(response);
-		if(!response['error'])
+		if(!response['error']){
 			$('.message').html("");
-		else
+
+			// Si es una carpeta:
+			if(response['is_folder']){
+				filesHandler(response, -1);
+				// Se oculta la interfaz del documento individual
+				if(!$('.singlefile').hasClass('hidden'))
+					hideElement('.singlefile', false);
+				// Se muetra (si es que estaba oculto) la interfaz de carpetas
+				$('.drive.plus').css('display', 'block').animate({
+					height: ($('.drive.user').height()).toString() + 'px',
+				}, 200, function(){
+				});
+			}
+			// Si es un solo documento:
+			else{
+				// Se trabajan los datos
+				$('.singlefile').children('.content').children('.size').html(formatSizeUnits(response['size']));
+				$('.singlefile').children('.content').children('.name').html(response['name']);
+				$('.singlefile').children('.content').children('.date').html(format_date(response['date']));
+				$('.singlefile').children('.thumbnail').children('img').attr('src', response['thumbnail']);
+				doc_selected[response['id']] = response['name'];
+				checkFilesSize();
+
+				// Se oculta la interfaz de carpetas 
+				$('.drive.plus').animate({
+					height: '0px',
+				}, 200, function(){
+					$(this).css('display', 'block');
+					// Se muestra el documento individual
+					addElement('.singlefile');
+				});
+			}
+			// Se eliminan los elementos innecesarios, los que no seran ocupados cuando se utilizan enlaces
+			$('.erasable2').animate({
+					top: '-10px',
+					height: '0px',
+					margin: '0px',
+					padding: '0px',
+					opacity: '0'
+				}, 200, function(){
+					$(this).remove();
+				});
+		}
+		else{
+			hideLoadingBar();
 			$('.message').html(response['message']);
+		}
 	});
 }
 
-function userFiles(folderId = "", name = "", bcId = 0){
+// Obtiene los archivos de Google Drive
+// Si no se envia una id de carpeta, el servidor responde con la carpeta raiz del usuario
+// Si se requieren la carpeta raiz del usuario, llamar a la funcion sin parametros: getFiles()
+function getFiles(folderId = "", bcId = (bCrumbsCount+1)){
 	showLoadingBar();
 	$.ajax({
-		url: user_files_link.replace('999', folderId),
+		url: folder_files_link.replace('999', folderId),
 		method: 'GET'
 	}).done(function(response){
 		console.log(response);
 		if(!response['error']){
-			// Se llama a la funcion userFilesHandler para mostrar la lista al usuario
-			if (userFilesHandler(response['list'])){
-				hideLoadingBar();
-				// Mientras el boton + siga vivo:
-				if($('.drive.btn').length){
-					// Se hace desaparecer el boton con una animacion
-					$('.drive.btn').animate({
-						opacity: '0'
-					}, 200, function(){
-						// Una vez terminada la animacion se elimina el boton y se expande el cuadro
-						$(this).remove();
-						$('.drive.user').removeClass('hidden');
-						adjustBoxHeight();
-					});
-				}
-				else{
-					// Se expande el cuadro
-					$('.drive.user').removeClass('hidden');
-					adjustBoxHeight();
-				}
-				if(name != ""){
-					// Se agrega la miga de pan
-					addBreadCrumb(folderId, name);
-				}
-				else if(bcId < bCrumbsCount){
-					// Se remueven las migas de pan superiores a la id actual
-					removeBreadCrumbs(bcId);
-				}
-			}
+			// Se llama a la funcion filesHandler para mostrar la lista al usuario
+			filesHandler(response, bcId);
 		}
 		else
 			$('.message').html(response['message']);
@@ -147,7 +168,12 @@ function userFiles(folderId = "", name = "", bcId = 0){
 }
 
 // Se encarga de recibir la lista de archivos de Google drive y las muestra en pantalla, configurando todo lo necesario
-function userFilesHandler(files){
+// Si no recibe un nombre, no se crea la miga de pan
+// bcId representa la id de la nueva miga de pan (o la seleccionada)
+function filesHandler(object, bcId){
+	var files = object['list'];
+	var folderId = object['id'];
+	var name = object['title'];
 	$('.drive.list.nav').children().remove();
 	template = [
 			'<tr class="document nav" type="$type" title="$title" id="$id" $style size="$rawsize">',
@@ -192,7 +218,7 @@ function userFilesHandler(files){
 	$('.document.nav').click(function(){
 		// Si es una carpeta, se solicitan sus hijos
 		if($(this).attr('type') == 'folder'){
-			userFiles($(this).attr('id'),$(this).attr('title'))
+			getFiles($(this).attr('id'))
 		}
 		else if($(this).attr('type') == 'file'){
 			if($(this).attr('id') in doc_selected){
@@ -215,6 +241,43 @@ function userFilesHandler(files){
 			}
 		}
 	});
+	// Una vez rellenada la pagina con los datos, se realizan unos arreglos a la interfaz
+	hideLoadingBar();
+	// Mientras el boton + siga vivo:
+	if($('.drive.btn').length > 0){
+		console.log(" .drive.btn > 0");
+		// Se hace desaparecer el boton con una animacion
+		$('.drive.btn').animate({
+			opacity: '0'
+		}, 200, function(){
+			// Una vez terminada la animacion se elimina el boton y se expande el cuadro
+			console.log("remove plus");
+			$(this).remove();
+			console.log("remove hidden");
+			$('.drive.user').removeClass('hidden');
+			adjustBoxHeight();
+		});
+	}
+	else{
+		// Si el boton + no existe
+		// Se expande el cuadro
+		console.log("remove hidden");
+		$('.drive.user').removeClass('hidden');
+		adjustBoxHeight();
+	}
+	// Si la id de la miga de pan nueva o seleccionada es menor a la ultima insertada
+	if(0 < bcId && bcId < bCrumbsCount){
+		// Se remueven las migas de pan superiores a la id actual (o seleccionada)
+		removeBreadCrumbs(bcId);
+	}
+	else if(bcId > bCrumbsCount){
+		// Se agrega la miga de pan
+		addBreadCrumb(folderId, name);
+	}
+	else if (bcId < 0){
+		removeBreadCrumbs(bcId);
+		addBreadCrumb(folderId, name);
+	}
 	return true;
 }
 
@@ -235,7 +298,7 @@ function hideLoadingBar(){
 function addBreadCrumb(folderId, name){
 	code = [
 		'<div class="crumbs step" bc-id="$id">',
-			'<button onclick="userFiles($folderId, ``, $id)">$name</button>',
+			'<button onclick="getFiles($folderId, $id)">$name</button>',
 		'</div>',
 	];
 
@@ -246,9 +309,11 @@ function addBreadCrumb(folderId, name){
 		left: '0px',
 		opacity: '1'
 	},200);
+	console.log("add bc");
 }
 
 // Remueve todas las migas de pan que posean una id superior al parametro 'id' de la funcion
+// Si recibe -1, se reinician las migas de pan
 function removeBreadCrumbs(id){
 	for(var i = bCrumbsCount; id < i; i--){
 		$('.crumbs.step[bc-id="' + i + '"]').animate({
@@ -258,6 +323,10 @@ function removeBreadCrumbs(id){
 			$(this).remove();
 		});
 	}
+	if(id < 0)
+		bCrumbsCount = 0;
+	else
+		bCrumbsCount = id;
 }
 
 // Se encarga de agregar el documento al cuadro de seleccionados y al objecto de documentos
@@ -301,6 +370,7 @@ function removeFromSelected(id){
 }
 
 function adjustBoxHeight(plus=0){
+	console.log("ajustar");
 	// Se ajusta el alto del cuadro
 	$('.drive.plus').animate({
 		height: ($('.drive.user').height() + plus).toString() + 'px'
@@ -321,6 +391,7 @@ function sendIds(){
 	showLoadingBar();
 	// Elimina la vista actual
 	hideElement('.upload.drive.plus', true);
+	hideElement('.singlefile', true);
 	var ids = [];
 	for (var key in doc_selected) {
 	    if (doc_selected.hasOwnProperty(key)) {
@@ -338,8 +409,43 @@ function sendIds(){
 		handleDocuments(response['files']);
 		hideLoadingBar();
 		real_ids = response['real_ids'].join(',');
+		extract_content(real_ids);
 	});
 	console.log("Drive ids: " + ids);
+}
+
+// Solicita la extraccion del contenido y el resumen del texto explicitamente
+function extract_content(ids){
+	var form = new FormData();
+	form.append('ids', real_ids);
+	$	.ajax({
+		url: extract_link,
+		method: 'POST',
+		data: form,  
+		beforeSend: function(xhr){
+			xhr.setRequestHeader("X-CSRFToken", csrf_token);
+		},
+		processData: false,
+		contentType: false,
+	}).done(function(response){
+		if(!response['error']){
+			abs = response['abstracts'];
+			console.log("Resumenes:");
+			console.log(abs);
+			for (var i=0; i < abs.length; i++){
+				var field = $('textarea[name="abstract' + abs[i]['id'] + '"]');
+				field.prop('disabled', false).val(abs[i]['abstract']);
+				field.siblings('i').remove();
+			}
+			// Se activa el boton de enviar
+			$('.upload.button.send.second').prop('disabled', false).removeClass('disabled');
+
+			// Se actualiza el tamaño de los textarea
+			$('textarea').each(function(){
+				autosize.update($(this));
+			})
+		}
+	});
 }
 
 
@@ -354,13 +460,16 @@ function sendCompleteInfo(){
 		checkEmptyFields();
 	else{
 		$.ajax({
-			url: complete_drive_info_link,
+			url: upload_link,
 			method: 'POST',
 			data: form,
 			processData: false,
 			contentType: false,
 		}).done(function(response){
 			console.log(response);
+			hideElement('.upload.section', true);
+			addElement("#success-icon");
+			setTimeout(function(){window.location.href = upload_link;}, 1000);
 		});
 	}
 
@@ -381,6 +490,8 @@ function handleDocuments(documents){
 		  return false;
 		}
 	});
+	// Se activan los textarea auto ajustables
+	autosize($('textarea'));
 
 	// Se activa crossref
 	enableCrossref();
@@ -393,102 +504,118 @@ function addDocument(document){
 	/* Plantilla para el idioma Espanol */
 	if (current_lang == 'es'){
 		var code = ['<div class="s1 c10 intranet box upload file wrapper animation enter down" doc-index="$index">',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>Titulo:</strong>' ,
-						'</div>',
-						'<div class="c9">',
-							'<div class="upload crossrefWrapper">',
-								'<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>',
-								//crossref
-								'<div class="upload crossref hidden" doc-index="$index">',
-									'<div class="upload records">',
-										'<div class="upload records topbar">',
-											// Cabecera del cuadro
-											'<i class="upload fa fa-check" doc-index="$index" aria-hidden="true"></i>',
-											'<i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>',
-											'<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
+						'<div class="subwrapper">',
+							'<div class="c3">',
+								'<img src="$thumbnail">',
+							'</div>',
+							'<div class="c9">',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>Titulo:</strong>' ,
+									'</div>',
+									'<div class="c9">',
+										'<div class="upload crossrefWrapper">',
+											'<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>',
+											//crossref
+											'<div class="upload crossref hidden" doc-index="$index">',
+												'<div class="upload records">',
+													'<div class="upload records topbar">',
+														// Cabecera del cuadro
+														'<i class="upload fa fa-check" doc-index="$index" aria-hidden="true"></i>',
+														'<i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>',
+														'<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
+													'</div>',
+													'<div class="upload records list">',
+														'<ul class="upload records root" doc-index="$index">',
+														//Lista de sugerencias
+														'</ul>',
+													'</div>',
+												'</div>',
+											'</div>',
 										'</div>',
-										'<div class="upload records list">',
-											'<ul class="upload records root" doc-index="$index">',
-											//Lista de sugerencias
-											'</ul>',
-										'</div>',
+
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>Autor:</strong>' ,
+									'</div>',
+									'<div class="c9">',
+										'<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>Fecha de creacion:</strong>',
+									'</div>',
+									'<div class="c9">',
+										'<input type="date" class="field text" value="$date" name="date$index" required>',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>DOI:</strong>', 
+									'</div>',
+									'<div class="c9">',
+										'<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34">',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>ISSN:</strong> ',
+									'</div>',
+									'<div class="c9">',
+										'<input type="text" class="field text" name="issn$index" placeholder="No requerido">',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>Páginas:</strong> ',
+									'</div>',
+									'<div class="c9">',
+										'<input type="text" class="field text" name="pages$index" placeholder="No requerido">',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>Area:</strong> ',
+									'</div>',
+									'<div class="c9">',
+										'<select name="category$index" class="field" required>',
+											'<option value="" disabled selected>Selecciona una categoria</option>',
+											'<option value="1">Microbiología Molecular</option>',
+											'<option value="2">Biotecnología Ambiental</option>',
+											'<option value="3">Bionanotecnología</option>',
+											'<option value="4">Genómica Funcional y Proteómica</option>',
+											'<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>',
+											'<option value="6">Biorremediación de Ambientes Contaminados</option>',
+										'</select>',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field">',
+									'<div class="c3">',
+										'<strong>Privacidad:</strong> ',
+									'</div>',
+									'<div class="c9">',
+										'<select class="type-select field" name="type$index" required>',
+												'<option value="" disabled selected>Selecciona privacidad</option>',
+												'<option value="0">Público</option>',
+												'<option value="1">Privado</option>',
+											'</select>',
+									'</div>',
+								'</div>',
+								'<div class="c12 upload file field abstract">',
+									'<div class="c3">',
+										'<strong>Resumen:</strong> ',
+									'</div>',
+									'<div class="c9">',
+										'<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>',
+										'<textarea  name="abstract$index" disabled required></textarea>',
 									'</div>',
 								'</div>',
 							'</div>',
-
 						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>Autor:</strong>' ,
-						'</div>',
-						'<div class="c9">',
-							'<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>',
-						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>Fecha de creacion:</strong>',
-						'</div>',
-						'<div class="c9">',
-							'<input type="date" class="field text" value="$date" name="date$index" required>',
-						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>DOI:</strong>', 
-						'</div>',
-						'<div class="c9">',
-							'<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34" required>',
-						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>ISSN:</strong> ',
-						'</div>',
-						'<div class="c9">',
-							'<input type="text" class="field text" name="issn$index" placeholder="No requerido" required>',
-						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>Páginas:</strong> ',
-						'</div>',
-						'<div class="c9">',
-							'<input type="text" class="field text" name="pages$index" placeholder="No requerido" required>',
-						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>Area:</strong> ',
-						'</div>',
-						'<div class="c9">',
-							'<select name="category$index" class="field" required>',
-								'<option value="" disabled selected>Selecciona una categoria</option>',
-								'<option value="1">Microbiología Molecular</option>',
-								'<option value="2">Biotecnología Ambiental</option>',
-								'<option value="3">Bionanotecnología</option>',
-								'<option value="4">Genómica Funcional y Proteómica</option>',
-								'<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>',
-								'<option value="6">Biorremediación de Ambientes Contaminados</option>',
-							'</select>',
-						'</div>',
-					'</div>',
-					'<div class="c12 upload file field">',
-						'<div class="c3">',
-							'<strong>Privacidad:</strong> ',
-						'</div>',
-						'<div class="c9">',
-							'<select class="type-select field" name="type$index" required>',
-									'<option value="" disabled selected>Selecciona privacidad</option>',
-									'<option value="0">Público</option>',
-									'<option value="1">Privado</option>',
-								'</select>',
-						'</div>',
-					'</div>',
-				'</div>']
+					'</div>']
 	}
 
 	/* Plantilla para el idioma Ingles */ 
@@ -524,23 +651,26 @@ function addDocument(document){
 							'</select>',
 						'</li>',
 					'</ul>',
-				'</div>']
+				'</div>',
+				'</br>']
 	}
 	/* Se reemplazan las etiquetas por los Metadatos extraidos */
 	code = code.join('')
 		.replace(/\$index/g, document['id'])
 		.replace(/\$title/g, document['title'] ? document['title']:'')
 		.replace(/\$author/g, document['author'] ? document['author']:'')
-		.replace(/\$date/g, document['date'] ? (document['date'].substr(2, 4) + '-' + document['date'].substr(6, 2) + '-' + document['date'].substr(8, 2) ):'');
+		.replace(/\$thumbnail/g, document['thumbnail'] ? static_link.replace('999', document['thumbnail']):'')
+		.replace(/\$date/g, document['date'] ? document['date']:'');
 	/* Se agrega al frontend */
 	$('#form').append(code);
 	/* Se realiza la primera consulta a crossref */
-	crossref_query(document['title'] ? document['title']:'', document['id'], false);
+	last_cr_query[document['id']] = document['title'];
+	crossref_query(document['title'] ? document['title']:'', document['id']);
 
 	
 }
 
-function crossref_query(query, doc_id, open = true){
+function crossref_query(query, doc_id){
 	// Se muestra el icono que gira y se remueve el check
 	$('.upload.fa-check[doc-index="' + doc_id +'"]').addClass('hidden');
 	$('.upload.loader[doc-index="' + doc_id +'"]').removeClass('hidden');
@@ -553,7 +683,7 @@ function crossref_query(query, doc_id, open = true){
 		}*/
 	}).done(function(response){
 		if(!response['error']) {
-			toggleCrossref(doc_id, open);
+			toggleCrossref(doc_id);
 			$('.upload.records.root[doc-index="' + doc_id +'"]').children().remove();
 			$('.upload.records.root[doc-index="' + doc_id +'"]').append(response);
 
@@ -575,9 +705,9 @@ function crossref_query(query, doc_id, open = true){
 		}
 		$('.upload.loader[doc-index="' + doc_id +'"]').addClass('hidden');
 		//Comprueba si hubo un cambio en el campo de texto desde que mando la solicitud
-		if(last_cr_query.localeCompare(query) != 0){
-			console.log("entra");
-			crossref_query(last_cr_query, doc_id);
+		console.log(last_cr_query[doc_id]);
+		if(last_cr_query[doc_id].localeCompare(query) != 0){
+			crossref_query(last_cr_query[doc_id], [doc_id]);
 		}
 		else
 			crossref_busy = false;
@@ -590,11 +720,11 @@ function enableCrossref(){
 
 	$('.field[field-name="title"]').off();
 	$('.field[field-name="title"]').on('input', function(){
-		last_cr_query = $(this).val();
+		last_cr_query[$(this).attr('doc-index')] = $(this).val();
 		if(!crossref_busy){
 			crossref_busy = true;
 
-			toggleCrossref($(this).attr('doc-index'), true);
+			toggleCrossref($(this).attr('doc-index'));
 			var $this = $(this)
 			crossref_timeout = setTimeout(function(){
 				if($this.val() == ''){
@@ -649,9 +779,9 @@ function checkEmptyFields(){
 // Se encarga de habilitar o deshabilitar el boton de enviar
 function checkFilesSize(){
 	if(Object.size(doc_selected) == 0){
-		$('.upload.button.send').prop('disabled', true).addClass('disabled');				
+		$('.upload.button.send.first').prop('disabled', true).addClass('disabled');				
 	}
 	else{
-		$('.upload.button.send').prop('disabled', false).removeClass('disabled');	
+		$('.upload.button.send.first').prop('disabled', false).removeClass('disabled');	
 	}
 }

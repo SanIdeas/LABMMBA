@@ -97,6 +97,9 @@ body {
 .intranet.row {
   margin-bottom: 0 !important;
 }
+.intranet.row .row {
+  margin: 0;
+}
 .intranet.body {
   height: 100%;
   width: 100%;
@@ -731,6 +734,9 @@ form .c12 {
     background-color: #006e9c;
   }
 }
+.upload {
+  position: relative;
+}
 .upload.selector {
   position: absolute;
 }
@@ -820,6 +826,38 @@ form .c12 {
   height: auto;
   overflow: visible;
 }
+.upload.files .file.wrapper > .subwrapper {
+  position: relative;
+}
+.upload.files .file.wrapper > .subwrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.upload.files .file.wrapper > .subwrapper > .c3 {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  background-color: #e9edf0;
+  overflow: hidden;
+}
+@media screen and (max-width: 700px) {
+  .upload.files .file.wrapper > .subwrapper > .c3 {
+    position: relative;
+    height: auto;
+    display: block;
+  }
+  .upload.files .file.wrapper > .subwrapper > .c3 > img {
+    height: 300px;
+  }
+}
+.upload.files .file.wrapper > .subwrapper > .c3 > img {
+  align-self: center;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+}
+.upload.files .file.wrapper > .subwrapper > .c9 {
+  float: right;
+}
 .upload.files .file.head {
   padding: 0px !important;
 }
@@ -852,6 +890,29 @@ form .c12 {
 }
 .upload.files .file.field .field {
   width: 100%;
+}
+.upload.files .file.field.abstract .c9 {
+  display: flex;
+  justify-content: center;
+}
+.upload.files .file.field.abstract .c9 .fa {
+  position: absolute;
+  align-self: center;
+  color: #e9edf0;
+}
+.upload.files .file.field.abstract .c9 textarea {
+  overflow: hidden;
+  width: 100%;
+  resize: none;
+  padding: 10px;
+  margin: 0;
+  border: none;
+  min-height: 30px;
+  background-color: #e9edf0;
+  transition: background-color, color 0.3s ease;
+}
+.upload.files .file.field.abstract .c9 textarea[disabled] {
+  background-color: #f8f9fa;
 }
 .upload.files .file.field .crossrefWrapper {
   position: relative;
@@ -1155,6 +1216,42 @@ form .c12 {
 .upload.drive.loading > div .green {
   background-color: #009065;
   animation-name: loading_green;
+}
+.upload.singlefile {
+  text-align: center;
+  padding: 20px;
+}
+.upload.singlefile h5 {
+  width: 100%;
+  font-weight: normal;
+  margin: 2px 0px;
+}
+.upload.singlefile .thumbnail {
+  position: relative;
+  height: 300px;
+  display: flex;
+  background-color: #e9edf0;
+  overflow: hidden;
+}
+@media screen and (max-width: 700px) {
+  .upload.singlefile .thumbnail {
+    position: relative;
+    display: block;
+  }
+}
+.upload.singlefile .thumbnail > img {
+  align-self: baseline;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+}
+.upload.singlefile .content h3 {
+  width: 100%;
+  margin: 0px;
+}
+.upload.singlefile .content button {
+  width: 100%;
+}
+.upload.singlefile.hidden {
+  display: none;
 }
 .field {
   transtion: background-color 0.2s ease;

@@ -5,7 +5,7 @@
 <div class="intranet row upload title">
 	<div class="c12">
 		<h1 class="upload drive logo">Googl<span class="e">e</span> Drive</h1>
-		<h4 class="erasable">Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
+		<h4 class="erasable erasable2">Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
 	</div>
 </div>
 <div class="intranet row light-background">
@@ -23,10 +23,10 @@
 	</form>
 </div>
 
-<div class="intranet row light-background">
-	<span class="erasable upload drive span-center pad">{% trans 'Tambien puedes seleccionar un documento desde tu cuenta' %}</span>
+<div class="intranet row light-background upload folder">
+	<span class="erasable erasable2 upload drive span-center pad">{% trans 'Tambien puedes seleccionar un documento desde tu cuenta' %}</span>
 	<div class="intranet box upload drive plus">
-		<button class="upload drive btn">
+		<button class="upload drive btn erasable2">
 			<span class="fa-stack fa-lg">
 				<i class="fa fa-circle-thin fa-stack-2x"></i>
 				<i class="fa fa-plus" aria-hidden="true"></i>
@@ -43,11 +43,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="upload drive breadcrumbs">
-				<div class="crumbs root" bc-id="0">
-					<button onclick="userFiles()">{% trans 'Raiz' %}</button>
-				</div>
-			</div>
+			<div class="upload drive breadcrumbs"> <!-- Aqui van las Breadcrumbs --> </div>
 			<table class="upload drive table">
 				<thead>
 					<tr>
@@ -65,6 +61,17 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="intranet row upload singlefile hidden">
+		<div class="c12 thumbnail">
+			<img>
+		</div>
+		<div class="c12 content">
+			<h5 class="size">2.4 mb</h5>
+			<h3 class="name">Iterative and Incremental Development: A Brief history</h3>
+			<h5>{%trans "Modificado por ultima vez el" %} <span class="date">Octubre 20, 2016</span></h5>
+			<button class="upload button send first disabled" disabled="true">Aceptar</button>
 		</div>
 	</div>	
 </div>

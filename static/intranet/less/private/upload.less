@@ -178,6 +178,7 @@
 
 
 .upload{
+	position: relative;
 	&.selector{
 		position: absolute;
 	}
@@ -284,6 +285,36 @@
 				padding: 0px !important;
 				height: auto;
 				overflow: visible;
+				& > .subwrapper{
+					position: relative;
+					&:after{
+						content: "";
+						display: table;
+						clear: both;
+					}
+					& > .c3{
+						position: absolute;
+					    height: 100%;
+					    display: flex;
+					    background-color: @fields-background;
+					    overflow: hidden;
+					    @media @smartphones-700{
+					    	position: relative;
+					    	height: auto;
+					    	display: block;
+					    	& > img{
+					    		height: 300px;
+					    	}
+					    }
+					    & > img{
+					    	align-self: center;
+	    					box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+					    }
+					}
+					& > .c9{
+						float: right;
+					}
+				}
 			}
 
 			&.head{
@@ -322,6 +353,32 @@
 
 				& .field{
 					width: 100%;
+				}
+				&.abstract{
+					& .c9{
+						display: flex;
+						justify-content: center;
+						& .fa{
+							position: absolute;
+							align-self: center;
+						    color: @fields-background;
+						}
+						& textarea{
+						    overflow: hidden;
+						    width: 100%;
+						    resize: none;
+						    padding: 10px;
+						    margin: 0;
+						    border: none;
+						    min-height: 30px;
+						    background-color: @fields-background;
+						    transition: background-color, color .3s ease;
+						    &[disabled]{
+						    	background-color: lighten(@fields-background, 5%);
+						    }
+
+						}
+					}
 				}
 
 				& .crossrefWrapper{
@@ -672,6 +729,43 @@
 					animation-name: loading_green;
 				}
 			}
+		}
+	}
+	&.singlefile{
+		text-align: center;
+		padding: 20px;
+		& h5{
+			width: 100%;
+			font-weight: normal;
+			margin: 2px 0px;
+		}
+		& .thumbnail{
+			position: relative;
+    		height: 300px;
+		    display: flex;
+		    background-color: @fields-background;
+		    overflow: hidden;
+		    @media @smartphones-700{
+		    	position: relative;
+		    	display: block;
+		    }
+		    & > img{
+		    	align-self: baseline;
+				box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+		    }
+		}
+		& .content{
+			& h3{
+				width: 100%;
+				margin: 0px;
+			}
+			& button{
+				width: 100%;
+			}
+		}
+
+		&.hidden{
+			display: none;
 		}
 	}
 }

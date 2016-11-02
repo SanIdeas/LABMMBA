@@ -1,7 +1,7 @@
 var files = {}; /* Objeto que almacena los archivos que el usuario ha subido */
 var key_count = 0; /* Contador que define la posicion de cada archivo que es insertado en el objeto 'files' */
 var crossref_timeout, crossref_busy = false;
-var last_cr_query = "";
+var last_cr_query = {};
 (function($){
 	/* Resetea el input de archivos */
 	$.fn.resetInput = function(){
@@ -152,7 +152,7 @@ function addDocument(key_count, filename, object){
 							'<strong>DOI:</strong>', 
 						'</div>',
 						'<div class="c9">',
-							'<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34" required>',
+							'<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34">',
 						'</div>',
 					'</div>',
 					'<div class="c12 upload file field">',
@@ -160,7 +160,7 @@ function addDocument(key_count, filename, object){
 							'<strong>ISSN:</strong> ',
 						'</div>',
 						'<div class="c9">',
-							'<input type="text" class="field text" name="issn$index" placeholder="No requerido" required>',
+							'<input type="text" class="field text" name="issn$index" placeholder="No requerido">',
 						'</div>',
 					'</div>',
 					'<div class="c12 upload file field">',
@@ -168,7 +168,7 @@ function addDocument(key_count, filename, object){
 							'<strong>Páginas:</strong> ',
 						'</div>',
 						'<div class="c9">',
-							'<input type="text" class="field text" name="pages$index" placeholder="No requerido" required>',
+							'<input type="text" class="field text" name="pages$index" placeholder="No requerido">',
 						'</div>',
 					'</div>',
 					'<div class="c12 upload file field">',
@@ -310,9 +310,8 @@ function crossref_query(query, doc_id, open = true){
 		}
 		$('.upload.loader[doc-index="' + doc_id +'"]').addClass('hidden');
 		//Comprueba si hubo un cambio en el campo de texto desde que mando la solicitud
-		if(last_cr_query.localeCompare(query) != 0){
-			console.log("entra");
-			crossref_query(last_cr_query, doc_id);
+		if(last_cr_query[doc_id].localeCompare(query) != 0){
+			crossref_query(last_cr_query[doc_id], doc_id);
 		}
 		else
 			crossref_busy = false;
@@ -324,11 +323,11 @@ function enableCrossref(){
 
 	$('.field[field-name="title"]').off();
 	$('.field[field-name="title"]').on('input', function(){
-		last_cr_query = $(this).val();
+		last_cr_query[$(this).attr('doc-index')] = $(this).val();
 		if(!crossref_busy){
 			crossref_busy = true;
 
-			toggleCrossref($(this).attr('doc-index'), true);
+			toggleCrossref($(this).attr('doc-index'));
 			var $this = $(this)
 			crossref_timeout = setTimeout(function(){
 				if($this.val() == ''){
@@ -408,7 +407,7 @@ function sendDocuments(){
 			processData: false,
 			contentType: false
 		}).done(function(response){
-			console.log(response);
+			console.log(response['error']);
 			if(!response['error']) {
 				hideElement(".cssload-loader-wrapper", true);
 				addElement("#success-icon");
