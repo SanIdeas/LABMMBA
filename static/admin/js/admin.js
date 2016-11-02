@@ -92,7 +92,7 @@ function users(){
 				$('.setup-forward-box').attr("disabled", true);
 			}
 		}).done(function(){
-			reload_setup('');
+			reload_setup();
 		});
 	});
 	$('#invitation-form').submit(function(e){
@@ -116,6 +116,7 @@ function users(){
 		});
 	});
 }
+
 // Areas View
 function reload_area_setup(msg){
 	$.ajax({
@@ -189,5 +190,48 @@ function areas(){
 		}).done(function(data){
 			reload_area_setup(data['message']);
 		});
+	});
+}
+
+// Webpage View
+function reload_webpage_setup(id){
+	$.ajax({
+		url: reload,
+		method: 'POST',
+		data: {'id': id},
+		beforeSend: function(xhr){
+			xhr.setRequestHeader("X-CSRFToken", csrf_token);
+		}
+	}).done(function(html){
+		if(html.redirect)
+			window.location.href = html.redirect;
+		else{
+			// Remove TinyMCE Editor instances
+			tinymce.execCommand('mceRemoveEditor', true, 'spanish-title-edit');
+			tinymce.execCommand('mceRemoveEditor', true, 'spanish-body-edit');
+			tinymce.execCommand('mceRemoveEditor', true, 'english-title-edit');
+			tinymce.execCommand('mceRemoveEditor', true, 'english-body-edit');
+
+			$('#webpage-setup').children().remove();
+			$('#webpage-setup').append(html);
+		}
+	});
+}
+
+function webpage(){
+	/*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && $this.attr('setup-action') =='users') {
+	 $('.asd').click(function(){
+	 touched = $(this);
+	 $(this).addClass('setup-user-row-expand-rsp');
+	 });
+	 $(window).on('click', function(e){
+	 console.log(touched);
+	 if(!(touched.is(e.target) || touched.children().is(e.target))){
+	 touched.removeClass('setup-user-row-expand-rsp');
+	 }
+	 });
+	 }*/
+	$('#section-select').change(function(){
+		reload_webpage_setup(this.value);
 	});
 }

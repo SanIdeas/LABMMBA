@@ -45,5 +45,29 @@
     "fields": {
       "name": "Biorremediación de Ambientes Contaminados"
     }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 1,
+    "fields": {
+      "name": "Noticias",
+      "slug": "news",
+      "spanish_title": "Noticias del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:",
+      "english_title": "Noticias del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:"
+    }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 2,
+    "fields": {
+      "name": "Sobre el laboratorio",
+      "slug": "about",
+      "spanish_title": "Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:",
+      "spanish_body": "El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.",
+      "english_title": "Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:",
+      "english_body": "El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo."
+    }
   }
 ]

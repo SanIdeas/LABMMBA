@@ -29,7 +29,7 @@
 		<link rel="shortcut icon" href="{% static 'usm_theme/img/icon/favicon.png' %}"/>
 		<link rel="image_src" href=""/>
 		<link rel="apple-touch-icon" href="{% static 'usm_theme/img/icon/ilogica-icon.png' %}"/>
-		<title>Intranet · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
+		<title>Administración · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
 		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/private.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/style.css' %}">
@@ -70,6 +70,8 @@
                                         <li class="{% if documents_view == request.path%} current {%endif%}"><a href="{{documents_view}}">{% trans "Administrar Documentos" %}</a></li>
                                         {% url 'admin:areas' as areas_view%}
                                         <li class="{% if areas_view == request.path%} current {%endif%}"><a href="{{areas_view}}">{% trans "Administrar Áreas" %}</a></li>
+                                        {% url 'admin:webpage' as webpage_view%}
+                                        <li class="{% if webpage_view == request.path%} current {%endif%}"><a href="{{webpage_view}}">{% trans "Administrar Página Web" %}</a></li>
 										<li><a href="{% url 'webpage:home' %}">{% trans "Volver a la página principal" %}</a></li>
 									</ul>
 									<ul class="mobile-top-nav clear">
@@ -125,6 +127,8 @@
 					<a class="clear {% if documents_view == request.path%} selected {%endif%}" href="{{documents_view}}">{% trans "Administrar Documentos" %}</a>
                     {% url 'admin:areas' as areas_view%}
                     <a class="clear {% if areas_view == request.path%} selected {%endif%}" href="{{areas_view}}">{% trans "Administrar Áreas" %}</a>
+                    {% url 'admin:webpage' as webpage_view%}
+                    <a class="clear {% if webpage_view == request.path%} selected {%endif%}" href="{{webpage_view}}">{% trans "Administrar Página Web" %}</a>
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">
 			</div>

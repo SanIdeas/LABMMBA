@@ -564,8 +564,9 @@
 	transition: 0.3s ease;
 }
 
-#users-setup, #areas-setup{
-	padding: 20px;
+#users-setup, #areas-setup, #webpage-setup{
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 form .text{
@@ -576,6 +577,24 @@ form .submit{
 	width: 21%;
 	min-width: 74px;
 	padding: 10px;
+}
+
+.c6 > .mce-container{
+	margin: 10px 0 10px 0;
+}
+
+#webpage-edit-form .c6 h3{
+	margin: 0;
+}
+
+#tinymce p{
+	margin-left: 0;
+	width: 100%;
+}
+
+#tinymce h1{
+	margin-left: 0;
+	width: 100%;
 }
 
 @media screen and (max-width:1536px){

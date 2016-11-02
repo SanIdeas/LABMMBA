@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area
 from intranet.models import Document
+from webpage.models import Section
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
@@ -228,6 +229,34 @@ def areas(request, area_id=None):
 					}
 
 					return render(request, 'admin/areas_ajax.html', args)
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def webpage(request, section_id=None):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				if section_id is not None and request.is_ajax():
+					Area.objects.get(id=section_id).delete()
+					return JsonResponse({'error': False})
+				else:
+					return render(request, 'admin/webpage.html', {'sections': Section.objects.all()})
+
+			elif request.method == "POST" and request.is_ajax():
+				section_id = request.POST.get('id', None)
+				if section_id is not None:
+					return render(request, 'admin/webpage_ajax.html', {'section': Section.objects.filter(id=section_id).first()})
+
 		else:
 			if request.is_ajax():
 				return JsonResponse({'redirect': reverse('webpage:home')})
