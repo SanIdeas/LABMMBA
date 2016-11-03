@@ -3,8 +3,8 @@
 {% load staticfiles %}
 
 {% block extra_js %}
-    <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
-    <script src="{% static 'tinymce/jquery.tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/js/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/js/tinymce/jquery.tinymce.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -25,12 +25,15 @@
         </div>
     </div>
 
-    <div id="webpage-setup"></div>
+    <div id="webpage-setup">
+        <h1>{% trans 'No has seleccionado una sección para editar' %}</h1>
+    </div>
 
 <script>var reload = "{% url 'admin:webpage'%}"</script>
-<script>var remove = "{% url 'admin:delete_area' 999 %}"</script>
+<script>var edit = "{% url 'admin:edit_section' 999 %}"</script>
+<script>var tinymce_css = "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}"</script>
 <script>
     var csrf_token = '{{csrf_token}}';
-    reload_webpage_setup(-1);
+    webpage_init();
 </script>
 {% endblock %}

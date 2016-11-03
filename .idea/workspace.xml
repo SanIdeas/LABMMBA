@@ -2,7 +2,103 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="727889f7-d9cd-42ac-a1be-2697eaba568d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/jquery.tinymce.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/langs/es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/langs/readme.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/license.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/advlist/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/anchor/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/autolink/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/autoresize/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/autosave/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/bbcode/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/charmap/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/code/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/codesample/css/prism.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/codesample/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/colorpicker/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/contextmenu/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/directionality/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/emoticons/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/example/dialog.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/example/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/example_dependency/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/fullpage/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/fullscreen/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/hr/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/image/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/imagetools/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/importcss/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/layer/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/link/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/lists/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/media/moxieplayer.swf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/media/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/noneditable/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/pagebreak/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/paste/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/preview/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/print/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/save/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/searchreplace/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/spellchecker/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/tabfocus/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/table/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/template/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/textcolor/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/textpattern/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/visualblocks/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/visualchars/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/plugins/wordcount/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/content.inline.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/content.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/anchor.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/loader.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/object.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/img/trans.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/skin.ie7.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/skins/lightgray/skin.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/themes/inlite/theme.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/themes/modern/theme.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/tinymce/tinymce.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="$PROJECT_DIR$/admin/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="$PROJECT_DIR$/admin/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fixtures/initial_data.json" afterPath="$PROJECT_DIR$/fixtures/initial_data.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/css/admin.css" afterPath="$PROJECT_DIR$/static/admin/css/admin.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/js/admin.js" afterPath="$PROJECT_DIR$/static/admin/js/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage.html" afterPath="$PROJECT_DIR$/templates/admin/webpage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/webpage/about.html" afterPath="$PROJECT_DIR$/templates/webpage/about.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/models.py" afterPath="$PROJECT_DIR$/webpage/models.py" />
     </list>
     <ignored path="labmmba-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,21 +127,9 @@
         <entry file="file://$PROJECT_DIR$/admin/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="257" column="75" selection-start-line="257" selection-start-column="75" selection-end-line="257" selection-end-column="75" />
-              <folding>
-                <element signature="e#24#59#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,8 +138,8 @@
       <file leaf-file-name="webpage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/webpage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+            <state relative-caret-position="407">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -64,42 +148,51 @@
       <file leaf-file-name="admin.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="778">
-              <caret line="621" column="0" selection-start-line="621" selection-start-column="0" selection-end-line="621" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="277" column="14" selection-start-line="277" selection-start-column="14" selection-end-line="277" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpage/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <marker date="1478062711000" expanded="true" signature="560:761" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpage_ajax.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="webpage_ajax.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+            <state relative-caret-position="285">
+              <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="initial_data.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fixtures/initial_data.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="210" column="4" selection-start-line="210" selection-start-column="4" selection-end-line="210" selection-end-column="4" />
+            <state relative-caret-position="446">
+              <caret line="326" column="76" selection-start-line="326" selection-start-column="76" selection-end-line="326" selection-end-column="76" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="265" column="0" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
+              <folding>
+                <element signature="e#24#59#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,21 +231,22 @@
         <option value="$PROJECT_DIR$/login/models.py" />
         <option value="$PROJECT_DIR$/templates/admin/profile.html" />
         <option value="$PROJECT_DIR$/templates/shared/base.html" />
-        <option value="$PROJECT_DIR$/admin/urls.py" />
         <option value="$PROJECT_DIR$/templates/admin/shared.html" />
         <option value="$PROJECT_DIR$/templates/admin/areas.html" />
         <option value="$PROJECT_DIR$/templates/admin/areas_ajax.html" />
         <option value="$PROJECT_DIR$/labmmba/settings.py" />
         <option value="$PROJECT_DIR$/webpage/views.py" />
-        <option value="$PROJECT_DIR$/admin/views.py" />
+        <option value="$PROJECT_DIR$/static/intranet/js/drive_upload.js" />
+        <option value="$PROJECT_DIR$/admin/urls.py" />
         <option value="$PROJECT_DIR$/templates/admin/webpage.html" />
+        <option value="$PROJECT_DIR$/static/intranet/css/private.css" />
         <option value="$PROJECT_DIR$/static/admin/css/admin.css" />
+        <option value="$PROJECT_DIR$/admin/views.py" />
         <option value="$PROJECT_DIR$/webpage/models.py" />
         <option value="$PROJECT_DIR$/templates/webpage/about.html" />
         <option value="$PROJECT_DIR$/fixtures/initial_data.json" />
-        <option value="$PROJECT_DIR$/static/admin/js/admin.js" />
-        <option value="$PROJECT_DIR$/static/intranet/js/drive_upload.js" />
         <option value="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
+        <option value="$PROJECT_DIR$/static/admin/js/admin.js" />
       </list>
     </option>
   </component>
@@ -210,6 +304,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -353,28 +450,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="js">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="labmmba-web">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="static">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="intranet">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="css">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
@@ -456,9 +531,6 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1203,12 +1275,13 @@
       <workItem from="1477438576391" duration="18326000" />
       <workItem from="1477521262650" duration="155000" />
       <workItem from="1477576349186" duration="309000" />
-      <workItem from="1477942216535" duration="48448000" />
+      <workItem from="1477942216535" duration="48843000" />
+      <workItem from="1478123599115" duration="17681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120346000" />
+    <option name="totallyTimeSpent" value="138422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1217,21 +1290,21 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21204819" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21204819" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1239,32 +1312,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21204819" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1367,13 +1414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -1435,7 +1475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-75">
           <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1443,9 +1482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1453,17 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="128" selection-start-line="19" selection-start-column="128" selection-end-line="19" selection-end-column="128" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/areas_ajax.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1481,9 +1506,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#784#867#2" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1491,9 +1513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1199#1282#2" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1509,7 +1528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1525,15 +1543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="65" selection-start-line="0" selection-start-column="64" selection-end-line="0" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/intranet/css/private.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="320" column="6" selection-start-line="320" selection-start-column="6" selection-end-line="320" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1541,9 +1550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1551,32 +1557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/webpage/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="257" column="75" selection-start-line="257" selection-start-column="75" selection-end-line="257" selection-end-column="75" />
-          <folding>
-            <element signature="e#24#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixtures/initial_data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1589,22 +1569,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpage/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1478062711000" expanded="true" signature="560:761" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/intranet/js/drive_upload.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1575">
           <caret line="105" column="44" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1612,48 +1580,107 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1384">
           <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
+    <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="210" column="4" selection-start-line="210" selection-start-column="4" selection-end-line="210" selection-end-column="4" />
+        <state relative-caret-position="480">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
+    <entry file="file://$PROJECT_DIR$/templates/admin/areas_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="621" column="0" selection-start-line="621" selection-start-column="0" selection-end-line="621" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/intranet/css/private.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="87" column="1" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/webpage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="407">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="265" column="0" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="277" column="14" selection-start-line="277" selection-start-column="14" selection-end-line="277" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpage/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/webpage/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+        <state relative-caret-position="285">
+          <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixtures/initial_data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="326" column="76" selection-start-line="326" selection-start-column="76" selection-end-line="326" selection-end-column="76" />
           <folding />
         </state>
       </provider>

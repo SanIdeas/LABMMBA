@@ -1,110 +1,99 @@
 {% load i18n %}
 {% load staticfiles %}
 
-{% if section %}
-    <h2>{% trans section.name %}</h2>
+<h2>{% trans section.name %}</h2>
 
-    <div class="row">
-        <div class="c12">
-            <form id="webpage-edit-form" class="clear c12">
-                <div class="c6">
-                    <h3>{% trans 'Versión en Español' %}</h3>
-                    <div id="spanish-title-edit">
-                        <h1 class="c12">{{ section.spanish_title }}</h1>
-                    </div>
-                    <div id="spanish-body-edit">
-                        {% if section.spanish_body %}
-                            <p class="s3 c9">{{ section.spanish_body }}</p>
-                        {% else %}
-                            <p class="s3 c9"></p>
-                        {% endif %}
-                    </div>
+<div class="row">
+    <div class="c12">
+        <form id="webpage-edit-form" class="clear c12" action="">
+            <div class="c6">
+                <ul class="setup-webpage-list">
+                    <li>
+                        <div class="setup-webpage-row">
+                            <h3>{% trans 'Versión en Español' %}</h3>
+                        </div>
+                        <div class="setup-webpage-box">
+                            <button type="button" id="spanish-edit-box" class="setup-edit-box" title="{% trans 'Editar' %}">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="setup-webpage-box setup-hidden">
+                            <button type="button" id="spanish-accept-box" class="setup-accept-box" section-id="{{ section.id }}" title="{% trans 'Aceptar' %}">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="setup-webpage-box setup-hidden">
+                            <button type="button" id="spanish-cancel-box" class="setup-cancel-box" title="{% trans 'Cancelar' %}">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <div id="spanish-title-edit">
+                    {{ section.spanish_title | safe }}
                 </div>
+                <div id="spanish-body-edit">
+                    {% if section.spanish_body %}
+                        {{ section.spanish_body | safe }}
+                    {% else %}
+                        <p class="s3 c9"></p>
+                    {% endif %}
+                </div>
+            </div>
 
-                <div class="c6">
-                    <h3>{% trans 'Versión en Inglés' %}</h3>
-                    <div id="english-title-edit">
-                        <h1 class="c12">{{ section.english_title }}</h1>
-                    </div>
-                    <div id="english-body-edit">
-                        {% if section.english_body %}
-                            <p class="s3 c9">{{ section.english_body }}</p>
-                        {% else %}
-                            <p class="s3 c9"></p>
-                        {% endif %}
-                    </div>
+            <div class="c6">
+                <ul class="setup-webpage-list">
+                    <li>
+                        <div class="setup-webpage-row">
+                            <h3>{% trans 'Versión en Inglés' %}</h3>
+                        </div>
+                        <div class="setup-webpage-box">
+                            <button type="button" id="english-edit-box" class="setup-edit-box" title="{% trans 'Editar' %}">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="setup-webpage-box setup-hidden">
+                            <button type="button" id="english-accept-box" class="setup-accept-box" section-id="{{ section.id }}" title="{% trans 'Aceptar' %}">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="setup-webpage-box setup-hidden">
+                            <button type="button" id="english-cancel-box" class="setup-cancel-box" title="{% trans 'Cancelar' %}">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <div id="english-title-edit">
+                    {{ section.english_title | safe }}
                 </div>
-            </form>
+                <div id="english-body-edit">
+                    {% if section.english_body %}
+                        {{ section.english_body | safe }}
+                    {% else %}
+                        <p class="s3 c9"></p>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="modal-curtain" class="curtain-hidden"></div>
+<div id="modal-delete-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "¿De verdad deseas eliminar a este usuario?" %}</h3>
+        <div id="modal-user">
+            <div id="modal-user-img"></div>
+            <h4 id="modal-user-name"></h4>
+        </div>
+        <h3 id="modal-message">{% trans 'Ten en cuenta que este usuario posee <strong id="modal-user-count"></strong> documentos.' %}</h3>
+        <div id="modal-btns">
+            <button id="modal-confirm" user-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
         </div>
     </div>
-
-    <div id="modal-curtain" class="curtain-hidden"></div>
-    <div id="modal-delete-confirm" class="modal-hidden">
-        <div id="modal-content">
-            <h3>{% trans "¿De verdad deseas eliminar a este usuario?" %}</h3>
-            <div id="modal-user">
-                <div id="modal-user-img"></div>
-                <h4 id="modal-user-name"></h4>
-            </div>
-            <h3 id="modal-message">{% trans 'Ten en cuenta que este usuario posee <strong id="modal-user-count"></strong> documentos.' %}</h3>
-            <div id="modal-btns">
-                <button id="modal-confirm" user-id="">{% trans "CONFIRMAR" %}</button>
-                <button id="modal-cancel">{% trans "CANCELAR" %}</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // TinyMCE Editors
-        // Title Editors
-        $('#spanish-title-edit, #english-title-edit').tinymce({
-            force_br_newlines : false,
-            force_p_newlines : false,
-            forced_root_block : 'h1',
-            menubar: false,
-            statusbar: false,
-            content_css: "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}",
-            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright outdent indent',
-            //readonly: true,
-            language: 'es',
-            setup: function(ed){
-                ed.on('loadContent', function(){    // Avoid to loose <h1> class when everything is deleted
-                    $(ed.getBody()).bind("DOMNodeInserted", function(e){
-                        var element = e.target;
-                        if(element.tagName == 'H1')
-                            $(element).addClass('c12');
-                    });
-                })
-            }
-        });
-
-        // Body Editors
-        $('#spanish-body-edit, #english-body-edit').tinymce({
-            height: 400,
-            content_css: "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}",
-            plugins: [
-                'advlist autolink lists link image charmap preview hr anchor pagebreak',
-                'searchreplace wordcount visualblocks visualchars fullscreen',
-                'insertdatetime media nonbreaking save table contextmenu directionality',
-                'paste textcolor colorpicker textpattern imagetools'
-            ],
-            toolbar1: 'insertfile undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist',
-            toolbar2: 'outdent indent | link image | preview media | forecolor backcolor |',
-            //readonly: true,
-            language: 'es',
-            setup: function(ed){
-                ed.on('loadContent', function(){    // Avoid to loose <p> class when everything is deleted
-                    $(ed.getBody()).bind('DOMNodeInserted', function(e){
-                        var element = e.target;
-                        if(element.tagName == 'P')
-                            $(element).addClass('s3 c9');
-                    });
-                })
-            }
-        });
-    </script>
-{% else %}
-    <h1>{% trans 'No has seleccionado una sección para editar' %}</h1>
-{% endif %}
+</div>
 
 <script>webpage();</script>
+

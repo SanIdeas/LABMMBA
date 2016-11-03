@@ -8,9 +8,9 @@ from django.db import models
 class Section(models.Model):
 	name = models.CharField(max_length=20, unique=True, null=False)
 	slug = models.SlugField(max_length=20, unique=True, null=False)
-	spanish_title = models.CharField(max_length=100, null=False)
+	spanish_title = models.CharField(max_length=200, null=False)
 	spanish_body = models.TextField(null=True)
-	english_title = models.CharField(max_length=100, null=False)
+	english_title = models.CharField(max_length=200, null=False)
 	english_body = models.TextField(null=True)
 
 	def save(self, *args, **kwargs):

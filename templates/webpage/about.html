@@ -23,11 +23,11 @@
 <section id="content" class="wfull">
 	<div class="grid">
 		<div class="row">
-			<h1 class="c12">{{ section.spanish_title }}</h1> <!--MOSTRAR TITULO SEGUN LOCALIZACION-->
+			{{ section.spanish_title | safe }} <!--MOSTRAR TITULO SEGUN LOCALIZACION-->
 		</div>
 		<div class="row">
 			<div class="s3 c9">
-				<p>{{ section.spanish_body }}</p> <!--MOSTRAR CUERPO SEGUN LOCALIZACION-->
+				{{ section.spanish_body | safe }} <!--MOSTRAR CUERPO SEGUN LOCALIZACION-->
 			</div>
 		</div>
 		<div class="row">

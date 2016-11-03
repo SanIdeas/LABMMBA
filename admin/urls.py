@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^search/(?P<search>.*)/$', views.documents, name="admin_search"),
     url(r'^areas/$', views.areas, name="areas"),
     url(r'areas/delete/(?P<area_id>.*)$', views.areas, name='delete_area'),
-    url(r'^webpage/$', views.webpage, name="webpage")
+    url(r'^webpage/$', views.webpage, name="webpage"),
+    url(r'webpage/edit/(?P<section_id>.*)$', views.webpage, name='edit_section')
 ]

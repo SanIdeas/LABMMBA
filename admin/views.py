@@ -246,16 +246,36 @@ def webpage(request, section_id=None):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
 			if request.method == "GET":
-				if section_id is not None and request.is_ajax():
-					Area.objects.get(id=section_id).delete()
-					return JsonResponse({'error': False})
-				else:
-					return render(request, 'admin/webpage.html', {'sections': Section.objects.all()})
+				return render(request, 'admin/webpage.html', {'sections': Section.objects.all()})
 
 			elif request.method == "POST" and request.is_ajax():
-				section_id = request.POST.get('id', None)
-				if section_id is not None:
-					return render(request, 'admin/webpage_ajax.html', {'section': Section.objects.filter(id=section_id).first()})
+				if section_id is not None:		# Edit section
+					spanish_title = request.POST.get('spanish-title', None)
+					spanish_body = request.POST.get('spanish-body', None)
+					english_title = request.POST.get('english-title', None)
+					english_body = request.POST.get('english-body', None)
+
+					section = Section.objects.get(id=section_id)
+
+					if spanish_title is not None:
+						section.spanish_title = spanish_title
+						section.spanish_body = spanish_body
+					elif english_title is not None:
+						section.english_title = english_title
+						section.english_body = english_body
+
+					try:
+						section.save()
+						return JsonResponse({'error': False})
+					except Exception:
+						return JsonResponse({'error': True})
+				else:		# Get section template data
+					section_id = request.POST.get('id', None)
+					if section_id is not None:
+						try:
+							return render(request, 'admin/webpage_ajax.html', {'section': Section.objects.get(id=section_id)})
+						except Exception:
+							return JsonResponse({'error': True})
 
 		else:
 			if request.is_ajax():
