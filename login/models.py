@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
 )
 import json, os
 from django.utils import timezone
+from django.conf import settings
 import oauth2client, base64, cPickle, re
 
 # Create your models here.
@@ -105,6 +106,11 @@ class User(AbstractBaseUser):
 
     def update_picture(self, picture):
         self.profile_picture = picture
+        self.save()
+        filename= settings.PROFILE_PICTURES_DIR + 'U' + str(self.id) + '.jpg'
+        os.remove(filename)
+        os.rename(self.profile_picture.path, (filename))
+        self.profile_picture.name = filename
         self.save()
         return True
 

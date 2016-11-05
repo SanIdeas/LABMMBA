@@ -504,7 +504,7 @@ form .c12 {
 }
 .document.owner .image {
   padding: 20px;
-  background-color: #525252;
+  background-color: #e9edf0;
 }
 .document.owner .image img {
   width: 31%;
@@ -1530,7 +1530,110 @@ form .c12 {
     transform: rotateZ(360deg);
   }
 }
-/******************************//*!
+.profile.image {
+  width: 100%;
+  display: flex;
+  background-color: #e9edf0;
+  overflow: hidden;
+}
+@media screen and (max-width: 700px) {
+  .profile.image {
+    position: relative;
+    display: block;
+  }
+}
+.profile.image > * {
+  align-self: center;
+  width: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
+}
+.profile.btn > a {
+  background-color: #80a0b8 !important;
+  width: 100%;
+  color: white !important;
+  display: block;
+  text-align: center;
+  padding: 5px;
+}
+.profile.cropper {
+  height: 100%;
+  position: relative;
+}
+.profile.cropper > button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  color: #777;
+}
+.profile.cropper > button > i {
+  font-size: 40pt;
+}
+.profile.cropper > button > h5 {
+  margin: 0;
+  font-weight: normal;
+}
+.profile.cropper > .editor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+}
+.profile.cropper > .editor .header > * {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  padding: 5px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.profile.cropper > .editor .header #changeImage {
+  background-color: #0092cf;
+}
+.profile.cropper > .editor .header #changeImage:hover {
+  background-color: #006e9c;
+}
+.profile.cropper > .editor .header #sendImage {
+  background-color: #00c389;
+}
+.profile.cropper > .editor .header #sendImage:hover {
+  background-color: #009065;
+}
+.profile.cropper > .editor .profile.image {
+  height: 200px;
+  display: block;
+}
+.profile.cropper > .editor .profile.image > * {
+  margin: 0 auto;
+  height: 200px;
+  overflow: hidden;
+}
+.profile.cropper > .editor .profile.image > * > img {
+  max-width: inherit;
+}
+@media screen and (max-width: 700px) {
+  .profile.cropper > .editor .profile.image {
+    display: none;
+  }
+}
+.profile.cropper > .editor .crop {
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+.profile.cropper > .editor .crop img {
+  height: 100%;
+}
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50%;
+}
+/*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */

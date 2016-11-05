@@ -1,8 +1,111 @@
 {% extends 'intranet/shared.html' %}
-
-{% block content %}
-{% load i18n %}
 {% load staticfiles %}
+{% load i18n %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+{% endblock %}
+{% block extra_js %}
+	 <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script> 
+	 <script src="{% static 'intranet/js/profile.js' %}"></script> 
+{% endblock %}
+{% block content %}
+<div class="title">
+	<h3>{% trans "Perfil de" %} {{profile_user.first_name}} {{profile_user.last_name}}</h3>
+</div>
+<div class="intranet row">
+    <!-- Seccion izquierda -->
+    <div id="lCol" class="c5">
+        <!-- Nueva linea -->
+        <div class="intranet box">
+        	<div class="profile image">	
+        		<img {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'profile_pictures/Burton.jpg' %}" {% endif%}>
+        	</div>
+        	<div class="profile btn">
+        		<a class="modal" href="#changeImgModal">{% trans "Cambiar imagen" %}</a>
+        	</div>
+        	<div class="document table">
+        		<table>
+					<tr>
+						<td>{% trans "Nombre completo" %}:</td>
+						<td>{{profile_user.first_name}} {{ profile_user.last_name }}</td>
+					</tr>
+					<tr>
+						<td>{% trans "Institución" %}:</td>
+						<td>{{ profile_user.institution }}</td>
+					</tr>
+					<tr>
+						<td>{% trans "Carrera" %}:</td>
+						<td>{{ profile_user.career }}</td>
+					</tr>
+					<tr>
+						<td>{% trans "País" %}:</td>
+						<td>{{ profile_user.country }}</td>
+					</tr>
+					<tr>
+						<td>{% trans "Area" %}:</td>
+						<td>{% trans profile_user.area.name %}</td>
+					</tr>
+				</table>  		
+        	</div>
+        </div>
+        <!-- Nueva linea -->
+        <div class="intranet box">
+            <div class="counter">
+                <div>
+                    <h1>{{ profile_user.doc_count }}</h1>
+                    <h3>Documentos</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Seccion derecha -->
+    <div id="rCol" class="c7">
+    <!-- Nueva linea -->
+        <div class="intranet box">
+            <div class="chart">
+                <canvas id="months_chart"></canvas> 
+            </div>
+            <div class="description">
+                <span>Publicaciones de los ultimos 6 meses</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="changeImgModal" class="profile modal"  style="display:none!important; height:100%;">
+	<div class="profile cropper">
+		<button id="selectImage">
+	  		<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+	  		<h5>{% trans 'Presiona para seleccionar' %}</h5>
+  		</button>
+  		<div class="editor" style="display:none!important; opacity:0; top:20px;">
+	  		<div class="header">
+  				<button class="c8" id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i>{% trans 'Seleccionar nueva imagen' %}</button>
+  				<button class="c4" id="sendImage"><i class="fa fa-paper-plane" aria-hidden="true"></i>{% trans 'Enviar' %}</button>
+	  		</div>
+  			<div class="profile image">	
+        		<div><!-- Aqui va el preview de la imagen recortada --></div>
+        	</div>
+  			<div class="crop">
+  				<img id="imageCropper">
+  			</div>
+  		</div>
+	</div>
+</div>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
+{% csrf_token %}
+
+<script>
+	var update_picture_link = "{% url 'intranet:update_picture' %}";
+	var  csrf_token = "{{ csrf_token }}";	
+</script>
+<script src="{% static 'intranet/js/profile_events.js' %}"></script>
+
+
+
+
+
+{% endblock %}
 <div id="pictures-section">
 	<div id="background-picture">
 		<img src="{% static 'intranet/images/background-picture2.png' %}">
@@ -92,11 +195,5 @@
 			</table>
 		</div>
 	{% endif %}
-	<script>
-		$('.search-result').click(function(){
-			window.open("{% url 'intranet:document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
-		});
-	</script>	
 {% endif %}
 <div class="clear"></div>
-{% endblock %}

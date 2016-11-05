@@ -188,7 +188,8 @@ def profile(request, user_id):
 				profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
 			documents = Document.objects.filter(owner=user_id)
 			return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
-		except:
+		except Exception as error:
+			print error
 			return HttpResponseRedirect(reverse('intranet:users'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
@@ -196,7 +197,7 @@ def profile(request, user_id):
 def update_profile_picture(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		User.objects.get(id=request.user.id).update_picture(request.FILES['picture'])
-		return HttpResponseRedirect(reverse('intranet:profile', args={request.user.id}))
+		return JsonResponse({'error': False})
 
 def upload(request):
 	#request.user.credentials().revoke(httplib2.Http())
