@@ -15,7 +15,9 @@ $('#changeImage').click(function(){
 	$('#pictureField').click();
 })
 $('#pictureField').change(function(){
-	if(this.files.length > 0){
+	if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/))
+    	alert('Debes seleccionar una imagen');
+	else if(this.files.length > 0){
 		$.fancybox.showLoading();
 		$('#selectImage').animate({
 			top: '-20px',

@@ -17,6 +17,20 @@
 			box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
 	    }
 	}
+	&.options{
+
+	}
+	&.counter{
+		& > div{
+			height: 70px !important;
+			& > h1{
+				margin-top: -11px !important;
+			}
+			& > h3{
+				bottom: 3px !important;
+			}
+		}
+	}
 	&.btn{
 		& > a{
 		    background-color: #80a0b8 !important;
@@ -26,6 +40,9 @@
 		    text-align: center;
 		    padding: 5px;
 		}
+	}
+	&.modal{
+		padding: 0px;
 	}
 
 	&.cropper{
@@ -54,6 +71,9 @@
 			flex-direction: column; 
 			display: -webkit-flex;
 			-webkit-flex-direction: column;
+			overflow: hidden;
+		    border-radius: 10px;
+		    position: relative;
 
 			& .header{
 				& > *{
@@ -65,16 +85,16 @@
 					transition: background-color .3s ease;
 				}
 				& #changeImage{
-					background-color: lighten(@blue-color, 10%);
+					background-color: @blue-color;
 					&:hover{
-						background-color: @blue-color;
+						background-color: lighten(@blue-color, 10%);
 					}
 				}
 
 				& #sendImage{
-					background-color: lighten(@green-color, 10%);
+					background-color: @yellow-color;
 					&:hover{
-						background-color: @green-color;
+						background-color: lighten(@yellow-color, 10%);
 					}
 				}
 			}
@@ -107,4 +127,27 @@
 }
 .cropper-view-box, .cropper-face {
 	border-radius: 50%;
+}
+
+.linkDrive{
+	position: relative;
+    overflow: hidden;
+    & img{
+    	position: absolute;
+	    width: 60px;
+	    top: -6px;
+	    opacity: 0.2;
+	    left: -7px;
+    }
+    & a{
+    	float: right;
+    }
+    & .email{
+	    white-space: nowrap;
+	    overflow: hidden;
+	    width: 65%;
+	    display: inline-block;
+	    margin: 0;
+	    text-overflow: ellipsis;
+    }
 }

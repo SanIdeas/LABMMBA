@@ -18,13 +18,12 @@ class Document(models.Model):
 	date = models.DateField(null=True)
 	abstract = models.CharField(max_length=1000, null=True)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
-	date_added = models.DateField(auto_now_add=True)
+	date_added = models.DateTimeField(auto_now_add=True)
 	drive_id = models.CharField(max_length=100, null=True)
 	thumbnail = models.FileField(upload_to='static/thumbnails/', max_length=500)
 	words = models.CharField(max_length=200, null=True)
 	issn = models.CharField(max_length=20, null=True)
 	doi = models.CharField(max_length=50, null=True)
-	url = models.CharField(max_length= 50, null=True)
 	pages = models.CharField(max_length= 25, null=True)
 	is_available = models.BooleanField(default=False)
 
@@ -178,3 +177,5 @@ class Document(models.Model):
 		else:
 			return 'private'
 
+	def get_doi_url(self):
+		return 'http://dx.doi.org/' + self.doi

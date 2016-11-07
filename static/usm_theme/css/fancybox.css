@@ -29,6 +29,7 @@
 	background: #fff;
 	color: #777;
 	text-shadow: none;
+	border-radius: 10px;
 }
 
 .fancybox-opened {

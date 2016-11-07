@@ -13,37 +13,71 @@
             <h4>Usuarios registrados</h4>
             <div class="users">
                 <ul>
-                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_1.jpg' %}"></a></li>
-                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_3.jpg' %}"></a></li>
-                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_1.jpg' %}"></a></li>
-                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_3.jpg' %}"></a></li>
-                    <li><a href="#"><img class="img" src="{% static 'usm_theme/img/thumbnail_1.jpg' %}"></a></li>
-                    <li><div><h2>5 más</h2></div></li>
+                    {% for user in users_preview %}
+                    <li>
+                        <a href="{% url 'intranet:profile' user.id %}">
+                            <img class="img" 
+                                {% if user.profile_picture %} 
+                                    src="{% static user.filename %}" 
+                                {% else %} 
+                                    src="{% static 'intranet/images/default.png' %}" 
+                                {% endif%}
+                            >
+                        </a>
+                    </li>
+                    
+                    {% endfor %}
+                    {% if users_count > 0 %}
+                    <li><div><h2> {{ users_count }} más</h2></div></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="btn">
-                <button class="trans">Ver todos los usuarios</button>
+                <a class="trans" href="{% url 'intranet:users' %}">Ver todos los usuarios</a>
             </div>
         </div>
         <!-- Nueva linea -->
         <div class="intranet box">
             <div class="counter">
                 <div>
-                    <h1>10000</h1>
+                    <h1>{{ documents_count }}</h1>
                     <h3>Documentos</h3>
                 </div>
             </div>
         </div>
-        <!-- Nueva linea -->
-        <div class="intranet box">
-            <h4>Últimas publicaciones</h4>
-            <div class="info">
-                
+        {% if last_five_documents|length > 0 %}
+            <!-- Nueva linea -->
+            <div class="intranet box">
+                <h4>Últimas publicaciones</h4>
+                <div class="info">
+                    <ul class="documents">
+                    {% for doc in last_five_documents %}
+                        <li>
+                            <a class="clear" href="{% url 'intranet:document' doc.author doc.title %}" title="{{ doc.title }}">
+                                <div class="c2">
+                                    <img class="img" 
+                                        {% if doc.owner.profile_picture %} 
+                                            src="{% static doc.owner.filename %}" 
+                                        {% else %} 
+                                            src="{% static 'intranet/images/default.png' %}" 
+                                        {% endif%}
+                                    >
+                                </div>
+                                <div class="c10">
+                                    <span>{{ doc.author }}</span>
+                                    <h3>{{ doc.title }}</h3>
+                                    <span>{% trans "Por" %} {{ doc.owner_name }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn">
+                    <a class="trans" href="{% url 'intranet:documents' %}">Ver publicaciones</a>
+                </div>
             </div>
-            <div class="btn">
-                <button class="trans">Ver publicaciones</button>
-            </div>
-        </div>
+        {% endif %}
     </div>
     <!-- Seccion derecha -->
     <div id="rCol" class="c5">

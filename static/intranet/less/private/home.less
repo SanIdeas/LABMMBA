@@ -224,7 +224,7 @@ html,body{
 		box-shadow: 0 0 2px rgba(0,0,0,.05);	
 		background-color: #fff;
 		margin-bottom: 20px;
-		//border-radius: 10px;
+		border-radius: 10px;
 		overflow: hidden;
 		position: relative;
 		&.border{
@@ -241,7 +241,42 @@ html,body{
 		}
 
 		& > .info{
-			height: 50px;
+			max-height: 400px;
+			overflow: auto;
+			& .documents{
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				& li{
+					padding: 10px 0px;
+				}
+
+				& li:nth-child(even){
+					background-color: @list-color;
+				}
+				& *{
+					color: #777;
+					margin: 0;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				& .c10{
+					@media @smartphones-1400{
+						width: 100%;
+					}					
+				}
+
+				& img{
+				    width: 80px;
+				    margin: 0 auto;
+					border-radius: 50%;
+					@media @smartphones-1400{
+						display: none;
+					}
+				}
+			}
 		}
 
 		& > .chart{
@@ -300,10 +335,13 @@ html,body{
 		}
 
 		& > .btn{
-			& button{
+			& a{
 				padding: 5px;
 				background: none;
 				width: 100%;
+				text-align: center;
+				display: block;
+				text-decoration: none;
 				border: none;
 				color: #777;
 				border-top: 1px solid #e2e2e2;
@@ -330,22 +368,36 @@ html,body{
 	padding: 0px !important;
 	position: relative;
 	border-right: 1px solid @fields-background;
-	 & a{
-	 	&:hover{
-	 		background-color: darken(#f4f8f9, 2%) !important;
-	 	}
-	 }
+	& a{
+		&:hover{
+			background-color: darken(#f4f8f9, 2%) !important;
+		}
+	}
 
-	 & .utfsm{
-	 	width: 245px;
-	    opacity: 0.5;
-	    bottom: 0;
-	    position: absolute;
-	    margin-bottom: 5px;
-	    @media @smartphones-h470{
-	    	display: none;
-	    }
-	 }
+	& .utfsm{
+		width: 245px;
+		opacity: 0.5;
+		bottom: 0;
+		position: absolute;
+		margin-bottom: 5px;
+		@media @smartphones-h470{
+			display: none;
+		}
+	}
+	& .links{
+		& > a{
+			position: relative;
+			overflow: hidden;
+			& i{
+			    position: absolute;
+				font-size: 24pt;
+				line-height: 12pt;
+				left: 0px;
+				color: rgba(119, 119, 119, 0.14);
+			}
+		}
+	}
+
 }
 
 #search{

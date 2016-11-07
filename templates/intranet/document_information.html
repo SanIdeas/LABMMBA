@@ -60,7 +60,7 @@
 					{% if document.doi %}
 						<tr>
 							<td><strong>{% trans "DOI" %}:</strong></td>
-							<td><a href="{{document.url}}">{{document.doi}}</a></td>
+							<td><a href="{{document.get_doi_url}}">{{document.doi}}</a></td>
 						</tr>
 					{% endif %}
 					<tr>

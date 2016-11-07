@@ -117,6 +117,7 @@ def children_list(folder_id, service, onlyPDF):
 # Si la credencial caduco, la actualiza
 def get_drive_service(request):
 	# Si el usuario no tiene credenciales, retorna false
+	print '-------------------------', request.user.drive_credentials
 	if request.user.drive_credentials == None:
 		return False
 	elif request.user.credentials()._expires_in() < 10:
@@ -133,6 +134,7 @@ def get_drive_service(request):
 	http_auth = credentials.authorize(httplib2.Http())
 	drive_service = build('drive', 'v2', http=http_auth)
 	# Se retorna el servicio
+	print '-------------------------',drive_service
 	return drive_service
 
 
@@ -143,7 +145,13 @@ def oauth2callback(request):
 	http_auth = credentials.authorize(httplib2.Http())
 	user = User.objects.get(id=request.user.id)
 	user.drive_credentials = base64.b64encode(cPickle.dumps(credentials))
+	request.user.drive_credentials = base64.b64encode(cPickle.dumps(credentials))
+	# Se obtiene el correo de Google
+	service = get_drive_service(request)
+	params = get_user_data(service)
+	user.drive_email = params['email']
 	user.save()
+
 	return HttpResponse('<script type="text/javascript">window.close()</script>')
 
 
@@ -311,6 +319,7 @@ def get_user_data(service):
 	about = service.about().get(**param).execute()
 	param={}
 	param['name'] = about['name']
+	param['email'] = about['user']['emailAddress']
 	param['picture'] = about['user']['picture']['url'] if 'picture' in about['user'] else None
 	param['folder_id'] = about['rootFolderId'] 
 	return param
@@ -319,6 +328,7 @@ def get_user_data(service):
 def folder_files(request, folder_id = None):
 	if request.user.is_authenticated():
 		service = get_drive_service(request)
+		print '--------------', service
 		if not folder_id:
 			# Si no se proporciona la id de alguna carpeta, se obtiene la informacion del usuario
 			# Incluida la id de la carpeta raiz

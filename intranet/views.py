@@ -27,6 +27,7 @@ from django.utils.translation import ugettext as _ # Para traducir un string se 
 #import Levenshtein, random
 from django.db import connection
 from django.conf import settings
+from django.db.models.functions import Lower
 import httplib2
 
 
@@ -97,20 +98,24 @@ def filters_selected(list, request, name):
 
 def home(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
+		# Se obtiene la cantidad de documentos de los ultimos 6 meses
+		# Fecha de inicio
 		start_date = (date.today() - timedelta(5*365/12))
-		n = start_date.month#Initial Month
-		categories = Document.objects.values('category').annotate(count=Count('category'))
+		# Todos los documentos de los ultimos 6 meses
 		dates = Document.objects.filter(date_added__gte=start_date.strftime('%Y-%m-1'))
 		months = []
 
+		# Se almacena el nombre de los meses de cada documento en dates
 		for i in dates:
 			months.append(i.date_added.strftime('%B'))
+		# Se cuentan la cantidad de repeticiones de cada mes
 		months_counts =  dict(Counter(months))
 		months_map = {0: 'January', 1: 'February', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September',9: 'October', 10: 'November',11: 'December'}
-		actual_month = date.today().month
+		current_month = date.today().month
 		months = []
 		counts = []
-		for i in reversed(range(actual_month-1,actual_month - 7, -1)):
+		# Se recorren los ultimos 6 meses y se va comprobando la cantidad de documentos de cada uno
+		for i in reversed(range(current_month-1,current_month - 7, -1)):
 			months.append(_(months_map[i%12]))
 			if months_map[i%12] in months_counts:
 				counts.append(str(months_counts[months_map[i%12]]))
@@ -118,8 +123,11 @@ def home(request):
 				counts.append('0')
 		names_months = '"' + '" ,"'.join(months) + '"'
 		count_months = ','.join(counts)
+
+		# Se cuenta la cantidad de documentos por categoria
 		names=[]
 		count=[]
+		categories = Document.objects.values('category').annotate(count=Count('category'))
 		for a in categories:
 			try:
 				names.append(_(Area.objects.get(id=a['category']).name))
@@ -128,7 +136,20 @@ def home(request):
 				None
 		names_categories = '"' + '","'.join(names) + '"'
 		count_categories = ','.join(count)
-		return render(request, 'intranet/home.html', {'names_categories': names_categories, 'count_categories': count_categories, 'number_categories': len(names), 'names_months':names_months, 'count_months': count_months })
+
+		# Se obtienen un preview de los usuarios en el sistema
+		users = User.objects.filter(is_admin=False).order_by('last_activity')
+		return render(request, 'intranet/home.html', {
+													'names_categories': names_categories,
+													'count_categories': count_categories,
+													'number_categories': len(names),
+												 	'names_months':names_months,
+												  	'count_months': count_months,
+												  	'users_preview': users[:5],
+												  	'users_count': len(users) - 5 if len(users) > 5 else 0,
+												  	'last_five_documents': Document.objects.all().order_by(Lower('date_added').desc())[:5],
+												  	'documents_count': Document.objects.all().count()
+												  	})
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
@@ -201,9 +222,9 @@ def update_profile_picture(request):
 
 def upload(request):
 	#request.user.credentials().revoke(httplib2.Http())
-	request.user.credentials().refresh(httplib2.Http())
-	print '---------------------------------------', request.user.credentials()._expires_in()
-	print request.user.is_authenticated()
+	#request.user.credentials().refresh(httplib2.Http())
+	#print '---------------------------------------', request.user.credentials()._expires_in()
+	#print request.user.is_authenticated()
 	if request.user.is_authenticated() and not request.user.is_admin:
 		#Document.objects.all().delete()
 		#User.objects.all().delete()
@@ -335,7 +356,7 @@ def users(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		users = User.objects.filter(is_admin=False)
 		for user in users:
-			user.last_activity = (timezone.localtime(timezone.now()).date() - user.last_activity).days
+			user.last_activity = (timezone.localtime(timezone.now()) - user.last_activity).days
 		return render(request, 'intranet/users.html', {'users': users})
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))

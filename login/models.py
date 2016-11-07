@@ -77,10 +77,11 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_blocked = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    last_activity = models.DateField(auto_now=True)
+    last_activity = models.DateTimeField(auto_now=True)
     profile_picture = models.FileField(upload_to='static/profile_pictures/', max_length=500, null=True)
     doc_count = models.IntegerField(default=0)
     drive_credentials = models.BinaryField(null=True)
+    drive_email = models.CharField(max_length=100, null=True)
     access_token = models.CharField(max_length=128, null=True)
     is_registered = models.BooleanField(default=False)
 
@@ -105,12 +106,12 @@ class User(AbstractBaseUser):
         return self
 
     def update_picture(self, picture):
-        self.profile_picture = picture
-        self.save()
-        filename= settings.PROFILE_PICTURES_DIR + 'U' + str(self.id) + '.jpg'
-        os.remove(filename)
-        os.rename(self.profile_picture.path, (filename))
-        self.profile_picture.name = filename
+        # Si existe una foto, se elimina
+        if self.profile_picture:
+            os.remove(self.profile_picture.path)
+            self.save()
+
+        self.profile_picture.save('U' + str(self.id) + '.jpg', picture)
         self.save()
         return True
 

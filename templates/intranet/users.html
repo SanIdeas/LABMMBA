@@ -1,8 +1,25 @@
 {% extends 'intranet/shared.html' %}
-
+{% load staticfiles %}
 {% block content %}
 {% load i18n %}
-{% load staticfiles %}
+<div class="title">
+	<h3>{% trans "Usuarios" %}</h3>
+</div>
+<div class="intranet row">
+	{% for user in users %}
+		<div class="c4">
+			<a href="{% url 'intranet:profile' user.id %}">
+				<div class="intranet box users">
+					<div class="profile image">
+						<img src="{% static user.filename %}">
+					</div>
+					<h4>{{ user.first_name }} {{ user.last_name }}</h4>
+				</div>
+			</a>
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}
 <div id="users-container">
 	{% for user in users %}
 		<a href="{% url 'intranet:profile' user.id %}">
@@ -50,4 +67,3 @@
 	</script>
 </div>
 <div class="clear"></div>
-{% endblock %}

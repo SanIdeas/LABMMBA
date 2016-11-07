@@ -120,26 +120,36 @@
 				<form id="search" url="{% url 'intranet:intranet_search' 999 %}"><input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
 			</div>
 		</header>
+		<!-- Menu lateral de la intranet -->
 		<section id="content" class="wfull">	
 			<div id="sidebar" class="sidebar left">
 				<div class="links clear box">
                     <h3>Menu</h3>
                     {% url 'intranet:home' as intranet%}
-					<a class="clear {% if intranet == request.path%} selected {%endif%}" href="{{intranet}}">{% trans "Inicio" %}</a>
+						<a class="clear {% if intranet == request.path%} selected {%endif%}" href="{{intranet}}">
+							<i class="fa fa-home" aria-hidden="true"></i>
+							{% trans "Inicio" %}
+						</a>
 					{% url 'intranet:documents' as documents_view%}
-					<a class="clear {% if documents_view == request.path%} selected {%endif%}" href="{{documents_view}}">{% trans "Documentos" %}</a>
+						<a class="clear {% if documents_view == request.path%} selected {%endif%}" href="{{documents_view}}">
+							<i class="fa fa-file" aria-hidden="true"></i>
+							{% trans "Documentos" %}
+						</a>
 					{% url 'intranet:profile' request.user.id as profile%}
-					<a class="clear {% if profile == request.path%} selected {%endif%}" href="{{profile}}">{% trans "Mi perfil" %}</a>
-					{% if not request.user.is_admin %}
-						{% url 'intranet:users' as users_view%}
-						<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">{% trans "Usuarios" %}</a>
-					{% endif %}
+						<a class="clear {% if profile == request.path%} selected {%endif%}" href="{{profile}}">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							{% trans "Mi perfil" %}
+						</a>
+					{% url 'intranet:users' as users_view%}
+						<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">
+							<i class="fa fa-users" aria-hidden="true"></i>
+							{% trans "Usuarios" %}
+						</a>
 					{% url 'intranet:upload' as upload%}
-					<a class="clear {% if upload == request.path%} selected {%endif%}" href="{{upload}}">{% trans "Subir documento" %}</a>
-					{% if request.user.is_admin %}
-						{% url 'intranet:admin' as admin%}
-						<a class="clear {% if admin == request.path%} selected {%endif%}" href="{{admin}}">{% trans "Administrador" %}</a>
-					{% endif %}
+						<a class="clear {% if upload == request.path%} selected {%endif%}" href="{{upload}}">
+							<i class="fa fa-upload" aria-hidden="true"></i>
+							{% trans "Subir documento" %}
+						</a>
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">
 			</div>

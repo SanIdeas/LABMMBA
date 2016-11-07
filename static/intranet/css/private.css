@@ -155,6 +155,7 @@ body {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
   background-color: #fff;
   margin-bottom: 20px;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
@@ -168,7 +169,41 @@ body {
   border-bottom: 1px solid #e2e2e2;
 }
 .intranet.box > .info {
-  height: 50px;
+  max-height: 400px;
+  overflow: auto;
+}
+.intranet.box > .info .documents {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.intranet.box > .info .documents li {
+  padding: 10px 0px;
+}
+.intranet.box > .info .documents li:nth-child(even) {
+  background-color: #f7f7f7;
+}
+.intranet.box > .info .documents * {
+  color: #777;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media screen and (max-width: 1400px) {
+  .intranet.box > .info .documents .c10 {
+    width: 100%;
+  }
+}
+.intranet.box > .info .documents img {
+  width: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+@media screen and (max-width: 1400px) {
+  .intranet.box > .info .documents img {
+    display: none;
+  }
 }
 .intranet.box > .chart {
   padding: 10px;
@@ -220,15 +255,18 @@ body {
   display: table-cell;
   align-self: center;
 }
-.intranet.box > .btn button {
+.intranet.box > .btn a {
   padding: 5px;
   background: none;
   width: 100%;
+  text-align: center;
+  display: block;
+  text-decoration: none;
   border: none;
   color: #777;
   border-top: 1px solid #e2e2e2;
 }
-.intranet.box > .btn button:hover {
+.intranet.box > .btn a:hover {
   background-color: #f9f9f9;
 }
 .intranet.box > .counter {
@@ -298,6 +336,17 @@ body {
   #sidebar .utfsm {
     display: none;
   }
+}
+#sidebar .links > a {
+  position: relative;
+  overflow: hidden;
+}
+#sidebar .links > a i {
+  position: absolute;
+  font-size: 24pt;
+  line-height: 12pt;
+  left: 0px;
+  color: rgba(119, 119, 119, 0.14);
 }
 #search {
   display: flex;
@@ -1548,6 +1597,15 @@ form .c12 {
   border-radius: 50%;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
 }
+.profile.counter > div {
+  height: 70px !important;
+}
+.profile.counter > div > h1 {
+  margin-top: -11px !important;
+}
+.profile.counter > div > h3 {
+  bottom: 3px !important;
+}
 .profile.btn > a {
   background-color: #80a0b8 !important;
   width: 100%;
@@ -1555,6 +1613,9 @@ form .c12 {
   display: block;
   text-align: center;
   padding: 5px;
+}
+.profile.modal {
+  padding: 0px;
 }
 .profile.cropper {
   height: 100%;
@@ -1583,6 +1644,9 @@ form .c12 {
   flex-direction: column;
   display: -webkit-flex;
   -webkit-flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
 }
 .profile.cropper > .editor .header > * {
   background-color: transparent;
@@ -1593,16 +1657,16 @@ form .c12 {
   transition: background-color 0.3s ease;
 }
 .profile.cropper > .editor .header #changeImage {
-  background-color: #0092cf;
-}
-.profile.cropper > .editor .header #changeImage:hover {
   background-color: #006e9c;
 }
+.profile.cropper > .editor .header #changeImage:hover {
+  background-color: #0092cf;
+}
 .profile.cropper > .editor .header #sendImage {
-  background-color: #00c389;
+  background-color: #f2ae47;
 }
 .profile.cropper > .editor .header #sendImage:hover {
-  background-color: #009065;
+  background-color: #f5c377;
 }
 .profile.cropper > .editor .profile.image {
   height: 200px;
@@ -1632,6 +1696,31 @@ form .c12 {
 .cropper-view-box,
 .cropper-face {
   border-radius: 50%;
+}
+.linkDrive {
+  position: relative;
+  overflow: hidden;
+}
+.linkDrive img {
+  position: absolute;
+  width: 60px;
+  top: -6px;
+  opacity: 0.2;
+  left: -7px;
+}
+.linkDrive a {
+  float: right;
+}
+.linkDrive .email {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 65%;
+  display: inline-block;
+  margin: 0;
+  text-overflow: ellipsis;
+}
+.users.box h4 {
+  text-align: center;
 }
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome

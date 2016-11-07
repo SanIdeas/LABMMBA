@@ -3,6 +3,7 @@
 {% load i18n %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+	<link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 {% endblock %}
 {% block extra_js %}
 	 <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script> 
@@ -18,11 +19,13 @@
         <!-- Nueva linea -->
         <div class="intranet box">
         	<div class="profile image">	
-        		<img {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'profile_pictures/Burton.jpg' %}" {% endif%}>
+        		<img {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}>
         	</div>
-        	<div class="profile btn">
-        		<a class="modal" href="#changeImgModal">{% trans "Cambiar imagen" %}</a>
-        	</div>
+        	{% if request.user == profile_user %}
+	        	<div class="profile btn">
+	        		<a class="modal" href="#changeImgModal">{% trans "Cambiar imagen" %}</a>
+	        	</div>
+        	{% endif %}
         	<div class="document table">
         		<table>
 					<tr>
@@ -48,30 +51,52 @@
 				</table>  		
         	</div>
         </div>
-        <!-- Nueva linea -->
-        <div class="intranet box">
-            <div class="counter">
-                <div>
-                    <h1>{{ profile_user.doc_count }}</h1>
-                    <h3>Documentos</h3>
-                </div>
-            </div>
-        </div>
+        {% if request.user == profile_user %}
+	        <!-- Nueva linea -->
+	        <div class="intranet box">
+	        	<div class="document table">
+	        		<table class="profile options">
+	        			<tr>
+	        				<td class="linkDrive">
+		        				<img src="{% static 'intranet/images/G-logo.png' %}">
+		        				{% if profile_user.drive_credentials %}
+		        					<span class="email">{{profile_user.drive_email}}</span>
+		        					<a href="#">{% trans 'Desvincular' %}</a>
+		        				{% else %}
+		        					<span>{%trans 'No hay una cuenta' %}</span>
+		        					<a href="#">{% trans 'Vincular' %}</a>
+		        				{% endif %}
+	        				</td>
+	        			</tr>
+		        		<tr><td><a href="#">{% trans 'Editar información' %}</a></td></tr>
+		        		<tr><td><a href="#">{% trans 'Cambiar contraseña' %}</a></td></tr>
+		        	</table>
+	        	</div>
+	        </div>
+        {% endif %}
     </div>
     <!-- Seccion derecha -->
     <div id="rCol" class="c7">
     <!-- Nueva linea -->
         <div class="intranet box">
+       		<div class="profile counter">
+                <div>
+                    <h1>{{ profile_user.doc_count }}</h1>
+                    <h3>Documentos</h3>
+                </div>
+            </div>
             <div class="chart">
                 <canvas id="months_chart"></canvas> 
             </div>
+            <!--
             <div class="description">
                 <span>Publicaciones de los ultimos 6 meses</span>
             </div>
+            -->
         </div>
     </div>
 </div>
-
+{% if request.user == profile_user %}
 <div id="changeImgModal" class="profile modal"  style="display:none!important; height:100%;">
 	<div class="profile cropper">
 		<button id="selectImage">
@@ -93,7 +118,7 @@
 	</div>
 </div>
 <input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
-{% csrf_token %}
+{% endif %}
 
 <script>
 	var update_picture_link = "{% url 'intranet:update_picture' %}";
