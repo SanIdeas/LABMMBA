@@ -13,34 +13,39 @@
 					{% csrf_token %}
                          <input type="hidden" name="access_token" value="{{ token }}">
 					<div class="row">
-                        <div class="c6"><input value="{{ user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required readonly/></div>
-                        <div class="c6"><input type="text" name="institution" class="text" placeholder="{% trans 'Institución' %}" required/></div>
-                    </div>
-                    <div class="row">
-                    	<div class="c6"><input type="text" name="first_name" class="text" placeholder="{% trans 'Nombre' %}" required/></div>
-                    	<div class="c6"><input type="text" name="country" class="text" placeholder="{% trans 'Pais' %}" required/></div>
-                    </div>
-                    <div class="row">
-                    	<div class="c6"><input type="text" name="last_name" class="text" placeholder="{% trans 'Apellido' %}" required/></div>
-                    	<div class="c6">
-                    	<select name="area" required>
-								<option selected disabled>{% trans "Selecciona un area" %}</option>
-								{% for area in areas %}
-									<option value="{{ area.id }}">{{ area.name }}</option>
-								{% endfor %}
-							</select>
-                    	</div>
-                    </div>
-                    <div class="row">
-                    	<div class="c6"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}" required/></div>
-                    	<div class="c6"><input type="text" name="career" class="text" placeholder="{% trans 'Carrera' %}" required/></div>
-                    </div>
-                    <div class="row">
-                    	<div class="s6 c6"><input type="submit" class="submit trans" value="Enviar"/></div>
-                    	{% if message %}
-							<p class="error">{{ message.content }}</p>
-						{% endif %}	
-                    </div>
+                             <div class="c6"><input value="{{ user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required readonly/></div>
+                             <div class="c6"><input type="text" name="institution" class="text" placeholder="{% trans 'Institución' %}" required/></div>
+                         </div>
+                         <div class="row">
+                         	<div class="c6"><input type="text" name="first_name" class="text" placeholder="{% trans 'Nombre' %}" required/></div>
+                         	<div class="c6">
+                                   <select name="country" required>
+                                        <option selected disabled> {% trans 'Selecciona un país' %}</option>
+                                        {% include 'login/countries.html' %}
+                                   </select>
+                              </div>
+                         </div>
+                         <div class="row">
+                         	<div class="c6"><input type="text" name="last_name" class="text" placeholder="{% trans 'Apellido' %}" required/></div>
+                         	<div class="c6">
+                         	<select name="area" required>
+     						<option selected disabled>{% trans "Selecciona un area" %}</option>
+     						{% for area in areas %}
+     							<option value="{{ area.id }}">{{ area.name }}</option>
+     						{% endfor %}
+     					</select>
+                         	</div>
+                         </div>
+                         <div class="row">
+                         	<div class="c6"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}" required/></div>
+                         	<div class="c6"><input type="text" name="career" class="text" placeholder="{% trans 'Carrera' %}" required/></div>
+                         </div>
+                         <div class="row">
+                         	<div class="s6 c6"><input type="submit" class="submit trans" value="Enviar"/></div>
+                         	{% if message %}
+     							<p class="error">{{ message.content }}</p>
+     						{% endif %}	
+                         </div>
 				</form>
 			</div>
 		</div>

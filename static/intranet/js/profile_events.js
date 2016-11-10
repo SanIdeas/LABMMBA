@@ -1,8 +1,23 @@
 var cropper;
 $(document).ready(function() {
-	$('a.modal').fancybox({
+	$('a.modal.picture').fancybox({
 		scrolling: false,
 		autoSize: false,
+	});
+	$('a.modal.google').fancybox({
+		scrolling: false,
+		autoSize: false,
+	});
+	$('a.modal.edit').fancybox({
+		width: 800,
+		height: 'auto',
+	});
+	$('a.modal.password').fancybox({
+		width: 400,
+		height: 'auto',
+	});
+	$(window).resize(function(){
+		$.fancybox.update();
 	});
 });
 $('#sendImage').click(function(){
@@ -13,11 +28,19 @@ $('#selectImage').click(function(){
 });	
 $('#changeImage').click(function(){
 	$('#pictureField').click();
-})
+});	
+$('#authenticate').click(function(){
+	googleAuthentication();
+});	
+$('#passwordForm').submit(function(e){
+	e.preventDefault();
+	changePassword();
+});
 $('#pictureField').change(function(){
-	if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/))
+	if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
     	alert('Debes seleccionar una imagen');
 	else if(this.files.length > 0){
+		console.log("asd");
 		$.fancybox.showLoading();
 		$('#selectImage').animate({
 			top: '-20px',
@@ -32,6 +55,7 @@ $('#pictureField').change(function(){
 			opacity: 1
 		}, 200);
 		
+		console.log("asd2");
 		readURL(this);
 	}
 });

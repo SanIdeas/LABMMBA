@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from login.models import User, Area, UserManager
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.staticfiles.templatetags.staticfiles import static
 import os, datetime, base64, json, requests
 from intranet.models import Document
+from django.utils.translation import ugettext as _
 
 
 # Create your views here.
@@ -41,7 +42,7 @@ def login(request):
 				else:
 					#Si el usuario no fue autenticado, se envia un mensaje de error
 					message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
-					return render(request, 'login/login.html', {'message': message})					
+					return render(request, 'login/login.html', {'message': message, 'email': request.POST['email']})					
 			else:
 				#Si el usuario no esta activo:
 				message = {'type': 'error', 'content': 'Ten paciencia. Debes ser aprobado por el administrador.'}
@@ -50,44 +51,13 @@ def login(request):
 		else:
 			#Si el usuario no existe
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
-			return render(request, 'login/login.html', {'message': message})
-
-
-# Ya no sirve!!
-def signup(request):
-	if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
-			if request.method == "GET":
-				return render(request, 'login/signup.html', {'areas': Area.objects.all()})
-			else:
-				try:
-					user = User.objects.get(email=request.POST['email'])
-				except User.DoesNotExist:
-					user = None
-
-				if user is  None:
-					user = User.objects.create_user(
-						request.POST['email'], 
-						request.POST['first_name'], 
-						request.POST['last_name'], 
-						request.POST['institution'], 
-						request.POST['country'], 
-						Area.objects.get(id=request.POST['area']), 
-						request.POST['career'], 
-						request.POST['password'])
-					user = authenticate(username=request.POST['email'], password=request.POST['password'])
-					auth_login(request, user)
-					return HttpResponseRedirect(reverse('login'))
-				else:
-					message = {'type': 'error', 'content': 'El email ' + request.POST['email'] + ' ya existe.'}
-					return render(request, 'login/signup.html', {'areas': Area.objects.all(), 'message': message})
-	else:
-		return HttpResponseRedirect(reverse('intranet:home'))
+			return render(request, 'login/login.html', {'message': message, 'email': request.POST['email']})
 
 
 def logout(request):
 	if request.user.is_authenticated():
 		auth_logout(request)
-		return HttpResponseRedirect(reverse('webpage:home'))
+	return HttpResponseRedirect(reverse('webpage:home'))
 
 def register(request, token = None):
 	if token == "":
@@ -159,4 +129,27 @@ def register(request, token = None):
 
 	else:
 		return HttpResponseRedirect(reverse('webpage:home'))
+
+def change_password(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			new = request.POST['new']
+			current = request.POST['current']
+
+			# Se comprueba que la contraseña actual coincida
+			authenticate_ = authenticate(username=request.user.email, password=current)
+
+			if authenticate_:
+				request.user.set_password(new)
+				request.user.save()
+				# Se obtiene la nueva sesion
+				authenticate_ = authenticate(username=request.user.email, password=new)
+				auth_login(request, authenticate_)
+				return JsonResponse({'error': False, 'message': _('Cambio exitoso')})
+			else:
+				return JsonResponse({'error': True, 'message': _(u'Hubo un problema. Asegurate de escribir correctamente tu contraseña actual.')})
+		else:
+			return JsonResponse({'error': True, 'message': _('Metodo de envio incorrecto')})
+	else:
+		return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión')})
 

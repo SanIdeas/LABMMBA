@@ -91,7 +91,7 @@ function methodSwitcher(method){
 
 
 //http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
-function PopupCenter(url, title, w, h, autoSearch) {
+function PopupCenter(url, title, w, h) {
     // Fixes dual-screen position                         Most browsers      Firefox
     var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
     var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
@@ -105,14 +105,13 @@ function PopupCenter(url, title, w, h, autoSearch) {
         newWindow.focus();
     }
 
-    if (autoSearch){
-    	var timer = setInterval(function(){
-    		if(newWindow.closed){
-    			clearInterval(timer);
-    			initial_drive_request(link_analizer_link.replace('999', encodeURIComponent($('#drive-link').val())));
-    		}
-    	}, 500);
-    }
+    if(!newWindow || newWindow.closed || typeof newWindow.closed=='undefined') 
+	{ 
+	     // Ventanas emergentes bloqueadas
+	     return false;
+	}
+	else
+		return true;
 
 
 }

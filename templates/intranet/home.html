@@ -3,14 +3,14 @@
 {% block content %}
 {% load i18n %}
 <div class="title">
-	<h3>{% trans "Resumen de actividad" %}</h3>
+    <h3>{% trans "Resumen de actividad" %}</h3>
 </div>
 <div class="intranet row">
     <!-- Seccion izquierda -->
     <div id="lCol" class="c7">
         <!-- Nueva linea -->
         <div class="intranet box">
-            <h4>Usuarios registrados</h4>
+            <h4>{% trans "Usuarios registrados" %}</h4>
             <div class="users">
                 <ul>
                     {% for user in users_preview %}
@@ -21,19 +21,17 @@
                                     src="{% static user.filename %}" 
                                 {% else %} 
                                     src="{% static 'intranet/images/default.png' %}" 
-                                {% endif%}
-                            >
+                                {% endif%}>
                         </a>
-                    </li>
-                    
+                    </li>                    
                     {% endfor %}
                     {% if users_count > 0 %}
-                    <li><div><h2> {{ users_count }} más</h2></div></li>
+                    <li><div><h2> {% blocktrans %} {{ users_count }} más {% endblocktrans %}</h2></div></li>
                     {% endif %}
                 </ul>
             </div>
             <div class="btn">
-                <a class="trans" href="{% url 'intranet:users' %}">Ver todos los usuarios</a>
+                <a class="trans" href="{% url 'intranet:users' %}">{% trans "Ver todos los usuarios" %}</a>
             </div>
         </div>
         <!-- Nueva linea -->
@@ -41,7 +39,7 @@
             <div class="counter">
                 <div>
                     <h1>{{ documents_count }}</h1>
-                    <h3>Documentos</h3>
+                    <h3>{% trans "Documentos" %}</h3>
                 </div>
             </div>
         </div>
@@ -74,7 +72,7 @@
                     </ul>
                 </div>
                 <div class="btn">
-                    <a class="trans" href="{% url 'intranet:documents' %}">Ver publicaciones</a>
+                    <a class="trans" href="{% url 'intranet:documents' %}">{% trans "Ver publicaciones" %}</a>
                 </div>
             </div>
         {% endif %}
@@ -87,18 +85,20 @@
                 <canvas id="months_chart"></canvas> 
             </div>
             <div class="description">
-                <span>Publicaciones de los ultimos 6 meses</span>
+                <span>{% trans "Publicaciones de los ultimos 6 meses" %}</span>
             </div>
         </div>
+        {% if names_categories %}
         <!-- Nueva linea -->
         <div class="intranet box">
             <div class="chart">
                 <canvas id="categories_chart" style="position:relative"></canvas> 
             </div>
             <div class="description">
-                <span>Categorias</span>
+                <span>{% trans "Categorias" %}</span>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 
@@ -110,7 +110,7 @@ var myChart = new Chart(ctx, {
         labels: [{{ names_months|safe }}],
         datasets: [{
             label: '',
-           	fill: true,
+            fill: true,
             data: [{{ count_months }}],
             backgroundColor:'#e9edf0',
             borderColor:'#F7A220',
@@ -123,24 +123,25 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-    	scales:{
-    		yAxes:[{
-    			gridLines:{
-	    			display:false,
-	    		},
+        scales:{
+            yAxes:[{
+                gridLines:{
+                    display:false,
+                },
 
-    		}],
-    		xAxes:[{
-    			gridLines:{
-	    			display:false,
-	    		}
-    		}]
-    	},
-    	legend:{
-    		display:false
-    	}
+            }],
+            xAxes:[{
+                gridLines:{
+                    display:false,
+                }
+            }]
+        },
+        legend:{
+            display:false
+        }
     }
 });
+{% if names_categories %}
 var ctx2 = document.getElementById("categories_chart");
 var myChart2 = new Chart(ctx2, {
     type: 'pie',
@@ -149,26 +150,27 @@ var myChart2 = new Chart(ctx2, {
         datasets: [{
             data: [{{count_categories}}],
             backgroundColor:[
-            	"#f2ae47",
-            	"#e0424e",
-            	"#006e9c",
-            	"#009065",
-            	"#E17947",
-            	"#8DE57C",
+                "#f2ae47",
+                "#e0424e",
+                "#006e9c",
+                "#009065",
+                "#E17947",
+                "#8DE57C",
 
             ]
         }]
     },
     options: {
-    	scale:{
-    		ticks:{
-    			display:false
-    		}
-    	},
-    	legend:{
-    		display:true
-    	}
+        scale:{
+            ticks:{
+                display:false
+            }
+        },
+        legend:{
+            display:true
+        }
     }
 });
+{% endif %}
 </script>
 {% endblock %}

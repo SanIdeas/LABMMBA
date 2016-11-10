@@ -6,6 +6,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 {% endblock %}
 {% block extra_js %}
+	 <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script> 
 	 <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script> 
 	 <script src="{% static 'intranet/js/profile.js' %}"></script> 
 {% endblock %}
@@ -19,11 +20,16 @@
         <!-- Nueva linea -->
         <div class="intranet box">
         	<div class="profile image">	
-        		<img {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}>
+        		<img 
+        			{% if profile_user.profile_picture %} 
+        				src="{% static profile_user.filename %}" 
+        			{% else %} 
+        				src="{% static 'intranet/images/default.png' %}" 
+        			{% endif%}>
         	</div>
         	{% if request.user == profile_user %}
 	        	<div class="profile btn">
-	        		<a class="modal" href="#changeImgModal">{% trans "Cambiar imagen" %}</a>
+	        		<a class="modal picture" href="#changeImgModal">{% trans "Cambiar imagen" %}</a>
 	        	</div>
         	{% endif %}
         	<div class="document table">
@@ -61,15 +67,15 @@
 		        				<img src="{% static 'intranet/images/G-logo.png' %}">
 		        				{% if profile_user.drive_credentials %}
 		        					<span class="email">{{profile_user.drive_email}}</span>
-		        					<a href="#">{% trans 'Desvincular' %}</a>
+		        					<a class="modal" href="#deauthenticateModal">{% trans 'Desvincular' %}</a>
 		        				{% else %}
-		        					<span>{%trans 'No hay una cuenta' %}</span>
-		        					<a href="#">{% trans 'Vincular' %}</a>
+		        					<span class="email">{%trans 'No hay una cuenta asociada' %}</span>
+		        					<a id="authenticate">{% trans 'Vincular' %}</a>
 		        				{% endif %}
 	        				</td>
 	        			</tr>
-		        		<tr><td><a href="#">{% trans 'Editar información' %}</a></td></tr>
-		        		<tr><td><a href="#">{% trans 'Cambiar contraseña' %}</a></td></tr>
+		        		<tr><td><a class="modal edit" href="#editInformationModal">{% trans 'Editar información' %}</a></td></tr>
+		        		<tr><td><a class="modal password" href="#passwordModal">{% trans 'Cambiar contraseña' %}</a></td></tr>
 		        	</table>
 	        	</div>
 	        </div>
@@ -97,13 +103,14 @@
     </div>
 </div>
 {% if request.user == profile_user %}
+<!-- Modal para modificar la foto de perfil -->
 <div id="changeImgModal" class="profile modal"  style="display:none!important; height:100%;">
 	<div class="profile cropper">
 		<button id="selectImage">
 	  		<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 	  		<h5>{% trans 'Presiona para seleccionar' %}</h5>
   		</button>
-  		<div class="editor" style="display:none!important; opacity:0; top:20px;">
+  		<div class="editor" style="display:none; opacity:0; top:20px;">
 	  		<div class="header">
   				<button class="c8" id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i>{% trans 'Seleccionar nueva imagen' %}</button>
   				<button class="c4" id="sendImage"><i class="fa fa-paper-plane" aria-hidden="true"></i>{% trans 'Enviar' %}</button>
@@ -118,19 +125,138 @@
 	</div>
 </div>
 <input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
+
+<!-- Modal para desvincular la cuenta de Google -->
+<div id="deauthenticateModal" class="document modal"  style="display:none!important">
+	<h2>{% trans "¿Estas seguro?" %}</h2>
+	<p>{% trans "Estas a punto de desvincular tu cuenta de Google: " %}</p>
+	<h3>{{profile_user.drive_email}}</h3>
+	<div><a href="{% url 'deauthenticate' 'intranet:profile' %}">CONFIRMAR</a></div>
+</div>
+
+<!-- Modal para modificar la informacion del perfil -->
+<div id="editInformationModal" class="profile modal clear"  style="display:none!important">
+	<h3>{% trans "Edita tu perfil" %}</h3>
+	<form class="clear c12" action="{% url 'intranet:profile' %}" method="POST" >
+		{% csrf_token %}
+		<div class="row profile field">
+			<span class="c12">{% trans 'Correo electronico' %}:</span>
+            <div class="c12"><input value="{{ profile_user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required readonly/></div>
+         </div>
+         <div class="row profile field">
+			<span class="c12">{% trans 'Nombre' %}:</span>
+         	<div class="c12"><input type="text" value="{{ profile_user.first_name }}" name="first_name" class="text" placeholder="{% trans 'Nombre' %}" required/></div>
+         </div>
+         <div class="row profile field">
+			<span class="c12">{% trans 'Apellido' %}:</span>
+     		<div class="c12"><input type="text" value="{{ profile_user.last_name }}" name="last_name" class="text" placeholder="{% trans 'Apellido' %}" required/></div>
+     	</div>
+         <div class="row profile field">
+			<span class="c12">{% trans 'Institución' %}:</span>
+         	<div class="c12"><input value="{{ profile_user.institution }}" type="text" name="institution" class="text" placeholder="{% trans 'Institución' %}" required/></div>
+         </div>
+     	<div class="row profile field">
+			<span class="c12">{% trans 'Carrera' %}:</span>
+     		<div class="c12"><input type="text" name="career" value="{{ profile_user.career }}"class="text" placeholder="{% trans 'Carrera' %}" required/></div>
+     	</div>
+     	<div class="row profile field">
+			<span class="c12">{% trans 'Area' %}:</span>
+     		<div class="c12">
+     			<select name="area" required>
+					<option disabled>{% trans "Selecciona un area" %}</option>
+					{% for area in areas %}
+						<option value="{{ area.id }}" {% if area == profile_user.area %} selected {% endif %}>{{ area.name }}</option>
+					{% endfor %}
+				</select>
+     		</div>
+     	</div>
+		<div class="row profile field">
+			<span class="c12">{% trans 'País' %}:</span>
+			<div class="c12">
+		       <select name="country" required>
+		            <option disabled> {% trans 'Selecciona un país' %}</option>
+		            {% include 'intranet/countries.html' %}
+		       </select>
+		  </div>
+		</div>
+         <div class="row profile field">
+         	<div class="s6 c6"><input type="submit" class="submit trans"></div>
+         </div>
+	</form>
+</div>
+
+<!-- Modal para cambiar contraseña -->
+<div id="passwordModal" class="profile modal clear" style="display:none !important;">
+	<h3>{% trans "Cambio de contraseña" %}</h3>
+	
+	<form id="passwordForm">
+		{% csrf_token %}
+		<div class="row profile field">
+			<div class="c12">
+				<span>Contraseña actual:</span>
+				<input id="current" type="password" class="text" name="current" required>
+			</div>
+		</div>
+		<div class="intranet separator"></div>
+		<div class="row profile field">
+			<div class="c12">
+				<span>Nueva contraseña:</span>
+				<input id="new" type="password" class="text" name="new" required>
+			</div>
+		</div>
+		<div class="row profile field">
+			<div class="c12">
+				<span>Ingresar nuevamente:</span>
+				<input id="confirm" type="password" class="text" required>
+			</div>
+		</div>
+		<div class="row profile field">
+			<div class="c12">
+				<input id="passSubmit" type="submit" class="submit trans">
+			</div>
+		</div>
+	</form>
+	<div class="row profile field">
+		<div class="c12">
+			<h5 class="message password"></h5>
+		</div>
+	</div>
+</div>
+
+<!-- Modal extra -->
+<div style="display:none;">
+	<div id="enablePopupModal">
+		<h4>{%trans "¡Un momento!" %}</h4>
+		<span>{% trans "Al parecer tienes deshabilitadas las ventanas emergentes." %}</span>
+		<span>{% trans "Activalas, recarga la página y vuelve a intentarlo." %}</span>
+	</div>
+	<div>
+		<div id="successModal">
+			<i class="fa fa-check" aria-hidden="true"></i>
+			<h3>{% trans "Cambio exitoso" %}</h3>
+		</div>
+	</div>
+</div>
 {% endif %}
 
 <script>
 	var update_picture_link = "{% url 'intranet:update_picture' %}";
-	var  csrf_token = "{{ csrf_token }}";	
+	var  csrf_token = "{{ csrf_token }}";
+	var authentication_url = "http://{{ request.get_host }}{% url 'get_credentials' %}";
+	var password_url = "{% url 'change_password' %}";
 </script>
 <script src="{% static 'intranet/js/profile_events.js' %}"></script>
-
-
-
-
-
 {% endblock %}
+
+
+
+<!-- ############################## -->
+<!-- Comienzo de la version antigua -->
+<!-- ############################## -->
+
+
+
+
 <div id="pictures-section">
 	<div id="background-picture">
 		<img src="{% static 'intranet/images/background-picture2.png' %}">

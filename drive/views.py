@@ -157,20 +157,36 @@ def oauth2callback(request):
 
 # Primera llamada para obtener credenciales de Google Drive
 def get_credentials(request):
-	print request.user.is_authenticated()
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		if request.user.drive_credentials == None:
 			auth_uri = flow.step1_get_authorize_url()
 			# Retorna la url con el login de Google
 			return HttpResponseRedirect(auth_uri)
 		else:
-			# Si el usuario ya tiene las credenciales, es redireccinado al analizador de enlaces
-			# Revisar esto. Esta raro
-			return HttpResponseRedirect(reverse('link_analizer', args={''}))
+			# Si el usuario ya tiene las credenciales, se cierra la ventana
+			return HttpResponse('<h3> ' + _("Ya asociaste una cuenta") + '</h3> <script type="text/javascript">setTimeout(function(){window.close()}, 1000);</script>')
 	else:
 		# Si el usuario no inicio sesion, se le hace saber
 		response = {'error': True, 'message':'Debes iniciar sesion.'}
 		return JsonResponse(response)
+
+def deauthenticate(request, redirect):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		# Solo si el usuario posee credenciales
+		if request.user.drive_credentials:
+			user = User.objects.get(id=request.user.id)
+			request.user.credentials().revoke(httplib2.Http())
+			user.drive_credentials = None
+			user.save()
+		try:
+			return HttpResponseRedirect(reverse(redirect, kwargs={'user_id': request.user.id}));
+		except Exception as error:
+			print "Error al redireccionar al usuario despues de desvincular la cuenta de Google"
+			print "Excepcion: " + str(error)
+			return HttpResponseRedirect(reverse('intranet:profile', kwargs={'user_id': request.user.id}))
+	else:
+		# Si el usuario no inicio sesion, se le redirecciona al login
+		return HttpResponseRedirect(reverse('login'));
 
 #Recibe las id de los archivos a descargar y retorna un diccionario con las id locales.
 def download_drive_files(request, ids):

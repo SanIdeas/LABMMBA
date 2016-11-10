@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from login.models import Area
+from login.models import Area, User
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from intranet.forms import DocumentForm
 from intranet.models import Document
 from django.db.models import Q, Count
-from login.models import User
+from django.db.models.functions import Lower
 from unidecode import unidecode
-import os, sys, json, operator
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -18,17 +17,15 @@ from django.core.files import File
 from pdfminer.pdfdocument import PDFDocument
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from cStringIO import StringIO
-import unicodedata, tempfile
 from datetime import date, timedelta
 from django.utils import timezone
+from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 from collections import Counter
 from itertools import chain
-from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 #import Levenshtein, random
 from django.db import connection
 from django.conf import settings
-from django.db.models.functions import Lower
-import httplib2
+import os, sys, json, operator, unicodedata, tempfile, httplib2
 
 
 #Retorna el porcentaje de similitud entre dos strings.
@@ -134,8 +131,12 @@ def home(request):
 				count.append(str(a['count']))
 			except:
 				None
-		names_categories = '"' + '","'.join(names) + '"'
-		count_categories = ','.join(count)
+		if len(names):
+			names_categories = '"' + '","'.join(names) + '"'
+			count_categories = ','.join(count)
+		else:
+			names_categories = None
+			count_categories = None
 
 		# Se obtienen un preview de los usuarios en el sistema
 		users = User.objects.filter(is_admin=False).order_by('last_activity')
@@ -200,19 +201,35 @@ def documents(request, search=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
-def profile(request, user_id):
-	if request.user.is_authenticated():
-		try:
-			if request.user.is_admin:
-				profile = User.objects.get(id=user_id)
-			else:
-				profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
-			documents = Document.objects.filter(owner=user_id)
-			return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents})
-		except Exception as error:
-			print error
-			return HttpResponseRedirect(reverse('intranet:users'))
+def profile(request, user_id = None):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		if request.method == 'GET':
+			try:
+				if request.user.is_admin:
+					profile = User.objects.get(id=user_id)
+				else:
+					profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
+				documents = Document.objects.filter(owner=user_id)
+				return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents, 'areas': Area.objects.all()})
+			except Exception as error:
+				print error
+				return HttpResponseRedirect(reverse('intranet:users'))
+		elif request.method == 'POST':
+			# Si el metodo es POST
+			request.user.first_name = request.POST['first_name']
+			request.user.last_name = request.POST['last_name']
+			request.user.institution = request.POST['institution']
+			request.user.career = request.POST['career']
+			request.user.area = Area.objects.get(id=request.POST['area'])
+			request.user.first_name = request.POST['first_name']
+			request.user.country = request.POST['country']
+			request.user.save()
+			return HttpResponseRedirect(reverse('intranet:profile', kwargs={'user_id': request.user.id}))
+		else:
+			# Si el metodo no es ni POST ni GET
+			return HttpResponseRedirect(reverse('intranet:home'))
 	else:
+		# Si el usuario no ha iniciado sesion o es administrador
 		return HttpResponseRedirect(reverse('login'))
 
 def update_profile_picture(request):

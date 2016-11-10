@@ -12,7 +12,7 @@
 				<form class="clear c12" action="{% url 'login' %}" method="POST">
 					{% csrf_token %}
                     <div class="row">
-                        <div class="c12"><input type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}"/></div>
+                        <div class="c12"><input type="email" name="email" class="text" value="{{ email }}" placeholder="{% trans 'Correo electronico' %}"/></div>
                         <span class="error"> </span>
                     </div>
                     <div class="row">
