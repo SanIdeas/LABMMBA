@@ -7,7 +7,7 @@
 		{% get_current_language as lang %}
 		<meta charset="UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<meta name="author" content="Ilógica - www.ilogica.cl"/>
 		<meta name="title" content="Inicio · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
 		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María."/>
@@ -41,6 +41,7 @@
 		<script src="{% url 'javascript-catalog' %}"></script>
 		<script src="{% static 'intranet/js/vendor/Chart.min.js' %}"></script>
 		<script src="{% static 'intranet/js/vendor/autosize.js' %}"></script>
+		<script src="{% static 'intranet/js/mobile_check.js' %}"></script>
 		<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
 		<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
 		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
@@ -153,7 +154,7 @@
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">
 			</div>
-			<div class="intranet body">{%block content%}{%endblock%}</div>
+			<div class="intranet body"><div>{%block content%}{%endblock%}</div></div>
 							 
 		</section>
 		<div class="bar">

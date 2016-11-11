@@ -88,6 +88,7 @@
         <!-- Nueva caja -->
 		<div class="intranet box">
 			<div class="document owner">
+			<a href="{% url 'intranet:profile' document.owner.id %}">
 				<div class="image">
 					{% if document.owner.profile_picture %}
 						<img src="{% static document.owner.filename %}"> 
@@ -99,6 +100,7 @@
 				<h5>{{document.owner.area.name}}</h5>
 				<h5>{{document.owner.institution}}</h5>
 			</div>
+			</a>
 		</div>
         <!-- Fin de la caja -->
         <!-- Nueva caja -->
@@ -120,7 +122,7 @@
 		<p>{% trans "Estas a punto de eliminar el documento:" %}</p>
 		<h3>{{document.title}}</h3>
 		<h5>{{document.author}}</h5>
-		<div><a class="cancel">CONFIRMAR</a></div>
+		<div><a class="cancel">{% trans "CONFIRMAR" %}</a></div>
 	</div>
 </div>
 

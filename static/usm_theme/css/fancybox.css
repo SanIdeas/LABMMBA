@@ -46,6 +46,7 @@
 
 .fancybox-outer, .fancybox-inner {
 	position: relative;
+	-webkit-overflow-scrolling: touch;
 }
 
 .fancybox-inner {

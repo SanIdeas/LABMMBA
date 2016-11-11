@@ -6,9 +6,11 @@
 	<link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 {% endblock %}
 {% block extra_js %}
-	 <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script> 
-	 <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script> 
-	 <script src="{% static 'intranet/js/profile.js' %}"></script> 
+	{% if request.user == profile_user %}
+		 <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script> 
+		 <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script> 
+		 <script src="{% static 'intranet/js/profile.js' %}"></script>
+	{% endif %} 
 {% endblock %}
 {% block content %}
 <div class="title">
@@ -91,12 +93,41 @@
                     <h3>Documentos</h3>
                 </div>
             </div>
-            <div class="chart">
-                <canvas id="months_chart"></canvas> 
+            <div class="profile info">
+            	<ul class="documents">
+	            	{% for document in documents %}
+	            		<li>
+	            			{% if request.user == profile_user %}
+		            			<div class="options" data-id="{{ document.id }}">
+		            				<div>
+		            					<button class="delete" data-title="{{document.title}}" data-author="{{document.author}}" title="{% trans 'Eliminar' %}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	            					
+		            				</div>
+		            				<div>
+		            					<a href="{% url 'intranet:edit_document' document.author document.title %}" title="{% trans 'Editar' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+		            				</div>
+		            				<div>
+		            					<!-- Boton 3 -->    					
+		            				</div>
+		            			</div>
+		            		{% endif %}
+	            			<div class="body">
+	            				<a href="{% url 'intranet:document' document.author document.title %}">
+	            					<h3><span>{{ document.date|date:"Y" }}</span> · {{ document.title }}</h3>
+	            					<span>{{ document.author }}</span>
+	            				</a>
+	            			</div>
+	            			{% if request.user == profile_user %}
+	            				<div class="btn">
+	            					<button data-id="{{ document.id }}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+	            				</div>
+	            			{% endif %}
+	            		</li>
+	            	{% endfor %}
+            	</ul>
             </div>
             <!--
             <div class="description">
-                <span>Publicaciones de los ultimos 6 meses</span>
+                <span>Alguna descripción</span>
             </div>
             -->
         </div>
@@ -231,21 +262,31 @@
 		<span>{% trans "Activalas, recarga la página y vuelve a intentarlo." %}</span>
 	</div>
 	<div>
+		<div class="document modal" id="deleteModal">
+			<h2>{% trans "¿Estas seguro?" %}</h2>
+			<p>{% trans "Estas a punto de eliminar el documento:" %}</p>
+			<h3 class="confirm" type="title" data=""></h3>
+			<h5 class="confirm" type="author" data=""></h5>
+			<div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+		</div>
+	</div>
+	<div>
 		<div id="successModal">
 			<i class="fa fa-check" aria-hidden="true"></i>
 			<h3>{% trans "Cambio exitoso" %}</h3>
 		</div>
 	</div>
 </div>
-{% endif %}
 
 <script>
-	var update_picture_link = "{% url 'intranet:update_picture' %}";
-	var  csrf_token = "{{ csrf_token }}";
+	var update_picture_url = "{% url 'intranet:update_picture' %}";
+	var edit_document_url = "{% url 'intranet:edit_document' '888' '999' %}";
+	var csrf_token = "{{ csrf_token }}";
 	var authentication_url = "http://{{ request.get_host }}{% url 'get_credentials' %}";
 	var password_url = "{% url 'change_password' %}";
 </script>
 <script src="{% static 'intranet/js/profile_events.js' %}"></script>
+{% endif %}
 {% endblock %}
 
 

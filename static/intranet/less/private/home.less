@@ -21,7 +21,22 @@
 *	Se utilizó el tema base de la UTFSM proporcionado por ILOGICA.
 */
 html,body{
+	height: 100%;
 	overflow: hidden;
+	& ::-webkit-scrollbar {
+	    height: 7px;
+	    width: 7px;
+	    background-color: transparent;
+	}
+
+	& ::-webkit-scrollbar-thumb {
+	    background-color: #D2D2D2;
+	    border-radius: 15px;
+	}
+}
+body{
+    display: flex;
+    flex-direction: column;
 }
 
 .colored_box(@color, @icon){
@@ -134,6 +149,7 @@ html,body{
 
 #content{
 	display: flex;
+	height: 100%;
 }
 
 .sidebar{
@@ -173,6 +189,10 @@ html,body{
 		overflow-y: auto;
 		position: relative;
 		-webkit-overflow-scrolling: touch;
+	    & > div{
+	    	width: 100%;
+	    	position: absolute;
+	    }
 		& .title{
 			padding: 6.5px 15px;
 		    text-align: center;
@@ -285,16 +305,6 @@ html,body{
 
 		& > .users{
 			overflow-x: auto;
-			&::-webkit-scrollbar {
-			    height: 3px;
-			    width: 5px;
-			    background-color: transparent;
-			}
-
-			&::-webkit-scrollbar-thumb {
-			    background-color: #D2D2D2;
-			    border-radius: 15px;
-			}
 			& ul{
 				white-space: nowrap;
 				padding: 0;

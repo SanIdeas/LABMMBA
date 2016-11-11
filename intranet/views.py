@@ -1,30 +1,29 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from login.models import Area, User
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
-from intranet.forms import DocumentForm
-from intranet.models import Document
 from django.db.models import Q, Count
 from django.db.models.functions import Lower
-from unidecode import unidecode
+from django.core.files import File
+from django.db import connection
+from django.conf import settings
+from django.utils import timezone
+from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
+from intranet.forms import DocumentForm
+from intranet.models import Document
+from login.models import Area, User
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
-from django.core.files import File 
 from pdfminer.pdfdocument import PDFDocument
 from PyPDF2 import PdfFileWriter, PdfFileReader
+from unidecode import unidecode
 from cStringIO import StringIO
 from datetime import date, timedelta
-from django.utils import timezone
-from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 from collections import Counter
 from itertools import chain
-#import Levenshtein, random
-from django.db import connection
-from django.conf import settings
 import os, sys, json, operator, unicodedata, tempfile, httplib2
 
 
@@ -401,7 +400,7 @@ def edit_document(request, title=None, author=None):
 			if request.user.is_admin:
 				document = Document.objects.get(title=title, author=author)
 			else:
-				document = Document.objects.get(title=title, author=author, owner=request.user, is_available=True)
+				document = Document.objects.get(title=title, author=author, owner=request.user)
 		except:
 			document = None
 		if document:

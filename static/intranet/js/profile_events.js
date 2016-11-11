@@ -20,6 +20,13 @@ $(document).ready(function() {
 		$.fancybox.update();
 	});
 });
+$(window).click(function(e){
+	$('.options').each(function(){
+		if($(this).attr('data-id') != $(e.target).parent('.options').attr('data-id')){
+			closeOptions($(this).attr('data-id'));
+		}
+	});
+})
 $('#sendImage').click(function(){
 	sendPicture();
 });	
@@ -35,6 +42,32 @@ $('#authenticate').click(function(){
 $('#passwordForm').submit(function(e){
 	e.preventDefault();
 	changePassword();
+});
+$('.btn').children('button').click(function(){
+	openOptions($(this).attr('data-id'));
+});
+$('.delete').click(function(){
+	$('.confirm[type="title"]').attr('data', $(this).attr('data-title')).html($(this).attr('data-title'));
+	$('.confirm[type="author"]').attr('data', $(this).attr('data-author')).html($(this).attr('data-author'));
+	$.fancybox($('#deleteModal').parent('div').html());
+
+	// Se activa la escucha al boton confirmar
+	$('.confirm[type="send"]').off();
+	$('.confirm[type="send"]').click(function(){
+		if($.fancybox.isOpen){
+			$.ajax({
+				url: encodeURI(edit_document_url.replace('888', $('.confirm[type="author"]').attr('data')).replace('999', $('.confirm[type="title"]').attr('data'))),
+				type: "DELETE",
+				beforeSend: function(xhr){
+					xhr.setRequestHeader("X-CSRFToken", csrf_token);
+				}
+			}).done(function(response){
+				if(!response['error']){
+					location.reload();
+				}
+			});
+		};
+	});
 });
 $('#pictureField').change(function(){
 	if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))

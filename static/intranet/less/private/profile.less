@@ -17,8 +17,103 @@
 			box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
 	    }
 	}
-	&.options{
+	&.info{
+		max-height: 500px;
+		& .documents{
+			& li{
+				padding: 0px;
+				display: flex;
+				height: 80px;
+				position: relative;
+			}
+			& .body{
+				padding: 12px;
+				width: 100%;
 
+				& a{
+					display: block;
+					
+					& > span{
+						font-size: 8pt;
+						top: -5px;
+						position: relative;
+						display: block;
+					}
+				}
+				& h3{
+					font-weight: normal;
+				}
+			}
+			& .btn{
+				width: 50px;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+
+				& button{
+					align-self: center;
+					background-color: transparent;
+					width: 100%;
+					height: 100%;
+					border: none;
+				}
+			}
+			& .options{
+				z-index: 99;
+				position: absolute;
+				right: 0px;
+				height: 100%;
+				width: 0px;
+				background-color: #e7e7e7;
+				overflow: hidden;
+				top: 0px;
+				//box-shadow: -4px 0px 15px rgba(0, 0, 0, 0.3);
+				& > div{
+					height: 100%;
+					width: 80px;
+					position: absolute;
+					& button, & a{
+					    height: 100%;
+					    display: block;
+					    text-decoration: none;
+					    width: 100%;
+					    text-align: center;
+					    font-size: 22pt;
+					    border: none;
+					    & i{
+					    	line-height: 80px;
+					    }
+					}
+					&:nth-child(1){
+						right: 0px;
+						& button, & a{
+							background-color: @red-color;
+							& i{
+								color: lighten(@red-color, 30%);
+							}
+						}
+					}
+					&:nth-child(2){
+						right: 80px;
+						& button, & a{
+							background-color: @yellow-color;
+							& i{
+								color: lighten(@yellow-color, 30%);
+							}
+						}						
+					}
+					&:nth-child(3){
+						right: 160px;
+						& button, & a{
+							background-color: @green-color;
+							& i{
+								color: lighten(@green-color, 30%);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	&.field{
 		& .c6{

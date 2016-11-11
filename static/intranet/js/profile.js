@@ -1,4 +1,9 @@
 var cropper;
+$.extend(jQuery.easing,{outcubic:function(x,t,b,c,d){
+	var ts = Number=(t/=d)*t;
+	var tc = Number=ts*t;
+	return b+c*(tc + -3*ts + 3*t);
+}})
 // Obtiene la url del archivo ingresado por el input
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -62,7 +67,7 @@ function sendPicture(){
 		form.append('csrfmiddlewaretoken', csrf_token);
 		form.append('picture', blob);
 		$.ajax({
-			url: update_picture_link,
+			url: update_picture_url,
 			method: "POST",
 			data: form,
 			processData: false,
@@ -156,5 +161,36 @@ function changePassword(){
 			$('.message.password').html('Las contraseñas no coinciden.');
 		else
 			$('.message.password').html(gettext('Las contraseñas no coinciden.'));
+	}
+}
+
+function openOptions(id){
+	var opt = $('.options[data-id="' + id + '"]');
+	if(opt.width() == 0){
+		opt.animate({
+			width: 160
+		}, {
+			duration: 200,
+			easing: 'outcubic'
+		});
+	}
+	else{
+		opt.animate({
+			width: 0
+		}, {
+			duration: 200,
+			easing: 'outcubic'
+		});	
+	}
+}
+function closeOptions(id){
+	var opt = $('.options[data-id="' + id + '"]');
+	if(opt.width() > 0){
+		opt.animate({
+			width: 0
+		}, {
+			duration: 200,
+			easing: 'outcubic'
+		});	
 	}
 }

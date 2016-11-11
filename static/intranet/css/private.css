@@ -21,7 +21,23 @@
 */
 html,
 body {
+  height: 100%;
   overflow: hidden;
+}
+html ::-webkit-scrollbar,
+body ::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+  background-color: transparent;
+}
+html ::-webkit-scrollbar-thumb,
+body ::-webkit-scrollbar-thumb {
+  background-color: #D2D2D2;
+  border-radius: 15px;
+}
+body {
+  display: flex;
+  flex-direction: column;
 }
 .noselect {
   -webkit-touch-callout: none;
@@ -73,6 +89,7 @@ body {
 }
 #content {
   display: flex;
+  height: 100%;
 }
 .sidebar {
   min-width: 245px;
@@ -107,6 +124,10 @@ body {
   overflow-y: auto;
   position: relative;
   -webkit-overflow-scrolling: touch;
+}
+.intranet.body > div {
+  width: 100%;
+  position: absolute;
 }
 .intranet.body .title {
   padding: 6.5px 15px;
@@ -210,15 +231,6 @@ body {
 }
 .intranet.box > .users {
   overflow-x: auto;
-}
-.intranet.box > .users::-webkit-scrollbar {
-  height: 3px;
-  width: 5px;
-  background-color: transparent;
-}
-.intranet.box > .users::-webkit-scrollbar-thumb {
-  background-color: #D2D2D2;
-  border-radius: 15px;
 }
 .intranet.box > .users ul {
   white-space: nowrap;
@@ -550,6 +562,10 @@ form .c12 {
 }
 .document.table td {
   border: none !important;
+}
+.document.owner a {
+  text-decoration: none;
+  color: inherit;
 }
 .document.owner .image {
   padding: 20px;
@@ -1596,6 +1612,106 @@ form .c12 {
   width: 200px;
   border-radius: 50%;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
+}
+.profile.info {
+  max-height: 500px;
+}
+.profile.info .documents li {
+  padding: 0px;
+  display: flex;
+  height: 80px;
+  position: relative;
+}
+.profile.info .documents .body {
+  padding: 12px;
+  width: 100%;
+}
+.profile.info .documents .body a {
+  display: block;
+}
+.profile.info .documents .body a > span {
+  font-size: 8pt;
+  top: -5px;
+  position: relative;
+  display: block;
+}
+.profile.info .documents .body h3 {
+  font-weight: normal;
+}
+.profile.info .documents .btn {
+  width: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.profile.info .documents .btn button {
+  align-self: center;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.profile.info .documents .options {
+  z-index: 99;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  width: 0px;
+  background-color: #e7e7e7;
+  overflow: hidden;
+  top: 0px;
+}
+.profile.info .documents .options > div {
+  height: 100%;
+  width: 80px;
+  position: absolute;
+}
+.profile.info .documents .options > div button,
+.profile.info .documents .options > div a {
+  height: 100%;
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  font-size: 22pt;
+  border: none;
+}
+.profile.info .documents .options > div button i,
+.profile.info .documents .options > div a i {
+  line-height: 80px;
+}
+.profile.info .documents .options > div:nth-child(1) {
+  right: 0px;
+}
+.profile.info .documents .options > div:nth-child(1) button,
+.profile.info .documents .options > div:nth-child(1) a {
+  background-color: #e0424e;
+}
+.profile.info .documents .options > div:nth-child(1) button i,
+.profile.info .documents .options > div:nth-child(1) a i {
+  color: #f6c5c9;
+}
+.profile.info .documents .options > div:nth-child(2) {
+  right: 80px;
+}
+.profile.info .documents .options > div:nth-child(2) button,
+.profile.info .documents .options > div:nth-child(2) a {
+  background-color: #f2ae47;
+}
+.profile.info .documents .options > div:nth-child(2) button i,
+.profile.info .documents .options > div:nth-child(2) a i {
+  color: #fcedd6;
+}
+.profile.info .documents .options > div:nth-child(3) {
+  right: 160px;
+}
+.profile.info .documents .options > div:nth-child(3) button,
+.profile.info .documents .options > div:nth-child(3) a {
+  background-color: #009065;
+}
+.profile.info .documents .options > div:nth-child(3) button i,
+.profile.info .documents .options > div:nth-child(3) a i {
+  color: #2affbf;
 }
 .profile.field .c6 {
   padding: 0px 20px !important;
