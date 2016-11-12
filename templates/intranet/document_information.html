@@ -77,7 +77,7 @@
         		<ul>
 				{% if document.words %}
 					{% for keyword in document.get_keywords %}
-						<li><a href="#">{{keyword}}</a></li>
+						<li><a href="{% url 'intranet:documents' %}?kw={{keyword}}">{{keyword}}</a></li>
 					{% endfor %}
 				{% endif %}
         	</div>

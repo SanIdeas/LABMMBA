@@ -18,7 +18,7 @@
 *		- Ricardo Gamboa Arias - ricardo.gamboa.12@sansano.usm.cl
 *
 *
-*	Se utilizó el tema base de la UTFSM proporcionado por ILOGICA.
+*	Tema base de la UTFSM proporcionado por ILOGICA.
 */
 html,body{
 	height: 100%;
@@ -186,7 +186,7 @@ body{
 		height: 100%;
 		width: 100%;
 		background-color: #f1f2f4;
-		overflow-y: auto;
+		overflow-y: scroll;
 		position: relative;
 		-webkit-overflow-scrolling: touch;
 	    & > div{
@@ -316,7 +316,6 @@ body{
 					width: 100px;
 					margin-left: 20px;
 					margin-right: 20px;
-					position: relative;
 					vertical-align: middle;
 					& a{
 					}
@@ -433,5 +432,8 @@ body{
 .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12{
 	@media @smartphones-700{
 		margin-bottom: 0px !important;
+	}
+	@media @smartphones-1100{
+		width: 100% !important;
 	}
 }

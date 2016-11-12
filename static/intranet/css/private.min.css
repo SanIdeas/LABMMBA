@@ -1,5 +1,7 @@
 @charset "UTF-8";
-html,body{overflow:hidden}
+html,body{height:100%;overflow:hidden}html ::-webkit-scrollbar,body ::-webkit-scrollbar{height:7px;width:7px;background-color:transparent}
+html ::-webkit-scrollbar-thumb,body ::-webkit-scrollbar-thumb{background-color:#d2d2d2;border-radius:15px}
+body{display:flex;flex-direction:column}
 .noselect{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .brand{padding:10px 20px !important;margin-bottom:0 !important}.brand a{float:left}
 .brand img{height:45px}
@@ -8,13 +10,14 @@ html,body{overflow:hidden}
 .bar>div.green{background-color:#009065}
 .bar>div.blue{background-color:#006e9c}
 .bar>div.yellow{background-color:#f2ae47}
-#content{display:flex}
+#content{display:flex;height:100%}
 .sidebar{min-width:245px;height:100%;background-color:#f5f5f5;display:block}.sidebar.left{float:left}
 .sidebar.right{float:right}
 @media screen and (max-width: 700px){.sidebar{display:none}}
 .intranet.light-background{background-color:#f8f8f8}
 .intranet.row{margin-bottom:0 !important}.intranet.row .row{margin:0}
-.intranet.body{height:100%;width:100%;background-color:#f1f2f4;overflow-y:auto;position:relative;-webkit-overflow-scrolling:touch}.intranet.body .title{padding:6.5px 15px;text-align:center;background-color:#f1f2f4;margin-bottom:20px;border-bottom:1px solid #d2d2d2;background-color:#f1f2f4}.intranet.body .title h3{margin:0;font-weight:normal}
+.intranet.body{height:100%;width:100%;background-color:#f1f2f4;overflow-y:scroll;position:relative;-webkit-overflow-scrolling:touch}.intranet.body>div{width:100%;position:absolute}
+.intranet.body .title{padding:6.5px 15px;text-align:center;background-color:#f1f2f4;margin-bottom:20px;border-bottom:1px solid #d2d2d2;background-color:#f1f2f4}.intranet.body .title h3{margin:0;font-weight:normal}
 .intranet.body .title.nomargin{margin:0}
 @media screen and (max-width: 700px){.intranet.body{padding:0}}
 .intranet.left{float:left}
@@ -29,9 +32,7 @@ html,body{overflow:hidden}
 @media screen and (max-width: 1400px){.intranet.box>.info .documents .c10{width:100%}}
 .intranet.box>.info .documents img{width:80px;margin:0 auto;border-radius:50%}@media screen and (max-width: 1400px){.intranet.box>.info .documents img{display:none}}
 .intranet.box>.chart{padding:10px}
-.intranet.box>.users{overflow-x:auto}.intranet.box>.users::-webkit-scrollbar{height:3px;width:5px;background-color:transparent}
-.intranet.box>.users::-webkit-scrollbar-thumb{background-color:#d2d2d2;border-radius:15px}
-.intranet.box>.users ul{white-space:nowrap;padding:0;margin:3px}.intranet.box>.users ul li{display:inline-block;margin:0;height:100px;width:100px;margin-left:20px;margin-right:20px;position:relative;vertical-align:middle}
+.intranet.box>.users{overflow-x:auto}.intranet.box>.users ul{white-space:nowrap;padding:0;margin:3px}.intranet.box>.users ul li{display:inline-block;margin:0;height:100px;width:100px;margin-left:20px;margin-right:20px;vertical-align:middle}
 .intranet.box>.users ul li img{width:100%;border-radius:50%}
 .intranet.box>.users ul li div{background-color:#f5f5f5;width:100%;top:0;height:100%;border-radius:50%;display:flex;position:absolute;justify-content:center}.intranet.box>.users ul li div h2{font-weight:normal;color:#c3c3c3;display:table-cell;align-self:center}
 .intranet.box>.btn a{padding:5px;background:none;width:100%;text-align:center;display:block;text-decoration:none;border:none;color:#777;border-top:1px solid #e2e2e2}.intranet.box>.btn a:hover{background-color:#f9f9f9}
@@ -46,12 +47,18 @@ html,body{overflow:hidden}
 #search{display:flex;margin-left:225px;width:50%;border-radius:5px;overflow:hidden}
 .search.field{width:100% !important}
 .search.send{width:120px !important;padding:11px !important;float:right !important}
-@media screen and (max-width: 700px){.c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12{margin-bottom:0 !important}}
+@media screen and (max-width: 700px){.c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12{margin-bottom:0 !important}}@media screen and (max-width: 1100px){.c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12{width:100% !important}}
 .documents.message{margin:0;font-size:312%;color:#ababab;font-weight:bold !important}
 .documents.description{margin:0;padding-left:10px;font-weight:normal;font-size:108%}
 @media screen and (max-width: 1060px){.documents.message{text-align:center;font-size:164%} .documents.description{padding-left:0;text-align:center;font-size:100%}}@media screen and (max-width: 375px){.documents.message{text-align:center;font-size:135%} .documents.description{padding-left:0;text-align:center;font-size:60%}}.documents.table td,.documents.table th{border:none}
 .documents.table .document{cursor:pointer}.documents.table .document:hover td{background-color:#e9edf0}
 @media screen and (max-width: 700px){.documents.table .head{display:none} .documents.table td{width:100%;float:left;white-space:normal}.documents.table td.col1{padding-bottom:0;font-size:12px} .documents.table td.col2{font-weight:bold;padding:0 12px} .documents.table td.col3{padding-top:0;font-size:12px} .documents.table td.col4{padding-bottom:0} .documents.table td.col5{padding-top:0}}
+.documents.filters h3{display:block;margin:0;padding:7px 15px;background:#336090;color:#fff;font-size:16px;font-weight:400}
+.documents.filters a{display:block;padding:10px 15px}
+.documents.filters a:nth-child(odd){background-color:#f7f7f7}
+.evento{border-bottom:2px solid #e9e9e9 !important}.evento>a:hover,.evento>a.closed.false{background:#e9edf0 !important}
+.evento .date{background:none !important}.evento .date:before{content:"\f1c1";display:inline-block;font-family:'FontAwesome';padding-right:10px;font-style:normal;font-weight:bold}
+.eventos>.intranet.box>div>div:last-child{border:none !important}
 form .c12{padding:0 20px !important}
 .document .text:focus{background:#e9edf0 !important}
 .document.head{padding:6.5px 15px;text-align:center}.document.head textarea{overflow:hidden;width:80%;resize:none;margin:0;border:none;text-align:center;min-height:30px;background:#e9edf0}
@@ -66,6 +73,7 @@ form .c12{padding:0 20px !important}
 .document.download a{color:inherit;text-decoration:none}.document.download a:hover{text-decoration:none !important}
 .document.table table{margin:0 !important}
 .document.table td{border:none !important}
+.document.owner a{text-decoration:none;color:inherit}
 .document.owner .image{padding:20px;background-color:#e9edf0}.document.owner .image img{width:31%;position:relative;border-radius:50%;box-shadow:0 0 8px rgba(0,0,0,0.3)}
 .document.owner h3,.document.owner h5{text-align:center}
 .document.owner h3{margin-bottom:0;margin-top:0;font-size:20pt}
@@ -161,7 +169,14 @@ form .c12{padding:0 20px !important}
 .cssload-inner.cssload-two{right:0;top:0;animation:cssload-rotate-two 1s linear infinite;-o-animation:cssload-rotate-two 1s linear infinite;-ms-animation:cssload-rotate-two 1s linear infinite;-webkit-animation:cssload-rotate-two 1s linear infinite;-moz-animation:cssload-rotate-two 1s linear infinite;border-right:7px solid #f2ae47}
 .cssload-inner.cssload-three{right:0;bottom:0;animation:cssload-rotate-three 1s linear infinite;-o-animation:cssload-rotate-three 1s linear infinite;-ms-animation:cssload-rotate-three 1s linear infinite;-webkit-animation:cssload-rotate-three 1s linear infinite;-moz-animation:cssload-rotate-three 1s linear infinite;border-top:7px solid #006d9c}
 @keyframes cssload-rotate-one{0%{transform:rotateX(35deg) rotateY(-45deg) rotateZ(0deg)} 100%{transform:rotateX(35deg) rotateY(-45deg) rotateZ(360deg)}}@-o-keyframes cssload-rotate-one{0%{-o-transform:rotateX(35deg) rotateY(-45deg) rotateZ(0deg)} 100%{-o-transform:rotateX(35deg) rotateY(-45deg) rotateZ(360deg)}}@-ms-keyframes cssload-rotate-one{0%{-ms-transform:rotateX(35deg) rotateY(-45deg) rotateZ(0deg)} 100%{-ms-transform:rotateX(35deg) rotateY(-45deg) rotateZ(360deg)}}@-webkit-keyframes cssload-rotate-one{0%{-webkit-transform:rotateX(35deg) rotateY(-45deg) rotateZ(0deg)} 100%{-webkit-transform:rotateX(35deg) rotateY(-45deg) rotateZ(360deg)}}@-moz-keyframes cssload-rotate-one{0%{-moz-transform:rotateX(35deg) rotateY(-45deg) rotateZ(0deg)} 100%{-moz-transform:rotateX(35deg) rotateY(-45deg) rotateZ(360deg)}}@keyframes cssload-rotate-two{0%{transform:rotateX(50deg) rotateY(10deg) rotateZ(0deg)} 100%{transform:rotateX(50deg) rotateY(10deg) rotateZ(360deg)}}@-o-keyframes cssload-rotate-two{0%{-o-transform:rotateX(50deg) rotateY(10deg) rotateZ(0deg)} 100%{-o-transform:rotateX(50deg) rotateY(10deg) rotateZ(360deg)}}@-ms-keyframes cssload-rotate-two{0%{-ms-transform:rotateX(50deg) rotateY(10deg) rotateZ(0deg)} 100%{-ms-transform:rotateX(50deg) rotateY(10deg) rotateZ(360deg)}}@-webkit-keyframes cssload-rotate-two{0%{-webkit-transform:rotateX(50deg) rotateY(10deg) rotateZ(0deg)} 100%{-webkit-transform:rotateX(50deg) rotateY(10deg) rotateZ(360deg)}}@-moz-keyframes cssload-rotate-two{0%{-moz-transform:rotateX(50deg) rotateY(10deg) rotateZ(0deg)} 100%{-moz-transform:rotateX(50deg) rotateY(10deg) rotateZ(360deg)}}@keyframes cssload-rotate-three{0%{transform:rotateX(35deg) rotateY(55deg) rotateZ(0deg)} 100%{transform:rotateX(35deg) rotateY(55deg) rotateZ(360deg)}}@-o-keyframes cssload-rotate-three{0%{-o-transform:rotateX(35deg) rotateY(55deg) rotateZ(0deg)} 100%{-o-transform:rotateX(35deg) rotateY(55deg) rotateZ(360deg)}}@-ms-keyframes cssload-rotate-three{0%{-ms-transform:rotateX(35deg) rotateY(55deg) rotateZ(0deg)} 100%{-ms-transform:rotateX(35deg) rotateY(55deg) rotateZ(360deg)}}@-webkit-keyframes cssload-rotate-three{0%{-webkit-transform:rotateX(35deg) rotateY(55deg) rotateZ(0deg)} 100%{-webkit-transform:rotateX(35deg) rotateY(55deg) rotateZ(360deg)}}@-moz-keyframes cssload-rotate-three{0%{-moz-transform:rotateX(35deg) rotateY(55deg) rotateZ(0deg)} 100%{-moz-transform:rotateX(35deg) rotateY(55deg) rotateZ(360deg)}}@keyframes down{0%{transform:translate(0, -10px);opacity:0} 100%{transform:translate(0, 0);opacity:1}}@keyframes abstract-spinner{0%{transform:rotateZ(0deg)} 100%{transform:rotateZ(360deg)}}.profile.image{width:100%;display:flex;background-color:#e9edf0;overflow:hidden}@media screen and (max-width: 700px){.profile.image{position:relative;display:block}}.profile.image>*{align-self:center;width:200px;border-radius:50%;box-shadow:0 0 13px rgba(0,0,0,0.4)}
-.profile.documents{max-height:400px}
+.profile.info{max-height:500px}.profile.info .documents li{padding:0;display:flex;height:80px;position:relative}
+.profile.info .documents .body{padding:12px;width:100%}.profile.info .documents .body a{display:block}.profile.info .documents .body a>span{font-size:8pt;top:-5px;position:relative;display:block}
+.profile.info .documents .body h3{font-weight:normal}
+.profile.info .documents .btn{width:50px;height:100%;display:flex;justify-content:center}.profile.info .documents .btn button{align-self:center;background-color:transparent;width:100%;height:100%;border:none}
+.profile.info .documents .options{z-index:99;position:absolute;right:0;height:100%;width:0;background-color:#e7e7e7;overflow:hidden;top:0}.profile.info .documents .options>div{height:100%;width:80px;position:absolute}.profile.info .documents .options>div button,.profile.info .documents .options>div a{height:100%;display:block;text-decoration:none;width:100%;text-align:center;font-size:22pt;border:none}.profile.info .documents .options>div button i,.profile.info .documents .options>div a i{line-height:80px}
+.profile.info .documents .options>div:nth-child(1){right:0}.profile.info .documents .options>div:nth-child(1) button,.profile.info .documents .options>div:nth-child(1) a{background-color:#e0424e}.profile.info .documents .options>div:nth-child(1) button i,.profile.info .documents .options>div:nth-child(1) a i{color:#f6c5c9}
+.profile.info .documents .options>div:nth-child(2){right:80px}.profile.info .documents .options>div:nth-child(2) button,.profile.info .documents .options>div:nth-child(2) a{background-color:#f2ae47}.profile.info .documents .options>div:nth-child(2) button i,.profile.info .documents .options>div:nth-child(2) a i{color:#fcedd6}
+.profile.info .documents .options>div:nth-child(3){right:160px}.profile.info .documents .options>div:nth-child(3) button,.profile.info .documents .options>div:nth-child(3) a{background-color:#009065}.profile.info .documents .options>div:nth-child(3) button i,.profile.info .documents .options>div:nth-child(3) a i{color:#2affbf}
 .profile.field .c6{padding:0 20px !important}
 @media screen and (max-width: 700px){.profile.field{margin-bottom:20px !important}.profile.field .c12{padding:0 !important}}.profile.field h5{position:absolute;color:#e0424e;margin:0;font-weight:normal}
 .profile.counter>div{height:70px !important}.profile.counter>div>h1{margin-top:-11px !important}

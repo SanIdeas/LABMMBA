@@ -9,33 +9,90 @@
 <div class="intranet row">
 	{% if not search %}
 		<!--Seccion de documentos -->
-		<div class="c12">
+		<!-- Tener en cuenta que si no es una busqueda, el objeto documents es un paginador, por lo que tiene metodos sobre las paginas de resultado -->
+		<!-- ver https://docs.djangoproject.com/es/1.10/topics/pagination/ -->
 		{% if not documents %}
+		<div class="c12">
 			<h1 class="documents message">{% trans "No hemos encontrado documentos" %}</h1>
 			<h5 class="documents description">{% trans "Asegurate de haber subido algún documento. Nuestra base de datos esta vacía" %}</h5>
+		</div>
 		{% else %}
-			<table class="documents table">
-				<tr class="head">
-					<th class="col1">{% trans "Autor" %}</th>
-					<th class="col2">{% trans "Titulo" %}</th>
-					<th class="col3">{% trans "Año" %}</th>
-					<th class="col4">{% trans "Dueño" %}</th>
-					<th class="col5">{% trans "Añadido" %}</th>
-				</tr>
-				{% for document in documents%}
-					<tr class="document noselect" url="{% url 'intranet:document' document.author document.title %}">
-						<td class="col1 trans">{{ document.author }}</td>
-						<td class="col2 trans">{{ document.title }}</td>
-						<td class="col3 trans">{{ document.date|date:"Y" }}</td>
-						<td class="col4 trans">{{ document.owner_name }}</td>
-						<td class="col5 trans">{{ document.date_added }}</td>
-					</tr>
-				{% endfor %}
-			</table>
+			{% if not keyword %}
+					<div class="documents filters c3">
+						<div class="intranet box">
+				            <div class="links">
+				                <h3>{% trans "Categorias" %}</h3>
+				                <a class="clear " href="{% url 'intranet:documents' %}">{% trans "Todas" %}</a>
+				                {% for category in categories %}
+				                	<a class="clear " href="{% url 'intranet:documents' %}?category={{category.id}}">{{category.name}}</a>
+				                {% endfor %}
+				            </div>
+				        </div>
+					</div>
+				<div class="content eventos c9">
+			{% else %}
+				<div class="c12">
+					<div class="intranet box">
+						<div class="document head">
+							<h2>{% trans "Palabra clave:" %} {{keyword}}</h2>
+						</div>
+					</div>
+				</div>
+				<div class="content eventos c12">
+			{% endif %}
+					<div class="intranet box">
+						<div>
+							{% for document in documents%}
+								 <div class="evento">
+							        <a class="clear closed">
+							            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
+							            <h4>{{ document.title }}</h4>
+							            <span class="icon">+</span>
+							        </a>
+							        <div class="content" style="display:none;">
+							            <div class="meta">
+							                <p><strong>Dueño: </strong>{{ document.owner.first_name }} {{ document.owner.last_name }}</p>
+							                <p><strong>Añadido: </strong>{{ document.date_added }}</p>
+							            	<p>
+									            <sup class="button">
+									            	<a href="{% url 'intranet:document' document.author document.title %}">ver documento</a>
+									            </sup>
+									        </p>
+							            </div>
+							            <div class="details">
+							                <p>{{ document.abstract }}</p>
+							            </div>
+							        </div>
+							    </div>
+							{% endfor %}
+					    </div>
+						{% if documents.has_other_pages %}
+						    <div class="clear">
+						        <div id="wp_page_numbers">
+						            <ul>
+						                {% if documents.has_previous %}
+						                	<li><a href="{% url 'intranet:documents' %}?page={{documents.previous_page_number}}">Anterior</a></li>
+						                {% endif %}
+						            	{% for page in documents.paginator.page_range %}
+						                	<li {% ifequal documents.number page %}class="active_page"{% endifequal %}>
+						                		<a href="{% url 'intranet:documents' %}?page={{page}}">{{page}}</a>
+						                	</li>
+						                {% endfor %}
+						                {% if documents.has_next %}
+						                	<li><a href="{% url 'intranet:documents' %}?page={{documents.next_page_number}}">Siguiente</a></li>
+						                {% endif %}
+						            </ul>
+						            <div style="float: none; clear: both;"></div>
+						        </div>
+						    </div>
+					    {% endif %}
+				    </div> 
+				</div>
 		{% endif %}
 		</div>
 		<!--Fin seccion de documentos-->
 	{% else %}
+		<!-- Es una busqueda -->
 		<!--Seccion de resultados de buscqueda-->
 		<script>$('#searchPhrase').val('{{search}}');</script>
 		{% if not documents %}

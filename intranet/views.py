@@ -9,6 +9,7 @@ from django.db import connection
 from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
+from django.core.paginator import Paginator
 from intranet.forms import DocumentForm
 from intranet.models import Document
 from login.models import Area, User
@@ -69,6 +70,8 @@ def get_filters(rqst):
 	for key in rqst.GET:
 		if key == 'date':
 			str = '__year__in'
+		elif key == 'page' or key == 'kw':
+			continue
 		else:
 			str = '__in'
 		if len(rqst.GET.getlist(key)) > 0:
@@ -158,17 +161,50 @@ def home(request):
 def documents(request, search=None):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		kwargs = get_filters(request)
-		all_docs = Document.objects.filter(is_available=True, **kwargs)
-		if search is None: #Si no es una busqueda
-			documents = all_docs
+		parameters = {'current_view': 'intranet'}
+
+		try:
+			all_docs = Document.objects.filter(is_available=True, **kwargs)
+		except:
+			all_docs = Document.objects.filter(is_available=True)
+
+
+		#Si no es una busqueda
+		if search is None:
+			# Se obtiene la palabra clave si es que la hay
+			# Si no hay, se obtienen las paginas
+			if request.GET.get('kw'):
+				parameters['keyword'] = request.GET.get('kw')
+				parameters['documents'] = []
+				for document in all_docs:
+					if request.GET.get('kw') in document.get_keywords():
+						parameters['documents'].append(document)
+			else:
+				paginator = Paginator(all_docs, 5);
+				# Se obtienen las categorias disponibles
+				parameters['categories'] = []
+				for category in Document.objects.values('category').distinct():
+					parameters['categories'].append(Area.objects.get(id=category['category']))
+
+				# Se extrae el numero de pagina
+				if request.GET.get('page'):
+					try: parameters['documents'] = paginator.page(request.GET.get('page'))
+					except: parameters['documents'] = paginator.page(1)
+				else:
+					parameters['documents'] = paginator.page(1)
+
+		# Si es una busqueda
 		else:
 			documents = []
-			high_acc_result = []
-			low_acc_result = []
+			high_acc_result = [] # Resultados de alta presicion
+			low_acc_result = [] # Resultados de baja presicion
+
+			# Lista con los authores, años, dueños y categorias, y sus contadores.
 			authors = []
 			years = []
 			owners = []
 			categories = []
+
 			for document in all_docs:
 				result = document.match(search)
 				if result['match']:
@@ -182,18 +218,25 @@ def documents(request, search=None):
 					years.append(document.date.year)
 					owners.append(document.owner)
 					categories.append(document.category)
+
+			# Se obtiene los datos del filtro
 			documents = high_acc_result + low_acc_result
 			authors = filters_selected(Counter(authors).most_common(), request, 'author')
 			years = filters_selected(Counter(years).most_common(), request, 'date')
 			owners = filters_selected(Counter(owners).most_common(), request, 'owner')
 			categories = filters_selected(Counter(categories).most_common(), request, 'category')
-		parameters = {'current_view': 'intranet', 'documents': documents}
-		if search is not None:
+
+			# Se almacenan los documentos en los parametros
+			parameters['documents'] = documents
+
 			parameters['authors'] = authors
 			parameters['years'] = years
 			parameters['categories'] = categories
 			parameters['owners'] = owners
 			parameters['search'] = search
+			
+
+
 		return render(request, 'intranet/documents.html',parameters)
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
