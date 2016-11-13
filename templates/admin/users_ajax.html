@@ -1,14 +1,19 @@
 {% load i18n %}
 {% load staticfiles %}
-<div class="row">
-    <form id="invitation-form" class="clear c12">
-        {% csrf_token %}
-        <input id="email-invitation" type="email" name="email" class="text" placeholder="{% trans 'Invitar usuarios' %}"/>
-        <input id="submit-invitation" type="submit" class="submit trans" value="{% trans 'Enviar' %}"/>
-        <span>{% trans 'Ingresa las direcciones de correo electrónico separadas por coma ( , )' %}</span>
+
+    <div class="title" >
+    <div class="c12"> 
+        <form id="invitation-form">
+           {% csrf_token %}
+           <input id="email-invitation" type="email" name="email" class="text search field" placeholder="{% trans 'Invitar usuarios' %}"/>
+           <input id ="submit-invitation" type="submit" class="submit trans search send" value="{% trans 'Enviar' %}"/>
+        </form>
+        </div>
+        <div style="display: inline-block; margin-left: 10px;">
+        <span>{% trans 'Ingresa las direcciones de correo electrónico separadas por coma ( , )' %}</span><br>
         <span id="invitation-error" class="error"></span>
-    </form>
-</div>
+        </div>
+    </div>
 
 <h3 class="setup-subtitle">{% trans "Usuarios Invitados" %}</h3>
 <ul class="setup-user-list">
