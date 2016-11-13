@@ -9,11 +9,11 @@
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>Titulo:</strong>
+				<strong>{% trans "Titulo" %}:</strong>
 			</div>
 			<div class="c9">
 				<div class="crossrefWrapper">
-					<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>
+					<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="{% trans 'Ej: Tesis de microbiologia' %}" autocomplete="off" required>
 					<!-- crossref -->
 					<div class="crossref hidden" doc-index="$index">
 						<div class="records">
@@ -34,15 +34,15 @@
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>Autor:</strong>
+				<strong>{% trans "Autor" %}:</strong>
 			</div>
 			<div class="c9">
-				<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" equired>
+				<input type="text" class="field text" value="$author" name="author$index" placeholder="{% trans 'Ej: Juan Perez' %}" equired>
 			</div>
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>Fecha de creacion:</strong>
+				<strong>{% trans "Fecha de creacion" %}:</strong>
 			</div>
 			<div class="c9">
 				<input type="date" class="field text" value="$date" name="date$index" required>
@@ -50,7 +50,7 @@
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>DOI:</strong> 
+				<strong>{% trans "DOI" %}:</strong> 
 			</div>
 			<div class="c9">
 				<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34">
@@ -58,27 +58,27 @@
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>ISSN:</strong> 
+				<strong>{% trans "ISSN" %}:</strong> 
 			</div>
 			<div class="c9">
-				<input type="text" class="field text" name="issn$index" placeholder="No requerido">
+				<input type="text" class="field text" name="issn$index" placeholder="{% trans 'No requerido' %}">
 			</div>
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>Páginas:</strong> 
+				<strong>{% trans "Páginas" %}:</strong> 
 			</div>
 			<div class="c9">
-				<input type="text" class="field text" name="pages$index" placeholder="No requerido">
+				<input type="text" class="field text" name="pages$index" placeholder="{% trans 'No requerido' %}">
 			</div>
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>Area:</strong> 
+				<strong>{% trans "Area" %}:</strong> 
 			</div>
 			<div class="c9">
 				<select name="category$index" class="field" required>
-					<option value="" disabled selected>Selecciona una categoria</option>
+					<option value="" disabled selected>{% trans "Selecciona una categoria" %}</option>
 					{% for category in categories %}
 						<option value="{{category.id}}">{{category.name}}</option>
 					{% endfor %}
@@ -87,13 +87,13 @@
 		</div>
 		<div class="c12 field">
 			<div class="c3">
-				<strong>Privacidad:</strong> 
+				<strong>{% trans "Privacidad" %}:</strong> 
 			</div>
 			<div class="c9">
 				<select class="type-select field" name="type$index" required>
-					<option value="" disabled selected>Selecciona privacidad</option>
-					<option value="0">Público</option>
-					<option value="1">Privado</option>
+					<option value="" disabled selected>{% trans "Selecciona privacidad" %}</option>
+					<option value="0">{% trans "Público" %}</option>
+					<option value="1">{% trans "Privado" %}</option>
 				</select>
 			</div>
 		</div>

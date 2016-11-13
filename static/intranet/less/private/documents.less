@@ -1,4 +1,7 @@
 .documents{
+	&.mark{
+		background-color: yellow;
+	}
 	&.message{
 		margin: 0;
 	    font-size: 312%;
@@ -97,25 +100,74 @@
 		& a:nth-child(odd){
 			background-color: #f7f7f7;
 		}
+		& .links{
+			& > .filter{
+				display: inline-flex;
+				width: 100%;
+
+				& label{
+					display: block;
+					padding: 10px 10px;
+					cursor: pointer;
+				}
+				& input[type="checkbox"]{
+					margin: 6px;
+				}
+
+				& div:nth-child(1){ // Cuadro que contiene la informacion
+					width: 100%;
+				}
+				& div:nth-child(2){ // Cuadro que contiene el contador
+					padding: 10px 10px;
+					display: flex;
+					justify-content: center;
+					& *{
+						align-self: center;
+					}
+				}
+			}
+			& >  div:nth-child(odd){ // Filas impares
+				background-color: #f7f7f7;
+			}
+		}
 	}
 }
 
 .evento{
-	 border-bottom: 2px solid #e9e9e9 !important;
-	 & > a:hover, & > a.closed.false{
-	 	background: @fields-background !important; 
-	 }
-		& .date{
-			background: none !important;
-			&:before{
-				content: "\f1c1";
-			    display: inline-block;
-			    font-family: 'FontAwesome';
-			    padding-right: 10px;
-			    font-style: normal;
-			    font-weight: bold;
-			}
+	border-bottom: 2px solid #e9e9e9 !important;
+	& > a:hover, & > a.closed.false{
+		background: @fields-background !important; 
+	}
+	& > a:hover{
+		& .extract{
+			background-color: lighten(@fields-background, 5%);
 		}
+	}
+	& .extract{
+		display: block;
+		padding: 10px;
+		background-color: #e9edf0;
+		border-radius:5px;
+		& > p{
+			white-space: nowrap;
+			overflow: hidden;
+			display: block;
+			margin: 0;
+			text-overflow: ellipsis;
+		}
+	}
+
+	& .date{
+		background: none !important;
+		&:before{
+			content: "\f1c1";
+		    display: inline-block;
+		    font-family: 'FontAwesome';
+		    padding-right: 10px;
+		    font-style: normal;
+		    font-weight: bold;
+		}
+	}
 }
 
 .eventos > .intranet.box > div > div:last-child{
