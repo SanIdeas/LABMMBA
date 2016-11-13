@@ -1,9 +1,18 @@
 var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
 var bCrumbsCount = 0;
 var doc_selected = {};
-var crossref_timeout, crossref_busy = false;
 var last_cr_query = {};
 var real_ids;
+var form_template;
+// Realiza la primera y unica solicitud con la plantilla de los formularios
+$.fancybox.showLoading();
+$.ajax({
+	url: template_url,
+	method: "GET"
+}).done(function(response){
+	form_template = response;
+	$.fancybox.hideLoading();
+});
 (function($){
 	/* Resetea el input de archivos */
 	$.fn.resetInput = function(){
@@ -43,7 +52,7 @@ function format_date(date){
 
 $(document).ready(function(){
 	// Se define una altura inicial del cuadro con el boton 'mas' para que la animacion se vea
-	$('.drive.plus').height($('.drive.plus').height());
+	$('.myfiles').height($('.myfiles').height());
 })
 
 // Previene que el formulario se envie.
@@ -60,7 +69,7 @@ $('.link').change(function(){
 });
 
 // Cuando el boton 'mas' es presionado, se ocultan y eliminan algunos elementos con una animacion
-$('.drive.btn').click(function(){
+$('.myfiles.btn').click(function(){
 	$('.erasable').animate({
 		top: '-10px',
 		height: '0px',
@@ -93,8 +102,7 @@ function sendLink(url){
 		url: url,
 		method: 'GET'
 	}).done(function(response){
-		$('.loading').addClass("hidden");
-		$('.drive.link').prop("disabled", false);
+		hideLoadingBar();
 		console.log(response);
 		if(!response['error']){
 			$('.message').html("");
@@ -106,23 +114,23 @@ function sendLink(url){
 				if(!$('.singlefile').hasClass('hidden'))
 					hideElement('.singlefile', false);
 				// Se muetra (si es que estaba oculto) la interfaz de carpetas
-				$('.drive.plus').css('display', 'block').animate({
-					height: ($('.drive.user').height()).toString() + 'px',
+				$('.myfiles').css('display', 'block').animate({
+					height: ($('.drive.body').height()).toString() + 'px',
 				}, 200, function(){
 				});
 			}
 			// Si es un solo documento:
 			else{
 				// Se trabajan los datos
-				$('.singlefile').children('.content').children('.size').html(formatSizeUnits(response['size']));
-				$('.singlefile').children('.content').children('.name').html(response['name']);
-				$('.singlefile').children('.content').children('.date').html(format_date(response['date']));
-				$('.singlefile').children('.thumbnail').children('img').attr('src', response['thumbnail']);
+				$('.singlefile').find('.content').children('.size').html(formatSizeUnits(response['size']));
+				$('.singlefile').find('.content').children('.name').html(response['name']);
+				$('.singlefile').find('.content').children('.date').html(format_date(response['date']));
+				$('.singlefile').find('.thumbnail').find('img').attr('src', response['thumbnail']);
 				doc_selected[response['id']] = response['name'];
 				checkFilesSize();
 
 				// Se oculta la interfaz de carpetas 
-				$('.drive.plus').animate({
+				$('.myfiles').animate({
 					height: '0px',
 				}, 200, function(){
 					$(this).css('display', 'block');
@@ -244,17 +252,17 @@ function filesHandler(object, bcId){
 	// Una vez rellenada la pagina con los datos, se realizan unos arreglos a la interfaz
 	hideLoadingBar();
 	// Mientras el boton + siga vivo:
-	if($('.drive.btn').length > 0){
-		console.log(" .drive.btn > 0");
+	if($('.myfiles.btn').length > 0){
+		console.log(" .myfiles.btn > 0");
 		// Se hace desaparecer el boton con una animacion
-		$('.drive.btn').animate({
+		$('.myfiles.btn').animate({
 			opacity: '0'
 		}, 200, function(){
 			// Una vez terminada la animacion se elimina el boton y se expande el cuadro
 			console.log("remove plus");
 			$(this).remove();
 			console.log("remove hidden");
-			$('.drive.user').removeClass('hidden');
+			$('.drive.body').removeClass('hidden');
 			adjustBoxHeight();
 		});
 	}
@@ -262,7 +270,7 @@ function filesHandler(object, bcId){
 		// Si el boton + no existe
 		// Se expande el cuadro
 		console.log("remove hidden");
-		$('.drive.user').removeClass('hidden');
+		$('.drive.body').removeClass('hidden');
 		adjustBoxHeight();
 	}
 	// Si la id de la miga de pan nueva o seleccionada es menor a la ultima insertada
@@ -285,14 +293,14 @@ function showLoadingBar(){
 	// Se activa la barra de carga
 	$('.loading').removeClass("hidden");
 	// Se desactiva el campo de texto hasta obtener una respuesta
-	$('.drive.link').prop("disabled", true);
+	$('.link').prop("disabled", true);
 }
 
 function hideLoadingBar(){
 	// Se desactiva la barra de carga
 	$('.loading').addClass("hidden");
 	// Se activa el campo de texto (si es que existe)
-	$('.drive.link').prop("disabled", false);
+	$('.link').prop("disabled", false);
 }
 
 function addBreadCrumb(folderId, name){
@@ -372,8 +380,8 @@ function removeFromSelected(id){
 function adjustBoxHeight(plus=0){
 	console.log("ajustar");
 	// Se ajusta el alto del cuadro
-	$('.drive.plus').animate({
-		height: ($('.drive.user').height() + plus).toString() + 'px'
+	$('.myfiles').animate({
+		height: ($('.drive.body').height() + plus).toString() + 'px'
 	}, 200);
 }
 
@@ -390,7 +398,7 @@ function sendIds(){
 	// Muestra la barra de carga
 	showLoadingBar();
 	// Elimina la vista actual
-	hideElement('.upload.drive.plus', true);
+	hideElement('.myfiles', true);
 	hideElement('.singlefile', true);
 	var ids = [];
 	for (var key in doc_selected) {
@@ -408,6 +416,8 @@ function sendIds(){
 	}).done(function(response){
 		handleDocuments(response['files']);
 		hideLoadingBar();
+		// Se desactiva el campo de texto hasta obtener una respuesta
+		$('.link').prop("disabled", true).off();
 		real_ids = response['real_ids'].join(',');
 		extract_content(real_ids);
 	});
@@ -501,161 +511,9 @@ function handleDocuments(documents){
 
 /* Muestra en pantalla el formulario del documento */
 function addDocument(document){
-	/* Plantilla para el idioma Espanol */
-	if (current_lang == 'es'){
-		var code = ['<div class="s1 c10 intranet box upload file wrapper animation enter down" doc-index="$index">',
-						'<div class="subwrapper">',
-							'<div class="c3">',
-								'<img src="$thumbnail">',
-							'</div>',
-							'<div class="c9">',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>Titulo:</strong>' ,
-									'</div>',
-									'<div class="c9">',
-										'<div class="upload crossrefWrapper">',
-											'<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>',
-											//crossref
-											'<div class="upload crossref hidden" doc-index="$index">',
-												'<div class="upload records">',
-													'<div class="upload records topbar">',
-														// Cabecera del cuadro
-														'<i class="upload fa fa-check" doc-index="$index" aria-hidden="true"></i>',
-														'<i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>',
-														'<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
-													'</div>',
-													'<div class="upload records list">',
-														'<ul class="upload records root" doc-index="$index">',
-														//Lista de sugerencias
-														'</ul>',
-													'</div>',
-												'</div>',
-											'</div>',
-										'</div>',
-
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>Autor:</strong>' ,
-									'</div>',
-									'<div class="c9">',
-										'<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>Fecha de creacion:</strong>',
-									'</div>',
-									'<div class="c9">',
-										'<input type="date" class="field text" value="$date" name="date$index" required>',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>DOI:</strong>', 
-									'</div>',
-									'<div class="c9">',
-										'<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34">',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>ISSN:</strong> ',
-									'</div>',
-									'<div class="c9">',
-										'<input type="text" class="field text" name="issn$index" placeholder="No requerido">',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>Páginas:</strong> ',
-									'</div>',
-									'<div class="c9">',
-										'<input type="text" class="field text" name="pages$index" placeholder="No requerido">',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>Area:</strong> ',
-									'</div>',
-									'<div class="c9">',
-										'<select name="category$index" class="field" required>',
-											'<option value="" disabled selected>Selecciona una categoria</option>',
-											'<option value="1">Microbiología Molecular</option>',
-											'<option value="2">Biotecnología Ambiental</option>',
-											'<option value="3">Bionanotecnología</option>',
-											'<option value="4">Genómica Funcional y Proteómica</option>',
-											'<option value="5">Síntesis de compuestos bioactivos y de interés biotecnológico</option>',
-											'<option value="6">Biorremediación de Ambientes Contaminados</option>',
-										'</select>',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field">',
-									'<div class="c3">',
-										'<strong>Privacidad:</strong> ',
-									'</div>',
-									'<div class="c9">',
-										'<select class="type-select field" name="type$index" required>',
-												'<option value="" disabled selected>Selecciona privacidad</option>',
-												'<option value="0">Público</option>',
-												'<option value="1">Privado</option>',
-											'</select>',
-									'</div>',
-								'</div>',
-								'<div class="c12 upload file field abstract">',
-									'<div class="c3">',
-										'<strong>Resumen:</strong> ',
-									'</div>',
-									'<div class="c9">',
-										'<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>',
-										'<textarea  name="abstract$index" disabled required></textarea>',
-									'</div>',
-								'</div>',
-							'</div>',
-						'</div>',
-					'</div>']
-	}
-
-	/* Plantilla para el idioma Ingles */ 
-	else if (current_lang == 'en'){
-		var code = ['<div class="document-frame animation-down" doc-index="$index">',
-					'<div class="frame-header">',
-						'<h5 class="frame-title">$filename</h5>',
-						'<select class="type-select field" name="type$index" required>',
-							'<option value="" disabled selected>' + gettext('Selecciona privacidad') + '</option>',
-							'<option value="0">' + gettext('Público') + '</option>',
-							'<option value="1">' + gettext('Privado') + '</option>',
-						'</select>',
-						'<button class="close-btn"  doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>',
-						'<div class="clear"></div>',
-					'</div>',
-					'<ul class="frame-data">',
-						'<li><strong>' + gettext('Titulo') + ':</strong> <input type="text" class="field" value="$title" field-name="title" name="title$index" doc-index="$index" placeholder="' + gettext('Ej: Tesis de microbiologia') + '" autocomplete="off" required><div class="crossref-wrapper hidden" doc-index="$index"><div class="loader hidden" doc-index="$index><img src="' + spinner_link + '"></div><div class="crossref-list-wrapper"><ul class="crossref-list" doc-index="$index"></ul></div></div></li>',
-						'<li><strong>' + gettext('Autor') + ':</strong> <input type="text" class="field" value="$author" name="author$index" placeholder="' + gettext('Ej: Juan Perez') + '" required></li>',
-						'<li><strong>' + gettext('Fecha de creación') + ':</strong> <input type="text" class="field" value="$date" name="date$index" placeholder="' + gettext('Ej: 2016-12-30') + '" required></li>',
-						'<li><strong>ISSN:</strong><input type="text" class="field" name="issn$index" placeholder="No requerido"></li>',
-						'<li><strong>DOI:</strong><input type="text" class="field" name="doi$index" placeholder="No requerido"></li>',
-						'<li><strong>URL:</strong><input type="text" class="field" name="url$index" placeholder="ej: http://dx.doi.org/10.1109/ms.2006.34"></li>',
-						'<li><strong>Paginas:</strong><input type="text" class="field" name="pages$index" placeholder="No requerido"></li>',
-						'<li><strong>' + gettext('Area') + ':</strong>',
-							'<select name="category$index" class="field form-select" required>',
-								'<option value="" disabled selected>' + gettext('Selecciona una categoria') + '</option>',
-								'<option value="1">' + gettext('Microbiología Molecular') + '</option>',
-								'<option value="2">' + gettext('Biotecnología Ambiental') + '</option>',
-								'<option value="3">' + gettext('Bionanotecnología') + '</option>',
-								'<option value="4">' + gettext('Genómica Funcional y Proteómica') + '</option>',
-								'<option value="5">' + gettext('Síntesis de compuestos bioactivos y de interés biotecnológico') + '</option>',
-								'<option value="6">' + gettext('Biorremediación de Ambientes Contaminados') + '</option>',
-							'</select>',
-						'</li>',
-					'</ul>',
-				'</div>',
-				'</br>']
-	}
+	var code = form_template;
 	/* Se reemplazan las etiquetas por los Metadatos extraidos */
-	code = code.join('')
+	code = code
 		.replace(/\$index/g, document['id'])
 		.replace(/\$title/g, document['title'] ? document['title']:'')
 		.replace(/\$author/g, document['author'] ? document['author']:'')
@@ -668,99 +526,6 @@ function addDocument(document){
 	crossref_query(document['title'] ? document['title']:'', document['id']);
 
 	
-}
-
-function crossref_query(query, doc_id){
-	// Se muestra el icono que gira y se remueve el check
-	$('.upload.fa-check[doc-index="' + doc_id +'"]').addClass('hidden');
-	$('.upload.loader[doc-index="' + doc_id +'"]').removeClass('hidden');
-
-	$.ajax({
-		url: crossref_link.replace('999', query),
-		method: 'GET'
-		/*beforeSend: function(xhr){
-			xhr.setRequestHeader("X-CSRFToken", csrf_token);
-		}*/
-	}).done(function(response){
-		if(!response['error']) {
-			toggleCrossref(doc_id);
-			$('.upload.records.root[doc-index="' + doc_id +'"]').children().remove();
-			$('.upload.records.root[doc-index="' + doc_id +'"]').append(response);
-
-			$('.crossref-row').off();
-			$('.crossref-row').click(function(e){
-				//Cuando se hace click sobre una sugerencia, se rellenan los datos
-				var index = $(this).closest('ul').attr('doc-index');
-				console.log('.field[name="title' + index + '"]');
-				$('.field[name="title' + index + '"]').val($(this).attr('title'));
-				$('.field[name="author' + index + '"]').val($(this).attr('author'));
-				$('.field[name="date' + index + '"]').val($(this).attr('date'));
-				$('.field[name="issn' + index + '"]').val($(this).attr('issn'));
-				$('.field[name="doi' + index + '"]').val($(this).attr('doi'));
-				$('.field[name="url' + index + '"]').val($(this).attr('url'));
-				$('.field[name="pages' + index + '"]').val($(this).attr('pages'));
-			});
-			// Se meuestra el icono check
-			$('.upload.fa-check[doc-index="' + doc_id +'"]').removeClass('hidden');
-		}
-		$('.upload.loader[doc-index="' + doc_id +'"]').addClass('hidden');
-		//Comprueba si hubo un cambio en el campo de texto desde que mando la solicitud
-		console.log(last_cr_query[doc_id]);
-		if(last_cr_query[doc_id].localeCompare(query) != 0){
-			crossref_query(last_cr_query[doc_id], [doc_id]);
-		}
-		else
-			crossref_busy = false;
-
-	});		
-}
-
-// Activa los eventos de Crossref
-function enableCrossref(){
-
-	$('.field[field-name="title"]').off();
-	$('.field[field-name="title"]').on('input', function(){
-		last_cr_query[$(this).attr('doc-index')] = $(this).val();
-		if(!crossref_busy){
-			crossref_busy = true;
-
-			toggleCrossref($(this).attr('doc-index'));
-			var $this = $(this)
-			crossref_timeout = setTimeout(function(){
-				if($this.val() == ''){
-					crossref_busy = false;
-				}
-				else{
-					console.log($this.val());
-					crossref_query($this.val(), $this.attr('doc-index'));
-				}
-			}, 500);
-		}
-	});
-
-	//Al hacer click sobre el campo de texto, si hay textos de sugerencia, se muestran.
-	$('.field[field-name="title"]').focus(function(e){
-		var cr = $('.crossref[doc-index="' + $(this).attr('doc-index') +'"]');
-		console.log(cr.find('.upload.records.list').find('li').length);
-		if(cr.find('.upload.records.list').find('li').length > 0)
-			toggleCrossref($(this).attr('doc-index'), true, false);
-	});
-	
-	// Cuando se presiona esc o enter, se esconde el cuadro.
-	$('.field[field-name="title"]').keyup(function(e){
-		if(e.which == 27 || e.which == 13){
-			toggleCrossref($(this).attr('doc-index'));
-		}
-	});
-
-
-	//Cuando se sale el cursor del campo de texto, se esconde el cuadro
-	$('.field[field-name="title"]').focusout(function(e){
-		var $this = $(this)
-		setTimeout(function(){
-			toggleCrossref($this.attr('doc-index'));			
-		}, 100);
-	});
 }
 
 function checkEmptyFields(){

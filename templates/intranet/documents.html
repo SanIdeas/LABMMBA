@@ -21,7 +21,7 @@
 					<div class="documents filters c3">
 						<div class="intranet box">
 				            <div class="links">
-				                <h3>{% trans "Categorias" %}</h3>
+				                <h3>{% trans "Categorías" %}</h3>
 				                <a class="clear " href="{% url 'intranet:documents' %}">{% trans "Todas" %}</a>
 				                {% for category in categories %}
 				                	<a class="clear " href="{% url 'intranet:documents' %}?category={{category.id}}">{{category.name}}</a>

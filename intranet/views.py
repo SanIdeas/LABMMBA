@@ -183,6 +183,7 @@ def documents(request, search=None):
 				paginator = Paginator(all_docs, 5);
 				# Se obtienen las categorias disponibles
 				parameters['categories'] = []
+				print Document.objects.values('category').distinct();
 				for category in Document.objects.values('category').distinct():
 					parameters['categories'].append(Area.objects.get(id=category['category']))
 
@@ -364,6 +365,12 @@ def upload_local(request):
 
 def upload_drive(request):
 	return render(request, 'intranet/upload_sections/drive.html')
+
+def local_form(request):
+	return render(request, 'intranet/upload_sections/local_upload_form_template.html', {'categories': Area.objects.all()})
+
+def drive_form(request):
+	return render(request, 'intranet/upload_sections/drive_upload_form_template.html', {'categories': Area.objects.all()})
 
 # Extrae el contenido de los documentos identificados por las id recibidas
 # Se usa al momento de subir archivos por Google Drive. El cliente llama a esta funcion explicitamente

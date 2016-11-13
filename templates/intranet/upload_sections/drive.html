@@ -1,83 +1,96 @@
 {% load staticfiles %}
 {% load i18n %}
-<!-- Google font -->
-<link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
-<div class="intranet row upload title">
+<div class="intranet row">
 	<div class="c12">
-		<h1 class="upload drive logo">Googl<span class="e">e</span> Drive</h1>
-		<h4 class="erasable erasable2">Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
-	</div>
-</div>
-<div class="intranet row light-background">
-<div class="upload drive loading hidden">
-	<div>
-		<div class="red"></div>
-		<div class="green"></div>
-		<div class="yellow"></div>
-		<div class="blue"></div>
-	</div>
-</div>
-	<form class="upload drive form erasable">
-		<input class="text link" type="text" name="link" placeholder="Introduce en enlace a Google Drive">
-		<h5 class="message"></h5>
-	</form>
-</div>
-
-<div class="intranet row light-background upload folder">
-	<span class="erasable erasable2 upload drive span-center pad">{% trans 'Tambien puedes seleccionar un documento desde tu cuenta' %}</span>
-	<div class="intranet box upload drive plus">
-		<button class="upload drive btn erasable2">
-			<span class="fa-stack fa-lg">
-				<i class="fa fa-circle-thin fa-stack-2x"></i>
-				<i class="fa fa-plus" aria-hidden="true"></i>
-			</span>	
-		</button>
-		<div class="upload drive user hidden">
-			<div class="intranet row">
-					<button class="c12 upload button send first hover trans disabled" disabled="true">Enviar</button>
+		<div class="intranet box">
+			<div class="upload head">
+				<h1 class="google">Googl<span class="e">e</span> Drive</h1>
+				<h4 class="erasable erasable2">Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos</h4>
 			</div>
-			<div class="drive selected wrapper" style="height:0px; overflow:hidden;">
-				<table class="upload drive table">
-					<tbody class="upload drive list selected">
+			<div class="upload drive loading hidden">
+				<div>
+					<div class="red"></div>
+					<div class="green"></div>
+					<div class="yellow"></div>
+					<div class="blue"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="intranet row erasable">
+	<div class="c12">
+		<div class="intranet box">
+			<form class="upload drive form">
+				<input class="text link" type="text" name="link" placeholder="{% trans 'Introduce aquí un enlace a Google Drive' %}" autocomplete="off">
+				<h5 class="message"></h5>
+			</form>
+		</div>
+	</div>
+</div>
+	
 
+<div class="intranet row upload folder">
+	<div class="c12">
+		<div class="intranet box myfiles">
+				<div class="myfiles btn erasable2 trans">
+					<h5>Ver mis archivos</h5>
+				</div>
+			<div class="upload drive body hidden">
+				<div class="intranet row">
+						<button class="c12 upload button send first hover trans disabled" disabled="true">Enviar</button>
+				</div>
+				<div class="drive selected wrapper" style="height:0px; overflow:hidden;">
+					<table class="upload drive table">
+						<tbody class="upload drive list selected">
+
+						</tbody>
+					</table>
+				</div>
+				<div class="upload drive breadcrumbs"> <!-- Aqui van las Breadcrumbs --> </div>
+				<table class="upload drive table">
+					<thead>
+						<tr>
+							<th class="check"></th>
+							<th>{% trans 'Nombre' %}</th>
+							<th>{% trans 'Última modificación' %}</th>
+							<th>{% trans 'Tamaño' %}</th>
+						</tr>
+					</thead>
+					<tbody class="upload drive list nav">
+						<tr class="document">
+							<td> <i class="fa fa-folder" aria-hidden="true"></i> Nombre de documento</td>
+							<td>Ultima fecha de modificacion</td>
+							<td>Tamaño del archivo</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="upload drive breadcrumbs"> <!-- Aqui van las Breadcrumbs --> </div>
-			<table class="upload drive table">
-				<thead>
-					<tr>
-						<th class="check"></th>
-						<th>{% trans 'Nombre' %}</th>
-						<th>{% trans 'Última modificación' %}</th>
-						<th>{% trans 'Tamaño' %}</th>
-					</tr>
-				</thead>
-				<tbody class="upload drive list nav">
-					<tr class="document">
-						<td> <i class="fa fa-folder" aria-hidden="true"></i> Nombre de documento</td>
-						<td>Ultima fecha de modificacion</td>
-						<td>Tamaño del archivo</td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
-	</div>
-	<div class="intranet row upload singlefile hidden">
-		<div class="c12 thumbnail">
-			<img>
-		</div>
-		<div class="c12 content">
-			<h5 class="size">2.4 mb</h5>
-			<h3 class="name">Iterative and Incremental Development: A Brief history</h3>
-			<h5>{%trans "Modificado por ultima vez el" %} <span class="date">Octubre 20, 2016</span></h5>
-			<button class="upload button send first disabled" disabled="true">Aceptar</button>
+		<div class="intranet row upload singlefile hidden">
+			<div class="c12">
+				<div class="intranet box">
+					<div class="c12 thumbnail">
+						<img>
+					</div>
+					<div class="content">
+						<h5 class="size">2.4 mb</h5>
+						<h3 class="name">Iterative and Incremental Development: A Brief history</h3>
+						<h5>{%trans "Modificado por ultima vez el" %} <span class="date">Octubre 20, 2016</span></h5>
+						<button class="upload button send first disabled" disabled="true">Aceptar</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>	
 </div>
 <div class="intranet row upload files hidden">
 	<div class="intranet row">
-			<button class="c12 upload button send second hover trans disabled" disabled="true">Enviar</button>
+		<div class="c12">
+			<div class="intranet box">
+				<button class="c12 upload button send second hover trans disabled" disabled="true">Enviar</button>
+			</div>
+		</div>
 	</div>
 	</br>
 	<form id="form">
@@ -85,5 +98,6 @@
 		
 	</form>
 </div>
-
+<script>var template_url = "{% url 'intranet:drive_form' %}";</script>
 <script src="{% static 'intranet/js/drive_upload.js' %}"></script>
+<script src="{% static 'intranet/js/crossref.js' %}"></script>

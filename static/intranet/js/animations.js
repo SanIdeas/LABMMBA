@@ -24,16 +24,3 @@ function addElement(class_){
 	element.removeClass("upload animation exit up");
 	element.addClass('upload animation enter down');
 }
-
-// Show hace que solo se muestre. Por lo tanto si el cuadro ya es visible no desaparecera
-function toggleCrossref(index, show = false, setfocus = true){
-	var cr = $('.crossref[doc-index="$index"]'.replace('$index', index));
-	if(show){
-		cr.removeClass("hidden").addClass("display");
-		if(setfocus)
-			$('.field[name="title' + index + '"]').focus();
-	}
-	else{
-		cr.removeClass("display").addClass("hidden");
-	}
-}

@@ -1,0 +1,113 @@
+{% load i18n %}
+<div class="s1 c10 upload file  animation enter down" doc-index="$index">
+	<div class="intranet box">
+		<div class="subwrapper">
+			<div class="c3">
+				<img src="$thumbnail">
+			</div>
+			<div class="c9">
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Titulo:</strong>
+					</div>
+					<div class="c9">
+						<div class="upload crossrefWrapper">
+							<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="Ej: Tesis de microbiologia" autocomplete="off" required>
+							<!-- crossref -->
+							<div class="upload crossref hidden" doc-index="$index">
+								<div class="upload records">
+									<div class="upload records topbar">
+										<!--  Cabecera del cuadro -->
+										<i class="upload fa fa-check" doc-index="$index" aria-hidden="true"></i>
+										<i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>
+										<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>
+									</div>
+									<div class="upload records list">
+										<ul class="upload records root" doc-index="$index">
+										<!-- Lista de sugerencias -->
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Autor:</strong>
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" value="$author" name="author$index" placeholder="Ej: Juan Perez" required>
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Fecha de creacion:</strong>
+					</div>
+					<div class="c9">
+						<input type="date" class="field text" value="$date" name="date$index" required>
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>DOI:</strong> 
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" name="doi$index" placeholder="Ej: 10.1109/ms.2006.34">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>ISSN:</strong> 
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" name="issn$index" placeholder="No requerido">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Páginas:</strong> 
+					</div>
+					<div class="c9">
+						<input type="text" class="field text" name="pages$index" placeholder="No requerido">
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Area:</strong> 
+					</div>
+					<div class="c9">
+						<select name="category$index" class="field" required>
+							<option value="" disabled selected>Selecciona una categoria</option>
+							{% for category in categories %}
+								<option value="{{category.id}}">{{category.name}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+				<div class="c12 upload file field">
+					<div class="c3">
+						<strong>Privacidad:</strong> 
+					</div>
+					<div class="c9">
+						<select class="type-select field" name="type$index" required>
+								<option value="" disabled selected>Selecciona privacidad</option>
+								<option value="0">Público</option>
+								<option value="1">Privado</option>
+							</select>
+					</div>
+				</div>
+				<div class="c12 upload file field abstract">
+					<div class="c3">
+						<strong>Resumen:</strong> 
+					</div>
+					<div class="c9">
+						<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>
+						<textarea  name="abstract$index" disabled required></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

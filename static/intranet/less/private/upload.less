@@ -193,34 +193,6 @@
 
 	}
 
-	&.option{
-		height: 100px;
-		display: flex;
-    	justify-content: flex-end;
-    	cursor: pointer;
-		& i{
-			font-size: 50pt;
-			align-self: center;
-		}
-
-		& h5{
-			margin-right: 10px;
-			font-size: 15pt;
-			align-self: center;
-		}
-
-		& img{
-    		margin: auto auto auto 0px;
-		}
-		@media @smartphones-700{
-			justify-content: center;
-
-			& img{
-				margin: auto;
-			}
-		}
-	}
-
 	&.empty{
 		position: absolute;
     	width: 100%;
@@ -231,11 +203,14 @@
 		position: absolute;
 	}
 
-	&.title{
+	&.head{
+		padding: 6.5px 15px;
+		text-align: center;
 		& h1{
 			margin: 0;
 		}
 		& h4{
+			margin: 0;
 			font-weight: normal;
 		}
 
@@ -281,43 +256,40 @@
 	&.files{
 		margin-top: 20px;
 		& .file{
-			&.wrapper{
-				padding: 0px !important;
-				height: auto;
-				overflow: visible;
-				& > .subwrapper{
-					position: relative;
-					&:after{
-						content: "";
-						display: table;
-						clear: both;
-					}
-					& > .c3{
-						position: absolute;
-					    height: 100%;
-					    display: flex;
-					    background-color: @fields-background;
-					    overflow: hidden;
-					    @media @smartphones-700{
-					    	position: relative;
-					    	height: auto;
-					    	display: block;
-					    	& > img{
-					    		height: 300px;
-					    	}
-					    }
-					    & > img{
-					    	align-self: center;
-	    					box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
-					    }
-					}
-					& > .c9{
-						float: right;
-					}
+			height: auto;
+			overflow: visible;
+			&  .subwrapper{
+				position: relative;
+				&:after{
+					content: "";
+					display: table;
+					clear: both;
+				}
+				& > .c3{
+					position: absolute;
+				    height: 100%;
+				    display: flex;
+				    background-color: @fields-background;
+				    overflow: hidden;
+				    @media @smartphones-1100{
+				    	position: relative;
+				    	height: auto;
+				    	display: block;
+				    	& > img{
+				    		height: 300px;
+				    	}
+				    }
+				    & > img{
+				    	align-self: center;
+    					box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
+				    }
+				}
+				& > .c9{
+					float: right;
 				}
 			}
 
-			&.head{
+			& .head{
 				padding: 0px !important;
 				& button{
 					background: none;
@@ -331,7 +303,7 @@
 				}
 			}
 
-			&.filename{
+			& .filename{
 				& *{
 					font-weight: normal !important;
 					color: lighten(#777, 10%);
@@ -342,10 +314,12 @@
 				}
 			}
 
-			&.field{
+			& .field{
 				padding: 0px 20px;
-			    border-bottom: 1px solid #dedede;
 				padding: 10px  0px !important;
+				&:nth-child(even){
+					background-color: @list-color;
+				}
 				& strong{
 					padding: 10px;
 					display: block;
@@ -395,6 +369,9 @@
 				    box-sizing: border-box;
 				    overflow:hidden;
 				    transition: height 0.2s ease-in-out;
+				    &.hidden, .hidden{
+				    	display: none;
+				    }
 
 				    & .records{
 				    	height: 100%;
@@ -588,9 +565,10 @@
 			}
 		}
 		&.form{
-			border-bottom: 1px solid #dedede;
+			//border-bottom: 1px solid #dedede;
 			& .link{
 				text-align: center;
+				border: none;
 			}
 			& > .message{
 				margin: 0;
@@ -598,10 +576,9 @@
 			    min-height: 20px;
 			    font-weight: normal;
 			    color: #e0424e;
-			    background-color: #f8f8f8;
 			}
 		}
-		&.user{
+		&.body{
 			overflow: hidden;
 			&.hidden{
 				height: 0px;
@@ -658,27 +635,6 @@
 				&.size{
 					transition: background-color .3s ease;
 				}
-			}
-		}
-		&.plus{
-			text-align: center;
-		    overflow: hidden;
-		    margin-bottom: 0px;
-		    display: block;
-			& > button{
-				cursor: pointer;
-				background-color: transparent;
-				border: none;
-				padding: 5px;
-				color: #777;
-			}
-		}
-		&.logo{
-			font-family: 'Product Sans', Arial, sans-serif;
-			& .e{
-				transform: rotate(-16deg);
-			    position: relative;
-			    display: inline-block;
 			}
 		}
 		&.loading{
@@ -779,4 +735,13 @@
 
 .erasable{
 	position: relative;
+}
+
+.google{
+	font-family: 'Product Sans', Arial, sans-serif;
+	& .e{
+		transform: rotate(-16deg);
+	    position: relative;
+	    display: inline-block;
+	}
 }

@@ -39,7 +39,7 @@ body{
     flex-direction: column;
 }
 
-.colored_box(@color, @icon){
+.colored_box(@color, @icon, @font-family){
 	position: relative;
 	overflow: hidden;
 	background-color: lighten(@color, 10%);
@@ -73,6 +73,20 @@ body{
 	    margin: 0;
 			
 	}
+	& h5, .google{
+	    width: 100%;
+	    height: 100%;
+	    margin: 0px;
+	    padding: 20px;
+	    text-align: center;
+	    display: block;
+	    position: relative;
+	    font-weight: normal;
+	    font-size: 20pt;
+	    color: white;
+	    z-index: 99;
+	    text-shadow: 3px 0px 40px #e76e77;
+	}
 	&:after{
 		position: absolute;
 	    right: 15px;
@@ -81,7 +95,7 @@ body{
 	    color: lighten(@color, 30%);
 	    bottom: -15px;
 	    content: @icon;
-	    font: normal normal normal 123px/1 FontAwesome;
+	    font: normal normal normal 123px/1 @font-family;
 
 	}
 }
@@ -361,7 +375,28 @@ body{
 			}
 		}
 		& > .counter{
-			.colored_box(@yellow-color, "\f15b ");
+			.colored_box(@yellow-color, "\f15b", FontAwesome);
+		}
+		& > .pdf{
+			.colored_box(@red-color, "\f1c1", FontAwesome);
+			cursor: pointer;
+			&:hover{
+				background-color: @red-color;
+			}
+		}
+		& > .google-drive{
+			.colored_box(@green-color, "\e0a5", ElegantIcons);
+			cursor: pointer;
+			&:hover{
+				background-color: @green-color;
+			}
+		}
+		& > .myfiles{
+			.colored_box(@blue-color, "\f0c5", FontAwesome);
+			cursor: pointer;
+			&:hover{
+				background-color: @blue-color;
+			}
 		}
 
 		& > .description{
@@ -435,5 +470,13 @@ body{
 	}
 	@media @smartphones-1100{
 		width: 100% !important;
+	}
+}
+
+.s1, .s2, .s3, .s4, .s5, .s6, .s7, .s8, .s9, .s10, .s11, .s12{
+	@media @smartphones-1100{
+		margin: 0 !important;
+	    padding-left: 20px !important;
+		padding-right: 20px !important;
 	}
 }

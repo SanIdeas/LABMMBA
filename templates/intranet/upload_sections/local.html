@@ -1,14 +1,27 @@
 {% load staticfiles %}
 {% load i18n %}
-<div class="intranet row upload title">
+
+<div class="intranet row">
 	<div class="c12">
-		<h1>Subida local de documentos</h1>
-		<h4>Selecciona desde tus archivos locales los documentos que deseas subir</h4>
+		<div class="intranet box">
+			<div class="upload head">
+				<h1>Subida local de documentos</h1>
+				<h4>Selecciona desde tus archivos locales los documentos que deseas subir</h4>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="intranet row">
-		<button class="c6 upload button add hover trans">Agregar Documento</button>	
-		<button class="c6 upload button send hover trans disabled" disabled="true">Enviar Documentos</button>
+		<div class="c6">
+			<div class="intranet box">
+				<button class="c12 upload button add hover trans">Agregar Documento</button>		
+			</div>	
+		</div>
+		<div class="c6">
+			<div class="intranet box">
+				<button class="c12 upload button send hover trans disabled" disabled="true">Enviar Documentos</button>	
+			</div>			
+		</div>
 </div>
 <input id="input-files" type="file" accept="application/pdf" style="display: none" multiple>
 <div class="intranet row upload files">
@@ -22,4 +35,6 @@
 		</div>
 	</form>
 </div>
+<script>var template_url = "{% url 'intranet:local_form' %}";</script>
 <script src="{% static 'intranet/js/local_upload.js' %}"></script>
+<script src="{% static 'intranet/js/crossref.js' %}"></script>

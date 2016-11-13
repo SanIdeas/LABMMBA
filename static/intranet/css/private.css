@@ -312,6 +312,21 @@ body {
   right: 0;
   margin: 0;
 }
+.intranet.box > .counter h5,
+.intranet.box > .counter .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #e76e77;
+}
 .intranet.box > .counter:after {
   position: absolute;
   right: 15px;
@@ -319,8 +334,191 @@ body {
   font-size: 64px;
   color: #fcedd6;
   bottom: -15px;
-  content: "\f15b ";
+  content: "\f15b";
   font: normal normal normal 123px/1 FontAwesome;
+}
+.intranet.box > .pdf {
+  position: relative;
+  overflow: hidden;
+  background-color: #e76e77;
+  color: #f6c5c9;
+  cursor: pointer;
+}
+.intranet.box > .pdf div {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 104px;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 700px) {
+  .intranet.box > .pdf div {
+    width: 160px;
+  }
+}
+.intranet.box > .pdf h1 {
+  padding-left: 10%;
+  font-size: 50px;
+  margin: 0;
+  position: relative;
+  align-self: baseline;
+  margin-top: 6px;
+}
+.intranet.box > .pdf h3 {
+  position: absolute;
+  bottom: 19px;
+  right: 0;
+  margin: 0;
+}
+.intranet.box > .pdf h5,
+.intranet.box > .pdf .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #e76e77;
+}
+.intranet.box > .pdf:after {
+  position: absolute;
+  right: 15px;
+  height: 100%;
+  font-size: 64px;
+  color: #f6c5c9;
+  bottom: -15px;
+  content: "\f1c1";
+  font: normal normal normal 123px/1 FontAwesome;
+}
+.intranet.box > .pdf:hover {
+  background-color: #e0424e;
+}
+.intranet.box > .google-drive {
+  position: relative;
+  overflow: hidden;
+  background-color: #00c389;
+  color: #2affbf;
+  cursor: pointer;
+}
+.intranet.box > .google-drive div {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 104px;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 700px) {
+  .intranet.box > .google-drive div {
+    width: 160px;
+  }
+}
+.intranet.box > .google-drive h1 {
+  padding-left: 10%;
+  font-size: 50px;
+  margin: 0;
+  position: relative;
+  align-self: baseline;
+  margin-top: 6px;
+}
+.intranet.box > .google-drive h3 {
+  position: absolute;
+  bottom: 19px;
+  right: 0;
+  margin: 0;
+}
+.intranet.box > .google-drive h5,
+.intranet.box > .google-drive .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #e76e77;
+}
+.intranet.box > .google-drive:after {
+  position: absolute;
+  right: 15px;
+  height: 100%;
+  font-size: 64px;
+  color: #2affbf;
+  bottom: -15px;
+  content: "\e0a5";
+  font: normal normal normal 123px/1 ElegantIcons;
+}
+.intranet.box > .google-drive:hover {
+  background-color: #009065;
+}
+.intranet.box > .myfiles {
+  position: relative;
+  overflow: hidden;
+  background-color: #0092cf;
+  color: #36c4ff;
+  cursor: pointer;
+}
+.intranet.box > .myfiles div {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 104px;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 700px) {
+  .intranet.box > .myfiles div {
+    width: 160px;
+  }
+}
+.intranet.box > .myfiles h1 {
+  padding-left: 10%;
+  font-size: 50px;
+  margin: 0;
+  position: relative;
+  align-self: baseline;
+  margin-top: 6px;
+}
+.intranet.box > .myfiles h3 {
+  position: absolute;
+  bottom: 19px;
+  right: 0;
+  margin: 0;
+}
+.intranet.box > .myfiles h5,
+.intranet.box > .myfiles .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #e76e77;
+}
+.intranet.box > .myfiles:after {
+  position: absolute;
+  right: 15px;
+  height: 100%;
+  font-size: 64px;
+  color: #36c4ff;
+  bottom: -15px;
+  content: "\f0c5";
+  font: normal normal normal 123px/1 FontAwesome;
+}
+.intranet.box > .myfiles:hover {
+  background-color: #006e9c;
 }
 .intranet.box > .description {
   width: 100%;
@@ -404,6 +602,24 @@ body {
   .c11,
   .c12 {
     width: 100% !important;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .s1,
+  .s2,
+  .s3,
+  .s4,
+  .s5,
+  .s6,
+  .s7,
+  .s8,
+  .s9,
+  .s10,
+  .s11,
+  .s12 {
+    margin: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }
 .documents.message {
@@ -576,6 +792,21 @@ form .c12 {
   bottom: 19px;
   right: 0;
   margin: 0;
+}
+.document.download h5,
+.document.download .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #e76e77;
 }
 .document.download:after {
   position: absolute;
@@ -865,32 +1096,6 @@ form .c12 {
   color: #e0424e;
   padding: 5px;
 }
-.upload.option {
-  height: 100px;
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
-}
-.upload.option i {
-  font-size: 50pt;
-  align-self: center;
-}
-.upload.option h5 {
-  margin-right: 10px;
-  font-size: 15pt;
-  align-self: center;
-}
-.upload.option img {
-  margin: auto auto auto 0px;
-}
-@media screen and (max-width: 700px) {
-  .upload.option {
-    justify-content: center;
-  }
-  .upload.option img {
-    margin: auto;
-  }
-}
 .upload.empty {
   position: absolute;
   width: 100%;
@@ -899,17 +1104,22 @@ form .c12 {
   width: 100%;
   position: absolute;
 }
-.upload.title h1 {
+.upload.head {
+  padding: 6.5px 15px;
+  text-align: center;
+}
+.upload.head h1 {
   margin: 0;
 }
-.upload.title h4 {
+.upload.head h4 {
+  margin: 0;
   font-weight: normal;
 }
 @media screen and (max-width: 700px) {
-  .upload.title h1 {
+  .upload.head h1 {
     font-size: 16pt;
   }
-  .upload.title h4 {
+  .upload.head h4 {
     font-size: 6pt;
   }
 }
@@ -938,47 +1148,46 @@ form .c12 {
 .upload.files {
   margin-top: 20px;
 }
-.upload.files .file.wrapper {
-  padding: 0px !important;
+.upload.files .file {
   height: auto;
   overflow: visible;
 }
-.upload.files .file.wrapper > .subwrapper {
+.upload.files .file .subwrapper {
   position: relative;
 }
-.upload.files .file.wrapper > .subwrapper:after {
+.upload.files .file .subwrapper:after {
   content: "";
   display: table;
   clear: both;
 }
-.upload.files .file.wrapper > .subwrapper > .c3 {
+.upload.files .file .subwrapper > .c3 {
   position: absolute;
   height: 100%;
   display: flex;
   background-color: #e9edf0;
   overflow: hidden;
 }
-@media screen and (max-width: 700px) {
-  .upload.files .file.wrapper > .subwrapper > .c3 {
+@media screen and (max-width: 1100px) {
+  .upload.files .file .subwrapper > .c3 {
     position: relative;
     height: auto;
     display: block;
   }
-  .upload.files .file.wrapper > .subwrapper > .c3 > img {
+  .upload.files .file .subwrapper > .c3 > img {
     height: 300px;
   }
 }
-.upload.files .file.wrapper > .subwrapper > .c3 > img {
+.upload.files .file .subwrapper > .c3 > img {
   align-self: center;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
 }
-.upload.files .file.wrapper > .subwrapper > .c9 {
+.upload.files .file .subwrapper > .c9 {
   float: right;
 }
-.upload.files .file.head {
+.upload.files .file .head {
   padding: 0px !important;
 }
-.upload.files .file.head button {
+.upload.files .file .head button {
   background: none;
   border: none;
   float: right;
@@ -988,7 +1197,7 @@ form .c12 {
   font-size: 15pt;
   color: #777;
 }
-.upload.files .file.filename * {
+.upload.files .file .filename * {
   font-weight: normal !important;
   color: #919191;
   margin: 0;
@@ -996,28 +1205,30 @@ form .c12 {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.upload.files .file.field {
+.upload.files .file .field {
   padding: 0px 20px;
-  border-bottom: 1px solid #dedede;
   padding: 10px  0px !important;
 }
-.upload.files .file.field strong {
+.upload.files .file .field:nth-child(even) {
+  background-color: #f7f7f7;
+}
+.upload.files .file .field strong {
   padding: 10px;
   display: block;
 }
-.upload.files .file.field .field {
+.upload.files .file .field .field {
   width: 100%;
 }
-.upload.files .file.field.abstract .c9 {
+.upload.files .file .field.abstract .c9 {
   display: flex;
   justify-content: center;
 }
-.upload.files .file.field.abstract .c9 .fa {
+.upload.files .file .field.abstract .c9 .fa {
   position: absolute;
   align-self: center;
   color: #e9edf0;
 }
-.upload.files .file.field.abstract .c9 textarea {
+.upload.files .file .field.abstract .c9 textarea {
   overflow: hidden;
   width: 100%;
   resize: none;
@@ -1028,13 +1239,13 @@ form .c12 {
   background-color: #e9edf0;
   transition: background-color, color 0.3s ease;
 }
-.upload.files .file.field.abstract .c9 textarea[disabled] {
+.upload.files .file .field.abstract .c9 textarea[disabled] {
   background-color: #f8f9fa;
 }
-.upload.files .file.field .crossrefWrapper {
+.upload.files .file .field .crossrefWrapper {
   position: relative;
 }
-.upload.files .file.field .crossref {
+.upload.files .file .field .crossref {
   position: absolute;
   width: 100%;
   z-index: 99;
@@ -1045,15 +1256,19 @@ form .c12 {
   overflow: hidden;
   transition: height 0.2s ease-in-out;
 }
-.upload.files .file.field .crossref .records {
+.upload.files .file .field .crossref.hidden,
+.upload.files .file .field .crossref .hidden {
+  display: none;
+}
+.upload.files .file .field .crossref .records {
   height: 100%;
 }
-.upload.files .file.field .crossref .records.topbar {
+.upload.files .file .field .crossref .records.topbar {
   width: 100%;
   height: 45px;
   position: relative;
 }
-.upload.files .file.field .crossref .records.topbar button {
+.upload.files .file .field .crossref .records.topbar button {
   background: none;
   border: none;
   float: right;
@@ -1062,41 +1277,41 @@ form .c12 {
   line-height: 1px;
   font-size: 15pt;
 }
-.upload.files .file.field .crossref .records.topbar button > i {
+.upload.files .file .field .crossref .records.topbar button > i {
   color: #777;
 }
-.upload.files .file.field .crossref .records.topbar .fa-check {
+.upload.files .file .field .crossref .records.topbar .fa-check {
   color: #00c389;
   top: 0;
   line-height: 45px;
   font-size: 20pt;
   position: absolute;
 }
-.upload.files .file.field .crossref .records.list {
+.upload.files .file .field .crossref .records.list {
   display: flex;
   width: 100%;
   max-height: 295px;
   overflow-y: scroll;
 }
-.upload.files .file.field .crossref .records.list .root {
+.upload.files .file .field .crossref .records.list .root {
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
 }
-.upload.files .file.field .crossref .records.list li {
+.upload.files .file .field .crossref .records.list li {
   padding: 10px;
   border-bottom: 1px solid #eeeeee;
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.upload.files .file.field .crossref .records.list li > h4 {
+.upload.files .file .field .crossref .records.list li > h4 {
   margin: 0;
 }
-.upload.files .file.field .crossref .records.list li > span {
+.upload.files .file .field .crossref .records.list li > span {
   width: 100%;
 }
-.upload.files .file.field .crossref .records.list li:hover {
+.upload.files .file .field .crossref .records.list li:hover {
   background-color: #eeeeee;
 }
 .upload.hidden {
@@ -1203,11 +1418,9 @@ form .c12 {
   z-index: 99;
   transition: border-left-color 0.3s ease;
 }
-.upload.drive.form {
-  border-bottom: 1px solid #dedede;
-}
 .upload.drive.form .link {
   text-align: center;
+  border: none;
 }
 .upload.drive.form > .message {
   margin: 0;
@@ -1215,12 +1428,11 @@ form .c12 {
   min-height: 20px;
   font-weight: normal;
   color: #e0424e;
-  background-color: #f8f8f8;
 }
-.upload.drive.user {
+.upload.drive.body {
   overflow: hidden;
 }
-.upload.drive.user.hidden {
+.upload.drive.body.hidden {
   height: 0px;
 }
 .upload.drive.table {
@@ -1272,27 +1484,6 @@ form .c12 {
 }
 .upload.drive.table td.size {
   transition: background-color 0.3s ease;
-}
-.upload.drive.plus {
-  text-align: center;
-  overflow: hidden;
-  margin-bottom: 0px;
-  display: block;
-}
-.upload.drive.plus > button {
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  padding: 5px;
-  color: #777;
-}
-.upload.drive.logo {
-  font-family: 'Product Sans', Arial, sans-serif;
-}
-.upload.drive.logo .e {
-  transform: rotate(-16deg);
-  position: relative;
-  display: inline-block;
 }
 .upload.drive.loading {
   height: 3px;
@@ -1378,6 +1569,14 @@ form .c12 {
 }
 .erasable {
   position: relative;
+}
+.google {
+  font-family: 'Product Sans', Arial, sans-serif;
+}
+.google .e {
+  transform: rotate(-16deg);
+  position: relative;
+  display: inline-block;
 }
 /******CHECK ANIMATION*******/
 #success-icon > h4 {

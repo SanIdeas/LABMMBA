@@ -112,7 +112,7 @@ $(document).ready(function(){
 	// Responsive tables
 	;(function($, window, document, undefined) {
 		$.fn.responsiveTables = function() {
-			var head_col_count = $('thead th').size();
+			var head_col_count = $('thead th').length;
 			if ($(head_col_count).length) {
 				return this.each(function() {
 					var $element = $(this);

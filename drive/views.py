@@ -39,7 +39,7 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
 		meta = get_metadata(stream)
 		day, month, year = date(meta['/CreationDate'])
 		fields = {
-			'title': meta['/Title'] if '/Title' in meta else 'Titulo temporal' + str(datetime.datetime.now()),
+			'title': meta['/Title'] if '/Title' in meta and meta['/Title']  else 'Titulo temporal' + str(datetime.datetime.now()),
 			'author': meta['/Author'] if  '/Author' in meta else owner.first_name + ' ' + owner.last_name,
 			'abstract': meta['/Subject'] if  '/Subject' in meta else None,
 			'words': meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None,
@@ -271,7 +271,8 @@ def link_analizer(request, link=None):
 
 				# Si el archivo ya existe, se devuelve un error
 				if document:
-					return JsonResponse({'error': True, 'message':_('El documento <strong>' + document.title + '</strong> ya existe')})
+					name  = document.title if document.title else document.drive_id
+					return JsonResponse({'error': True, 'message':_('El documento <strong>' + name + '</strong> ya existe')})
 				# Si excede los 2 mb, se devuelve un error
 				if int(file['fileSize'])  > 2097152:
 					return JsonResponse({'error': True, 'message':_('El documento no puede tener un tamano superior a 2 Megabytes.')})
