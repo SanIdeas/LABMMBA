@@ -691,3 +691,40 @@ form .submit{
 	z-index: 99;
 	top: 103px;
 }
+
+
+#users-setup > div {
+	text-align: left;	
+}
+
+#users-setup > div.title > div {
+	padding: 0px;
+}
+
+#users-setup > div.title span.error {
+    font-style: italic;
+    color: #ee5b55;
+    display: block;
+}
+
+#search {
+	margin: 0px;
+	width: 100%;
+}
+
+#invitation-form {
+  width: 100%;
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.invitation-form.field {
+  width: 100% !important;
+}
+
+.invitation-form.send {
+  width: 120px !important;
+  padding: 11px !important;
+  float: right !important;
+}
