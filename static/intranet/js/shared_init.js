@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	// Si es un telefono o tablet, se ajusta la altura con js
-	if(window.mobilecheck()){
+	var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+	if(window.mobilecheck() || is_safari){
 		var body = $('section#content');
 		var h = $(window).height() - $('header').height()-$('.bar').height();
 		body.height(h + 'px');

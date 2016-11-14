@@ -141,7 +141,7 @@ def home(request):
 			count_categories = None
 
 		# Se obtienen un preview de los usuarios en el sistema
-		users = User.objects.filter(is_admin=False).order_by('last_activity')
+		users = User.objects.filter(is_admin=False, is_registered=True).order_by('last_activity')
 		return render(request, 'intranet/home.html', {
 													'names_categories': names_categories,
 													'count_categories': count_categories,
@@ -420,7 +420,7 @@ def pdf_viewer(request, title=None, author=None):
 
 def users(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
-		users = User.objects.filter(is_admin=False)
+		users = User.objects.filter(is_admin=False, is_registered=True)
 		for user in users:
 			user.last_activity = (timezone.localtime(timezone.now()) - user.last_activity).days
 		return render(request, 'intranet/users.html', {'users': users})

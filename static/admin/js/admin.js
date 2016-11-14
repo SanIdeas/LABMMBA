@@ -233,7 +233,7 @@ function webpage(){
 	 }*/
 
 	$('.body').bind('scroll', function(){
-		if ($('.body').scrollTop() > 172){
+		if ($('.body').scrollTop() > 129){
 			$('.setup-webpage-list').addClass('fixed');
 			$(this).css('z-index', '100');
 		}

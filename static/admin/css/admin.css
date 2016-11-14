@@ -339,6 +339,10 @@
     display: inline-block;
     left: -26px;
 	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 60%;
 }
 
 .invited:before{
@@ -598,7 +602,7 @@
 	transition: 0.3s ease;
 }
 
-#users-setup, #areas-setup, #webpage-setup{
+#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup{
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -708,16 +712,8 @@ form .submit{
 }
 
 #search {
-	margin: 0px;
+	margin: 0;
 	width: 100%;
-  	border-radius: 5px;
-  	padding-right: 20px;
-  	padding-left: 20px;
-}
-
-#invitation-form {
-  	padding-right: 20px;
-  	padding-left: 20px;
 }
 
 .title-form {

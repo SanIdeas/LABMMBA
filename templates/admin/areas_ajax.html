@@ -1,14 +1,13 @@
 {% load i18n %}
 {% load staticfiles %}
 <div class="title" >
-        <form id="add-area-form" class="title-form">
-           {% csrf_token %}
-            <input id="add-area-name" type="text" name="name" class="text search field" placeholder="{% trans 'Agregar área' %}"/>
-            <input id="add-area-submit" type="submit" class="submit trans search send" value="{% trans 'Agregar' %}"/>
-        </form>
-        <span id="add-area-error" class="error"></span>
+    <form id="add-area-form" class="title-form">
+       {% csrf_token %}
+        <input id="add-area-name" type="text" name="name" class="text search field" placeholder="{% trans 'Agregar área' %}"/>
+        <input id="add-area-submit" type="submit" class="submit trans search send" value="{% trans 'Agregar' %}"/>
+    </form>
+    <span id="add-area-error" class="error"></span>
 </div>
-
 
 <h3 class="setup-subtitle">{% trans "Áreas de Investigación" %}</h3>
 <ul class="setup-area-list">

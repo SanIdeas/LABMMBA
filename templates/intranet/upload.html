@@ -61,7 +61,7 @@
 <!-- Enlaces de utilidad -->
 
 <script>
-	var get_credentials_link = '{{ request.get_host }}{% url 'get_credentials' %}';
+	var get_credentials_link = 'http://{{ request.get_host }}{% url 'get_credentials' %}';
 	var link_analizer_link = "{% url 'link_analizer' '999' %}";
 	var download_drive_link = "{% url 'download_drive_files' '999' %}";
 	var upload_link = "{% url 'intranet:upload' %}";

@@ -1,72 +1,87 @@
 {% extends 'admin/shared.html' %}
 
+{% block css %}
+    <link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
+{% endblock %}
+
 {% block content %}
 {% load i18n %}
 {% load staticfiles %}
-<div id="pictures-section">
-	<div id="background-picture">
-		<img src="{% static 'intranet/images/background-picture2.png' %}">
-	</div>
-	<div id="profile-picture">
-		<div id="picture-wrapper"><img id="picture-circle" {% if profile_user.profile_picture %} src="{% static profile_user.filename %}" {% else %} src="{% static 'intranet/images/default.png' %}" {% endif%}></div>
-	</div>
-</div>
-
-<div id="information-section">
-	<table>
-		<tr>
-			<td>{% trans "Nombre completo" %}:</td>
-			<td>{{profile_user.first_name}} {{ profile_user.last_name }}</td>
-		</tr>
-		<tr>
-			<td>{% trans "Institución" %}:</td>
-			<td>{{ profile_user.institution }}</td>
-		</tr>
-		<tr>
-			<td>{% trans "Carrera" %}:</td>
-			<td>{{ profile_user.career }}</td>
-		</tr>
-		<tr>
-			<td>{% trans "País" %}:</td>
-			<td>{{ profile_user.country }}</td>
-		</tr>
-		<tr>
-			<td>{% trans "Area" %}:</td>
-			<td>{% trans profile_user.area.name %}</td>
-		</tr>
-	</table>
-</div>
-{% if request.user.is_admin %}
-	<h3>{% trans "Mis documentos" %}</h3>
-	{% if not documents %}
-		<h5 class="documents-message" >{% trans "No posees documentos" %}</h5>
-	{% else %}
-		<div class="result">
-			<table>
-			<tr>
-				<th class="col1">{% trans "Autor" %}</th>
-				<th class="col2">{% trans "Titulo" %}</th>
-				<th class="col3">{% trans "Año" %}</th>
-				<th class="col4">{% trans "Tipo" %}</th>
-				<th class="col5">{% trans "Añadido" %}</th>
-			</tr>
-			{% for document in documents%}
-				<tr class="search-result" doc-title="{{ document.title }}" doc-author="{{ document.author }}">
-					<td class="col1">{{ document.author }}</td>
-					<td class="col2">{{ document.title }}</td>
-					<td class="col3">{{ document.date|date:"Y" }}</td>
-					<td class="col4">{% if document.type == False %} {% trans "Público" %} {% else %} {% trans "Privado" %} {% endif %}</td>
-					<td class="col5">{{ document.date_added }}</td>
-				</tr>
-			{% endfor %}
-			</table>
-		</div>
-	{% endif %}
-	<script>
-		$('.search-result').click(function(){
-			window.open("{% url 'intranet:document' 999 888 %}".replace('888', $(this).attr('doc-title')).replace('999', $(this).attr('doc-author')), '_blank');
-		});
-	</script>
-{% endif %}
-<div class="clear"></div>
+    <div class="title">
+        <h3>{% blocktrans with first_name=profile_user.first_name last_name=profile_user.last_name %}
+            Perfil de {{ first_name }} {{ last_name }}
+        {% endblocktrans %}
+        </h3>
+    </div>
+    <div class="intranet row">
+        <!-- Seccion izquierda -->
+        <div id="lCol" class="c5">
+            <!-- Nueva linea -->
+            <div class="intranet box">
+                <div class="profile image">
+                    <img
+                            {% if profile_user.profile_picture %}
+                                src="{% static profile_user.filename %}"
+                            {% else %}
+                                src="{% static 'intranet/images/default.png' %}"
+                            {% endif%}>
+                </div>
+                <div class="document table">
+                    <table>
+                        <tr>
+                            <td>{% trans "Nombre completo" %}:</td>
+                            <td>{{profile_user.first_name}} {{ profile_user.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans "Institución" %}:</td>
+                            <td>{{ profile_user.institution }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans "Carrera" %}:</td>
+                            <td>{{ profile_user.career }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans "País" %}:</td>
+                            <td>{{ profile_user.country }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans "Area" %}:</td>
+                            <td>{% trans profile_user.area.name %}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Seccion derecha -->
+        <div id="rCol" class="c7">
+            <!-- Nueva linea -->
+            <div class="intranet box">
+                <div class="profile counter">
+                    <div>
+                        <h1>{{ profile_user.doc_count }}</h1>
+                        <h3>Documentos</h3>
+                    </div>
+                </div>
+                <div class="profile info">
+                    <ul class="documents">
+                        {% for document in documents %}
+                            <li>
+                                <div class="body">
+                                    <a href="{% url 'intranet:document' document.author document.title %}">
+                                        <h3><span>{{ document.date|date:"Y" }}</span> · {{ document.title }}</h3>
+                                        <span>{{ document.author }}</span>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!--
+                <div class="description">
+                    <span>Alguna descripción</span>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
 {% endblock %}

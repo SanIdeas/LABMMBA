@@ -8,7 +8,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title" > 
+<div id="select-section-setup">
+    <div class="title" >
         <form id="invitation-form" class="title-form">
             <select id="section-select" required>
                 <option selected disabled>{% trans "Selecciona una sección" %}</option>
@@ -22,6 +23,7 @@
     <div id="webpage-setup">
         <h1>{% trans 'No has seleccionado una sección para editar' %}</h1>
     </div>
+</div>
 
 <script>var reload = "{% url 'admin:webpage'%}"</script>
 <script>var edit = "{% url 'admin:edit_section' 999 %}"</script>
