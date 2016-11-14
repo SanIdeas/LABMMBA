@@ -25,18 +25,27 @@
         <!-- Nueva linea -->
         <div class="intranet box">
         	<div class="profile image">	
-        		<img 
-        			{% if profile_user.profile_picture %} 
-        				src="{% static profile_user.filename %}" 
-        			{% else %} 
-        				src="{% static 'intranet/images/default.png' %}" 
-        			{% endif%}>
-        	</div>
-        	{% if request.user == profile_user %}
-	        	<div class="profile btn">
-	        		<a class="modal picture" href="#changeImgModal">{% trans "Cambiar imagen" %}</a>
+        		<div>
+	        		<img 
+	        			{% if profile_user.profile_picture %} 
+	        				src="{% static profile_user.filename %}" 
+	        			{% else %} 
+	        				src="{% static 'intranet/images/default.png' %}" 
+	        			{% endif%}>
 	        	</div>
-        	{% endif %}
+	        	<div class="profile networks">
+	        		{% if profile_user.facebook %}
+						<div class="facebook trans"><a href="{{profile_user.facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
+					{% endif %}
+					{% if profile_user.twitter %}
+						<div class="twitter trans "><a href="{{profile_user.twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
+					{% endif %}
+					{% if profile_user.linkedin %}
+						<div class="linkedin trans"><a href="{{profile_user.linkedin}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></div>
+					{% endif %}
+				</div>
+        	</div>
+        	
         	<div class="document table">
         		<table>
 					<tr>
@@ -59,7 +68,7 @@
 						<td>{% trans "Area" %}:</td>
 						<td>{% trans profile_user.area.name %}</td>
 					</tr>
-				</table>  		
+				</table>
         	</div>
         </div>
         {% if request.user == profile_user %}
@@ -79,6 +88,7 @@
 		        				{% endif %}
 	        				</td>
 	        			</tr>
+		        		<tr><td><a class="modal picture" href="#changeImgModal">{% trans "Cambiar foto de perfil" %}</a></td></tr>
 		        		<tr><td><a class="modal edit" href="#editInformationModal">{% trans 'Editar información' %}</a></td></tr>
 		        		<tr><td><a class="modal password" href="#passwordModal">{% trans 'Cambiar contraseña' %}</a></td></tr>
 		        	</table>
@@ -191,7 +201,7 @@
          </div>
      	<div class="row profile field">
 			<span class="c12">{% trans 'Carrera' %}:</span>
-     		<div class="c12"><input type="text" name="career" value="{{ profile_user.career }}"class="text" placeholder="{% trans 'Carrera' %}" required/></div>
+     		<div class="c12"><input type="text" name="career" value="{{ profile_user.career }}" class="text" placeholder="{% trans 'Carrera' %}" required/></div>
      	</div>
      	<div class="row profile field">
 			<span class="c12">{% trans 'Area' %}:</span>
@@ -211,8 +221,20 @@
 		            <option disabled> {% trans 'Selecciona un país' %}</option>
 		            {% include 'intranet/countries.html' %}
 		       </select>
-		  </div>
+		  	</div>
 		</div>
+     	<div class="row profile field">
+			<span class="c12">{% trans 'Facebook' %}:</span>
+     		<div class="c12"><input type="text" name="facebook" {% if profile_user.facebook %} value="{{ profile_user.facebook }}" {% endif %} class="text" placeholder="{% trans 'Perfil de Facebook' %}"/></div>
+     	</div>
+     	<div class="row profile field">
+			<span class="c12">{% trans 'Twitter' %}:</span>
+     		<div class="c12"><input type="text" name="twitter" {% if profile_user.twitter %} value="{{ profile_user.twitter }}" {% endif %} class="text" placeholder="{% trans 'Perfil de Twitter' %}"/></div>
+     	</div>
+     	<div class="row profile field">
+			<span class="c12">{% trans 'LinkedIn' %}:</span>
+     		<div class="c12"><input type="text" name="linkedin" {% if profile_user.linkedin %} value="{{ profile_user.linkedin }}" {% endif %} class="text" placeholder="{% trans 'Perfil de LinkedIn' %}"/></div>
+     	</div>
          <div class="row profile field">
          	<div class="s6 c6"><input type="submit" class="submit trans"></div>
          </div>

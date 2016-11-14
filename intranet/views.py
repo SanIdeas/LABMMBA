@@ -266,6 +266,9 @@ def profile(request, user_id = None):
 			request.user.area = Area.objects.get(id=request.POST['area'])
 			request.user.first_name = request.POST['first_name']
 			request.user.country = request.POST['country']
+			request.user.facebook = request.POST.get('facebook')
+			request.user.twitter = request.POST.get('twitter')
+			request.user.linkedin = request.POST.get('linkedin')
 			request.user.save()
 			return HttpResponseRedirect(reverse('intranet:profile', kwargs={'user_id': request.user.id}))
 		else:

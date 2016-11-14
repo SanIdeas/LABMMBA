@@ -84,6 +84,9 @@ class User(AbstractBaseUser):
     drive_email = models.CharField(max_length=100, null=True)
     access_token = models.CharField(max_length=128, null=True)
     is_registered = models.BooleanField(default=False)
+    facebook = models.CharField(max_length=100, null=True)
+    twitter = models.CharField(max_length=100, null=True)
+    linkedin = models.CharField(max_length=100, null=True)
 
 
     objects = UserManager()
