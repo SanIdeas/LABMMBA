@@ -3,7 +3,7 @@
 
     <div class="title" >
     <div class="c12"> 
-        <form id="invitation-form">
+        <form id="invitation-form" class="title-form">
            {% csrf_token %}
            <input id="email-invitation" type="email" name="email" class="text search field" placeholder="{% trans 'Invitar usuarios' %}"/>
            <input id ="submit-invitation" type="submit" class="submit trans search send" value="{% trans 'Enviar' %}"/>

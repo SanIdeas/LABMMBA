@@ -8,21 +8,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title">
-        <h3>{% trans "Administrar Página Web" %}</h3>
-    </div>
-
-    <div class="row">
-        <div class="c12">
-            <form class="clear c12">
-                <select id="section-select" required>
-                    <option selected disabled>{% trans "Selecciona una sección" %}</option>
-                    {% for section in sections %}
-                        <option value="{{ section.id }}">{{ section.name }}</option>
-                    {% endfor %}
-                </select>
-            </form>
-        </div>
+    <div class="title" > 
+        <form id="invitation-form" class="title-form">
+            <select id="section-select" required>
+                <option selected disabled>{% trans "Selecciona una sección" %}</option>
+                {% for section in sections %}
+                    <option value="{{ section.id }}">{{ section.name }}</option>
+                {% endfor %}
+            </select>
+        </form>
     </div>
 
     <div id="webpage-setup">
