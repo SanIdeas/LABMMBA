@@ -25,7 +25,6 @@
 						<option value="6" {% if document.category.id = 6 %} selected {% endif %}>{% trans "Biorremediación de Ambientes Contaminados" %}</option>
 					</select>
 				</h5>
-				<h5>{{document.date.year}}</h5>
 				<div id="type-wrapper" class="{{document.privacy}}"></div>
 				<div class="intranet separator"></div>
 				<textarea name="abstract">{{ document.abstract }}</textarea>			
@@ -34,17 +33,6 @@
         <!-- Fin de la caja -->
 	</div>
 	<div class="c7">
-		<!-- Nueva caja -->
-		<div class="intranet box">
-            <div class="document download trans">
-				<a href="{% url 'intranet:viewer' document.author document.title %}">
-	                <div>
-	                    <h1>{% trans "Ver <span>Documento</span>" %}</h1>
-	                </div>
-	            </a>
-            </div>
-        </div>
-        <!-- Fin de la caja -->
         <!-- Nueva caja -->
 		<div class="intranet box">
 			<div class="document table">
@@ -89,22 +77,6 @@
         <!-- Fin de la caja -->
 	</div>
 	<div class="c5">
-        <!-- Nueva caja -->
-		<div class="intranet box">
-			<div class="document owner">
-				<div class="image">
-					{% if document.owner.profile_picture %}
-						<img src="{% static document.owner.filename %}"> 
-					{% else %} 
-						<img src="{% static 'intranet/images/default.png' %}">
-					{% endif%}
-				</div>				
-				<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
-				<h5>{{document.owner.area.name}}</h5>
-				<h5>{{document.owner.institution}}</h5>
-			</div>
-		</div>
-        <!-- Fin de la caja -->
         <!-- Nueva caja -->
 		<div class="intranet box">
 			<div class="document controls">

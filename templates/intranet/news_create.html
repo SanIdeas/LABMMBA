@@ -1,0 +1,140 @@
+{% extends 'intranet/shared.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+{% endblock %}
+{% block extra_js %}
+	<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
+	<script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="title">
+	<h3>{% trans "Mis noticias" %}</h3>
+</div>
+<div class="intranet row">
+	<div class="c12">
+		<div class="intranet box">
+			<div class="upload head">
+				<h1>{% trans "Redactando una noticia" %}</h1>
+				<h4>{% trans "Una vez que llenes los datos, podras escribir la noticia en el editor" %}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="c4">
+		<div class="intranet box news">
+			<span class="info">{% trans "Una vez que el administrador haya aprobado tu noticia, esta sera pública." %}</span>
+		</div>
+		<div class="intranet box news">
+			<div class="picture">
+				<div class="button">
+					<a class="selectThumbnail btn erasable">
+						<i class="fa fa-picture-o" aria-hidden="true"></i>
+						<span>{% trans "Presiona para agregar una miniatura" %}</span>
+					</a>
+					<a class="selectThumbnail" style="display:none;">
+						<img id="thumbnailPicture" src="">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="intranet box news">
+			<div class="picture">
+				<div class="button">
+					<a class="selectHeader btn erasable">
+						<i class="fa fa-picture-o" aria-hidden="true"></i>
+						<span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
+					</a>
+					<a class="selectHeader" style="display:none;">
+						<img id="headerPicture" src="">
+					</a>
+				</div>
+			</div>
+		</div>
+		<a href="#changePicture" class="modal picture" style="display:none;"></a>
+	</div>
+	<div class="c8">
+		<div class="intranet box news">
+			<span class="info">{% trans "Si quieres que tu noticia pueda aparecer en la cabecera de la página web, debes agregar una imagen de una resolución ideal de 1600x525 y una descripción corta." %}</span>
+		</div>
+		<div class="intranet box news">
+			<form class="clear c12" action="{% url 'intranet:create_news' %}" redirect-to="live-editor" method="POST" >
+				{% csrf_token %}
+		        <div class="row field">
+					<span class="c12">{% trans 'Descripción' %}:</span>
+		            <div class="c12">
+		            	<textarea name="description" required placeholder="{% trans 'Requerido' %}"></textarea>
+		            </div>
+		        </div>
+		        <div class="row field">
+					<span class="c12">{% trans 'Nombre de la fuente de información' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="source" class="text" placeholder="{% trans 'No requerido' %}"/>
+		         	</div>
+		        </div>
+		        <div class="row field">
+					<span class="c12">{% trans 'URL de la fuente de información' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="source_url" class="text" placeholder="{% trans 'No requerido' %}"/>
+		         	</div>
+		        </div>
+	         	<div class="row field">
+					<span class="c12">{% trans 'URL de la fuente de información' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="source_url" class="text" placeholder="{% trans 'No requerido' %}"/>
+		         	</div>
+	         	</div>
+		         <div class="row field">
+					<span class="c12">{% trans 'Fecha' %}:</span>
+		         	<div class="c12">
+		         		<input type="date" class="text" name="date" value="{{today|date:'Y-m-d'}}">
+		         	</div>
+		         </div>
+		         <div class="separator"></div>
+		         <div class="row field">
+					<span class="c12">{% trans 'Descripción corta' %}:</span>
+		            <div class="c12">
+		            	<textarea name="mini-description" disabled required></textarea>
+		            </div>
+		         </div>
+		         <div class="row field">
+		         	<div class="s6 c6"><input type="submit" class="submit trans" value="{% trans 'Ir al editor' %}"></div>
+		         </div>
+			</form>
+		</div>
+				
+	</div>
+</div>
+<!-- Modal para modificar la miniatura -->
+<div id="changePicture" class="news modal"  style="display:none!important; height:100%;">
+	<div class="cropper">
+  		<div class="editor" style="display:none; opacity:0; top:20px;">
+  			<div class="crop">
+  				<img id="imageCropper">
+  			</div>
+	  		<div class="buttons">
+  				<div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
+  				<div class="c4"><button id="selectImage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+
+<!-- Modal extra -->
+<div style="display:none;">
+	<div>
+		<div id="errorModal">
+			<i class="fa fa-times" aria-hidden="true"></i>
+			<h3>{% trans "Asegurate de adjuntar, al menos, una miniatura y una descripción." %}</h3>
+		</div>
+	</div>
+</div>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
+
+<script>autosize(document.querySelectorAll('textarea'));</script>
+<script>
+	var live_editor_url = "{% url 'webpage:news_editor' 888 %}";
+</script>
+<script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>
+<script src="{% static 'intranet/js/news/news_create_sender.js' %}"></script>
+{% endblock %}

@@ -21,12 +21,12 @@
 	    width: 85%;
 	    border-top: 1px solid #d2d2d2;
 	}
-	&.image{
+	&.picture{
 	    background-color: @fields-background;
+	    overflow: hidden;
 	    & > div{
 		    width: 100%;
 		    display: flex;
-		    overflow: hidden;
 		    &:nth-child(1){
 			    @media @smartphones-700{
 			    	position: relative;
@@ -241,10 +241,14 @@
 			& .profile.image{
 				height: 200px;
 				display: block;
+				background-color: @fields-background;
 				& > * {
 					margin: 0 auto;
 					height: 200px;
+					width: 200px;
+					border-radius: 50%;
 					overflow: hidden;
+					box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
 					& > img{
 						max-width: inherit;
 					}
@@ -262,11 +266,11 @@
 				}
 			}
 		}
-	}
-}
-.cropper-view-box, .cropper-face {
+	}.cropper-view-box, .cropper-face {
 	border-radius: 50%;
 }
+}
+
 
 .linkDrive{
 	position: relative;
@@ -311,5 +315,29 @@
 	    opacity: 0.1;
 	    right: 0;
 	    color: @green-color;
+	}
+}
+#errorModal{
+	position: relative;
+	display: table;
+	height: 100%;
+	width: 100%;
+	& h3{
+		height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+		text-align:center;
+		font-weight: normal;
+	}
+	& i{
+		position: absolute;
+		width: 100%;
+	    text-align: center;
+	    height: 100%;
+	    line-height: 100px;
+	    font-size: 107pt;
+	    opacity: 0.1;
+	    right: 0;
+	    color: @red-color;
 	}
 }

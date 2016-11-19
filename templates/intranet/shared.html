@@ -67,16 +67,12 @@
 											<li class="{% if documents_view == request.path%} current {%endif%}"><a href="{{documents_view}}">{% trans "Documentos" %}</a></li>
 										{% url 'intranet:profile' request.user.id as profile%}
 											<li class="{% if profile == request.path%} current {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
-										{% if not request.user.is_admin %}
-											{% url 'intranet:users' as users_view%}
+										{% url 'intranet:users' as users_view%}
 											<li class="{% if users_view == request.path%} current {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
-										{% endif %}
 										{% url 'intranet:upload' as upload%}
 											<li class="{% if upload == request.path%} current {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
-										{% if request.user.is_admin %}
-											{% url 'intranet:admin' as admin%}
-											<li class="{% if admin == request.path%} current {%endif%}"><a href="{{admin}}">{% trans "Administrador" %}</a></li>
-										{% endif %}
+										{% url 'intranet:news' as news%}
+											<li class="{% if news == request.path%} current {%endif%}"><a href="{{news}}">{% trans "Mis noticias" %}</a></li>
 										<li><a href="{% url 'webpage:home' %}">{% trans "Volver a la página principal" %}</a></li>
 									</ul>
 									<ul class="mobile-top-nav clear">
@@ -150,6 +146,11 @@
 						<a class="clear {% if upload == request.path%} selected {%endif%}" href="{{upload}}">
 							<i class="fa fa-upload" aria-hidden="true"></i>
 							{% trans "Subir documento" %}
+						</a>
+					{% url 'intranet:news' as news%}
+						<a class="clear {% if news == request.path%} selected {%endif%}" href="{{news}}">
+							<i class="fa fa-newspaper-o" aria-hidden="true"></i>
+							{% trans "Mis noticias" %}
 						</a>
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">

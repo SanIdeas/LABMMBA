@@ -10,14 +10,16 @@
 		<div class="c4">
 			<a href="{% url 'intranet:profile' user.id %}">
 				<div class="intranet box users">
-					<div class="profile image">
-						<img class="img" 
-		                    {% if user.profile_picture %} 
-		                        src="{% static user.filename %}" 
-		                    {% else %} 
-		                        src="{% static 'intranet/images/default.png' %}" 
-		                    {% endif%}
-                        >
+					<div class="profile picture">
+						<div>
+							<img class="img" 
+			                    {% if user.profile_picture %} 
+			                        src="{% static user.filename %}" 
+			                    {% else %} 
+			                        src="{% static 'intranet/images/default.png' %}" 
+			                    {% endif%}
+	                        >
+	                    </div>
 					</div>
 					<h4>{{ user.first_name }} {{ user.last_name }}</h4>
 				</div>

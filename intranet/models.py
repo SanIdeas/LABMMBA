@@ -37,7 +37,6 @@ class Document(models.Model):
 	#http://stackoverflow.com/questions/12358920/renaming-files-in-django-filefield
 	def format_filename(self):
 		new_filename= settings.DOC_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.pdf'
-		print settings.MEDIA_ROOT + new_filename
 		os.rename(self.document.path, (new_filename))
 		self.document.name = new_filename
 		self.save()

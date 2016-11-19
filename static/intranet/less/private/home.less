@@ -85,7 +85,7 @@ body{
 	    font-size: 20pt;
 	    color: white;
 	    z-index: 99;
-	    text-shadow: 3px 0px 40px #e76e77;
+	    text-shadow: 3px 0px 40px @color;
 	}
 	&:after{
 		position: absolute;
@@ -396,6 +396,20 @@ body{
 			cursor: pointer;
 			&:hover{
 				background-color: @blue-color;
+			}
+		}
+		& .write{
+			.colored_box(#EE5548, "\f044", FontAwesome);
+			cursor: pointer;
+			&:hover{
+				background-color: #EE5548;
+			}
+		}
+		& .link{
+			.colored_box(#00a4a4, "\f0ac", FontAwesome);
+			cursor: pointer;
+			&:hover{
+				background-color: #00a4a4;
 			}
 		}
 		& > .description{

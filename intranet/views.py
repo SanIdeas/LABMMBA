@@ -13,6 +13,8 @@ from django.core.paginator import Paginator
 from intranet.forms import DocumentForm
 from intranet.models import Document
 from login.models import Area, User
+from webpage.models import News, Image
+from webpage.forms import NewsForm
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -492,5 +494,41 @@ def search_helper(request, search=None):
 		return JsonResponse(response)
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def news(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		return render(request, 'intranet/news.html', {'current_view': 'intranet', 'user_news': News.objects.filter(author=request.user)})
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def news_create(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		if request.method == "GET":
+			return render(request, 'intranet/news_create.html', {'current_view': 'intranet', 'today': date.today()})
+		elif request.method == "POST":
+			# Si se recibe un header y no una mini descripcion (y viceversa)
+			if bool(request.FILES.get('header')) != bool(request.POST.get('mini-description')):
+				if bool(request.FILES.get('header')):
+					return JsonResponse({'error': True, 'message': _(u'Se necesita una mini descripción')})
+				else:
+					return JsonResponse({'error': True, 'message': _(u'Se necesita una imagen para la cabecera')})
+			request.POST['author'] = request.user.id
+			form = NewsForm(request.POST, request.FILES)
+			if form.is_valid():
+				news = form.save()
+				news.set_thumbnail_filename()
+				if news.header:
+					news.set_header_filename()
+				return JsonResponse({'error': False, 'id': news.id})	
+			else:
+				return JsonResponse({'error': True, 'message': form.errors})	
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def news_create_link(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		return render(request, 'intranet/news_create_link.html', {'current_view': 'intranet'})
 	else:
 		return HttpResponseRedirect(reverse('login'))

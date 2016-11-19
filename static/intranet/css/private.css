@@ -325,7 +325,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e76e77;
+  text-shadow: 3px 0px 40px #f2ae47;
 }
 .intranet.box > .counter:after {
   position: absolute;
@@ -383,7 +383,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e76e77;
+  text-shadow: 3px 0px 40px #e0424e;
 }
 .intranet.box > .pdf:after {
   position: absolute;
@@ -444,7 +444,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e76e77;
+  text-shadow: 3px 0px 40px #009065;
 }
 .intranet.box > .google-drive:after {
   position: absolute;
@@ -505,7 +505,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e76e77;
+  text-shadow: 3px 0px 40px #006e9c;
 }
 .intranet.box > .myfiles:after {
   position: absolute;
@@ -519,6 +519,128 @@ body {
 }
 .intranet.box > .myfiles:hover {
   background-color: #006e9c;
+}
+.intranet.box .write {
+  position: relative;
+  overflow: hidden;
+  background-color: #f28077;
+  color: #fbd7d4;
+  cursor: pointer;
+}
+.intranet.box .write div {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 104px;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 700px) {
+  .intranet.box .write div {
+    width: 160px;
+  }
+}
+.intranet.box .write h1 {
+  padding-left: 10%;
+  font-size: 50px;
+  margin: 0;
+  position: relative;
+  align-self: baseline;
+  margin-top: 6px;
+}
+.intranet.box .write h3 {
+  position: absolute;
+  bottom: 19px;
+  right: 0;
+  margin: 0;
+}
+.intranet.box .write h5,
+.intranet.box .write .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #ee5548;
+}
+.intranet.box .write:after {
+  position: absolute;
+  right: 15px;
+  height: 100%;
+  font-size: 64px;
+  color: #fbd7d4;
+  bottom: -15px;
+  content: "\f044";
+  font: normal normal normal 123px/1 FontAwesome;
+}
+.intranet.box .write:hover {
+  background-color: #EE5548;
+}
+.intranet.box .link {
+  position: relative;
+  overflow: hidden;
+  background-color: #00d7d7;
+  color: #3effff;
+  cursor: pointer;
+}
+.intranet.box .link div {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 104px;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 700px) {
+  .intranet.box .link div {
+    width: 160px;
+  }
+}
+.intranet.box .link h1 {
+  padding-left: 10%;
+  font-size: 50px;
+  margin: 0;
+  position: relative;
+  align-self: baseline;
+  margin-top: 6px;
+}
+.intranet.box .link h3 {
+  position: absolute;
+  bottom: 19px;
+  right: 0;
+  margin: 0;
+}
+.intranet.box .link h5,
+.intranet.box .link .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #00a4a4;
+}
+.intranet.box .link:after {
+  position: absolute;
+  right: 15px;
+  height: 100%;
+  font-size: 64px;
+  color: #3effff;
+  bottom: -15px;
+  content: "\f0ac";
+  font: normal normal normal 123px/1 FontAwesome;
+}
+.intranet.box .link:hover {
+  background-color: #00a4a4;
 }
 .intranet.box > .description {
   width: 100%;
@@ -851,7 +973,7 @@ form .c12 {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e76e77;
+  text-shadow: 3px 0px 40px #e0424e;
 }
 .document.download:after {
   position: absolute;
@@ -1910,21 +2032,21 @@ form .c12 {
   width: 85%;
   border-top: 1px solid #d2d2d2;
 }
-.profile.image {
+.profile.picture {
   background-color: #e9edf0;
-}
-.profile.image > div {
-  width: 100%;
-  display: flex;
   overflow: hidden;
 }
+.profile.picture > div {
+  width: 100%;
+  display: flex;
+}
 @media screen and (max-width: 700px) {
-  .profile.image > div:nth-child(1) {
+  .profile.picture > div:nth-child(1) {
     position: relative;
     display: block;
   }
 }
-.profile.image > div img {
+.profile.picture > div img {
   align-self: center;
   width: 200px;
   border-radius: 50%;
@@ -2123,11 +2245,15 @@ form .c12 {
 .profile.cropper > .editor .profile.image {
   height: 200px;
   display: block;
+  background-color: #e9edf0;
 }
 .profile.cropper > .editor .profile.image > * {
   margin: 0 auto;
   height: 200px;
+  width: 200px;
+  border-radius: 50%;
   overflow: hidden;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
 }
 .profile.cropper > .editor .profile.image > * > img {
   max-width: inherit;
@@ -2145,8 +2271,8 @@ form .c12 {
 .profile.cropper > .editor .crop img {
   height: 100%;
 }
-.cropper-view-box,
-.cropper-face {
+.profile .cropper-view-box,
+.profile .cropper-face {
   border-radius: 50%;
 }
 .linkDrive {
@@ -2193,8 +2319,212 @@ form .c12 {
   right: 0;
   color: #009065;
 }
+#errorModal {
+  position: relative;
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+#errorModal h3 {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: normal;
+}
+#errorModal i {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  line-height: 100px;
+  font-size: 107pt;
+  opacity: 0.1;
+  right: 0;
+  color: #e0424e;
+}
 .users.box h4 {
   text-align: center;
+}
+.news .separator {
+  border-bottom: 1px solid #eeeeee;
+  width: 80%;
+  margin: 20px auto;
+}
+.news .head .add {
+  border: none;
+  background-color: #009065;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  border-radius: 0px 0px 0px 10px;
+}
+.news .head .add:hover {
+  background-color: #00c389;
+}
+@media screen and (max-width: 1100px) {
+  .news .head .add {
+    border-radius: 0px;
+  }
+}
+.news .list .item {
+  width: 100%;
+  display: table;
+  padding: 10px 0px;
+  border-bottom: 1px solid #eeeeee;
+}
+.news .list .item * {
+  float: none;
+}
+.news .list .item .details {
+  float: inherit;
+  display: table-cell;
+}
+.news .list .item .details > a {
+  text-decoration: none;
+  color: inherit;
+}
+.news .list .item .details .date {
+  font-size: 9pt;
+  font-style: italic;
+}
+.news .list .item .details .title {
+  width: 100%;
+  margin: 0px;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding: 0px;
+  font-weight: normal;
+}
+.news .list .item .details .source {
+  font-style: 9pt;
+}
+.news .list .item .buttons {
+  display: table-cell;
+  vertical-align: middle;
+}
+.news .list .item .buttons .wrapper {
+  text-align: right;
+}
+.news .list .item .buttons .wrapper a {
+  text-decoration: none;
+  color: #aab9c1;
+  outline: none;
+}
+.news .list .item .buttons .wrapper a.delete:hover {
+  color: #e76e77;
+}
+.news .list .item .buttons .wrapper a.edit:hover {
+  color: #f5c377;
+}
+.news .list .item:last-child {
+  border: none;
+}
+.news.modal {
+  padding: 0px;
+}
+.news.modal .box {
+  margin: 0;
+}
+.news.modal .c6 {
+  padding: 5px;
+}
+.news.modal .c12 {
+  padding: 0px;
+}
+.news.modal a {
+  text-decoration: none;
+}
+.news .picture {
+  width: 100%;
+}
+.news .picture .button {
+  text-align: center;
+}
+.news .picture .button .btn {
+  display: block;
+  padding: 50px 0px;
+  text-decoration: none;
+}
+.news .picture .button .btn > * {
+  display: block;
+}
+.news .picture .button .btn > i {
+  font-size: 50pt;
+}
+.news .cropper {
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.news .cropper .editor {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+}
+.news .cropper .editor > * {
+  position: relative;
+}
+.news .cropper .editor .crop {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.news .cropper .editor .buttons {
+  width: 100%;
+  display: block;
+}
+.news .cropper .editor .buttons div {
+  padding: 10px 10px;
+}
+.news .cropper .editor .buttons i {
+  padding-left: 5px;
+}
+.news .cropper .editor .buttons button {
+  padding: 2px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #dddddd;
+}
+.news form {
+  padding: 10px 0px;
+}
+.news form .field {
+  padding: 5px 0px;
+}
+.news form .field span {
+  padding: 5px 20px !important;
+}
+.news form .field textarea {
+  overflow: hidden;
+  width: 100%;
+  resize: none;
+  margin: 0;
+  border: none;
+  min-height: 30px;
+  background: #e9edf0;
+}
+.news form .field textarea:disabled {
+  opacity: 0.5;
+}
+.news form .field .c6 {
+  padding: 0px 20px;
+}
+.news .info {
+  padding: 20px;
+  display: block;
+  text-align: justify;
 }
 /*!
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome

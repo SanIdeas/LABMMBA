@@ -428,7 +428,7 @@ function sendIds(){
 function extract_content(ids){
 	var form = new FormData();
 	form.append('ids', real_ids);
-	$	.ajax({
+	$.ajax({
 		url: extract_link,
 		method: 'POST',
 		data: form,  

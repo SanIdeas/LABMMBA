@@ -15,8 +15,11 @@ urlpatterns = [
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^upload/local/$', views.upload_local, name="local_upload"),
     url(r'^upload/drive/$', views.upload_drive, name="drive_upload"),
-    url(r'^upload/form/local$', views.local_form, name='local_form'),
-    url(r'^upload/form/drive$', views.drive_form, name='drive_form'),
+    url(r'^upload/form/local/$', views.local_form, name='local_form'),
+    url(r'^upload/form/drive/$', views.drive_form, name='drive_form'),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
     url(r'^helper/(?P<search>.*)/$', views.search_helper, name="helper"),
+    url(r'^news/$', views.news, name='news'),
+    url(r'^news/create/written$', views.news_create, name='create_news'),
+    url(r'^news/create/link$', views.news_create_link, name='create_news_from_link'),
 ]

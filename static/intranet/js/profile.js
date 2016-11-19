@@ -41,7 +41,7 @@ function enableCrop(){
 			var previewHeight = previewWidth / previewAspectRatio;
 			var imageScaledRatio = e.width / previewWidth;
 
-			preview.height(previewHeight).find('img').css({
+			preview.find('img').height(previewHeight).css({
 				width: imageData.naturalWidth / imageScaledRatio,
 				height: imageData.naturalHeight / imageScaledRatio,
 				marginLeft: -e.x / imageScaledRatio,
