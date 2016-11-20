@@ -47,12 +47,12 @@ class News(models.Model):
 		self.slug = slugify(self.title)
 		super(News, self).save(*args, **kwargs)
 	def set_header_filename(self):
-		filename_h = 'static/webpage/images/news/header/NH' + str(self.id) + '.jpg'
+		filename_h = settings.NEWS_HEADERS_DIR + 'NH' + str(self.id) + '.jpg'
 		os.rename(self.header.path, filename_h)
 		self.header.name = filename_h
 		self.save()
 	def set_thumbnail_filename(self):
-		filename_t = 'static/webpage/images/news/thumbnail/NT' + str(self.id) + '.jpg'
+		filename_t = settings.NEWS_THUMBNAILS_DIR + 'NT' + str(self.id) + '.jpg'
 		os.rename(self.thumbnail.path, filename_t)
 		self.thumbnail.name = filename_t
 		self.save()
@@ -84,10 +84,10 @@ class Image(models.Model):
 	news = models.ForeignKey(News, on_delete=models.CASCADE)
 
 	def static_url(self):
-		return '/' + self.picture.name
+		return settings.NEWS_PICTURES_STATIC_URL + os.path.basename(self.picture.name)
 
 	def set_filename(self):
-		filename = 'static/webpage/images/news/N' + str(self.news.id) + 'P' + str(self.id) + '.jpg'
+		filename =  settings.NEWS_PICTURES_DIR + 'N' + str(self.news.id) + 'P' + str(self.id) + '.jpg'
 		os.rename(self.picture.path, filename)
 		self.picture.name = filename
 		self.save()

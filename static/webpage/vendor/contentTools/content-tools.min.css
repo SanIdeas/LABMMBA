@@ -1292,7 +1292,7 @@
     position: relative;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .35)
 }
-.ct-widget .ct-tag:after {
+/*.ct-widget .ct-tag:after {
     border-style: solid;
     border-bottom: 12px solid rgba(255, 0, 0, 0);
     border-left: 12px solid #2980b9;
@@ -1306,7 +1306,7 @@
     position: absolute;
     width: 24px;
     -moz-transform: scale(.9999)
-}
+}*/
 .ct-widget .ct-tag:first-child {
     margin-left: 0
 }

@@ -56,11 +56,11 @@ def news_editor(request, id = None):
 					return HttpResponseRedirect(reverse('webpage:home')) # 'No tienes permiso para modificar esta noticia'
 			elif request.method == "POST":
 				# En este caso la respuesta sera en un objeto JSON
-				if request.POST.get('news-title-html'):
+				if request.POST.get('news-title-html') is not None:
 					news.title_html = request.POST.get('news-title-html')
-				if request.POST.get('news-title'):
+				if request.POST.get('news-title') is not None:
 					news.title = request.POST.get('news-title')
-				if request.POST.get('news-content'):
+				if request.POST.get('news-content') is not None:
 					news.body = request.POST.get('news-content')
 				news.save()
 				return JsonResponse({'error': False})
