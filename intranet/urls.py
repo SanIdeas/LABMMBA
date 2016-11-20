@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^helper/(?P<search>.*)/$', views.search_helper, name="helper"),
     url(r'^news/$', views.news, name='news'),
     url(r'^news/create/written$', views.news_create, name='create_news'),
+    url(r'^news/edit/(?P<id>.*)/$', views.news_edit, name='edit_news'),
     url(r'^news/create/link$', views.news_create_link, name='create_news_from_link'),
+    url(r'^news/delete/(?P<id>.*)/$', views.news_delete, name='delete_news'),
 ]

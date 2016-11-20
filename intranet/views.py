@@ -508,12 +508,6 @@ def news_create(request):
 		if request.method == "GET":
 			return render(request, 'intranet/news_create.html', {'current_view': 'intranet', 'today': date.today()})
 		elif request.method == "POST":
-			# Si se recibe un header y no una mini descripcion (y viceversa)
-			if bool(request.FILES.get('header')) != bool(request.POST.get('mini-description')):
-				if bool(request.FILES.get('header')):
-					return JsonResponse({'error': True, 'message': _(u'Se necesita una mini descripción')})
-				else:
-					return JsonResponse({'error': True, 'message': _(u'Se necesita una imagen para la cabecera')})
 			request.POST['author'] = request.user.id
 			form = NewsForm(request.POST, request.FILES)
 			if form.is_valid():
@@ -527,8 +521,43 @@ def news_create(request):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
+def news_edit(request, id):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		news = News.objects.filter(id=id, author=request.user)
+		if news:
+			news = news[0]
+			if request.method == "GET":
+				return render(request, 'intranet/news_edit.html', {'current_view': 'intranet', 'news_': news})
+			elif request.method == "POST":
+					news.date = request.POST.get('date')
+					news.source_text = request.POST.get('source_text')
+					news.source_url = request.POST.get('source_url')
+					
+					if request.FILES.get('thumbnail'):
+						news.update_thumbnail(request.FILES.get('thumbnail'))
+					if request.FILES.get('header'):
+						news.update_header(request.FILES.get('header'))
+					news.save()				
+					return JsonResponse({'error': False, 'id': news.id})	
+		else:
+			return HttpResponseRedirect(reverse('intranet:news'))	
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
 def news_create_link(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		return render(request, 'intranet/news_create_link.html', {'current_view': 'intranet'})
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def news_delete(request, id):
+	if request.user.is_authenticated():
+		news = News.objects.filter(id=id)
+		if news:
+			news = news[0]
+			if news.author == request.user or request.user.is_admin:
+				news.delete()
+		return HttpResponseRedirect(reverse('intranet:news'))
+
 	else:
 		return HttpResponseRedirect(reverse('login'))

@@ -21,9 +21,17 @@
                 <article class="post clear">
                     {{news_.body|safe}}
 
-                    <div class="source">
-                        <p><strong>Fuente: </strong><a href="#">Agencia Lorem Ipsum</a></p>
-                    </div>
+                    {% if news_.source_text %}
+                        <div class="source">
+                            <p><strong>Fuente: </strong>
+                            {% if news_.source_url %}
+                                <a href="{{news_.source_url}}">{{news_.source_text}}</a>
+                            {% else %}
+                                {{news_.source_text}}
+                            {% endif %}
+                            </p>
+                        </div>
+                    {% endif %}
                 </article>
                 <!--<div id="gallery">
                     <h3>Lorem ipsum dolor sit amet</h3>
@@ -141,7 +149,7 @@
 </section>
 <script>
     $('.content').find('img').each(function(){
-        $(this).wrap('<a href="' + $(this).attr('src') + '" title="' + $(this).attr('alt') + '" ></a>');
+        $(this).wrap('<a href="' + $(this).attr('src') + '"></a>');
     });
 </script>
 {% endblock %}

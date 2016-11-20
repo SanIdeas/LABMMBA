@@ -33,19 +33,29 @@
 						<div class="details c10">
 							{%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
 							{%if news.title%}
-								<a href="{% url 'webpage:news' news.date.year news.date.month news.date.day news.slug %}">
+								<a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
 									<h2 class="title">{{news.title}}</h2>
 								</a>
+							{% else %}
+								<h2 class="title">{% trans "Noticia sin título" %}</h2>
 							{%endif%}
-							{%if news.source%}<span class="source"><strong>Fuente: </strong><a href="#">www.biobiochile.cl</a></span>{%endif%}
+							{% if news.source_text %}
+		                        <span class="source"><strong>Fuente: </strong>
+		                            {% if news.source_url %}
+		                                <a href="{{news.source_url}}">{{news.source_text}}</a>
+		                            {% else %}
+		                                {{news.source_text}}
+		                            {% endif %}
+		                        </span>
+		                    {% endif %}
 						</div>
 						<div class="buttons c2">
 							<div class="wrapper">
-								<a href="{% url 'webpage:news_editor' news.id %}" class="fa-stack fa-lg edit trans">
+								<a href="{% url 'intranet:edit_news' news.id %}" class="fa-stack fa-lg edit trans">
 									<i class="fa fa-circle fa-stack-2x"></i>
 									<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 								</a>
-								<a href="#" class="fa-stack fa-lg delete trans">
+								<a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{news.id}}" data-title="{{news.title}}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
 									<i class="fa fa-circle fa-stack-2x"></i>
 									<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 								</a>
@@ -75,7 +85,7 @@
 		<div class="c6">
 			<div class="intranet box">
 				<a href="{% url 'intranet:create_news_from_link' %}">
-					<div class="link trans">
+					<div class="external-link trans">
 						<h5>{% trans "Enlace" %}</h5>
 					</div>
 				</a>
@@ -83,12 +93,16 @@
 		</div>
 	</div>
 </div>
+<!-- Modal de confirmacion -->
+<div class="document modal" id="deleteModal" style="display:none;">
+	<h2>{% trans "¿Estas seguro?" %}</h2>
+	<p>{% trans "Esta noticia desaparecerá completamente" %}</p>
+	<h3 class="confirm" type="title" data=""></h3>
+	<h5 class="confirm" type="date" data=""></h5>
+	<div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+</div>
 <script>
-	var update_picture_url = "{% url 'intranet:update_picture' %}";
-	var edit_document_url = "{% url 'intranet:edit_document' '888' '999' %}";
-	var csrf_token = "{{ csrf_token }}";
-	var authentication_url = "http://{{ request.get_host }}{% url 'get_credentials' %}";
-	var password_url = "{% url 'change_password' %}";
+	var delete_url= "{% url 'intranet:delete_news' 888 %}";
 </script>
 <script src="{% static 'intranet/js/news/news_init.js' %}"></script>
 {% endblock %}

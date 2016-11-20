@@ -5874,10 +5874,18 @@
       }
     };
 
+    IgnitionUI.prototype.back = function() {
+      if (this.dispatchEvent(this.createEvent('back'))) {
+        return this.state('back');
+      }
+    };
+
     IgnitionUI.prototype.mount = function() {
       IgnitionUI.__super__.mount.call(this);
       this._domElement = this.constructor.createDiv(['ct-widget', 'ct-ignition', 'ct-ignition--ready']);
       this.parent().domElement().appendChild(this._domElement);
+      this._domBack = this.constructor.createDiv(['ct-ignition__button', 'ct-ignition__button--back']);
+      this._domElement.appendChild(this._domBack);
       this._domEdit = this.constructor.createDiv(['ct-ignition__button', 'ct-ignition__button--edit']);
       this._domElement.appendChild(this._domEdit);
       this._domConfirm = this.constructor.createDiv(['ct-ignition__button', 'ct-ignition__button--confirm']);
@@ -5911,6 +5919,9 @@
         return this.addCSSClass('ct-ignition--editing');
       } else if (this._state === 'ready') {
         return this.addCSSClass('ct-ignition--ready');
+      } else if (this._state === 'back') {
+        window.location.href = intranet_editor_url;
+        return this.addCSSClass('ct-ignition--ready');
       }
     };
 
@@ -5922,6 +5933,12 @@
     };
 
     IgnitionUI.prototype._addDOMEventListeners = function() {
+      this._domBack.addEventListener('click', (function(_this) {
+        return function(ev) {
+          ev.preventDefault();
+          return _this.back();
+        };
+      })(this));
       this._domEdit.addEventListener('click', (function(_this) {
         return function(ev) {
           ev.preventDefault();

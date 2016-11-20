@@ -280,13 +280,13 @@ body {
 .intranet.box > .btn a:hover {
   background-color: #f9f9f9;
 }
-.intranet.box > .counter {
+.intranet.box .counter {
   position: relative;
   overflow: hidden;
   background-color: #f5c377;
   color: #fcedd6;
 }
-.intranet.box > .counter div {
+.intranet.box .counter div {
   display: flex;
   position: relative;
   width: 200px;
@@ -294,11 +294,11 @@ body {
   justify-content: flex-end;
 }
 @media screen and (max-width: 700px) {
-  .intranet.box > .counter div {
+  .intranet.box .counter div {
     width: 160px;
   }
 }
-.intranet.box > .counter h1 {
+.intranet.box .counter h1 {
   padding-left: 10%;
   font-size: 50px;
   margin: 0;
@@ -306,14 +306,14 @@ body {
   align-self: baseline;
   margin-top: 6px;
 }
-.intranet.box > .counter h3 {
+.intranet.box .counter h3 {
   position: absolute;
   bottom: 19px;
   right: 0;
   margin: 0;
 }
-.intranet.box > .counter h5,
-.intranet.box > .counter .google {
+.intranet.box .counter h5,
+.intranet.box .counter .google {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -327,7 +327,13 @@ body {
   z-index: 99;
   text-shadow: 3px 0px 40px #f2ae47;
 }
-.intranet.box > .counter:after {
+.intranet.box .counter span {
+  text-shadow: 3px 0px 40px #c57c0e;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
+.intranet.box .counter:after {
   position: absolute;
   right: 15px;
   height: 100%;
@@ -335,16 +341,16 @@ body {
   color: #fcedd6;
   bottom: -15px;
   content: "\f15b";
-  font: normal normal normal 123px/1 FontAwesome;
+  font: normal normal normal 123px FontAwesome;
 }
-.intranet.box > .pdf {
+.intranet.box .pdf {
   position: relative;
   overflow: hidden;
   background-color: #e76e77;
   color: #f6c5c9;
   cursor: pointer;
 }
-.intranet.box > .pdf div {
+.intranet.box .pdf div {
   display: flex;
   position: relative;
   width: 200px;
@@ -352,11 +358,11 @@ body {
   justify-content: flex-end;
 }
 @media screen and (max-width: 700px) {
-  .intranet.box > .pdf div {
+  .intranet.box .pdf div {
     width: 160px;
   }
 }
-.intranet.box > .pdf h1 {
+.intranet.box .pdf h1 {
   padding-left: 10%;
   font-size: 50px;
   margin: 0;
@@ -364,14 +370,14 @@ body {
   align-self: baseline;
   margin-top: 6px;
 }
-.intranet.box > .pdf h3 {
+.intranet.box .pdf h3 {
   position: absolute;
   bottom: 19px;
   right: 0;
   margin: 0;
 }
-.intranet.box > .pdf h5,
-.intranet.box > .pdf .google {
+.intranet.box .pdf h5,
+.intranet.box .pdf .google {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -385,7 +391,13 @@ body {
   z-index: 99;
   text-shadow: 3px 0px 40px #e0424e;
 }
-.intranet.box > .pdf:after {
+.intranet.box .pdf span {
+  text-shadow: 3px 0px 40px #a21a25;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
+.intranet.box .pdf:after {
   position: absolute;
   right: 15px;
   height: 100%;
@@ -393,19 +405,19 @@ body {
   color: #f6c5c9;
   bottom: -15px;
   content: "\f1c1";
-  font: normal normal normal 123px/1 FontAwesome;
+  font: normal normal normal 123px FontAwesome;
 }
-.intranet.box > .pdf:hover {
+.intranet.box .pdf:hover {
   background-color: #e0424e;
 }
-.intranet.box > .google-drive {
+.intranet.box .google-drive {
   position: relative;
   overflow: hidden;
   background-color: #00c389;
   color: #2affbf;
   cursor: pointer;
 }
-.intranet.box > .google-drive div {
+.intranet.box .google-drive div {
   display: flex;
   position: relative;
   width: 200px;
@@ -413,11 +425,11 @@ body {
   justify-content: flex-end;
 }
 @media screen and (max-width: 700px) {
-  .intranet.box > .google-drive div {
+  .intranet.box .google-drive div {
     width: 160px;
   }
 }
-.intranet.box > .google-drive h1 {
+.intranet.box .google-drive h1 {
   padding-left: 10%;
   font-size: 50px;
   margin: 0;
@@ -425,14 +437,14 @@ body {
   align-self: baseline;
   margin-top: 6px;
 }
-.intranet.box > .google-drive h3 {
+.intranet.box .google-drive h3 {
   position: absolute;
   bottom: 19px;
   right: 0;
   margin: 0;
 }
-.intranet.box > .google-drive h5,
-.intranet.box > .google-drive .google {
+.intranet.box .google-drive h5,
+.intranet.box .google-drive .google {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -446,7 +458,13 @@ body {
   z-index: 99;
   text-shadow: 3px 0px 40px #009065;
 }
-.intranet.box > .google-drive:after {
+.intranet.box .google-drive span {
+  text-shadow: 3px 0px 40px #002a1d;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
+.intranet.box .google-drive:after {
   position: absolute;
   right: 15px;
   height: 100%;
@@ -454,19 +472,19 @@ body {
   color: #2affbf;
   bottom: -15px;
   content: "\e0a5";
-  font: normal normal normal 123px/1 ElegantIcons;
+  font: normal normal normal 90px ElegantIcons;
 }
-.intranet.box > .google-drive:hover {
+.intranet.box .google-drive:hover {
   background-color: #009065;
 }
-.intranet.box > .myfiles {
+.intranet.box .myfiles {
   position: relative;
   overflow: hidden;
   background-color: #0092cf;
   color: #36c4ff;
   cursor: pointer;
 }
-.intranet.box > .myfiles div {
+.intranet.box .myfiles div {
   display: flex;
   position: relative;
   width: 200px;
@@ -474,11 +492,11 @@ body {
   justify-content: flex-end;
 }
 @media screen and (max-width: 700px) {
-  .intranet.box > .myfiles div {
+  .intranet.box .myfiles div {
     width: 160px;
   }
 }
-.intranet.box > .myfiles h1 {
+.intranet.box .myfiles h1 {
   padding-left: 10%;
   font-size: 50px;
   margin: 0;
@@ -486,14 +504,14 @@ body {
   align-self: baseline;
   margin-top: 6px;
 }
-.intranet.box > .myfiles h3 {
+.intranet.box .myfiles h3 {
   position: absolute;
   bottom: 19px;
   right: 0;
   margin: 0;
 }
-.intranet.box > .myfiles h5,
-.intranet.box > .myfiles .google {
+.intranet.box .myfiles h5,
+.intranet.box .myfiles .google {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -507,7 +525,13 @@ body {
   z-index: 99;
   text-shadow: 3px 0px 40px #006e9c;
 }
-.intranet.box > .myfiles:after {
+.intranet.box .myfiles span {
+  text-shadow: 3px 0px 40px #002636;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
+.intranet.box .myfiles:after {
   position: absolute;
   right: 15px;
   height: 100%;
@@ -515,10 +539,73 @@ body {
   color: #36c4ff;
   bottom: -15px;
   content: "\f0c5";
-  font: normal normal normal 123px/1 FontAwesome;
+  font: normal normal normal 123px FontAwesome;
 }
-.intranet.box > .myfiles:hover {
+.intranet.box .myfiles:hover {
   background-color: #006e9c;
+}
+.intranet.box .annotation {
+  position: relative;
+  overflow: hidden;
+  background-color: #5eaae3;
+  color: #b5d8f2;
+}
+.intranet.box .annotation div {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 104px;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 700px) {
+  .intranet.box .annotation div {
+    width: 160px;
+  }
+}
+.intranet.box .annotation h1 {
+  padding-left: 10%;
+  font-size: 50px;
+  margin: 0;
+  position: relative;
+  align-self: baseline;
+  margin-top: 6px;
+}
+.intranet.box .annotation h3 {
+  position: absolute;
+  bottom: 19px;
+  right: 0;
+  margin: 0;
+}
+.intranet.box .annotation h5,
+.intranet.box .annotation .google {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 20pt;
+  color: white;
+  z-index: 99;
+  text-shadow: 3px 0px 40px #3294db;
+}
+.intranet.box .annotation span {
+  text-shadow: 3px 0px 40px #195d8f;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
+.intranet.box .annotation:after {
+  position: absolute;
+  right: 15px;
+  height: 100%;
+  font-size: 64px;
+  color: #b5d8f2;
+  bottom: -15px;
+  content: "\f10e";
+  font: normal normal normal 60px FontAwesome;
 }
 .intranet.box .write {
   position: relative;
@@ -568,6 +655,12 @@ body {
   z-index: 99;
   text-shadow: 3px 0px 40px #ee5548;
 }
+.intranet.box .write span {
+  text-shadow: 3px 0px 40px #be1f12;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
 .intranet.box .write:after {
   position: absolute;
   right: 15px;
@@ -576,19 +669,19 @@ body {
   color: #fbd7d4;
   bottom: -15px;
   content: "\f044";
-  font: normal normal normal 123px/1 FontAwesome;
+  font: normal normal normal 123px FontAwesome;
 }
 .intranet.box .write:hover {
   background-color: #EE5548;
 }
-.intranet.box .link {
+.intranet.box .external-link {
   position: relative;
   overflow: hidden;
   background-color: #00d7d7;
   color: #3effff;
   cursor: pointer;
 }
-.intranet.box .link div {
+.intranet.box .external-link div {
   display: flex;
   position: relative;
   width: 200px;
@@ -596,11 +689,11 @@ body {
   justify-content: flex-end;
 }
 @media screen and (max-width: 700px) {
-  .intranet.box .link div {
+  .intranet.box .external-link div {
     width: 160px;
   }
 }
-.intranet.box .link h1 {
+.intranet.box .external-link h1 {
   padding-left: 10%;
   font-size: 50px;
   margin: 0;
@@ -608,14 +701,14 @@ body {
   align-self: baseline;
   margin-top: 6px;
 }
-.intranet.box .link h3 {
+.intranet.box .external-link h3 {
   position: absolute;
   bottom: 19px;
   right: 0;
   margin: 0;
 }
-.intranet.box .link h5,
-.intranet.box .link .google {
+.intranet.box .external-link h5,
+.intranet.box .external-link .google {
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -629,7 +722,13 @@ body {
   z-index: 99;
   text-shadow: 3px 0px 40px #00a4a4;
 }
-.intranet.box .link:after {
+.intranet.box .external-link span {
+  text-shadow: 3px 0px 40px #003e3e;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
+.intranet.box .external-link:after {
   position: absolute;
   right: 15px;
   height: 100%;
@@ -637,9 +736,9 @@ body {
   color: #3effff;
   bottom: -15px;
   content: "\f0ac";
-  font: normal normal normal 123px/1 FontAwesome;
+  font: normal normal normal 123px FontAwesome;
 }
-.intranet.box .link:hover {
+.intranet.box .external-link:hover {
   background-color: #00a4a4;
 }
 .intranet.box > .description {
@@ -975,6 +1074,12 @@ form .c12 {
   z-index: 99;
   text-shadow: 3px 0px 40px #e0424e;
 }
+.document.download span {
+  text-shadow: 3px 0px 40px #a21a25;
+  position: relative;
+  color: white;
+  z-index: 99;
+}
 .document.download:after {
   position: absolute;
   right: 15px;
@@ -983,7 +1088,7 @@ form .c12 {
   color: #f6c5c9;
   bottom: -15px;
   content: "\f1c1";
-  font: normal normal normal 123px/1 FontAwesome;
+  font: normal normal normal 123px FontAwesome;
 }
 .document.download div {
   display: flex;

@@ -27,13 +27,6 @@
 	<meta name="twitter:image:src" content="">
 	<meta name="twitter:domain" content="s">
 	<meta name="apple-mobile-web-app-title" content="USM"/>
-
-	<!-- Javascript -->
-	<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
-	<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
-	<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
-	<script src="{% static 'usm_theme/js/functions.js' %}"></script>
-
 	<!-- Stylesheets -->
 
 	<link rel="stylesheet" media="screen" href="{% static 'usm_theme/css/royalslider.css' %}"/>
@@ -42,6 +35,12 @@
 	<link rel="shortcut icon" href="{% static 'usm_theme/img/icon/favicon.png' %}"/>
 	<link rel="image_src" href=""/>
 	<link rel="apple-touch-icon" href="{% static 'usm_theme/img/icon/ilogica-icon.png' %}"/>
+
+	<!-- Javascript -->
+	<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
+	<script src="{% static 'usm_theme/js/functions.js' %}"></script>
+	<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
+	<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
 	{% block css %}{% endblock %}
 </head>
 <body class="{{ body }} "><!-- Deberia cambiar -->

@@ -18,8 +18,8 @@ def home(request):
 							'documents': documents,
 							'body': 'inicio',
 							'header': News.objects.exclude(header="").exclude(header=None)[:5],
-							'news_1': News.objects.all()[:2],
-							'news_2': News.objects.all()[2:4],
+							'news_1': News.objects.exclude(thumbnail="").exclude(thumbnail=None)[:2],
+							'news_2': News.objects.exclude(thumbnail="").exclude(thumbnail=None)[2:4],
 							})
 
 

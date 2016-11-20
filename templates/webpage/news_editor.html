@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'webpage/vendor/contentTools/content-tools.min.css' %}">
     <!-- editor css -->
     <link rel="stylesheet" type="text/css" href="{% static 'webpage/css/news_editor.css' %}">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/font-awesome.min.css' %}">
 {% endblock %}
 {% block extra_js %}
     <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
@@ -38,7 +40,19 @@
                 <article class="post clear" data-editable data-name="news-content">
                     {{news.body|safe}}
 
+                    
                 </article>
+                {% if news.source_text %}
+                    <div class="source">
+                        <p><strong>Fuente: </strong>
+                        {% if news.source_url %}
+                            <a href="{{news.source_url}}">{{news.source_text}}</a>
+                        {% else %}
+                            {{news.source_text}}
+                        {% endif %}
+                        </p>
+                    </div>
+                {% endif %}
                 <!--<div id="gallery">
                     <h3>Lorem ipsum dolor sit amet</h3>
                     <div class="photos clear">
@@ -96,6 +110,7 @@
 <script>var id = {{news.id}}</script>
 <script>var author = 0</script>
 <script>var csrf_token = "{{csrf_token}}"</script>
+<script>var intranet_editor_url = "{% url 'intranet:edit_news' news.id %}"</script>
 <script>var save_images_url = "{% url 'webpage:save_images' %}"</script>
 <script>var news_editor_url = "{% url 'webpage:news_editor' news.id %}"</script>
 <script src="{% static 'webpage/vendor/contentTools/content-tools.js' %}"></script>

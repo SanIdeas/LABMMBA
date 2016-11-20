@@ -39,7 +39,7 @@ body{
     flex-direction: column;
 }
 
-.colored_box(@color, @icon, @font-family){
+.colored_box(@color, @icon, @font-family, @line-height){
 	position: relative;
 	overflow: hidden;
 	background-color: lighten(@color, 10%);
@@ -87,6 +87,12 @@ body{
 	    z-index: 99;
 	    text-shadow: 3px 0px 40px @color;
 	}
+	& span{
+	    text-shadow: 3px 0px 40px darken(@color, 20%);
+	    position: relative;
+	    color: white;	
+	    z-index: 99;	
+	}
 	&:after{
 		position: absolute;
 	    right: 15px;
@@ -95,7 +101,7 @@ body{
 	    color: lighten(@color, 30%);
 	    bottom: -15px;
 	    content: @icon;
-	    font: normal normal normal 123px/1 @font-family;
+	    font: normal normal normal @line-height @font-family;
 
 	}
 }
@@ -374,39 +380,42 @@ body{
 				}
 			}
 		}
-		& > .counter{
-			.colored_box(@yellow-color, "\f15b", FontAwesome);
+		& .counter{
+			.colored_box(@yellow-color, "\f15b", FontAwesome, 123px);
 		}
-		& > .pdf{
-			.colored_box(@red-color, "\f1c1", FontAwesome);
+		& .pdf{
+			.colored_box(@red-color, "\f1c1", FontAwesome, 123px);
 			cursor: pointer;
 			&:hover{
 				background-color: @red-color;
 			}
 		}
-		& > .google-drive{
-			.colored_box(@green-color, "\e0a5", ElegantIcons);
+		& .google-drive{
+			.colored_box(@green-color, "\e0a5", ElegantIcons, 90px);
 			cursor: pointer;
 			&:hover{
 				background-color: @green-color;
 			}
 		}
-		& > .myfiles{
-			.colored_box(@blue-color, "\f0c5", FontAwesome);
+		& .myfiles{
+			.colored_box(@blue-color, "\f0c5", FontAwesome, 123px);
 			cursor: pointer;
 			&:hover{
 				background-color: @blue-color;
 			}
 		}
+		& .annotation{
+			.colored_box(darken(#489fdf, 5%), "\f10e", FontAwesome, 60px);
+		}
 		& .write{
-			.colored_box(#EE5548, "\f044", FontAwesome);
+			.colored_box(#EE5548, "\f044", FontAwesome, 123px);
 			cursor: pointer;
 			&:hover{
 				background-color: #EE5548;
 			}
 		}
-		& .link{
-			.colored_box(#00a4a4, "\f0ac", FontAwesome);
+		& .external-link{
+			.colored_box(#00a4a4, "\f0ac", FontAwesome, 123px);
 			cursor: pointer;
 			&:hover{
 				background-color: #00a4a4;

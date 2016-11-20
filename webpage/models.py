@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.text import slugify
 from django.conf import settings
 from login.models import User
+from datetime import date
 from django.db import models
 import os
 
@@ -31,16 +32,16 @@ class News(models.Model):
 	title_html = models.CharField(max_length=200, null=True)
 	slug = models.SlugField(max_length=200, null=True)
 	body = models.TextField()
-	date = models.DateField(null=True, auto_now_add=True)
+	date = models.DateField(null=True, default=date.today)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	source_text = models.CharField(max_length=200, null=True)
 	source_url = models.CharField(max_length=200, null=True)
 	is_published = models.BooleanField(default=False)
 	admin_annotation = models.CharField(max_length=200, null=True)
-	description = models.CharField(max_length=200, null=True)
-	mini_description = models.CharField(max_length=100, null=True)
 	thumbnail = models.FileField(upload_to='static/webpage/images/news/thumbnail/', max_length=500, null=True)
 	header = models.FileField(upload_to='static/webpage/images/news/header/', max_length=500, null=True)
+	in_header = models.BooleanField(default=False)
+	is_external = models.BooleanField(default=False)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.title)
@@ -59,6 +60,24 @@ class News(models.Model):
 		return 'webpage/images/news/thumbnail/' + os.path.basename(self.thumbnail.name)
 	def header_url(self):
 		return 'webpage/images/news/header/' + os.path.basename(self.header.name)
+	def update_thumbnail(self, picture):
+		# Si existe una foto, se elimina
+		if self.thumbnail:
+			os.remove(self.thumbnail.path)
+			self.save()
+
+		self.thumbnail.save('NT' + str(self.id) + '.jpg', picture)
+		self.save()
+		return True
+	def update_header(self, picture):
+		# Si existe una foto, se elimina
+		if self.header:
+			os.remove(self.header.path)
+			self.save()
+
+		self.header.save('NH' + str(self.id) + '.jpg', picture)
+		self.save()
+		return True
 
 class Image(models.Model):
 	picture = models.FileField(upload_to='static/webpage/images/news/', max_length=500, null=True)

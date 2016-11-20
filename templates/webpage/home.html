@@ -9,7 +9,7 @@
 				<img class="rsImg" src="{% static head.header_url %}" />
 				<figcaption class="grid rsABlockContainer">
 					<div class="rsABlock bottom left" data-move-effect="left">
-						<a href="{% url 'webpage:news' head.date.year head.date.month head.date.day head.slug %}" class="caption-text notrans">
+						<a href="{% url 'webpage:news' head.date|date:'Y' head.date|date:'m' head.date|date:'d' head.slug %}" class="caption-text notrans">
 							<h2>{{head.title}}</h2>
 							<span class="more trans">Ver más</span>
 						</a>
@@ -40,7 +40,7 @@
 				{% if news_1 %}
 					<div class="row">
 						{% for news in news_1 %}
-						<a class="c6" href="{% url 'webpage:news' news.date.year news.date.month news.date.day news.slug %}">
+						<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
 							<figure class="clear">
 								<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
 								<figcaption>
@@ -55,7 +55,7 @@
 				{% if news_2 %}
 					<div class="row">
 						{% for news in news_2 %}
-						<a class="c6" href="{% url 'webpage:news' news.date.year news.date.month news.date.day news.slug %}">
+						<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
 							<figure class="clear">
 								<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
 								<figcaption>

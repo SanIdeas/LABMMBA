@@ -14,10 +14,9 @@ class NewsForm(forms.ModelForm):
 	author = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
 	source_text = forms.CharField(required=False)
 	source_url = forms.CharField(required=False)
-	description = forms.CharField(required=True)
-	mini_description = forms.CharField(required=False)
 	thumbnail = forms.FileField(required=True)
 	header = forms.FileField(required=False)
+	in_header = forms.BooleanField(required=False)
 	class Meta:
 		model = News
 		fields = '__all__'

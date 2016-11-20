@@ -17,8 +17,9 @@ function sendData(url, redirect_to){
 	}
 	// Se almacenan los datos que se enviaran al servidor
 	var form = new FormData(formElement);
-	form.append('thumbnail', convertDataURIToBinary($('#thumbnailPicture').attr('src')));
-	if($('#headerPicture').attr('src') != ""){
+	if($('#thumbnailPicture').attr('new'))
+		form.append('thumbnail', convertDataURIToBinary($('#thumbnailPicture').attr('src')));
+	if($('#headerPicture').attr('src') != "" && $('#headerPicture').attr('new')){
 		form.append('header', convertDataURIToBinary($('#headerPicture').attr('src')));
 	}
 
@@ -32,6 +33,8 @@ function sendData(url, redirect_to){
 		if(!response['error']){
 			if(redirect_to == 'live-editor')
 				window.location.href = live_editor_url.replace('888', response['id']);
+			if(redirect_to == 'reload')
+				location.reload();
 		}
 		else{
 			console.log('response', response);
@@ -48,7 +51,7 @@ function showError(){
 	$.fancybox($('#errorModal').parent('div').html(), {
 		closebtn: false,
 		autoSize: false,
-		width: 600,
+		width: 400,
 		height: 100,
 		scrolling: false,
 		closeBtn: false,
