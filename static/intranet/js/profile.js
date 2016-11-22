@@ -100,8 +100,7 @@ function googleAuthentication() {
     if(!newWindow || newWindow.closed || typeof newWindow.closed=='undefined') 
 		{ 
 		     // Ventanas emergentes bloqueadas
-		     $.fancybox(
-		     	$('#enablePopupModal').html());
+		     $.fancybox($('#enablePopupModal').html());
 		}
 		else{
 			 // Puts focus on the newWindow

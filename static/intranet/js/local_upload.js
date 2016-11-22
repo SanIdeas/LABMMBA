@@ -160,7 +160,7 @@ function sendDocuments(){
 	console.log(Object.keys(files));
 
 	// Se almacenan las id
-	form.append('local_ids', Object.keys(files).join(','));
+	form.append('user_side_ids', Object.keys(files).join(','));
 	for(var id in files){
 		if (files.hasOwnProperty(id)){
 			form.append('document'+id.toString(), files[id]);

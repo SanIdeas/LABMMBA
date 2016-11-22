@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from django.utils.text import slugify
 from django.conf import settings
+from django.db.models.signals import post_delete
+from django.dispatch.dispatcher import receiver
 from login.models import User
 from datetime import date
 from django.db import models
@@ -91,3 +93,13 @@ class Image(models.Model):
 		os.rename(self.picture.path, filename)
 		self.picture.name = filename
 		self.save()
+
+# Se eliminan las imagenes del directorio
+# http://stackoverflow.com/questions/5372934/how-do-i-get-django-admin-to-delete-files-when-i-remove-an-object-from-the-datab
+@receiver(post_delete, sender=News)
+def news_delete(sender, instance, **kwargs):
+    instance.header.delete(False)
+    instance.thumbnail.delete(False)
+@receiver(post_delete, sender=Image)
+def image_delete(sender, instance, **kwargs):
+    instance.picture.delete(False)

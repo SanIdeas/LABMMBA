@@ -16,8 +16,11 @@
 	<div class="c12">
 		<div class="intranet box">
 			<div class="upload head">
-				<h1>{% trans "Redactando una noticia" %}</h1>
-				<h4>{% trans "Una vez que llenes los datos, podras escribir la noticia en el editor" %}</h4>
+				{%if news_.title%}
+					<h1>{{news_.title}}</h1>
+				{% else %}
+					<h1>{% trans "Noticia sin título" %}</h1>
+				{%endif%}
 			</div>
 		</div>
 	</div>
@@ -28,28 +31,34 @@
 			</div>
 		</div>
 		<div class="intranet box news">
-			<form class="clear c12" action="{% url 'intranet:create_news' %}" redirect-to="live-editor" method="POST" >
+			<form class="clear c12" action="{% url 'intranet:edit_news' news_.id %}" redirect-to="reload" method="POST" >
 				{% csrf_token %}
 		        <div class="row field">
-					<span class="c12">{% trans 'Nombre de la fuente de información' %}:</span>
+					<span class="c12">{% trans 'Título' %}:</span>
 		         	<div class="c12">
-		         		<input type="text"  name="source_text" class="text" placeholder="{% trans 'No requerido' %}"/>
+		         		<input type="text"  original="" name="title" class="text" {% if news_.title %} value="{{news_.title}}" {% endif %} placeholder="{% trans 'No requerido' %}" required/>
 		         	</div>
 		        </div>
 		        <div class="row field">
-					<span class="c12">{% trans 'URL de la fuente de información' %}:</span>
+					<span class="c12">{% trans 'Nombre del sitio quien publica la noticia' %}:</span>
 		         	<div class="c12">
-		         		<input type="text"  name="source_url" class="text" placeholder="{% trans 'No requerido' %}"/>
+		         		<input type="text"  original="" name="source_text" class="text" {% if news_.source_text %} value="{{news_.source_text}}" {% endif %} placeholder="{% trans 'No requerido' %}" required/>
+		         	</div>
+		        </div>
+		        <div class="row field">
+					<span class="c12">{% trans 'URL de la noticia' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  original="" name="source_url" sd="" class="text" {% if news_.source_url %} value="{{news_.source_url}}" {% endif %} placeholder="{% trans 'No requerido' %}" required/>
 		         	</div>
 		        </div>
 		         <div class="row field">
 					<span class="c12">{% trans 'Fecha' %}:</span>
 		         	<div class="c12">
-		         		<input type="date" class="text" name="date" value="{{today|date:'Y-m-d'}}">
+		         		<input type="date" class="text" original="" name="date" value="{{news_.date|date:'Y-m-d'}}" required>
 		         	</div>
 		         </div>
 		         <div class="row field">
-		         	<div class="s6 c6"><input type="submit" class="submit trans news" value="{% trans 'Ir al editor' %}" disabled></div>
+		         	<div class="c6"><input type="submit" class="submit trans news" value="{% trans 'Guardar cambios' %}" disabled></div>
 		         </div>
 			</form>
 		</div>
@@ -59,6 +68,7 @@
 		<div class="intranet box news">
 			<div class="picture">
 				<div class="button">
+					{% if not news_.thumbnail %}
 					<a class="selectThumbnail btn erasable">
 						<i class="fa fa-picture-o" aria-hidden="true"></i>
 						<span>{% trans "Presiona para agregar una miniatura" %}</span>
@@ -66,19 +76,30 @@
 					<a class="selectThumbnail" style="display:none;">
 						<img id="thumbnailPicture" src="">
 					</a>
+					{% else %}
+						<a class="selectThumbnail">
+							<img id="thumbnailPicture" src="{% static news_.thumbnail_url %}">
+						</a>
+					{% endif %}
 				</div>
 			</div>
 		</div>
 		<div class="intranet box news">
 			<div class="picture">
 				<div class="button">
-					<a class="selectHeader btn erasable">
-						<i class="fa fa-picture-o" aria-hidden="true"></i>
-						<span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
-					</a>
-					<a class="selectHeader" style="display:none;">
-						<img id="headerPicture" src="">
-					</a>
+					{% if not news_.header %}
+						<a class="selectHeader btn erasable">
+							<i class="fa fa-picture-o" aria-hidden="true"></i>
+							<span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
+						</a>
+						<a class="selectHeader" style="display:none;">
+							<img id="headerPicture" src="">
+						</a>
+					{% else %}
+						<a class="selectHeader">
+							<img id="headerPicture" src="{% static news_.header_url %}">
+						</a>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -113,7 +134,7 @@
 
 <script>autosize(document.querySelectorAll('textarea'));</script>
 <script>
-	var live_editor_url = "{% url 'webpage:news_editor' 888 %}";
+	var id = "{{ news_.id }}";
 </script>
 <script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
 <script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>

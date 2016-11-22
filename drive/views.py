@@ -6,11 +6,10 @@ from apiclient.discovery import build
 from apiclient import http, errors
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
-from django.core.files import File 
-from intranet.views import get_metadata, strip_accents, convert_pdf_to_txt
 from intranet.forms import DocumentForm
 from intranet.models import Document
-import httplib2, urllib, cStringIO
+from django.core.files import File 
+import httplib2, urllib
 import re, io, os, tempfile, datetime, base64, cPickle, ast, json
 from django.utils.translation import ugettext as _
 from django.conf import settings
@@ -23,17 +22,8 @@ flow.params['access_type'] = 'offline'
 
 # Create your views hereself.
 
-def date(date):
-	if date[0] == 'D':
-		year = date[2:6]
-		month = date[6:8]
-		day = date[8:10]
-		return day, month, year
-	else:
-		month, day, year = re.match('([0-9])*\/([0-9]*)\/([0-9]*)', date).groups()
-		return day, month, year
 
-def upload_from_drive(stream, drive_id, request, thumbnail):
+'''def upload_from_drive(stream, drive_id, request, thumbnail):
 	owner = request.user
 	try:
 		meta = get_metadata(stream)
@@ -46,8 +36,6 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
 			'date': year + '-' + month + '-' + day if '/CreationDate' in meta else '2000-01-01',
 			'owner': owner.id,
 			'drive_id': drive_id,
-			'type': 1,
-			'drive_thumbnail': thumbnail if thumbnail else None,
 		}
 		files = {
 			'document': stream,
@@ -63,7 +51,6 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
 			'owner': owner.id,
 			'drive_id': drive_id,
 			'type': 1,
-			'drive_thumbnail': thumbnail if thumbnail else None,
 		}
 		files = {
 			'document': stream  
@@ -75,19 +62,9 @@ def upload_from_drive(stream, drive_id, request, thumbnail):
 		document.owner.update_activity().doc_number('+')
 		document.format_filename()
 		document.format_thumbnail_filename()
-		#try:
-		#    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-		#    text_from_file = strip_accents(convert_pdf_to_txt(document.document.url))
-		#    text_file.write(text_from_file.lower())
-		#    text_file.close()
-		#except:
-		#    text_file = open(document.document.url.replace('pdf', 'txt'), 'w')
-		#    text_file.close()
-		#document.save_abstract()
-		#document.keywords()
 		return document.id
 	else:
-		return False
+		return False'''
 
 
 
@@ -121,7 +98,7 @@ def get_drive_service(request):
 	if request.user.drive_credentials == None:
 		return False
 	elif request.user.credentials()._expires_in() < 10:
-		#Si las credenciales expiran en menos de 10 segundos (segundos?) se actualizan
+		#Si las credenciales expiran en menos de 10 segdos (segundos?) se actualizan
 		user = User.objects.get(id=request.user.id)
 		credentials = request.user.credentials()
 		credentials.refresh(httplib2.Http())
@@ -188,36 +165,22 @@ def deauthenticate(request, redirect):
 		# Si el usuario no inicio sesion, se le redirecciona al login
 		return HttpResponseRedirect(reverse('login'));
 
-#Recibe las id de los archivos a descargar y retorna un diccionario con las id locales.
+# Recibe las id de los archivos a descargar y retorna un diccionario con las id locales.
+# Ids locales: Ids asignadas por la base de datos
 def download_drive_files(request, ids):
 	try:
 		ids = ids.split('+')
 		response = {'error': False}
 		files = []
-		real_ids=[]
+		local_ids=[]
 		service = get_drive_service(request)
 		for id in ids:
-			file = service.files().get(fileId=id, **{'fields':'title,downloadUrl, thumbnailLink'}).execute()
-			resp, content = service._http.request(file['downloadUrl'])
-			if resp.status == 200:
-				fh = tempfile.TemporaryFile()
-				fh.write(content)
-				fh.seek(0)
-				thumbnailLink = file['thumbnailLink'].replace('=s220', '=s600')
-				file = urllib.urlopen(thumbnailLink).read()
-				img = tempfile.TemporaryFile()
-				img.write(file)
-				img.seek(0)
-				local_id = upload_from_drive(File(fh), id, request, File(img))
-				real_ids.append(local_id)
-				doc = Document.objects.get(id=local_id).dictionary()
-				doc['error'] = False
-				doc['message'] = None
+			doc, local_id = get_file_and_thumbnail(request, service, id)
+			if doc is not None and local_id is not None:
 				files.append(doc)
-			else:
-				files.append({'error': True, 'message': _('No se pudo descargar el documento %(title)s debibo a un problema desconocido.') % {'title': file['Title']}})
+				local_ids.append(local_id)
 		response['files'] = files
-		response['real_ids'] = real_ids
+		response['local_ids'] = local_ids
 		return JsonResponse(response)
 	except errors.HttpError, error:
 		return JsonResponse({'error': True, 'message':_('Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas tarde.')})
@@ -225,9 +188,52 @@ def download_drive_files(request, ids):
 		response = {'error': True, 'message':_('Debes iniciar sesion.')}
 		return JsonResponse(response)
 
+# Si no hubo problemas, retorna un diccionario con la id asignada por la base de datos
+# De lo contrario retorna un mensaje de error
+def get_file_and_thumbnail(request, service, id):
+	file = service.files().get(fileId=id, **{'fields':'title,downloadUrl, thumbnailLink'}).execute()
+	resp, content = service._http.request(file['downloadUrl'])
+	if resp.status == 200:
+		# Se obtiene el archivo del documento
+		fh = tempfile.TemporaryFile()
+		fh.write(content)
+		fh.seek(0)
+		document = File(fh)
+		# Se obtiene el archivo de la imagen miniatura
+		thumbnailLink = file['thumbnailLink'].replace('=s220', '=s600')
+		file = urllib.urlopen(thumbnailLink).read()
+		img = tempfile.TemporaryFile()
+		img.write(file)
+		img.seek(0)
+		image = File(img)
+		fields = {
+			'owner': request.user.id,
+			'drive_id': id,
+			'author': request.user.first_name + ' ' + request.user.last_name,
+		}
+		files = {
+			'document': document,
+			'thumbnail': image,
+		}
+		form = DocumentForm(fields, files)
+		print form.errors
+		local_id = None
+		if form.is_valid():
+			document = form.save()
+			doc = document.dictionary()
+			local_id = document.id
+			doc['error'] = False
+			doc['message'] = None
+		else:
+			doc = {}
+			doc['error'] = True
+			doc['message'] = _('No se pudo descargar el documento %(title)s debibo a un problema desconocido.') % {'title': file['title']}
+		return doc, local_id
+	return None
+
 
 # Segunda llamada. Se analizan los enlaces y se obtiene el servicio
-def link_analizer(request, link=None):
+def link_parser(request, link=None):
 	if request.user.is_authenticated():
 		print "---------", request.user.credentials()
 		if not link:

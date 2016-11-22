@@ -382,6 +382,15 @@ body{
 		}
 		& .counter{
 			.colored_box(@yellow-color, "\f15b", FontAwesome, 123px);
+			& div{
+				height: 70px;
+			}
+			& h1{
+				margin-top: -11px;
+			}
+			& h3{
+				bottom: 3px;
+			}
 		}
 		& .pdf{
 			.colored_box(@red-color, "\f1c1", FontAwesome, 123px);
@@ -402,6 +411,14 @@ body{
 			cursor: pointer;
 			&:hover{
 				background-color: @blue-color;
+			}
+		}
+		& .warning{
+			.colored_box(lighten(@yellow-color, 0%), "\f071", FontAwesome, 25px);
+			& span{
+				padding: 15px;
+				display: block;
+				text-align: center;
 			}
 		}
 		& .annotation{

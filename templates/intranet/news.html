@@ -33,7 +33,11 @@
 						<div class="details c10">
 							{%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
 							{%if news.title%}
-								<a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+								{% if news.is_external %}
+									<a href="{{ news.source_url }}">
+								{% else %}
+									<a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+								{% endif %}								
 									<h2 class="title">{{news.title}}</h2>
 								</a>
 							{% else %}

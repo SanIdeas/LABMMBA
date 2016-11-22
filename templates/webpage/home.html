@@ -9,7 +9,11 @@
 				<img class="rsImg" src="{% static head.header_url %}" />
 				<figcaption class="grid rsABlockContainer">
 					<div class="rsABlock bottom left" data-move-effect="left">
-						<a href="{% url 'webpage:news' head.date|date:'Y' head.date|date:'m' head.date|date:'d' head.slug %}" class="caption-text notrans">
+						{% if head.is_external %}
+							<a href="{{ head.source_url }}" class="caption-text notrans">
+						{% else %}
+							<a href="{% url 'webpage:news' head.date|date:'Y' head.date|date:'m' head.date|date:'d' head.slug %}" class="caption-text notrans">
+						{% endif %}	
 							<h2>{{head.title}}</h2>
 							<span class="more trans">Ver más</span>
 						</a>
@@ -40,7 +44,11 @@
 				{% if news_1 %}
 					<div class="row">
 						{% for news in news_1 %}
-						<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+							{% if news.is_external %}
+								<a class="c6" href="{{ news.source_url }}">
+							{% else %}
+								<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+							{% endif %}				
 							<figure class="clear">
 								<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
 								<figcaption>
@@ -55,7 +63,11 @@
 				{% if news_2 %}
 					<div class="row">
 						{% for news in news_2 %}
-						<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+							{% if news.is_external %}
+								<a class="c6" href="{{ news.source_url }}">
+							{% else %}
+								<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+							{% endif %}
 							<figure class="clear">
 								<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
 								<figcaption>

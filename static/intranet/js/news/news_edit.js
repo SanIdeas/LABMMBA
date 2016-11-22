@@ -35,6 +35,11 @@ function checkFields() {
 			changed = true;
 		}
 	});
+	var formElement = $('.news form')[0];
+	var formStatus = formElement.checkValidity();
+	if(!formStatus){
+		changed = false;
+	}
 
 	if(changed)
 		$('input[type="submit"].news').attr('disabled', false);

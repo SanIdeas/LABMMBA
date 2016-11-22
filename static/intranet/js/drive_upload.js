@@ -2,7 +2,7 @@ var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.",
 var bCrumbsCount = 0;
 var doc_selected = {};
 var last_cr_query = {};
-var real_ids;
+var local_ids;
 var form_template;
 // Realiza la primera y unica solicitud con la plantilla de los formularios
 $.fancybox.showLoading();
@@ -63,9 +63,9 @@ $('.drive.form').submit(function(){
 //Envia la solicitud con en enlace a Google Drive
 $('.link').change(function(){
 	if($(this).val() != ""){
-		sendLink(link_analizer_link.replace('999', encodeURIComponent($(this).val())));
+		sendLink(link_parser_link.replace('999', encodeURIComponent($(this).val())));
 	}
-	//window.open("{% url 'link_analizer' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
+	//window.open("{% url 'link_parser' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
 });
 
 // Cuando el boton 'mas' es presionado, se ocultan y eliminan algunos elementos con una animacion
@@ -418,16 +418,16 @@ function sendIds(){
 		hideLoadingBar();
 		// Se desactiva el campo de texto hasta obtener una respuesta
 		$('.link').prop("disabled", true).off();
-		real_ids = response['real_ids'].join(',');
-		extract_content(real_ids);
+		local_ids = response['local_ids'].join(',');
+		extract_content();
 	});
 	console.log("Drive ids: " + ids);
 }
 
 // Solicita la extraccion del contenido y el resumen del texto explicitamente
-function extract_content(ids){
+function extract_content(){
 	var form = new FormData();
-	form.append('ids', real_ids);
+	form.append('ids', local_ids);
 	$.ajax({
 		url: extract_link,
 		method: 'POST',
@@ -461,7 +461,7 @@ function extract_content(ids){
 
 function sendCompleteInfo(){
 	var form = new FormData($('#form')[0]);
-	form.append('id', real_ids);
+	form.append('id', local_ids);
 	var form_status = $('#form')[0].checkValidity();
 	console.log(form_status);
 

@@ -35,6 +35,8 @@ function sendData(url, redirect_to){
 				window.location.href = live_editor_url.replace('888', response['id']);
 			if(redirect_to == 'reload')
 				location.reload();
+			if(redirect_to == 'news-intranet')
+				window.location.href = news_url;
 		}
 		else{
 			console.log('response', response);

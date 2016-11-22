@@ -2,16 +2,15 @@
 {% load staticfiles %}
 {% load i18n %}
 {% block css %}
-	<link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
 {% endblock %}
 {% block extra_js %}
-	{% if request.user == profile_user %}
-		 <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
-	{% endif %} 
+	<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
+	<script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div class="title">
-	<h3>{% trans "Añadir noticia" %}</h3>
+	<h3>{% trans "Mis noticias" %}</h3>
 </div>
 <div class="intranet row">
 	<div class="c12">
@@ -22,48 +21,106 @@
 			</div>
 		</div>
 	</div>
-	<div class="c6">
-		
-	</div>
-	<div class="c12">
+	<div class="c8">
 		<div class="intranet box news">
-			<div class="list clear">
-				{% for news in user_news %}
-					<div class="item clear">
-						<div class="details c10">
-							{%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
-							{%if news.title%}
-								<a href="{% url 'webpage:news' news.date.year news.date.month news.date.day news.slug %}">
-									<h2 class="title">{{news.title}}</h2>
-								</a>
-							{%endif%}
-							{%if news.source%}<span class="source"><strong>Fuente: </strong><a href="#">www.biobiochile.cl</a></span>{%endif%}
-						</div>
-						<div class="buttons c2">
-							<div class="wrapper">
-								<a href="{% url 'webpage:news_editor' news.id %}" class="fa-stack fa-lg edit trans">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-								</a>
-								<a href="#" class="fa-stack fa-lg delete trans">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				{% endfor %}
+			<div class="annotation">1
+				<span class="info">{% trans "Si quieres que tu noticia pueda aparecer en la cabecera de la página web, debes agregar una imagen de una resolución ideal de 1600x525." %}</span>	
 			</div>
 		</div>
+		<div class="intranet box news">
+			<form class="clear c12" action="{% url 'intranet:create_news_from_link' %}" redirect-to="news-intranet" method="POST" >
+				{% csrf_token %}
+		        <div class="row field">
+					<span class="c12">{% trans 'Título' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="title" class="text" placeholder="{% trans 'Requerido' %}" required/>
+		         	</div>
+		        </div>
+		        <div class="row field">
+					<span class="c12">{% trans 'Nombre del sitio quien publica la noticia' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="source_text" class="text" placeholder="{% trans 'Requerido' %}" required/>
+		         	</div>
+		        </div>
+		        <div class="row field">
+					<span class="c12">{% trans 'URL de la noticia' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="source_url" class="text" placeholder="{% trans 'Requerido' %}" required/>
+		         	</div>
+		        </div>
+		         <div class="row field">
+					<span class="c12">{% trans 'Fecha' %}:</span>
+		         	<div class="c12">
+		         		<input type="date" class="text" name="date" value="{{today|date:'Y-m-d'}}" required>
+		         	</div>
+		         </div>
+		         <div class="row field">
+		         	<div class="s6 c6"><input type="submit" class="submit trans news" value="{% trans 'Guardar' %}" disabled></div>
+		         </div>
+			</form>
+		</div>
+				
 	</div>
-    
+	<div class="c4">
+		<div class="intranet box news">
+			<div class="picture">
+				<div class="button">
+					<a class="selectThumbnail btn erasable">
+						<i class="fa fa-picture-o" aria-hidden="true"></i>
+						<span>{% trans "Presiona para agregar una miniatura" %}</span>
+					</a>
+					<a class="selectThumbnail" style="display:none;">
+						<img id="thumbnailPicture" src="">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="intranet box news">
+			<div class="picture">
+				<div class="button">
+					<a class="selectHeader btn erasable">
+						<i class="fa fa-picture-o" aria-hidden="true"></i>
+						<span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
+					</a>
+					<a class="selectHeader" style="display:none;">
+						<img id="headerPicture" src="">
+					</a>
+				</div>
+			</div>
+		</div>
+		<a href="#changePicture" class="modal picture" style="display:none;"></a>
+	</div>
+</div>
+<!-- Modal para modificar la miniatura -->
+<div id="changePicture" class="news modal"  style="display:none!important; height:100%;">
+	<div class="cropper">
+  		<div class="editor" style="display:none; opacity:0; top:20px;">
+  			<div class="crop">
+  				<img id="imageCropper">
+  			</div>
+	  		<div class="buttons">
+  				<div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
+  				<div class="c4"><button id="selectImage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+	  		</div>
+  		</div>
+	</div>
 </div>
 
+<!-- Modal extra -->
+<div style="display:none;">
+	<div>
+		<div id="errorModal">
+			<i class="fa fa-times" aria-hidden="true"></i>
+			<h3>{% trans "Asegurate de adjuntar una miniatura y llenar los campos requeridos" %}</h3>
+		</div>
+	</div>
+</div>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
 <script>
-	var update_picture_url = "{% url 'intranet:update_picture' %}";
-	var edit_document_url = "{% url 'intranet:edit_document' '888' '999' %}";
-	var csrf_token = "{{ csrf_token }}";
-	var authentication_url = "http://{{ request.get_host }}{% url 'get_credentials' %}";
-	var password_url = "{% url 'change_password' %}";
+	var news_url = "{% url 'intranet:news' %}";
 </script>
+<script>autosize(document.querySelectorAll('textarea'));</script>
+<script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
+<script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>
+<script src="{% static 'intranet/js/news/news_create_sender.js' %}"></script>
 {% endblock %}

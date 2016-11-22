@@ -15,19 +15,11 @@ from intranet.models import Document
 from login.models import Area, User
 from webpage.models import News, Image
 from webpage.forms import NewsForm
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-from pdfminer.converter import TextConverter
-from pdfminer.layout import LAParams
-from pdfminer.pdfpage import PDFPage
-from pdfminer.pdfparser import PDFParser
-from pdfminer.pdfdocument import PDFDocument
-from PyPDF2 import PdfFileWriter, PdfFileReader
 from unidecode import unidecode
-from cStringIO import StringIO
 from datetime import date, timedelta
 from collections import Counter
 from itertools import chain
-import os, sys, json, operator, unicodedata, tempfile, httplib2
+import os, sys, json, operator, tempfile, httplib2
 
 
 #Retorna el porcentaje de similitud entre dos strings.
@@ -35,37 +27,6 @@ import os, sys, json, operator, unicodedata, tempfile, httplib2
 #http://stackoverflow.com/questions/6690739/fuzzy-string-comparison-in-python-confused-with-which-library-to-use
 #def similar(a, b):
 #	return Levenshtein.ratio(a, b)
-
-def strip_accents(s):
-	s = s.decode("cp1252")  # decode from cp1252 encoding instead of the implicit ascii encoding used by unicode()
-	s = unicodedata.normalize('NFKD', s).encode('ascii','ignore')
-	return s
-
-#Recibe un stream y retorna un diccionario con los metadatos.
-def get_metadata(stream):
-	pdf = PdfFileReader(stream)
-	return pdf.getDocumentInfo()
-
-
-def convert_pdf_to_txt(path):
-	rsrcmgr = PDFResourceManager()
-	retstr = StringIO()
-	codec = 'cp1252'
-	laparams = LAParams()
-	device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
-	fp = file(path, 'rb')
-	interpreter = PDFPageInterpreter(rsrcmgr, device)
-	password = ""
-	maxpages = 0
-	caching = True
-	pagenos=set()
-	for page in PDFPage.get_pages(fp, pagenos, maxpages=maxpages, password=password,caching=caching, check_extractable=True):
-		interpreter.process_page(page)
-	fp.close()
-	device.close()
-	str = retstr.getvalue()
-	retstr.close()
-	return str
 
 def get_filters(rqst):
 	dict = {}
@@ -296,70 +257,62 @@ def upload(request):
 		if request.method == "GET":
 			return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
 		else:
+			# En este caso se esta modificando la informacion de un documento
 			if 'id' in request.POST:
 				ids = request.POST['id'].split(',')
 				for id in ids:
 					document = Document.objects.get(id=id,owner=request.user)
-					document.title = request.POST['title' + id]
-					document.author = request.POST['author' + id]
-					document.date = request.POST['date' + id]
-					document.category = Area.objects.get(id=request.POST['category' + id])
-					document.type = int(request.POST['type' + id])
-					#document.abstract = request.POST['abstract' + id] POR MIENTRAS
-					document.issn = request.POST['issn' + id]
-					document.doi = request.POST['doi' + id]
-					document.pages = request.POST['pages' + id]
+					document.title = request.POST.get('title' + id)
+					document.author = request.POST.get('author' + id)
+					document.date = request.POST.get('date' + id)
+					document.category = Area.objects.get(id=request.POST.get('category' + id))
+					document.type = int(request.POST.get('type' + id))
+					document.abstract = request.POST.get('abstract' + id)
+					document.issn = request.POST.get('issn' + id)
+					document.doi = request.POST.get('doi' + id)
+					document.pages = request.POST.get('pages' + id)
 					document.is_available = True
 					document.save()
 				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
-			#Local_ids son las ids de los archivos locales del usuario
-			elif 'local_ids' in request.POST:
-				local_ids = request.POST['local_ids'].split(',')
-				real_ids=[]
-				for id in local_ids:
+
+			# Aqui se esta creando un documento desde los archivos locales del usuario
+			# user_side_ids son las ids de los archivos locales del usuario
+			elif 'user_side_ids' in request.POST:
+				user_side_ids = request.POST.get('user_side_ids').split(',')
+				local_ids=[]
+				for id in user_side_ids:
+					
+					# Si el tamaño supera los 2 mb, se muestra un mensaje de error
 					if request.FILES['document'+id].size/1000 > 2048:
 						return JsonResponse({'error': True, 'message':_('El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
 
+					# Si el documento ya existe, se muestra un mensaje de error
 					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
 						message = _('El documento <span style="text-transform: uppercase; font-size:14px"> %(title)s </span> del autor <span style="text-transform: uppercase; font-size:14px"> %(author)s </span> ya existe.') % {'title': request.POST['title'+id],'author': request.POST['author'+id]}
 						return JsonResponse({'error': True, 'message':message})
-					request.POST['owner'] = User.objects.get(email=request.user.email)
+
+					# Se almacenan los datos
 					fields = {
-						'title': request.POST['title'+id],
-						'author': request.POST['author'+id],
-						'date': request.POST['date'+id],
-						'type': int(request.POST['type'+id]),
-						'category': Area.objects.get(id=request.POST['category' + id]).id,
+						'title': request.POST.get('title'+id),
+						'author': request.POST.get('author'+id),
+						'date': request.POST.get('date'+id),
+						'type': int(request.POST.get('type'+id)),
+						'category': int(request.POST.get('category' + id)),
 						'owner': request.user.id,
-						'issn': request.POST['issn' + id],
-						'doi': request.POST['doi' + id],
-						'url': "http://dx.doi.org/" + request.POST['doi' + id],
-						'pages': request.POST['pages' + id],
-						'is_available': True,
+						'issn': request.POST.get('issn' + id),
+						'doi': request.POST.get('doi' + id),
+						'pages': request.POST.get('pages' + id),
 						}
 					files = {
-							'document': request.FILES['document'+id]
+							'document': request.FILES.get('document'+id)
 						}
 					form = DocumentForm(fields, files)
 					print form.errors
 					if form.is_valid():
-						document = form.save()
-						document.owner.update_activity().doc_number('+')
-						document.format_filename()
-						real_ids.append(document.id)
-						try:
-							text_file = open(document.document.path.replace('pdf', 'txt'), 'w')
-							text_from_file = strip_accents(convert_pdf_to_txt(document.document.path))
-							text_file.write(text_from_file.lower())
-							text_file.close()
-						except:
-							text_file =  open(document.document.path.replace('pdf', 'txt'), 'w')
-							text_file.close()
-						document.save_abstract()
-						document.keywords()
+						form.save()
 					else:
 						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error':str(form.errors)}})
-				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'real_ids': real_ids})
+				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'local_ids': local_ids})
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
@@ -385,14 +338,6 @@ def extract_content_and_keywords(request):
 			abstracts = []
 			for id in request.POST['ids'].split(','):
 				document = Document.objects.get(id=id) 
-				try:
-				    text_file = open(document.document.path.replace('pdf', 'txt'), 'w')
-				    text_from_file = strip_accents(convert_pdf_to_txt(document.document.path))
-				    text_file.write(text_from_file.lower())
-				    text_file.close()
-				except:
-				    text_file = open(document.document.path.replace('pdf', 'txt'), 'w')
-				    text_file.close()
 				document.save_abstract()
 				document.keywords()
 				abstracts.append({'id': document.id, 'abstract': document.abstract})
@@ -527,12 +472,18 @@ def news_edit(request, id):
 		if news:
 			news = news[0]
 			if request.method == "GET":
-				return render(request, 'intranet/news_edit.html', {'current_view': 'intranet', 'news_': news})
+				if news.is_external:
+					return render(request, 'intranet/news_edit_link.html', {'current_view': 'intranet', 'news_': news})
+				else:
+					return render(request, 'intranet/news_edit.html', {'current_view': 'intranet', 'news_': news})
 			elif request.method == "POST":
+					if news.is_external and (request.POST.get('source_url') is None and request.POST.get('source_url') == ""):
+						return JsonResponse({'error': True, 'message': form.errors})
 					news.date = request.POST.get('date')
 					news.source_text = request.POST.get('source_text')
 					news.source_url = request.POST.get('source_url')
-					
+					if request.POST.get('title'):
+						news.title = request.POST.get('title')
 					if request.FILES.get('thumbnail'):
 						news.update_thumbnail(request.FILES.get('thumbnail'))
 					if request.FILES.get('header'):
@@ -546,10 +497,22 @@ def news_edit(request, id):
 
 def news_create_link(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
-		return render(request, 'intranet/news_create_link.html', {'current_view': 'intranet'})
+		if request.method == "GET":
+			return render(request, 'intranet/news_create_link.html', {'current_view': 'intranet', 'today': date.today()})
+		elif request.method == "POST":
+			request.POST['author'] = request.user.id
+			request.POST['is_external'] = '1'
+			form = NewsForm(request.POST, request.FILES)
+			if form.is_valid():
+				news = form.save()
+				news.set_thumbnail_filename()
+				if news.header:
+					news.set_header_filename()
+				return JsonResponse({'error': False, 'id': news.id})	
+			else:
+				return JsonResponse({'error': True, 'message': form.errors})	
 	else:
 		return HttpResponseRedirect(reverse('login'))
-
 def news_delete(request, id):
 	if request.user.is_authenticated():
 		news = News.objects.filter(id=id)
