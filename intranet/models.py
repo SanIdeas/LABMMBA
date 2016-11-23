@@ -1,9 +1,11 @@
 from __future__ import unicode_literals
 
+from django.db.models.signals import post_delete
+from django.dispatch.dispatcher import receiver
+from django.conf import settings
 from django.db import models
 from login.models import User, Area
 from unidecode import unidecode
-from django.conf import settings
 from collections import Counter
 import os, re, operator, unicodedata, datetime
 
@@ -127,7 +129,7 @@ class Document(models.Model):
 				self.is_available = True
 
 			# Finalmente, se extrae el contenido del archivo PDF y sus palabras clave solo si no es un archivo de Google Drive
-			if self.drive_id is not None:
+			if self.drive_id is None:
 				content = " ".join(strip_accents(pdf_to_str(self.document.path)).lower().split())
 				self.content = content
 
@@ -265,8 +267,9 @@ class Document(models.Model):
 	def get_doi_url(self):
 		return 'http://dx.doi.org/' + self.doi
 
-	def save_abstract(self):
-		text = self.content
+	def save_abstract_and_content(self):
+		text = content = " ".join(strip_accents(pdf_to_str(self.document.path)).lower().split())
+		self.content = text
 		if 400 > len(text):
 			end_index = len(text) - 1
 		else:
@@ -283,3 +286,7 @@ class Document(models.Model):
 		self.words = ','.join(keywords)
 		self.save()
 
+@receiver(post_delete, sender=Document)
+def documetn_delete(sender, instance, **kwargs):
+    instance.document.delete(False)
+    instance.thumbnail.delete(False)

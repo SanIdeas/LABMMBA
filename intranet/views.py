@@ -338,7 +338,7 @@ def extract_content_and_keywords(request):
 			abstracts = []
 			for id in request.POST['ids'].split(','):
 				document = Document.objects.get(id=id) 
-				document.save_abstract()
+				document.save_abstract_and_content()
 				document.keywords()
 				abstracts.append({'id': document.id, 'abstract': document.abstract})
 			return JsonResponse({'error': False, 'abstracts': abstracts})
