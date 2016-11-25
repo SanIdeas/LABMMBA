@@ -67,21 +67,21 @@ $(document).ready(function(){
 				slider.updateSliderSize();     
 			});
 		}, 600);
+		
+		setTimeout(function() {
+			if($('.royalSlider .rsContent').length == 1){
+				$('.royalSlider span.more').css({'margin-bottom':'0'});
+			}
+			if($('.royalSlider .rsContent').length > 1){
+				$('.royalSlider .rsNav').show();
+			}
+		}, 800);
+
+		setTimeout(function() {
+			slider = $(".royalSlider").data('royalSlider');
+			slider.updateSliderSize();
+		}, 1000);
 	}
-
-	setTimeout(function() {
-		if($('.royalSlider .rsContent').length == 1){
-			$('.royalSlider span.more').css({'margin-bottom':'0'});
-		}
-		if($('.royalSlider .rsContent').length > 1){
-			$('.royalSlider .rsNav').show();
-		}
-	}, 800);
-
-	setTimeout(function() {
-		slider = $(".royalSlider").data('royalSlider');
-		slider.updateSliderSize();
-	}, 1000);
 
 	// Modal
 	$('.single .post a:has(img)').attr('rel', 'post');
