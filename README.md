@@ -8,6 +8,8 @@ Se utilizaron las siguientes tecnologías para desarrollar el sitio:
 - MySQL
 - Crossref Api
 - Google Drive Api
+- ContentToolsJS
+- Cropper.js
 - PDFMiner
 - PyPDF2
 - PDF.js
