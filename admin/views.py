@@ -218,11 +218,17 @@ def areas(request, area_id=None):
 			elif request.method == "POST" and request.is_ajax():
 				area_name = request.POST.get('name', None)
 				if area_name is not None:
-					try:
-						Area.objects.create(name=area_name)
+					if area_id is not None:
+						area = Area.objects.get(id=area_id)
+						area.name = area_name
+						area.save()
 						return JsonResponse({'error': False})
-					except Exception:
-						return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
+					else:
+						try:
+							Area.objects.create(name=area_name)
+							return JsonResponse({'error': False})
+						except Exception:
+							return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
 				else:
 					args = {
 						'areas': Area.objects.all()

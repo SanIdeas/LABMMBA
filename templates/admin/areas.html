@@ -6,6 +6,7 @@
 <div id="areas-setup"></div>
 
 <script>var reload = "{% url 'admin:areas'%}"</script>
+<script>var edit = "{% url 'admin:edit_area' 999 %}"</script>
 <script>var remove = "{% url 'admin:delete_area' 999 %}"</script>
 <script>
     var csrf_token = '{{csrf_token}}';

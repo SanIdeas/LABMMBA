@@ -153,17 +153,27 @@ function areas(){
 	 });
 	 }*/
 	$('.setup-delete-box').click(function(){
-		$('#modal-area-name').text($(this).attr('area-name'));
-		$('#modal-user-count').text($(this).attr('area-count'));
-		$('#modal-confirm').attr('area-id', $(this).attr('area-id'));
+		$('#modal-delete-confirm #modal-area-name').text($(this).attr('area-name'));
+		$('#modal-delete-confirm #modal-confirm').attr('area-id', $(this).attr('area-id'));
 		$('#modal-delete-confirm').removeClass('modal-hidden').addClass('modal-visible');
 		$('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
 	});
-	$('#modal-cancel').click(function(){
+    $('.setup-edit-box').click(function(){
+        $('#modal-edit-confirm #modal-confirm').attr('area-id', $(this).attr('area-id'));
+        $('#modal-edit-confirm #modal-confirm').attr('area-name', $(this).attr('area-name'));
+        $('#modal-edit-confirm #modal-area-name').val($(this).attr('area-name'));
+        $('#modal-edit-confirm').removeClass('modal-hidden').addClass('modal-visible');
+        $('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
+    });
+	$('#modal-delete-confirm #modal-cancel').click(function(){
 		$('#modal-delete-confirm').addClass('modal-hidden').removeClass('modal-visible');
 		$('#modal-curtain').addClass('curtain-hidden').removeClass('curtain-visible');
 	});
-	$('#modal-confirm').click(function(){
+	$('#modal-edit-confirm #modal-cancel').click(function(){
+        $('#modal-edit-confirm').addClass('modal-hidden').removeClass('modal-visible');
+        $('#modal-curtain').addClass('curtain-hidden').removeClass('curtain-visible');
+    });
+	$('#modal-delete-confirm #modal-confirm').click(function(){
 		$.ajax({
 			url: remove.replace('999', $(this).attr('area-id')),
 			type: 'GET'
@@ -171,6 +181,30 @@ function areas(){
 			reload_area_setup();
 		});
 	});
+    $('#modal-edit-confirm #modal-confirm').click(function(){
+        $.ajax({
+            url: edit.replace('999', $(this).attr('area-id')),
+            type: 'POST',
+            data: {'name': $('#modal-edit-confirm #modal-area-name').val()},
+            beforeSend: function(xhr){
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+
+                if($('#modal-edit-confirm #modal-area-name').val().length <= 0) {	// Abort if name is empty
+                    xhr.abort();
+                    $('#modal-edit-confirm #modal-error').text("El nombre del área no puede estar vacío");
+                }
+                else if($('#modal-edit-confirm #modal-area-name').val() == $('#modal-edit-confirm #modal-confirm').attr('area-name')){	// Abort if no changes were made
+                    xhr.abort();
+                    $('#modal-edit-confirm #modal-error').text("No ha hecho ningún cambio");
+				}
+                else {
+                    $('#modal-edit-confirm #modal-error').text("");
+                }
+            }
+        }).done(function(){
+            reload_area_setup();
+        });
+    });
 	$('#add-area-form').submit(function(e){
 		$.ajax({
 			url: reload,
@@ -232,12 +266,23 @@ function webpage(){
 	 });
 	 }*/
 	$('.body').bind('scroll', function(){
-		if ($('.body').scrollTop() > 129){
+		if ($('.body').scrollTop() > 123.421875 && $(document).width() > 1100){
+            var parent = $('.editor-box');
+            var width = parent.css('width').replace('px', '') - 2;
 			$('.setup-webpage-list').addClass('fixed');
+            $('.setup-webpage-list').css('width', width);
 			$(this).css('z-index', '100');
+
+            $(window).resize(function(){
+                var parent = $('.editor-box');
+                var width = parent.css('width').replace('px', '') - 2;
+                $('.setup-webpage-list').css('width', width);
+            });
 		}
 		else{
+            $(window).unbind('resize');
 			$('.setup-webpage-list').removeClass('fixed');
+            $('.setup-webpage-list').css('width', '110%');
 			$(this).css('z-index', '');
 		}
 	});
@@ -387,7 +432,11 @@ function webpage(){
 						$(element).addClass('s3 c9');
 				});
 			})
-		}
+		},
+        file_browser_callback: function(field_name, url, type, win) {
+            if(type=='image');
+            	//$('#my_form input').click();
+        }
 	});
 }
 

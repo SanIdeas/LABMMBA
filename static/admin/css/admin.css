@@ -223,6 +223,18 @@
 
 }
 
+.setup-subtitle.blue{
+	background: #006e9c!important;
+}
+
+.setup-subtitle.green{
+	background: #009065!important;
+}
+
+.setup-subtitle.red{
+	background: #e0424e!important;
+}
+
 .selector-1{
 	animation: selector_1 0.5s ease-in-out;
 }
@@ -252,6 +264,10 @@
 	
 }
 
+.setup-webpage-list-container{
+	height: 40px;
+}
+
 .setup-user-list, .setup-area-list, .setup-webpage-list{
 	list-style: none;
 	padding: 0px 20px;
@@ -276,6 +292,7 @@
 	overflow: hidden;
 	position: relative;
 	margin: 0;
+	padding: 0;
 }
 
 .setup-user-list > li:hover > .setup-user-row{
@@ -311,7 +328,7 @@
 }
 
 .setup-webpage-row{
-	padding: 3px 0;
+	/*padding: 3px 0;*/
 	height: 100%;
 	position: relative;
 	box-sizing: border-box;
@@ -353,6 +370,7 @@
 	top: 0px;
 	left: 0px;
 	background-color: #006e9c;
+	border-radius: 10px 0 0 10px;
 }
 
 .invited > i{
@@ -367,6 +385,7 @@
 	top: 0px;
 	left: 0px;
 	background-color: #009065;
+	border-radius: 10px 0 0 10px;
 }
 
 .active > i{
@@ -381,6 +400,7 @@
 	top: 0px;
 	left: 0px;
 	background-color: #e0424e;
+	border-radius: 10px 0 0 10px;
 }
 
 .blocked > i{
@@ -415,6 +435,10 @@
     top: 0;
     text-align: center;
     line-height: 42px;
+}
+
+.setup-invited-user-box:nth-child(2) > button, .setup-user-box:nth-child(4) > button, .setup-area-box:nth-child(2) > button{
+	border-radius: 0 10px 10px 0;
 }
 
 .setup-user-box:nth-child(2){
@@ -480,7 +504,7 @@
 	background-color: #e9edf0;
 }
 
-#modal-delete-confirm{
+#modal-delete-confirm, #modal-edit-confirm{
     position: absolute;
     width: 400px;
     top: 10%;
@@ -534,6 +558,15 @@
 #modal-area > h3{
 	text-align: center;
 	font-weight: normal;
+}
+
+#modal-edit-confirm #modal-area-name{
+	background-color: transparent;
+	text-align: center;
+}
+
+#modal-error{
+	text-align: center;
 }
 
 #modal-curtain{
@@ -731,4 +764,19 @@ form .submit{
   width: 120px !important;
   padding: 11px !important;
   float: right !important;
+}
+
+.editor-box{
+	padding-top: 0!important;
+}
+
+.editor-box > .setup-webpage-list-container > .setup-webpage-list{
+	width: 110%;
+	border-radius: 10px 10px 0 0;
+	margin: 0 -5px 0 -5px;
+	background: #336090;
+}
+
+.editor-box > .setup-webpage-list-container > .setup-webpage-list .setup-webpage-row > h3{
+	border-radius: 10px 10px 0 0;
 }

@@ -9,31 +9,33 @@
     <span id="add-area-error" class="error"></span>
 </div>
 
-<h3 class="setup-subtitle">{% trans "Áreas de Investigación" %}</h3>
-<ul class="setup-area-list">
-    {% if areas %}
-        {% for area in areas %}
-            <li>
-                <div class="setup-area-row active">
-                    <i class="fa fa-flask" aria-hidden="true"></i>
-                    <div class="setup-area-name">{{area.name}}</div>
-                </div>
-                <div class="setup-area-box">
-                    <button class="setup-delete-box" area-name="{{ area.name }}" area-id="{{ area.id }}" title="{% trans 'Eliminar' %}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="setup-area-box">
-                    <button class="setup-edit-box" area-id="{{ area.id }}" title="{% trans 'Editar' %}">
-                        <i class="fa fa-edit" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </li>
-        {% endfor %}
-    {% else %}
-        <h1>{% trans 'No hay áreas de investigación en el sistema' %}</h1>
-    {% endif %}
-</ul>
+<div class="documents filters intranet box">
+    <h3 class="setup-subtitle green">{% trans "Áreas de Investigación" %}</h3>
+    <ul class="setup-area-list">
+        {% if areas %}
+            {% for area in areas %}
+                <li>
+                    <div class="setup-area-row active">
+                        <i class="fa fa-flask" aria-hidden="true"></i>
+                        <div class="setup-area-name">{{area.name}}</div>
+                    </div>
+                    <div class="setup-area-box">
+                        <button class="setup-delete-box" area-name="{{ area.name }}" area-id="{{ area.id }}" title="{% trans 'Eliminar' %}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="setup-area-box">
+                        <button class="setup-edit-box" area-name="{{ area.name }}" area-id="{{ area.id }}" title="{% trans 'Editar' %}">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <h2>{% trans 'No hay áreas de investigación en el sistema' %}</h2>
+        {% endif %}
+    </ul>
+</div>
 
 <div id="modal-curtain" class="curtain-hidden"></div>
 <div id="modal-delete-confirm" class="modal-hidden">
@@ -45,6 +47,22 @@
         <h3 id="modal-message">{% trans 'Ten en cuenta que los usuarios y documentos pertenecientes a esta área quedarán sin una categoría asociada.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" area-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+<div id="modal-edit-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "Editar área" %}</h3>
+        <div id="modal-area">
+            <form>
+                <input id="modal-area-name" type="text" class="text search field"/>
+                <span id="modal-error" class="error"></span>
+            </form>
+        </div>
+        <div id="modal-btns">
+            <button id="modal-confirm" area-id="" area-name="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
         </div>
     </div>
