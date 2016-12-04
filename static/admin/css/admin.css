@@ -786,3 +786,7 @@ form .submit{
 .editor-box > .setup-webpage-list-container > .setup-webpage-list .setup-webpage-row > h3{
 	border-radius: 10px 10px 0 0;
 }
+
+.webpage-setup-title{
+	padding: 0 20px;
+}
