@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import ModelForm
-from webpage.models import News, Image
+from webpage.models import News, Image, Section, SectionImage
 from login.models import User
 
 
@@ -21,8 +20,17 @@ class NewsForm(forms.ModelForm):
 		model = News
 		fields = '__all__'
 
+
 class ImageForm(forms.ModelForm):
 	news = forms.ModelChoiceField(queryset=News.objects.all(), required=True)
 	class Meta:
 		model = Image
+		fields = '__all__'
+
+
+class SectionImageForm(forms.ModelForm):
+	section = forms.ModelChoiceField(queryset=Section.objects.all(), required=True)
+
+	class Meta:
+		model = SectionImage
 		fields = '__all__'

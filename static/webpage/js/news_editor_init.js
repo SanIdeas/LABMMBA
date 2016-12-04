@@ -149,9 +149,8 @@ function imageUploader(dialog){
         image = null;
     });
 
-	// Obtiene la imagen ingresada por el usuasrio
+	// Obtiene la imagen ingresada por el usuario
 	dialog.addEventListener('imageuploader.fileready', function (ev) {
-
         // Upload a file to the server
         var formData;
         var file = ev.detail().file;

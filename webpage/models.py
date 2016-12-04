@@ -94,6 +94,20 @@ class Image(models.Model):
 		self.picture.name = filename
 		self.save()
 
+
+class SectionImage(models.Model):
+	image = models.FileField(upload_to='static/webpage/images/sections/', max_length=500, null=True)
+	section = models.ForeignKey(Section, on_delete=models.CASCADE)
+
+	def static_url(self):
+		return settings.SECTION_IMAGES_STATIC_URL + os.path.basename(self.image.name)
+
+	def set_filename(self):
+		filename = settings.SECTION_IMAGES_DIR + 'S' + str(self.section.id) + 'I' + str(self.id) + '.jpg'
+		os.rename(self.image.path, filename)
+		self.image.name = filename
+		self.save()
+
 # Se eliminan las imagenes del directorio
 # http://stackoverflow.com/questions/5372934/how-do-i-get-django-admin-to-delete-files-when-i-remove-an-object-from-the-datab
 @receiver(post_delete, sender=News)
@@ -103,3 +117,6 @@ def news_delete(sender, instance, **kwargs):
 @receiver(post_delete, sender=Image)
 def image_delete(sender, instance, **kwargs):
     instance.picture.delete(False)
+@receiver(post_delete, sender=SectionImage)
+def image_delete(sender, instance, **kwargs):
+	instance.image.delete(False)

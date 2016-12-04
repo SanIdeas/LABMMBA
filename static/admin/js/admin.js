@@ -164,6 +164,7 @@ function areas(){
         $('#modal-edit-confirm #modal-area-name').val($(this).attr('area-name'));
         $('#modal-edit-confirm').removeClass('modal-hidden').addClass('modal-visible');
         $('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
+        $('#modal-edit-confirm #modal-error').text("");
     });
 	$('#modal-delete-confirm #modal-cancel').click(function(){
 		$('#modal-delete-confirm').addClass('modal-hidden').removeClass('modal-visible');
@@ -253,6 +254,8 @@ function reload_webpage_setup(id){
 }
 
 function webpage(){
+	var imgIndex = 0;
+	var src = '';
 	/*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && $this.attr('setup-action') =='users') {
 	 $('.asd').click(function(){
 	 touched = $(this);
@@ -309,26 +312,44 @@ function webpage(){
 
 		spanish_title_edit.setMode('readonly');
 		spanish_body_edit.setMode('readonly');
+        $('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
 
-		$.ajax({
-			url: edit.replace('999', $(this).attr('section-id')),
-			method: 'POST',
-			data: {
-				'spanish-title': spanish_title_edit.getContent(),
-				'spanish-body': spanish_body_edit.getContent()
-			},
-			beforeSend: function(xhr){
-				xhr.setRequestHeader("X-CSRFToken", csrf_token);
+        var submitContent = function(urls){
+        	if(urls != null){
+                var images = $('#spanish-body-edit_ifr').contents().find('img[image-id]');
+                images.each(function(i, image){
+                    var url = urls[$(image).attr('image-id')];
+                    $(image).attr('src', url);
+                    $(image).attr('data-mce-src', url);
+                    $(image).attr('image-id', null);
+                });
 			}
-		}).done(function(html){
-			if(html.redirect)
-				window.location.href = html.redirect;
-			else{
-				$('#spanish-edit-box').parent(0).removeClass('setup-hidden');
-				$('#spanish-accept-box').parent(0).addClass('setup-hidden');
-				$('#spanish-cancel-box').parent(0).addClass('setup-hidden');
-			}
-		});
+
+            $.ajax({
+                url: edit.replace('999', $('#spanish-accept-box').attr('section-id')),
+                method: 'POST',
+                data: {
+                    'spanish-title': spanish_title_edit.getContent(),
+                    'spanish-body': spanish_body_edit.getContent()
+                },
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                }
+            }).done(function(html){
+                if(html.redirect)
+                    window.location.href = html.redirect;
+                else{
+                    $('#spanish-edit-box').parent(0).removeClass('setup-hidden');
+                    $('#spanish-accept-box').parent(0).addClass('setup-hidden');
+                    $('#spanish-cancel-box').parent(0).addClass('setup-hidden');
+                    $('#modal-curtain').removeClass('curtain-visible').addClass('curtain-hidden');
+                }
+            });
+        };
+
+        // Get editor new images
+        var images = $('#spanish-body-edit_ifr').contents().find('img[image-id]');
+        submitSectionImages(images, submitContent, $(this).attr('section-id'), spanish_title_edit, spanish_body_edit);
 	});
 
 	$('#spanish-cancel-box').click(function(){
@@ -351,26 +372,44 @@ function webpage(){
 
 		english_title_edit.setMode('readonly');
 		english_body_edit.setMode('readonly');
+        $('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
 
-		$.ajax({
-			url: edit.replace('999', $(this).attr('section-id')),
-			method: 'POST',
-			data: {
-				'english-title': english_title_edit.getContent(),
-				'english-body': english_body_edit.getContent()
-			},
-			beforeSend: function(xhr){
-				xhr.setRequestHeader("X-CSRFToken", csrf_token);
-			}
-		}).done(function(html){
-			if(html.redirect)
-				window.location.href = html.redirect;
-			else{
-				$('#english-edit-box').parent(0).removeClass('setup-hidden');
-				$('#english-accept-box').parent(0).addClass('setup-hidden');
-				$('#english-cancel-box').parent(0).addClass('setup-hidden');
-			}
-		});
+        var submitContent = function(urls){
+            if(urls != null){
+                var images = $('#english-body-edit_ifr').contents().find('img[image-id]');
+                images.each(function(i, image){
+                    var url = urls[$(image).attr('image-id')];
+                    $(image).attr('src', url);
+                    $(image).attr('data-mce-src', url);
+                    $(image).attr('image-id', null);
+                });
+            }
+
+            $.ajax({
+                url: edit.replace('999', $(this).attr('section-id')),
+                method: 'POST',
+                data: {
+                    'english-title': english_title_edit.getContent(),
+                    'english-body': english_body_edit.getContent()
+                },
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                }
+            }).done(function(html){
+                if(html.redirect)
+                    window.location.href = html.redirect;
+                else{
+                    $('#english-edit-box').parent(0).removeClass('setup-hidden');
+                    $('#english-accept-box').parent(0).addClass('setup-hidden');
+                    $('#english-cancel-box').parent(0).addClass('setup-hidden');
+                    $('#modal-curtain').removeClass('curtain-visible').addClass('curtain-hidden');
+                }
+            });
+        };
+
+        // Get editor new images
+        var images = $('#english-body-edit_ifr').contents().find('img[image-id]');
+        submitSectionImages(images, submitContent, $(this).attr('section-id'), english_title_edit, english_body_edit);
 	});
 
 	$('#english-cancel-box').click(function(){
@@ -398,7 +437,7 @@ function webpage(){
 		content_css: tinymce_css,
 		toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright outdent indent',
 		readonly: true,
-		language: 'es',
+		language: current_lang,
 		setup: function(ed){
 			ed.on('loadContent', function(){    // Avoid to loose <h1> class when everything is deleted
 				$(ed.getBody()).bind("DOMNodeInserted", function(e){
@@ -423,21 +462,56 @@ function webpage(){
 		toolbar1: 'insertfile undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist',
 		toolbar2: 'outdent indent | link image | preview media | forecolor backcolor |',
 		readonly: true,
-		language: 'es',
+		language: current_lang,
 		setup: function(ed){
 			ed.on('loadContent', function(){    // Avoid to loose <p> class when everything is deleted
 				$(ed.getBody()).bind('DOMNodeInserted', function(e){
 					var element = e.target;
 					if(element.tagName == 'P')
 						$(element).addClass('s3 c9');
+					else if(element.tagName == 'IMG') {	// Identify new images
+                        $(element).attr('src', src);
+                        $(element).attr('image-id', imgIndex++);
+                        src = '';
+                    }
 				});
 			})
 		},
-        file_browser_callback: function(field_name, url, type, win) {
-            if(type=='image');
-            	//$('#my_form input').click();
-        }
+        file_picker_callback: function(callback, value, meta){
+            if(meta.filetype == 'image'){
+            	if($(this).attr('id') == 'spanish-body-edit')
+            		$('#spanishImageField').click();
+            	else if($(this).attr('id') == 'english-body-edit')
+                    $('#englishImageField').click();
+            }
+		}
 	});
+    $('#spanishImageField, #englishImageField').change(function(evt){
+    	var field = $(this);
+    	var input = evt.target;
+        var id = $(this).attr('id');
+        var closeButton = top.$('.mce-btn.mce-open').parent().find('.mce-textbox').closest('.mce-window').find('.mce-close');
+
+        closeButton.click();
+        $('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
+
+    	// Read image in base64 and insert it into editor
+        var reader = new FileReader();
+        reader.onloadend = function(){
+            var img = $(new Image());
+			src = reader.result;
+
+            if(id == 'spanishImageField')
+            	tinyMCE.get('spanish-body-edit').execCommand("mceInsertContent", false, img.get(0).outerHTML);
+            else if(id == 'englishImageField')
+                tinyMCE.get('english-body-edit').execCommand("mceInsertContent", false, img.get(0).outerHTML);
+
+            field.val('');
+            $('#modal-curtain').removeClass('curtain-visible').addClass('curtain-hidden');
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    });
 }
 
 function webpage_init(){
@@ -457,3 +531,61 @@ function webpage_init(){
 		reload_webpage_setup(this.value);
 	});
 }
+
+function submitSectionImages(images, submitContent, section_id, title_edit, body_edit){
+    // Save images before save content
+    if(images.length > 0){
+        var form = new FormData();
+        form.append('csrfmiddlewaretoken', csrf_token);
+        form.append('section_id', section_id);
+
+        var submitAJAX = function(){
+            $.ajax({
+                url: save_images_url,
+                method: "POST",
+                data: form,
+                processData: false,
+                contentType: false
+            }).done(function(response){
+                if(response.redirect)
+                    window.location.href = response.redirect;
+                else if(!response['error'])
+                    submitContent(response['urls']);
+                else{
+                    $('#modal-curtain').removeClass('curtain-visible').addClass('curtain-hidden');
+                    title_edit.setMode('design');
+                    body_edit.setMode('design');
+                }
+            })
+        };
+
+        // Save images binary in form
+        var counter = 0;
+        images.each(function(i, image){
+            getBlobFromURL(image.src, function(blob){	// Get blob object from url created by the editor
+                form.append($(image).attr('image-id'), blob);
+                counter++;
+
+                if(counter == images.length)	// Submit only when all images are in form
+                    submitAJAX();
+            });
+        });
+    }
+    else
+        submitContent(null);
+}
+
+// Utilities
+function getBlobFromURL(url, callback){
+    var blob = null;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.responseType = "blob";	// force the HTTP response, response-type header to be blob
+    xhr.onload = function(){
+        blob = xhr.response;
+        callback(blob);
+    };
+
+    xhr.send();
+}
+

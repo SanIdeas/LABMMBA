@@ -577,6 +577,7 @@
 	position: absolute;
 	background-color: white;
 	z-index: 99;
+	text-align: center;
 }
 
 #modal-btns{
@@ -633,6 +634,11 @@
 	opacity: 0;
 	visibility: hidden;
 	transition: 0.3s ease;
+}
+
+.loading-curtain{
+	position: fixed!important;
+	transition: 0s;
 }
 
 #users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup{

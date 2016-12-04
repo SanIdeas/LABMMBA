@@ -1,10 +1,11 @@
 {% extends 'admin/shared.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% get_current_language as lang %}
 
 {% block extra_js %}
-    <script src="{% static 'admin/js/tinymce/tinymce.min.js' %}"></script>
-    <script src="{% static 'admin/js/tinymce/jquery.tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/vendor/tinymce/jquery.tinymce.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -29,6 +30,7 @@
 <script>var edit = "{% url 'admin:edit_section' 999 %}"</script>
 <script>var tinymce_css = "{% static 'usm_theme/css/style.css' %}, {% static 'admin/css/admin.css' %}"</script>
 <script>
+    var save_images_url = "{% url 'admin:save_images' %}";
     var csrf_token = '{{csrf_token}}';
     webpage_init();
 </script>

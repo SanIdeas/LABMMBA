@@ -42,6 +42,7 @@
                     {% endif %}
                 </div>
             </div>
+            <input id="spanishImageField" type="file" accept="image/png, image/jpeg" style="display: none" name="spanishImage">
 
             <div class="c6 documents filters intranet box editor-box">
                 <div class="setup-webpage-list-container">
@@ -79,24 +80,13 @@
                     {% endif %}
                 </div>
             </div>
+            <input id="englishImageField" type="file" accept="image/png, image/jpeg" style="display: none" name="englishImage">
         </form>
     </div>
 </div>
 
-<div id="modal-curtain" class="curtain-hidden"></div>
-<div id="modal-delete-confirm" class="modal-hidden">
-    <div id="modal-content">
-        <h3>{% trans "¿De verdad deseas eliminar a este usuario?" %}</h3>
-        <div id="modal-user">
-            <div id="modal-user-img"></div>
-            <h4 id="modal-user-name"></h4>
-        </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta que este usuario posee <strong id="modal-user-count"></strong> documentos.' %}</h3>
-        <div id="modal-btns">
-            <button id="modal-confirm" user-id="">{% trans "CONFIRMAR" %}</button>
-            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
-        </div>
-    </div>
+<div id="modal-curtain" class="curtain-hidden loading-curtain">
+    <i class="loader fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
 </div>
 
 <script>webpage();</script>

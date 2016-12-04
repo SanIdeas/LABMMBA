@@ -1,8 +1,12 @@
 {% extends 'shared/base.html' %}
 {% load staticfiles %}
-{% block content %}
 {% load i18n %}
 
+{% block title %}
+    Sobre Nosotros
+{% endblock %}
+
+{% block content %}
 <div id="slider" class="royalSlider rsDefault">
 <figure class="rsContent">
 	<img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit."/>
@@ -23,11 +27,19 @@
 <section id="content" class="wfull">
 	<div class="grid">
 		<div class="row">
-			{{ section.spanish_title | safe }} <!--MOSTRAR TITULO SEGUN LOCALIZACION-->
+            {% if lang == 'es' %}
+			    {{ section.spanish_title | safe }}
+            {% elif lang == 'en' %}
+                {{ section.english_title | safe }}
+            {% endif %}
 		</div>
 		<div class="row">
 			<div class="s3 c9">
-				{{ section.spanish_body | safe }} <!--MOSTRAR CUERPO SEGUN LOCALIZACION-->
+                {% if lang == 'es' %}
+                    {{ section.spanish_body | safe }}
+                {% elif lang == 'en' %}
+                    {{ section.english_body | safe }}
+                {% endif %}
 			</div>
 		</div>
 		<div class="row">

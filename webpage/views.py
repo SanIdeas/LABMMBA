@@ -101,7 +101,7 @@ def save_images(request):
 					if form.is_valid():
 						image = form.save()
 						image.set_filename()
-						response.append({'client_side_id': key, 'url':image.static_url()})
+						response.append({'client_side_id': key, 'url': image.static_url()})
 					else:
 						return JsonResponse({'error': True, 'message': form.errors})
 				return JsonResponse({'error': False, 'urls': response})

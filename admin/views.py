@@ -5,6 +5,7 @@ from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area
 from intranet.models import Document
 from webpage.models import Section
+from webpage.forms import SectionImageForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
@@ -282,6 +283,46 @@ def webpage(request, section_id=None):
 							return render(request, 'admin/webpage_ajax.html', {'section': Section.objects.get(id=section_id)})
 						except Exception:
 							return JsonResponse({'error': True})
+
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def save_images(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "POST" and request.is_ajax():
+				section_id = request.POST.get('section_id', None)
+				section = Section.objects.filter(id=section_id)
+				if section:
+					response = {}
+					for key in request.FILES:
+						fields = {
+							'section': section_id
+						}
+						files = {
+							'image': request.FILES[key]
+						}
+						form = SectionImageForm(fields, files)
+						if form.is_valid():
+							image = form.save()
+							image.set_filename()
+							response[key] = image.static_url()
+						else:
+							return JsonResponse({'error': True, 'message': form.errors})
+
+					return JsonResponse({'error': False, 'urls': response})
+				else:
+					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
 
 		else:
 			if request.is_ajax():
