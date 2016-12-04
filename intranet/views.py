@@ -520,7 +520,14 @@ def news_delete(request, id):
 			news = news[0]
 			if news.author == request.user or request.user.is_admin:
 				news.delete()
-		return HttpResponseRedirect(reverse('intranet:news'))
+
+		if request.is_ajax:
+			return JsonResponse({'error': False})
+		else:
+			return HttpResponseRedirect(reverse('intranet:news'))
 
 	else:
-		return HttpResponseRedirect(reverse('login'))
+		if request.is_ajax:
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))

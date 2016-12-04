@@ -17,7 +17,7 @@ def home(request):
 							'current_view': 'home',
 							'documents': documents,
 							'body': 'inicio',
-							'header': News.objects.exclude(header="").exclude(header=None)[:5],
+							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None)[:5],
 							'news_1': News.objects.exclude(thumbnail="").exclude(thumbnail=None)[:2],
 							'news_2': News.objects.exclude(thumbnail="").exclude(thumbnail=None)[2:4],
 							})

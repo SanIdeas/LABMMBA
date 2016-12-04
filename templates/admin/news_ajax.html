@@ -1,0 +1,124 @@
+{% load i18n %}
+{% load staticfiles %}
+<div class="intranet box news">
+    <h3 class="setup-subtitle green">{% trans "Noticias Publicadas" %}</h3>
+    <div class="list clear">
+        {% if published %}
+            {% for news in published %}
+                <div class="item clear">
+                    <div class="details c10">
+                        {%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
+                        <div>
+                        {%if news.title%}
+                            {% if news.is_external %}
+                                <a href="{{ news.source_url }}" class="news-title-link">
+                            {% else %}
+                                <a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}" class="news-title-link">
+                            {% endif %}
+                            <h2 class="title">{{news.title}}</h2>
+                            </a>
+                        {% else %}
+                            <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                        {%endif%}
+                        {% if news.header and news_in_header < 5 or news.header and news.in_header %}
+                            <a class="fa-stack fa-lg pin trans {% if news.in_header %}selected{% endif %} setup-pin-news-box" news-id="{{news.id}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-thumb-tack fa-stack-1x fa-inverse"></i>
+                            </a>
+                        {% endif %}
+                        </div>
+                        {% if news.source_text %}
+                            <span class="source"><strong>Fuente: </strong>
+                                {% if news.source_url %}
+                                    <a href="{{news.source_url}}">{{news.source_text}}</a>
+                                {% else %}
+                                    {{news.source_text}}
+                                {% endif %}
+                                    </span>
+                        {% endif %}
+                    </div>
+                    <div class="buttons c2">
+                        <div class="wrapper">
+                            <a class="fa-stack fa-lg cross trans setup-unpublish-news-box" news-id="{{news.id}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-times fa-stack-1x fa-inverse"></i>
+                            </a>
+                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{news.id}}" data-title="{{news.title}}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="webpage-setup-title">
+                <h2 class="">{% trans 'No hay noticias publicadas' %}</h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="intranet box news">
+    <h3 class="setup-subtitle red">{% trans "Noticias No Publicadas" %}</h3>
+    <div class="list clear">
+        {% if not_published %}
+            {% for news in not_published %}
+                <div class="item clear">
+                    <div class="details c10">
+                        {%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
+                        <div>
+                        {%if news.title%}
+                            {% if news.is_external %}
+                                <a href="{{ news.source_url }}">
+                            {% else %}
+                                <a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+                            {% endif %}
+                            <h2 class="title">{{news.title}}</h2>
+                            </a>
+                        {% else %}
+                            <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                        {%endif%}
+                        </div>
+                        {% if news.source_text %}
+                            <span class="source"><strong>Fuente: </strong>
+                                {% if news.source_url %}
+                                    <a href="{{news.source_url}}">{{news.source_text}}</a>
+                                {% else %}
+                                    {{news.source_text}}
+                                {% endif %}
+                                    </span>
+                        {% endif %}
+                    </div>
+                    <div class="buttons c2">
+                        <div class="wrapper">
+                            <a class="fa-stack fa-lg check trans setup-publish-news-box" news-id="{{news.id}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                            </a>
+                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal setup-delete-news-box" data-id="{{news.id}}" data-title="{{news.title}}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="webpage-setup-title">
+                <h2 class="">{% trans 'No hay noticias sin publicar' %}</h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="document modal" id="deleteModal" style="display:none;">
+    <h2>{% trans "¿Estas seguro?" %}</h2>
+    <p>{% trans "Esta noticia desaparecerá completamente" %}</p>
+    <h3 class="confirm" type="title" data=""></h3>
+    <h5 class="confirm" type="date" data=""></h5>
+    <div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+</div>
+
+<script>news();</script>
+

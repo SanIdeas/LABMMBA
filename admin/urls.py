@@ -17,5 +17,10 @@ urlpatterns = [
     url(r'areas/delete/(?P<area_id>.*)$', views.areas, name='delete_area'),
     url(r'^webpage/$', views.webpage, name="webpage"),
     url(r'webpage/edit/(?P<section_id>.*)$', views.webpage, name='edit_section'),
-    url(r'webpage/images/$', views.save_images, name="save_images")
+    url(r'webpage/images/$', views.save_images, name="save_images"),
+    url(r'^news/$', views.news, name="news"),
+    url(r'news/publish/(?P<news_id>.*)$', views.news, {'publish': True}, name='publish_news'),
+    url(r'news/unpublish/(?P<news_id>.*)$', views.news, {'unpublish': True}, name='unpublish_news'),
+    url(r'news/show_header/(?P<news_id>.*)$', views.news, {'show_header': True}, name='show_header_news'),
+    url(r'news/hide_header/(?P<news_id>.*)$', views.news, {'hide_header': True}, name='hide_header_news'),
 ]

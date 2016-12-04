@@ -589,3 +589,104 @@ function getBlobFromURL(url, callback){
     xhr.send();
 }
 
+// News View
+function reload_news_setup(){
+    $.ajax({
+        url: reload,
+        method: 'POST',
+        beforeSend: function(xhr){
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+        }
+    }).done(function(html){
+        if(html.redirect)
+            window.location.href = html.redirect;
+        else{
+            $('#news-setup').children().remove();
+            $('#news-setup').append(html);
+        }
+
+    });
+}
+
+function news(){
+	/*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && $this.attr('setup-action') =='users') {
+	 $('.asd').click(function(){
+	 touched = $(this);
+	 $(this).addClass('setup-user-row-expand-rsp');
+	 });
+	 $(window).on('click', function(e){
+	 console.log(touched);
+	 if(!(touched.is(e.target) || touched.children().is(e.target))){
+	 touched.removeClass('setup-user-row-expand-rsp');
+	 }
+	 });
+	 }*/
+    $('.setup-delete-box').click(function(){
+        $('#modal-user-img').css('background-image', 'url(' + $(this).attr('user-img') + ')');
+        $('#modal-user-name').text($(this).attr('user-full-name'));
+        $('#modal-user-count').text($(this).attr('user-count'));
+        $('#modal-confirm').attr('user-id', $(this).attr('user-id'));
+        $('#modal-delete-confirm').removeClass('modal-hidden').addClass('modal-visible');
+        $('#modal-curtain').removeClass('curtain-hidden').addClass('curtain-visible');
+    });
+    $('.setup-delete-invitation-box').click(function(){
+        $.ajax({
+            url: remove.replace('999', $(this).attr('user-id')),
+            type: 'GET',
+        }).done(function(){
+            reload_setup();
+        });
+    });
+    $('#modal-cancel').click(function(){
+        $('#modal-delete-confirm').addClass('modal-hidden').removeClass('modal-visible');
+        $('#modal-curtain').addClass('curtain-hidden').removeClass('curtain-visible');
+    });
+    $('#modal-confirm').click(function(){
+        $.ajax({
+            url: remove.replace('999', $(this).attr('user-id')),
+            type: 'GET',
+        }).done(function(){
+            reload_setup();
+        });
+    });
+    $('.setup-publish-news-box').click(function(){
+        $.ajax({
+            url: publish.replace('999', $(this).attr('news-id')),
+            type: 'GET'
+        }).done(function(){
+            reload_news_setup();
+        });
+    });
+    $('.setup-unpublish-news-box').click(function(){
+        $.ajax({
+            url: unpublish.replace('999', $(this).attr('news-id')),
+            type: 'GET'
+        }).done(function(){
+            reload_news_setup();
+        });
+    });
+    $('.setup-pin-news-box').click(function(){
+    	var header_url = '';
+
+    	if($(this).hasClass('selected'))
+    		header_url = hide_header;
+    	else
+            header_url = show_header;
+
+        $.ajax({
+            url: header_url.replace('999', $(this).attr('news-id')),
+            type: 'GET'
+        }).done(function(){
+            reload_news_setup();
+        });
+    });
+    $('a.delete.modal').fancybox({
+        autoSize: true,
+        beforeShow:function(links, index){
+            var self = $(this.element);
+            $('.confirm[type="title"]').attr('data', self.attr('data-title')).html(self.attr('data-title'));
+            $('.confirm[type="date"]').attr('data', self.attr('data-date')).html(self.attr('data-date'));
+            $('.confirm[type="send"]').attr('href', delete_url.replace('888', self.attr('data-id')));
+        }
+    });
+}

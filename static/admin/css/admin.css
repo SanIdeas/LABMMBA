@@ -641,9 +641,13 @@
 	transition: 0s;
 }
 
-#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup{
+#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup, #news-setup{
 	padding-left: 20px;
 	padding-right: 20px;
+}
+
+#news-setup{
+	padding-top: 20px;
 }
 
 form .text{
@@ -789,4 +793,41 @@ form .submit{
 
 .webpage-setup-title{
 	padding: 0 20px;
+}
+
+.box.news h3 {
+	display: block;
+	margin: 0;
+	padding: 7px 15px;
+	background: #336090;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.news .list .item a.news-title-link{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.news .list .item .buttons .wrapper a.check:hover{
+	color: #009065;
+}
+
+.news .list .item .buttons .wrapper a.cross:hover{
+	color: #EE5B55;
+}
+
+.news .list .item a.pin{
+	text-decoration: none;
+	color: #aab9c1;
+	outline: none;
+}
+
+.news .list .item a.pin:hover{
+	color: #336090;
+}
+
+.news .list .item a.pin.selected{
+	color: #336090;
 }

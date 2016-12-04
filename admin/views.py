@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area
 from intranet.models import Document
-from webpage.models import Section
+from webpage.models import Section, News
 from webpage.forms import SectionImageForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
@@ -324,6 +324,54 @@ def save_images(request):
 				else:
 					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
 
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def news(request, news_id=None, publish=False, unpublish=False, show_header=False, hide_header=False):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				if publish and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					news_obj.is_published = True
+					news_obj.save()
+					return JsonResponse({'error': False})
+				elif unpublish and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					news_obj.is_published = False
+					news_obj.in_header = False
+					news_obj.save()
+					return JsonResponse({'error': False})
+				elif show_header and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					news_obj.in_header = True
+					news_obj.save()
+					return JsonResponse({'error': False})
+				elif hide_header and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					news_obj.in_header = False
+					news_obj.save()
+					return JsonResponse({'error': False})
+				else:
+					return render(request, 'admin/news.html')
+
+			elif request.method == "POST" and request.is_ajax():
+				args = {
+					'not_published': News.objects.filter(is_published=False),
+					'published': News.objects.filter(is_published=True),
+					'news_in_header': News.objects.filter(is_published=True, in_header=True).count()
+				}
+				return render(request, 'admin/news_ajax.html', args)
 		else:
 			if request.is_ajax():
 				return JsonResponse({'redirect': reverse('webpage:home')})

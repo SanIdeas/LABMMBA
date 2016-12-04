@@ -1,0 +1,26 @@
+{% extends 'admin/shared.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as lang %}
+
+{% block extra_js %}
+    <script src="{% static 'admin/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/vendor/tinymce/jquery.tinymce.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="news-setup">
+    <div class="documents filters intranet box webpage-setup-title"></div>
+</div>
+
+<script>var reload = "{% url 'admin:news'%}"</script>
+<script>var publish = "{% url 'admin:publish_news' 999 %}"</script>
+<script>var unpublish = "{% url 'admin:unpublish_news' 999 %}"</script>
+<script>var show_header = "{% url 'admin:show_header_news' 999 %}"</script>
+<script>var hide_header = "{% url 'admin:hide_header_news' 999 %}"</script>
+<script>var delete_url = "{% url 'intranet:delete_news' 888 %}"</script>
+<script>
+    var csrf_token = '{{csrf_token}}';
+    reload_news_setup();
+</script>
+{% endblock %}
