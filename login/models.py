@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 from django.db import models
 from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser
@@ -60,7 +59,16 @@ class UserManager(BaseUserManager):
 		return user
 
 class Area(models.Model):
-	name = models.CharField(max_length=100, unique=True)
+	name = models.CharField(max_length=150, unique=True)
+
+	def get_sub_areas(self):
+		return SubArea.objects.filter(area=self)
+	def add_sub_area(self, name):
+		return SubArea.objects.create(name=name, area=self)
+
+class SubArea(models.Model):
+	name  = models.CharField(max_length=150, unique=True)
+	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
 
 class User(AbstractBaseUser):
 	email = models.EmailField(
@@ -72,7 +80,7 @@ class User(AbstractBaseUser):
 	last_name = models.CharField(max_length=80, null=True)
 	institution = models.CharField(max_length=80, null=True)
 	country = models.CharField(max_length=80, null=True)
-	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
+	area = models.ForeignKey(SubArea, on_delete=models.SET_NULL, null=True)
 	career = models.CharField(max_length=80, null=True)
 	is_active = models.BooleanField(default=True)
 	is_blocked = models.BooleanField(default=False)
@@ -141,7 +149,7 @@ class User(AbstractBaseUser):
 		self.last_name = last_name
 		self.institution = institution
 		self.country = country
-		self.area = Area.objects.get(id=area)
+		self.area = SubArea.objects.get(id=area)
 		self.career = career
 		self.set_password(password)
 		self.is_registered = True

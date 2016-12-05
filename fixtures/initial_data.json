@@ -3,7 +3,7 @@
     "model": "login.area",
     "pk": 1,
     "fields": {
-      "name": "Microbiología Molecular"
+      "name": "Biorremediación bacteriana de ambientes contaminados"
     }
   },
 
@@ -11,7 +11,7 @@
     "model": "login.area",
     "pk": 2,
     "fields": {
-      "name": "Biotecnología Ambiental"
+      "name": "Genómica Funcional de bacterias para su reconstrucción metabólica y fisiológica"
     }
   },
 
@@ -19,7 +19,7 @@
     "model": "login.area",
     "pk": 3,
     "fields": {
-      "name": "Bionanotecnología"
+      "name": "Síntesis microbiana y caracterización de biopolímeros"
     }
   },
 
@@ -27,7 +27,7 @@
     "model": "login.area",
     "pk": 4,
     "fields": {
-      "name": "Genómica Funcional y Proteómica"
+      "name": "Prospección de compuestos bioactivos de microorganismos, plantas y animales"
     }
   },
 
@@ -35,7 +35,7 @@
     "model": "login.area",
     "pk": 5,
     "fields": {
-      "name": "Síntesis de compuestos bioactivos y de interés biotecnológico"
+      "name": "Interacciones microorganismos y plantas"
     }
   },
 
@@ -43,9 +43,244 @@
     "model": "login.area",
     "pk": 6,
     "fields": {
-      "name": "Biorremediación de Ambientes Contaminados"
+      "name": "Bionanotecnología"
     }
   },
+
+  {
+    "model": "login.subarea",
+    "pk": 1,
+    "fields": {
+      "name": "Biorremediación de policlorobifenilos",
+      "area": 1
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 2,
+    "fields": {
+      "name": "Biorremediación de pesticidas",
+      "area": 1
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 3,
+    "fields": {
+      "name": "Biorremediación de hidrocarburos",
+      "area": 1
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 4,
+    "fields": {
+      "name": "Biorremediación de metales pesados",
+      "area": 1
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 5,
+    "fields": {
+      "name": "Monitoreo de contaminantes orgánicos persistentes",
+      "area": 1
+    }
+  },
+
+
+  {
+    "model": "login.subarea",
+    "pk": 6,
+    "fields": {
+      "name": "Reconstrucción del metabolismo de bacterias a partir de sus genomas",
+      "area": 2
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 7,
+    "fields": {
+      "name": "Funcionalidad de rutas catabólicas de compuestos aromáticos",
+      "area": 2
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 8,
+    "fields": {
+      "name": "Funcionalidad de rutas anabólicas de compuestos aromáticos",
+      "area": 2
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 9,
+    "fields": {
+      "name": "Respuesta molecular de bacterias frente a compuestos orgánicos y a cambios en su entorno",
+      "area": 2
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 10,
+    "fields": {
+      "name": "Estrés oxidativo",
+      "area": 2
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 11,
+    "fields": {
+      "name": "Síntesis bacteriana de biopolímeros como polihidroxialcanoatos",
+      "area": 3
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 12,
+    "fields": {
+      "name": "Caracterización de biopolímeros y sus aplicaciones",
+      "area": 3
+    }
+  },
+  {
+    "model": "login.subarea",
+    "pk": 13,
+    "fields": {
+      "name": "Aislamiento y caracterización de Actinobacterias",
+      "area": 4
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 14,
+    "fields": {
+      "name": "Síntesis de compuestos bioactivos tipo PKS y NRPS por bacterias ambientales",
+      "area": 4
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 15,
+    "fields": {
+      "name": "Biotransformaciones de compuestos aromáticos mediante enzimas microbianas",
+      "area": 4
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 16,
+    "fields": {
+      "name": "Generación de nuevas moléculas antioxidantes mediante biotransformaciones",
+      "area": 4
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 17,
+    "fields": {
+      "name": "Aislamiento y caracterización de compuestos bioactivos de organismos marinos",
+      "area": 4
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 18,
+    "fields": {
+      "name": "Extracción de compuestos bioactivos a partir de flora nativa chilena",
+      "area": 4
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 19,
+    "fields": {
+      "name": "Aislamiento y caracterización de bacterias promotoras del crecimiento vegetal y micorrizas",
+      "area": 5
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 20,
+    "fields": {
+      "name": "Efecto de bacterias promotoras del crecimiento vegetal sobre plantas",
+      "area": 5
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 21,
+    "fields": {
+      "name": "Efecto de hongos micorrícicos arbusculares sobre la vid",
+      "area": 5
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 22,
+    "fields": {
+      "name": "Efecto de fitopatógenos como Pseudomonas syringae y Clavibacter michiganensis subsp. michiganensis sobre plantas de tomate",
+      "area": 5
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 23,
+    "fields": {
+      "name": "Estrategias de biocontrol de fitopatógenos",
+      "area": 5
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 24,
+    "fields": {
+      "name": "Síntesis química y biogénica de nanopartículas metálicas",
+      "area": 6
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 25,
+    "fields": {
+      "name": "Desarrollo de nanopartículas metálicas como sistemas de liberación de fármacos",
+      "area": 6
+    }
+  },
+
+  {
+    "model": "login.subarea",
+    "pk": 26,
+    "fields": {
+      "name": "Síntesis de biopolímeros",
+      "area": 6
+    }
+  },
+
 
   {
     "model": "webpage.section",

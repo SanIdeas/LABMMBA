@@ -113,10 +113,10 @@
 	            			{% if request.user == profile_user %}
 		            			<div class="options" data-id="{{ document.id }}">
 		            				<div>
-		            					<button class="delete" data-title="{{document.title}}" data-author="{{document.author}}" title="{% trans 'Eliminar' %}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	            					
+		            					<button class="delete" data-title="{{document.title}}" data-author="{{document.author}}" data-id="{{document.id}}" title="{% trans 'Eliminar' %}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>	            					
 		            				</div>
 		            				<div>
-		            					<a href="{% url 'intranet:edit_document' document.author document.title %}" title="{% trans 'Editar' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+		            					<a href="{% url 'intranet:edit_document' document.id %}" title="{% trans 'Editar' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 		            				</div>
 		            				<div>
 		            					<!-- Boton 3 -->    					
@@ -124,9 +124,18 @@
 		            			</div>
 		            		{% endif %}
 	            			<div class="body">
-	            				<a href="{% url 'intranet:document' document.author document.title %}">
-	            					<h3><span>{{ document.date|date:"Y" }}</span> · {{ document.title }}</h3>
-	            					<span>{{ document.author }}</span>
+	            				<a href="{% url 'intranet:document' document.author_slug document.title_slug %}">
+	            					<h3><span>{{ document.date|date:"Y" }}</span> · 
+	            					{% if document.title %}
+	            						{{ document.title }}</h3>
+	            					{% else %}
+	            						{% trans "Sin título" %}</h3>
+	            					{% endif %}
+	            					{% if document.author %}
+	            						<span>{{ document.author }}</span>
+	            					{% else %}
+	            						<span>{% trans "Sin autores" %}</span>
+	            					{% endif %}
 	            				</a>
 	            			</div>
 	            			{% if request.user == profile_user %}
@@ -209,7 +218,11 @@
      			<select name="area" required>
 					<option disabled>{% trans "Selecciona un area" %}</option>
 					{% for area in areas %}
-						<option value="{{ area.id }}" {% if area == profile_user.area %} selected {% endif %}>{{ area.name }}</option>
+						<optgroup label="{{ area.name }}">
+							{% for subarea in area.get_sub_areas %}
+								<option value="{{ subarea.id }}" {% if subarea == profile_user.area %} selected {% endif %}> {{ subarea.name }}</option>
+							{% endfor %}
+						</optgroup>
 					{% endfor %}
 				</select>
      		</div>
@@ -292,7 +305,7 @@
 			<p>{% trans "Estas a punto de eliminar el documento:" %}</p>
 			<h3 class="confirm" type="title" data=""></h3>
 			<h5 class="confirm" type="author" data=""></h5>
-			<div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+			<div><a class="confirm" type="send" data="">{% trans "CONFIRMAR" %}</a></div>
 		</div>
 	</div>
 	<div>
@@ -305,10 +318,10 @@
 
 <script>
 	var update_picture_url = "{% url 'intranet:update_picture' %}";
-	var edit_document_url = "{% url 'intranet:edit_document' '888' '999' %}";
 	var csrf_token = "{{ csrf_token }}";
 	var authentication_url = "http://{{ request.get_host }}{% url 'get_credentials' %}";
 	var password_url = "{% url 'change_password' %}";
+	var edit_document_url = "{% url 'intranet:edit_document' '888' %}";
 </script>
 <script src="{% static 'intranet/js/profile_events.js' %}"></script>
 {% endif %}

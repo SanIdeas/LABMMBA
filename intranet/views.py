@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _ # Para traducir un string se 
 from django.core.paginator import Paginator
 from intranet.forms import DocumentForm
 from intranet.models import Document
-from login.models import Area, User
+from login.models import SubArea, Area,  User
 from webpage.models import News, Image
 from webpage.forms import NewsForm
 from unidecode import unidecode
@@ -127,9 +127,9 @@ def documents(request, search=None):
 		parameters = {'current_view': 'intranet'}
 
 		try:
-			all_docs = Document.objects.filter(is_available=True, **kwargs)
+			all_docs = Document.objects.filter(is_available=True, **kwargs).exclude(title__isnull=True, author__isnull=True)
 		except:
-			all_docs = Document.objects.filter(is_available=True)
+			all_docs = Document.objects.filter(is_available=True).exclude(title__isnull=True, author__isnull=True)
 
 
 		#Si no es una busqueda
@@ -148,7 +148,7 @@ def documents(request, search=None):
 				parameters['categories'] = []
 				print Document.objects.values('category').distinct();
 				for category in Document.objects.values('category').distinct():
-					parameters['categories'].append(Area.objects.get(id=category['category']))
+					parameters['categories'].append(SubArea.objects.get(id=category['category']))
 
 				# Se extrae el numero de pagina
 				if request.GET.get('page'):
@@ -226,7 +226,7 @@ def profile(request, user_id = None):
 			request.user.last_name = request.POST['last_name']
 			request.user.institution = request.POST['institution']
 			request.user.career = request.POST['career']
-			request.user.area = Area.objects.get(id=request.POST['area'])
+			request.user.area = SubArea.objects.get(id=request.POST['area'])
 			request.user.first_name = request.POST['first_name']
 			request.user.country = request.POST['country']
 			request.user.facebook = request.POST.get('facebook')
@@ -265,8 +265,8 @@ def upload(request):
 					document.title = request.POST.get('title' + id)
 					document.author = request.POST.get('author' + id)
 					document.date = request.POST.get('date' + id)
-					document.category = Area.objects.get(id=request.POST.get('category' + id))
-					document.type = int(request.POST.get('type' + id))
+					document.category = SubArea.objects.get(id=request.POST.get('category' + id))
+					document.is_public = int(request.POST.get('type' + id))
 					document.abstract = request.POST.get('abstract' + id)
 					document.issn = request.POST.get('issn' + id)
 					document.doi = request.POST.get('doi' + id)
@@ -296,7 +296,7 @@ def upload(request):
 						'title': request.POST.get('title'+id),
 						'author': request.POST.get('author'+id),
 						'date': request.POST.get('date'+id),
-						'type': int(request.POST.get('type'+id)),
+						'is_public': int(request.POST.get('type'+id)),
 						'category': int(request.POST.get('category' + id)),
 						'owner': request.user.id,
 						'issn': request.POST.get('issn' + id),
@@ -325,10 +325,10 @@ def upload_drive(request):
 	return render(request, 'intranet/upload_sections/drive.html')
 
 def local_form(request):
-	return render(request, 'intranet/upload_sections/local_upload_form_template.html', {'categories': Area.objects.all()})
+	return render(request, 'intranet/upload_sections/local_upload_form_template.html', {'areas': Area.objects.all()})
 
 def drive_form(request):
-	return render(request, 'intranet/upload_sections/drive_upload_form_template.html', {'categories': Area.objects.all()})
+	return render(request, 'intranet/upload_sections/drive_upload_form_template.html', {'areas': Area.objects.all()})
 
 # Extrae el contenido de los documentos identificados por las id recibidas
 # Se usa al momento de subir archivos por Google Drive. El cliente llama a esta funcion explicitamente
@@ -349,17 +349,26 @@ def extract_content_and_keywords(request):
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
 
-def pdf_viewer(request, title=None, author=None):
+def pdf_viewer(request, title=None, author=None, id=None):
 	try:
-		document = Document.objects.get(title=title, author=author, is_available=True)
+		if title is None and author is None and id is not None:
+			# Solo usuarios dueños de un archivo o administradores pueden visualizarlo solo con la id
+			if request.user.is_authenticated():
+				document = Document.objects.get(id=id, owner=request.user)
+			elif request.user.is_admin:
+				document = Document.objects.get(id=id)
+			else: 
+				document = None
+		else:			
+			document = Document.objects.get(title_slug=title, author_slug=author, is_available=True)
 	except Document.DoesNotExist:
 		document = None
 	if document is not None:
-		if ((document.type and request.user.is_authenticated()) or not document.type):
+		if ((not document.is_public and request.user.is_authenticated()) or document.is_public):
 			#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
 			with open(document.document.path, 'rb') as pdf:
 				response =  HttpResponse(pdf.read(), content_type='application/pdf')
-				response['Content-Disposition'] = 'inline;filename="some_file.pdf"'.replace('some_file',title)
+				response['Content-Disposition'] = 'inline;filename="some_file.pdf"'.replace('some_file',document.title)
 				response['Content-Length'] = os.stat(document.document.path).st_size
 				return response
 			pdf.close()
@@ -383,7 +392,7 @@ def users(request):
 def document(request, title=None, author=None):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		try:
-			document = Document.objects.get(title=title, author=author)
+			document = Document.objects.get(title_slug=title, author_slug=author)
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
@@ -394,23 +403,23 @@ def document(request, title=None, author=None):
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
-def edit_document(request, title=None, author=None):
+def edit_document(request, id=None):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		try:
 			if request.user.is_admin:
-				document = Document.objects.get(title=title, author=author)
+				document = Document.objects.get(id=id)
 			else:
-				document = Document.objects.get(title=title, author=author, owner=request.user)
+				document = Document.objects.get(id=id, owner=request.user)
 		except:
 			document = None
 		if document:
 			if request.method == "GET":
-				return render(request, 'intranet/edit_document_information.html', {'current_view': 'intranet', 'document': document})
+				return render(request, 'intranet/edit_document_information.html', {'current_view': 'intranet', 'document': document, 'areas': Area.objects.all()})
 			elif request.method == "POST":
 					document.title = request.POST['title']
 					document.author = request.POST['author']
 					document.date = request.POST['date']
-					document.category = Area.objects.get(id=request.POST['category'])
+					document.category = SubArea.objects.get(id=request.POST['category'])
 					document.abstract = request.POST['abstract']
 					document.issn = request.POST['issn']
 					document.doi = request.POST['doi']
@@ -418,13 +427,13 @@ def edit_document(request, title=None, author=None):
 					document.url = "http://dx.doi.org/" + request.POST['doi']
 					document.pages = request.POST['pages']
 					document.save()
-					return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': request.POST['title'], 'author': request.POST['author']}))
+					return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': document.title_slug, 'author': document.author_slug}))
 			elif request.method == "DELETE":
 				document.owner.doc_number('-')
 				document.delete()
 				return JsonResponse({'error': False})
 		else:
-			return HttpResponseRedirect(reverse('intranet:document', kwargs={'title': title, 'author': author})) #Se redirecciona a la ultima pagina visitada.
+			return HttpResponseRedirect(reverse('intranet:documens')) #Se redirecciona a Documentos.
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:

@@ -1,14 +1,15 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
+from django.utils.text import slugify
 from django.conf import settings
 from django.db import models
-from login.models import User, Area
+from login.models import User, Area, SubArea
 from unidecode import unidecode
 from collections import Counter
 import os, re, operator, unicodedata, datetime
-
+from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 # Herramientas PDF
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
@@ -68,10 +69,11 @@ def date(date):
 
 class Document(models.Model):
 	document = models.FileField(upload_to='uploads/documents/', max_length=500)
-	category = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
-	type = models.BooleanField(default=True)
+	category = models.ForeignKey(SubArea, on_delete=models.SET_NULL, null=True)
 	title = models.CharField(max_length=300, null=True)
+	title_slug = models.SlugField(max_length=300, null=True)
 	author = models.CharField(max_length=300, null=True)
+	author_slug = models.SlugField(max_length=300, null=True)
 	date = models.DateField(null=True)
 	content = models.TextField(null=True)
 	abstract = models.CharField(max_length=1000, null=True)
@@ -85,16 +87,21 @@ class Document(models.Model):
 	pages = models.CharField(max_length= 25, null=True)
 	is_available = models.BooleanField(default=False)
 	first_save_flag = models.BooleanField(default=False)
+	is_public = models.BooleanField(default=False)
 
 	def save(self, *args, **kwargs):
-		super(Document, self).save(*args, **kwargs)
+		if self.title:
+			self.title_slug = slugify(self.title)
+		if self.author:
+			self.author_slug = slugify(self.author)
+
 		self.owner.update_activity()
-		print "-----------PRE ES NONE"
+
+		super(Document, self).save(*args, **kwargs)
+
 		# Solo cuando se guarda por primera vez
 		if not self.first_save_flag:
 			self.owner.doc_number('+')
-
-			print "-----------ES NONE"
 
 			# Se arregla el nombre de archivo documento
 			# http://stackoverflow.com/questions/12358920/renaming-files-in-django-filefield
@@ -259,10 +266,10 @@ class Document(models.Model):
 			return list
 
 	def privacy(self):
-		if self.type == 0:
-			return 'public'
+		if self.is_public == 0:
+			return _(u'Laboratorio')
 		else:
-			return 'private'
+			return _(u'Público')
 
 	def get_doi_url(self):
 		return 'http://dx.doi.org/' + self.doi

@@ -49,6 +49,7 @@ $('.btn').children('button').click(function(){
 $('.delete').click(function(){
 	$('.confirm[type="title"]').attr('data', $(this).attr('data-title')).html($(this).attr('data-title'));
 	$('.confirm[type="author"]').attr('data', $(this).attr('data-author')).html($(this).attr('data-author'));
+	$('.confirm[type="send"]').attr('data', $(this).attr('data-id'));
 	$.fancybox($('#deleteModal').parent('div').html());
 
 	// Se activa la escucha al boton confirmar
@@ -56,7 +57,7 @@ $('.delete').click(function(){
 	$('.confirm[type="send"]').click(function(){
 		if($.fancybox.isOpen){
 			$.ajax({
-				url: encodeURI(edit_document_url.replace('888', $('.confirm[type="author"]').attr('data')).replace('999', $('.confirm[type="title"]').attr('data'))),
+				url: encodeURI(edit_document_url.replace('888', $('.confirm[type="send"]').attr('data'))),
 				type: "DELETE",
 				beforeSend: function(xhr){
 					xhr.setRequestHeader("X-CSRFToken", csrf_token);

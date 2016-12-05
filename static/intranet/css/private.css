@@ -92,7 +92,7 @@ body {
   height: 100%;
 }
 .sidebar {
-  min-width: 245px;
+  min-width: 210px;
   height: 100%;
   background-color: #f5f5f5;
   display: block;
@@ -132,6 +132,7 @@ body {
 .intranet.body .title {
   padding: 6.5px 15px;
   text-align: center;
+  font-size: 9pt;
   margin-bottom: 20px;
   border-bottom: 1px solid #d2d2d2;
   background-color: #f1f2f4;
@@ -167,7 +168,7 @@ body {
   }
 }
 .intranet.separator {
-  margin: 20px auto;
+  margin: 10px auto;
   width: 70%;
   border-top: 2px solid #d2d2d2;
 }
@@ -179,15 +180,18 @@ body {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  font-size: 10pt;
 }
 .intranet.box.border.bottom {
   border-bottom-color: #f2ae47;
 }
 .intranet.box > h4 {
   margin: 0;
-  padding: 10px;
+  padding: 5px 10px;
   font-weight: 400;
   border-bottom: 1px solid #e2e2e2;
+  background-color: #5b8fc6;
+  color: white;
 }
 .intranet.box > .info {
   max-height: 400px;
@@ -199,7 +203,7 @@ body {
   margin: 0;
 }
 .intranet.box > .info .documents li {
-  padding: 10px 0px;
+  padding: 5px 0px;
 }
 .intranet.box > .info .documents li:nth-child(even) {
   background-color: #f7f7f7;
@@ -240,8 +244,8 @@ body {
 .intranet.box > .users ul li {
   display: inline-block;
   margin: 0;
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   margin-left: 20px;
   margin-right: 20px;
   vertical-align: middle;
@@ -300,7 +304,7 @@ body {
 }
 .intranet.box .counter h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -341,13 +345,13 @@ body {
   color: #fcedd6;
   bottom: -15px;
   content: "\f15b";
-  font: normal normal normal 123px FontAwesome;
+  font: normal normal normal 85px FontAwesome;
 }
 .intranet.box .counter div {
-  height: 70px;
+  height: 60px;
 }
 .intranet.box .counter h1 {
-  margin-top: -11px;
+  margin-top: -5px;
 }
 .intranet.box .counter h3 {
   bottom: 3px;
@@ -373,7 +377,7 @@ body {
 }
 .intranet.box .pdf h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -440,7 +444,7 @@ body {
 }
 .intranet.box .google-drive h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -507,7 +511,7 @@ body {
 }
 .intranet.box .myfiles h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -573,7 +577,7 @@ body {
 }
 .intranet.box .warning h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -641,7 +645,7 @@ body {
 }
 .intranet.box .annotation h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -705,7 +709,7 @@ body {
 }
 .intranet.box .write h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -772,7 +776,7 @@ body {
 }
 .intranet.box .external-link h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -821,7 +825,7 @@ body {
 .intranet.box > .description {
   width: 100%;
   border-top: 1px solid #e2e2e2;
-  padding: 10px;
+  padding: 5px 10px;
   text-align: center;
 }
 #sidebar {
@@ -830,14 +834,15 @@ body {
   border-right: 1px solid #e9edf0;
 }
 #sidebar a:hover {
-  background-color: #edf4f5 !important;
+  background-color: #e3eef0 !important;
 }
 #sidebar .utfsm {
   width: 245px;
-  opacity: 0.5;
+  opacity: 0.35;
   bottom: 0;
   position: absolute;
-  margin-bottom: 5px;
+  padding: 10px 5px;
+  background-color: #dae1e6;
 }
 @media screen and (max-height: 470px) {
   #sidebar .utfsm {
@@ -847,6 +852,8 @@ body {
 #sidebar .links > a {
   position: relative;
   overflow: hidden;
+  font-size: 10pt;
+  white-space: nowrap;
 }
 #sidebar .links > a i {
   font-size: 17pt;
@@ -854,6 +861,9 @@ body {
   left: 0px;
   padding-right: 5px;
   color: #aaaaaa;
+}
+#sidebar .links > a.selected {
+  background-color: #d3e3e7;
 }
 #search {
   display: flex;
@@ -1084,6 +1094,18 @@ form .c12 {
   padding: 6.5px 15px;
   text-align: center;
 }
+.document.head h2,
+.document.head h5 {
+  margin: 0px;
+}
+.document.head h5 {
+  font-weight: normal;
+}
+.document.head textarea,
+.document.head input,
+.document.head select {
+  border-radius: 5px;
+}
 .document.head textarea {
   overflow: hidden;
   width: 80%;
@@ -1093,6 +1115,7 @@ form .c12 {
   text-align: center;
   min-height: 30px;
   background: #e9edf0;
+  margin-bottom: 5px;
 }
 .document.head input {
   -webkit-appearance: none;
@@ -1124,7 +1147,7 @@ form .c12 {
 }
 .document.download h1 {
   padding-left: 10%;
-  font-size: 50px;
+  font-size: 38px;
   margin: 0;
   position: relative;
   align-self: baseline;
@@ -1195,6 +1218,14 @@ form .c12 {
 .document.table td {
   border: none !important;
 }
+.document.table strong {
+  white-space: nowrap;
+}
+.document.table textarea,
+.document.table input,
+.document.table select {
+  border-radius: 5px;
+}
 .document.owner a {
   text-decoration: none;
   color: inherit;
@@ -1232,6 +1263,11 @@ form .c12 {
   display: inline-block;
   padding: 10px;
   margin: 0;
+}
+.document.keywords textarea,
+.document.keywords input,
+.document.keywords select {
+  border-radius: 5px;
 }
 .document.controls a {
   width: 50%;
@@ -1555,8 +1591,8 @@ form .c12 {
   overflow: hidden;
 }
 .upload.files .file .field {
-  padding: 0px 20px;
-  padding: 10px  0px !important;
+  padding: 10px  10px !important;
+  border-radius: 5px;
 }
 .upload.files .file .field:nth-child(even) {
   background-color: #f7f7f7;
@@ -1578,6 +1614,7 @@ form .c12 {
   color: #e9edf0;
 }
 .upload.files .file .field.abstract .c9 textarea {
+  border-radius: 5px;
   overflow: hidden;
   width: 100%;
   resize: none;
@@ -2230,7 +2267,7 @@ form .c12 {
 }
 .profile.picture > div img {
   align-self: center;
-  width: 200px;
+  width: 150px;
   border-radius: 50%;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.4);
 }
@@ -2556,7 +2593,6 @@ form .c12 {
 }
 .news .list .item .details > a {
   text-decoration: none;
-  color: inherit;
 }
 .news .list .item .details .date {
   font-size: 9pt;
@@ -2569,6 +2605,7 @@ form .c12 {
   border: none;
   text-align: left;
   padding: 0px;
+  font-size: 10pt;
   font-weight: normal;
 }
 .news .list .item .details .source {

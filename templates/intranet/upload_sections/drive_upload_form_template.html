@@ -80,8 +80,12 @@
 					<div class="c9">
 						<select name="category$index" class="field" required>
 							<option value="" disabled selected>{% trans "Selecciona una categoria" %}</option>
-							{% for category in categories %}
-								<option value="{{category.id}}">{{category.name}}</option>
+							{% for area in areas %}
+								<optgroup label="{{ area.name }}">
+									{% for subarea in area.get_sub_areas %}
+										<option value="{{ subarea.id }}"> {{ subarea.name }}</option>
+									{% endfor %}
+								</optgroup>
 							{% endfor %}
 						</select>
 					</div>
@@ -93,8 +97,8 @@
 					<div class="c9">
 						<select class="type-select field" name="type$index" required>
 								<option value="" disabled selected>{% trans "Selecciona privacidad" %}</option>
-								<option value="0">{% trans "Público" %}</option>
-								<option value="1">{% trans "Privado" %}</option>
+								<option value="0">{% trans "Interno" %}</option>
+								<option value="1">{% trans "Público" %}</option>
 							</select>
 					</div>
 				</div>

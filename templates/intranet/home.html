@@ -2,47 +2,10 @@
 {% load staticfiles %}
 {% block content %}
 {% load i18n %}
-<div class="title">
-    <h3>{% trans "Resumen de actividad" %}</h3>
-</div>
+</br>
 <div class="intranet row">
     <!-- Seccion izquierda -->
     <div id="lCol" class="c7">
-        <!-- Nueva linea -->
-        <div class="intranet box">
-            <h4>{% trans "Usuarios registrados" %}</h4>
-            <div class="users">
-                <ul>
-                    {% for user in users_preview %}
-                    <li>
-                        <a href="{% url 'intranet:profile' user.id %}">
-                            <img class="img" 
-                                {% if user.profile_picture %} 
-                                    src="{% static user.filename %}" 
-                                {% else %} 
-                                    src="{% static 'intranet/images/default.png' %}" 
-                                {% endif%}>
-                        </a>
-                    </li>                    
-                    {% endfor %}
-                    {% if users_count > 0 %}
-                    <li><div><h2> {% blocktrans %} {{ users_count }} más {% endblocktrans %}</h2></div></li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="btn">
-                <a class="trans" href="{% url 'intranet:users' %}">{% trans "Ver todos los usuarios" %}</a>
-            </div>
-        </div>
-        <!-- Nueva linea -->
-        <div class="intranet box">
-            <div class="counter">
-                <div>
-                    <h1>{{ documents_count }}</h1>
-                    <h3>{% trans "Documentos" %}</h3>
-                </div>
-            </div>
-        </div>
         {% if last_five_documents|length > 0 %}
             <!-- Nueva linea -->
             <div class="intranet box">
@@ -76,29 +39,53 @@
                 </div>
             </div>
         {% endif %}
+        <!-- Nueva linea -->
+        <div class="intranet box">
+            <h4>{% trans "Usuarios registrados" %}</h4>
+            <div class="users">
+                <ul>
+                    {% for user in users_preview %}
+                    <li>
+                        <a href="{% url 'intranet:profile' user.id %}">
+                            <img class="img" 
+                                {% if user.profile_picture %} 
+                                    src="{% static user.filename %}" 
+                                {% else %} 
+                                    src="{% static 'intranet/images/default.png' %}" 
+                                {% endif%}>
+                        </a>
+                    </li>                    
+                    {% endfor %}
+                    {% if users_count > 0 %}
+                    <li><div><h2> {% blocktrans %} {{ users_count }} más {% endblocktrans %}</h2></div></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="btn">
+                <a class="trans" href="{% url 'intranet:users' %}">{% trans "Ver todos los usuarios" %}</a>
+            </div>
+        </div>
     </div>
     <!-- Seccion derecha -->
     <div id="rCol" class="c5">
     <!-- Nueva linea -->
         <div class="intranet box">
+            <div class="counter">
+                <div>
+                    <h1>{{ documents_count }}</h1>
+                    <h3>{% trans "Documentos" %}</h3>
+                </div>
+            </div>
             <div class="chart">
                 <canvas id="months_chart"></canvas> 
             </div>
-            <div class="description">
-                <span>{% trans "Publicaciones de los ultimos 6 meses" %}</span>
-            </div>
+            {% if names_categories %}
+                <div class="intranet separator"></div>
+                <div class="chart">
+                    <canvas id="categories_chart" style="position:relative"></canvas> 
+                </div>
+            {% endif %}
         </div>
-        {% if names_categories %}
-        <!-- Nueva linea -->
-        <div class="intranet box">
-            <div class="chart">
-                <canvas id="categories_chart" style="position:relative"></canvas> 
-            </div>
-            <div class="description">
-                <span>{% trans "Categorias" %}</span>
-            </div>
-        </div>
-        {% endif %}
     </div>
 </div>
 

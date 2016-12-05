@@ -12,7 +12,7 @@ import json
 # Create your views here.
 
 def home(request):
-	documents = Document.objects.filter(type=False)[:3]
+	documents = Document.objects.filter(is_public=True)[:3]
 	return render(request, 'webpage/home.html', {
 							'current_view': 'home',
 							'documents': documents,

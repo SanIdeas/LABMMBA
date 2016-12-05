@@ -31,8 +31,12 @@
                          	<select name="area" required>
      						<option selected disabled>{% trans "Selecciona un area" %}</option>
      						{% for area in areas %}
-     							<option value="{{ area.id }}">{{ area.name }}</option>
-     						{% endfor %}
+                                        <optgroup label="{{ area.name }}">
+                                             {% for subarea in area.get_sub_areas %}
+                                                  <option value="{{ subarea.id }}"> {{ subarea.name }}</option>
+                                             {% endfor %}
+                                        </optgroup>
+                                   {% endfor %}
      					</select>
                          	</div>
                          </div>

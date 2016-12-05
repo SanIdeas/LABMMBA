@@ -16,13 +16,14 @@
 				<h2><textarea name="title" rows="1" required>{{document.title}}</textarea></h2>
 				<h5>
 					<select name="category" required>
-						<option value="" disabled > {% trans "Selecciona una categoria" %}</option>
-						<option value="1" {% if document.category.id = 1 %} selected {% endif %}>{% trans "Microbiología Molecular" %}</option>
-						<option value="2" {% if document.category.id = 2 %} selected {% endif %}>{% trans "Biotecnología Ambiental" %}</option>
-						<option value="3" {% if document.category.id = 3 %} selected {% endif %}>{% trans "Bionanotecnología" %}</option>
-						<option value="4" {% if document.category.id = 4 %} selected {% endif %}>{% trans "Genómica Funcional y Proteómica" %}</option>
-						<option value="5" {% if document.category.id = 5 %} selected {% endif %}>{% trans "Síntesis de compuestos bioactivos y de interés biotecnológico" %}</option>
-						<option value="6" {% if document.category.id = 6 %} selected {% endif %}>{% trans "Biorremediación de Ambientes Contaminados" %}</option>
+						<option value="" disabled>{% trans "Selecciona un area" %}</option>
+						{% for area in areas %}
+							<optgroup label="{{ area.name }}">
+								{% for subarea in area.get_sub_areas %}
+									<option value="{{ subarea.id }}" {% if subarea == document.category %} selected {% endif %}> {{ subarea.name }}</option>
+								{% endfor %}
+							</optgroup>
+						{% endfor %}
 					</select>
 				</h5>
 				<div id="type-wrapper" class="{{document.privacy}}"></div>
@@ -81,7 +82,11 @@
 		<div class="intranet box">
 			<div class="document controls">
 				<a id="submitForm">{% trans "Guardar" %}</a>
-				<a class="modal" href="{% url 'intranet:document' document.author document.title %}">{% trans "Cancelar" %}</a>
+				{% if document.title and document.author %}
+					<a href="{% url 'intranet:document' document.author_slug document.title_slug %}">{% trans "Cancelar" %}</a>
+				{% else %}
+					<a href="{% url 'intranet:profile' request.user.id %}">{% trans "Cancelar" %}</a>
+				{% endif %}
 			</div>
 		</div>
         <!-- Fin de la caja -->

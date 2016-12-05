@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^document/(?P<author>.*)/(?P<title>.*)/$', views.document, name="document"),
-    url(r'^edit/document/(?P<author>.*)/(?P<title>.*)/$', views.edit_document, name="edit_document"),
+    url(r'^edit/document/(?P<id>.*)/$', views.edit_document, name="edit_document"),
     url(r'^$', views.home, name="home"),
     url(r'^documents/$', views.documents, name="documents"),
     url(r'^search/(?P<search>.*)/$', views.documents, name="intranet_search"),
@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^upload/form/local/$', views.local_form, name='local_form'),
     url(r'^upload/form/drive/$', views.drive_form, name='drive_form'),
     url(r'^viewer/(?P<author>.*)/(?P<title>.*)/$', views.pdf_viewer, name='viewer'),
+    url(r'^viewer/(?P<id>.*)/$', views.pdf_viewer, name='viewer'),
     url(r'^helper/(?P<search>.*)/$', views.search_helper, name="helper"),
     url(r'^news/$', views.news, name='news'),
     url(r'^news/create/written$', views.news_create, name='create_news'),

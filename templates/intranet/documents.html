@@ -55,7 +55,7 @@
 							                <p><strong>Añadido: </strong>{{ document.date_added }}</p>
 							            	<p>
 									            <sup class="button">
-									            	<a href="{% url 'intranet:document' document.author document.title %}">ver documento</a>
+									            	<a href="{% url 'intranet:document' document.author_slug document.title_slug %}">ver documento</a>
 									            </sup>
 									        </p>
 							            </div>
@@ -200,7 +200,7 @@
 				<div class="intranet box">
 				{% for document in documents%}
 					 <div class="evento">
-				        <a class="clear closed" href="{% url 'intranet:document' document.author document.title %}">
+				        <a class="clear closed" href="{% url 'intranet:document' document.author_slug document.title_slug %}">
 				            <span class="date text-result">{{ document.date|date:"Y" }} · {{ document.author }}</span>
 				            <h4 class='text-result'>{{ document.title }}</h4>
 				            {% if document.extract|length > 0 %}

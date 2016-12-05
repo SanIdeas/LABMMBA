@@ -51,12 +51,12 @@
 	<body class="seccion">
 		<header id="header" class="wfull main-nav clear">
 			<div class="row top-bar">
-				<div class="grid">
+				<div>
 					<div class="row">
 						<div class="c12">
 							<div class="mobile-nav-wrapper clear">
 								<div class="mobile-top-bar clear">
-									<a class="mobile-brand notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
+									<a class="mobile-brand notrans" href="{% url 'intranet:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
 									<a id="mobile-nav">&#9776;</a>
 								</div>
 								<div class="mobile-nav notrans">
@@ -94,6 +94,7 @@
 							<ul class="breadcrumbs clear">
 								<li><a href="http://www.usm.cl/">USM.cl</a></li>
 								<li><a href="{% url 'webpage:home' %}">Laboratorio de Microbiología Molecular y Biotecnología Ambiental</a></li>
+								<li><a href="{% url 'intranet:home' %}">Intranet</a></li>
 							</ul>
 							<ul class="top-nav clear notrans">
 								{% if request.user.is_authenticated == False %}
@@ -113,7 +114,7 @@
 				</div>
 			</div>
 			<div class="c12 brand row nav">
-				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
+				<a class="notrans" href="{% url 'intranet:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
 				<form id="search" url="{% url 'intranet:intranet_search' 999 %}"><input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
 			</div>
 		</header>
@@ -121,7 +122,7 @@
 		<section id="content" class="wfull">	
 			<div id="sidebar" class="sidebar left">
 				<div class="links clear box">
-                    <h3>Menu</h3>
+                   <!-- <h3>Menu</h3>-->
                     {% url 'intranet:home' as intranet%}
 						<a class="clear {% if intranet == request.path%} selected {%endif%}" href="{{intranet}}">
 							<i class="fa fa-home" aria-hidden="true"></i>
