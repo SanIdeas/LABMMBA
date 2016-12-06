@@ -3,48 +3,81 @@
 <div class="title" >
     <form id="add-area-form" class="title-form">
        {% csrf_token %}
-        <input id="add-area-name" type="text" name="name" class="text search field" placeholder="{% trans 'Agregar área' %}"/>
+        <input id="add-area-name" type="text" name="area_name" class="text search field" placeholder="{% trans 'Agregar área' %}"/>
         <input id="add-area-submit" type="submit" class="submit trans search send" value="{% trans 'Agregar' %}"/>
     </form>
     <span id="add-area-error" class="error"></span>
 </div>
 
-<div class="documents filters intranet box">
-    <h3 class="setup-subtitle green">{% trans "Áreas de Investigación" %}</h3>
-    <ul class="setup-area-list">
-        {% if areas %}
-            {% for area in areas %}
-                <li>
-                    <div class="setup-area-row active">
-                        <i class="fa fa-flask" aria-hidden="true"></i>
-                        <div class="setup-area-name">{{area.name}}</div>
+{% if areas %}
+    {% for area, subareas in areas %}
+        <div class="documents filters intranet box">
+            <div class="setup-areas-subtitle green">
+                <div class="setup-areas-subtitle-container">
+                    <h3>{{area.name}}</h3>
+                    <div></div>
+                </div>
+                <div class="setup-areas-container">
+                    <div class="setup-areas-box">
+                        <a class="fa-stack fa-lg edit trans" area-name="{{ area.name }}" area-id="{{area.id}}" title="{% trans 'Editar' %}">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </a>
                     </div>
-                    <div class="setup-area-box">
-                        <button class="setup-delete-box" area-name="{{ area.name }}" area-id="{{ area.id }}" title="{% trans 'Eliminar' %}">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </button>
+                    <div class="setup-areas-box">
+                        <a class="fa-stack fa-lg delete trans" area-name="{{ area.name }}" area-id="{{area.id}}" title="{% trans 'Eliminar' %}">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                        </a>
                     </div>
-                    <div class="setup-area-box">
-                        <button class="setup-edit-box" area-name="{{ area.name }}" area-id="{{ area.id }}" title="{% trans 'Editar' %}">
-                            <i class="fa fa-edit" aria-hidden="true"></i>
-                        </button>
+                    <div class="setup-areas-box">
+                        <a class="fa-stack fa-lg add trans" area-name="{{ area.name }}" area-id="{{area.id}}" title="{% trans 'Agregar' %}">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+                        </a>
                     </div>
-                </li>
-            {% endfor %}
-        {% else %}
-            <h2>{% trans 'No hay áreas de investigación en el sistema' %}</h2>
-        {% endif %}
-    </ul>
-</div>
+                </div>
+            </div>
+            <ul class="setup-area-list">
+                {% if subareas %}
+                    {% for subarea in subareas %}
+                        <li>
+                            <div class="setup-subarea-row active">
+                                <i class="fa fa-flask" aria-hidden="true"></i>
+                                <div class="setup-subarea-name">{{subarea.name}}</div>
+                            </div>
+                            <div class="setup-subarea-box">
+                                <button class="setup-delete-box" subarea-name="{{ subarea.name }}" subarea-id="{{ subarea.id }}" title="{% trans 'Eliminar' %}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="setup-subarea-box">
+                                <button class="setup-edit-box" subarea-name="{{ subarea.name }}" subarea-id="{{ subarea.id }}" title="{% trans 'Editar' %}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <h2>{% trans 'No hay subáreas de investigación en esta área' %}</h2>
+                {% endif %}
+            </ul>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="documents filters intranet box webpage-setup-title">
+        <h2>{% trans 'No hay áreas de investigación en el sistema' %}</h2>
+    </div>
+{% endif %}
 
 <div id="modal-curtain" class="curtain-hidden"></div>
-<div id="modal-delete-confirm" class="modal-hidden">
+<div id="area-modal-delete-confirm" class="modal-hidden">
     <div id="modal-content">
         <h3>{% trans "¿De verdad deseas eliminar esta área?" %}</h3>
         <div id="modal-area">
             <h3 id="modal-area-name"></h3>
         </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta que los usuarios y documentos pertenecientes a esta área quedarán sin una categoría asociada.' %}</h3>
+        <h3 id="modal-message">{% trans 'Ten en cuenta que las subáreas pertenecientes a esta área también se eliminarán.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" area-id="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
@@ -52,7 +85,7 @@
     </div>
 </div>
 
-<div id="modal-edit-confirm" class="modal-hidden">
+<div id="area-modal-edit-confirm" class="modal-hidden">
     <div id="modal-content">
         <h3>{% trans "Editar área" %}</h3>
         <div id="modal-area">
@@ -63,6 +96,54 @@
         </div>
         <div id="modal-btns">
             <button id="modal-confirm" area-id="" area-name="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+<div id="subarea-modal-add" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "Agregar subárea en" %}</h3>
+        <div id="modal-area">
+            <h3 id="modal-area-name"></h3>
+            <form id="add-subarea-form">
+                <input id="add-subarea-name" type="text" name="subarea_name" class="text search field" placeholder="{% trans 'Agregar subárea' %}"/>
+                <span id="modal-error" class="error"></span>
+            </form>
+        </div>
+        <div id="modal-btns">
+            <button id="modal-confirm" area-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="subarea-modal-delete-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "¿De verdad deseas eliminar esta subárea?" %}</h3>
+        <div id="modal-area">
+            <h3 id="modal-subarea-name"></h3>
+        </div>
+        <h3 id="modal-message">{% trans 'Ten en cuenta que los usuarios y documentos pertenecientes a esta subárea quedarán sin una categoría asociada.' %}</h3>
+        <div id="modal-btns">
+            <button id="modal-confirm" subarea-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+<div id="subarea-modal-edit-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "Editar subárea" %}</h3>
+        <div id="modal-area">
+            <form>
+                <input id="modal-subarea-name" type="text" class="text search field"/>
+                <span id="modal-error" class="error"></span>
+            </form>
+        </div>
+        <div id="modal-btns">
+            <button id="modal-confirm" subarea-id="" subarea-name="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
         </div>
     </div>

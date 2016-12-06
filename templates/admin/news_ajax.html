@@ -18,7 +18,9 @@
                             <h2 class="title">{{news.title}}</h2>
                             </a>
                         {% else %}
-                            <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                            <div class="news-no-title">
+                                <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                            </div>
                         {%endif%}
                         {% if news.header and news_in_header < 5 or news.header and news.in_header %}
                             <a class="fa-stack fa-lg pin trans {% if news.in_header %}selected{% endif %} setup-pin-news-box" news-id="{{news.id}}">
@@ -43,7 +45,7 @@
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-times fa-stack-1x fa-inverse"></i>
                             </a>
-                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{news.id}}" data-title="{{news.title}}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
+                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{news.id}}" data-title="{% if news.title %}{{news.title}}{% else %}{% trans "Noticia sin título" %}{% endif %}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                             </a>
@@ -96,7 +98,7 @@
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                             </a>
-                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal setup-delete-news-box" data-id="{{news.id}}" data-title="{{news.title}}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
+                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal setup-delete-news-box" data-id="{{news.id}}" data-title="{% if news.title %}{{news.title}}{% else %}{% trans "Noticia sin título" %}{% endif %}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                             </a>

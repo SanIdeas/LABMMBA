@@ -220,14 +220,56 @@
 .setup-subtitle{
 	margin: 0;
 	padding: 10px 0px;
+}
 
+.setup-areas-subtitle{
+	display: flex;
+	margin: 0;
+}
+
+.setup-areas-subtitle h3{
+	padding-right: 0!important;
+	white-space: nowrap;
+}
+
+.setup-areas-subtitle a{
+	display: inline-block!important;
+	padding: 0!important;
+	vertical-align: bottom;
+}
+
+.setup-areas-subtitle a{
+	background-color: transparent!important;
+}
+
+.setup-areas-subtitle a.edit{
+	color: #F5C36E;
+}
+
+.setup-areas-subtitle a.delete{
+	color: #EE5B55;
+}
+
+.setup-areas-subtitle-container{
+	display: flex;
+}
+
+.setup-areas-container{
+	display: flex;
+	width: 100%;
+	padding-left: 5px;
+}
+
+.setup-areas-box:nth-child(3){
+	width: 100%;
+	text-align: right;
 }
 
 .setup-subtitle.blue{
 	background: #006e9c!important;
 }
 
-.setup-subtitle.green{
+.setup-subtitle.green, .setup-areas-subtitle.green, .setup-areas-subtitle.green h3{
 	background: #009065!important;
 }
 
@@ -300,7 +342,7 @@
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-list > li:hover > .setup-user-invited-row, .setup-area-list > li:hover > .setup-area-row{
+.setup-user-list > li:hover > .setup-user-invited-row, .setup-area-list > li:hover > .setup-subarea-row{
 	transform: translateX(-100px);
 	transition: transform 0.2s ease-in-out;
 }
@@ -310,12 +352,12 @@
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-invited-row-expand-rsp > .setup-user-invited-row, .setup-area-row-expand-rsp > .setup-area-row{
+.setup-user-invited-row-expand-rsp > .setup-user-invited-row, .setup-subarea-row-expand-rsp > .setup-subarea-row{
 	transform: translateX(-100px) !important;
 	transition: transform 0.2s ease-in-out;
 }
 
-.setup-user-row, .setup-user-invited-row, .setup-area-row{
+.setup-user-row, .setup-user-invited-row, .setup-subarea-row{
 	padding: 0px 10px;
 	width: 100%;
 	height: 100%;
@@ -335,11 +377,11 @@
 	display: inline-block;
 }
 
-.setup-user-row > i, .setup-user-invited-row > i, .setup-area-row > i{
+.setup-user-row > i, .setup-user-invited-row > i, .setup-subarea-row > i{
 	vertical-align: middle;
 }
 
-.setup-user-name, .setup-area-name{
+.setup-user-name, .setup-subarea-name{
 	display: inline-block;
     padding: 10px 10px;
     padding-left: 27px;
@@ -407,7 +449,7 @@
 	color: #e0424e;
 }
 
-.setup-user-box, .setup-invited-user-box, .setup-area-box{
+.setup-user-box, .setup-invited-user-box, .setup-subarea-box{
     padding: 5px 0px;
     height: 100%;
     box-sizing: border-box;
@@ -428,7 +470,7 @@
 	border-radius: 10px;
 }
 
-.setup-user-box i, .setup-invited-user-box i, .setup-area-box i{
+.setup-user-box i, .setup-invited-user-box i, .setup-subarea-box i{
 	width: 100%;
     position: relative;
     height: 100%;
@@ -437,7 +479,7 @@
     line-height: 42px;
 }
 
-.setup-invited-user-box:nth-child(2) > button, .setup-user-box:nth-child(4) > button, .setup-area-box:nth-child(2) > button{
+.setup-invited-user-box:nth-child(2) > button, .setup-user-box:nth-child(4) > button, .setup-subarea-box:nth-child(2) > button{
 	border-radius: 0 10px 10px 0;
 }
 
@@ -449,7 +491,7 @@
 	right: 100px;
 }
 
-.setup-invited-user-box:nth-child(3), .setup-area-box:nth-child(3){
+.setup-invited-user-box:nth-child(3), .setup-subarea-box:nth-child(3){
 	right: 50px;
 }
 
@@ -504,10 +546,10 @@
 	background-color: #e9edf0;
 }
 
-#modal-delete-confirm, #modal-edit-confirm{
-    position: absolute;
+#modal-delete-confirm, #modal-edit-confirm, #subarea-modal-delete-confirm, #subarea-modal-edit-confirm, #area-modal-delete-confirm, #area-modal-edit-confirm, #subarea-modal-add{
+    position: fixed;
     width: 400px;
-    top: 10%;
+    top: 30%;
     right: 0;
     left: 0;
     max-width: 800px;
@@ -560,9 +602,12 @@
 	font-weight: normal;
 }
 
-#modal-edit-confirm #modal-area-name{
-	background-color: transparent;
+#area-modal-edit-confirm #modal-area-name, #subarea-modal-edit-confirm #modal-subarea-name, #add-subarea-name{
 	text-align: center;
+}
+
+#area-modal-edit-confirm #modal-area-name, #subarea-modal-edit-confirm #modal-subarea-name{
+	background-color: transparent;
 }
 
 #modal-error{
@@ -701,7 +746,7 @@ form .submit{
 		display: none;
 	}
 
-	.setup-user-name, .setup-area-name{
+	.setup-user-name, .setup-subarea-name{
 		width: 80%;
 		text-overflow: ellipsis;
 		overflow: hidden;
@@ -793,6 +838,7 @@ form .submit{
 
 .webpage-setup-title{
 	padding: 0 20px;
+	margin-top: 5px;
 }
 
 .box.news h3 {
@@ -805,7 +851,7 @@ form .submit{
 	font-weight: 400;
 }
 
-.news .list .item a.news-title-link{
+.news .list .item a.news-title-link, .news .list .item .news-no-title{
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -830,4 +876,13 @@ form .submit{
 
 .news .list .item a.pin.selected{
 	color: #336090;
+}
+
+#webpage-section{
+	margin-bottom: 0;
+}
+
+#webpage-subsection-form{
+	margin: 5px;
+	font-size: 9pt;
 }

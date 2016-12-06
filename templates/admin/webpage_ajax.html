@@ -1,6 +1,27 @@
 {% load i18n %}
 {% load staticfiles %}
 
+<form id="webpage-subsection-form" class="title-form">
+    <select id="subsection-select" required>
+        <option selected>Principal</option>
+        <optgroup label="Sobre Nosotros">
+            <option>Quiénes Somos</option>
+            <option>Nuestra Historia</option>
+            <option>Ubicación</option>
+        </optgroup>
+        <optgroup label="Cooperación Científica">
+            <option>Nacional</option>
+            <option>Internacional</option>
+        </optgroup>
+        <optgroup label="Investigación">
+            <option>Áreas de Investigación</option>
+            <option>Links de Interés</option>
+            <option>Patentes</option>
+            <option>Proyectos</option>
+        </optgroup>
+    </select>
+</form>
+
 <div class="documents filters intranet box webpage-setup-title">
     <h2>{% trans section.name %}</h2>
 </div>

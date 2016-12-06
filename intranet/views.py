@@ -116,7 +116,7 @@ def home(request):
 												  	'last_five_documents': Document.objects.all().order_by(Lower('date_added').desc())[:5],
 												  	'documents_count': Document.objects.all().count()
 												  	})
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))

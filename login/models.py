@@ -67,8 +67,8 @@ class Area(models.Model):
 		return SubArea.objects.create(name=name, area=self)
 
 class SubArea(models.Model):
-	name  = models.CharField(max_length=150, unique=True)
-	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
+	name = models.CharField(max_length=150, unique=True)
+	area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
 
 class User(AbstractBaseUser):
 	email = models.EmailField(

@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
-from login.models import User, Area
+from login.models import User, Area, SubArea
 from intranet.models import Document
 from webpage.models import Section, News
 from webpage.forms import SectionImageForm
@@ -53,7 +53,7 @@ def filters_selected(list, request, name):
 
 
 def documents(request, search=None):
-	if request.user.is_authenticated:
+	if request.user.is_authenticated():
 		if request.user.is_admin:
 			kwargs = get_filters(request)
 			all_docs = Document.objects.filter(**kwargs)
@@ -206,33 +206,66 @@ def sendInvitation(request):
 		return HttpResponseRedirect(reverse('login'))
 
 
-def areas(request, area_id=None):
+def areas(request, area_id=None, subarea_id=None):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
 			if request.method == "GET":
 				if area_id is not None and request.is_ajax():
 					Area.objects.get(id=area_id).delete()
 					return JsonResponse({'error': False})
+				elif subarea_id is not None and request.is_ajax():
+					SubArea.objects.get(id=subarea_id).delete()
+					return JsonResponse({'error': False})
 				else:
 					return render(request, 'admin/areas.html')
 
 			elif request.method == "POST" and request.is_ajax():
-				area_name = request.POST.get('name', None)
+				area_name = request.POST.get('area_name', None)
+				subarea_name = request.POST.get('subarea_name', None)
 				if area_name is not None:
 					if area_id is not None:
-						area = Area.objects.get(id=area_id)
-						area.name = area_name
-						area.save()
-						return JsonResponse({'error': False})
+						try:
+							area = Area.objects.get(id=area_id)
+							area.name = area_name
+							area.save()
+							return JsonResponse({'error': False})
+						except Exception:
+							return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
 					else:
 						try:
 							Area.objects.create(name=area_name)
 							return JsonResponse({'error': False})
 						except Exception:
 							return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
+				elif subarea_name is not None:
+					if subarea_id is not None:
+						try:
+							subarea = SubArea.objects.get(id=subarea_id)
+							subarea.name = subarea_name
+							subarea.save()
+							return JsonResponse({'error': False})
+						except Exception:
+							return JsonResponse({'error': True, 'message': 'La subárea ingresada ya existe'})
+
+					else:
+						area_id = request.POST.get('area_id', None)
+						try:
+							area = Area.objects.get(id=area_id)
+							try:
+								area.add_sub_area(subarea_name)
+								return JsonResponse({'error': False})
+							except Exception:
+								return JsonResponse({'error': True, 'message': 'La subárea ingresada ya existe'})
+						except Exception:
+							return JsonResponse({'error': True, 'message': 'El área entregada no existe'})
 				else:
+					areas_arr = []
+					areas_obj = Area.objects.all()
+					for area in areas_obj:
+						areas_arr.append((area, area.get_sub_areas()))
+
 					args = {
-						'areas': Area.objects.all()
+						'areas': areas_arr
 					}
 
 					return render(request, 'admin/areas_ajax.html', args)

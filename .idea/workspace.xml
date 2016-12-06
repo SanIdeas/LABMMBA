@@ -2,15 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="727889f7-d9cd-42ac-a1be-2697eaba568d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/0002_auto_20161204_2057.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/intranet/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0002_auto_20161114_2014.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0003_auto_20161204_1939.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0004_auto_20161204_2003.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/0005_auto_20161204_2003.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/header/NH3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0002_auto_20161118_0110.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0003_news_title_html.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0004_news_admin_annotation.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0005_auto_20161119_0029.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0006_auto_20161119_1635.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0007_auto_20161119_1728.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0008_news_is_external.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/0009_sectionimage.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webpage/migrations/__init__.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT1.jpg" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT1.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="$PROJECT_DIR$/admin/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="$PROJECT_DIR$/admin/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intranet/views.py" afterPath="$PROJECT_DIR$/intranet/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/models.py" afterPath="$PROJECT_DIR$/login/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/css/admin.css" afterPath="$PROJECT_DIR$/static/admin/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/js/admin.js" afterPath="$PROJECT_DIR$/static/admin/js/admin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/shared.html" afterPath="$PROJECT_DIR$/templates/admin/shared.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/views.py" afterPath="$PROJECT_DIR$/webpage/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/areas.html" afterPath="$PROJECT_DIR$/templates/admin/areas.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/areas_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/areas_ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/news.html" afterPath="$PROJECT_DIR$/templates/admin/news.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/news_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/news_ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage.html" afterPath="$PROJECT_DIR$/templates/admin/webpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/webpage/about.html" afterPath="$PROJECT_DIR$/templates/webpage/about.html" />
     </list>
     <ignored path="labmmba-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,21 +65,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/webpage/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="48" lean-forward="true" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+            <state relative-caret-position="270">
+              <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -57,45 +77,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views.py">
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/webpage/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="346" column="35" lean-forward="true" selection-start-line="346" selection-start-column="35" selection-end-line="346" selection-end-column="35" />
-              <folding>
-                <element signature="e#24#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="news.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/news.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="68" lean-forward="false" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
+            <state relative-caret-position="543">
+              <caret line="80" column="57" lean-forward="false" selection-start-line="80" selection-start-column="57" selection-end-line="80" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news_ajax.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/news_ajax.html">
+      <file leaf-file-name="webpage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/webpage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="116" column="3" lean-forward="false" selection-start-line="116" selection-start-column="3" selection-end-line="116" selection-end-column="3" />
-              <folding>
-                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="152">
+              <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="webpage_ajax.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="886" column="18" lean-forward="false" selection-start-line="886" selection-start-column="18" selection-end-line="886" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="678" column="27" lean-forward="false" selection-start-line="678" selection-start-column="27" selection-end-line="678" selection-end-column="27" />
+            <state relative-caret-position="-8208">
+              <caret line="97" column="23" lean-forward="false" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -112,25 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setup-web</find>
-      <find>html</find>
-      <find>readURL</find>
-      <find>changeImage</find>
-      <find>getImages</find>
-      <find>Image</find>
-      <find>image-id</find>
-      <find>imgIn</find>
-      <find>convert</find>
-      <find>Index</find>
-      <find>imageIndex</find>
-      <find>avoid</find>
-      <find>Español</find>
-      <find>lang</find>
-      <find>cabecera</find>
-      <find>cross</find>
-      <find>modal-cur</find>
-      <find>addElement</find>
-      <find>cssload-loader-wrapper</find>
       <find>curtain</find>
       <find>modal-curt</find>
       <find>curtain-</find>
@@ -142,6 +149,25 @@
       <find>.documents.filters</find>
       <find>green</find>
       <find>news-setup</find>
+      <find>setup-s</find>
+      <find>casca</find>
+      <find>setup-area-row</find>
+      <find>setup-area-box</find>
+      <find>modal-edit-</find>
+      <find>modal-area-name</find>
+      <find>modal-delete</find>
+      <find>setup-area-name</find>
+      <find>.setup-areas-subt</find>
+      <find>setup-area</find>
+      <find>transparent</find>
+      <find>setup-areas-subtitle</find>
+      <find>area-modal</find>
+      <find>modal-add</find>
+      <find>modal+</find>
+      <find>modal</find>
+      <find>modal-area</find>
+      <find>invitation-form</find>
+      <find>webpage-setup-t</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,7 +188,6 @@
         <option value="$PROJECT_DIR$/intranet/urls.py" />
         <option value="$PROJECT_DIR$/login/views.py" />
         <option value="$PROJECT_DIR$/intranet/models.py" />
-        <option value="$PROJECT_DIR$/login/models.py" />
         <option value="$PROJECT_DIR$/static/intranet/js/drive_upload.js" />
         <option value="$PROJECT_DIR$/static/intranet/css/private.css" />
         <option value="$PROJECT_DIR$/fixtures/initial_data.json" />
@@ -175,29 +200,30 @@
         <option value="$PROJECT_DIR$/templates/admin/documents.html" />
         <option value="$PROJECT_DIR$/templates/admin/users.html" />
         <option value="$PROJECT_DIR$/templates/admin/users_ajax.html" />
-        <option value="$PROJECT_DIR$/templates/admin/areas.html" />
-        <option value="$PROJECT_DIR$/templates/admin/areas_ajax.html" />
         <option value="$PROJECT_DIR$/static/admin/js/tinymce/skins/lightgray/content.min.css" />
         <option value="$PROJECT_DIR$/labmmba/settings.py" />
         <option value="$PROJECT_DIR$/admin/forms.py" />
         <option value="$PROJECT_DIR$/webpage/forms.py" />
         <option value="$PROJECT_DIR$/webpage/models.py" />
         <option value="$PROJECT_DIR$/static/webpage/js/news_editor_init.js" />
-        <option value="$PROJECT_DIR$/templates/webpage/about.html" />
         <option value="$PROJECT_DIR$/templates/webpage/news.html" />
         <option value="$PROJECT_DIR$/templates/webpage/news_feed.html" />
-        <option value="$PROJECT_DIR$/templates/admin/webpage.html" />
-        <option value="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
         <option value="$PROJECT_DIR$/templates/admin/shared.html" />
         <option value="$PROJECT_DIR$/templates/shared/base.html" />
-        <option value="$PROJECT_DIR$/static/admin/css/admin.css" />
-        <option value="$PROJECT_DIR$/admin/urls.py" />
-        <option value="$PROJECT_DIR$/admin/views.py" />
         <option value="$PROJECT_DIR$/webpage/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/news.html" />
+        <option value="$PROJECT_DIR$/templates/webpage/about.html" />
         <option value="$PROJECT_DIR$/intranet/views.py" />
         <option value="$PROJECT_DIR$/templates/admin/news_ajax.html" />
+        <option value="$PROJECT_DIR$/login/models.py" />
+        <option value="$PROJECT_DIR$/templates/admin/areas.html" />
+        <option value="$PROJECT_DIR$/admin/urls.py" />
+        <option value="$PROJECT_DIR$/templates/admin/areas_ajax.html" />
         <option value="$PROJECT_DIR$/static/admin/js/admin.js" />
-        <option value="$PROJECT_DIR$/templates/admin/news.html" />
+        <option value="$PROJECT_DIR$/admin/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/webpage.html" />
+        <option value="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
+        <option value="$PROJECT_DIR$/static/admin/css/admin.css" />
       </list>
     </option>
   </component>
@@ -267,7 +293,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="templates">
+            <PATH_ELEMENT USER_OBJECT="webpage">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -285,7 +311,21 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="intranet">
+            <PATH_ELEMENT USER_OBJECT="webpage">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="labmmba-web">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="templates">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -1147,12 +1187,12 @@
       <workItem from="1479093987676" duration="8011000" />
       <workItem from="1480531272552" duration="170000" />
       <workItem from="1480531636196" duration="147000" />
-      <workItem from="1480531800149" duration="90405000" />
+      <workItem from="1480531800149" duration="122737000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="241766000" />
+    <option name="totallyTimeSpent" value="274098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1174,6 +1214,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2553648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1185,7 +1226,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1261,46 +1301,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/intranet/js/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="64" column="45" lean-forward="true" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/intranet/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/intranet/js/crossref.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/intranet/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labmmba/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crossref/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1497,26 +1497,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/webpage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/intranet/css/private.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="995" column="3" lean-forward="true" selection-start-line="995" selection-start-column="3" selection-end-line="995" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1529,44 +1513,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="828" column="1" lean-forward="true" selection-start-line="828" selection-start-column="1" selection-end-line="828" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpage/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="19" column="118" lean-forward="true" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpage/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1279">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/webpage/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1597,26 +1547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="48" lean-forward="true" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intranet/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="525" column="13" lean-forward="false" selection-start-line="525" selection-start-column="13" selection-end-line="525" selection-end-column="13" />
-          <folding>
-            <element signature="e#24#59#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/webpage/js/news_editor_init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2730">
@@ -1633,26 +1563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="346" column="35" lean-forward="true" selection-start-line="346" selection-start-column="35" selection-end-line="346" selection-end-column="35" />
-          <folding>
-            <element signature="e#24#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/intranet/news.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="92" column="53" lean-forward="true" selection-start-line="92" selection-start-column="53" selection-end-line="92" selection-end-column="53" />
-          <folding>
-            <element signature="e#3578#3599#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/intranet/js/news/news_init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1661,28 +1571,152 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/news.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="68" lean-forward="true" selection-start-line="20" selection-start-column="68" selection-end-line="20" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/intranet/news.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-567">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intranet/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="118" column="45" lean-forward="false" selection-start-line="118" selection-start-column="45" selection-end-line="118" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/news_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="116" column="3" lean-forward="false" selection-start-line="116" selection-start-column="3" selection-end-line="116" selection-end-column="3" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intranet/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intranet/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/webpage/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="80" column="57" lean-forward="false" selection-start-line="80" selection-start-column="57" selection-end-line="80" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
           <folding>
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/news.html">
+    <entry file="file://$PROJECT_DIR$/templates/admin/users_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="68" lean-forward="false" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
+        <state relative-caret-position="-1362">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/areas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/areas_ajax.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="108" column="38" lean-forward="false" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpage/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1279">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="256" column="45" lean-forward="false" selection-start-line="256" selection-start-column="45" selection-end-line="256" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="678" column="27" lean-forward="false" selection-start-line="678" selection-start-column="27" selection-end-line="678" selection-end-column="27" />
+        <state relative-caret-position="-8208">
+          <caret line="97" column="23" lean-forward="false" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/webpage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="886" column="18" lean-forward="false" selection-start-line="886" selection-start-column="18" selection-end-line="886" selection-end-column="18" />
           <folding />
         </state>
       </provider>
