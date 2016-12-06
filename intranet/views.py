@@ -92,7 +92,7 @@ def home(request):
 		categories = Document.objects.values('category').annotate(count=Count('category'))
 		for a in categories:
 			try:
-				names.append(_(Area.objects.get(id=a['category']).name))
+				names.append(_(SubArea.objects.get(id=a['category']).name))
 				count.append(str(a['count']))
 			except:
 				None
@@ -530,13 +530,13 @@ def news_delete(request, id):
 			if news.author == request.user or request.user.is_admin:
 				news.delete()
 
-		if request.is_ajax:
+		if request.is_ajax():
 			return JsonResponse({'error': False})
 		else:
 			return HttpResponseRedirect(reverse('intranet:news'))
 
 	else:
-		if request.is_ajax:
+		if request.is_ajax():
 			return JsonResponse({'redirect': reverse('login')})
 		else:
 			return HttpResponseRedirect(reverse('login'))

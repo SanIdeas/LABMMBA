@@ -14,7 +14,7 @@
                     <ul class="documents">
                     {% for doc in last_five_documents %}
                         <li>
-                            <a class="clear" href="{% url 'intranet:document' doc.author doc.title %}" title="{{ doc.title }}">
+                            <a class="clear" href="{% url 'intranet:document' doc.author_slug doc.title_slug %}" title="{{ doc.title }}">
                                 <div class="c2">
                                     <img class="img" 
                                         {% if doc.owner.profile_picture %} 
