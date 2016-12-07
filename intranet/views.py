@@ -487,7 +487,7 @@ def news_edit(request, id):
 					return render(request, 'intranet/news_edit.html', {'current_view': 'intranet', 'news_': news})
 			elif request.method == "POST":
 					if news.is_external and (request.POST.get('source_url') is None and request.POST.get('source_url') == ""):
-						return JsonResponse({'error': True, 'message': form.errors})
+						return JsonResponse({'error': True, 'message': 'form.errors'})
 					news.date = request.POST.get('date')
 					news.source_text = request.POST.get('source_text')
 					news.source_url = request.POST.get('source_url')

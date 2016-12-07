@@ -28,7 +28,7 @@ function sendData(url, redirect_to){
 		method: "POST",
 		data: form,
 		processData: false,
-		contentType: false,
+		contentType: false
 	}).done(function(response){
 		if(!response['error']){
 			if(redirect_to == 'live-editor')

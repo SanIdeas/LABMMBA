@@ -11,23 +11,87 @@ import os
 
 # Create your models here.
 class Section(models.Model):
-	name = models.CharField(max_length=20, unique=True, null=False)
+	spanish_name = models.CharField(max_length=50, unique=True, null=False)
+	english_name = models.CharField(max_length=50, unique=True, null=False)
 	slug = models.SlugField(max_length=20, unique=True, null=False)
 	spanish_title = models.CharField(max_length=200, null=False)
 	spanish_body = models.TextField(null=True)
 	english_title = models.CharField(max_length=200, null=False)
 	english_body = models.TextField(null=True)
+	header = models.FileField(upload_to='static/webpage/images/sections/header/', max_length=500, null=True)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
 			if not self.slug:
 				self.slug = slugify(self.name)
+			if not self.english_name:
+				self.english_name = self.spanish_name
 			if not self.english_title:
 				self.english_title = self.spanish_title
 			if not self.english_body:
 				self.english_body = self.spanish_body
 
 		super(Section, self).save(*args, **kwargs)
+
+	def update_header(self, image):
+		# Si existe una foto, se elimina
+		if self.header:
+			os.remove(self.header.path)
+			self.save()
+
+		self.header.save('SH' + str(self.id) + '.jpg', image)
+		self.save()
+		return True
+
+	def header_url(self):
+		return 'webpage/images/sections/header/' + os.path.basename(self.header.name)
+
+	def header_static_url(self):
+		return settings.SECTION_HEADERS_STATIC_URL + os.path.basename(self.header.name)
+
+	def get_categories(self):
+		return SubSectionCategory.objects.filter(section=self)
+
+
+class SubSectionCategory(models.Model):
+	spanish_name = models.CharField(max_length=50, null=False)
+	english_name = models.CharField(max_length=50, null=False)
+	section = models.ForeignKey(Section, on_delete=models.CASCADE)
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			if not self.english_name:
+				self.english_name = self.spanish_name
+
+		super(SubSectionCategory, self).save(*args, **kwargs)
+
+	def get_subsections(self):
+		return SubSection.objects.filter(category=self)
+
+
+class SubSection(models.Model):
+	spanish_name = models.CharField(max_length=50, null=False)
+	english_name = models.CharField(max_length=50, null=False)
+	slug = models.SlugField(max_length=20, unique=True, null=False)
+	spanish_title = models.CharField(max_length=200, null=False)
+	spanish_body = models.TextField(null=True)
+	english_title = models.CharField(max_length=200, null=False)
+	english_body = models.TextField(null=True)
+	category = models.ForeignKey(SubSectionCategory, on_delete=models.CASCADE)
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			if not self.english_name:
+				self.english_name = self.spanish_name
+			if not self.slug:
+				self.slug = slugify(self.english_name)
+			if not self.english_title:
+				self.english_title = self.spanish_title
+			if not self.english_body:
+				self.english_body = self.spanish_body
+
+		super(SubSection, self).save(*args, **kwargs)
+
 
 class News(models.Model):
 	title = models.CharField(max_length=200, null=True)
@@ -117,6 +181,9 @@ def news_delete(sender, instance, **kwargs):
 @receiver(post_delete, sender=Image)
 def image_delete(sender, instance, **kwargs):
     instance.picture.delete(False)
+@receiver(post_delete, sender=Section)
+def section_delete(sender, instance, **kwargs):
+	instance.header.delete(False)
 @receiver(post_delete, sender=SectionImage)
 def image_delete(sender, instance, **kwargs):
 	instance.image.delete(False)

@@ -313,9 +313,41 @@ def webpage(request, section_id=None):
 					section_id = request.POST.get('id', None)
 					if section_id is not None:
 						try:
-							return render(request, 'admin/webpage_ajax.html', {'section': Section.objects.get(id=section_id)})
+							section = Section.objects.get(id=section_id)
+							categories_arr = []
+							categories_obj = section.get_categories()
+							for category in categories_obj:
+								categories_arr.append((category, category.get_subsections()))
+
+							return render(request, 'admin/webpage_ajax.html', {'section': section, 'categories': categories_arr})
 						except Exception:
 							return JsonResponse({'error': True})
+
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def upload_header(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "POST" and request.is_ajax():
+				section_id = request.POST.get('section_id', None)
+				section = Section.objects.filter(id=section_id)
+				if section:
+					section = section[0]
+					section.update_header(request.FILES['header'])
+					return JsonResponse({'error': False, 'url': section.header_static_url()})
+				else:
+					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
 
 		else:
 			if request.is_ajax():

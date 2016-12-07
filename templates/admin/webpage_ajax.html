@@ -1,34 +1,59 @@
 {% load i18n %}
 {% load staticfiles %}
+{% get_current_language as lang %}
 
 <form id="webpage-subsection-form" class="title-form">
-    <select id="subsection-select" required>
-        <option selected>Principal</option>
-        <optgroup label="Sobre Nosotros">
-            <option>Quiénes Somos</option>
-            <option>Nuestra Historia</option>
-            <option>Ubicación</option>
-        </optgroup>
-        <optgroup label="Cooperación Científica">
-            <option>Nacional</option>
-            <option>Internacional</option>
-        </optgroup>
-        <optgroup label="Investigación">
-            <option>Áreas de Investigación</option>
-            <option>Links de Interés</option>
-            <option>Patentes</option>
-            <option>Proyectos</option>
-        </optgroup>
+    <select id="subsection-select">
+        <option value="-1" selected>{% trans 'Principal' %}</option>
+        {% for category, subsections in categories %}
+            {% if lang == 'es' %}
+                <optgroup label="{{category.spanish_name}}">
+            {% elif lang == 'en' %}
+                <optgroup label="{{category.english_name}}">
+            {% endif %}
+            {% for subsection in subsections %}
+                {% if lang == 'es' %}
+                    <option value="{{subsection.id}}">{{subsection.spanish_name}}</option>
+                {% elif lang == 'en' %}
+                    <option value="{{subsection.id}}">{{subsection.english_name}}</option>
+                {% endif %}
+            {% endfor %}
+            </optgroup>
+        {% endfor %}
     </select>
 </form>
 
-<div class="documents filters intranet box webpage-setup-title">
-    <h2>{% trans section.name %}</h2>
+<div class="documents filters intranet box webpage-setup-title" style="display: none">
+    {% if lang == 'es' %}
+        <h2>{% trans section.spanish_name %}</h2>
+    {% elif lang == 'en' %}
+        <h2>{% trans section.english_name %}</h2>
+    {% endif %}
+</div>
+
+<div class="intranet box news">
+    <div class="picture">
+        <div class="button">
+            {% if not section.header %}
+                <a class="selectHeader btn erasable">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    <span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
+                </a>
+                <a class="selectHeader" style="display:none;">
+                    <img id="headerPicture" src="">
+                </a>
+            {% else %}
+                <a class="selectHeader">
+                    <img id="headerPicture" src="{% static section.header_url %}">
+                </a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 <div class="row">
-    <div class="c12">
-        <form id="webpage-edit-form" class="clear c12" action="">
+    <div>
+        <form id="webpage-edit-form" class="clear" action="">
             <div class="c6 documents filters intranet box editor-box">
                 <div class="setup-webpage-list-container">
                     <ul class="setup-webpage-list">
@@ -111,6 +136,23 @@
 <div id="modal-curtain" class="curtain-hidden loading-curtain">
     <i class="loader fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
 </div>
+
+<!-- Modal para modificar la miniatura -->
+<div id="changePicture" class="news modal"  style="display:none!important; height:100%;">
+    <div class="cropper">
+        <div class="editor" style="display:none; opacity:0; top:20px;">
+            <div class="crop">
+                <img id="imageCropper">
+            </div>
+            <div class="buttons">
+                <div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
+                <div class="c4"><button id="selectImage" section-id="{{section.id}}"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
+<a href="#changePicture" class="modal picture" style="display:none;"></a>
 
 <script>webpage();</script>
 

@@ -281,15 +281,17 @@
     }
   },
 
-
   {
     "model": "webpage.section",
     "pk": 1,
     "fields": {
-      "name": "Noticias",
-      "slug": "news",
-      "spanish_title": "<h1 class='c12'>Noticias del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
-      "english_title": "<h1 class='c12'>Noticias del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>"
+      "spanish_name": "Nuestro laboratorio",
+      "english_name": "Our laboratory",
+      "slug": "about",
+      "spanish_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
+      "spanish_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>",
+      "english_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
+      "english_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>"
     }
   },
 
@@ -297,12 +299,188 @@
     "model": "webpage.section",
     "pk": 2,
     "fields": {
-      "name": "Sobre el laboratorio",
-      "slug": "about",
-      "spanish_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
-      "spanish_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>",
-      "english_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
-      "english_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>"
+      "spanish_name": "Productos y Servicios",
+      "english_name": "Products and Services",
+      "slug": "products",
+      "spanish_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
+      "english_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>"
+    }
+  },
+
+  {
+    "model": "webpage.subsectioncategory",
+    "pk": 1,
+    "fields": {
+      "spanish_name": "Sobre Nosotros",
+      "english_name": "About",
+      "section": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsectioncategory",
+    "pk": 2,
+    "fields": {
+      "spanish_name": "Investigación",
+      "english_name": "Investigation",
+      "section": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsectioncategory",
+    "pk": 3,
+    "fields": {
+      "spanish_name": "Cooperación Científica",
+      "english_name": "Scientific Cooperation",
+      "section": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsectioncategory",
+    "pk": 4,
+    "fields": {
+      "spanish_name": "Patentes",
+      "english_name": "Patents",
+      "section": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsectioncategory",
+    "pk": 5,
+    "fields": {
+      "spanish_name": "Tecnologías",
+      "english_name": "Technologies",
+      "section": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsectioncategory",
+    "pk": 6,
+    "fields": {
+      "spanish_name": "Asesorías",
+      "english_name": "Counselings",
+      "section": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 1,
+    "fields": {
+      "spanish_name": "Quiénes Somos",
+      "english_name": "About us",
+      "slug": "us",
+      "spanish_title": "<h1 class='c12'>Quiénes Somos</h1>",
+      "english_title": "<h1 class='c12'>About us</h1>",
+      "category": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 2,
+    "fields": {
+      "spanish_name": "Nuestra Historia",
+      "english_name": "Our History",
+      "slug": "history",
+      "spanish_title": "<h1 class='c12'>Nuestra Historia</h1>",
+      "english_title": "<h1 class='c12'>Our History</h1>",
+      "category": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 3,
+    "fields": {
+      "spanish_name": "Ubicación",
+      "english_name": "Location",
+      "slug": "location",
+      "spanish_title": "<h1 class='c12'>Ubicación</h1>",
+      "english_title": "<h1 class='c12'>Location</h1>",
+      "category": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 4,
+    "fields": {
+      "spanish_name": "Áreas de Investigación",
+      "english_name": "Investigation Areas",
+      "slug": "areas",
+      "spanish_title": "<h1 class='c12'>Áreas de Investigación</h1>",
+      "english_title": "<h1 class='c12'>Investigation Areas</h1>",
+      "category": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 5,
+    "fields": {
+      "spanish_name": "Proyectos",
+      "english_name": "Projects",
+      "slug": "projects",
+      "spanish_title": "<h1 class='c12'>Proyectos</h1>",
+      "english_title": "<h1 class='c12'>Projects</h1>",
+      "category": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 6,
+    "fields": {
+      "spanish_name": "Patentes",
+      "english_name": "Patents",
+      "slug": "patents",
+      "spanish_title": "<h1 class='c12'>Patentes</h1>",
+      "english_title": "<h1 class='c12'>Patents</h1>",
+      "category": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 7,
+    "fields": {
+      "spanish_name": "Links de Interés",
+      "english_name": "Links of Interest",
+      "slug": "links",
+      "spanish_title": "<h1 class='c12'>Links de Interés</h1>",
+      "english_title": "<h1 class='c12'>Links of Interest</h1>",
+      "category": 2
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 8,
+    "fields": {
+      "spanish_name": "Nacional",
+      "english_name": "National",
+      "slug": "national",
+      "spanish_title": "<h1 class='c12'>Nacional</h1>",
+      "english_title": "<h1 class='c12'>National</h1>",
+      "category": 3
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 9,
+    "fields": {
+      "spanish_name": "Internacional",
+      "english_name": "International",
+      "slug": "international",
+      "spanish_title": "<h1 class='c12'>Internacional</h1>",
+      "english_title": "<h1 class='c12'>International</h1>",
+      "category": 3
     }
   }
 ]

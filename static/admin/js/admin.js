@@ -400,7 +400,7 @@ function webpage(){
 	 });
 	 }*/
 	$('.body').bind('scroll', function(){
-		if ($('.body').scrollTop() > 123.421875 && $(document).width() > 1100){
+		if ($('.body').scrollTop() > 498 && $(document).width() > 1100){
             var parent = $('.editor-box');
             var width = parent.css('width').replace('px', '') - 2;
 			$('.setup-webpage-list').addClass('fixed');
@@ -651,6 +651,115 @@ function webpage(){
 
         reader.readAsDataURL(input.files[0]);
     });
+
+    // Header image
+    $(document).ready(function(){
+        $('a.modal.picture').fancybox({
+            scrolling: false,
+            autoSize: false,
+            width: 800
+        });
+    });
+    (function($){
+		/* Resetea el input de archivos */
+        $.fn.resetInput = function(){
+            this.wrap('<form>').closest('form').get(0).reset();
+            this.unwrap();
+        };
+    })(jQuery);
+    $('.selectHeader').click(function(){
+        $('#pictureField').click();
+    });
+    $('#changeImage').click(function(){
+        $('#pictureField').click();
+    });
+    $('#selectImage').click(function(){
+        selectImage();
+    });
+    $('#pictureField').change(function(){
+        if(this.files.length > 0){
+            if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
+                alert('Debes seleccionar una imagen');
+            else{
+                $.fancybox.showLoading();
+                $('.editor').css('display', 'flex');
+                $('.editor').animate({
+                    top: '0',
+                    opacity: 1
+                }, 200);
+
+                readURL(this);
+                $(this).resetInput();
+            }
+        }
+    });
+
+// Obtiene la url del archivo ingresado por el input
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imageCropper').attr('src', e.target.result);
+                $.fancybox.hideLoading();
+                $('a.modal.picture').click();
+                resetCrop();
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+// Activa el editor de imagen
+    function enableCrop(){
+        var aspectRatio = 64 / 21;
+        cropper = $('#imageCropper').cropper({
+            zoomable: false,
+            aspectRatio: aspectRatio,
+            viewMode: 1,
+            background: false
+        });
+    }
+
+    function resetCrop(){
+        $('#imageCropper').cropper('destroy');
+        enableCrop();
+    }
+
+    function selectImage(){
+        $.fancybox.showLoading();
+        $('#imageCropper').cropper('disable');
+        $('#sendImage').attr('disabled', true);
+
+		$('#imageCropper').cropper('getCroppedCanvas', {width: 1600, height: 515}).toBlob(function(blob){
+            var form = new FormData();
+            form.append('csrfmiddlewaretoken', csrf_token);
+            form.append('section_id', $('#selectImage').attr('section-id'));
+			form.append('header', blob);
+
+            $.ajax({
+                url: upload_header_url,
+                method: "POST",
+                data: form,
+                processData: false,
+                contentType: false
+            }).done(function(response){
+            	if(response.redirect)
+                    window.location.href = response.redirect;
+                else if(!response['error']){
+                	var url = response['url'];
+
+					$('.selectHeader.erasable').remove();
+					$('.selectHeader img').attr('src', url + '?' + Date.now()).parent('a').css('display', 'block');
+
+					$('#imageCropper').cropper('enable');
+					$('#sendImage').attr('disabled', false);
+					$.fancybox.hideLoading();
+					$.fancybox.close();
+                }
+            });
+		});
+    }
 }
 
 function webpage_init(){

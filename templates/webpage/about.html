@@ -9,7 +9,11 @@
 {% block content %}
 <div id="slider" class="royalSlider rsDefault">
 <figure class="rsContent">
-	<img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit."/>
+    {% if section.header %}
+        <img class="rsImg" src="{% static section.header_url %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit."/>
+    {% else %}
+        <img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit."/>
+    {% endif %}
 	<figcaption class="grid rsABlockContainer">
 		<div class="rsABlock top right" data-move-effect="right">
 			<div class="subnav dark">
