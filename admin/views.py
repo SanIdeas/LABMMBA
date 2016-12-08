@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area, SubArea
 from intranet.models import Document
-from webpage.models import Section, News
+from webpage.models import Section, SubSection, News
 from webpage.forms import SectionImageForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
@@ -282,11 +282,12 @@ def areas(request, area_id=None, subarea_id=None):
 			return HttpResponseRedirect(reverse('login'))
 
 
-def webpage(request, section_id=None):
+def webpage(request, section_id=None, subsection_id=None):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
 			if request.method == "GET":
-				return render(request, 'admin/webpage.html', {'sections': Section.objects.all()})
+				editable_sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator').exclude(slug='.').exclude(slug='news')
+				return render(request, 'admin/webpage.html', {'sections': editable_sections.exclude(slug='.')})
 
 			elif request.method == "POST" and request.is_ajax():
 				if section_id is not None:		# Edit section
@@ -309,8 +310,29 @@ def webpage(request, section_id=None):
 						return JsonResponse({'error': False})
 					except Exception:
 						return JsonResponse({'error': True})
+				elif subsection_id is not None:		# Edit subsection
+					spanish_title = request.POST.get('spanish-title', None)
+					spanish_body = request.POST.get('spanish-body', None)
+					english_title = request.POST.get('english-title', None)
+					english_body = request.POST.get('english-body', None)
+
+					subsection = SubSection.objects.get(id=subsection_id)
+
+					if spanish_title is not None:
+						subsection.spanish_title = spanish_title
+						subsection.spanish_body = spanish_body
+					elif english_title is not None:
+						subsection.english_title = english_title
+						subsection.english_body = english_body
+
+					try:
+						subsection.save()
+						return JsonResponse({'error': False})
+					except Exception:
+						return JsonResponse({'error': True})
 				else:		# Get section template data
-					section_id = request.POST.get('id', None)
+					section_id = request.POST.get('section_id', None)
+					subsection_id = request.POST.get('subsection_id', None)
 					if section_id is not None:
 						try:
 							section = Section.objects.get(id=section_id)
@@ -320,6 +342,13 @@ def webpage(request, section_id=None):
 								categories_arr.append((category, category.get_subsections()))
 
 							return render(request, 'admin/webpage_ajax.html', {'section': section, 'categories': categories_arr})
+						except Exception:
+							return JsonResponse({'error': True})
+					elif subsection_id is not None:
+						try:
+							subsection = SubSection.objects.get(id=subsection_id)
+
+							return render(request, 'admin/webpage_subsection_ajax.html', {'subsection': subsection})
 						except Exception:
 							return JsonResponse({'error': True})
 

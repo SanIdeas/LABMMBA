@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^subareas/edit/(?P<subarea_id>.*)$', views.areas, name='edit_subarea'),
     url(r'^subareas/delete/(?P<subarea_id>.*)$', views.areas, name='delete_subarea'),
     url(r'^webpage/$', views.webpage, name="webpage"),
+    url(r'^webpage/edit/subsection/(?P<subsection_id>.*)$', views.webpage, name='edit_subsection'),
     url(r'^webpage/edit/(?P<section_id>.*)$', views.webpage, name='edit_section'),
     url(r'^webpage/images/$', views.save_images, name="save_images"),
     url(r'^webpage/headers/$', views.upload_header, name="upload_section_header"),

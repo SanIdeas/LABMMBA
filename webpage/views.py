@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from datetime import datetime
 from intranet.models import Document
-from webpage.models import Section, News
+from webpage.models import Section, SubSection, News
 from webpage.forms import ImageForm
 import json
 
@@ -13,9 +13,15 @@ import json
 
 def home(request):
 	documents = Document.objects.filter(is_public=True)[:3]
+	sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+
 	return render(request, 'webpage/home.html', {
-							'current_view': 'home',
+							'current_view': '.',
 							'documents': documents,
+							'sections': sections,
+							'publications': Section.objects.get(slug='publications'),
+							'intranet': Section.objects.get(slug='intranet'),
+							'administration': Section.objects.get(slug='administrator'),
 							'body': 'inicio',
 							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None)[:5],
 							'news_1': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None)[:2],
@@ -23,24 +29,77 @@ def home(request):
 							})
 
 
+def section(request, section_slug=None, subsection_slug=None):
+	sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+
+	if subsection_slug is None:		# Section
+		section = get_object_or_404(Section, slug=section_slug)
+		categories_arr = []
+		categories = section.get_categories()
+		for category in categories:
+			categories_arr.append((category, category.get_subsections()))
+
+		cat_num = len(categories_arr)
+		if cat_num % 2 == 0:	# Pairwise array
+			categories_arr = zip(categories_arr, categories_arr[1:])[::2]
+		else:
+			categories_temp = zip(categories_arr, categories_arr[1:])[::2]
+			categories_temp.append((categories_arr[-1], ()))
+			categories_arr = categories_temp
+
+		return render(request, 'webpage/section.html', {
+								'current_view': section_slug,
+								'sections': sections,
+								'publications': Section.objects.get(slug='publications'),
+								'intranet': Section.objects.get(slug='intranet'),
+								'administration': Section.objects.get(slug='administrator'),
+								'body': 'seccion',
+								'section': section,
+								'categories': categories_arr,
+								'other_sections': sections.exclude(slug='.').exclude(id=section.id)[:3]
+								})
+	else:		# Subsection
+		section = get_object_or_404(Section, slug=section_slug)
+		subsection = get_object_or_404(SubSection, slug=subsection_slug)
+
+		return render(request, 'webpage/subsection.html', {
+			'current_view': section_slug,
+			'sections': sections,
+			'publications': Section.objects.get(slug='publications'),
+			'intranet': Section.objects.get(slug='intranet'),
+			'administration': Section.objects.get(slug='administrator'),
+			'section': section,
+			'subsection': subsection,
+			'other_sections': sections.exclude(slug='.').exclude(id=section.id)[:3]
+		})
+
+
 def about(request, sub=None):
 	if sub == 'us':
-		return render(request, 'webpage/about/us.html', {'current_view': 'about', 'body': 'seccion'})
+		return render(request, 'webpage/about/us.html', {'current_view': 'about', 'sections': Section.objects.all(), 'body': 'seccion'})
 	elif sub == 'history':
-		return render(request, 'webpage/about/history.html', {'current_view': 'about', 'body': 'seccion'})
+		return render(request, 'webpage/about/history.html', {'current_view': 'about', 'sections': Section.objects.all(), 'body': 'seccion'})
 	else:
-		return render(request, 'webpage/about.html', {'current_view': 'about', 'body': 'seccion', 'section': Section.objects.filter(slug="about").first()})
+		return render(request, 'webpage/about.html', {'current_view': 'about', 'sections': Section.objects.all(), 'body': 'seccion', 'section': Section.objects.filter(slug="about").first()})
 
 
 def research(request):
-	return render(request, 'webpage/research.html', {'current_view': 'research', 'body': 'seccion'})
+	return render(request, 'webpage/research.html', {'current_view': 'research', 'sections': Section.objects.all(), 'body': 'seccion'})
 
 
 def members(request):
-	return render(request, 'webpage/members.html', {'current_view': 'members', 'body': 'seccion'})
+	return render(request, 'webpage/members.html', {'current_view': 'members', 'sections': Section.objects.all(), 'body': 'seccion'})
 
 def news_feed(request):
-	return render(request, 'webpage/news_feed.html', {'current_view': 'news', 'body': 'blog'})
+	sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+	return render(request, 'webpage/news_feed.html', {
+							'current_view': 'news',
+							'sections': sections,
+							'publications': Section.objects.get(slug='publications'),
+							'intranet': Section.objects.get(slug='intranet'),
+							'administration': Section.objects.get(slug='administrator'),
+							'body': 'blog'
+							})
 
 def news_editor(request, id = None):
 	if request.user.is_authenticated():
@@ -51,7 +110,16 @@ def news_editor(request, id = None):
 				# Si la noticia corresponde al usuario o es un administrador se permite el acceso
 				if news.author == request.user or request.user.is_admin:
 					if news:
-						return render(request, 'webpage/news_editor.html', {'current_view': 'news', 'body': 'blog', 'news': news})
+						sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+						return render(request, 'webpage/news_editor.html', {
+												'current_view': 'news',
+												'sections': sections,
+												'publications': Section.objects.get(slug='publications'),
+												'intranet': Section.objects.get(slug='intranet'),
+												'administration': Section.objects.get(slug='administrator'),
+												'body': 'blog',
+												'news': news
+												})
 				else:
 					return HttpResponseRedirect(reverse('webpage:home')) # 'No tienes permiso para modificar esta noticia'
 			elif request.method == "POST":
@@ -77,7 +145,16 @@ def news(request, year = None, month = None, day = None, title = None):
 		date =  datetime.strptime(str(day) + str(month) + str(year), '%d%m%Y')
 		news = News.objects.filter(date=date, slug=title)
 		if news:
-			return render(request, 'webpage/news.html', {'current_view': 'news', 'body': 'blog', 'news_': news[0]})
+			sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+			return render(request, 'webpage/news.html', {
+									'current_view': 'news',
+									'sections': sections,
+									'publications': Section.objects.get(slug='publications'),
+									'intranet': Section.objects.get(slug='intranet'),
+									'administration': Section.objects.get(slug='administrator'),
+									'body': 'blog',
+									'news_': news[0]
+									})
 		else:
 			return HttpResponseRedirect(reverse('webpage:news_feed'))
 	except:

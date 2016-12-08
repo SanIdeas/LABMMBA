@@ -56,17 +56,17 @@
 							</div>
 							<div class="mobile-nav notrans">
 								<ul class="mobile-main-nav clear">
-									<li {% if current_view == "home" %} class="current" {% endif %}><a href="{% url 'webpage:home' %}">Inicio</a></li>
-									<li {% if current_view == "news" %} class="current" {% endif %}><a href="{% url 'webpage:news_feed' %}">Noticias</a></li>
-									<li {% if current_view == "about" %} class="current" {% endif %}><a href="{% url 'webpage:about' %}">{% trans "Sobre el laboratorio" %}</a></li>
+                                    {% for section in sections %}
+									    <li {% if current_view == section.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' section.slug %}">{% if lang == 'es'%}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}</a></li>
+                                    {% endfor %}
 									{% if request.user.is_authenticated == True %}
                                         {% if request.user.is_admin == True %}
-                                            <li {% if current_view == "administration" %} class="current" {% endif %}><a href="{% url 'admin:home' %}">{% trans "Administración" %}</a></li>
+                                            <li {% if current_view == administration.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' administration.slug %}">{% if lang == 'es'%}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %}</a></li>
                                         {% else %}
-                                            <li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                                            <li {% if current_view == intranet.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' intranet.slug %}">{% if lang == 'es'%}{{intranet.spanish_name}}{% elif lang == 'en' %}{{intranet.english_name}}{% endif %}</a></li>
                                         {% endif %}
                                     {% else %}
-										<li {% if current_view == "publications" %} class="current" {% endif %}><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
+										<li {% if current_view == publications.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' publications.slug %}">{% if lang == 'es'%}{{publications.spanish_name}}{% elif lang == 'en' %}{{publications.english_name}}{% endif %}</a></li>
 									{% endif %}
 								</ul>
 								<ul class="mobile-top-nav clear">
@@ -117,17 +117,17 @@
 			<div class="c12 nav">
 				<nav id="nav" class="clear">
 					<ul class="nav clear">
-						<li {% if current_view == "home" %} class="current" {% endif %}><a href="{% url 'webpage:home' %}">Inicio</a></li>
-						<li {% if current_view == "news" %} class="current" {% endif %}><a href="{% url 'webpage:news_feed' %}">Noticias</a></li>
-						<li {% if current_view == "about" %} class="current" {% endif %}><a href="{% url 'webpage:about' %}">{% trans "Sobre el laboratorio" %}</a></li>
+                        {% for section in sections %}
+                            <li {% if current_view == section.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' section.slug %}">{% if lang == 'es'%}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}</a></li>
+                        {% endfor %}
 						{% if request.user.is_authenticated == True %}
                             {% if request.user.is_admin == True %}
-                                <li {% if current_view == "administration" %} class="current" {% endif %}><a href="{% url 'admin:home' %}">{% trans "Administración" %}</a></li>
+                                <li {% if current_view == administration.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' administration.slug %}">{% if lang == 'es'%}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %}</a></li>
                             {% else %}
-                                <li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                                <li {% if current_view == intranet.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' intranet.slug %}">{% if lang == 'es'%}{{intranet.spanish_name}}{% elif lang == 'en' %}{{intranet.english_name}}{% endif %}</a></li>
                             {% endif %}
 						{% else %}
-							<li {% if current_view == "publications" %} class="current" {% endif %}><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
+                            <li {% if current_view == publications.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' publications.slug %}">{% if lang == 'es'%}{{publications.spanish_name}}{% elif lang == 'en' %}{{publications.english_name}}{% endif %}</a></li>
 						{% endif %}
 					</ul>
 				</nav>
@@ -139,17 +139,17 @@
 		<div class="row grid">
 			<div class="c12 nav clear">
 				<ul class="nav">
-					<li {% if current_view == "home" %} class="current" {% endif %}><a href="{% url 'webpage:home' %}">Inicio</a></li>
-					<li {% if current_view == "news" %} class="current" {% endif %}><a href="{% url 'webpage:news_feed' %}">Noticias</a></li>
-					<li {% if current_view == "about" %} class="current" {% endif %}><a href="{% url 'webpage:about' %}">{% trans "Sobre el laboratorio" %}</a></li>
+                    {% for section in sections %}
+                        <li {% if current_view == section.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' section.slug %}">{% if lang == 'es'%}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}</a></li>
+                    {% endfor %}
 					{% if request.user.is_authenticated == True %}
                         {% if request.user.is_admin == True %}
-                            <li {% if current_view == "administration" %} class="current" {% endif %}><a href="{% url 'admin:home' %}">{% trans "Administración" %}</a></li>
+                            <li {% if current_view == administration.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' administration.slug %}">{% if lang == 'es'%}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %}</a></li>
                         {% else %}
-                            <li {% if current_view == "intranet" %} class="current" {% endif %}><a href="{% url 'intranet:home' %}">{% trans "Intranet" %}</a></li>
+                            <li {% if current_view == intranet.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' intranet.slug %}">{% if lang == 'es'%}{{intranet.spanish_name}}{% elif lang == 'en' %}{{intranet.english_name}}{% endif %}</a></li>
                         {% endif %}
 					{% else %}
-						<li {% if current_view == "publications" %} class="current" {% endif %}><a href="{% url 'publications' %}">{% trans "Publicaciones" %}</a></li>
+                        <li {% if current_view == publications.slug %} class="current" {% endif %}><a href="{% url 'webpage:section' publications.slug %}">{% if lang == 'es'%}{{publications.spanish_name}}{% elif lang == 'en' %}{{publications.english_name}}{% endif %}</a></li>
 					{% endif %}
 				</ul>
 			</div>

@@ -14,10 +14,10 @@ class Section(models.Model):
 	spanish_name = models.CharField(max_length=50, unique=True, null=False)
 	english_name = models.CharField(max_length=50, unique=True, null=False)
 	slug = models.SlugField(max_length=20, unique=True, null=False)
-	spanish_title = models.CharField(max_length=200, null=False)
-	spanish_body = models.TextField(null=True)
-	english_title = models.CharField(max_length=200, null=False)
-	english_body = models.TextField(null=True)
+	spanish_title = models.CharField(max_length=200, default="<h1 class='c12'></h1>")
+	spanish_body = models.TextField(default="<p class='s3 c9'></p>")
+	english_title = models.CharField(max_length=200, default="<h1 class='c12'></h1>")
+	english_body = models.TextField(default="<p class='s3 c9'></p>")
 	header = models.FileField(upload_to='static/webpage/images/sections/header/', max_length=500, null=True)
 
 	def save(self, *args, **kwargs):
@@ -57,6 +57,7 @@ class SubSectionCategory(models.Model):
 	spanish_name = models.CharField(max_length=50, null=False)
 	english_name = models.CharField(max_length=50, null=False)
 	section = models.ForeignKey(Section, on_delete=models.CASCADE)
+	image = models.FileField(upload_to='static/webpage/images/categories/', max_length=500, null=True)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
@@ -68,15 +69,28 @@ class SubSectionCategory(models.Model):
 	def get_subsections(self):
 		return SubSection.objects.filter(category=self)
 
+	def update_image(self, image):
+		# Si existe una foto, se elimina
+		if self.image:
+			os.remove(self.image.path)
+			self.save()
+
+		self.image.save('CI' + str(self.id) + '.jpg', image)
+		self.save()
+		return True
+
+	def image_url(self):
+		return 'webpage/images/categories/' + os.path.basename(self.image.name)
+
 
 class SubSection(models.Model):
-	spanish_name = models.CharField(max_length=50, null=False)
-	english_name = models.CharField(max_length=50, null=False)
-	slug = models.SlugField(max_length=20, unique=True, null=False)
-	spanish_title = models.CharField(max_length=200, null=False)
-	spanish_body = models.TextField(null=True)
-	english_title = models.CharField(max_length=200, null=False)
-	english_body = models.TextField(null=True)
+	spanish_name = models.CharField(max_length=80, null=False)
+	english_name = models.CharField(max_length=80, null=False)
+	slug = models.SlugField(max_length=30, unique=True, null=False)
+	spanish_title = models.CharField(max_length=200, default="<h1 class='c12'></h1>")
+	spanish_body = models.TextField(default="<p></p>")
+	english_title = models.CharField(max_length=200, default="<h1 class='c12'></h1>")
+	english_body = models.TextField(default="<p></p>")
 	category = models.ForeignKey(SubSectionCategory, on_delete=models.CASCADE)
 
 	def save(self, *args, **kwargs):
@@ -185,5 +199,8 @@ def image_delete(sender, instance, **kwargs):
 def section_delete(sender, instance, **kwargs):
 	instance.header.delete(False)
 @receiver(post_delete, sender=SectionImage)
+def image_delete(sender, instance, **kwargs):
+	instance.image.delete(False)
+@receiver(post_delete, sender=SubSectionCategory)
 def image_delete(sender, instance, **kwargs):
 	instance.image.delete(False)

@@ -1,0 +1,81 @@
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as lang %}
+
+<div class="row">
+    <div>
+        <form id="webpage-edit-form" class="clear" action="">
+            <div class="c6 documents filters intranet box editor-box">
+                <div class="setup-webpage-list-container">
+                    <ul class="setup-webpage-list">
+                        <li>
+                            <div class="setup-webpage-row">
+                                <h3>{% trans 'Versión en Español' %}</h3>
+                            </div>
+                            <div class="setup-webpage-box">
+                                <button type="button" id="spanish-edit-box" class="setup-edit-box" title="{% trans 'Editar' %}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="setup-webpage-box setup-hidden">
+                                <button type="button" id="spanish-accept-box" class="setup-accept-box" subsection-id="{{ subsection.id }}" title="{% trans 'Aceptar' %}">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="setup-webpage-box setup-hidden">
+                                <button type="button" id="spanish-cancel-box" class="setup-cancel-box" title="{% trans 'Cancelar' %}">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="spanish-title-edit">
+                    {{ subsection.spanish_title | safe }}
+                </div>
+                <div id="spanish-body-edit">
+                    {{ subsection.spanish_body | safe }}
+                </div>
+            </div>
+            <input id="spanishImageField" type="file" accept="image/png, image/jpeg" style="display: none" name="spanishImage">
+
+            <div class="c6 documents filters intranet box editor-box">
+                <div class="setup-webpage-list-container">
+                    <ul class="setup-webpage-list">
+                        <li>
+                            <div class="setup-webpage-row">
+                                <h3>{% trans 'Versión en Inglés' %}</h3>
+                            </div>
+                            <div class="setup-webpage-box">
+                                <button type="button" id="english-edit-box" class="setup-edit-box" title="{% trans 'Editar' %}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="setup-webpage-box setup-hidden">
+                                <button type="button" id="english-accept-box" class="setup-accept-box" section-id="{{ section.id }}" title="{% trans 'Aceptar' %}">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="setup-webpage-box setup-hidden">
+                                <button type="button" id="english-cancel-box" class="setup-cancel-box" title="{% trans 'Cancelar' %}">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="english-title-edit">
+                    {{ subsection.english_title | safe }}
+                </div>
+                <div id="english-body-edit">
+                    {{ subsection.english_body | safe }}
+                </div>
+            </div>
+            <input id="englishImageField" type="file" accept="image/png, image/jpeg" style="display: none" name="englishImage">
+        </form>
+    </div>
+</div>
+
+<script>is_section=false</script>
+<script>webpage();</script>
+

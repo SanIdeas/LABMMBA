@@ -285,13 +285,9 @@
     "model": "webpage.section",
     "pk": 1,
     "fields": {
-      "spanish_name": "Nuestro laboratorio",
-      "english_name": "Our laboratory",
-      "slug": "about",
-      "spanish_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
-      "spanish_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>",
-      "english_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
-      "english_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>"
+      "spanish_name": "Inicio",
+      "english_name": "Home",
+      "slug": "."
     }
   },
 
@@ -299,11 +295,65 @@
     "model": "webpage.section",
     "pk": 2,
     "fields": {
+      "spanish_name": "Noticias",
+      "english_name": "News",
+      "slug": "news"
+    }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 3,
+    "fields": {
+      "spanish_name": "Nuestro laboratorio",
+      "english_name": "Our laboratory",
+      "slug": "about",
+      "spanish_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>",
+      "spanish_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>",
+      "english_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>",
+      "english_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>"
+    }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 4,
+    "fields": {
       "spanish_name": "Productos y Servicios",
       "english_name": "Products and Services",
       "slug": "products",
-      "spanish_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>",
-      "english_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental:</h1>"
+      "spanish_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>",
+      "english_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>"
+    }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 5,
+    "fields": {
+      "spanish_name": "Publicaciones",
+      "english_name": "Publications",
+      "slug": "publications"
+    }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 6,
+    "fields": {
+      "spanish_name": "Intranet",
+      "english_name": "Intranet",
+      "slug": "intranet"
+    }
+  },
+
+  {
+    "model": "webpage.section",
+    "pk": 7,
+    "fields": {
+      "spanish_name": "Administración",
+      "english_name": "Administration",
+      "slug": "administrator"
     }
   },
 
@@ -313,7 +363,7 @@
     "fields": {
       "spanish_name": "Sobre Nosotros",
       "english_name": "About",
-      "section": 1
+      "section": 3
     }
   },
 
@@ -323,7 +373,7 @@
     "fields": {
       "spanish_name": "Investigación",
       "english_name": "Investigation",
-      "section": 1
+      "section": 3
     }
   },
 
@@ -333,7 +383,7 @@
     "fields": {
       "spanish_name": "Cooperación Científica",
       "english_name": "Scientific Cooperation",
-      "section": 1
+      "section": 3
     }
   },
 
@@ -343,7 +393,8 @@
     "fields": {
       "spanish_name": "Patentes",
       "english_name": "Patents",
-      "section": 2
+      "image": "static/webpage/images/categories/CI4.jpg",
+      "section": 4
     }
   },
 
@@ -353,7 +404,8 @@
     "fields": {
       "spanish_name": "Tecnologías",
       "english_name": "Technologies",
-      "section": 2
+      "image": "static/webpage/images/categories/CI5.jpg",
+      "section": 4
     }
   },
 
@@ -363,7 +415,8 @@
     "fields": {
       "spanish_name": "Asesorías",
       "english_name": "Counselings",
-      "section": 2
+      "image": "static/webpage/images/categories/CI6.jpg",
+      "section": 4
     }
   },
 
@@ -388,6 +441,7 @@
       "english_name": "Our History",
       "slug": "history",
       "spanish_title": "<h1 class='c12'>Nuestra Historia</h1>",
+      "spanish_body": "<p>&nbsp;En 1997 se crea el primer laboratorio del &aacute;rea biol&oacute;gica de la Universidad T&eacute;cnica Federico Santa Mar&iacute;a: El laboratorio de Microbiolog&iacute;a Molecular y Biotecnolog&iacute;a Ambiental (MMBA). En Octubre de ese a&ntilde;o, este laboratorio cuenta con dos investigadores (Michael Seeger y Myriam Gonzalez), dos proyectos interinstitucionales y un espacio f&iacute;sico de 36 [m<sup>2</sup>].</p> <p>Se comenz&oacute; con una l&iacute;nea de investigaci&oacute;n muy relevante para la regi&oacute;n y el pa&iacute;s en el campo de la Biotecnolog&iacute;a Ambiental: La degradaci&oacute;n Bacteriana (biorremediaci&oacute;n) de contaminantes org&aacute;nicos persistentes (COPs), una tem&aacute;tica de escaso desarrollo en el pa&iacute;s. La importancia de esta investigaci&oacute;n est&aacute; dada por el impacto ambiental que generan estos contaminantes a lo largo del territorio nacional.</p> <p>Se comenz&oacute; con una l&iacute;nea de investigaci&oacute;n muy relevante para la regi&oacute;n y el pa&iacute;s en el campo de la Biotecnolog&iacute;a Ambiental: La degradaci&oacute;n Bacteriana (biorremediaci&oacute;n) de contaminantes org&aacute;nicos persistentes (COPs), una tem&aacute;tica de escaso desarrollo en el pa&iacute;s. La importancia de esta investigaci&oacute;n est&aacute; dada por el impacto ambiental que generan estos contaminantes a lo largo del territorio nacional.</p> <p>El Laboratorio MMBA particip&oacute; activamente en la formaci&oacute;n del Centro de Biotecnolog&iacute;a de la UTFSM, creado oficialmente en enero del 2000 (aunque las gestiones se iniciaron en 1997), y en la creaci&oacute;n del Programa de Doctorado de Biotecnolog&iacute;a (UTFSM &ndash; PUCV) cuyas gestiones iniciaron en 1998 y tuvo inicio en Marzo del 2002.</p> <p>Para Octubre del a&ntilde;o 2001, el grupo de trabajo inclu&iacute;a 4 investigadores, 1 estudiante de Doctorado, 4 estudiantes de pregrado y una persona de apoyo t&eacute;cnico. Se ejecutaban 6 proyectos de investigaci&oacute;n propios, disponiendo de dos laboratorios con una superficie de 80 [m<sup>2</sup>] y un moderno equipamiento.</p> <p>El a&ntilde;o 2009 el laboratorio est&aacute; conformado por dos investigadores senior, dos investigadores post-doctorales, dos investigadores asociados, un t&eacute;cnico de qu&iacute;mica anal&iacute;tica, cinco estudiantes de Doctorado, dos estudiantes de Magister, dos estudiantes de pre-grado y estudiantes en pasant&iacute;a.</p> <p>Se dispone de dos laboratorios de investigaci&oacute;n de 80 [m<sup>2</sup>] ubicados en el Departamento de Qu&iacute;mica de la Casa Central. Adem&aacute;s se dispone de un laboratorio de preparaci&oacute;n de muestras y 3 c&aacute;maras termorreguladas de 25&deg;C, 5&deg;C y -20 &deg;C ubicados en la edificaci&oacute;n de calle General Bari.</p> <p>El laboratorio tiene las siguientes &aacute;reas de investigaci&oacute;n:</p> <ul> <li>Biodegradaci&oacute;n y biorremediaci&oacute;n de COPs</li> <li>Prote&oacute;mica y Gen&oacute;mica funcional de bacterias</li> <li>Qu&iacute;mica Ambiental de COPs</li> <li>Biotransformaciones y S&iacute;ntesis Org&aacute;nica.</li> <li>Ecolog&iacute;a Microbiana</li> <li>Resistencia de bacterias a metales pesados</li> <li>Biorremediaci&oacute;n de Suelos Contaminados con Metales Pesados</li> </ul> <p>El laboratorio MMBA ha colaborado con diversas instituciones como son:</p> <p>Instituciones Nacionales</p> <ul> <li>Pontificia Universidad Cat&oacute;lica de Valpara&iacute;so</li> <li>Universidad Austral</li> <li>Universidad de Chile</li> <li>Universidad de Santiago</li> <li>Universidad de Valpara&iacute;so</li> <li>Pontificia Universidad Cat&oacute;lica de Chile</li> <li>Universidad de Magallanes</li> <li>Universidad de la Frontera</li> </ul> <p>Instituciones Internacionales</p> <ul> <li>Helmholzt Centre for Infection Research (Braunschweig, Alemania)</li> <li>Max Planck Institute for Terrestrial Microbiology (Marburg, Alemania)</li> <li>Julius K&uuml;hn-Institute, Federal Research Center for Cultivated plants (Braunschweig, Alemania)</li> <li>Helmholtz Centre for Environmental Research &ndash; UFZ (Leipzig, Alemania)</li> <li>Universidad de Buenos Aires (Argentina)</li> <li>Universidad Campinas (Sao Paolo, Brasil)</li> <li>Centro Nacional de Biotecnolog&iacute;a (Madrid, Espa&ntilde;a)</li> <li>Centro de Investigaciones Biol&oacute;gicas (Madrid, Espa&ntilde;a)</li> <li>Universidad Pablo de Olavide (Sevilla, Espa&ntilde;a)</li> <li>The Macaulay Land use Research Institute (Aberdine, Escocia)</li> <li>Texas A&amp;M University (College Station, Estados Unidos)</li> <li>University Southern California (Los Angeles, Estados Unidos)</li> <li>Center for Microbial Ecology (East Lansing, Estados Unidos)</li> <li>CCUG, University of G&ouml;teborg (G&ouml;teborg, Suecia)</li> </ul> <p>Las investigaciones del laboratorio han sido financiadas con el apoyo de diversas instituciones tales como Fondecyt, Fundaci&oacute;n Andes, Conicyt &ndash; BMBF, European Union (INCO), Mineduc, N&uacute;cleo Milenio EMBA, PBCT, UTFSM, Texas A&amp;M University, U. Austral, Instituto Milenio (CBB) y Perkin Elmer Chile.</p>",
       "english_title": "<h1 class='c12'>Our History</h1>",
       "category": 1
     }
@@ -414,6 +468,7 @@
       "english_name": "Investigation Areas",
       "slug": "areas",
       "spanish_title": "<h1 class='c12'>Áreas de Investigación</h1>",
+      "spanish_body": "<ol> <li><strong>Biorremediaci&oacute;n bacteriana de ambientes contaminados</strong></li> </ol> <ul> <li>Biorremediaci&oacute;n de policlorobifenilos.</li> <li>Biorremediaci&oacute;n de pesticidas.</li> <li>Biorremediaci&oacute;n de hidrocarburos.</li> <li>Biorremediaci&oacute;n de metales pesados.</li> <li>Monitoreo de contaminantes org&aacute;nicos persistentes.</li> </ul> <ol start='2'> <li><strong>Gen&oacute;mica Funcional de bacterias para su reconstrucci&oacute;n metab&oacute;lica y fisiol&oacute;gica</strong></li> </ol> <ul> <li>Reconstrucci&oacute;n del metabolismo de bacterias a partir de sus genomas.</li> <li>Funcionalidad de rutas catab&oacute;licas de compuestos arom&aacute;ticos.</li> <li>Funcionalidad de rutas anab&oacute;licas de compuestos arom&aacute;ticos.</li> <li>Respuesta molecular de bacterias frente a compuestos org&aacute;nicos y a cambios en su entorno.</li> <li>Estr&eacute;s oxidativo.</li> </ul> <ol start='3'> <li><strong>S&iacute;ntesis microbiana y caracterizaci&oacute;n de biopol&iacute;meros </strong></li> </ol> <ul> <li>S&iacute;ntesis bacteriana de biopol&iacute;meros como polihidroxialcanoatos.</li> <li>Caracterizaci&oacute;n de biopol&iacute;meros y sus aplicaciones.</li> </ul> <ol start='4'> <li><strong> Prospecci&oacute;n de compuestos bioactivos de microorganismos, plantas y animales</strong></li> </ol> <ul> <li>Aislamiento y caracterizaci&oacute;n de Actinobacterias.</li> <li>S&iacute;ntesis de compuestos bioactivos tipo PKS y NRPS por bacterias ambientales.</li> <li>Biotransformaciones de compuestos arom&aacute;ticos mediante enzimas microbianas.</li> <li>Generaci&oacute;n de nuevas mol&eacute;culas antioxidantes mediante biotransformaciones.</li> <li>Aislamiento y caracterizaci&oacute;n de compuestos bioactivos de organismos marinos.</li> <li>Extracci&oacute;n de compuestos bioactivos a partir de flora nativa chilena.</li> </ul> <ol start='5'> <li><strong> Interacciones microorganismos y plantas</strong></li> </ol> <ul> <li>Aislamiento y caracterizaci&oacute;n de bacterias promotoras del crecimiento vegetal y micorrizas.</li> <li>Efecto de bacterias promotoras del crecimiento vegetal sobre plantas.</li> <li>Efecto de hongos micorr&iacute;cicos arbusculares sobre la vid.</li> <li>Efecto de fitopat&oacute;genos como <em>Pseudomonas syringae</em> y <em>Clavibacter michiganensis</em> subsp. <em>michiganensis</em> sobre plantas de tomate.</li> <li>Estrategias de biocontrol de fitopat&oacute;genos.</li> </ul> <ol start='6'> <li><strong> Bionanotecnolog&iacute;a </strong></li> </ol> <ul> <li>S&iacute;ntesis qu&iacute;mica y biog&eacute;nica de nanopart&iacute;culas met&aacute;licas</li> <li>Desarrollo de nanopart&iacute;culas met&aacute;licas como sistemas de liberaci&oacute;n de f&aacute;rmacos</li> <li>S&iacute;ntesis de biopol&iacute;meros.</li> </ul>",
       "english_title": "<h1 class='c12'>Investigation Areas</h1>",
       "category": 2
     }
@@ -465,8 +520,9 @@
       "spanish_name": "Nacional",
       "english_name": "National",
       "slug": "national",
-      "spanish_title": "<h1 class='c12'>Nacional</h1>",
-      "english_title": "<h1 class='c12'>National</h1>",
+      "spanish_title": "<h1 class='c12'>Cooperación Científica Nacional</h1>",
+      "spanish_body": "<p><strong>Pontificia Universidad Cat&oacute;lica de Chile</strong></p> <p><strong>Beatriz Diez.</strong></p> <p><strong>M&oacute;nica V&aacute;squez.</strong></p> <p><strong>Sebasti&aacute;n Fuentes.</strong></p> <p>&nbsp;</p> <p><strong>Pontificia Universidad Cat&oacute;lica de Valpara&iacute;so</strong></p> <p><strong>&Aacute;lvaro D&iacute;az</strong>.</p> <p><strong>Juan Carlos Gentina.</strong></p> <p><strong>Fanny Guzm&aacute;n</strong></p> <p>&nbsp;</p> <p><strong>Universidad Adolfo Ib&aacute;&ntilde;ez</strong></p> <p><strong>Bernardo Gonz&aacute;lez.</strong> Microbiolog&iacute;a Ambiental.</p> <p><strong>&nbsp;</strong></p> <p><strong>Universidad Andr&eacute;s Bello </strong></p> <p><strong>David Holmes.</strong> Microbiolog&iacute;a Ambiental.</p> <p><strong>Ariel Orellana.</strong></p> <p>&nbsp;</p> <p><strong>Universidad Arturo Prat</strong></p> <p><strong>Erwin Strahsburger.</strong></p> <p><strong>&nbsp;</strong></p> <p><strong>Universidad Austral</strong></p> <p><strong>Hern&aacute;n Palma.</strong> Qu&iacute;mica Ambiental</p> <p><strong>Claudio Bravo</strong>.</p> <p><strong>Jaime Figueroa.</strong></p> <p>&nbsp;</p> <p><strong>Universidad Cat&oacute;lica del Norte</strong></p> <p><strong>Luis Rojas.</strong></p> <p><strong>&nbsp;</strong></p> <p><strong>Universidad de Chile</strong></p> <p><strong>Marcelo Kogan.</strong> Aplicaci&oacute;n de Nanopart&iacute;culas en Medicina.</p> <p><strong>Nicol&aacute;s Giuliani.</strong></p> <p>&nbsp;</p> <p><strong>Universidad de Concepci&oacute;n</strong></p> <p><strong>Miguel Mart&iacute;nez.</strong></p> <p>&nbsp;</p> <p><strong>Universidad Federico Santa Maria</strong></p> <p><strong>Lioubov Dombrovskaia.</strong> Estudios bioinform&aacute;ticos. (Departamento de Inform&aacute;tica)</p> <p><strong>Ricardo Simpson.</strong> Biotecnolog&iacute;a. (Departamento de Ingenier&iacute;a Qu&iacute;mica y Ambiental)</p> <p><strong>Sergio Almonacid.</strong> Biotecnolog&iacute;a. (Departamento de Ingenier&iacute;a Qu&iacute;mica y Ambiental)</p> <p><strong>Patricio H&auml;berle.</strong> Nanotecnolog&iacute;a. (Departamento de F&iacute;sica)</p> <p><strong>M&oacute;nica Pacheco.</strong> Nanotecnolog&iacute;a. (Departamento de F&iacute;sica)</p> <p>&nbsp;</p> <p><strong>Universidad de la Frontera</strong></p> <p><strong>Rodrigo Navia.</strong> Biorremediaci&oacute;n, Bioprocesos.</p> <p><strong>David Jeison.</strong> Biorremediaci&oacute;n, Bioprocesos.</p> <p><strong>Maribel Parada. </strong></p> <p>&nbsp;</p> <p><strong>Universidad de Magallanes</strong></p> <p><strong>Valeria Latorre.</strong> Biotecnolog&iacute;a Agr&iacute;cola.</p> <p><strong>&nbsp;</strong></p> <p><strong>Universidad de Santiago de Chile</strong></p> <p><strong>Claudio V&aacute;squez</strong>.</p> <p><strong>&nbsp;</strong></p> <p><strong>Centros de investigaci&oacute;n </strong></p> <p><strong>Humberto Prieto.</strong> (INIA La Platina)</p> <p><strong>Juan Pablo Mart&iacute;nez</strong>. (INIA La Cruz)</p> <p>&nbsp;</p>",
+      "english_title": "<h1 class='c12'>National Scientific Cooperation</h1>",
       "category": 3
     }
   },
@@ -478,9 +534,166 @@
       "spanish_name": "Internacional",
       "english_name": "International",
       "slug": "international",
-      "spanish_title": "<h1 class='c12'>Internacional</h1>",
-      "english_title": "<h1 class='c12'>International</h1>",
+      "spanish_title": "<h1 class='c12'>Cooperación Científica Internacional</h1>",
+      "spanish_body": "<p><strong>Alemania<br /> Bernd Hofer</strong>. Helmholtz Centre for Infection Research (Braunschweig).<br /> <strong>Dietmar Pieper</strong>. Helmholtz Centre for Infection Research (Braunschweig).<br /> <strong>Kenneth N. Timmis</strong>.&nbsp; Helmholtz Centre for Infection Research (Braunschweig).<br /> <strong>Hermann Heipieper</strong>. Helmholtz Centre for Environmental Research &ndash; UFZ (Leipzig).<br /> <strong>Ralf Conrad</strong>. Max Planck Institute for Terrestrial Microbiology (Marburg).<br /> <strong>Marcela Hern&aacute;ndez</strong>. Max Planck Institute for Terrestrial Microbiology (Marburg).<br /> <strong>Kornelia Smalla.</strong>&nbsp;Julius K&uuml;hn-Institute (Braunschweig).</p> <p>&nbsp;</p> <p><strong>Argentina</strong><br /> <strong>Ana Giulietti</strong>. Universidad de Buenos Aires, Buenos Aires.<br /> <strong>Beatriz M&eacute;ndez</strong>. Universidad de Buenos Aires, Buenos Aires.<br /> <strong>Luciano Merini</strong>. Universidad Nacional del Nordeste, Corrientes.</p> <p><strong>Andrea Smania</strong>. Universidad Nacional de C&oacute;rdoba, C&oacute;rdoba.</p> <p><strong>Fernanda Buzzola. </strong>Universidad de Buenos Aires, Buenos Aires.</p> <p>&nbsp;</p> <p><strong>Brasil</strong><br /> <strong>Nelson Dur&aacute;n</strong>, Universidad Estatal de Campinas, Campinas.<br /> <strong>Luciana Ferreira da Silva</strong>, Universidad Federal de Sao Paulo, Sao Paulo.<br /> <strong>Gregorio G&oacute;mez</strong>, Universidad Federal de Sao Paulo, Sao Paulo.</p> <p>&nbsp;</p> <p><strong>Colombia</strong><br /> <strong>Catalina Ar&eacute;valo</strong>, Universidad Nacional de Colombia, Bogot&aacute;.<br /> <strong>Daniel Uribe</strong>, Universidad Nacional de Colombia, Bogot&aacute;.</p> <p>&nbsp;</p> <p><strong>Cuba</strong><br /> <strong>Gabriel Padr&oacute;n</strong>,&nbsp;Centro de Ingenier&iacute;a Gen&eacute;tica y Biotecnolog&iacute;a (CIGB), La Habana.<br /> <strong>Justo Gonz&aacute;lez</strong>, Universidad Ciego de &Aacute;vila, Ciego de &Aacute;vila.</p> <p><strong>Mar&iacute;a Eliana Lanio</strong>, Universidad de La Habana, La Habana.</p> <p><strong>Mar&iacute;a Elena Carvallo </strong>Universidad de La Habana- Facultad de Biolog&iacute;a, La Habana.</p> <p><strong>Marcia Rojas</strong> Universidad de La Habana- Facultad de Biolog&iacute;a, La Habana.</p> <p><strong>&nbsp;</strong></p> <p><strong>Espa&ntilde;a<br /> Eduardo D&iacute;az.</strong>&nbsp;Centro de Investigaciones Biol&oacute;gicas (CIB) &ndash; Consejo Superior de Investigaciones Cient&iacute;ficas (CSIC), Madrid.<br /> <strong>V&iacute;ctor de Lorenzo.</strong>&nbsp;Centro Nacional de Biotecnolog&iacute;a &ndash; CSIC, Madrid.<br /> <strong>Ram&oacute;n Rossello-Mora.</strong>&nbsp;Universitat de les Illes Balears &ndash; CSIC, Mallorca.<br /> <strong>Ver&oacute;nica Morgante.</strong>&nbsp;Centro de Astrobiologia &ndash; CSIC-INTA, Madrid.</p> <p><strong>Jos&eacute; Luis Garc&iacute;a.</strong> CIB-CSIC, Madrid.<br /> <strong>Maria Auxiliadora Prieto.&nbsp;</strong>CIB-CSIC, Madrid.</p> <p><strong>&nbsp;</strong></p> <p><strong>Italia</strong><br /> <strong>Fabrizio Beltrametti.</strong>&nbsp;ACTYGEA, Milano.</p> <p><strong>Andrea Franzetti.</strong> Universit&aacute; Bicoca-Milano</p> <p><strong>Claudio D&rsquo;Onofrio.</strong> Universit&aacute; di Pisa- Dipartamento di Scienze Agrarie, Alimentari e Agro-Ambientali, Pisa.</p> <p><strong>Manuela Giovannetti.</strong> Universit&aacute; di Pisa- Dipartamento di Scienze Agrarie, Alimentari e Agro-Ambientali, Pisa.</p> <p>&nbsp;</p> <p><strong>Estados Unidos de Norte Am&eacute;rica<br /> Kenneth Nealson.</strong>&nbsp;University Southern California, Los Angeles.<br /> <strong>James Tiedje.&nbsp;</strong>Center for Microbial Ecology, East Lansing, Michigan.<br /> <strong>Jos&eacute; Sericano.</strong>&nbsp;Texas A&amp;M University, College Station.<br /> <strong>Gregory Caporaso.</strong>&nbsp;Center for Microbial Genetics and Genomics, Northern Arizona University, Arizona.</p> <p><strong>Lars Dietrich.</strong> Department of Biological Sciences, Columbia University, Nueva York.</p> <p><strong>&nbsp;</strong></p> <p><strong>Suecia<br /> Edward Moore.</strong>&nbsp;CCUG University of G&ouml;teborg, G&ouml;teborg.</p> <p><strong>Liselott Svensson.</strong> Clinical microbiology, Sahlgrenska University Hospital and Department of Infectious Disease, University of G&ouml;teborg, G&ouml;teborg.</p> <p>&nbsp;</p> <p><strong>B&eacute;lgica</strong></p> <p><strong>Joseph Martial.</strong> GIGA Biotech Center, Lieja.</p> <p><strong>Stanley Lutts.</strong> Universidad Cat&oacute;lica de Lovaina, Lovaina.</p> <p>&nbsp;</p> <p><strong>Francia</strong></p> <p><strong>Marie-Agnes Jacques.</strong> Instituto INRA Beaucouz&eacute;, Angers.</p> <p><strong>&nbsp;</strong></p> <p><strong>Canad&aacute;</strong></p> <p><strong>Raymond J. Turner.</strong> University of Calgary, Calgary.</p>",
+      "english_title": "<h1 class='c12'>International Scientific Cooperation</h1>",
       "category": 3
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 10,
+    "fields": {
+      "spanish_name": "Bacteria biorremediadora MSR33",
+      "english_name": "Bioremediation Bacteria MSR33",
+      "slug": "msr33-bacteria",
+      "spanish_title": "<h1 class='c12'>Bacteria biorremediadora MSR33</h1>",
+      "english_title": "<h1 class='c12'>Bioremediation Bacteria MSR33</h1>",
+      "category": 4
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 11,
+    "fields": {
+      "spanish_name": "Bacteria recombinante JMS34",
+      "english_name": "Recombinant bacteria JMS34",
+      "slug": "jms34-bacteria",
+      "spanish_title": "<h1 class='c12'>Bacteria recombinante JMS34</h1>",
+      "english_title": "<h1 class='c12'>Recombinant bacteria JMS34</h1>",
+      "category": 4
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 12,
+    "fields": {
+      "spanish_name": "Bacteria MHP41",
+      "english_name": "Bacteria MHP41",
+      "slug": "mhp41-bacteria",
+      "spanish_title": "<h1 class='c12'>Bacteria MHP41</h1>",
+      "english_title": "<h1 class='c12'>Bacteria MHP41</h1>",
+      "category": 4
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 13,
+    "fields": {
+      "spanish_name": "Biorremediación de matrices contaminadas con mercurio y otros metales pesados",
+      "english_name": "Bioremediation of matrices contaminated with mercury and other heavy metals",
+      "slug": "matrices-bioremediation",
+      "spanish_title": "<h1 class='c12'>Biorremediación de matrices contaminadas con mercurio y otros metales pesados</h1>",
+      "english_title": "<h1 class='c12'>Bioremediation of matrices contaminated with mercury and other heavy metals</h1>",
+      "category": 5
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 14,
+    "fields": {
+      "spanish_name": "Biorremediación de pesticidas",
+      "english_name": "Bioremediation of pesticides",
+      "slug": "pesticides-bioremediation",
+      "spanish_title": "<h1 class='c12'>Biorremediación de pesticidas</h1>",
+      "english_title": "<h1 class='c12'>Bioremediation of pesticides</h1>",
+      "category": 5
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 15,
+    "fields": {
+      "spanish_name": "Biorremediación de hidrocarburos de petróleo",
+      "english_name": "Bioremediation of petroleum hydrocarbons",
+      "slug": "hydrocarbons-bioremediation",
+      "spanish_title": "<h1 class='c12'>Biorremediación de hidrocarburos de petróleo</h1>",
+      "english_title": "<h1 class='c12'>Bioremediation of petroleum hydrocarbons</h1>",
+      "category": 5
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 16,
+    "fields": {
+      "spanish_name": "Biorremediación de compuestos químicos industriales",
+      "english_name": "Bioremediation of industrial chemical compounds",
+      "slug": "compounds-bioremediation",
+      "spanish_title": "<h1 class='c12'>Biorremediación de compuestos químicos industriales</h1>",
+      "english_title": "<h1 class='c12'>Bioremediation of industrial chemical compounds</h1>",
+      "category": 5
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 17,
+    "fields": {
+      "spanish_name": "Biotransformación de compuestos bioactivos",
+      "english_name": "Biotransformation of bioactive compounds",
+      "slug": "compounds-biotransformation",
+      "spanish_title": "<h1 class='c12'>Biotransformación de compuestos bioactivos</h1>",
+      "english_title": "<h1 class='c12'>Biotransformation of bioactive compounds</h1>",
+      "category": 5
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 18,
+    "fields": {
+      "spanish_name": "Micropropagación de plantas",
+      "english_name": "Micropropagation of plants",
+      "slug": "plants-micropropagation",
+      "spanish_title": "<h1 class='c12'>Micropropagación de plantas</h1>",
+      "english_title": "<h1 class='c12'>Micropropagation of plants</h1>",
+      "category": 5
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 19,
+    "fields": {
+      "spanish_name": "Tecnológicas",
+      "english_name": "Technologicals",
+      "slug": "technologicals",
+      "spanish_title": "<h1 class='c12'>Tecnológicas</h1>",
+      "english_title": "<h1 class='c12'>Technologicals</h1>",
+      "category": 6
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 20,
+    "fields": {
+      "spanish_name": "Medioambientales",
+      "english_name": "Environmentals",
+      "slug": "environmentals",
+      "spanish_title": "<h1 class='c12'>Medioambientales</h1>",
+      "english_title": "<h1 class='c12'>Environmentals</h1>",
+      "category": 6
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 21,
+    "fields": {
+      "spanish_name": "I+D+I",
+      "english_name": "I+D+I",
+      "slug": "idi",
+      "spanish_title": "<h1 class='c12'>I+D+I</h1>",
+      "english_title": "<h1 class='c12'>I+D+I</h1>",
+      "category": 6
     }
   }
 ]

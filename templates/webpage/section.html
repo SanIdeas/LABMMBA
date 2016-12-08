@@ -1,0 +1,117 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}
+    {% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="slider" class="royalSlider rsDefault">
+<figure class="rsContent">
+    {% if section.header %}
+        <img class="rsImg" src="{% static section.header_url %}" alt="{% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}"/>
+    {% else %}
+        <img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="{% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}"/>
+    {% endif %}
+	<figcaption class="grid rsABlockContainer">
+		<div class="rsABlock top right" data-move-effect="right">
+			<div class="subnav dark">
+				<h3 class="clear"><span>{% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}</span></h3>
+				<ul class="clear">
+                    {% for category1, category2 in categories %}
+					    <li><a class="anchor" href="#{{category1.0.id}}">{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}</a></li>
+                        {% if category2 %}
+                            <li><a class="anchor" href="#{{category2.0.id}}">{% if lang == 'es' %}{{category2.0.spanish_name}}{% elif lang == 'en' %}{{category2.0.english_name}}{% endif %}</a></li>
+                        {% endif %}
+                    {% endfor %}
+				</ul>
+			</div>
+		</div>
+	</figcaption>   
+</figure>  
+</div>
+<section id="content" class="wfull">
+	<div class="grid">
+		<div class="row">
+            {% if lang == 'es' %}
+			    {{ section.spanish_title | safe }}
+            {% elif lang == 'en' %}
+                {{ section.english_title | safe }}
+            {% endif %}
+		</div>
+		<div class="row">
+			<div class="s3 c9">
+                {% if lang == 'es' %}
+                    {{ section.spanish_body | safe }}
+                {% elif lang == 'en' %}
+                    {{ section.english_body | safe }}
+                {% endif %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="s1 c11">
+                {% for category1, category2 in categories %}
+                    <div class="clear">
+                        <section class="c6 circle" id="{{category1.0.id}}">
+                            <div class="row trans">
+                                <div class="c4 img">
+                                    {% if category1.0.image %}
+                                        <img src="{% static category1.0.image_url %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
+                                    {% else %}
+                                        <img src="{% static 'usm_theme/img/thumbnail_1.jpg' %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
+                                    {% endif %}
+                                </div>
+                                <div class="c8 items">
+                                    <h3>{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}</h3>
+                                    <ul>
+                                        {% for subsection in category1.1 %}
+                                            <li><a href="{% url 'webpage:subsection' section.slug subsection.slug %}">{% if lang == 'es' %}{{subsection.spanish_name}}{% elif lang == 'en' %}{{subsection.english_name}}{% endif %}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                        {% if category2 %}
+                            <section class="c6 circle" id="{{category2.0.id}}">
+                                <div class="row trans">
+                                    <div class="c4 img">
+                                        {% if category2.0.image %}
+                                            <img src="{% static category2.0.image_url %}" alt="{% if lang == 'es' %}{{category2.0.spanish_name}}{% elif lang == 'en' %}{{category2.0.english_name}}{% endif %}"/>
+                                        {% else %}
+                                            <img src="{% static 'usm_theme/img/thumbnail_1.jpg' %}" alt="{% if lang == 'es' %}{{category2.0.spanish_name}}{% elif lang == 'en' %}{{category2.0.english_name}}{% endif %}"/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="c8 items">
+                                        <h3>{% if lang == 'es' %}{{category2.0.spanish_name}}{% elif lang == 'en' %}{{category2.0.english_name}}{% endif %}</h3>
+                                        <ul>
+                                            {% for subsection in category2.1 %}
+                                                <li><a href="{% url 'webpage:subsection' section.slug subsection.slug %}">{% if lang == 'es' %}{{subsection.spanish_name}}{% elif lang == 'en' %}{{subsection.english_name}}{% endif %}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="c12">
+				<ul id="bottom-nav" class="clear">
+                    {% if other_sections.0 %}
+					    <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.1 %}
+                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.2 %}
+                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+                    {% endif %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

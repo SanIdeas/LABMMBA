@@ -1,0 +1,51 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}
+    {% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}
+{% endblock %}
+
+{% block content %}
+<section id="content" class="wfull">
+    <div id="title">
+        <div class="grid">
+            <div class="row">
+                {% if lang == 'es' %}
+                    {{ subsection.spanish_title | safe }}
+                {% elif lang == 'en' %}
+                    {{ subsection.english_title | safe }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+    	<div class="row">
+    		<section class="content noticias single c8">
+                <article class="post clear">
+                    {% if lang == 'es' %}
+                        {{ subsection.spanish_body | safe }}
+                    {% elif lang == 'en' %}
+                        {{ subsection.english_body | safe }}
+                    {% endif %}
+                </article>
+    		</section>
+    	</div>
+        <div class="row">
+            <div class="c12">
+                <ul id="bottom-nav" class="clear">
+                    {% if other_sections.0 %}
+                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.1 %}
+                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.2 %}
+                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

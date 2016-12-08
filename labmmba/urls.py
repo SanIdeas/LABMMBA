@@ -10,10 +10,10 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r'^', include('webpage.urls', namespace="webpage")),
     url(r'^intranet/', include('intranet.urls', namespace="intranet")),
     url(r'^administrator/', include('admin.urls', namespace="admin")),
     url(r'^login/', include('login.urls')),
     url(r'^publications/', include('public_search.urls')),
     url(r'^drive/', include('drive.urls')),
+    url(r'^', include('webpage.urls', namespace="webpage"))
 )
