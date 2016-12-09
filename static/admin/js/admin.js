@@ -641,9 +641,10 @@ function webpage(){
 			ed.on('loadContent', function(){    // Avoid to loose <p> class when everything is deleted
 				$(ed.getBody()).bind('DOMNodeInserted', function(e){
 					var element = e.target;
-					if(element.tagName == 'P')
-						if(is_section)
-							$(element).addClass('s3 c9');
+					if(element.tagName == 'P'){
+                        if (is_section)
+                            $(element).addClass('s3 c9');
+                    }
 					else if(element.tagName == 'IMG'){	// Identify new images
 						if(!$(element).attr('src')){
 							$(element).attr('src', src);
