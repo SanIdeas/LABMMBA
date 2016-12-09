@@ -308,6 +308,7 @@
       "spanish_name": "Nuestro laboratorio",
       "english_name": "Our laboratory",
       "slug": "about",
+      "header": "static/webpage/images/sections/header/SH3.jpg",
       "spanish_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>",
       "spanish_body": "<p class='s3 c9'>El laboratorio de Microbiología Molecular y Biotecnología Ambiental de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional. Ademas, hemos trabajado con distintas universidades de Chile y el mundo.</p>",
       "english_title": "<h1 class='c12'>Sobre Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>",
@@ -322,6 +323,7 @@
       "spanish_name": "Productos y Servicios",
       "english_name": "Products and Services",
       "slug": "products",
+      "header": "static/webpage/images/sections/header/SH4.jpg",
       "spanish_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>",
       "english_title": "<h1 class='c12'>Productos y Servicios del Laboratorio de Microbiología Molecular y Biotecnología Ambiental</h1>"
     }
@@ -363,6 +365,7 @@
     "fields": {
       "spanish_name": "Sobre Nosotros",
       "english_name": "About",
+      "image": "static/webpage/images/categories/CI1.jpg",
       "section": 3
     }
   },
@@ -373,6 +376,7 @@
     "fields": {
       "spanish_name": "Investigación",
       "english_name": "Investigation",
+      "image": "static/webpage/images/categories/CI2.jpg",
       "section": 3
     }
   },
@@ -383,6 +387,7 @@
     "fields": {
       "spanish_name": "Cooperación Científica",
       "english_name": "Scientific Cooperation",
+      "image": "static/webpage/images/categories/CI3.jpg",
       "section": 3
     }
   },

@@ -10,18 +10,24 @@ from webpage.forms import ImageForm
 import json
 
 # Create your views here.
-
 def home(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
 	documents = Document.objects.filter(is_public=True)[:3]
-	sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+	sections = Section.objects.all()
+	section = Section.objects.get(slug='.')
 
 	return render(request, 'webpage/home.html', {
-							'current_view': '.',
+							'current_view': section,
+							'current_section': section,
 							'documents': documents,
-							'sections': sections,
-							'publications': Section.objects.get(slug='publications'),
-							'intranet': Section.objects.get(slug='intranet'),
-							'administration': Section.objects.get(slug='administrator'),
+							'sections': sections.exclude(slug__in=exclude),
 							'body': 'inicio',
 							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None)[:5],
 							'news_1': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None)[:2],
@@ -30,8 +36,15 @@ def home(request):
 
 
 def section(request, section_slug=None, subsection_slug=None):
-	sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
 
+	sections = Section.objects.all()
 	if subsection_slug is None:		# Section
 		section = get_object_or_404(Section, slug=section_slug)
 		categories_arr = []
@@ -48,58 +61,44 @@ def section(request, section_slug=None, subsection_slug=None):
 			categories_arr = categories_temp
 
 		return render(request, 'webpage/section.html', {
-								'current_view': section_slug,
-								'sections': sections,
-								'publications': Section.objects.get(slug='publications'),
-								'intranet': Section.objects.get(slug='intranet'),
-								'administration': Section.objects.get(slug='administrator'),
+								'current_view': section,
+								'current_section': section,
+								'sections': sections.exclude(slug__in=exclude),
 								'body': 'seccion',
-								'section': section,
 								'categories': categories_arr,
-								'other_sections': sections.exclude(slug='.').exclude(id=section.id)[:3]
+								'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3]
 								})
 	else:		# Subsection
 		section = get_object_or_404(Section, slug=section_slug)
 		subsection = get_object_or_404(SubSection, slug=subsection_slug)
 
 		return render(request, 'webpage/subsection.html', {
-			'current_view': section_slug,
-			'sections': sections,
-			'publications': Section.objects.get(slug='publications'),
-			'intranet': Section.objects.get(slug='intranet'),
-			'administration': Section.objects.get(slug='administrator'),
-			'section': section,
-			'subsection': subsection,
-			'other_sections': sections.exclude(slug='.').exclude(id=section.id)[:3]
+			'current_view': subsection,
+			'current_section': section,
+			'current_subsection': subsection,
+			'sections': sections.exclude(slug__in=exclude),
+			'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3]
 		})
 
 
-def about(request, sub=None):
-	if sub == 'us':
-		return render(request, 'webpage/about/us.html', {'current_view': 'about', 'sections': Section.objects.all(), 'body': 'seccion'})
-	elif sub == 'history':
-		return render(request, 'webpage/about/history.html', {'current_view': 'about', 'sections': Section.objects.all(), 'body': 'seccion'})
-	else:
-		return render(request, 'webpage/about.html', {'current_view': 'about', 'sections': Section.objects.all(), 'body': 'seccion', 'section': Section.objects.filter(slug="about").first()})
-
-
-def research(request):
-	return render(request, 'webpage/research.html', {'current_view': 'research', 'sections': Section.objects.all(), 'body': 'seccion'})
-
-
-def members(request):
-	return render(request, 'webpage/members.html', {'current_view': 'members', 'sections': Section.objects.all(), 'body': 'seccion'})
-
 def news_feed(request):
-	sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
+	sections = Section.objects.all()
+	section = Section.objects.get(slug='news')
 	return render(request, 'webpage/news_feed.html', {
-							'current_view': 'news',
-							'sections': sections,
-							'publications': Section.objects.get(slug='publications'),
-							'intranet': Section.objects.get(slug='intranet'),
-							'administration': Section.objects.get(slug='administrator'),
+							'current_view': section,
+							'current_section': section,
+							'sections': sections.exclude(slug__in=exclude),
 							'body': 'blog'
 							})
+
 
 def news_editor(request, id = None):
 	if request.user.is_authenticated():
@@ -110,13 +109,20 @@ def news_editor(request, id = None):
 				# Si la noticia corresponde al usuario o es un administrador se permite el acceso
 				if news.author == request.user or request.user.is_admin:
 					if news:
-						sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+						if request.user.is_authenticated():
+							if request.user.is_admin:
+								exclude = ['intranet', 'publications']
+							else:
+								exclude = ['administrator', 'publications']
+						else:
+							exclude = ['intranet', 'administrator']
+
+						sections = Section.objects.all()
+						section = Section.objects.get(slug='news')
 						return render(request, 'webpage/news_editor.html', {
-												'current_view': 'news',
-												'sections': sections,
-												'publications': Section.objects.get(slug='publications'),
-												'intranet': Section.objects.get(slug='intranet'),
-												'administration': Section.objects.get(slug='administrator'),
+												'current_view': section,
+												'current_section': section,
+												'sections': sections.exclude(slug__in=exclude),
 												'body': 'blog',
 												'news': news
 												})
@@ -140,18 +146,27 @@ def news_editor(request, id = None):
 	else:
 		return HttpResponseRedirect(reverse('webpage:home'))
 
+
 def news(request, year = None, month = None, day = None, title = None):
 	try:
 		date =  datetime.strptime(str(day) + str(month) + str(year), '%d%m%Y')
 		news = News.objects.filter(date=date, slug=title)
 		if news:
-			sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator')
+			if request.user.is_authenticated():
+				if request.user.is_admin:
+					exclude = ['intranet', 'publications']
+				else:
+					exclude = ['administrator', 'publications']
+			else:
+				exclude = ['intranet', 'administrator']
+
+			sections = Section.objects.all()
+			section = Section.objects.get(slug='news')
+
 			return render(request, 'webpage/news.html', {
-									'current_view': 'news',
-									'sections': sections,
-									'publications': Section.objects.get(slug='publications'),
-									'intranet': Section.objects.get(slug='intranet'),
-									'administration': Section.objects.get(slug='administrator'),
+									'current_view': section,
+									'current_section': section,
+									'sections': sections.exclude(slug__in=exclude),
 									'body': 'blog',
 									'news_': news[0]
 									})
@@ -159,6 +174,7 @@ def news(request, year = None, month = None, day = None, title = None):
 			return HttpResponseRedirect(reverse('webpage:news_feed'))
 	except:
 		return HttpResponseRedirect(reverse('webpage:news_feed'))
+
 
 def save_images(request):
 	if request.user.is_authenticated() and request.method == 'POST':

@@ -1,23 +1,18 @@
 {% extends 'shared/base.html' %}
 {% load staticfiles %}
 {% load i18n %}
-
-{% block title %}
-    {% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}
-{% endblock %}
-
 {% block content %}
 <div id="slider" class="royalSlider rsDefault">
 <figure class="rsContent">
-    {% if section.header %}
-        <img class="rsImg" src="{% static section.header_url %}" alt="{% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}"/>
+    {% if current_section.header %}
+        <img class="rsImg" src="{% static current_section.header_url %}" alt="{% if lang == 'es' %}{{current_section.spanish_name}}{% elif lang == 'en' %}{{current_section.english_name}}{% endif %}"/>
     {% else %}
-        <img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="{% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}"/>
+        <img class="rsImg" src="{% static 'shared/images/home.jpg' %}" alt="{% if lang == 'es' %}{{current_section.spanish_name}}{% elif lang == 'en' %}{{current_section.english_name}}{% endif %}"/>
     {% endif %}
 	<figcaption class="grid rsABlockContainer">
 		<div class="rsABlock top right" data-move-effect="right">
 			<div class="subnav dark">
-				<h3 class="clear"><span>{% if lang == 'es' %}{{section.spanish_name}}{% elif lang == 'en' %}{{section.english_name}}{% endif %}</span></h3>
+				<h3 class="clear"><span>{% if lang == 'es' %}{{current_section.spanish_name}}{% elif lang == 'en' %}{{current_section.english_name}}{% endif %}</span></h3>
 				<ul class="clear">
                     {% for category1, category2 in categories %}
 					    <li><a class="anchor" href="#{{category1.0.id}}">{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}</a></li>
@@ -35,17 +30,17 @@
 	<div class="grid">
 		<div class="row">
             {% if lang == 'es' %}
-			    {{ section.spanish_title | safe }}
+			    {{ current_section.spanish_title | safe }}
             {% elif lang == 'en' %}
-                {{ section.english_title | safe }}
+                {{ current_section.english_title | safe }}
             {% endif %}
 		</div>
 		<div class="row">
 			<div class="s3 c9">
                 {% if lang == 'es' %}
-                    {{ section.spanish_body | safe }}
+                    {{ current_section.spanish_body | safe }}
                 {% elif lang == 'en' %}
-                    {{ section.english_body | safe }}
+                    {{ current_section.english_body | safe }}
                 {% endif %}
 			</div>
 		</div>
@@ -66,7 +61,7 @@
                                     <h3>{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}</h3>
                                     <ul>
                                         {% for subsection in category1.1 %}
-                                            <li><a href="{% url 'webpage:subsection' section.slug subsection.slug %}">{% if lang == 'es' %}{{subsection.spanish_name}}{% elif lang == 'en' %}{{subsection.english_name}}{% endif %}</a></li>
+                                            <li><a href="{% url 'webpage:subsection' current_section.slug subsection.slug %}">{% if lang == 'es' %}{{subsection.spanish_name}}{% elif lang == 'en' %}{{subsection.english_name}}{% endif %}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -86,7 +81,7 @@
                                         <h3>{% if lang == 'es' %}{{category2.0.spanish_name}}{% elif lang == 'en' %}{{category2.0.english_name}}{% endif %}</h3>
                                         <ul>
                                             {% for subsection in category2.1 %}
-                                                <li><a href="{% url 'webpage:subsection' section.slug subsection.slug %}">{% if lang == 'es' %}{{subsection.spanish_name}}{% elif lang == 'en' %}{{subsection.english_name}}{% endif %}</a></li>
+                                                <li><a href="{% url 'webpage:subsection' current_section.slug subsection.slug %}">{% if lang == 'es' %}{{subsection.spanish_name}}{% elif lang == 'en' %}{{subsection.english_name}}{% endif %}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>

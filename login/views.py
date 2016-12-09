@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from login.models import User, Area, UserManager
+from webpage.models import Section
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.staticfiles.templatetags.staticfiles import static
 import os, datetime, base64, json, requests
@@ -13,9 +14,14 @@ from django.utils.translation import ugettext as _
 # Create your views here.
 
 def login(request):
+	section = Section()
+	section.spanish_name = 'Ingresar'
+	section.english_name = 'Login'
+	section.slug = 'login'
+
 	if request.method == "GET":
 		if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
-			return render(request, 'login/login.html')
+			return render(request, 'login/login.html', {'current_view': section, 'current_section': section})
 		else:
 			return HttpResponseRedirect(reverse('intranet:home')) #Se redirecciona a la ultima pagina visitada.			
 	else:
@@ -29,7 +35,7 @@ def login(request):
 		if user is not None:
 			if user.is_blocked:
 				message = {'type': 'error', 'content': 'El administrador ha bloqueado tu cuenta.'}
-				return render(request, 'login/login.html', {'message': message})
+				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section})
 			elif user.is_active:
 				user_ = authenticate(username=email, password=password)
 				if user_ is not None:
@@ -42,16 +48,16 @@ def login(request):
 				else:
 					#Si el usuario no fue autenticado, se envia un mensaje de error
 					message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
-					return render(request, 'login/login.html', {'message': message, 'email': request.POST['email']})					
+					return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section})
 			else:
 				#Si el usuario no esta activo:
 				message = {'type': 'error', 'content': 'Ten paciencia. Debes ser aprobado por el administrador.'}
-				return render(request, 'login/login.html', {'message': message})
+				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section})
 
 		else:
 			#Si el usuario no existe
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
-			return render(request, 'login/login.html', {'message': message, 'email': request.POST['email']})
+			return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section})
 
 
 def logout(request):
@@ -60,6 +66,13 @@ def logout(request):
 	return HttpResponseRedirect(reverse('webpage:home'))
 
 def register(request, token = None):
+	section = Section()
+	section.spanish_name = 'Registro'
+	section.english_name = 'Register'
+	section.slug = 'login/register/'
+	if token:
+		section.slug += token
+
 	if token == "":
 		token = None
 	if not request.user.is_authenticated():
@@ -77,7 +90,7 @@ def register(request, token = None):
 						print "usuario ya registrado"
 						return HttpResponseRedirect(reverse('webpage:home'))
 					else:
-						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token})
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token, 'current_view': section, 'current_section': section})
 				else:
 					#Aqui deberia decirle al usuario que el token no es valido
 					return HttpResponseRedirect(reverse('webpage:home'))
@@ -112,7 +125,7 @@ def register(request, token = None):
 					else:
 						# Falto un campo
 						print "falta un campo"
-						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all()})
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'current_view': section, 'current_section': section})
 				else:
 					# El usuario ya esta registrado, por lo tanto, se le redirecciona al login
 					print "usuario ya registrado"
@@ -122,7 +135,7 @@ def register(request, token = None):
 			else:
 				# Deberia llevar a una pagina de error: token y/o correo electronico incorrecto.
 				print "token y/o correo electronico incorrecto."
-				return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all()})
+				return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'current_view': section, 'current_section': section})
 		else:
 			# si no es GET o POST, se redirecciona a la pagina de inicio
 			return HttpResponseRedirect(reverse('webpage:home'))

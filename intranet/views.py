@@ -12,8 +12,8 @@ from django.utils.translation import ugettext as _ # Para traducir un string se 
 from django.core.paginator import Paginator
 from intranet.forms import DocumentForm
 from intranet.models import Document
-from login.models import SubArea, Area,  User
-from webpage.models import News, Image
+from login.models import SubArea, Area, User
+from webpage.models import Section, News, Image
 from webpage.forms import NewsForm
 from unidecode import unidecode
 from datetime import date, timedelta
@@ -114,7 +114,8 @@ def home(request):
 												  	'users_preview': users[:5],
 												  	'users_count': len(users) - 5 if len(users) > 5 else 0,
 												  	'last_five_documents': Document.objects.all().order_by(Lower('date_added').desc())[:5],
-												  	'documents_count': Document.objects.all().count()
+												  	'documents_count': Document.objects.all().count(),
+													'intranet': Section.objects.get(slug='intranet')
 												  	})
 	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
@@ -124,7 +125,7 @@ def home(request):
 def documents(request, search=None):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		kwargs = get_filters(request)
-		parameters = {'current_view': 'intranet'}
+		parameters = {'intranet': Section.objects.get(slug='intranet')}
 
 		try:
 			all_docs = Document.objects.filter(is_available=True, **kwargs).exclude(title__isnull=True, author__isnull=True)
@@ -201,7 +202,7 @@ def documents(request, search=None):
 			
 
 
-		return render(request, 'intranet/documents.html',parameters)
+		return render(request, 'intranet/documents.html', parameters)
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
@@ -216,7 +217,7 @@ def profile(request, user_id = None):
 				else:
 					profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
 				documents = Document.objects.filter(owner=user_id)
-				return render(request, 'intranet/profile.html', {'current_view': 'intranet', 'profile_user': profile, 'documents': documents, 'areas': Area.objects.all()})
+				return render(request, 'intranet/profile.html', {'intranet': Section.objects.get(slug='intranet'), 'profile_user': profile, 'documents': documents, 'areas': Area.objects.all()})
 			except Exception as error:
 				print error
 				return HttpResponseRedirect(reverse('intranet:users'))
@@ -255,7 +256,7 @@ def upload(request):
 		#Document.objects.all().delete()
 		#User.objects.all().delete()
 		if request.method == "GET":
-			return render(request, 'intranet/upload.html', {'current_view': 'intranet'})
+			return render(request, 'intranet/upload.html', {'intranet': Section.objects.get(slug='intranet')})
 		else:
 			# En este caso se esta modificando la informacion de un documento
 			if 'id' in request.POST:
@@ -311,7 +312,7 @@ def upload(request):
 					if form.is_valid():
 						form.save()
 					else:
-						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error':str(form.errors)}})
+						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error': str(form.errors)}})
 				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'local_ids': local_ids})
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
@@ -382,7 +383,7 @@ def users(request):
 		users = User.objects.filter(is_admin=False, is_registered=True)
 		for user in users:
 			user.last_activity = (timezone.localtime(timezone.now()) - user.last_activity).days
-		return render(request, 'intranet/users.html', {'users': users})
+		return render(request, 'intranet/users.html', {'users': users, 'intranet': Section.objects.get(slug='intranet')})
 	elif request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
@@ -396,7 +397,7 @@ def document(request, title=None, author=None):
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
-			return render(request, 'intranet/document_information.html', {'current_view': 'intranet', 'document': document})
+			return render(request, 'intranet/document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document})
 		else:
 			return HttpResponse(_('No se encontro el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
 	elif request.user.is_admin:
@@ -414,7 +415,7 @@ def edit_document(request, id=None):
 			document = None
 		if document:
 			if request.method == "GET":
-				return render(request, 'intranet/edit_document_information.html', {'current_view': 'intranet', 'document': document, 'areas': Area.objects.all()})
+				return render(request, 'intranet/edit_document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document, 'areas': Area.objects.all()})
 			elif request.method == "POST":
 					document.title = request.POST['title']
 					document.author = request.POST['author']
@@ -453,14 +454,14 @@ def search_helper(request, search=None):
 
 def news(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
-		return render(request, 'intranet/news.html', {'current_view': 'intranet', 'user_news': News.objects.filter(author=request.user)})
+		return render(request, 'intranet/news.html', {'intranet': Section.objects.get(slug='intranet'), 'user_news': News.objects.filter(author=request.user)})
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
 def news_create(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		if request.method == "GET":
-			return render(request, 'intranet/news_create.html', {'current_view': 'intranet', 'today': date.today()})
+			return render(request, 'intranet/news_create.html', {'intranet': Section.objects.get(slug='intranet'), 'today': date.today()})
 		elif request.method == "POST":
 			request.POST['author'] = request.user.id
 			form = NewsForm(request.POST, request.FILES)
@@ -482,9 +483,9 @@ def news_edit(request, id):
 			news = news[0]
 			if request.method == "GET":
 				if news.is_external:
-					return render(request, 'intranet/news_edit_link.html', {'current_view': 'intranet', 'news_': news})
+					return render(request, 'intranet/news_edit_link.html', {'intranet': Section.objects.get(slug='intranet'), 'news_': news})
 				else:
-					return render(request, 'intranet/news_edit.html', {'current_view': 'intranet', 'news_': news})
+					return render(request, 'intranet/news_edit.html', {'intranet': Section.objects.get(slug='intranet'), 'news_': news})
 			elif request.method == "POST":
 					if news.is_external and (request.POST.get('source_url') is None and request.POST.get('source_url') == ""):
 						return JsonResponse({'error': True, 'message': 'form.errors'})
@@ -507,7 +508,7 @@ def news_edit(request, id):
 def news_create_link(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		if request.method == "GET":
-			return render(request, 'intranet/news_create_link.html', {'current_view': 'intranet', 'today': date.today()})
+			return render(request, 'intranet/news_create_link.html', {'intranet': Section.objects.get(slug='intranet'), 'today': date.today()})
 		elif request.method == "POST":
 			request.POST['author'] = request.user.id
 			request.POST['is_external'] = '1'

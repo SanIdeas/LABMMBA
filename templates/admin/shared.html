@@ -9,18 +9,18 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<meta name="author" content="Ilógica - www.ilogica.cl"/>
-		<meta name="title" content="Administración · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
-		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María."/>
-		<meta property="og:title" content="Administración · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
-		<meta property="og:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María."/>
+		<meta name="title" content="{% if lang == 'es' %}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+		<meta name="description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María."/>
+		<meta property="og:title" content="{% if lang == 'es' %}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+		<meta property="og:description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María."/>
 		<meta property="og:type" content="website"/>
 		<meta property="og:url" content="www.labmmba.utfsm.cl"/>
 		<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}"/>
-		<meta property="og:site_name" content="Administración · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+		<meta property="og:site_name" content="{% if lang == 'es' %}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
 		<meta property="og:locale" content="es_ES"/>
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Administración · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María">
-		<meta name="twitter:description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María.">
+		<meta name="twitter:title" content="{% if lang == 'es' %}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María">
+		<meta name="twitter:description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María.">
 		<meta name="twitter:image:src" content="">
 		<meta name="twitter:domain" content="s">
 		<meta name="apple-mobile-web-app-title" content="USM"/>
@@ -29,17 +29,14 @@
 		<link rel="shortcut icon" href="{% static 'usm_theme/img/icon/favicon.png' %}"/>
 		<link rel="image_src" href=""/>
 		<link rel="apple-touch-icon" href="{% static 'usm_theme/img/icon/ilogica-icon.png' %}"/>
-		<title>Administración · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
-		<meta name="description" content="Laboratorio del departamento de Química de la Universidad Técnica Federico Santa María." />
+		<title>{% if lang == 'es' %}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
+		<meta name="description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María." />
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/private.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/style.css' %}">
 		<link rel="icon" href="{% static 'shared/images/icon.ico' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'admin/css/admin.css' %}">
 
-
 		{% block css %} {% endblock %}
-
-
 
 		<!--Javascript-->
 		<script>var current_lang = "{{lang}}"</script>
@@ -98,7 +95,8 @@
 							<a class="tablet-nav">&#9660;</a>
 							<ul class="breadcrumbs clear">
 								<li><a href="http://www.usm.cl/">USM.cl</a></li>
-								<li><a href="{% url 'webpage:home' %}">Laboratorio de Microbiología Molecular y Biotecnología Ambiental</a></li>
+								<li><a href="{% url 'webpage:home' %}">LABMMBA</a></li>
+                                <li><a href="{% url 'admin:home' %}">{% if lang == 'es' %}{{administration.spanish_name}}{% elif lang == 'en' %}{{administration.english_name}}{% endif %}</a></li>
 							</ul>
 							<ul class="top-nav clear notrans">
 								{% if request.user.is_authenticated == False %}
@@ -120,14 +118,14 @@
 			<div class="c12 brand row nav">
 				<div id="lCol" class="c5">
 				</div>
-				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Nombre del sitio · Universidad Técnica Federico Santa María"/></a>
+				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
 			</div>
 		</header>
 		<!-- Menu lateral de la intranet -->
 		<section id="content" class="wfull">	
 			<div id="sidebar" class="sidebar left">
                 <div class="links clear box">
-                    <h3>Administrar</h3>
+                    <h3>{% trans 'Administrar' %}</h3>
                     {% url 'admin:users' as users_view%}
 					<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">
 						<i class="fa fa-users" aria-hidden="true"></i>

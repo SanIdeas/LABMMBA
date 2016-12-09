@@ -85,7 +85,7 @@ def documents(request, search=None):
 				years = filters_selected(Counter(years).most_common(), request, 'date')
 				owners = filters_selected(Counter(owners).most_common(), request, 'owner')
 				categories = filters_selected(Counter(categories).most_common(), request, 'category')
-			parameters = {'current_view': 'admin', 'documents': documents}
+			parameters = {'current_view': 'admin', 'documents': documents, 'administration': Section.objects.get(slug='administrator')}
 			if search is not None:
 				parameters['authors'] = authors
 				parameters['years'] = years
@@ -125,9 +125,9 @@ def users(request, user_id=None, delete=False, activate=False, block=False, unbl
 				elif profile:
 					profile = User.objects.get(id=user_id)
 					documents = Document.objects.filter(owner=user_id)
-					return render(request, 'admin/profile.html', {'profile_user': profile, 'documents': documents})
+					return render(request, 'admin/profile.html', {'profile_user': profile, 'documents': documents, 'administration': Section.objects.get(slug='administrator')})
 				else:
-					return render(request, 'admin/users.html')
+					return render(request, 'admin/users.html', {'administration': Section.objects.get(slug='administrator')})
 
 			elif request.method == "POST" and request.is_ajax():
 				args = {
@@ -217,7 +217,7 @@ def areas(request, area_id=None, subarea_id=None):
 					SubArea.objects.get(id=subarea_id).delete()
 					return JsonResponse({'error': False})
 				else:
-					return render(request, 'admin/areas.html')
+					return render(request, 'admin/areas.html', {'administration': Section.objects.get(slug='administrator')})
 
 			elif request.method == "POST" and request.is_ajax():
 				area_name = request.POST.get('area_name', None)
@@ -286,8 +286,8 @@ def webpage(request, section_id=None, subsection_id=None):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
 			if request.method == "GET":
-				editable_sections = Section.objects.all().exclude(slug='publications').exclude(slug='intranet').exclude(slug='administrator').exclude(slug='.').exclude(slug='news')
-				return render(request, 'admin/webpage.html', {'sections': editable_sections.exclude(slug='.')})
+				editable_sections = Section.objects.all().exclude(slug__in=['publications', 'intranet', 'administrator', '.', 'news'])
+				return render(request, 'admin/webpage.html', {'sections': editable_sections, 'administration': Section.objects.get(slug='administrator')})
 
 			elif request.method == "POST" and request.is_ajax():
 				if section_id is not None:		# Edit section
@@ -457,7 +457,7 @@ def news(request, news_id=None, publish=False, unpublish=False, show_header=Fals
 					news_obj.save()
 					return JsonResponse({'error': False})
 				else:
-					return render(request, 'admin/news.html')
+					return render(request, 'admin/news.html', {'administration': Section.objects.get(slug='administrator')})
 
 			elif request.method == "POST" and request.is_ajax():
 				args = {
