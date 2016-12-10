@@ -851,6 +851,10 @@ form .submit{
 	font-weight: 400;
 }
 
+.selectHeader.picture{
+	padding: 0!important;
+}
+
 .news .list .item a.news-title-link, .news .list .item .news-no-title{
 	display: inline-block;
 	vertical-align: middle;
@@ -885,4 +889,41 @@ form .submit{
 #webpage-subsection-form{
 	margin: 5px;
 	font-size: 9pt;
+}
+
+#webpage-categories-container{
+	padding: 0!important;
+	width: 100%
+}
+
+#webpage-categories-container > ul{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#webpage-categories-container > ul li{
+	display: inline-block;
+	margin: 0;
+}
+
+#webpage-categories-container > ul li .c3{
+	width: 100%;
+}
+
+#webpage-categories-container > ul li .c12.img{
+	padding: 20px 0;
+}
+
+#webpage-categories-container > ul li .c12.img img{
+	max-width: 75%;
+}
+
+#webpage-categories-container > ul li .c12.img p{
+	text-align: center;
+}
+
+.selectThumbnail{
+	cursor: pointer;
 }

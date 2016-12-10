@@ -1,0 +1,32 @@
+{% extends 'admin/shared.html' %}
+
+{% block content %}
+{% load i18n %}
+{% load staticfiles %}
+
+<div id="members-setup"></div>
+
+<script>
+	var reload = "{% url 'admin:members'%}";
+	var edit = "{% url 'admin:edit_member' 999 %}";
+	var remove = "{% url 'admin:delete_member' 999 %}";
+	var work = "{% url 'admin:work_member' 999 %}";
+	var unwork = "{% url 'admin:unwork_member' 999 %}";
+	var update_picture_url = "{% url 'admin:update_member_picture' %}";
+	var csrf_token = "{{ csrf_token }}";
+    reload_member_setup();
+</script>
+
+
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/member.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
+<script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script>
+<script src="{% static 'admin/js/members.js' %}"></script>
+{% endblock %}

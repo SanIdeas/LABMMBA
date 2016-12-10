@@ -57,7 +57,7 @@ class SubSectionCategory(models.Model):
 	spanish_name = models.CharField(max_length=50, null=False)
 	english_name = models.CharField(max_length=50, null=False)
 	section = models.ForeignKey(Section, on_delete=models.CASCADE)
-	image = models.FileField(upload_to='static/webpage/images/categories/', max_length=500, null=True)
+	image = models.FileField(upload_to='static/webpage/images/sections/thumbnail/', max_length=500, null=True)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
@@ -80,7 +80,10 @@ class SubSectionCategory(models.Model):
 		return True
 
 	def image_url(self):
-		return 'webpage/images/categories/' + os.path.basename(self.image.name)
+		return 'webpage/images/sections/thumbnail/' + os.path.basename(self.image.name)
+
+	def image_static_url(self):
+		return settings.SECTION_THUMBNAILS_STATIC_URL + os.path.basename(self.image.name)
 
 
 class SubSection(models.Model):
@@ -214,6 +217,34 @@ class SectionImage(models.Model):
 		self.image.name = filename
 		self.save()
 
+
+class Member(models.Model):
+	name = models.CharField(max_length=150, unique=True)
+	description = models.TextField()
+	working = models.BooleanField(default=True)
+	image = models.FileField(upload_to='static/webpage/images/members/', max_length=500, null=True)
+	
+
+	def set_image_filename(self):
+		filename_h = settings.MEMBERS_IMAGES_DIR + 'I' + str(self.id) + '.jpg'
+		os.rename(self.image.path, filename_h)
+		self.image.name = filename_h
+		self.save()
+	
+	def image_url(self):
+		return 'webpage/images/members/' + os.path.basename(self.image.name)
+
+	def update_picture(self, picture):
+		# Si existe una foto, se elimina
+		if self.image:
+			os.remove(self.image.path)
+			self.save()
+
+		self.image.save('I' + str(self.id) + '.jpg', picture)
+		self.save()
+		return True
+
+
 # Se eliminan las imagenes del directorio
 # http://stackoverflow.com/questions/5372934/how-do-i-get-django-admin-to-delete-files-when-i-remove-an-object-from-the-datab
 @receiver(post_delete, sender=News)
@@ -230,5 +261,8 @@ def section_delete(sender, instance, **kwargs):
 def image_delete(sender, instance, **kwargs):
 	instance.image.delete(False)
 @receiver(post_delete, sender=SubSectionCategory)
+def image_delete(sender, instance, **kwargs):
+	instance.image.delete(False)
+@receiver(post_delete, sender=Member)
 def image_delete(sender, instance, **kwargs):
 	instance.image.delete(False)

@@ -425,7 +425,7 @@ function webpage(){
 	 }*/
 
 	$('.body').bind('scroll', function(){
-		if ($('.body').scrollTop() > 498 && $(document).width() > 1100){
+		if ($('.body').scrollTop() > 1000 && $(document).width() > 1100){
             var parent = $('.editor-box');
             var width = parent.css('width').replace('px', '') - 2;
 			$('.setup-webpage-list').addClass('fixed');
@@ -693,7 +693,6 @@ function webpage(){
         reader.readAsDataURL(input.files[0]);
     });
 
-    // Header image
     $(document).ready(function(){
         $('a.modal.picture').fancybox({
             scrolling: false,
@@ -708,53 +707,55 @@ function webpage(){
             this.unwrap();
         };
     })(jQuery);
+
+	/* Header image */
     $('.selectHeader').click(function(){
-        $('#pictureField').click();
+        $('#headerField').click();
     });
-    $('#changeImage').click(function(){
-        $('#pictureField').click();
+    $('#changeHeader #changeImage').click(function(){
+        $('#headerField').click();
     });
-    $('#selectImage').click(function(){
-        selectImage();
+    $('#changeHeader #selectImage').click(function(){
+        selectHeader();
     });
-    $('#pictureField').change(function(){
+    $('#headerField').change(function(){
         if(this.files.length > 0){
             if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
                 alert('Debes seleccionar una imagen');
             else{
                 $.fancybox.showLoading();
-                $('.editor').css('display', 'flex');
-                $('.editor').animate({
+                $('#changeHeader .editor').css('display', 'flex');
+                $('#changeHeader .editor').animate({
                     top: '0',
                     opacity: 1
                 }, 200);
 
-                readURL(this);
+                readHeaderURL(this);
                 $(this).resetInput();
             }
         }
     });
 
-// Obtiene la url del archivo ingresado por el input
-    function readURL(input) {
+	// Obtiene la url del archivo ingresado por el input
+    function readHeaderURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#imageCropper').attr('src', e.target.result);
+                $('#changeHeader #imageCropper').attr('src', e.target.result);
                 $.fancybox.hideLoading();
-                $('a.modal.picture').click();
-                resetCrop();
+                $('a.modal.picture.header').click();
+                resetHeaderCrop();
             };
 
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-// Activa el editor de imagen
-    function enableCrop(){
+	// Activa el editor de imagen
+    function enableHeaderCrop(){
         var aspectRatio = 64 / 21;
-        cropper = $('#imageCropper').cropper({
+        cropper = $('#changeHeader #imageCropper').cropper({
             zoomable: false,
             aspectRatio: aspectRatio,
             viewMode: 1,
@@ -762,20 +763,19 @@ function webpage(){
         });
     }
 
-    function resetCrop(){
-        $('#imageCropper').cropper('destroy');
-        enableCrop();
+    function resetHeaderCrop(){
+        $('#changeHeader #imageCropper').cropper('destroy');
+        enableHeaderCrop();
     }
 
-    function selectImage(){
+    function selectHeader(){
         $.fancybox.showLoading();
-        $('#imageCropper').cropper('disable');
-        $('#sendImage').attr('disabled', true);
+        $('#changeHeader #imageCropper').cropper('disable');
 
-		$('#imageCropper').cropper('getCroppedCanvas', {width: 1600, height: 515}).toBlob(function(blob){
+		$('#changeHeader #imageCropper').cropper('getCroppedCanvas', {width: 1600, height: 515}).toBlob(function(blob){
             var form = new FormData();
             form.append('csrfmiddlewaretoken', csrf_token);
-            form.append('section_id', $('#selectImage').attr('section-id'));
+            form.append('section_id', $('#changeHeader #selectImage').attr('section-id'));
 			form.append('header', blob);
 
             $.ajax({
@@ -793,13 +793,108 @@ function webpage(){
 					$('.selectHeader.erasable').remove();
 					$('.selectHeader img').attr('src', url + '?' + Date.now()).parent('a').css('display', 'block');
 
-					$('#imageCropper').cropper('enable');
-					$('#sendImage').attr('disabled', false);
+					$('#changeHeader #imageCropper').cropper('enable');
 					$.fancybox.hideLoading();
 					$.fancybox.close();
                 }
             });
 		});
+    }
+
+	/* Category Thumbnail Image */
+    $('.selectThumbnail').click(function(){
+        $('#changeThumbnail #selectImage').attr('category-id', $(this).attr('category-id'));
+        $('#thumbnailField').click();
+    });
+    $('#changeThumbnail #changeImage').click(function(){
+        $('#thumbnailField').click();
+    });
+    $('#changeThumbnail #selectImage').click(function(){
+        selectThumbnail();
+    });
+    $('#thumbnailField').change(function(){
+        if(this.files.length > 0){
+            if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
+                alert('Debes seleccionar una imagen');
+            else{
+                $.fancybox.showLoading();
+                $('#changeThumbnail .editor').css('display', 'flex');
+                $('#changeThumbnail .editor').animate({
+                    top: '0',
+                    opacity: 1
+                }, 200);
+
+                readThumbnailURL(this);
+                $(this).resetInput();
+            }
+        }
+    });
+
+    // Obtiene la url del archivo ingresado por el input
+    function readThumbnailURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#changeThumbnail #imageCropper').attr('src', e.target.result);
+                $.fancybox.hideLoading();
+                $('a.modal.picture.thumbnail').click();
+                resetThumbnailCrop();
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Activa el editor de imagen
+    function enableThumbnailCrop(){
+        var aspectRatio = 1 / 1;
+        cropper = $('#changeThumbnail #imageCropper').cropper({
+            zoomable: false,
+            aspectRatio: aspectRatio,
+            viewMode: 1,
+            background: false
+        });
+    }
+
+    function resetThumbnailCrop(){
+        $('#changeThumbnail #imageCropper').cropper('destroy');
+        enableThumbnailCrop();
+    }
+
+    function selectThumbnail(){
+        $.fancybox.showLoading();
+        $('#changeThumbnail #imageCropper').cropper('disable');
+
+        $('#changeThumbnail #imageCropper').cropper('getCroppedCanvas', {width: 450, height: 450}).toBlob(function(blob){
+        	var category_id = $('#changeThumbnail #selectImage').attr('category-id');
+
+            var form = new FormData();
+            form.append('csrfmiddlewaretoken', csrf_token);
+            form.append('category_id', category_id);
+            form.append('thumbnail', blob);
+
+            $.ajax({
+                url: upload_thumbnail_url,
+                method: "POST",
+                data: form,
+                processData: false,
+                contentType: false
+            }).done(function(response){
+                if(response.redirect)
+                    window.location.href = response.redirect;
+                else if(!response['error']){
+                    var url = response['url'];
+
+                    $('.selectThumbnail[category-id=' + category_id + '].erasable').remove();
+                    $('.selectThumbnail[category-id =' + category_id + '] img').attr('src', url + '?' + Date.now()).parent('div').css('display', 'block');
+
+                    $('#changeThumbnail #imageCropper').cropper('enable');
+                    $.fancybox.hideLoading();
+                    $.fancybox.close();
+                }
+            });
+        });
     }
 }
 
@@ -993,3 +1088,4 @@ function news(){
         }
     });
 }
+
