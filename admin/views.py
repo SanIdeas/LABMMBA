@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area, SubArea
 from intranet.models import Document
-from webpage.models import Section, SubSection, News
-from webpage.forms import SectionImageForm
+from webpage.models import Section, SubSection, News, Member
+from webpage.forms import SectionImageForm, ImageMemberForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
@@ -477,3 +477,77 @@ def news(request, news_id=None, publish=False, unpublish=False, show_header=Fals
 			return JsonResponse({'redirect': reverse('login')})
 		else:
 			return HttpResponseRedirect(reverse('login'))
+
+
+
+def members(request, member_id=None, work=False, unwork=False):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				if work and request.is_ajax():
+					member = Member.objects.get(id=member_id)
+					member.working = True
+					member.save()
+					return JsonResponse({'error': False})
+				elif unwork and request.is_ajax():
+					member = Member.objects.get(id=member_id)
+					member.working = False
+					member.save()
+					return JsonResponse({'error': False})
+				elif member_id is not None and request.is_ajax():
+					Member.objects.get(id=member_id).delete()
+					return JsonResponse({'error': False})
+				
+				else:
+					return render(request, 'admin/members.html')
+
+
+			elif request.method == "POST" and request.is_ajax():
+				member_name = request.POST.get('member_name', None)
+				member_description = request.POST.get('member_description', None)
+				if member_name is not None:
+					if member_id is not None:
+						try:
+							member = Member.objects.get(id=member_id)
+							member.description = member_description
+							member.save()
+							return JsonResponse({'error': False})
+						except Exception:
+							return JsonResponse({'error': True, 'message': 'El integrante ingresado ya existe'})
+					else:
+						try:
+							Member.objects.create(name=member_name)
+							return JsonResponse({'error': False})
+						except Exception:
+							return JsonResponse({'error': True, 'message': 'El integrante ingresado ya existe'})
+				else:
+					members_arr = []
+					members_obj = Member.objects.all()
+		
+					for member in members_obj:
+						members_arr.append((member))
+
+					args = {
+						'working': Member.objects.filter(working=True),
+						'not_working': Member.objects.filter(working=False),
+					}
+
+					return render(request, 'admin/members_ajax.html', args)
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+def update_member_picture(request):
+	if request.user.is_authenticated() and request.user.is_admin:
+		member = request.POST.get('member', None);
+		Member.objects.get(id=member).update_picture(request.FILES['picture']);
+		Member.objects.get(id=member).set_image_filename();
+		return JsonResponse({'error': False})

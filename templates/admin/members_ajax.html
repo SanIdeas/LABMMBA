@@ -1,0 +1,153 @@
+{% load i18n %}
+{% load staticfiles %}
+<div class="title" >
+    <form id="add-member-form" class="title-form">
+       {% csrf_token %}
+        <input id="add-member-name" type="text" name="member_name" class="text search field" placeholder="{% trans 'Agregar integrante' %}"/>
+        <input id="add-member-submit" type="submit" class="submit trans search send" value="{% trans 'Agregar' %}"/>
+    </form>
+    <span id="add-member-error" class="error"></span>
+</div>
+
+<div class="documents filters intranet box">
+    <h3 class="setup-subtitle green">{% trans "Integrantes" %}</h3>
+    <ul class="setup-user-list">
+        {% if working %}
+            {% for member in working %}
+                <li>
+                    <div class="setup-user-row active">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="setup-user-name">
+                            {{member.name}}
+                        </div>
+                    </div>
+                    <div class="setup-user-box">
+                        <button class="setup-block-box" member-id="{{ member.id }}" title="{% trans 'Ex-Integrante' %}">
+                            <i class="fa fa-level-down" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="setup-user-box">
+                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Ver' %}">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="setup-user-box">
+                        <button class="setup-delete-box" user-full-name="{{member.name}}" member-id="{{ member.id }}" {% if member.image %} member-img="{% static member.filename %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} title="{% trans 'Eliminar' %}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <h2>{% trans 'No hay integrantes en el sistema' %}</h2>
+        {% endif %}
+    </ul>
+</div>
+
+<div class="documents filters intranet box">
+    <h3 class="setup-subtitle red">{% trans "Ex-Integrantes" %}</h3>
+    <ul class="setup-user-list">
+        {% if not_working %}
+            {% for member in not_working %}
+                <li>
+                    <div class="setup-user-row blocked">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="setup-user-name">
+                            {{member.name}}
+                        </div>
+                    </div>
+                    <div class="setup-user-box">
+                        <button class="setup-unblock-box" member-id="{{ member.id }}" title="{% trans 'Integrante' %}">
+                            <i class="fa fa-level-up" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="setup-user-box">
+                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Ver' %}">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="setup-user-box">
+                        <button class="setup-delete-box" user-full-name="{{member.name}}" member-id="{{ member.id }}" {% if member.image %} member-img="{% static member.filename %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} title="{% trans 'Eliminar' %}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <h2>{% trans 'No hay ex-integrantes en el sistema' %}</h2>
+        {% endif %}
+    </ul>
+</div>
+
+<div id="modal-delete" class="curtain-hidden"></div>
+<div id="modal-delete-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "¿De verdad deseas eliminar a este integrante?" %}</h3>
+        <div id="modal-user">
+            <div id="modal-user-img"></div>
+            <h4 id="modal-user-name"></h4>
+        </div>
+        <h3 id="modal-message">{% trans 'Ten en cuenta esto solo evitara que se muestre informacion del usuario publicamente.' %}</h3>
+        <div id="modal-btns">
+            <button id="modal-confirm" member-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal-edit" class="curtain-hidden"></div>
+<div id="modal-edit-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3>{% trans "Modificando integrante" %}</h3>
+        <div id="modal-user">
+            <div class="left">
+                <div id="modal-member-img"></div>
+                <h4 id="modal-member-name"></h4>
+                <a class="modal picture" href="#changeImgModal">{% trans "Cambiar foto de integrante" %}</a>    
+            </div>
+            <div class="right">
+                <form id="usrform">
+                    <textarea rows="10" cols="50" name="comment" form="usrform" id="modal-member-description" type="text" class="text search field" placeholder="Descripción">
+                    </textarea>
+                    <span id="modal-error" class="error"></span>
+                </form>
+            </div>
+        </div>
+        <div id="modal-btns">
+            <button id="modal-confirm-edit" member-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel-edit">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="changeImgModal" class="profile modal"  style="display:none!important; height:100%;">
+    <div class="profile cropper">
+        <button id="selectImage">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <h5>{% trans 'Presiona para seleccionar' %}</h5>
+        </button>
+        <div class="editor" style="display:none; opacity:0; top:20px;">
+            <div id="preview" class="profile image">    
+                <div><!-- Aqui va el preview de la imagen recortada --></div>
+            </div>
+            <div class="crop">
+                <img id="imageCropper">
+            </div>
+            <div class="header">
+                <button class="c8" id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i>{% trans 'Seleccionar nueva imagen' %}</button>
+                <button class="c4" id="sendImage" member-id=""><i class="fa fa-paper-plane" aria-hidden="true"></i>{% trans 'Enviar' %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display:none;" name="picture">
+
+
+
+
+
+
+<script src="{% static 'admin/js/members_event.js' %}"></script>
+<script>members();</script>
