@@ -2,12 +2,21 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from datetime import datetime
 from intranet.models import Document
 from webpage.models import Section, SubSection, News
-from webpage.forms import ImageForm
+from webpage.forms import ImageForm, NewsCommentForm
+from itertools import izip
 import json
+
+# Junta elementos de un objeto iterable en grupos de n elementos
+# http://stackoverflow.com/questions/5389507/iterating-over-every-two-elements-in-a-list
+def grouped(iterable, n):
+    "s -> (s0,s1,s2,...sn-1), (sn,sn+1,sn+2,...s2n-1), (s2n,s2n+1,s2n+2,...s3n-1), ..."
+    return izip(*[iter(iterable)]*n)
 
 # Create your views here.
 def home(request):
@@ -92,11 +101,23 @@ def news_feed(request):
 
 	sections = Section.objects.all()
 	section = Section.objects.get(slug='news')
+
+	paginator = Paginator(News.objects.filter(is_published=True), 8);
+
+	# Se extrae el numero de pagina
+	if request.GET.get('page'):
+		try: news = paginator.page(request.GET.get('page'))
+		except: news = paginator.page(1)
+	else:
+		news = paginator.page(1)
+
 	return render(request, 'webpage/news_feed.html', {
 							'current_view': section,
 							'current_section': section,
 							'sections': sections.exclude(slug__in=exclude),
-							'body': 'blog'
+							'body': 'seccion',
+							'news': grouped(news, 2),
+							'paginator': news
 							})
 
 
@@ -157,6 +178,8 @@ def news(request, year = None, month = None, day = None, title = None):
 					exclude = ['intranet', 'publications']
 				else:
 					exclude = ['administrator', 'publications']
+				# Se actualizan los comentarios leidos
+				news[0].read_comments(request.user)
 			else:
 				exclude = ['intranet', 'administrator']
 
@@ -168,13 +191,42 @@ def news(request, year = None, month = None, day = None, title = None):
 									'current_section': section,
 									'sections': sections.exclude(slug__in=exclude),
 									'body': 'blog',
-									'news_': news[0]
+									'news_': news[0],
 									})
 		else:
 			return HttpResponseRedirect(reverse('webpage:news_feed'))
-	except:
+	except Exception as error:
+		print error
 		return HttpResponseRedirect(reverse('webpage:news_feed'))
 
+def new_news_comment(request):
+	news = None
+	if request.POST.get('id'):
+		news = News.objects.filter(id=request.POST.get('id'))
+
+	if news:
+		news = news[0]
+	else:
+		return HttpResponseRedirect(reverse('intranet:news'))
+	if request.user.is_authenticated():
+		fields = {
+			'news': news.id,
+			'author': request.user.id,
+			'content': request.POST.get('content') 
+		}
+		form = NewsCommentForm(fields)
+		if form.is_valid():
+			form = form.save()
+			return HttpResponseRedirect( '%s#comment%s' % (reverse('webpage:news_editor', kwargs={'id': news.id}), form.id))
+		else:
+			print form.errors
+			return HttpResponseRedirect( '%s?error=true#comments' % reverse('webpage:news_editor', kwargs={
+				'id': news.id}))
+	else:
+		if news:
+			return HttpResponseRedirect(reverse('webpage:news_editor', kwargs={'id': news.id}))
+		else:
+			return HttpResponseRedirect(reverse('intranet:news'))
 
 def save_images(request):
 	if request.user.is_authenticated() and request.method == 'POST':

@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from login.models import User, Subarea
+from django_countries.fields import LazyTypedChoiceField
 
 
 class UserForm(forms.ModelForm):
@@ -7,7 +8,7 @@ class UserForm(forms.ModelForm):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
     institution = forms.CharField(required=False)
-    country = forms.CharField(required=False)
+    country = LazyTypedChoiceField(choices=countries)
     area = forms.ModelChoiceField(queryset=SubArea.objects.all(), required=False)
     career = forms.CharField(required=False)
     is_active = forms.BooleanField(required=True)

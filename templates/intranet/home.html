@@ -53,6 +53,7 @@
                                 {% else %} 
                                     src="{% static 'intranet/images/default.png' %}" 
                                 {% endif%}>
+                            <img class="flag" src="{% static user.country.flag %}"> 
                         </a>
                     </li>                    
                     {% endfor %}

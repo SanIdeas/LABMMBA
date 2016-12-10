@@ -48,68 +48,69 @@
                         <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Blanditiis veniam ea itaque placeat perferendis cum quo ducimus reprehenderit."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
                     </div>
                 </div>
-                <div id="comments">
-                    <h3>Hay 3 comentario para esta noticia</h3>
-                    <div class="comments">
-
-                        <div class="comment">
-                            <div class="comment-meta">
-                                <a class="user" href="#">Lorem ipsum dolor.</a>
-                                <span class="date">Publicado el 23 de septiembre de 2013 a las 22:05</span>
-                            </div>
-                            <div class="comment-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis assumenda fugit porro aspernatur. Maxime ducimus ex eveniet ad sit quibusdam?</p>
-                            </div>
+                -->
+                {% if request.user == news_.author or request.user.is_admin %}
+                    <div id="comments">
+                    {% with comments=news_.get_comments %}
+                        <h3>
+                            {% if comments|length == 1 %}
+                                {% blocktrans with count=comments|length %}
+                                    Hay {{count}} comentario para esta noticia
+                                {% endblocktrans %}
+                            {% else %}
+                                {% blocktrans with count=comments|length %}
+                                    Hay {{count}} comentarios para esta noticia
+                                {% endblocktrans %}
+                            {% endif %}
+                        </h3>
+                        <div class="comments">
+                            {% for comment in comments %}
+                                <div id="comment{{comment.id}}" class="comment">
+                                    <div class="comment-meta">
+                                        {% if comment.author.is_admin %}
+                                            <span class="user" href="#">{% trans "Administrador" %}.</span>
+                                        {% else %}
+                                            <a class="user" href="#">{{ comment.author.first_name }} {{ comment.author.last_name }}.</a>
+                                        {% endif %}
+                                        <span class="date">
+                                            {% blocktrans with day=comment.date|date:'d' month=comment.date|date:'F' year=comment.date|date:'Y' hour=comment.date|date:'H' minutes=comment.date|date:'i' %}
+                                                Publicado el {{day}} de {{month}} de {{year}} a las {{hour}}:{{minutes}}
+                                            {% endblocktrans %}
+                                        </span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>{{ comment.content }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endwith %}
                         </div>
-
-                        <div class="comment">
-                            <div class="comment-meta">
-                                <a class="user" href="#">Lorem ipsum dolor.</a>
-                                <span class="date">Publicado el 23 de septiembre de 2013 a las 22:05</span>
-                            </div>
-                            <div class="comment-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, consequuntur inventore dolores ducimus provident assumenda saepe enim culpa blanditiis libero.</p>
-                            </div>
+                        <div id="comment-form">
+                            <h3>{% trans "Ingresa tu comentario" %}</h3>
+                            {% if request.user.is_admin %}
+                                <p>{% trans "Utiliza los comentarios para comunicarte con el autor de la noticia." %}</p>
+                            {% else %}
+                                <p>{% trans "Utiliza los comentarios para comunicarte con el administrador." %}</p>
+                            {% endif %}
+                            <p><em>(*) Son datos necesario para enviar.</em></p>
+                            <form action="{% url 'webpage:new_news_comment' %}" class="clear" method="POST">
+                                <div class="c10 s2">
+                                    <div class="row">
+                                        <div class="c12"><textarea class="text" name ="content" placeholder="* Comentario" required></textarea>
+                                        {% if request.GET.error %}
+                                            <span class="error">Debes ingresar un comentario</span></div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row">
+                                        <div class="c6 s6"><input type="submit" class="submit trans" value="Publicar comentario"/></div>
+                                    </div>
+                                </div>
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{news_.id}}">
+                            </form>
                         </div>
-
-                        <div class="comment">
-                            <div class="comment-meta">
-                                <a class="user" href="#">Lorem ipsum dolor.</a>
-                                <span class="date">Publicado el 23 de septiembre de 2013 a las 22:05</span>
-                            </div>
-                            <div class="comment-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, dignissimos repellat expedita laborum perspiciatis obcaecati tempora temporibus eaque dolor amet.</p>
-                            </div>
-                        </div>
-
                     </div>
-                    <div id="comment-form">
-                        <h3>Ingresa tu comentario</h3>
-                        <p>Valoramos su opinión siempre que esta sea emitida con respeto y responsabilidad. Nos reservamos el derecho a no publicar comentarios que resulten ofensivos o fuera del contexto de la noticia.</p>
-                        <p><em>(*) Son datos necesario para enviar.</em></p>
-                        <form class="clear">
-                            <div class="c10 s2">
-                                <div class="row">
-                                    <div class="c6"><input type="text" class="text" placeholder="* Nombre Completo"/><span class="error">Debes ingresar tu nombre</span></div>
-                                    <div class="c6"><input type="text" class="text" placeholder="* RUT (no será publicado)"/><span class="error">Debes ingresar tu RUT</span></div>
-                                </div>
-                                <div class="row">
-                                    <div class="c6"><input type="text" class="text" placeholder="* Teléfono (no será publicado)"/><span class="error">Debes ingresar tu teléfono</span></div>
-                                    <div class="c6"><input type="text" class="text" placeholder="* Email (no será publicado)"/><span class="error">Ingresa un email válido</span></div>
-                                </div>
-                                <div class="row">
-                                    <div class="c12"><input type="text" class="text" placeholder="Sitio web o blog personal"/><span class="error">Ingresa una dirección válida</span></div>
-                                </div>
-                                <div class="row">
-                                    <div class="c12"><textarea class="text" placeholder="* Comentario"></textarea><span class="error">Debes ingresar un comentario</span></div>
-                                </div>
-                                <div class="row">
-                                    <div class="c6 s6"><input type="submit" class="submit trans" value="Publicar comentario"/></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>-->
+                {% endif %}
     		</section>
 			<section id="sidebar" class="c4">
 				<div class="destacados clear box">
@@ -139,9 +140,9 @@
         <div class="row">
             <div class="c12">
                 <ul id="bottom-nav" class="clear">
-                    <li><a class="red" href="section.html">Lorem ipsum</a></li>
-                    <li><a class="orange" href="section.html">Laboriosam quasi tempore</a></li>
-                    <li><a class="yellow" href="section.html">Quidem cupiditate</a></li>
+                    <li><a class="red" href="{% url 'webpage:section' 'about' %}">{% trans "Nuestro laboratorio" %}</a></li>
+                    <li><a class="orange" href="{% url 'webpage:section' 'products' %}">{% trans "Productos y Servicios" %}</a></li>
+                    <li><a class="yellow" href="#">{% trans "Publicaciones" %}</a></li>
                 </ul>
             </div>
         </div>
@@ -151,5 +152,14 @@
     $('.content').find('img').each(function(){
         $(this).wrap('<a href="' + $(this).attr('src') + '"></a>');
     });
+    if(window.location.hash){
+        $(window.location.hash + '.comment').animate({
+            backgroundColor: "#d4e0e3"
+        }, 500, function(){
+            $(this).animate({
+                backgroundColor: "#f4f8f9"
+            }, 500);
+        });
+    }
 </script>
 {% endblock %}

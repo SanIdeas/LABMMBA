@@ -33,19 +33,23 @@
 		<meta name="description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María." />
 		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/private.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/style.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/tooltipster.bundle.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/tooltipster-themes/tooltipster-sideTip-light.min.css' %}">
 		<link rel="icon" href="{% static 'shared/images/icon.ico' %}">
 		{% block css %} {% endblock %}
 
 		<!--Javascript-->
 		<script>var current_lang = "{{lang}}"</script>
-		<script src="{% url 'javascript-catalog' %}"></script>
-		<script src="{% static 'intranet/js/vendor/Chart.min.js' %}"></script>
-		<script src="{% static 'intranet/js/vendor/autosize.js' %}"></script>
-		<script src="{% static 'intranet/js/mobile_check.js' %}"></script>
-		<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
-		<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
-		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
-		<script src="{% static 'usm_theme/js/functions.js' %}"></script>
+		<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+		<script type="text/javascript" src="{% static 'intranet/js/vendor/Chart.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'intranet/js/vendor/autosize.js' %}"></script>
+		<script type="text/javascript" src="{% static 'intranet/js/mobile_check.js' %}"></script>
+		<script type="text/javascript" src="{% static 'usm_theme/js/jquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'usm_theme/js/jquery-ui.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'usm_theme/js/royalslider.js' %}"></script>
+		<script type="text/javascript" src="{% static 'usm_theme/js/fancybox.js' %}"></script>
+		<script type="text/javascript" src="{% static 'usm_theme/js/functions.js' %}"></script>
+		<script type="text/javascript" src="{% static 'intranet/js/vendor/tooltipster.bundle.min.js' %}"></script>
 		{% block extra_js %}{% endblock %}
 	</head>
 	<body class="seccion">
@@ -56,7 +60,7 @@
 						<div class="c12">
 							<div class="mobile-nav-wrapper clear">
 								<div class="mobile-top-bar clear">
-									<a class="mobile-brand notrans" href="{% url 'intranet:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
+									<a class="mobile-brand notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
 									<a id="mobile-nav">&#9776;</a>
 								</div>
 								<div class="mobile-nav notrans">
@@ -114,7 +118,7 @@
 				</div>
 			</div>
 			<div class="c12 brand row nav">
-				<a class="notrans" href="{% url 'intranet:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
+				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
 				<form id="search" url="{% url 'intranet:intranet_search' 999 %}"><input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
 			</div>
 		</header>
@@ -168,4 +172,12 @@
 	</body>
 	<script>var helper_link = '{% url 'intranet:helper' 999 %}'; var document_link = '{% url 'intranet:document' 888 999 %}'</script>
 	<script src="{% static 'intranet/js/shared_init.js' %}"></script>
+	<script>
+        $(document).ready(function() {
+            $('.tooltip').tooltipster({
+            	theme: 'tooltipster-light',
+            	side: 'right'
+            });
+        });
+    </script>
 </html>

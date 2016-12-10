@@ -159,6 +159,34 @@ class News(models.Model):
 		self.save()
 		return True
 
+	def get_comments(self):
+		return News_comment.objects.filter(news=self)
+
+	# Si hay un comentario sin leer, retorna la id del comentario
+	def user_has_unseen_comments(self):
+		comment = News_comment.objects.filter(news=self, author__is_admin=True).latest('id')
+		if not comment.seen:
+			return comment.id		
+		return False
+
+	def admin_has_unseen_comments(self):
+		comment = News_comment.objects.filter(news=self, author__is_admin=False).latest('id')
+		if not comment.seen:
+			return comment.id
+		return False
+
+	# Actualiza los mensajes leidos
+	def read_comments(self, user):
+		comments = News_comment.objects.filter(news=self).exclude(author=user).update(seen=True)
+
+
+class News_comment(models.Model):
+	news = models.ForeignKey(News, on_delete=models.CASCADE, null=False)
+	author = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+	content = models.CharField(max_length=500, null=False)
+	date = models.DateTimeField(auto_now=True)
+	seen = models.BooleanField(default=False)
+
 class Image(models.Model):
 	picture = models.FileField(upload_to='static/webpage/images/news/', max_length=500, null=True)
 	news = models.ForeignKey(News, on_delete=models.CASCADE)

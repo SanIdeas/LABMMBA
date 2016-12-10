@@ -27,6 +27,7 @@
 	& .list{
 		& .item{
 			width: 100%;
+			position: relative;
 			display: table;
 			padding: 10px 0px;
 			border-bottom: 1px solid @gray-color;
@@ -42,9 +43,9 @@
 				& .date{
 					font-size: 9pt;
 					font-style: italic;
+					display: block;
 				}
 				& .title{
-					width: 100%;
 					margin: 0px;
 					background-color: transparent;
 					border: none;
@@ -52,9 +53,29 @@
 					padding: 0px;
 					font-size: 10pt;
 					font-weight: normal;
+					display: inline-block;
 				}
 				& .source{
+					display: block;
 					font-style: 9pt;
+				}
+				& .tooltip{
+					&.approved{
+						& .fa-circle{
+							color: @green-color;
+						}
+					}
+					&.pending{
+						& .fa-circle{
+							color: @blue-color;
+						}
+					}
+				}
+				& .unseen{
+					display: block;
+					padding-top: 20px;
+					outline: none;
+					color: @yellow-color;
 				}
 			}
 			& .buttons{

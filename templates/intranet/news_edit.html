@@ -131,7 +131,7 @@
 <script>autosize(document.querySelectorAll('textarea'));</script>
 <script>
 	var id = "{{ news_.id }}";
-	var live_editor_url = "{% url 'webpage:news_editor' 888 %}";
+	var live_editor_url = "{% url 'webpage:news_editor' 888 %}?ret=editor";
 </script>
 <script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
 <script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>

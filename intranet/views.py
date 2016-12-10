@@ -17,6 +17,7 @@ from webpage.models import Section, News, Image
 from webpage.forms import NewsForm
 from unidecode import unidecode
 from datetime import date, timedelta
+from django_countries import countries
 from collections import Counter
 from itertools import chain
 import os, sys, json, operator, tempfile, httplib2
@@ -92,7 +93,7 @@ def home(request):
 		categories = Document.objects.values('category').annotate(count=Count('category'))
 		for a in categories:
 			try:
-				names.append(_(SubArea.objects.get(id=a['category']).name))
+				names.append(_(SubArea.objects.get(id=a['category']).area.name))
 				count.append(str(a['count']))
 			except:
 				None
@@ -147,7 +148,6 @@ def documents(request, search=None):
 				paginator = Paginator(all_docs, 5);
 				# Se obtienen las categorias disponibles
 				parameters['categories'] = []
-				print Document.objects.values('category').distinct();
 				for category in Document.objects.values('category').distinct():
 					parameters['categories'].append(SubArea.objects.get(id=category['category']))
 
@@ -217,7 +217,8 @@ def profile(request, user_id = None):
 				else:
 					profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
 				documents = Document.objects.filter(owner=user_id)
-				return render(request, 'intranet/profile.html', {'intranet': Section.objects.get(slug='intranet'), 'profile_user': profile, 'documents': documents, 'areas': Area.objects.all()})
+
+				return render(request, 'intranet/profile.html', {'intranet': Section.objects.get(slug='intranet'), 'profile_user': profile, 'documents': documents, 'areas': Area.objects.all(), 'countries': list(countries)})
 			except Exception as error:
 				print error
 				return HttpResponseRedirect(reverse('intranet:users'))
@@ -233,6 +234,7 @@ def profile(request, user_id = None):
 			request.user.facebook = request.POST.get('facebook')
 			request.user.twitter = request.POST.get('twitter')
 			request.user.linkedin = request.POST.get('linkedin')
+			request.user.bio = request.POST.get('bio')
 			request.user.save()
 			return HttpResponseRedirect(reverse('intranet:profile', kwargs={'user_id': request.user.id}))
 		else:
@@ -492,6 +494,7 @@ def news_edit(request, id):
 					news.date = request.POST.get('date')
 					news.source_text = request.POST.get('source_text')
 					news.source_url = request.POST.get('source_url')
+					news.is_published = False
 					if request.POST.get('title'):
 						news.title = request.POST.get('title')
 					if request.FILES.get('thumbnail'):

@@ -34,15 +34,26 @@
 							{%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
 							{%if news.title%}
 								{% if news.is_external %}
-									<a href="{{ news.source_url }}">
+									<a class="title" href="{{ news.source_url }}">
 								{% else %}
-									<a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+									<a class="title" href="{% url 'webpage:news_editor' news.id %}?ret=news">
 								{% endif %}								
 									<h2 class="title">{{news.title}}</h2>
 								</a>
 							{% else %}
 								<h2 class="title">{% trans "Noticia sin título" %}</h2>
 							{%endif%}
+							{% if news.is_published %}
+								<span class="fa-stack fa-lg help tooltip approved" title="{% trans 'Aprobado' %}">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-check fa-stack-1x fa-inverse"></i>
+								</span>
+							{% else %}
+								<span class="fa-stack fa-lg help tooltip pending" title="{% trans 'Requiere aprobación del administrador' %}">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-clock-o fa-stack-1x fa-inverse"></i>
+								</span>
+							{% endif %}
 							{% if news.source_text %}
 		                        <span class="source"><strong>Fuente: </strong>
 		                            {% if news.source_url %}
@@ -51,6 +62,12 @@
 		                                {{news.source_text}}
 		                            {% endif %}
 		                        </span>
+		                    {% endif %}
+		                    {% if news.user_has_unseen_comments %}
+		                    	<a class="unseen" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}?ret=news#comment{{news.user_has_unseen_comments}}">
+		                    		<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+		                    		{% trans "Tienes comentarios sin leer" %}
+		                    	</a>
 		                    {% endif %}
 						</div>
 						<div class="buttons c2">

@@ -7,6 +7,7 @@ import json, os
 from django.utils import timezone
 from django.conf import settings
 import oauth2client, base64, cPickle, re
+from django_countries.fields import CountryField
 
 # Create your models here.
 
@@ -79,7 +80,7 @@ class User(AbstractBaseUser):
 	first_name = models.CharField(max_length=80, null=True)
 	last_name = models.CharField(max_length=80, null=True)
 	institution = models.CharField(max_length=80, null=True)
-	country = models.CharField(max_length=80, null=True)
+	country = CountryField(null=True)
 	area = models.ForeignKey(SubArea, on_delete=models.SET_NULL, null=True)
 	career = models.CharField(max_length=80, null=True)
 	is_active = models.BooleanField(default=True)
@@ -95,6 +96,7 @@ class User(AbstractBaseUser):
 	facebook = models.CharField(max_length=100, null=True)
 	twitter = models.CharField(max_length=100, null=True)
 	linkedin = models.CharField(max_length=100, null=True)
+	bio = models.CharField(max_length=500, null=True)
 
 
 	objects = UserManager()

@@ -11,6 +11,7 @@
 			<a href="{% url 'intranet:profile' user.id %}">
 				<div class="intranet box users">
 					<div class="profile picture">
+						<img class="flag" src="{% static user.country.flag %}">	
 						<div>
 							<img class="img" 
 			                    {% if user.profile_picture %} 

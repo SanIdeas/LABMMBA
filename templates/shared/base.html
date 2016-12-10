@@ -38,6 +38,7 @@
 
 	<!-- Javascript -->
 	<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
+	<script src="{% static 'usm_theme/js/jquery-ui.min.js' %}"></script>
 	<script src="{% static 'usm_theme/js/functions.js' %}"></script>
 	<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
 	<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
@@ -64,6 +65,7 @@
 									{% if request.user.is_authenticated == False %}
 										<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 									{% else %}
+										<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
 										<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 									{% endif %}
 									<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
@@ -90,6 +92,7 @@
 							{% if request.user.is_authenticated == False %}
 								<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 							{% else %}
+								<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
 								<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 							{% endif %}
 							<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>

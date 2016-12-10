@@ -24,7 +24,8 @@
     <div id="lCol" class="c5">
         <!-- Nueva linea -->
         <div class="intranet box">
-        	<div class="profile picture">	
+        	<div class="profile picture">
+        		<img class="flag" src="{% static profile_user.country.flag %}">	
         		<div>
 	        		<img 
 	        			{% if profile_user.profile_picture %} 
@@ -62,7 +63,7 @@
 					</tr>
 					<tr>
 						<td>{% trans "País" %}:</td>
-						<td>{{ profile_user.country }}</td>
+						<td>{{ profile_user.country.name }}</td>
 					</tr>
 					<tr>
 						<td>{% trans "Area" %}:</td>
@@ -99,6 +100,14 @@
     <!-- Seccion derecha -->
     <div id="rCol" class="c7">
     <!-- Nueva linea -->
+    	{% if profile_user.bio %}
+	    	<div class="intranet box">
+	    		<div class="bookmark">	    			
+	    			<h2>{% trans "Biografía" %}</h2>
+	    		</div>
+	    		<div class="content">{{ profile_user.bio }}</div>
+	    	</div>
+	    {% endif %}
         <div class="intranet box">
        		<div class="profile counter">
                 <div>
@@ -248,6 +257,10 @@
 			<span class="c12">{% trans 'LinkedIn' %}:</span>
      		<div class="c12"><input type="text" name="linkedin" {% if profile_user.linkedin %} value="{{ profile_user.linkedin }}" {% endif %} class="text" placeholder="{% trans 'Perfil de LinkedIn' %}"/></div>
      	</div>
+     	<div class="row profile field">
+			<span class="c12">{% trans 'Biografía' %}:</span>
+     		<div class="c12"><textarea type="text" name="bio" class="text" placeholder="{% trans 'Biografía' %}" required>{{ profile_user.bio }}</textarea></div>
+     	</div>
          <div class="row profile field">
          	<div class="s6 c6"><input type="submit" class="submit trans"></div>
          </div>
@@ -315,7 +328,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	var update_picture_url = "{% url 'intranet:update_picture' %}";
 	var csrf_token = "{{ csrf_token }}";

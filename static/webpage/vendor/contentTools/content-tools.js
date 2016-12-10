@@ -5920,7 +5920,7 @@
       } else if (this._state === 'ready') {
         return this.addCSSClass('ct-ignition--ready');
       } else if (this._state === 'back') {
-        window.location.href = intranet_editor_url;
+        window.location.href = return_url;
         return this.addCSSClass('ct-ignition--ready');
       }
     };

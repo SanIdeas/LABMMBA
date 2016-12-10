@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.staticfiles.templatetags.staticfiles import static
 import os, datetime, base64, json, requests
 from intranet.models import Document
+from django_countries import countries
 from django.utils.translation import ugettext as _
 
 
@@ -90,7 +91,7 @@ def register(request, token = None):
 						print "usuario ya registrado"
 						return HttpResponseRedirect(reverse('webpage:home'))
 					else:
-						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token, 'current_view': section, 'current_section': section})
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token, 'current_view': section, 'current_section': section, 'countries': list(countries)})
 				else:
 					#Aqui deberia decirle al usuario que el token no es valido
 					return HttpResponseRedirect(reverse('webpage:home'))
