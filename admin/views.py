@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area, SubArea
 from intranet.models import Document
-from webpage.models import Section, SubSection, News
+from webpage.models import Section, SubSection, SubSectionCategory, News
 from webpage.forms import SectionImageForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
@@ -375,6 +375,32 @@ def upload_header(request):
 					section = section[0]
 					section.update_header(request.FILES['header'])
 					return JsonResponse({'error': False, 'url': section.header_static_url()})
+				else:
+					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
+
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def upload_thumbnail(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "POST" and request.is_ajax():
+				category_id = request.POST.get('category_id', None)
+				category = SubSectionCategory.objects.filter(id=category_id)
+				if category:
+					category = category[0]
+					category.update_image(request.FILES['thumbnail'])
+					return JsonResponse({'error': False, 'url': category.image_static_url()})
 				else:
 					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
 

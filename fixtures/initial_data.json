@@ -365,7 +365,7 @@
     "fields": {
       "spanish_name": "Sobre Nosotros",
       "english_name": "About",
-      "image": "static/webpage/images/categories/CI1.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI1.jpg",
       "section": 3
     }
   },
@@ -376,7 +376,7 @@
     "fields": {
       "spanish_name": "Investigación",
       "english_name": "Investigation",
-      "image": "static/webpage/images/categories/CI2.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI2.jpg",
       "section": 3
     }
   },
@@ -387,7 +387,7 @@
     "fields": {
       "spanish_name": "Cooperación Científica",
       "english_name": "Scientific Cooperation",
-      "image": "static/webpage/images/categories/CI3.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI3.jpg",
       "section": 3
     }
   },
@@ -398,7 +398,7 @@
     "fields": {
       "spanish_name": "Patentes",
       "english_name": "Patents",
-      "image": "static/webpage/images/categories/CI4.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI4.jpg",
       "section": 4
     }
   },
@@ -409,7 +409,7 @@
     "fields": {
       "spanish_name": "Tecnologías",
       "english_name": "Technologies",
-      "image": "static/webpage/images/categories/CI5.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI5.jpg",
       "section": 4
     }
   },
@@ -420,7 +420,7 @@
     "fields": {
       "spanish_name": "Asesorías",
       "english_name": "Counselings",
-      "image": "static/webpage/images/categories/CI6.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI6.jpg",
       "section": 4
     }
   },
