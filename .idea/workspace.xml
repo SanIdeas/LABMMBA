@@ -2,58 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="727889f7-d9cd-42ac-a1be-2697eaba568d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S1I1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S1I2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I13.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I14.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I15.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I16.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I17.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I18.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I19.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I20.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I21.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I22.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I23.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I24.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I25.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I26.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I27.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I28.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I29.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I30.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I31.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I32.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I33.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I34.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I35.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I36.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I37.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I38.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I39.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I40.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/S2I9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/sections/blob" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/header/blob" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/blob" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/blob_lSGTeot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/admin/css/member.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/admin/js/members.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/admin/js/members_event.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin/members_ajax.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webpage/migrations/0007_member.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webpage/migrations/0008_auto_20161208_1251.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webpage/migrations/0009_auto_20161209_2007.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="$PROJECT_DIR$/admin/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="$PROJECT_DIR$/admin/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fixtures/initial_data.json" afterPath="$PROJECT_DIR$/fixtures/initial_data.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/css/admin.css" afterPath="$PROJECT_DIR$/static/admin/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/js/admin.js" afterPath="$PROJECT_DIR$/static/admin/js/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/intranet/js/profile.js" afterPath="$PROJECT_DIR$/static/intranet/js/profile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/shared.html" afterPath="$PROJECT_DIR$/templates/admin/shared.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage.html" afterPath="$PROJECT_DIR$/templates/admin/webpage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/forms.py" afterPath="$PROJECT_DIR$/webpage/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/models.py" afterPath="$PROJECT_DIR$/webpage/models.py" />
     </list>
     <ignored path="labmmba-web.iws" />
@@ -86,6 +53,7 @@
               <caret line="82" column="49" lean-forward="false" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+                <marker date="1481339356000" expanded="true" signature="6414:6888" ph="..." />
               </folding>
             </state>
           </provider>
@@ -107,27 +75,27 @@
         <entry file="file://$PROJECT_DIR$/labmmba/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="521">
-              <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+              <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpage_ajax.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="webpage_ajax.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="64" column="38" lean-forward="true" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+              <caret line="64" column="38" lean-forward="false" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="399" column="28" lean-forward="false" selection-start-line="399" selection-start-column="28" selection-end-line="399" selection-end-column="28" />
+            <state relative-caret-position="192">
+              <caret line="557" column="42" lean-forward="false" selection-start-line="557" selection-start-column="42" selection-end-line="557" selection-end-column="42" />
               <folding>
                 <element signature="e#24#59#0" expanded="true" />
               </folding>
@@ -139,17 +107,7 @@
         <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="642" column="0" lean-forward="true" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shared.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/shared.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="768">
-              <caret line="147" column="64" lean-forward="false" selection-start-line="147" selection-start-column="64" selection-end-line="147" selection-end-column="64" />
+              <caret line="642" column="0" lean-forward="false" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -250,16 +208,16 @@
         <option value="$PROJECT_DIR$/templates/intranet/shared.html" />
         <option value="$PROJECT_DIR$/login/views.py" />
         <option value="$PROJECT_DIR$/templates/shared/base.html" />
-        <option value="$PROJECT_DIR$/templates/admin/shared.html" />
         <option value="$PROJECT_DIR$/static/admin/css/admin.css" />
         <option value="$PROJECT_DIR$/templates/admin/webpage.html" />
         <option value="$PROJECT_DIR$/admin/urls.py" />
-        <option value="$PROJECT_DIR$/admin/views.py" />
         <option value="$PROJECT_DIR$/labmmba/settings.py" />
         <option value="$PROJECT_DIR$/webpage/models.py" />
         <option value="$PROJECT_DIR$/static/admin/js/admin.js" />
         <option value="$PROJECT_DIR$/fixtures/initial_data.json" />
         <option value="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
+        <option value="$PROJECT_DIR$/templates/admin/shared.html" />
+        <option value="$PROJECT_DIR$/admin/views.py" />
       </list>
     </option>
   </component>
@@ -1264,12 +1222,12 @@
       <workItem from="1480531272552" duration="170000" />
       <workItem from="1480531636196" duration="147000" />
       <workItem from="1480531800149" duration="187264000" />
-      <workItem from="1481319050613" duration="12570000" />
+      <workItem from="1481319050613" duration="12815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="351195000" />
+    <option name="totallyTimeSpent" value="351440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1710,26 +1668,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="642" column="0" lean-forward="true" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/shared.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="147" column="64" lean-forward="false" selection-start-line="147" selection-start-column="64" selection-end-line="147" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labmmba/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
-          <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1758,16 +1700,7 @@
           <caret line="82" column="49" lean-forward="false" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="399" column="28" lean-forward="false" selection-start-line="399" selection-start-column="28" selection-end-line="399" selection-end-column="28" />
-          <folding>
-            <element signature="e#24#59#0" expanded="true" />
+            <marker date="1481339356000" expanded="true" signature="6414:6888" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1775,8 +1708,34 @@
     <entry file="file://$PROJECT_DIR$/templates/admin/webpage_ajax.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="64" column="38" lean-forward="true" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+          <caret line="64" column="38" lean-forward="false" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/shared.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/admin/js/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="642" column="0" lean-forward="false" selection-start-line="642" selection-start-column="0" selection-end-line="642" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="557" column="42" lean-forward="false" selection-start-line="557" selection-start-column="42" selection-end-line="557" selection-end-column="42" />
+          <folding>
+            <element signature="e#24#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

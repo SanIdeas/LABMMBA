@@ -77,6 +77,8 @@
                                         <li class="{% if news_view == request.path%} current {%endif%}"><a href="{{news_view}}">{% trans "Noticias" %}</a></li>
                                         {% url 'admin:events' as events_view%}
                                         <li class="{% if events_view == request.path%} current {%endif%}"><a href="{{events_view}}">{% trans "Eventos" %}</a></li>
+                                        {% url 'admin:members' as members_view%}
+                                        <li class="{% if members_view == request.path%} current {%endif%}"><a href="{{members_view}}">{% trans "Integrantes" %}</a></li>
 										<li><a href="{% url 'webpage:home' %}">{% trans "Volver a la página principal" %}</a></li>
 									</ul>
 									<ul class="mobile-top-nav clear">
@@ -157,6 +159,10 @@
                     <a class="clear {% if events_view == request.path%} selected {%endif%}" href="{{events_view}}">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         {% trans "Eventos" %}
+                    {% url 'admin:members' as members_view%}
+                    <a class="clear {% if members_view == request.path%} selected {%endif%}" href="{{members_view}}">
+						<i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        {% trans "Integrantes" %}
                     </a>
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">

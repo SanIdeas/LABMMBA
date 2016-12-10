@@ -28,4 +28,10 @@ urlpatterns = [
     url(r'^news/unpublish/(?P<news_id>.*)$', views.news, {'unpublish': True}, name='unpublish_news'),
     url(r'^news/show_header/(?P<news_id>.*)$', views.news, {'show_header': True}, name='show_header_news'),
     url(r'^news/hide_header/(?P<news_id>.*)$', views.news, {'hide_header': True}, name='hide_header_news'),
+    url(r'^members/$', views.members, name="members"),
+    url(r'^members/edit/(?P<member_id>.*)$', views.members, name='edit_member'),
+    url(r'^members/delete/(?P<member_id>.*)$', views.members, name='delete_member'),
+    url(r'^members/work/(?P<member_id>.*)$', views.members, {'work': True}, name='work_member'),
+    url(r'^members/unwork/(?P<member_id>.*)$', views.members, {'unwork': True}, name='unwork_member'),
+    url(r'^members/update/picture/$', views.update_member_picture, name='update_member_picture'),
 ]

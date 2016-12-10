@@ -1,5 +1,5 @@
 from django import forms
-from webpage.models import News, Image, Section, SectionImage
+from webpage.models import News, Image, Section, SectionImage, Member
 from login.models import User
 
 
@@ -33,4 +33,10 @@ class SectionImageForm(forms.ModelForm):
 
 	class Meta:
 		model = SectionImage
+		fields = '__all__'
+
+class ImageMemberForm(forms.ModelForm):
+	member = forms.ModelChoiceField(queryset=News.objects.all(), required=True)
+	class Meta:
+		model = Image
 		fields = '__all__'
