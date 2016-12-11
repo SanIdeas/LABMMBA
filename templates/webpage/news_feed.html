@@ -13,58 +13,68 @@
     <div class="grid">
         <div class="row">
             <section class="content noticias list c8">
-                <div class="clear">
-                    {% for left, right in news %}
-                        <div class="row">
-                            {% if left.is_external %}
-                                <a class="c6" href="{{ left.source_url }}">
-                            {% else %}
-                                <a class="c6" href="{% url 'webpage:news' left.date|date:'Y' left.date|date:'m' left.date|date:'d' left.slug %}">
-                            {% endif %} 
-                                <figure class="clear">
-                                    <span class="thumb"><img src="{% static left.thumbnail_url %}" ></span>
-                                    <figcaption>
-                                        <span class="date">{{left.date|date:'d'}} · {{left.date|date:'F'}} · {{left.date|date:'Y'}}</span>
-                                        <h4>{{left.title}}</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo optio aperiam dicta voluptatibus deserunt aliquid placeat ex ipsam!</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                            {% if left.is_external %}
-                                <a class="c6" href="{{ right.source_url }}">
-                            {% else %}
-                                <a class="c6" href="{% url 'webpage:news' right.date|date:'Y' right.date|date:'m' right.date|date:'d' right.slug %}">
-                            {% endif %} 
-                                <figure class="clear">
-                                    <span class="thumb"><img src="{% static right.thumbnail_url %}" ></span>
-                                    <figcaption>
-                                        <span class="date">{{right.date|date:'d'}} · {{right.date|date:'F'}} · {{right.date|date:'Y'}}</span>
-                                        <h4>{{right.title}}</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, dolore, nesciunt veritatis tempora a voluptas nam sint aliquid.</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="clear">
-                    <div id="wp_page_numbers">
-                        <ul>
-                            {% if paginator.has_previous %}
-                                <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.previous_page_number}}">{% trans "Anterior" %}</a></li>
-                            {% endif %}
-                            {% for page in paginator.paginator.page_range %}
-                                <li {% ifequal paginator.number page %}class="active_page"{% endifequal %}>
-                                    <a href="{% url 'webpage:news_feed' %}?page={{page}}">{{page}}</a>
-                                </li>
-                            {% endfor %}
-                            {% if paginator.has_next %}
-                                <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.next_page_number}}">{% trans "Siguiente" %}</a></li>
-                            {% endif %}
-                        </ul>
-                        <div style="float: none; clear: both;"></div>
+                {% if not news %}
+                    <div class="clear">
+                        {% for left, right in news %}
+                            <div class="row">
+                                {% if left.is_external %}
+                                    <a class="c6" href="{{ left.source_url }}">
+                                {% else %}
+                                    <a class="c6" href="{% url 'webpage:news' left.date|date:'Y' left.date|date:'m' left.date|date:'d' left.slug %}">
+                                {% endif %} 
+                                    <figure class="clear">
+                                        <span class="thumb"><img src="{% static left.thumbnail_url %}" ></span>
+                                        <figcaption>
+                                            <span class="date">{{left.date|date:'d'}} · {{left.date|date:'F'}} · {{left.date|date:'Y'}}</span>
+                                            <h4>{{left.title}}</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo optio aperiam dicta voluptatibus deserunt aliquid placeat ex ipsam!</p>
+                                        </figcaption>
+                                    </figure>
+                                </a>
+                                {% if right %}
+                                    {% if right.is_external %}
+                                        <a class="c6" href="{{ right.source_url }}">
+                                    {% else %}
+                                        <a class="c6" href="{% url 'webpage:news' right.date|date:'Y' right.date|date:'m' right.date|date:'d' right.slug %}">
+                                    {% endif %} 
+                                        <figure class="clear">
+                                            <span class="thumb"><img src="{% static right.thumbnail_url %}" ></span>
+                                            <figcaption>
+                                                <span class="date">{{right.date|date:'d'}} · {{right.date|date:'F'}} · {{right.date|date:'Y'}}</span>
+                                                <h4>{{right.title}}</h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, dolore, nesciunt veritatis tempora a voluptas nam sint aliquid.</p>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                     </div>
-                </div>
+                    <div class="clear">
+                        <div id="wp_page_numbers">
+                            <ul>
+                                {% if paginator.has_previous %}
+                                    <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.previous_page_number}}">{% trans "Anterior" %}</a></li>
+                                {% endif %}
+                                {% for page in paginator.paginator.page_range %}
+                                    <li {% ifequal paginator.number page %}class="active_page"{% endifequal %}>
+                                        <a href="{% url 'webpage:news_feed' %}?page={{page}}">{{page}}</a>
+                                    </li>
+                                {% endfor %}
+                                {% if paginator.has_next %}
+                                    <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.next_page_number}}">{% trans "Siguiente" %}</a></li>
+                                {% endif %}
+                            </ul>
+                            <div style="float: none; clear: both;"></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="clear">
+                        <div class="row">
+                            <h1>{% trans "No hay noticias" %}</h1>
+                        </div>
+                    </div>
+                {% endif %}
             </section>
             <section id="sidebar" class="c4">
                 <div class="eventos clear box">

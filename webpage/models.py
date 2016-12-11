@@ -128,7 +128,18 @@ class News(models.Model):
 	is_external = models.BooleanField(default=False)
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title)
+		slug = slugify(self.title)
+		news = News.objects.filter(date=self.date, title=self.title).exclude(id=self.id)
+		print news
+		count = 0
+		if news:
+			while True:
+				count += 1
+				slug_temp = slug + '-' + str(count)
+				if not News.objects.filter(date=self.date, slug=slug_temp).exclude(id=self.id):
+					break
+			slug += '-' + str(count)
+		self.slug = slug
 		super(News, self).save(*args, **kwargs)
 
 	def set_header_filename(self):

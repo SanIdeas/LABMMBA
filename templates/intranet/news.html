@@ -64,7 +64,7 @@
 		                        </span>
 		                    {% endif %}
 		                    {% if news.user_has_unseen_comments %}
-		                    	<a class="unseen" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}?ret=news#comment{{news.user_has_unseen_comments}}">
+		                    	<a class="unseen" href="{% url 'webpage:news_editor' news.id %}?ret=news#comment{{news.user_has_unseen_comments}}">
 		                    		<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
 		                    		{% trans "Tienes comentarios sin leer" %}
 		                    	</a>

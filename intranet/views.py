@@ -466,6 +466,8 @@ def news_create(request):
 			return render(request, 'intranet/news_create.html', {'intranet': Section.objects.get(slug='intranet'), 'today': date.today()})
 		elif request.method == "POST":
 			request.POST['author'] = request.user.id
+			request.POST['title'] = _(u"Noticia sin título")
+			request.POST['title_html'] = '<h1 class="c12">' + _(u"Noticia sin título") + '</h1>'
 			form = NewsForm(request.POST, request.FILES)
 			if form.is_valid():
 				news = form.save()
@@ -496,7 +498,7 @@ def news_edit(request, id):
 					news.source_url = request.POST.get('source_url')
 					news.is_published = False
 					if request.POST.get('title'):
-						news.title = request.POST.get('title')
+						news.title = request.POST.get('title') if request.POST.get('title') != "" and request.POST.get('title') != "undefined"  else _(u"Noticia sin título")
 					if request.FILES.get('thumbnail'):
 						news.update_thumbnail(request.FILES.get('thumbnail'))
 					if request.FILES.get('header'):
@@ -506,6 +508,8 @@ def news_edit(request, id):
 		else:
 			return HttpResponseRedirect(reverse('intranet:news'))	
 	else:
+		if request.user.is_admin:
+			return HttpResponseRedirect(reverse('admin:news'))
 		return HttpResponseRedirect(reverse('login'))
 
 def news_create_link(request):

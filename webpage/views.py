@@ -9,14 +9,13 @@ from datetime import datetime
 from intranet.models import Document
 from webpage.models import Section, SubSection, News, Member
 from webpage.forms import ImageForm, NewsCommentForm
-from itertools import izip
+from itertools import izip_longest
 import json
 
 # Junta elementos de un objeto iterable en grupos de n elementos
 # http://stackoverflow.com/questions/5389507/iterating-over-every-two-elements-in-a-list
 def grouped(iterable, n):
-	"s -> (s0,s1,s2,...sn-1), (sn,sn+1,sn+2,...s2n-1), (s2n,s2n+1,s2n+2,...s3n-1), ..."
-	return izip(*[iter(iterable)]*n)
+	return izip_longest(*[iter(iterable)]*n)
 
 # Create your views here.
 def home(request):
@@ -147,7 +146,7 @@ def news_feed(request):
 
 
 def news_editor(request, id = None):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and not request.user.is_admin:
 		news = News.objects.filter(id=id)
 		if news:
 			news = news[0]
@@ -160,6 +159,8 @@ def news_editor(request, id = None):
 								exclude = ['intranet', 'publications']
 							else:
 								exclude = ['administrator', 'publications']
+							# Se actualizan los comentarios leidos
+							news.read_comments(request.user)
 						else:
 							exclude = ['intranet', 'administrator']
 
@@ -183,9 +184,10 @@ def news_editor(request, id = None):
 			elif request.method == "POST":
 				# En este caso la respuesta sera en un objeto JSON
 				if request.POST.get('news-title-html') is not None:
-					news.title_html = request.POST.get('news-title-html')
+					news.title_html = request.POST.get('news-title-html') if request.POST.get('news-title') != "undefined" else request.POST.get('news-title-html').replace('undefined', _(u"Noticia sin título"))
 				if request.POST.get('news-title') is not None:
 					news.title = request.POST.get('news-title')
+					news.title = request.POST.get('news-title') if request.POST.get('news-title') != "" and request.POST.get('news-title') != "undefined"  else _(u"Noticia sin título")
 				if request.POST.get('news-content') is not None:
 					news.body = request.POST.get('news-content')
 				news.save()
@@ -196,13 +198,18 @@ def news_editor(request, id = None):
 			return HttpResponseRedirect(reverse('webpage:home'))
 
 	else:
+		if request.user.is_admin:
+			return HttpResponseRedirect(reverse('admin:news'))	
 		return HttpResponseRedirect(reverse('webpage:home'))
 
 
-def news(request, year = None, month = None, day = None, title = None):
+def news(request, year = None, month = None, day = None, title = None, id = None):
 	try:
-		date = datetime.strptime(str(day) + str(month) + str(year), '%d%m%Y')
-		news = News.objects.filter(date=date, slug=title)
+		if year and month and day and title:
+			date = datetime.strptime(str(day) + str(month) + str(year), '%d%m%Y')
+			news = News.objects.filter(date=date, slug=title)
+		else:
+			news = News.objects.filter(id=id)
 		if news:
 			if request.user.is_authenticated():
 				if request.user.is_admin:
@@ -239,6 +246,7 @@ def news(request, year = None, month = None, day = None, title = None):
 
 def new_news_comment(request):
 	news = None
+	editor_redirect = 'ret=' + request.GET.get('ret') if request.GET.get('ret') else ''
 	if request.POST.get('id'):
 		news = News.objects.filter(id=request.POST.get('id'))
 
@@ -246,7 +254,14 @@ def new_news_comment(request):
 		news = news[0]
 	else:
 		return HttpResponseRedirect(reverse('intranet:news'))
-	if request.user.is_authenticated():
+	if request.user.is_authenticated() and (news.author == request.user or request.user.is_admin):
+
+		# Se define la url de redireccionamiento
+		if request.GET.get('redirect') == 'news':
+			dir = reverse('webpage:news', kwargs={'id': news.id})
+		else:
+			dir = reverse('webpage:news_editor', kwargs={'id': news.id})
+
 		fields = {
 			'news': news.id,
 			'author': request.user.id,
@@ -255,16 +270,15 @@ def new_news_comment(request):
 		form = NewsCommentForm(fields)
 		if form.is_valid():
 			form = form.save()
-			return HttpResponseRedirect( '%s#comment%s' % (reverse('webpage:news_editor', kwargs={'id': news.id}), form.id))
+			return HttpResponseRedirect( '%s%s#comment%s' % (dir, ('?' + editor_redirect if editor_redirect else '') , form.id))
 		else:
 			print form.errors
-			return HttpResponseRedirect( '%s?error=true#comments' % reverse('webpage:news_editor', kwargs={
-				'id': news.id}))
+			return HttpResponseRedirect( '%s?error=true%s#comments' % (dir, '&' + editor_redirect))
 	else:
 		if news:
-			return HttpResponseRedirect(reverse('webpage:news_editor', kwargs={'id': news.id}))
+			return HttpResponseRedirect(dir)
 		else:
-			return HttpResponseRedirect(reverse('intranet:news'))
+			return HttpResponseRedirect(reverse('webpage:news_feed'))
 
 
 def save_images(request):
