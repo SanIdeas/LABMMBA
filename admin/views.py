@@ -506,7 +506,6 @@ def members(request, member_id=None, work=False, unwork=False):
 					args = {
 						'working': Member.objects.filter(working=True),
 						'not_working': Member.objects.filter(working=False),
-						'administration': Section.objects.get(slug='administrator')
 					}
 
 					return render(request, 'admin/members_ajax.html', args)
