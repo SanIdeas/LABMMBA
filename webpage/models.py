@@ -1,10 +1,11 @@
 from __future__ import unicode_literals
 from django.utils.text import slugify
+import django.utils.timezone as timezone
 from django.conf import settings
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
 from login.models import User
-from datetime import date
+from datetime import date, datetime
 from django.db import models
 import os
 
@@ -129,20 +130,25 @@ class News(models.Model):
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.title)
 		super(News, self).save(*args, **kwargs)
+
 	def set_header_filename(self):
 		filename_h = settings.NEWS_HEADERS_DIR + 'NH' + str(self.id) + '.jpg'
 		os.rename(self.header.path, filename_h)
 		self.header.name = filename_h
 		self.save()
+
 	def set_thumbnail_filename(self):
 		filename_t = settings.NEWS_THUMBNAILS_DIR + 'NT' + str(self.id) + '.jpg'
 		os.rename(self.thumbnail.path, filename_t)
 		self.thumbnail.name = filename_t
 		self.save()
+
 	def thumbnail_url(self):
 		return 'webpage/images/news/thumbnail/' + os.path.basename(self.thumbnail.name)
+
 	def header_url(self):
 		return 'webpage/images/news/header/' + os.path.basename(self.header.name)
+
 	def update_thumbnail(self, picture):
 		# Si existe una foto, se elimina
 		if self.thumbnail:
@@ -152,6 +158,7 @@ class News(models.Model):
 		self.thumbnail.save('NT' + str(self.id) + '.jpg', picture)
 		self.save()
 		return True
+
 	def update_header(self, picture):
 		# Si existe una foto, se elimina
 		if self.header:
@@ -189,6 +196,7 @@ class News_comment(models.Model):
 	content = models.CharField(max_length=500, null=False)
 	date = models.DateTimeField(auto_now=True)
 	seen = models.BooleanField(default=False)
+
 
 class Image(models.Model):
 	picture = models.FileField(upload_to='static/webpage/images/news/', max_length=500, null=True)
@@ -245,6 +253,44 @@ class Member(models.Model):
 		return True
 
 
+class Event(models.Model):
+	title = models.CharField(max_length=200)
+	slug = models.SlugField(max_length=200)
+	description = models.CharField(max_length=700)
+	image = models.FileField(upload_to='static/webpage/images/events/', max_length=500, null=True)
+	program = models.FileField(upload_to='static/webpage/files/events/', max_length=500, null=True)
+
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.title)
+		super(Event, self).save(*args, **kwargs)
+
+	def get_date(self):
+		event_day = self.get_days().first()
+		return datetime.combine(event_day.day, event_day.begin_hour)
+
+	def get_days(self):
+		return EventDay.objects.filter(event=self).order_by('day', 'begin_hour')
+
+	def set_image_filename(self):
+		filename_i = settings.EVENTS_IMAGES_DIR + 'EI' + str(self.id) + '.jpg'
+		os.rename(self.image.path, filename_i)
+		self.image.name = filename_i
+		self.save()
+
+	def set_program_filename(self):
+		filename_p = settings.EVENTS_PROGRAMS_DIR + 'EP' + str(self.id) + '.pdf'
+		os.rename(self.program.path, filename_p)
+		self.program.name = filename_p
+		self.save()
+
+
+class EventDay(models.Model):
+	day = models.DateField(default=date.today)
+	begin_hour = models.TimeField(default=timezone.now)
+	end_hour = models.TimeField(default=timezone.now)
+	location = models.CharField(max_length=100)
+	event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
 # Se eliminan las imagenes del directorio
 # http://stackoverflow.com/questions/5372934/how-do-i-get-django-admin-to-delete-files-when-i-remove-an-object-from-the-datab
 @receiver(post_delete, sender=News)
@@ -266,3 +312,7 @@ def image_delete(sender, instance, **kwargs):
 @receiver(post_delete, sender=Member)
 def image_delete(sender, instance, **kwargs):
 	instance.image.delete(False)
+@receiver(post_delete, sender=Event)
+def event_delete(sender, instance, **kwargs):
+	instance.image.delete(False)
+	instance.program.delete(False)

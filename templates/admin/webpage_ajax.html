@@ -47,11 +47,11 @@
 
     <div class="documents filters intranet box">
         <h3 class="setup-subtitle red">{% trans 'Imágenes de Categorías' %}</h3>
-        <div id="webpage-categories-container" class="c12">
+        <div id="webpage-categories-container" class="c11">
             <ul>
             {% for category, _ in categories %}
                 <li class="c4">
-                    <div class="c3 circle">
+                    <div class="c3 circle category">
                         <div class="c12 img">
                             {% if category.image %}
                                 <div class="selectThumbnail" category-id="{{category.id}}">
@@ -71,7 +71,6 @@
                     </div>
                 </li>
             {% endfor %}
-            </ul>
         </div>
     </div>
 
@@ -187,9 +186,7 @@
     <script>webpage();</script>
 </div>
 
-<div id="modal-curtain" class="curtain-hidden loading-curtain">
-    <i class="loader fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
-</div>
+<div id="modal-curtain" class="curtain-hidden loading-curtain"></div>
 
 <script>webpage_subsection_init();</script>
 

@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area, SubArea
 from intranet.models import Document
-from webpage.models import Section, SubSection, SubSectionCategory, News, Member
+from webpage.models import Section, SubSection, SubSectionCategory, News, Member, Event
 from webpage.forms import SectionImageForm, ImageMemberForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
@@ -457,55 +457,6 @@ def save_images(request):
 			return HttpResponseRedirect(reverse('login'))
 
 
-def news(request, news_id=None, publish=False, unpublish=False, show_header=False, hide_header=False):
-	if request.user.is_authenticated():
-		if request.user.is_admin:
-			if request.method == "GET":
-				if publish and request.is_ajax():
-					news_obj = News.objects.get(id=news_id)
-					news_obj.is_published = True
-					news_obj.save()
-					return JsonResponse({'error': False})
-				elif unpublish and request.is_ajax():
-					news_obj = News.objects.get(id=news_id)
-					news_obj.is_published = False
-					news_obj.in_header = False
-					news_obj.save()
-					return JsonResponse({'error': False})
-				elif show_header and request.is_ajax():
-					news_obj = News.objects.get(id=news_id)
-					news_obj.in_header = True
-					news_obj.save()
-					return JsonResponse({'error': False})
-				elif hide_header and request.is_ajax():
-					news_obj = News.objects.get(id=news_id)
-					news_obj.in_header = False
-					news_obj.save()
-					return JsonResponse({'error': False})
-				else:
-					return render(request, 'admin/news.html', {'administration': Section.objects.get(slug='administrator')})
-
-			elif request.method == "POST" and request.is_ajax():
-				args = {
-					'not_published': News.objects.filter(is_published=False),
-					'published': News.objects.filter(is_published=True),
-					'news_in_header': News.objects.filter(is_published=True, in_header=True).count()
-				}
-				return render(request, 'admin/news_ajax.html', args)
-		else:
-			if request.is_ajax():
-				return JsonResponse({'redirect': reverse('webpage:home')})
-			else:
-				return HttpResponseRedirect(reverse('webpage:home'))
-
-	else:
-		if request.is_ajax():
-			return JsonResponse({'redirect': reverse('login')})
-		else:
-			return HttpResponseRedirect(reverse('login'))
-
-
-
 def members(request, member_id=None, work=False, unwork=False):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
@@ -525,8 +476,7 @@ def members(request, member_id=None, work=False, unwork=False):
 					return JsonResponse({'error': False})
 				
 				else:
-					return render(request, 'admin/members.html')
-
+					return render(request, 'admin/members.html', {'administration': Section.objects.get(slug='administrator')})
 
 			elif request.method == "POST" and request.is_ajax():
 				member_name = request.POST.get('member_name', None)
@@ -556,6 +506,7 @@ def members(request, member_id=None, work=False, unwork=False):
 					args = {
 						'working': Member.objects.filter(working=True),
 						'not_working': Member.objects.filter(working=False),
+						'administration': Section.objects.get(slug='administrator')
 					}
 
 					return render(request, 'admin/members_ajax.html', args)
@@ -571,9 +522,112 @@ def members(request, member_id=None, work=False, unwork=False):
 		else:
 			return HttpResponseRedirect(reverse('login'))
 
+
 def update_member_picture(request):
 	if request.user.is_authenticated() and request.user.is_admin:
 		member = request.POST.get('member', None);
-		Member.objects.get(id=member).update_picture(request.FILES['picture']);
+		Member.objects.get(id=member).update_picture(request.FILES['picture'])
 		Member.objects.get(id=member).set_image_filename();
 		return JsonResponse({'error': False})
+
+
+def news(request, news_id=None, publish=False, unpublish=False, show_header=False, hide_header=False):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				if publish and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					if not news_obj.title:
+						return JsonResponse({'error': True, 'message': 'No se puede aprobar una noticia sin título'})
+
+					news_obj.is_published = True
+					news_obj.save()
+					return JsonResponse({'error': False})
+				elif unpublish and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					news_obj.is_published = False
+					news_obj.in_header = False
+					news_obj.save()
+					return JsonResponse({'error': False})
+				elif show_header and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					if not news_obj.title:
+						return JsonResponse({'error': True, 'message': 'No se puede poner en la cabecera una noticia sin título'})
+					elif not news_obj.is_published:
+						return JsonResponse({'error': True, 'message': 'No se puede poner en la cabecera una noticia no publicada'})
+
+					news_obj.in_header = True
+					news_obj.save()
+					return JsonResponse({'error': False})
+				elif hide_header and request.is_ajax():
+					news_obj = News.objects.get(id=news_id)
+					news_obj.in_header = False
+					news_obj.save()
+					return JsonResponse({'error': False})
+				else:
+					return render(request, 'admin/news.html', {'administration': Section.objects.get(slug='administrator')})
+
+			elif request.method == "POST" and request.is_ajax():
+				args = {
+					'not_published': News.objects.filter(is_published=False).order_by('-date'),
+					'published': News.objects.filter(is_published=True).order_by('-date'),
+					'news_in_header': News.objects.filter(is_published=True, in_header=True).count()
+				}
+				return render(request, 'admin/news_ajax.html', args)
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def events(request, event_id=None):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				if event_id is not None and request.is_ajax():
+					Event.objects.get(id=event_id).delete()
+					return JsonResponse({'error': False})
+				else:
+					return render(request, 'admin/events.html', {'administration': Section.objects.get(slug='administrator')})
+
+			elif request.method == "POST" and request.is_ajax():
+				args = {
+					'events': sorted(Event.objects.all(), key=lambda event: event.get_date(), reverse=True)
+				}
+				return render(request, 'admin/events_ajax.html', args)
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def event_create(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				return render(request, 'admin/event_create.html', {'administration': Section.objects.get(slug='administrator')})
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))

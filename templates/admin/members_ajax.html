@@ -27,7 +27,7 @@
                         </button>
                     </div>
                     <div class="setup-user-box">
-                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Ver' %}">
+                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Editar' %}">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -87,7 +87,7 @@
             <div id="modal-user-img"></div>
             <h4 id="modal-user-name"></h4>
         </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta esto solo evitara que se muestre informacion del usuario publicamente.' %}</h3>
+        <h3 id="modal-message">{% trans 'Ten en cuenta que esto solo evitará que se muestre información del usuario públicamente.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" member-id="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
@@ -143,11 +143,6 @@
     </div>
 </div>
 <input id="pictureField" type="file" accept="image/png, image/jpeg" style="display:none;" name="picture">
-
-
-
-
-
 
 <script src="{% static 'admin/js/members_event.js' %}"></script>
 <script>members();</script>

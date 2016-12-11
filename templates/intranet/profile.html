@@ -259,7 +259,7 @@
      	</div>
      	<div class="row profile field">
 			<span class="c12">{% trans 'Biografía' %}:</span>
-     		<div class="c12"><textarea type="text" name="bio" class="text" placeholder="{% trans 'Biografía' %}" required>{{ profile_user.bio }}</textarea></div>
+     		<div class="c12"><textarea type="text" name="bio" class="text" placeholder="{% trans 'Biografía' %}" required>{% if profile_user.bio %}{{ profile_user.bio }}{% endif %}</textarea></div>
      	</div>
          <div class="row profile field">
          	<div class="s6 c6"><input type="submit" class="submit trans"></div>

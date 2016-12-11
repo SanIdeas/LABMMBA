@@ -159,9 +159,15 @@
         <div class="row">
             <div class="c12">
                 <ul id="bottom-nav" class="clear">
-                    <li><a class="red" href="section.html">Lorem ipsum</a></li>
-                    <li><a class="orange" href="section.html">Laboriosam quasi tempore</a></li>
-                    <li><a class="yellow" href="section.html">Quidem cupiditate</a></li>
+                    {% if other_sections.0 %}
+                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.1 %}
+                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.2 %}
+                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

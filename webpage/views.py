@@ -15,8 +15,8 @@ import json
 # Junta elementos de un objeto iterable en grupos de n elementos
 # http://stackoverflow.com/questions/5389507/iterating-over-every-two-elements-in-a-list
 def grouped(iterable, n):
-    "s -> (s0,s1,s2,...sn-1), (sn,sn+1,sn+2,...s2n-1), (s2n,s2n+1,s2n+2,...s3n-1), ..."
-    return izip(*[iter(iterable)]*n)
+	"s -> (s0,s1,s2,...sn-1), (sn,sn+1,sn+2,...s2n-1), (s2n,s2n+1,s2n+2,...s3n-1), ..."
+	return izip(*[iter(iterable)]*n)
 
 # Create your views here.
 def home(request):
@@ -102,7 +102,7 @@ def news_feed(request):
 	sections = Section.objects.all()
 	section = Section.objects.get(slug='news')
 
-	paginator = Paginator(News.objects.filter(is_published=True), 8);
+	paginator = Paginator(News.objects.filter(is_published=True), 8)
 
 	# Se extrae el numero de pagina
 	if request.GET.get('page'):
@@ -115,6 +115,7 @@ def news_feed(request):
 							'current_view': section,
 							'current_section': section,
 							'sections': sections.exclude(slug__in=exclude),
+							'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
 							'body': 'seccion',
 							'news': grouped(news, 2),
 							'paginator': news
@@ -140,10 +141,16 @@ def news_editor(request, id = None):
 
 						sections = Section.objects.all()
 						section = Section.objects.get(slug='news')
+
+						if news.title:
+							title = news.title
+						else:
+							title = 'Noticia sin título'
 						return render(request, 'webpage/news_editor.html', {
-												'current_view': section,
+												'current_view': Section(spanish_name=title, english_name=title),
 												'current_section': section,
 												'sections': sections.exclude(slug__in=exclude),
+												'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
 												'body': 'blog',
 												'news': news
 												})
@@ -170,7 +177,7 @@ def news_editor(request, id = None):
 
 def news(request, year = None, month = None, day = None, title = None):
 	try:
-		date =  datetime.strptime(str(day) + str(month) + str(year), '%d%m%Y')
+		date = datetime.strptime(str(day) + str(month) + str(year), '%d%m%Y')
 		news = News.objects.filter(date=date, slug=title)
 		if news:
 			if request.user.is_authenticated():
@@ -186,10 +193,16 @@ def news(request, year = None, month = None, day = None, title = None):
 			sections = Section.objects.all()
 			section = Section.objects.get(slug='news')
 
+			if news[0].title:
+				title = news[0].title
+			else:
+				title = 'Noticia sin título'
+
 			return render(request, 'webpage/news.html', {
-									'current_view': section,
+									'current_view': Section(spanish_name=title, english_name=title),
 									'current_section': section,
 									'sections': sections.exclude(slug__in=exclude),
+									'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
 									'body': 'blog',
 									'news_': news[0],
 									})
@@ -198,6 +211,7 @@ def news(request, year = None, month = None, day = None, title = None):
 	except Exception as error:
 		print error
 		return HttpResponseRedirect(reverse('webpage:news_feed'))
+
 
 def new_news_comment(request):
 	news = None
@@ -212,7 +226,7 @@ def new_news_comment(request):
 		fields = {
 			'news': news.id,
 			'author': request.user.id,
-			'content': request.POST.get('content') 
+			'content': request.POST.get('content')
 		}
 		form = NewsCommentForm(fields)
 		if form.is_valid():
@@ -227,6 +241,7 @@ def new_news_comment(request):
 			return HttpResponseRedirect(reverse('webpage:news_editor', kwargs={'id': news.id}))
 		else:
 			return HttpResponseRedirect(reverse('intranet:news'))
+
 
 def save_images(request):
 	if request.user.is_authenticated() and request.method == 'POST':

@@ -24,7 +24,6 @@ function reload_member_setup(msg){
 }
 
 function members(){
-
 	$('#add-member-form').submit(function(e){
 		$.ajax({
 			url: reload,

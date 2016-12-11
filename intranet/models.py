@@ -105,7 +105,7 @@ class Document(models.Model):
 
 			# Se arregla el nombre de archivo documento
 			# http://stackoverflow.com/questions/12358920/renaming-files-in-django-filefield
-			new_filename= settings.DOC_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.pdf'
+			new_filename = settings.DOC_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.pdf'
 			os.rename(self.document.path, (new_filename))
 			self.document.name = new_filename
 

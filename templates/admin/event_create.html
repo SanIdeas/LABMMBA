@@ -1,0 +1,133 @@
+{% extends 'admin/shared.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'usm_theme/css/vendor/jquery-datepicker/jquery-ui.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="intranet row">
+	<div class="c11 create-event-title" style="float: none">
+		<div class="intranet box">
+			<div class="upload head">
+				<h1>{% trans "Creando un evento" %}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="c11" style="float: none!important; margin: auto">
+		<div class="intranet box news">
+			<form id="create-event-form" class="clear c12" action="{% url 'intranet:create_news' %}" redirect-to="live-editor" method="POST" >
+				{% csrf_token %}
+		        <div class="row field">
+					<span class="c12">{% trans 'Título' %}:</span>
+		         	<div class="c12">
+		         		<input type="text"  name="source_text" class="text" placeholder="{% trans 'Requerido' %}"/>
+		         	</div>
+		        </div>
+		        <div class="row field">
+					<span class="c12">{% trans 'Descripción' %}:</span>
+		         	<div class="c12">
+                        <textarea type="text"  name="source_url" class="text" placeholder="{% trans 'Requerido' %}"></textarea>
+		         	</div>
+		        </div>
+                <div class="row">
+                     <div class="c6 field">
+                        <span class="c12">{% trans 'Imagen' %}:</span>
+                        <div class="c12">
+                            <input type="file" accept="image/png, image/jpeg" name="image">
+                        </div>
+                     </div>
+                    <div class="c6 field">
+                        <span class="c12">{% trans 'Programa' %}:</span>
+                        <div class="c12">
+                            <input type="file" accept="application/pdf" name="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="row field table ">
+                    <table class="intranet box">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{% trans 'Fecha' %}</th>
+                            <th>{% trans 'Lugar' %}</th>
+                            <th>{% trans 'Inicio' %}</th>
+                            <th>{% trans 'Término' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="date"><input readonly type="text" name="date" class="text" placeholder="{% trans 'dd-mm-aaaa' %}"/></td>
+                            <td class="location"><input type="text"  name="location" class="text" placeholder="{% trans 'Requerido' %}"/></td>
+                            <td class="time"><input type="text"  name="begin_hour" class="text" placeholder="{% trans 'HH:mm' %}"/></td>
+                            <td class="time"><input type="text"  name="end_hour" class="text" placeholder="{% trans 'HH:mm' %}"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+		         <div class="row field">
+		         	<div class="s6 c6"><input type="submit" class="submit trans news" value="{% trans 'Enviar' %}" disabled></div>
+		         </div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Modal para modificar la miniatura -->
+<div id="changePicture" class="news modal"  style="display:none!important; height:100%;">
+	<div class="cropper">
+  		<div class="editor" style="display:none; opacity:0; top:20px;">
+  			<div class="crop">
+  				<img id="imageCropper">
+  			</div>
+	  		<div class="buttons">
+  				<div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
+  				<div class="c4"><button id="selectImage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+
+<!-- Modal extra -->
+<div style="display:none;">
+	<div>
+		<div id="errorModal">
+			<i class="fa fa-times" aria-hidden="true"></i>
+			<h3>{% trans "Asegurate de adjuntar una miniatura." %}</h3>
+		</div>
+	</div>
+</div>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
+
+<script>
+    if(current_lang == 'es'){
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '<Ant',
+            nextText: 'Sig>',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+    }
+
+    $('#create-event-form .date input').datepicker({
+        firstDay: 1,
+        dateFormat: 'dd-mm-yy'
+    });
+</script>
+<script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
+<script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>
+<script src="{% static 'intranet/js/news/news_create_sender.js' %}"></script>
+{% endblock %}

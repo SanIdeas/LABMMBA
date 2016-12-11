@@ -45,6 +45,7 @@
 		<script src="{% static 'intranet/js/vendor/autosize.js' %}"></script>
 		<script src="{% static 'intranet/js/mobile_check.js' %}"></script>
 		<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
+        <script src="{% static 'usm_theme/js/jquery-ui.min.js' %}"></script>
 		<script src="{% static 'usm_theme/js/royalslider.js' %}"></script>
 		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
 		<script src="{% static 'usm_theme/js/functions.js' %}"></script>
@@ -73,12 +74,12 @@
                                         <li class="{% if areas_view == request.path%} current {%endif%}"><a href="{{areas_view}}">{% trans "Áreas" %}</a></li>
                                         {% url 'admin:webpage' as webpage_view%}
                                         <li class="{% if webpage_view == request.path%} current {%endif%}"><a href="{{webpage_view}}">{% trans "Página Web" %}</a></li>
+                                        {% url 'admin:members' as members_view%}
+                                        <li class="{% if members_view == request.path%} current {%endif%}"><a href="{{members_view}}">{% trans "Integrantes" %}</a></li>
                                         {% url 'admin:news' as news_view%}
                                         <li class="{% if news_view == request.path%} current {%endif%}"><a href="{{news_view}}">{% trans "Noticias" %}</a></li>
                                         {% url 'admin:events' as events_view%}
                                         <li class="{% if events_view == request.path%} current {%endif%}"><a href="{{events_view}}">{% trans "Eventos" %}</a></li>
-                                        {% url 'admin:members' as members_view%}
-                                        <li class="{% if members_view == request.path%} current {%endif%}"><a href="{{members_view}}">{% trans "Integrantes" %}</a></li>
 										<li><a href="{% url 'webpage:home' %}">{% trans "Volver a la página principal" %}</a></li>
 									</ul>
 									<ul class="mobile-top-nav clear">
@@ -150,6 +151,11 @@
 						<i class="fa fa-globe" aria-hidden="true"></i>
                     	{% trans "Página Web" %}
                     </a>
+                    {% url 'admin:members' as members_view%}
+                    <a class="clear {% if members_view == request.path%} selected {%endif%}" href="{{members_view}}">
+                        <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        {% trans "Integrantes" %}
+                    </a>
                     {% url 'admin:news' as news_view%}
                     <a class="clear {% if news_view == request.path%} selected {%endif%}" href="{{news_view}}">
                         <i class="fa fa-newspaper-o" aria-hidden="true"></i>
@@ -159,10 +165,6 @@
                     <a class="clear {% if events_view == request.path%} selected {%endif%}" href="{{events_view}}">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         {% trans "Eventos" %}
-                    {% url 'admin:members' as members_view%}
-                    <a class="clear {% if members_view == request.path%} selected {%endif%}" href="{{members_view}}">
-						<i class="fa fa-address-card-o" aria-hidden="true"></i>
-                        {% trans "Integrantes" %}
                     </a>
                 </div>
                 <img class="utfsm noselect" src="{% static 'intranet/images/utfsm_gray.png' %}">

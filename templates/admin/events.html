@@ -1,0 +1,22 @@
+{% extends 'admin/shared.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as lang %}
+
+{% block extra_js %}
+    <script src="{% static 'admin/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/vendor/tinymce/jquery.tinymce.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="events-setup">
+    <div class="documents filters intranet box webpage-setup-title"></div>
+</div>
+
+<script>var reload = "{% url 'admin:events'%}"</script>
+<script>var remove = "{% url 'admin:delete_event' 999 %}"</script>
+<script>
+    var csrf_token = '{{csrf_token}}';
+    reload_events_setup();
+</script>
+{% endblock %}

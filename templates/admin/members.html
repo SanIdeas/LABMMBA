@@ -1,9 +1,19 @@
 {% extends 'admin/shared.html' %}
-
-{% block content %}
 {% load i18n %}
 {% load staticfiles %}
 
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/member.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
+    <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script>
+    <script src="{% static 'admin/js/members.js' %}"></script>
+{% endblock %}
+
+{% block content %}
 <div id="members-setup"></div>
 
 <script>
@@ -16,17 +26,4 @@
 	var csrf_token = "{{ csrf_token }}";
     reload_member_setup();
 </script>
-
-
-{% endblock %}
-
-{% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/member.css' %}">
-{% endblock %}
-
-{% block extra_js %}
-<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
-<script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script>
-<script src="{% static 'admin/js/members.js' %}"></script>
 {% endblock %}

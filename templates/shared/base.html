@@ -65,10 +65,13 @@
 									{% if request.user.is_authenticated == False %}
 										<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 									{% else %}
-										<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+                                        {% if request.user.is_admin %}
+                                            <li><a href="#">{{request.user.email}}</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+                                        {% endif %}
 										<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 									{% endif %}
-									<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
 									{% if lang == "es" %}
 										<li><a href="{% translate_url 'en' %}">English version</a></li>
 									{% else %}
@@ -92,10 +95,13 @@
 							{% if request.user.is_authenticated == False %}
 								<li><a href="{% url 'login' %}">{% trans "Ingresar" %}</a></li>
 							{% else %}
-								<li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+                                {% if request.user.is_admin %}
+                                    <li><a href="#">{{request.user.email}}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'intranet:profile' request.user.id %}">{{request.user.first_name}} {{request.user.last_name}}</a></li>
+                                {% endif %}
 								<li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
 							{% endif %}
-							<li><a href="http://www.usm.cl/universidad/campus-y-sedes/">Campus y Sedes</a></li>
 							{% if lang == "es" %}
 								<li><a href="{% translate_url 'en' %}">English version</a></li>
 							{% else %}

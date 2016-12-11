@@ -107,6 +107,42 @@
 		visibility: hidden;
 	}
 }
+
+/* Generated with Bounce.js. Edit at https://goo.gl/CjeH1S */
+@-webkit-keyframes button-bounce-animation{
+	0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	3.6% { -webkit-transform: matrix3d(1.408, 0, 0, 0, 0, 1.408, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.408, 0, 0, 0, 0, 1.408, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	7.11% { -webkit-transform: matrix3d(1.524, 0, 0, 0, 0, 1.524, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.524, 0, 0, 0, 0, 1.524, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	9.61% { -webkit-transform: matrix3d(1.481, 0, 0, 0, 0, 1.481, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.481, 0, 0, 0, 0, 1.481, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	12.11% { -webkit-transform: matrix3d(1.377, 0, 0, 0, 0, 1.377, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.377, 0, 0, 0, 0, 1.377, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	17.12% { -webkit-transform: matrix3d(1.119, 0, 0, 0, 0, 1.119, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.119, 0, 0, 0, 0, 1.119, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	22.12% { -webkit-transform: matrix3d(0.939, 0, 0, 0, 0, 0.939, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.939, 0, 0, 0, 0, 0.939, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	27.13% { -webkit-transform: matrix3d(0.885, 0, 0, 0, 0, 0.885, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.885, 0, 0, 0, 0, 0.885, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	37.14% { -webkit-transform: matrix3d(0.974, 0, 0, 0, 0, 0.974, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.974, 0, 0, 0, 0, 0.974, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	47.15% { -webkit-transform: matrix3d(1.025, 0, 0, 0, 0, 1.025, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.025, 0, 0, 0, 0, 1.025, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	67.17% { -webkit-transform: matrix3d(0.995, 0, 0, 0, 0, 0.995, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.995, 0, 0, 0, 0, 0.995, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	87.19% { -webkit-transform: matrix3d(1.001, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.001, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+}
+
+@keyframes button-bounce-animation{
+	0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	3.6% { -webkit-transform: matrix3d(1.408, 0, 0, 0, 0, 1.408, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.408, 0, 0, 0, 0, 1.408, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	7.11% { -webkit-transform: matrix3d(1.524, 0, 0, 0, 0, 1.524, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.524, 0, 0, 0, 0, 1.524, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	9.61% { -webkit-transform: matrix3d(1.481, 0, 0, 0, 0, 1.481, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.481, 0, 0, 0, 0, 1.481, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	12.11% { -webkit-transform: matrix3d(1.377, 0, 0, 0, 0, 1.377, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.377, 0, 0, 0, 0, 1.377, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	17.12% { -webkit-transform: matrix3d(1.119, 0, 0, 0, 0, 1.119, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.119, 0, 0, 0, 0, 1.119, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	22.12% { -webkit-transform: matrix3d(0.939, 0, 0, 0, 0, 0.939, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.939, 0, 0, 0, 0, 0.939, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	27.13% { -webkit-transform: matrix3d(0.885, 0, 0, 0, 0, 0.885, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.885, 0, 0, 0, 0, 0.885, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	37.14% { -webkit-transform: matrix3d(0.974, 0, 0, 0, 0, 0.974, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.974, 0, 0, 0, 0, 0.974, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	47.15% { -webkit-transform: matrix3d(1.025, 0, 0, 0, 0, 1.025, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.025, 0, 0, 0, 0, 1.025, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	67.17% { -webkit-transform: matrix3d(0.995, 0, 0, 0, 0, 0.995, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.995, 0, 0, 0, 0, 0.995, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	87.19% { -webkit-transform: matrix3d(1.001, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.001, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+}
+/*******/
+
+
 #adm-selectors-wpr{
 	width: 100%;
 	position: relative;
@@ -219,7 +255,7 @@
 
 .setup-subtitle{
 	margin: 0;
-	padding: 10px 0px;
+	padding: 10px 0;
 }
 
 .setup-areas-subtitle{
@@ -269,12 +305,20 @@
 	background: #006e9c!important;
 }
 
-.setup-subtitle.green, .setup-areas-subtitle.green, .setup-areas-subtitle.green h3{
+.setup-subtitle.green, .setup-areas-subtitle.green, .setup-areas-subtitle.green h3, .setup-events-subtitle-container.green, .setup-events-subtitle-container.green h3{
 	background: #009065!important;
 }
 
 .setup-subtitle.red{
 	background: #e0424e!important;
+}
+
+.setup-events-subtitle-container{
+	display: flex;
+}
+
+.setup-events-subtitle-container h3{
+	width: 100%;
 }
 
 .selector-1{
@@ -364,6 +408,7 @@
 	background-color: #e9edf0;
 	position: relative;
 	z-index: 99;
+	white-space: nowrap;
 	box-sizing: border-box;
 	transform: translateX(0px);
 	transition: transform 0.2s ease-in-out;
@@ -390,6 +435,10 @@
     left: -26px;
     background-color: #f4f9fc;
 	vertical-align: middle;
+	max-width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .setup-user-email{
@@ -686,12 +735,12 @@
 	transition: 0s;
 }
 
-#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup, #news-setup{
+#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup, #members-setup, #news-setup, #events-setup{
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
-#news-setup{
+#news-setup, #events-setup{
 	padding-top: 20px;
 }
 
@@ -745,13 +794,6 @@ form .submit{
 	.setup-user-email{
 		display: none;
 	}
-
-	.setup-user-name, .setup-subarea-name{
-		width: 80%;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-	}
 }
 
 @media screen and (max-width:438px){
@@ -784,7 +826,6 @@ form .submit{
 	top: 103px;
 }
 
-
 #users-setup > div {
 	text-align: left;	
 }
@@ -793,10 +834,15 @@ form .submit{
 	padding: 0px;
 }
 
-#users-setup > div.title span.error {
+div.title span{
+	margin-left: 10px;
+}
+
+span.error {
     font-style: italic;
     color: #ee5b55;
     display: block;
+	text-align: left;
 }
 
 #search {
@@ -872,9 +918,15 @@ form .submit{
 	text-decoration: none;
 	color: #aab9c1;
 	outline: none;
+	cursor: default;
 }
 
-.news .list .item a.pin:hover{
+.news .list .item a.pin:not(.no-hover):hover{
+	cursor: pointer;
+}
+
+.news .list .item a.pin:not(.no-hover):not(.selected):hover{
+	opacity: 0.8;
 	color: #336090;
 }
 
@@ -917,7 +969,7 @@ form .submit{
 }
 
 #webpage-categories-container > ul li .c12.img img{
-	max-width: 75%;
+	max-width: 60%;
 }
 
 #webpage-categories-container > ul li .c12.img p{
@@ -926,4 +978,63 @@ form .submit{
 
 .selectThumbnail{
 	cursor: pointer;
+}
+
+@media screen and (max-width: 1100px){
+	#webpage-categories-container > ul li.c4{
+		width: 50%!important;
+	}
+}
+
+@media screen and (max-width: 372px){
+	#webpage-categories-container > ul li.c4{
+		width: 100%!important;
+	}
+}
+
+.bounce-animation-target{
+	-webkit-animation: button-bounce-animation 1000ms linear both;
+	animation: button-bounce-animation 1000ms linear both;
+}
+
+.create-event-title{
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#create-event-form .text{
+	width: 100%;
+}
+
+#create-event-form .submit{
+	width: 100%;
+}
+
+#create-event-form div.table{
+	overflow-x: auto;
+	padding: 20px;
+}
+
+#create-event-form table{
+	margin: 0;
+}
+
+#create-event-form table th{
+	padding: 8px;
+	text-align: center;
+	white-space: nowrap;
+}
+
+#create-event-form table td{
+	padding: 0;
+	text-align: center;
+}
+
+#create-event-form table input{
+	text-align: center;
+}
+
+#create-event-form table td.date, #create-event-form table td.time{
+	width: 120px;
 }

@@ -38,6 +38,12 @@
                                 {% endif %}
                                     </span>
                         {% endif %}
+                        {% if news.admin_has_unseen_comments %}
+                            <a class="unseen" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}?ret=news#comment{{news.admin_has_unseen_comments}}">
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                {% trans "Tienes comentarios sin leer" %}
+                            </a>
+                        {% endif %}
                     </div>
                     <div class="buttons c2">
                         <div class="wrapper">
@@ -91,13 +97,21 @@
                                 {% endif %}
                                     </span>
                         {% endif %}
+                        {% if news.admin_has_unseen_comments %}
+                            <a class="unseen" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}?ret=news#comment{{news.admin_has_unseen_comments}}">
+                                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                {% trans "Tienes comentarios sin leer" %}
+                            </a>
+                        {% endif %}
                     </div>
                     <div class="buttons c2">
                         <div class="wrapper">
-                            <a class="fa-stack fa-lg check trans setup-publish-news-box" news-id="{{news.id}}">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                            </a>
+                            {% if news.title %}
+                                <a class="fa-stack fa-lg check trans setup-publish-news-box" news-id="{{news.id}}">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                </a>
+                            {% endif %}
                             <a href="#deleteModal" class="fa-stack fa-lg delete trans modal setup-delete-news-box" data-id="{{news.id}}" data-title="{% if news.title %}{{news.title}}{% else %}{% trans "Noticia sin título" %}{% endif %}" data-date="{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

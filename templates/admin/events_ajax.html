@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load staticfiles %}
+<div class="intranet box news">
+    <div class="setup-events-subtitle-container green">
+        <h3>{% trans "Eventos Publicados" %}</h3>
+        <a href="{% url 'admin:create_event' %}" class="fa-stack fa-lg add trans" title="{% trans 'Crear' %}">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+        </a>
+    </div>
+    <div class="list clear">
+        {% if events %}
+            {% for event in events %}
+                <div class="item clear">
+                    <div class="details c10">
+                        {%if event.get_date%}<span class="date">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>{%endif%}
+                        <div>
+                            <a href="" class="news-title-link">
+                                <h2 class="title">{{event.title}}</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="buttons c2">
+                        <div class="wrapper">
+                            <a class="fa-stack fa-lg edit trans setup-edit-event-box" event-id="{{event.id}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                            </a>
+                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{event.id}}" data-title="{{event.title}}" data-date="{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="webpage-setup-title">
+                <h2 class="">{% trans 'No hay eventos publicados' %}</h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="document modal" id="deleteModal" style="display:none;">
+    <h2>{% trans "¿Estás seguro?" %}</h2>
+    <p>{% trans "Este evento desaparecerá completamente" %}</p>
+    <h3 class="confirm" type="title" data=""></h3>
+    <h5 class="confirm" type="date" data=""></h5>
+    <div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+</div>
+
+<script>events();</script>
+

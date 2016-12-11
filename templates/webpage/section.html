@@ -48,7 +48,7 @@
 			<div class="s1 c11">
                 {% for category1, category2 in categories %}
                     <div class="clear">
-                        <section class="c6 circle" id="{{category1.0.id}}">
+                        <section class="c6 circle category" id="{{category1.0.id}}">
                             <div class="row trans">
                                 <div class="c4 img">
                                     {% if category1.0.image %}
@@ -68,7 +68,7 @@
                             </div>
                         </section>
                         {% if category2 %}
-                            <section class="c6 circle" id="{{category2.0.id}}">
+                            <section class="c6 circle category" id="{{category2.0.id}}">
                                 <div class="row trans">
                                     <div class="c4 img">
                                         {% if category2.0.image %}
