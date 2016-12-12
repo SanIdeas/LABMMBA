@@ -7,7 +7,7 @@ from django.dispatch.dispatcher import receiver
 from login.models import User
 from datetime import date, datetime
 from django.db import models
-import os
+import os, re
 
 
 # Create your models here.
@@ -128,7 +128,19 @@ class News(models.Model):
 	is_external = models.BooleanField(default=False)
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title)
+		slug = slugify(self.title)
+		news = News.objects.filter(date=self.date, title=self.title).exclude(id=self.id)
+		count = 0
+		# Si existe una noticia con el mismo nombre
+		# Se agrega un numero al final del slug
+		if news:
+			while True:
+				count += 1
+				slug_temp = slug + '-' + str(count)
+				if not News.objects.filter(date=self.date, slug=slug_temp).exclude(id=self.id):
+					break
+			slug += '-' + str(count)
+		self.slug = slug
 		super(News, self).save(*args, **kwargs)
 
 	def set_header_filename(self):
@@ -188,6 +200,22 @@ class News(models.Model):
 	# Actualiza los mensajes leidos
 	def read_comments(self, user):
 		comments = News_comment.objects.filter(news=self).exclude(author=user).update(seen=True)
+
+	def get_extract(self):
+		reg = re.compile(r'<p>\n*\s*(.*)\s*\n*<\/p>')
+		text = reg.findall(self.body)
+		if text:
+			text = re.sub(r'<.>|<\/.>', '', text[0])
+			text_split = text.split()
+			n = 50
+			sub = []
+			if n < len(text_split):
+				for i in range(0, n):
+					sub.append(text_split[i])
+				text = ' '.join(sub) + ' (...)'
+			return text
+
+		return ''
 
 
 class News_comment(models.Model):
