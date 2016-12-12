@@ -456,7 +456,7 @@ def search_helper(request, search=None):
 
 def news(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
-		return render(request, 'intranet/news.html', {'intranet': Section.objects.get(slug='intranet'), 'user_news': News.objects.filter(author=request.user)})
+		return render(request, 'intranet/news.html', {'intranet': Section.objects.get(slug='intranet'), 'user_news': News.objects.filter(author=request.user).order_by('-date')})
 	else:
 		return HttpResponseRedirect(reverse('login'))
 

@@ -13,7 +13,7 @@
     <div class="grid">
         <div class="row">
             <section class="content noticias list c8">
-                {% if not news %}
+                {% if news %}
                     <div class="clear">
                         {% for left, right in news %}
                             <div class="row">
@@ -27,7 +27,7 @@
                                         <figcaption>
                                             <span class="date">{{left.date|date:'d'}} · {{left.date|date:'F'}} · {{left.date|date:'Y'}}</span>
                                             <h4>{{left.title}}</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo optio aperiam dicta voluptatibus deserunt aliquid placeat ex ipsam!</p>
+                                            <p>{{left.get_extract}}</p>
                                         </figcaption>
                                     </figure>
                                 </a>
@@ -42,7 +42,7 @@
                                             <figcaption>
                                                 <span class="date">{{right.date|date:'d'}} · {{right.date|date:'F'}} · {{right.date|date:'Y'}}</span>
                                                 <h4>{{right.title}}</h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, dolore, nesciunt veritatis tempora a voluptas nam sint aliquid.</p>
+                                                <p>{{right.get_extract}}</p>
                                             </figcaption>
                                         </figure>
                                     </a>

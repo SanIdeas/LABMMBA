@@ -37,9 +37,9 @@ def home(request):
 							'documents': documents,
 							'sections': sections.exclude(slug__in=exclude),
 							'body': 'inicio',
-							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None)[:5],
-							'news_1': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None)[:2],
-							'news_2': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None)[2:4],
+							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None).order_by('-date')[:5],
+							'news_1': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[:2],
+							'news_2': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[2:4],
 							})
 
 
@@ -125,7 +125,7 @@ def news_feed(request):
 	sections = Section.objects.all()
 	section = Section.objects.get(slug='news')
 
-	paginator = Paginator(News.objects.filter(is_published=True), 8)
+	paginator = Paginator(News.objects.filter(is_published=True).order_by('-date'), 8)
 
 	# Se extrae el numero de pagina
 	if request.GET.get('page'):
@@ -133,14 +133,14 @@ def news_feed(request):
 		except: news = paginator.page(1)
 	else:
 		news = paginator.page(1)
-
+	news_group = grouped(news, 2)
 	return render(request, 'webpage/news_feed.html', {
 							'current_view': section,
 							'current_section': section,
 							'sections': sections.exclude(slug__in=exclude),
 							'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
 							'body': 'seccion',
-							'news': grouped(news, 2),
+							'news': news_group if len(news) else None,
 							'paginator': news
 							})
 
@@ -190,6 +190,7 @@ def news_editor(request, id = None):
 					news.title = request.POST.get('news-title') if request.POST.get('news-title') != "" and request.POST.get('news-title') != "undefined"  else _(u"Noticia sin título")
 				if request.POST.get('news-content') is not None:
 					news.body = request.POST.get('news-content')
+				news.is_published = False
 				news.save()
 				return JsonResponse({'error': False})
 		else:
