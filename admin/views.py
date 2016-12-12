@@ -635,6 +635,7 @@ def event_create(request):
 						if result:		# Error
 							event.delete()
 
+						event.check_slug()
 						return JsonResponse({'redirect': reverse('admin:events')})
 					except Exception as e:
 						print e.message
@@ -687,9 +688,9 @@ def event_edit(request, event_id=None):
 					result = event.add_event_days(json.loads(days))
 					if result:
 						return JsonResponse({'error': True})
-
 				try:
 					event.save()
+					event.check_slug()
 					return JsonResponse({'redirect': reverse('admin:events')})
 				except Exception as e:
 					print e.message

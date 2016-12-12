@@ -290,8 +290,34 @@ class Event(models.Model):
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.title)
-
 		super(Event, self).save(*args, **kwargs)
+
+	def exists_event_with_slug(self, slug):
+		exists = False
+		events = Event.objects.filter(slug=slug).exclude(id=self.id)
+		for event in events:
+			if event.get_date() == self.get_date():
+				exists = True
+				break
+
+		return exists
+
+	def check_slug(self):
+		slug = self.slug
+
+		count = 0
+		# Si existe un evento con el mismo nombre
+		# Se agrega un numero al final del slug
+		if self.exists_event_with_slug(slug):
+			while True:
+				count += 1
+				slug_temp = slug + '-' + str(count)
+				if not self.exists_event_with_slug(slug_temp):
+					break
+			slug += '-' + str(count)
+
+		self.slug = slug
+		self.save()
 
 	def get_date(self):
 		event_day = self.get_days().first()
