@@ -22,7 +22,7 @@
                     </div>
                     <div class="buttons c2">
                         <div class="wrapper">
-                            <a class="fa-stack fa-lg edit trans setup-edit-event-box" event-id="{{event.id}}">
+                            <a href="{% url 'admin:edit_event' event.id %}" class="fa-stack fa-lg edit trans setup-edit-event-box" event-id="{{event.id}}">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                             </a>

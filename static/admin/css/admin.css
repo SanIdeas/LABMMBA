@@ -1003,38 +1003,60 @@ span.error {
 	margin-right: auto;
 }
 
-#create-event-form .text{
+#create-event-form .text, #edit-event-form .text{
 	width: 100%;
 }
 
-#create-event-form .submit{
+#create-event-form input.submit, #edit-event-form input.submit{
 	width: 100%;
 }
 
-#create-event-form div.table{
+#create-event-form div.table, #edit-event-form div.table{
 	overflow-x: auto;
 	padding: 20px;
 }
 
-#create-event-form table{
+#create-event-form table, #edit-event-form table{
 	margin: 0;
 }
 
-#create-event-form table th{
+#create-event-form table th, #edit-event-form table th{
 	padding: 8px;
 	text-align: center;
 	white-space: nowrap;
 }
 
-#create-event-form table td{
+#create-event-form table td, #edit-event-form table td{
 	padding: 0;
 	text-align: center;
 }
 
-#create-event-form table input{
+#create-event-form table input, #edit-event-form table input{
 	text-align: center;
 }
 
-#create-event-form table td.date, #create-event-form table td.time{
+#create-event-form table td.num, #edit-event-form table td.num{
+	width: 20px;
+}
+
+#create-event-form table td.date, #edit-event-form table td.date{
 	width: 120px;
+}
+
+#create-event-form table td.time, #edit-event-form table td.time{
+	width: 80px;
+}
+
+#create-event-form .day-btns, #edit-event-form .day-btns{
+	text-align: right;
+	white-space: nowrap;
+}
+
+#create-event-form .day-btns button.submit, #edit-event-form .day-btns button.submit{
+	width: auto;
+	padding: 5px;
+}
+
+#create-event-form .day-btns button.remove-day, #edit-event-form .day-btns button.remove-day{
+	background: #e0424e!important;
 }

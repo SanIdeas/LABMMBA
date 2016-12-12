@@ -18,37 +18,37 @@
 	<div class="c11 create-event-title" style="float: none">
 		<div class="intranet box">
 			<div class="upload head">
-				<h1>{% trans "Creando un evento" %}</h1>
+				<h1>{% trans "Editando un evento" %}</h1>
 			</div>
 		</div>
 	</div>
 	<div class="c11" style="float: none!important; margin: auto">
 		<div class="intranet box news">
-			<form id="create-event-form" class="clear c12" method="POST">
+			<form id="edit-event-form" class="clear c12" method="POST">
 				{% csrf_token %}
 		        <div class="row field">
 					<span class="c12">{% trans 'Título' %}:</span>
 		         	<div class="c12">
-		         		<input required type="text" name="title" class="text" placeholder="{% trans 'Requerido' %}"/>
+		         		<input required original="" type="text" name="title" class="text" placeholder="{% trans 'Requerido' %}" value="{{event.title}}"/>
 		         	</div>
 		        </div>
 		        <div class="row field">
 					<span class="c12">{% trans 'Descripción' %}:</span>
 		         	<div class="c12">
-                        <textarea required name="description" class="text" placeholder="{% trans 'Requerido' %}"></textarea>
+                        <textarea required original="" name="description" class="text" placeholder="{% trans 'Requerido' %}">{{event.description}}</textarea>
 		         	</div>
 		        </div>
                 <div class="row">
                      <div class="c6 field">
                         <span class="c12">{% trans 'Imagen' %}:</span>
                         <div class="c12">
-                            <input type="file" accept="image/png, image/jpeg" name="image">
+                            <input type="file" accept="image/png, image/jpeg" name="image" value="{{event.image}}">
                         </div>
                      </div>
                     <div class="c6 field">
                         <span class="c12">{% trans 'Programa' %}:</span>
                         <div class="c12">
-                            <input type="file" accept="application/pdf" name="program">
+                            <input type="file" accept="application/pdf" name="program" value="{{event.program}}">
                         </div>
                     </div>
                 </div>
@@ -64,13 +64,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="num">1</td>
-                                <td class="date"><input required readonly type="text" class="text" placeholder="{% trans 'dd-mm-aaaa' %}"/></td>
-                                <td class="location"><input required type="text"  class="text" placeholder="{% trans 'Requerido' %}"/></td>
-                                <td class="time begin-hour"><input required readonly type="text" class="text" placeholder="{% trans 'HH:mm' %}"/></td>
-                                <td class="time end-hour"><input required readonly type="text" class="text" placeholder="{% trans 'HH:mm' %}"/></td>
-                            </tr>
+                            {% for day in days %}
+                                <tr>
+                                    <td class="num">{{forloop.counter}}</td>
+                                    <td class="date"><input original="" required readonly type="text" class="text" placeholder="dd-mm-aaaa" value="{{day.day|date:'d'}}-{{day.day|date:'m'}}-{{day.day|date:'Y'}}"/></td>
+                                    <td class="location"><input original="" required type="text"  class="text" placeholder="{% trans 'Requerido' %}" value="{{day.location}}"/></td>
+                                    <td class="time begin-hour"><input original="" required readonly type="text" class="text" placeholder="HH:mm" value="{{day.begin_hour}}"/></td>
+                                    <td class="time end-hour"><input original="" required readonly type="text" class="text" placeholder="HH:mm" value="{{day.end_hour}}"/></td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
 
@@ -98,7 +100,8 @@
 </div>
 
 <script>
-    var create_event_url = "{% url 'admin:create_event' %}";
-    events_create();
+    var edit_event_url = "{% url 'admin:edit_event' 999 %}";
+    var id = "{{event.id}}";
+    events_edit();
 </script>
 {% endblock %}

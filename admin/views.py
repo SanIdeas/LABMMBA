@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area, SubArea
 from intranet.models import Document
 from webpage.models import Section, SubSection, SubSectionCategory, News, Member, Event
-from webpage.forms import SectionImageForm, ImageMemberForm
+from webpage.forms import SectionImageForm, ImageMemberForm, EventForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 from collections import Counter
 from django.conf import settings
+import json
 
 
 # Create your views here.
@@ -620,6 +621,80 @@ def event_create(request):
 		if request.user.is_admin:
 			if request.method == "GET":
 				return render(request, 'admin/event_create.html', {'administration': Section.objects.get(slug='administrator')})
+			elif request.method == 'POST' and request.is_ajax():
+				form = EventForm(request.POST, request.FILES)
+				if form.is_valid():
+					try:
+						event = form.save()
+						if event.image:
+							event.set_image_filename()
+
+						if event.program:
+							event.set_program_filename()
+
+						result = event.add_event_days(json.loads(request.POST.get('days')))
+						if result:		# Error
+							event.delete()
+
+						return JsonResponse({'redirect': reverse('admin:events')})
+					except Exception as e:
+						print e.message
+						return JsonResponse({'error': True})
+				else:
+					return JsonResponse({'error': True, 'message': form.errors})
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def event_edit(request, event_id=None):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				event = get_object_or_404(Event, id=event_id)
+				return render(request, 'admin/event_edit.html', {'event': event, 'days': event.get_days(), 'administration': Section.objects.get(slug='administrator')})
+			elif request.method == 'POST' and request.is_ajax():
+				print(request.POST)
+				print(request.FILES)
+
+				title = request.POST.get('title', None)
+				description = request.POST.get('description', None)
+				image = request.FILES.get('image', None)
+				program = request.FILES.get('program', None)
+				days = request.POST.get('days', None)
+
+				event = get_object_or_404(Event, id=event_id)
+				if title:
+					event.title = title
+
+				if description:
+					event.description = description
+
+				if image:
+					event.update_image(image)
+
+				if program:
+					event.update_image(program)
+
+				if days:
+					result = event.add_event_days(json.loads(days))
+					if result:
+						return JsonResponse({'error': True})
+
+				try:
+					event.save()
+					return JsonResponse({'redirect': reverse('admin:events')})
+				except Exception as e:
+					print e.message
+					return JsonResponse({'error': True})
 		else:
 			if request.is_ajax():
 				return JsonResponse({'redirect': reverse('webpage:home')})

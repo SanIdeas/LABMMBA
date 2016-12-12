@@ -1174,3 +1174,341 @@ function events(){
         }
     });
 }
+
+function events_create(){
+	function init_pickers(){
+        var confirm = 'Confirm';
+		if(current_lang == 'es')
+            confirm = 'Confirmar';
+
+        $('#create-event-form .date input').datepicker({
+			firstDay: 1,
+			dateFormat: 'dd-mm-yy'
+		});
+
+        $('#create-event-form .time').clockpicker({
+            placement: 'top', // clock popover placement
+            align: 'right',       // popover arrow align
+            donetext: confirm,     // done button text
+            autoclose: true,
+            default: '00:00'
+        });
+	}
+
+	function areInputsFilled(){
+		var areFilled = true;
+		$('#create-event-form .text').each(function(){
+			if(!$(this).val()){
+                areFilled = false;
+				return false;
+			}
+		});
+
+		return areFilled;
+	}
+
+	function checkInputs(){
+        if(areInputsFilled()) {
+            $('#submitEvent').attr('disabled', false);
+        }
+        else
+            $('#submitEvent').attr('disabled', true);
+	}
+
+    function showError(){
+        $.fancybox($('#errorModal').parent('div').html(), {
+            closebtn: false,
+            autoSize: false,
+            width: 400,
+            height: 100,
+            scrolling: false,
+            closeBtn: false
+        });
+    }
+
+	$(document).ready(function(){
+        if(current_lang == 'es'){
+            $.datepicker.regional['es'] = {
+                closeText: 'Cerrar',
+                prevText: '<Ant',
+                nextText: 'Sig>',
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+                dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+        }
+
+		init_pickers();
+        $('#create-event-form .text').val('');
+        $('#create-event-form input[type="file"]').val('');
+
+        $('#create-event-form .text').on('input', checkInputs);
+        $('#create-event-form .date, #create-event-form .time').change(checkInputs);
+    });
+
+    $('.add-day').click(function(){
+        var tbody = $('#create-event-form .table table > tbody');
+        var row = $('#create-event-form .table table > tbody > tr').first().clone();
+        var rowsCount = $('#create-event-form .table table > tbody tr').length;
+        row.find('input').val('');
+        row.find('.num').text(++rowsCount);
+        row.find('.date').find('input').removeAttr('id').removeClass('hasDatepicker');
+
+        tbody.append(row);
+        row.find('.date, .time').change(checkInputs);
+        row.find('.location').on('input', checkInputs);
+        init_pickers();
+        checkInputs();
+
+        if(rowsCount > 1)
+        	$('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+    });
+
+    $('.remove-day').click(function(){
+        var row = $('#create-event-form .table table > tbody > tr').last();
+        var rowsCount = $('#create-event-form .table table > tbody tr').length;
+        --rowsCount;
+
+        if(rowsCount > 0)
+        	row.remove();
+
+        checkInputs();
+
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+    });
+
+    $('#create-event-form').submit(function(e){
+        e.preventDefault();
+
+        var days = [];
+        $('#create-event-form .table table > tbody tr').each(function(){
+        	var day = {};
+        	day['day'] = $(this).find('.date input').val();
+            day['begin_hour'] = $(this).find('.time.begin-hour input').val();
+            day['end_hour'] = $(this).find('.time.end-hour input').val();
+            day['location'] = $(this).find('.location input').val();
+
+        	days.push(day);
+		});
+
+        var form = new FormData(this);
+        form.append('days', JSON.stringify(days));
+
+        $.ajax({
+            url: create_event_url,
+            method: "POST",
+            data: form,
+            contentType: false,
+            processData: false,
+            beforeSend: function(xhr){
+                if(!areInputsFilled())	// Abort if required inputs are not filled
+                    xhr.abort();
+            }
+        }).done(function(response){
+            if(response.redirect)
+                window.location.href = response.redirect;
+            else if(response['error'])
+                showError();
+        });
+	});
+}
+
+function events_edit(){
+	var rowsCount = 0;
+    function init_pickers(){
+        var confirm = 'Confirm';
+        if(current_lang == 'es')
+            confirm = 'Confirmar';
+
+        $('#edit-event-form .date input').datepicker({
+            firstDay: 1,
+            dateFormat: 'dd-mm-yy'
+        });
+
+        $('#edit-event-form .time').clockpicker({
+            placement: 'top', // clock popover placement
+            align: 'right',       // popover arrow align
+            donetext: confirm,     // done button text
+            autoclose: true,
+            default: '00:00'
+        });
+    }
+
+    function areInputsFilled(){
+        var areFilled = true;
+        $('#edit-event-form .text').each(function(){
+            if(!$(this).val()){
+                areFilled = false;
+                return false;
+            }
+        });
+
+        return areFilled;
+    }
+
+    function isNewData(){
+        var isNew = false;
+        $('#edit-event-form .text').each(function(){
+            if($(this).val() != $(this).attr('original')){
+                isNew = true;
+                return false;
+            }
+        });
+
+        if(isNew)
+            return true;
+
+        $('#edit-event-form input[type="file"]').each(function(){
+        	if($(this).val()){
+        		isNew = true;
+        		return false;
+			}
+		});
+
+        return isNew;
+    }
+
+    function checkInputs(){
+    	var actualRowsCount = $('#edit-event-form .table table > tbody tr').length;
+        if(areInputsFilled() && (actualRowsCount != rowsCount || isNewData())) {
+            $('#submitEvent').attr('disabled', false);
+        }
+        else
+            $('#submitEvent').attr('disabled', true);
+    }
+
+    function showError(){
+        $.fancybox($('#errorModal').parent('div').html(), {
+            closebtn: false,
+            autoSize: false,
+            width: 400,
+            height: 100,
+            scrolling: false,
+            closeBtn: false
+        });
+    }
+
+    $(document).ready(function(){
+        if(current_lang == 'es'){
+            $.datepicker.regional['es'] = {
+                closeText: 'Cerrar',
+                prevText: '<Ant',
+                nextText: 'Sig>',
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+                dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+        }
+
+        init_pickers();
+        rowsCount = $('#edit-event-form .table table > tbody tr').length;
+        $('#edit-event-form .text').each(function(){
+            $(this).attr('original', $(this).val());
+        });
+
+        $('#edit-event-form .text').on('input', checkInputs);
+        $('#edit-event-form .date, #edit-event-form .time, #edit-event-form input[type="file"]').change(checkInputs);
+
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+    });
+
+    $('.add-day').click(function(){
+        var tbody = $('#edit-event-form .table table > tbody');
+        var row = $('#edit-event-form .table table > tbody > tr').first().clone();
+        var rowsCount = $('#edit-event-form .table table > tbody tr').length;
+        row.find('input').val('');
+        row.find('.num').text(++rowsCount);
+        row.find('.date').find('input').removeAttr('id').removeClass('hasDatepicker');
+
+        tbody.append(row);
+        row.find('.date, .time').change(checkInputs);
+        row.find('.location').on('input', checkInputs);
+        init_pickers();
+        checkInputs();
+
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+    });
+
+    $('.remove-day').click(function(){
+        var row = $('#edit-event-form .table table > tbody > tr').last();
+        var rowsCount = $('#edit-event-form .table table > tbody tr').length;
+        --rowsCount;
+
+        if(rowsCount > 0)
+            row.remove();
+
+        checkInputs();
+
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+    });
+
+    $('#edit-event-form').submit(function(e){
+        e.preventDefault();
+        var actualRowsCount = $('#edit-event-form .table table > tbody tr').length;
+
+        var days = [];
+        $('#edit-event-form .table table > tbody tr').each(function(){
+            var day = {};
+            day['day'] = $(this).find('.date input').val();
+            day['begin_hour'] = $(this).find('.time.begin-hour input').val();
+            day['end_hour'] = $(this).find('.time.end-hour input').val();
+            day['location'] = $(this).find('.location input').val();
+
+            days.push(day);
+        });
+
+        var form = new FormData(this);
+        form.append('days', JSON.stringify(days));
+
+        $.ajax({
+            url: edit_event_url.replace('999', id),
+            method: "POST",
+            data: form,
+            contentType: false,
+            processData: false,
+            beforeSend: function(xhr){
+                if(!(areInputsFilled() && (actualRowsCount != rowsCount || isNewData())))
+                    xhr.abort();
+            }
+        }).done(function(response){
+            if(response.redirect)
+                window.location.href = response.redirect;
+            else if(response['error'])
+                showError();
+        });
+    });
+}

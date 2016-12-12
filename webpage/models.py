@@ -262,14 +262,23 @@ class Event(models.Model):
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.title)
+
 		super(Event, self).save(*args, **kwargs)
 
 	def get_date(self):
 		event_day = self.get_days().first()
-		return datetime.combine(event_day.day, event_day.begin_hour)
+
+		if event_day:
+			return datetime.combine(event_day.day, event_day.begin_hour)
 
 	def get_days(self):
 		return EventDay.objects.filter(event=self).order_by('day', 'begin_hour')
+
+	def image_static_url(self):
+		return settings.EVENT_IMAGES_STATIC_URL + os.path.basename(self.image.name)
+
+	def program_static_url(self):
+		return settings.EVENT_PROGRAMS_STATIC_URL + os.path.basename(self.program.name)
 
 	def set_image_filename(self):
 		filename_i = settings.EVENTS_IMAGES_DIR + 'EI' + str(self.id) + '.jpg'
@@ -282,6 +291,42 @@ class Event(models.Model):
 		os.rename(self.program.path, filename_p)
 		self.program.name = filename_p
 		self.save()
+
+	def update_image(self, image):
+		# Si existe una foto, se elimina
+		if self.image:
+			os.remove(self.image.path)
+			self.save()
+
+		self.image.save('EI' + str(self.id) + '.jpg', image)
+		self.save()
+		return True
+
+	def update_program(self, program):
+		# Si existe un archivo, se elimina
+		if self.program:
+			os.remove(self.program.path)
+			self.save()
+
+		self.program.save('EP' + str(self.id) + '.pdf', program)
+		self.save()
+		return True
+
+	def add_event_days(self, days):
+		from webpage.forms import EventDayForm
+
+		for day in days:
+			day['event'] = self.id
+			form = EventDayForm(day)
+			if form.is_valid():
+				try:
+					form.save()
+				except Exception as e:
+					print e.message
+					return e.message
+			else:
+				print form.errors
+				return form.errors
 
 
 class EventDay(models.Model):
