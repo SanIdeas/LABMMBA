@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.core.mail import get_connection, EmailMultiAlternatives
 from login.models import User, Area, SubArea
 from intranet.models import Document
-from webpage.models import Section, SubSection, SubSectionCategory, News, Member, Event
-from webpage.forms import SectionImageForm, ImageMemberForm, EventForm
+from webpage.models import Section, SubSection, SubSectionCategory, GalleryPhoto, News, Member, Event
+from webpage.forms import SectionImageForm, GalleryPhotoForm, ImageMemberForm, EventForm
 from django.core.urlresolvers import reverse
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
@@ -287,7 +287,7 @@ def webpage(request, section_id=None, subsection_id=None):
 	if request.user.is_authenticated():
 		if request.user.is_admin:
 			if request.method == "GET":
-				editable_sections = Section.objects.all().exclude(slug__in=['publications', 'intranet', 'administrator', '.', 'news'])
+				editable_sections = Section.objects.all().exclude(slug__in=['publications', 'intranet', 'administrator', '.', 'news', 'events'])
 				return render(request, 'admin/webpage.html', {'sections': editable_sections, 'administration': Section.objects.get(slug='administrator')})
 
 			elif request.method == "POST" and request.is_ajax():
@@ -445,6 +445,47 @@ def save_images(request):
 				else:
 					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
 
+		else:
+			if request.is_ajax():
+				return JsonResponse({'redirect': reverse('webpage:home')})
+			else:
+				return HttpResponseRedirect(reverse('webpage:home'))
+
+	else:
+		if request.is_ajax():
+			return JsonResponse({'redirect': reverse('login')})
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+def gallery(request, photo_id=None):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			if request.method == "GET":
+				return render(request, 'admin/gallery.html', {'administration': Section.objects.get(slug='administrator')})
+
+			elif request.method == "POST" and request.is_ajax():
+				image = request.FILES.get('image', None)
+				if image:		# Add
+					form = GalleryPhotoForm({}, {'image': image})
+					if form.is_valid():
+						photo = form.save()
+						photo.set_image_filename()
+
+						return JsonResponse({'error': False})
+
+					else:
+						print form.errors
+						return JsonResponse({'error': True, 'message': form.errors})
+				elif photo_id is not None:	# Delete
+					photo = get_object_or_404(GalleryPhoto, id=photo_id)
+					photo.delete()
+					return JsonResponse({'error': False})
+				else:
+					args = {
+						'gallery': GalleryPhoto.objects.all().order_by('-id')
+					}
+					return render(request, 'admin/gallery_ajax.html', args)
 		else:
 			if request.is_ajax():
 				return JsonResponse({'redirect': reverse('webpage:home')})
@@ -634,6 +675,7 @@ def event_create(request):
 						result = event.add_event_days(json.loads(request.POST.get('days')))
 						if result:		# Error
 							event.delete()
+							return JsonResponse({'error': True})
 
 						event.check_slug()
 						return JsonResponse({'redirect': reverse('admin:events')})
@@ -662,14 +704,12 @@ def event_edit(request, event_id=None):
 				event = get_object_or_404(Event, id=event_id)
 				return render(request, 'admin/event_edit.html', {'event': event, 'days': event.get_days(), 'administration': Section.objects.get(slug='administrator')})
 			elif request.method == 'POST' and request.is_ajax():
-				print(request.POST)
-				print(request.FILES)
-
 				title = request.POST.get('title', None)
 				description = request.POST.get('description', None)
 				image = request.FILES.get('image', None)
 				program = request.FILES.get('program', None)
 				days = request.POST.get('days', None)
+				remove_days = request.POST.get('remove_days', None)
 
 				event = get_object_or_404(Event, id=event_id)
 				if title:
@@ -685,9 +725,13 @@ def event_edit(request, event_id=None):
 					event.update_image(program)
 
 				if days:
-					result = event.add_event_days(json.loads(days))
+					result = event.update_event_days(json.loads(days))
 					if result:
 						return JsonResponse({'error': True})
+
+				if remove_days:
+					event.remove_event_days(json.loads(remove_days))
+
 				try:
 					event.save()
 					event.check_slug()

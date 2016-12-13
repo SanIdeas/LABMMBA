@@ -6,6 +6,7 @@ from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
 from login.models import User
 from datetime import date, datetime
+from dateutil.parser import parse
 from django.db import models
 import os, re
 
@@ -254,6 +255,19 @@ class SectionImage(models.Model):
 		self.save()
 
 
+class GalleryPhoto(models.Model):
+	image = models.FileField(upload_to='static/webpage/images/gallery/', max_length=500, null=True)
+
+	def image_static_url(self):
+		return settings.GALLERY_IMAGES_STATIC_URL + os.path.basename(self.image.name)
+
+	def set_image_filename(self):
+		filename = settings.GALLERY_IMAGES_DIR + 'GI' + str(self.id) + '.jpg'
+		os.rename(self.image.path, filename)
+		self.image.name = filename
+		self.save()
+
+
 class Member(models.Model):
 	name = models.CharField(max_length=150, unique=True)
 	description = models.TextField()
@@ -382,6 +396,39 @@ class Event(models.Model):
 				print form.errors
 				return form.errors
 
+	def update_event_days(self, days):
+		for day in days:
+			id = day.get('id', None)
+			if id is not None:
+				event_day = EventDay.objects.filter(id=id, event=self).first()
+				if event_day:
+					if day['day'] is not None:
+						event_day.day = parse(day['day']).date()
+
+					if day['begin_hour'] is not None:
+						event_day.begin_hour = day['begin_hour']
+
+					if day['end_hour'] is not None:
+						event_day.end_hour = day['end_hour']
+
+					if day['location'] is not None:
+						event_day.location = day['location']
+
+					try:
+						event_day.save()
+					except Exception as e:
+						print e.message
+
+			else:
+				result = self.add_event_days([day])
+				if result:
+					return result
+
+	def remove_event_days(self, days):
+		for id in days:
+			event_day = EventDay.objects.filter(id=id, event=self).first()
+			if event_day:
+				event_day.delete()
 
 class EventDay(models.Model):
 	day = models.DateField(default=date.today)
@@ -403,13 +450,16 @@ def image_delete(sender, instance, **kwargs):
 def section_delete(sender, instance, **kwargs):
 	instance.header.delete(False)
 @receiver(post_delete, sender=SectionImage)
-def image_delete(sender, instance, **kwargs):
+def section_image_delete(sender, instance, **kwargs):
 	instance.image.delete(False)
 @receiver(post_delete, sender=SubSectionCategory)
-def image_delete(sender, instance, **kwargs):
+def category_delete(sender, instance, **kwargs):
+	instance.image.delete(False)
+@receiver(post_delete, sender=GalleryPhoto)
+def gallery_delete(sender, instance, **kwargs):
 	instance.image.delete(False)
 @receiver(post_delete, sender=Member)
-def image_delete(sender, instance, **kwargs):
+def member_delete(sender, instance, **kwargs):
 	instance.image.delete(False)
 @receiver(post_delete, sender=Event)
 def event_delete(sender, instance, **kwargs):
