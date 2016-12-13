@@ -382,7 +382,6 @@ class Event(models.Model):
 				print form.errors
 				return form.errors
 
-
 class EventDay(models.Model):
 	day = models.DateField(default=date.today)
 	begin_hour = models.TimeField(default=timezone.now)

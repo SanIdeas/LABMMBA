@@ -98,6 +98,7 @@ $(document).ready(function(){
  		beforeShow: function() {this.title = '<span>'+(this.index + 1) + '/' + this.group.length+'</span>' + (this.title ? ' - ' + this.title : '');}
  	});
 
+/*
  	// Eventos
     $('.evento a.closed .icon').text('+');
 	$('.evento a.closed').click(function(){
@@ -108,7 +109,7 @@ $(document).ready(function(){
 			$(this).children('.icon').text('+');
 		}
 	});
-
+*/
 	// Responsive tables
 	;(function($, window, document, undefined) {
 		$.fn.responsiveTables = function() {
