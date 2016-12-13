@@ -2,6 +2,12 @@
 {% load staticfiles %}
 {% load i18n %}
 {% block content %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'webpage/css/members.css' %}">
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'webpage/js/members.js' %}"></script>
+{% endblock %}
 <section id="content" class="wfull">
     <div id="title">
         <div class="grid">
@@ -16,95 +22,55 @@
     </div>
     <div class="grid">
         <div class="row">
+            <section class="content noticias single c8">
+                <article class="post clear">
+                    {% if lang == 'es' %}
+                        {{ current_subsection.spanish_body | safe }}
+                    {% elif lang == 'en' %}
+                        {{ current_subsection.english_body | safe }}
+                    {% endif %}
+                </article>
+            </section>
+        </div>
+        <div class="row">
+            <h1 class="c12">Integrantes</h1>
             <div class="s1 c11">
-                {% for member1, member2 in working %}
-                    <div class="clear">
-                        <section class="c6 circle category" id="{{category1.0.id}}">
-                            <div class="row trans">
-                                <div class="c4 img">
-                                    {% if member1.image %}
-                                        <img src="{% static member1.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
+                {% for member in working %}
+                <div class="c3 member" href="#data" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
+                    <div class="c12 img">
+                                    {% if member.image %}
+                                        <img class="profile" src="{% static member.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
                                     {% else %}
                                         <img src="{% static 'intranet/images/default.png' %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
                                     {% endif %}
-                                </div>
-                                <div class="c8 items">
-                                    <h3>{{ member1.name }}</h3>
-                                    <ul>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-                        {% if member2 %}
-                            <section class="c6 circle category" id="{{category2.0.id}}">
-                                <div class="row trans">
-                                    <div class="c4 img">
-                                        {% if member2.image %}
-                                            <img src="{% static member2.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
-                                        {% else %}
-                                            <img src="{% static 'intranet/images/default.png' %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
-                                        {% endif %}
-                                    </div>
-                                    <div class="c8 items">
-                                        <h3>{{ member2.name }}</h3>
-                                    </div>
-                                </div>
-                            </section>
-                        {% endif %}
                     </div>
+                    <div class="c12 name">
+                        {{ member.name }}
+                    </div>
+
+                </div>
                 {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div id="title">
-        <div class="grid">
-            <div class="row">
-                {% if lang == 'es' %}
-                    <h1 class="c12">Ex-Integrantes</h1>
-                {% elif lang == 'en' %}
-                    {{ current_subsection.english_title | safe }}
-                {% endif %}
             </div>
         </div>
     </div>
     <div class="grid">
         <div class="row">
+            <h1 class="c12">Ex-Integrantes</h1>
             <div class="s1 c11">
-                {% for member1, member2 in not_working %}
-                    <div class="clear">
-                        <section class="c6 circle category" id="{{category1.0.id}}">
-                            <div class="row trans">
-                                <div class="c4 img">
-                                    {% if member1.image %}
-                                        <img src="{% static member1.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
+                {% for member in not_working %}
+                <div class="c3">
+                    <div class="c12 img">
+                                    {% if member.image %}
+                                        <img class="profile" src="{% static member.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
                                     {% else %}
                                         <img src="{% static 'intranet/images/default.png' %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
                                     {% endif %}
-                                </div>
-                                <div class="c8 items">
-                                    <h3>{{ member1.name }}</h3>
-                                    <ul>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-                        {% if member2 %}
-                            <section class="c6 circle category" id="{{category2.0.id}}">
-                                <div class="row trans">
-                                    <div class="c4 img">
-                                        {% if member2.image %}
-                                            <img src="{% static member2.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
-                                        {% else %}
-                                            <img src="{% static 'intranet/images/default.png' %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
-                                        {% endif %}
-                                    </div>
-                                    <div class="c8 items">
-                                        <h3>{{ member2.name }}</h3>
-                                    </div>
-                                </div>
-                            </section>
-                        {% endif %}
                     </div>
+                    <div class="c12 name">
+                        {{ member.name }}
+                    </div>
+
+                </div>
                 {% endfor %}
             </div>
         </div>
@@ -125,4 +91,47 @@
         </div>
     </div>
 </section>
+
+<div id="modal-edit" class="curtain-hidden"></div>
+<div id="modal-edit-confirm" class="modal-hidden">
+    <div id="modal-content">
+        <h3 id="modal-member-name"></h3>
+        <div id="modal-user">
+            <div class="left">
+                <div id="modal-member-img"></div>
+            </div>
+            <div class="right">
+                <div id="modal-member-description"> </div>
+            </div>
+        </div>
+        <div id="modal-btns">
+            <button id="modal-confirm-edit" member-id="">{% trans "CONFIRMAR" %}</button>
+            <button id="modal-cancel-edit">{% trans "CANCELAR" %}</button>
+        </div>
+    </div>
+</div>
+
+<a id="inline" href="#data">This shows content of element who has id="data"</a>
+
+<div style="display:none">
+    <div id="data">
+        <div class="c12">
+            <div id="fancy-name" >
+            </div>
+        </div>
+        <div class="c12">
+            <div class="c4 left-image">
+                <img id="fancy-img" class="profile" src=""/>
+            </div>
+            <div class="c8">
+                <div id="fancy-description" >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>members();</script>
+
 {% endblock %}

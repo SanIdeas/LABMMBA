@@ -80,15 +80,15 @@ def section(request, section_slug=None, subsection_slug=None):
 		section = get_object_or_404(Section, slug=section_slug)
 		subsection = get_object_or_404(SubSection, slug=subsection_slug)
 
-		if section_slug == 'about' and subsection_slug == 'members':
+		if section_slug == 'about' and subsection_slug == 'us':
 			return render(request, 'webpage/members.html', {
 			'current_view': subsection,
 			'current_section': section,
 			'current_subsection': subsection,
 			'sections': sections.exclude(slug__in=exclude),
 			'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
-			'working': array2d(Member.objects.filter(working=True)),
-			'not_working': array2d(Member.objects.filter(working=False)),
+			'working': Member.objects.filter(working=True),
+			'not_working': Member.objects.filter(working=False),
 			})	
 		return render(request, 'webpage/subsection.html', {
 			'current_view': subsection,

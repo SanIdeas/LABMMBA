@@ -710,17 +710,5 @@
       "english_title": "<h1 class='c12'>I+D+I</h1>",
       "category": 6
     }
-  },
-  {
-    "model": "webpage.subsection",
-    "pk": 22,
-    "fields": {
-      "spanish_name": "Integrantes",
-      "english_name": "Members",
-      "slug": "members",
-      "spanish_title": "<h1 class='c12'>Integrantes</h1>",
-      "english_title": "<h1 class='c12'>Members</h1>",
-      "category": 1
-    }
   }
 ]
