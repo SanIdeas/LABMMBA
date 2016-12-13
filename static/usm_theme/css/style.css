@@ -130,7 +130,9 @@ form select {width: 100%; border: 1px solid #e9edf0; padding: 10px; color: #777;
 .inicio .destacados img {margin-bottom: 15px;}
 .inicio .eventos a {display: block; padding: 20px;}
 .inicio .eventos a:hover {background: #f4f8f9; text-decoration: none;}
-.inicio .eventos .date {color: #555; font-size: 12px; font-style: italic; padding-left: 30px; background: url('../img/pdf-icon.png') left center no-repeat;}
+.inicio .eventos span {background: #f4f8f9}
+.inicio .eventos span p {text-align: center; padding: 20px;}
+.inicio .eventos .date {color: #555; font-size: 12px; font-style: italic; padding-left: 30px; background: url('../img/icon-eventos-evento.png') left center no-repeat;}
 .inicio .eventos p {margin: 0; padding: 0 0 0 30px; font-weight: 700;}
 .inicio .more a {font-weight: 700; color: #0077ad; margin: 0 -20px!important; display: block;}
 .inicio .more span {border-top: 4px solid #0077ad; display: block; padding: 10px 0 0 0;}
@@ -179,7 +181,7 @@ form select {width: 100%; border: 1px solid #e9edf0; padding: 10px; color: #777;
 #sidebar .text {padding-left: 5%; width: 65%; float: left; display: block;}
 #sidebar .box {margin-bottom: 20px;}
 #sidebar .box.links a {padding: 10px 15px;}
-#sidebar .eventos .date {color: #555; font-size: 12px; font-style: italic; padding-left: 30px; background: url('../img/pdf-icon.png') left center no-repeat;}
+#sidebar .eventos .date {color: #555; font-size: 12px; font-style: italic; padding-left: 30px; background: url('../img/icon-eventos-evento.png') left center no-repeat;}
 #sidebar .eventos p {margin: 0; padding: 0 0 0 30px; font-weight: 700; font-size: 14px;}
 #sidebar a.more {text-align: right; padding: 10px 20px; font-weight: 700; font-size: 12px;}
 
@@ -189,11 +191,14 @@ form select {width: 100%; border: 1px solid #e9edf0; padding: 10px; color: #777;
 .eventos .filter span, .eventos .filter a {padding: 10px 0; display: inline-block;}
 .eventos .filter a {padding: 10px; background: #f5f5f5; color: #777; margin: 3px 0; text-decoration: none;}
 .eventos .filter a:hover {background: #bdd2e8;}
+.eventos .descripcion a {float: left; width: 200px; margin: 0 10px 10px 0;}
 .evento a.closed {display: block; padding: 20px; text-decoration: none; position: relative;}
 .evento a.closed:hover {background: #f5f5f5;}
-.evento a.closed .date {font-size: 12px; color: #777; font-style: italic; padding: 0 0 0 25px; background: url('../img/pdf-icon.png') left center no-repeat;}
+.evento a.closed .date {font-size: 12px; color: #777; font-style: italic; padding: 0 0 0 25px; background: url('../img/icon-eventos-evento.png') left center no-repeat;}
 .evento a.closed h4 {padding: 0; margin: 10px 0 10px 25px;}
 .evento a.closed .icon {background: #7ab6d1; color: #fff; border-radius: 50%; width: 24px; height: 24px; display: block; text-align: center; font-size: 24px; line-height: 22px; position: absolute; top: 20px; right: 20px;}
+.evento a.closed .icon.arrow {line-height: 17px;}
+.evento a.closed .icon.arrow:before {font-family: FontAwesome; content: "\f054"; padding-left: 2px; font-size: 10pt;}
 .evento a.closed.false .icon {line-height: 19px;}
 .evento .content {padding: 0 20px 10px 45px; /*border-bottom: 2px solid #f5f5f5;*/}
 #calendario {margin-bottom: 10px;}
@@ -208,8 +213,8 @@ form select {width: 100%; border: 1px solid #e9edf0; padding: 10px; color: #777;
 .calendario {padding: 20px!important;}
 .calendario td {width: 14.28%!important; text-align: center; vertical-align: middle; border: 0;}
 .calendario a, .calendario span {display: inline-block; padding: 6px 3px!important; margin: 1px!important;}
-.calendario .active {font-weight: 700!important;}
 .calendario .event {background: #bdd2e8!important; color: #777!important;}
+.calendario .active {background: #336090 !important; color: white!important;}
 .calendario .hoy {background: #336090!important; color: #fff!important;}
 
 /* comments */

@@ -2,21 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="727889f7-d9cd-42ac-a1be-2697eaba568d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/events/EI81.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT2.jpg" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/files/events/EP1.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI7.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/events/EI9.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/header/NH1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/webpage/images/news/thumbnail/NT6.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/webpage/event.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/webpage/events_feed.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/urls.py" afterPath="$PROJECT_DIR$/admin/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views.py" afterPath="$PROJECT_DIR$/admin/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/css/admin.css" afterPath="$PROJECT_DIR$/static/admin/css/admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/admin/js/admin.js" afterPath="$PROJECT_DIR$/static/admin/js/admin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/event_create.html" afterPath="$PROJECT_DIR$/templates/admin/event_create.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/event_edit.html" afterPath="$PROJECT_DIR$/templates/admin/event_edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/news_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/news_ajax.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/shared.html" afterPath="$PROJECT_DIR$/templates/admin/shared.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" afterPath="$PROJECT_DIR$/templates/admin/webpage_ajax.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/forms.py" afterPath="$PROJECT_DIR$/webpage/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/usm_theme/css/style.css" afterPath="$PROJECT_DIR$/static/usm_theme/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/usm_theme/js/functions.js" afterPath="$PROJECT_DIR$/static/usm_theme/js/functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/intranet/documents.html" afterPath="$PROJECT_DIR$/templates/intranet/documents.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/webpage/home.html" afterPath="$PROJECT_DIR$/templates/webpage/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/models.py" afterPath="$PROJECT_DIR$/webpage/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/urls.py" afterPath="$PROJECT_DIR$/webpage/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpage/views.py" afterPath="$PROJECT_DIR$/webpage/views.py" />
     </list>
     <ignored path="labmmba-web.iws" />
@@ -81,11 +88,21 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webpage/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="461" column="46" lean-forward="true" selection-start-line="461" selection-start-column="46" selection-end-line="461" selection-end-column="46" />
+            <state relative-caret-position="-4384">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpage/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -458,20 +475,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="css">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="labmmba-web">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="labmmba">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -1239,12 +1242,12 @@
       <workItem from="1480531636196" duration="147000" />
       <workItem from="1480531800149" duration="187264000" />
       <workItem from="1481319050613" duration="110599000" />
-      <workItem from="1481606319951" duration="2599000" />
+      <workItem from="1481606319951" duration="2715000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="451823000" />
+    <option name="totallyTimeSpent" value="451939000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1353,14 +1356,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/intranet/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/intranet/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1745,10 +1740,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webpage/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webpage/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="461" column="46" lean-forward="true" selection-start-line="461" selection-start-column="46" selection-end-line="461" selection-end-column="46" />
+        <state relative-caret-position="-4384">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

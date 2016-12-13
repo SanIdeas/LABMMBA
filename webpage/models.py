@@ -430,6 +430,7 @@ class Event(models.Model):
 			if event_day:
 				event_day.delete()
 
+
 class EventDay(models.Model):
 	day = models.DateField(default=date.today)
 	begin_hour = models.TimeField(default=timezone.now)

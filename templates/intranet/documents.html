@@ -44,24 +44,11 @@
 						<div>
 							{% for document in documents%}
 								 <div class="evento">
-							        <a class="clear closed">
+							        <a class="clear closed" href="{% url 'intranet:document' document.author_slug document.title_slug %}">
 							            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
 							            <h4>{{ document.title }}</h4>
-							            <span class="icon">+</span>
+							            <span class="icon arrow"></span>
 							        </a>
-							        <div class="content" style="display:none;">
-							            <div class="meta">
-							                <p><strong>Dueño: </strong>{{ document.owner.first_name }} {{ document.owner.last_name }}</p>
-							                <p><strong>Añadido: </strong>{{ document.date_added }}</p>
-							            	<p>
-									            <sup class="button">
-									            	<a href="{% url 'intranet:document' document.author_slug document.title_slug %}">ver documento</a>
-									            </sup>
-									        </p>
-							            </div>
-							            <div class="details">
-							                <p>{{ document.abstract }}</p>
-							            </div>
 							        </div>
 							    </div>
 							{% endfor %}

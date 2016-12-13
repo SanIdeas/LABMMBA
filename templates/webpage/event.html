@@ -1,0 +1,246 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block css %}
+    <!-- FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/font-awesome.min.css' %}">
+{% endblock %}
+{% block content %}
+<section id="content" class="wfull">
+    <div id="title">
+        <div class="grid">
+            <div class="row">
+                <h1 class="c12">{{event.title}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="row">
+            <section class="content eventos c8">
+                <h3>{{event.get_date}}</h3>
+                <div class="descripcion">
+                    <a class="modal" href="{% static event.image %}">
+                        <img src="{% static event.image %}">
+                    </a>
+                    <p>
+                        {% lorem 50 w %}
+                    </p>
+                </div>
+                <div class="responsive-table">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>{% trans "Día" %}</th>
+                                <th>{% trans "Inicio" %}</th>
+                                <th>{% trans "Término" %}</th>
+                                <th>{% trans "Lugar" %}</th>
+                            </tr>
+                            {% for eventDay in event.get_days %}
+                                <tr>
+                                    <td>
+                                        {{eventDay.day|date:'d'}}-{{eventDay.day|date:'m'}}-{{eventDay.day|date:'Y'}}
+                                    </td>
+                                    <td>
+                                        {{eventDay.begin_hour}}
+                                    </td>
+                                    <td>
+                                        {{eventDay.end_hour}}
+                                    </td>
+                                    <td>
+                                        {{eventDay.location}}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if event.program %}
+                    <a class="button" href="{% static event.program %}" target="_blank">{% trans "Ver programa" %}</a>
+                {% endif %}
+            </section>
+            <section id="sidebar" class="c4">
+                <div id="calendario">
+                    <div class="mes">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="nav prev"><a><span>«</span></a></td>
+                                    <td class="mmaa"><a>{{today|date:'F'}} {{today|date:'Y'}}</a></td>
+                                    <td class="nav next"><a><span>»</span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="calendario">
+                        <table>
+                            <tbody>
+                                <tr class="dias">
+                                    <td>L</td>
+                                    <td>M</td>
+                                    <td>M</td>
+                                    <td>J</td>
+                                    <td>V</td>
+                                    <td>S</td>
+                                    <td>D</td>
+                                </tr>
+                                <tr class="semana">
+                                    <td></td>
+                                    <td><a href="http://www.dgc.usm.cl/eventos/?dia=1&amp;mes=10&amp;ano=2013" class="event tip" title="hay 3 eventos">1</a>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="semana">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="semana">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="semana">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="semana">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr> 
+                                <tr class="semana">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--<form action="http://www.eventos.usm.cl/eventos/" class="clear search-by-dates accordion" method="get">
+                    <a class="toggle acc-header">Buscar un evento entre fechas<span class="icon">+</span></a>
+                    <div class="acc-content" style="display: none;">
+                        <input type="text" class="text dates from placeholder hasDatepicker" name="date_from" readonly="true" placeholder="Fecha desde" id="dp1472498701480">
+                        <input type="text" class="text dates to placeholder hasDatepicker" name="date_to" readonly="true" placeholder="Fecha hasta" id="dp1472498701481">
+                        <input type="submit" class="submit button" value="Buscar">
+                    </div>
+                </form>-->
+            </section>
+        </div>
+        <div class="row">
+            <div class="c12">
+                <ul id="bottom-nav" class="clear">
+                    {% if other_sections.0 %}
+                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.1 %}
+                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.2 %}
+                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var current_day = {{today|date:'d'}};
+    var current_month = {{today|date:'m'}};
+    var current_year = {{today|date:'Y'}};
+    var months = {{months|safe}};
+    var temp = current_month;
+    var temp_year = current_year;
+    var counter = {{counter|safe}};
+    $(document).ready(function(){
+        fillCalendar(current_year, current_month-1)
+    }); 
+    $('.semana td').each(function(){
+        //console.log($(this).text());
+    });
+
+    $('.nav.prev').click(function(){
+        var aux = (((temp-- -1)%12)+12)%12;
+        if (aux == 0 && (((temp-1)%12)+12)%12 == 11)
+            temp_year--;
+        else if (aux == 11 && (((temp-1)%12)+12)%12 == 0)
+            temp_year++;
+        fillCalendar(temp_year , (((temp-1)%12)+12)%12);
+    });
+    $('.nav.next').click(function(){
+        var aux = (((temp++ -1)%12)+12)%12;
+        if (aux == 0 && (((temp-1)%12)+12)%12 == 11)
+            temp_year--;
+        else if (aux == 11 && (((temp-1)%12)+12)%12 == 0)
+            temp_year++;
+        fillCalendar(temp_year , (((temp-1)%12)+12)%12);
+    });
+
+    function resetCalendar(){
+        $('.semana td').text('');
+    }
+
+    function fillCalendar(year, month){
+        resetCalendar();
+        var date = new Date(year, month+1, 0)
+        end = date.getDate();
+        date.setDate(1);
+        start = (((date.getDay()-1)%7)+7)%7 + 1;
+        var day = 1;
+        var iter = 0;
+        $('.semana td').each(function(){
+            if(++iter >= start && day <= end ){
+                var count = getCounter(year, month+1, day);
+                if(year == current_year && month == current_month-1 && day == current_day)
+                    $(this).html('<a class="event tip active" ' + count + '>' + (day++).toString() + '</a>');
+                else{
+                    if (count != '')
+                        $(this).html('<a class="event tip"' + count + '>' + (day++).toString() + '</a>');
+                    else
+                        $(this).html('<span>' + (day++).toString() + '</span>');
+                }
+            }
+        });
+        $('.mmaa a').text(months[month].toString() + ' ' + year.toString());
+    }
+
+    function getCounter(year, month, day){
+        if (counter.hasOwnProperty(year.toString())){
+            if (counter[year.toString()].hasOwnProperty(month.toString())){
+                if (counter[year.toString()][month.toString()].hasOwnProperty(day.toString())){
+                    count = counter[year.toString()][month.toString()][day.toString()];
+                    day = ("0" + day).slice(-2);
+                    month = ("0" + month).slice(-2);
+                    return 'href="{% url "webpage:section" "events" %}?day=' + day + '&amp;month=' + month +'&amp;year=' + year + '" title="' + '{% trans "Hay 888 eventos" %}'.replace('888', count.toString()) + '"'; 
+                }
+            } 
+        }
+        return '';
+    }
+</script>
+{% endblock %}

@@ -5,9 +5,9 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from intranet.models import Document
-from webpage.models import Section, SubSection, News, Member
+from webpage.models import Section, SubSection, News, Member, Event, EventDay
 from webpage.forms import ImageForm, NewsCommentForm
 from itertools import izip_longest
 import json
@@ -31,6 +31,10 @@ def home(request):
 	sections = Section.objects.all()
 	section = Section.objects.get(slug='.')
 
+	eventsId = EventDay.objects.filter(day__gte=datetime.today()).order_by('-day').values_list('event', flat=True).distinct()
+	events = Event.objects.filter(id__in=eventsId)
+	events_sort = sorted(events, key=lambda event: event.get_date())
+
 	return render(request, 'webpage/home.html', {
 							'current_view': section,
 							'current_section': section,
@@ -40,6 +44,7 @@ def home(request):
 							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None).order_by('-date')[:5],
 							'news_1': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[:2],
 							'news_2': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[2:4],
+							'events': events_sort[:3],
 							})
 
 
@@ -310,3 +315,118 @@ def save_images(request):
 			return JsonResponse({'error': True, 'message': _("Esta noticia no existe")})
 	else:
 		return JsonResponse({'error': True, 'urls': _(u"Debes iniciar sesión")})
+
+def events_feed(request):
+	today = datetime.today()
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
+	sections = Section.objects.all()
+	section = Section.objects.get(slug='events')
+
+	if request.GET.get('year') and request.GET.get('month') and request.GET.get('day'):
+		eventsId = EventDay.objects.filter(day__year=request.GET.get('year'), day__month=request.GET.get('month'), day__day=request.GET.get('day')).values_list('event', flat=True).distinct()
+		events = Event.objects.filter(id__in=eventsId)
+	elif request.GET.get('month'):
+		eventsId = EventDay.objects.filter(day__year=datetime.today().year, day__month=request.GET.get('month')).values_list('event', flat=True).distinct()
+		events = Event.objects.filter(id__in=eventsId)
+	elif request.GET.get('week'):
+		start = today - timedelta(days=today.weekday())
+		end = start + timedelta(days=6)
+		eventsId = EventDay.objects.filter(day__range=[start, end]).values_list('event', flat=True).distinct()
+		events = Event.objects.filter(id__in=eventsId)
+	else:
+		eventsId = EventDay.objects.filter(day__gte=today).values_list('event', flat=True).distinct()
+		events = Event.objects.filter(id__in=eventsId)
+	events_sort = sorted(events, key=lambda event: event.get_date())
+	months = '["'
+	for i in range(1, 13):
+		months += _(date(2016, i, 12).strftime('%B')) + ('","' if i != 12 else "")
+	months += '"]'
+
+	paginator = Paginator(events_sort, 8)
+
+	# Se extrae el numero de pagina
+	if request.GET.get('page'):
+		try: events_sort = paginator.page(request.GET.get('page'))
+		except: events_sort = paginator.page(1)
+	else:
+		events_sort = paginator.page(1)
+
+	# Se cuentan la cantidad de eventos por dia
+	events_counter = {}
+	eventsDays = EventDay.objects.all()
+	print len(eventsDays)
+	for event in eventsDays:
+		if str(event.day.year) not in events_counter:
+			events_counter[str(event.day.year)] = {}
+		if str(event.day.month) not in events_counter[str(event.day.year)]:
+			events_counter[str(event.day.year)][str(event.day.month)] = {}
+		if str(event.day.day) not in events_counter[str(event.day.year)][str(event.day.month)]:
+			events_counter[str(event.day.year)][str(event.day.month)][str(event.day.day)] = 0
+		events_counter[str(event.day.year)][str(event.day.month)][str(event.day.day)] += 1
+
+	return render(request, 'webpage/events_feed.html', {
+								'current_view': section,
+								'current_section': section,
+								'sections': sections.exclude(slug__in=exclude),
+								'body': 'eventos',
+								'today': datetime.today(),
+								'events': events_sort,
+								'paginator': events_sort,
+								'counter': events_counter,
+								'months': months,
+								'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3]
+								})
+
+def event(request, title):
+	event_ = Event.objects.filter(slug=title)
+	if not event_:
+		return HttpResponseRedirect(reverse('webpage:events_feed'))
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
+	sections = Section.objects.all()
+	section = Section.objects.get(slug='events')
+
+	months = '["'
+	for i in range(1, 13):
+		months += _(date(2016, i, 12).strftime('%B')) + ('","' if i != 12 else "")
+	months += '"]'
+
+	
+
+	# Se cuentan la cantidad de eventos por dia
+	events_counter = {}
+	eventsDays = EventDay.objects.all()
+	print len(eventsDays)
+	for event in eventsDays:
+		if str(event.day.year) not in events_counter:
+			events_counter[str(event.day.year)] = {}
+		if str(event.day.month) not in events_counter[str(event.day.year)]:
+			events_counter[str(event.day.year)][str(event.day.month)] = {}
+		if str(event.day.day) not in events_counter[str(event.day.year)][str(event.day.month)]:
+			events_counter[str(event.day.year)][str(event.day.month)][str(event.day.day)] = 0
+		events_counter[str(event.day.year)][str(event.day.month)][str(event.day.day)] += 1
+
+	return render(request, 'webpage/event.html', {
+								'current_view': section,
+								'current_section': section,
+								'sections': sections.exclude(slug__in=exclude),
+								'body': 'eventos',
+								'today': datetime.today(),
+								'counter': events_counter,
+								'event': event_[0],
+								'months': months,
+								'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3]
+								})

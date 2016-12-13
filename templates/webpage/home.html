@@ -89,24 +89,26 @@
 		<section class="c4 end eventos">
 			<div class="row">
 				<h2 class="c12 title">{% trans "Eventos" %}:</h2>
-				<a href="events.html" class="c12" fecha="210120141900">
-					<span class="date icon">21 · Enero · 2014</span>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut possimus culpa et.</p>
-				</a>
-				<a href="events.html" class="c12" fecha="210120141900">
-					<span class="date icon">21 · Enero · 2014</span>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut possimus culpa et.</p>
-				</a>
-				<a href="events.html" class="c12" fecha="210120141900">
-					<span class="date icon">21 · Enero · 2014</span>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut possimus culpa et.</p>
-				</a>
+				{% if events %}
+					{% for event in events %}
+						<a href="events.html" class="c12" fecha="210120141900">
+							<span class="date icon">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>
+							<p>{{event.title}}</p>
+						</a>
+					{% endfor %}
+				{% else %}
+					<span class="c12">
+						<p>{% trans "No hay eventos" %}</p>
+					</span>
+				{% endif %}
 			</div>
-			<div class="row more">
-				<div class="c12">
-					<a href="events.html"><span>{% trans "Ver más eventos" %}</span></a>
+			{% if events %}
+				<div class="row more">
+					<div class="c12">
+						<a href="{% url 'webpage:section' 'events' %}"><span>{% trans "Ver más eventos" %}</span></a>
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</section>
 	</div>
 	<!-- Se deja para el final
