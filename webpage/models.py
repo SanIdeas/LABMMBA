@@ -433,6 +433,9 @@ class Event(models.Model):
 	def image_url(self):
 		return 'webpage/images/events/' + os.path.basename(self.image.name)
 
+	def program_url(self):
+		return 'webpage/files/events/' + os.path.basename(self.program.name)
+
 
 class EventDay(models.Model):
 	day = models.DateField(default=date.today)
