@@ -18,7 +18,7 @@ import json
 
 def home(request):
 	if request.user.is_authenticated() and request.user.is_admin:
-		return HttpResponseRedirect(reverse('admin:users'))
+		return render(request, 'admin/home.html')
 	else:
 		return HttpResponseRedirect(reverse('webpage:home'))
 
