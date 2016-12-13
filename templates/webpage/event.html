@@ -20,8 +20,8 @@
                 <h3>{{event.get_date}}</h3>
                 <div class="descripcion">
                     {% if event.image %}
-                        <a class="modal" href="{% static event.image %}">
-                            <img src="{% static event.image %}">
+                        <a class="modal" href="{% static event.image_url %}">
+                            <img src="{% static event.image_url %}">
                         </a>
                     {% endif %}
                     <p>

@@ -430,6 +430,9 @@ class Event(models.Model):
 			if event_day:
 				event_day.delete()
 
+	def image_url(self):
+		return 'webpage/images/events/' + os.path.basename(self.image.name)
+
 
 class EventDay(models.Model):
 	day = models.DateField(default=date.today)
