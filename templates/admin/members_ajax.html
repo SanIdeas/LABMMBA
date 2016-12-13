@@ -27,7 +27,7 @@
                         </button>
                     </div>
                     <div class="setup-user-box">
-                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Editar' %}">
+                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image_url %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Editar' %}">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -62,7 +62,7 @@
                         </button>
                     </div>
                     <div class="setup-user-box">
-                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Ver' %}">
+                        <button class="setup-view-box" {% if member.image %} member-img="{% static member.image_url %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} user-description="{{member.description}}" user-full-name="{{member.name}}" member-id="{{member.id}}" title="{% trans 'Ver' %}">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </button>
                     </div>
