@@ -61,6 +61,7 @@
                                 <th>{% trans 'Lugar' %}</th>
                                 <th>{% trans 'Inicio' %}</th>
                                 <th>{% trans 'Término' %}</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,12 +71,17 @@
                                 <td class="location"><input required type="text"  class="text" placeholder="{% trans 'Requerido' %}"/></td>
                                 <td class="time begin-hour"><input required readonly type="text" class="text" placeholder="{% trans 'HH:mm' %}"/></td>
                                 <td class="time end-hour"><input required readonly type="text" class="text" placeholder="{% trans 'HH:mm' %}"/></td>
+                                <td class="remove">
+                                    <a class="fa-stack fa-lg remove-day trans" title="{% trans 'Eliminar' %}">
+                                        <i class="fa fa-circle fa-stack-1x"></i>
+                                        <i class="fa fa-minus-circle fa-stack-1x fa-inverse"></i>
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="row field day-btns">
-                        <button type="button" class="submit trans news remove-day" style="display: none">{% trans 'Eliminar día' %}</button>
                         <button type="button" class="submit trans news add-day">{% trans 'Agregar día' %}</button>
                     </div>
                 </div>

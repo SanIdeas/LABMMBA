@@ -192,7 +192,7 @@ def news_editor(request, id = None):
 					news.title_html = request.POST.get('news-title-html') if request.POST.get('news-title') != "undefined" else request.POST.get('news-title-html').replace('undefined', _(u"Noticia sin título"))
 				if request.POST.get('news-title') is not None:
 					news.title = request.POST.get('news-title')
-					news.title = request.POST.get('news-title') if request.POST.get('news-title') != "" and request.POST.get('news-title') != "undefined"  else _(u"Noticia sin título")
+					news.title = ' '.join(request.POST.get('news-title').split()) if request.POST.get('news-title') != " " and request.POST.get('news-title') != "undefined"  else _(u"Noticia sin título")
 				if request.POST.get('news-content') is not None:
 					news.body = request.POST.get('news-content')
 				news.is_published = False

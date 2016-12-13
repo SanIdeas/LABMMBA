@@ -13,13 +13,15 @@
                             {% if news.is_external %}
                                 <a href="{{ news.source_url }}" class="news-title-link">
                             {% else %}
-                                <a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}" class="news-title-link">
+                                <a href="{% url 'webpage:news' news.id %}" class="news-title-link">
                             {% endif %}
                             <h2 class="title">{{news.title}}</h2>
                             </a>
                         {% else %}
                             <div class="news-no-title">
-                                <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                                <a href="{% url 'webpage:news' news.id %}" class="news-title-link">
+                                    <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                                </a>
                             </div>
                         {%endif%}
                         {% if news.header and news_in_header < 5 or news.header and news.in_header %}
@@ -39,7 +41,7 @@
                                     </span>
                         {% endif %}
                         {% if news.admin_has_unseen_comments %}
-                            <a class="unseen" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}?ret=news#comment{{news.admin_has_unseen_comments}}">
+                            <a class="unseen" href="{% url 'webpage:news' news.id %}?ret=news#comment{{news.admin_has_unseen_comments}}">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                                 {% trans "Tienes comentarios sin leer" %}
                             </a>
@@ -80,12 +82,14 @@
                             {% if news.is_external %}
                                 <a href="{{ news.source_url }}">
                             {% else %}
-                                <a href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+                                <a href="{% url 'webpage:news' news.id %}">
                             {% endif %}
                             <h2 class="title">{{news.title}}</h2>
                             </a>
                         {% else %}
-                            <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                            <a href="{% url 'webpage:news' news.id %}">
+                                <h2 class="title">{% trans "Noticia sin título" %}</h2>
+                            </a>
                         {%endif%}
                         </div>
                         {% if news.source_text %}
@@ -98,7 +102,7 @@
                                     </span>
                         {% endif %}
                         {% if news.admin_has_unseen_comments %}
-                            <a class="unseen" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}?ret=news#comment{{news.admin_has_unseen_comments}}">
+                            <a class="unseen" href="{% url 'webpage:news' news.id %}?ret=news#comment{{news.admin_has_unseen_comments}}">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                                 {% trans "Tienes comentarios sin leer" %}
                             </a>

@@ -1,0 +1,59 @@
+{% load i18n %}
+{% load staticfiles %}
+<div class="intranet box news gallery">
+    <h3 class="setup-subtitle red">{% trans "Galería de Fotos" %}</h3>
+    <div class="list clear c12">
+        <ul>
+            <li class="c2">
+                <a>
+                    <div class="gallery-photo addPhoto" style="background: url({% static 'usm_theme/img/category_default.jpg' %}) 50% 50% no-repeat!important;">
+                        <i class="fa fa-plus-circle fa-5x"></i>
+                    </div>
+                </a>
+            </li>
+            {% for photo in gallery %}
+                <li class="c2">
+                    <a photo-id="{{photo.id}}">
+                        <div url="{% static photo.image_static_url %}" class="gallery-photo photo" style="background: url({% static photo.image_static_url %}) 50% 50% no-repeat!important;">
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Modal para mostrar y eliminar fotos -->
+<div id="showPicture" class="news modal" style="display:none!important; height:100%;">
+    <div class="cropper">
+        <div class="editor" style="display:none; opacity:0; top:20px;">
+            <div class="crop">
+                <img id="imageCropper">
+            </div>
+            <div class="buttons">
+                <div class="c4"><button id="deleteImage" photo-id=""><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Eliminar foto' %}</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#showPicture" class="modal show picture" style="display:none;"></a>
+
+<!-- Modal para modificar fotos -->
+<div id="changePicture" class="news modal" style="display:none!important; height:100%;">
+    <div class="cropper">
+        <div class="editor" style="display:none; opacity:0; top:20px;">
+            <div class="crop">
+                <img id="imageCropper">
+            </div>
+            <div class="buttons">
+                <div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
+                <div class="c4"><button id="selectImage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Agregar foto' %}</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#changePicture" class="modal change picture" style="display:none;"></a>
+<input id="pictureField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
+
+<script>gallery();</script>
+

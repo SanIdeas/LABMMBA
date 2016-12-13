@@ -1,0 +1,22 @@
+{% extends 'admin/shared.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as lang %}
+
+{% block extra_js %}
+    <script src="{% static 'admin/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'admin/vendor/tinymce/jquery.tinymce.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="gallery-setup">
+</div>
+
+<script>var reload = "{% url 'admin:gallery'%}"</script>
+<script>var upload_image_url = "{% url 'admin:upload_gallery_photo'%}"</script>
+<script>var delete_image_url = "{% url 'admin:delete_gallery_photo' 999 %}"</script>
+<script>
+    var csrf_token = '{{csrf_token}}';
+    reload_gallery_setup();
+</script>
+{% endblock %}

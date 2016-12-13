@@ -76,6 +76,8 @@
                                         <li class="{% if areas_view == request.path%} current {%endif%}"><a href="{{areas_view}}">{% trans "Áreas" %}</a></li>
                                         {% url 'admin:webpage' as webpage_view%}
                                         <li class="{% if webpage_view == request.path%} current {%endif%}"><a href="{{webpage_view}}">{% trans "Página Web" %}</a></li>
+                                        {% url 'admin:gallery' as gallery_view%}
+                                        <li class="{% if gallery_view == request.path%} current {%endif%}"><a href="{{gallery_view}}">{% trans "Galería de Fotos" %}</a></li>
                                         {% url 'admin:members' as members_view%}
                                         <li class="{% if members_view == request.path%} current {%endif%}"><a href="{{members_view}}">{% trans "Integrantes" %}</a></li>
                                         {% url 'admin:news' as news_view%}
@@ -157,6 +159,11 @@
                     <a class="clear {% if webpage_view == request.path%} selected {%endif%}" href="{{webpage_view}}">
 						<i class="fa fa-globe" aria-hidden="true"></i>
                     	{% trans "Página Web" %}
+                    </a>
+                    {% url 'admin:gallery' as gallery_view%}
+                    <a class="clear {% if gallery_view == request.path%} selected {%endif%}" href="{{gallery_view}}">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        {% trans "Galería de Fotos" %}
                     </a>
                     {% url 'admin:members' as members_view%}
                     <a class="clear {% if members_view == request.path%} selected {%endif%}" href="{{members_view}}">

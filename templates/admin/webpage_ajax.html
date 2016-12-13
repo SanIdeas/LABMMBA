@@ -71,6 +71,7 @@
                     </div>
                 </li>
             {% endfor %}
+            </ul>
         </div>
     </div>
 
@@ -157,7 +158,7 @@
                 </div>
                 <div class="buttons">
                     <div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
-                    <div class="c4"><button id="selectImage" section-id="{{section.id}}"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+                    <div class="c4"><button id="selectImage" section-id="{{section.id}}"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Subir imagen' %}</button></div>
                 </div>
             </div>
         </div>
@@ -165,7 +166,7 @@
     <a href="#changeHeader" class="modal picture header" style="display:none;"></a>
     <input id="headerField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
 
-    <!-- Modal para modificar header -->
+    <!-- Modal para modificar foto categoría -->
     <div id="changeThumbnail" class="news modal"  style="display:none!important; height:100%;">
         <div class="cropper">
             <div class="editor" style="display:none; opacity:0; top:20px;">
@@ -174,7 +175,7 @@
                 </div>
                 <div class="buttons">
                     <div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
-                    <div class="c4"><button id="selectImage" category-id=""><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+                    <div class="c4"><button id="selectImage" category-id=""><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Subir imagen' %}</button></div>
                 </div>
             </div>
         </div>

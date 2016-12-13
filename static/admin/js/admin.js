@@ -1009,6 +1009,167 @@ function getBlobFromURL(url, callback){
     xhr.send();
 }
 
+// Gallery View
+function reload_gallery_setup(){
+    $.ajax({
+        url: reload,
+        method: 'POST',
+        beforeSend: function(xhr){
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+        }
+    }).done(function(html){
+        if(html.redirect)
+            window.location.href = html.redirect;
+        else{
+            $('#gallery-setup').children().remove();
+            $('#gallery-setup').append(html);
+            $.fancybox.hideLoading()
+            $.fancybox.close()
+        }
+
+    });
+}
+
+function gallery(){
+	/*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && $this.attr('setup-action') =='users') {
+	 $('.asd').click(function(){
+	 touched = $(this);
+	 $(this).addClass('setup-user-row-expand-rsp');
+	 });
+	 $(window).on('click', function(e){
+	 console.log(touched);
+	 if(!(touched.is(e.target) || touched.children().is(e.target))){
+	 touched.removeClass('setup-user-row-expand-rsp');
+	 }
+	 });
+	 }*/
+
+    $(document).ready(function(){
+        $('a.modal.picture').fancybox({
+            scrolling: false,
+            autoSize: false,
+            width: 800
+        });
+    });
+    (function($){
+		/* Resetea el input de archivos */
+        $.fn.resetInput = function(){
+            this.wrap('<form>').closest('form').get(0).reset();
+            this.unwrap();
+        };
+    })(jQuery);
+
+    $('.gallery-photo.photo').parent().click(function(){
+    	$('#showPicture #imageCropper').attr('src', $(this).find('.gallery-photo').attr('url'));
+        $('#showPicture #deleteImage').attr('photo-id', $(this).attr('photo-id'));
+        $('a.modal.show.picture').click();
+        $('#showPicture .editor').css('display', 'flex');
+        $('#showPicture .editor').animate({
+            top: '0',
+            opacity: 1
+        }, 200);
+	});
+    $('.addPhoto').click(function(){
+        $('#pictureField').click();
+    });
+    $('#showPicture #deleteImage').click(function(){
+    	var id = $(this).attr('photo-id');
+    	$.fancybox.showLoading();
+
+        $.ajax({
+            url: delete_image_url.replace('999', id),
+            method: "POST",
+            beforeSend: function(xhr){
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
+        }).done(function(response){
+            if(response.redirect)
+                window.location.href = response.redirect;
+            else if(!response['error'])
+                reload_gallery_setup();
+            else
+                $.fancybox.hideLoading();
+        });
+    });
+    $('#changePicture #changeImage').click(function(){
+        $('#pictureField').click();
+    });
+    $('#changePicture #selectImage').click(function(){
+        selectPicture();
+    });
+    $('#pictureField').change(function(){
+        if(this.files.length > 0){
+            if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
+                alert('Debes seleccionar una imagen');
+            else{
+                $.fancybox.showLoading();
+                $('#changePicture .editor').css('display', 'flex');
+                $('#changePicture .editor').animate({
+                    top: '0',
+                    opacity: 1
+                }, 200);
+
+                readURL(this);
+                $(this).resetInput();
+            }
+        }
+    });
+
+    // Obtiene la url del archivo ingresado por el input
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#changePicture #imageCropper').attr('src', e.target.result);
+                $.fancybox.hideLoading();
+                $('a.modal.change.picture').click();
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function convertDataURIToBinary(dataURI) {
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+        var byteString = atob(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        var dw = new DataView(ab);
+        for(var i = 0; i < byteString.length; i++) {
+            dw.setUint8(i, byteString.charCodeAt(i));
+        }
+        // write the ArrayBuffer to a blob, and you're done
+        return new Blob([ab], {type: mimeString});
+    }
+
+    function selectPicture(){
+        $.fancybox.showLoading();
+
+		var form = new FormData();
+		form.append('csrfmiddlewaretoken', csrf_token);
+		form.append('image', convertDataURIToBinary($('#changePicture #imageCropper').attr('src')));
+
+		$.ajax({
+			url: upload_image_url,
+			method: "POST",
+			data: form,
+			processData: false,
+			contentType: false
+		}).done(function(response){
+			if(response.redirect)
+				window.location.href = response.redirect;
+			else if(!response['error'])
+				reload_gallery_setup();
+			else
+				$.fancybox.hideLoading();
+		});
+    }
+}
+
 // News View
 function reload_news_setup(){
     $.ajax({
@@ -1226,6 +1387,28 @@ function events_create(){
         });
     }
 
+    function removeDay(){
+        var row = $(this).parent().parent();
+        var rowsCount = $('#create-event-form .table table > tbody tr').length;
+        --rowsCount;
+
+        if(rowsCount > 0){
+            var count = row.find('.num').text();
+            row.nextAll().each(function(){
+                $(this).find('.num').text(count++);
+            });
+
+            row.remove();
+        }
+
+        checkInputs();
+
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+    }
+
 	$(document).ready(function(){
         if(current_lang == 'es'){
             $.datepicker.regional['es'] = {
@@ -1254,6 +1437,12 @@ function events_create(){
 
         $('#create-event-form .text').on('input', checkInputs);
         $('#create-event-form .date, #create-event-form .time').change(checkInputs);
+
+        var rowsCount = $('#create-event-form .table table > tbody tr').length;
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
     });
 
     $('.add-day').click(function(){
@@ -1263,6 +1452,7 @@ function events_create(){
         row.find('input').val('');
         row.find('.num').text(++rowsCount);
         row.find('.date').find('input').removeAttr('id').removeClass('hasDatepicker');
+        row.find('.remove').find('.remove-day').click(removeDay);
 
         tbody.append(row);
         row.find('.date, .time').change(checkInputs);
@@ -1276,21 +1466,7 @@ function events_create(){
             $('.remove-day').css('display', 'none');
     });
 
-    $('.remove-day').click(function(){
-        var row = $('#create-event-form .table table > tbody > tr').last();
-        var rowsCount = $('#create-event-form .table table > tbody tr').length;
-        --rowsCount;
-
-        if(rowsCount > 0)
-        	row.remove();
-
-        checkInputs();
-
-        if(rowsCount > 1)
-            $('.remove-day').css('display', 'inline-block');
-        else
-            $('.remove-day').css('display', 'none');
-    });
+    $('.remove-day').click(removeDay);
 
     $('#create-event-form').submit(function(e){
         e.preventDefault();
@@ -1330,6 +1506,8 @@ function events_create(){
 
 function events_edit(){
 	var rowsCount = 0;
+	var removeDays = [];
+
     function init_pickers(){
         var confirm = 'Confirm';
         if(current_lang == 'es')
@@ -1385,7 +1563,7 @@ function events_edit(){
 
     function checkInputs(){
     	var actualRowsCount = $('#edit-event-form .table table > tbody tr').length;
-        if(areInputsFilled() && (actualRowsCount != rowsCount || isNewData())) {
+        if(areInputsFilled() && (actualRowsCount != rowsCount || isNewData() || removeDays.length > 0)) {
             $('#submitEvent').attr('disabled', false);
         }
         else
@@ -1402,6 +1580,31 @@ function events_edit(){
             closeBtn: false
         });
     }
+
+    function removeDay(){
+        var row = $(this).parent().parent();
+        var rowsCount = $('#edit-event-form .table table > tbody tr').length;
+        --rowsCount;
+
+        if(rowsCount > 0){
+            if(row.attr('day-id'))
+                removeDays.push(row.attr('day-id'));
+
+            var count = row.find('.num').text();
+            row.nextAll().each(function(){
+            	$(this).find('.num').text(count++);
+			});
+
+            row.remove();
+        }
+
+        checkInputs();
+
+        if(rowsCount > 1)
+            $('.remove-day').css('display', 'inline-block');
+        else
+            $('.remove-day').css('display', 'none');
+	}
 
     $(document).ready(function(){
         if(current_lang == 'es'){
@@ -1447,6 +1650,8 @@ function events_edit(){
         row.find('input').val('');
         row.find('.num').text(++rowsCount);
         row.find('.date').find('input').removeAttr('id').removeClass('hasDatepicker');
+        row.find('.remove').find('.remove-day').click(removeDay);
+        row.removeAttr('day-id');
 
         tbody.append(row);
         row.find('.date, .time').change(checkInputs);
@@ -1460,21 +1665,7 @@ function events_edit(){
             $('.remove-day').css('display', 'none');
     });
 
-    $('.remove-day').click(function(){
-        var row = $('#edit-event-form .table table > tbody > tr').last();
-        var rowsCount = $('#edit-event-form .table table > tbody tr').length;
-        --rowsCount;
-
-        if(rowsCount > 0)
-            row.remove();
-
-        checkInputs();
-
-        if(rowsCount > 1)
-            $('.remove-day').css('display', 'inline-block');
-        else
-            $('.remove-day').css('display', 'none');
-    });
+    $('.remove-day').click(removeDay);
 
     $('#edit-event-form').submit(function(e){
         e.preventDefault();
@@ -1483,6 +1674,10 @@ function events_edit(){
         var days = [];
         $('#edit-event-form .table table > tbody tr').each(function(){
             var day = {};
+            var id = $(this).attr('day-id');
+            if(id)
+            	day['id'] = id;
+
             day['day'] = $(this).find('.date input').val();
             day['begin_hour'] = $(this).find('.time.begin-hour input').val();
             day['end_hour'] = $(this).find('.time.end-hour input').val();
@@ -1493,6 +1688,7 @@ function events_edit(){
 
         var form = new FormData(this);
         form.append('days', JSON.stringify(days));
+        form.append('remove_days', JSON.stringify(removeDays));
 
         $.ajax({
             url: edit_event_url.replace('999', id),

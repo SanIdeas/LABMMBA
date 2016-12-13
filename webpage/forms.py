@@ -1,5 +1,5 @@
 from django import forms
-from webpage.models import News, Image, Section, SectionImage, Member, News_comment, Event, EventDay
+from webpage.models import News, Image, Section, SectionImage, GalleryPhoto, Member, News_comment, Event, EventDay
 from login.models import User
 
 
@@ -33,6 +33,12 @@ class SectionImageForm(forms.ModelForm):
 
 	class Meta:
 		model = SectionImage
+		fields = '__all__'
+
+class GalleryPhotoForm(forms.ModelForm):
+
+	class Meta:
+		model = GalleryPhoto
 		fields = '__all__'
 
 class NewsCommentForm(forms.ModelForm):

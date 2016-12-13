@@ -735,12 +735,12 @@
 	transition: 0s;
 }
 
-#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup, #members-setup, #news-setup, #events-setup{
+#users-setup, #areas-setup, #webpage-setup, #documents-setup, #select-section-setup, #gallery-setup, #members-setup, #news-setup, #events-setup{
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
-#news-setup, #events-setup{
+#gallery-setup, #news-setup, #events-setup{
 	padding-top: 20px;
 }
 
@@ -897,6 +897,24 @@ span.error {
 	font-weight: 400;
 }
 
+.selectHeader img{
+	transition: opacity 0.3s ease;
+}
+
+.selectHeader img:hover{
+	opacity: 0.9;
+	transition: opacity 0.3s ease;
+}
+
+.selectThumbnail{
+	transition: opacity 0.3s ease;
+}
+
+.selectThumbnail:hover{
+	opacity: 0.8;
+	transition: opacity 0.3s ease;
+}
+
 .selectHeader.picture{
 	padding: 0!important;
 }
@@ -949,6 +967,7 @@ span.error {
 }
 
 #webpage-categories-container > ul{
+	list-style: none;
 	padding: 0;
 	margin: 0;
 	width: 100%;
@@ -1037,14 +1056,26 @@ span.error {
 
 #create-event-form table td.num, #edit-event-form table td.num{
 	width: 20px;
+	min-width: 20px;
 }
 
 #create-event-form table td.date, #edit-event-form table td.date{
 	width: 120px;
+	min-width: 91px;
 }
 
 #create-event-form table td.time, #edit-event-form table td.time{
 	width: 80px;
+	min-width: 60px;
+}
+
+#create-event-form table td.location, #edit-event-form table td.location{
+	min-width: 100px;
+}
+
+#create-event-form table td.remove, #edit-event-form table td.remove{
+	width: 40px;
+	min-width: 40px;
 }
 
 #create-event-form .day-btns, #edit-event-form .day-btns{
@@ -1054,9 +1085,49 @@ span.error {
 
 #create-event-form .day-btns button.submit, #edit-event-form .day-btns button.submit{
 	width: auto;
-	padding: 5px;
+	padding: 10px;
 }
 
 #create-event-form .day-btns button.remove-day, #edit-event-form .day-btns button.remove-day{
 	background: #e0424e!important;
+}
+
+#create-event-form a.remove-day, #edit-event-form a.remove-day{
+	color: #e0424e!important;
+}
+
+.gallery ul{
+	list-style: none;
+	padding: 0;
+	margin-top: 20px;
+}
+
+.gallery ul li{
+	margin-bottom: 20px;
+}
+
+.gallery ul li a{
+	text-decoration: none;
+}
+
+.gallery div.gallery-photo{
+	display: flex;
+	justify-content: center;
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 2px solid #ffffff;
+	box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+	transition: opacity 0.3s ease;
+}
+
+.gallery div.gallery-photo:hover{
+	opacity: 0.8;
+	transition: opacity 0.3s ease;
+}
+
+.gallery div.gallery-photo i{
+	align-self: center;
+	color: #009065;
 }
