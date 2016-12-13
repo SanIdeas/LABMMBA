@@ -15,8 +15,11 @@ def analytics(context, next = None):
 	SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
 	credentials = ServiceAccountCredentials.from_json_keyfile_name( settings.ANALYTICS_JSON_DIR , SCOPE)
 	ANALYTICS_VIEW_ID = '135953807'
+	ANALYTICS_VIEW_ID_PUBLIC = '135963610'
+
 	 
 	return {
 		'token': credentials.get_access_token().access_token,
-		'view_id': ANALYTICS_VIEW_ID
+		'view_id': ANALYTICS_VIEW_ID,
+		'view_id_public': ANALYTICS_VIEW_ID_PUBLIC
 	}

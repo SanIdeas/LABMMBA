@@ -19,7 +19,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <div class="row-fluid" style="margin: 20px 0;">
 <div class="c6">
 <div class="documents filters intranet box">
-<h3 class="setup-subtitle green">{% trans "Trafico" %}</h3>
+<h3 class="setup-subtitle green">{% trans "Trafico interno" %}</h3>
 <section class="panel">
 <h2>{% trans 'Sesiones y usuarios, ultimos 15 dias' %}</h2>
 <div id="chart-1-container"></div>
@@ -28,10 +28,30 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 </div>
 <div class="c6">
 <div class="documents filters intranet box">
-<h3 class="setup-subtitle green">{% trans "Popular" %}</h3>
+<h3 class="setup-subtitle green">{% trans "Popularidad interna" %}</h3>
 <section class="panel">
 <h2>{% trans 'Visitas, ultimos 15 dias' %}</h2>
 <div id="chart-2-container"></div>
+</section>
+</div>
+</div>
+</div>
+<div class="row-fluid" style="margin: 20px 0;">
+<div class="c6">
+<div class="documents filters intranet box">
+<h3 class="setup-subtitle green">{% trans "Trafico externo" %}</h3>
+<section class="panel">
+<h2>{% trans 'Sesiones y usuarios, ultimos 15 dias' %}</h2>
+<div id="chart-1-container-p"></div>
+</section>
+</div>
+</div>
+<div class="c6">
+<div class="documents filters intranet box">
+<h3 class="setup-subtitle green">{% trans "Popularidad externa" %}</h3>
+<section class="panel">
+<h2>{% trans 'Visitas, ultimos 15 dias' %}</h2>
+<div id="chart-2-container-p"></div>
 </section>
 </div>
 </div>
@@ -48,14 +68,16 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 </div>
 <div class="c6">
 <div class="documents filters intranet box">
-<h3 class="setup-subtitle green">{% trans "Adquisición????" %}</h3>
+<h3 class="setup-subtitle green">{% trans "Adquisición" %}</h3>
 <section class="panel">
-<h2>{% trans 'Referral Traffic, ultimos 15 dias' %}</h2>
+<h2>{% trans 'Tráfico referido, ultimos 15 dias' %}</h2>
 <div id="chart-4-container"></div>
 </section>
 </div>
 </div>
 </div>
+
+<!--
 <div class="row-fluid" style="margin: 20px 0;">
 <div class="c6">
 <div class="documents filters intranet box">
@@ -76,7 +98,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 </div>
 </div>
 </div>
- 
+ -->
  
 <script>
  
@@ -126,7 +148,7 @@ var dataChart1 = new gapi.analytics.googleCharts.DataChart({
 query: {
 'ids': 'ga:{{ view_id }}',
 'start-date': '15daysAgo',
-'end-date': 'yesterday',
+'end-date': 'today',
 'metrics': 'ga:sessions,ga:users',
 'dimensions': 'ga:date'
 },
@@ -139,6 +161,24 @@ chart: {
 }
 });
 dataChart1.execute();
+
+var dataChart1P = new gapi.analytics.googleCharts.DataChart({
+query: {
+'ids': 'ga:{{ view_id_public }}',
+'start-date': '15daysAgo',
+'end-date': 'today',
+'metrics': 'ga:sessions,ga:users',
+'dimensions': 'ga:date'
+},
+chart: {
+'container': 'chart-1-container-p',
+'type': 'LINE',
+'options': {
+'width': '100%'
+}
+}
+});
+dataChart1P.execute();
  
  
 /**
@@ -148,9 +188,9 @@ var dataChart2 = new gapi.analytics.googleCharts.DataChart({
 query: {
 'ids': 'ga:{{ view_id }}',
 'start-date': '15daysAgo',
-'end-date': 'yesterday',
+'end-date': 'today',
 'metrics': 'ga:pageviews',
-'dimensions': 'ga:pagePath',
+'dimensions': 'ga:pagePathLevel3',
 'sort': '-ga:pageviews',
 'max-results': 7
 },
@@ -164,6 +204,27 @@ chart: {
 }
 });
 dataChart2.execute();
+
+var dataChart2P = new gapi.analytics.googleCharts.DataChart({
+query: {
+'ids': 'ga:{{ view_id_public }}',
+'start-date': '15daysAgo',
+'end-date': 'today',
+'metrics': 'ga:pageviews',
+'dimensions': 'ga:pagePathLevel2',
+'sort': '-ga:pageviews',
+'max-results': 7
+},
+chart: {
+'container': 'chart-2-container-p',
+'type': 'PIE',
+'options': {
+'width': '100%',
+'pieHole': 4/9,
+}
+}
+});
+dataChart2P.execute();
  
 /**
 * Creates a new DataChart instance showing top borwsers
@@ -172,7 +233,7 @@ var dataChart3 = new gapi.analytics.googleCharts.DataChart({
 query: {
 'ids': 'ga:{{ view_id }}',
 'start-date': '15daysAgo',
-'end-date': 'yesterday',
+'end-date': 'today',
 'metrics': 'ga:sessions',
 'dimensions': 'ga:browser',
 'sort': '-ga:sessions',
@@ -194,9 +255,9 @@ dataChart3.execute();
 */
 var dataChart4 = new gapi.analytics.googleCharts.DataChart({
 query: {
-'ids': 'ga:{{ view_id }}',
+'ids': 'ga:{{ view_id_public }}',
 'start-date': '15daysAgo',
-'end-date': 'yesterday',
+'end-date': 'today',
 'metrics': 'ga:sessions',
 'dimensions': 'ga:source',
 'sort': '-ga:sessions',
@@ -218,9 +279,9 @@ dataChart4.execute();
 */
 var dataChart5 = new gapi.analytics.googleCharts.DataChart({
 query: {
-'ids': 'ga:{{ view_id }}',
+'ids': 'ga:{{ view_id_public }}',
 'start-date': '15daysAgo',
-'end-date': 'yesterday',
+'end-date': 'today',
 'metrics': 'ga:sessions',
 'dimensions': 'ga:country',
 'sort': '-ga:sessions',
@@ -237,29 +298,6 @@ chart: {
 });
 dataChart5.execute();
  
-/**
-* Creates a new DataChart instance showing social interactions over the past 15 days.
-*/
-var dataChart6 = new gapi.analytics.googleCharts.DataChart({
-query: {
-'ids': 'ga:{{ view_id }}',
-'start-date': '15daysAgo',
-'end-date': 'yesterday',
-'metrics': 'ga:socialInteractions',
-'dimensions': 'ga:socialInteractionNetwork',
-'sort': '-ga:socialInteractions',
-'max-results': 7
-},
-chart: {
-'container': 'chart-6-container',
-'type': 'PIE',
-'options': {
-'width': '100%',
-'pieHole': 4/9,
-}
-}
-});
-dataChart6.execute();
  
 });
 </script>
