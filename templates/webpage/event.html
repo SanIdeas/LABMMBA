@@ -19,11 +19,13 @@
             <section class="content eventos c8">
                 <h3>{{event.get_date}}</h3>
                 <div class="descripcion">
-                    <a class="modal" href="{% static event.image %}">
-                        <img src="{% static event.image %}">
-                    </a>
+                    {% if event.image %}
+                        <a class="modal" href="{% static event.image %}">
+                            <img src="{% static event.image %}">
+                        </a>
+                    {% endif %}
                     <p>
-                        {% lorem 50 w %}
+                        {{ event.description }}
                     </p>
                 </div>
                 <div class="responsive-table">
