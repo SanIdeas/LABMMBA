@@ -722,7 +722,7 @@ def event_edit(request, event_id=None):
 					event.update_image(image)
 
 				if program:
-					event.update_image(program)
+					event.update_program(program)
 
 				if days:
 					result = event.update_event_days(json.loads(days))
