@@ -1115,6 +1115,7 @@ span.error {
 	justify-content: center;
 	width: 150px;
 	height: 150px;
+	background-size: cover!important;
 	margin: 0 auto;
 	overflow: hidden;
 	border: 2px solid #ffffff;

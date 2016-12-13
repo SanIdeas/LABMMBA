@@ -1047,8 +1047,7 @@ function gallery(){
     $(document).ready(function(){
         $('a.modal.picture').fancybox({
             scrolling: false,
-            autoSize: false,
-            width: 800
+            autoSize: false
         });
     });
     (function($){

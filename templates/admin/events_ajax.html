@@ -15,7 +15,7 @@
                     <div class="details c10">
                         {%if event.get_date%}<span class="date">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>{%endif%}
                         <div>
-                            <a href="" class="news-title-link">
+                            <a href="{% url 'webpage:event' event.slug %}" class="news-title-link">
                                 <h2 class="title">{{event.title}}</h2>
                             </a>
                         </div>

@@ -14,7 +14,7 @@
             {% for photo in gallery %}
                 <li class="c2">
                     <a photo-id="{{photo.id}}">
-                        <div url="{% static photo.image_static_url %}" class="gallery-photo photo" style="background: url({% static photo.image_static_url %}) 50% 50% no-repeat!important;">
+                        <div url="{% static photo.image_static_url %}" class="gallery-photo photo" style="background: url({% static photo.image_static_url %}) 50% 50%;">
                         </div>
                     </a>
                 </li>
@@ -28,10 +28,10 @@
     <div class="cropper">
         <div class="editor" style="display:none; opacity:0; top:20px;">
             <div class="crop">
-                <img id="imageCropper">
+                <img id="imageCropper" style="align-self: center; max-height: 100%;">
             </div>
             <div class="buttons">
-                <div class="c4"><button id="deleteImage" photo-id=""><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Eliminar foto' %}</button></div>
+                <div class="c12"><button id="deleteImage" photo-id=""><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Eliminar foto' %}</button></div>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
     <div class="cropper">
         <div class="editor" style="display:none; opacity:0; top:20px;">
             <div class="crop">
-                <img id="imageCropper">
+                <img id="imageCropper" style="align-self: center; max-height: 100%">
             </div>
             <div class="buttons">
                 <div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
