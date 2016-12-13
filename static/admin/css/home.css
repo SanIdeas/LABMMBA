@@ -1,0 +1,12 @@
+.panel {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.panel h2 {
+	font-size: 15px;
+}
+
+#active-users-container > div {
+	padding-left: 20px;
+}

@@ -66,6 +66,8 @@
 								</div>
 								<div class="mobile-nav notrans">
 									<ul class="mobile-main-nav clear">
+                                        {% url 'admin:home' as users_view%}
+                                        <li class="{% if users_view == request.path%} current {%endif%}"><a href="{{users_view}}">{% trans "Inicio" %}</a></li>
                                         {% url 'admin:users' as users_view%}
                                         <li class="{% if users_view == request.path%} current {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
                                         {% url 'admin:documents' as documents_view%}
@@ -131,6 +133,11 @@
 			<div id="sidebar" class="sidebar left">
                 <div class="links clear box">
                     <h3>{% trans 'Administrar' %}</h3>
+                    {% url 'admin:home' as users_view%}
+					<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">
+						<i class="fa fa-home" aria-hidden="true"></i>
+						{% trans "Inicio" %}
+					</a>
                     {% url 'admin:users' as users_view%}
 					<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">
 						<i class="fa fa-users" aria-hidden="true"></i>
