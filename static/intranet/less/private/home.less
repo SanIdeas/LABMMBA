@@ -35,7 +35,11 @@ html,body{
 	}
 }
 body{
-    display: flex;
+    display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
     flex-direction: column;
 }
 
@@ -46,6 +50,10 @@ body{
 	color: lighten(@color, 30%);
 
 	& div{
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
 		display: flex;
 	    position: relative;
 	    width: 200px;
@@ -168,7 +176,6 @@ body{
 }
 
 #content{
-	display: flex;
 	height: 100%;
 }
 
@@ -204,7 +211,6 @@ body{
 
 	&.body{
 		height: 100%;
-		width: 100%;
 		background-color: #f1f2f4;
 		overflow-y: scroll;
 		position: relative;
@@ -354,7 +360,11 @@ body{
 					    top: 0;
 					    height: 100%;
 					    border-radius: 50%;
-					    display: flex;
+					    display: -webkit-box;
+						display: -moz-box;
+						display: -ms-flexbox;
+						display: -webkit-flex;
+						display: flex;
 					    position: absolute;
 					    justify-content: center;
 						& h2{
@@ -512,6 +522,10 @@ body{
 }
 
 #search{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	margin-left: 225px;
 	width: 50%;

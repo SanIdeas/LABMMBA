@@ -285,8 +285,8 @@ def upload(request):
 				local_ids=[]
 				for id in user_side_ids:
 					
-					# Si el tamaño supera los 2 mb, se muestra un mensaje de error
-					if request.FILES['document'+id].size/1000 > 2048:
+					# Si el tamaño supera los 30 mb, se muestra un mensaje de error
+					if request.FILES['document'+id].size/1000 > 30720:
 						return JsonResponse({'error': True, 'message':_('El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
 
 					# Si el documento ya existe, se muestra un mensaje de error
