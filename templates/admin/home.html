@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/home.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+    <script src="{% static 'admin/js/home/active-users.js' %}"></script>
+    <script src="{% static 'admin/js/home/view-selector2.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 <div class="title">
