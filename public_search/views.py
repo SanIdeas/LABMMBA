@@ -13,7 +13,7 @@ def search(request, search=None):
         return HttpResponseRedirect(reverse('intranet'))
     else:
         kwargs = get_filters(request)
-        all_docs = Document.objects.filter(type=False, **kwargs)
+        all_docs = Document.objects.filter(is_public=True, **kwargs)
         if search is None: #Si no es una busqueda
             documents = all_docs
         else:

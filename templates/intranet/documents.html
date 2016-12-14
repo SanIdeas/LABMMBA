@@ -43,14 +43,13 @@
 					<div class="intranet box">
 						<div>
 							{% for document in documents%}
-								 <div class="evento">
+							 	<div class="evento">
 							        <a class="clear closed" href="{% url 'intranet:document' document.author_slug document.title_slug %}">
 							            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
 							            <h4>{{ document.title }}</h4>
 							            <span class="icon arrow"></span>
 							        </a>
-							        </div>
-							    </div>
+						        </div>
 							{% endfor %}
 					    </div>
 						{% if documents.has_other_pages %}
