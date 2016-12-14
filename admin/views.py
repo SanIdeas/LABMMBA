@@ -181,7 +181,7 @@ def sendInvitation(request):
 				user = User.objects.filter(email=email).first()
 				if user is None or not user.is_registered:
 					message = EmailMultiAlternatives(subject, text, from_email, [email])
-					message.attach_alternative(html.replace('$token', token), 'text/html')
+					message.attach_alternative(html.replace('$token', token).replace('$redirect', settings.REDIRECT_URL).replace('$header', settings.HEADER_URL).replace('$footer', settings.FOOTER_URL), 'text/html')
 
 					try:
 						message.send()

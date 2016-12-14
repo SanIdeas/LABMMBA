@@ -16,7 +16,7 @@ from django.conf import settings
 flow = client.flow_from_clientsecrets(
 	settings.DRIVE_JSON_DIR,
 	scope='https://www.googleapis.com/auth/drive.readonly',
-	redirect_uri='http://127.0.0.1:8000/drive/oauth2callback')
+	redirect_uri=setting.DRIVE_REDIRECT_URI)
 flow.params['include_granted_scopes'] = 'true'
 flow.params['access_type'] = 'offline'
 
