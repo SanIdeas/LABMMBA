@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load staticfiles %}
 <script>
 (function(w,d,s,g,js,fs){
 g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
@@ -8,10 +9,10 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 }(window,document,'script'));
 </script>
 <!-- Include the ActiveUsers component script. -->
-<script src="https://ga-dev-tools.appspot.com/public/javascript/embed-api/components/active-users.js"></script>
-<script src="https://ga-dev-tools.appspot.com/public/javascript/embed-api/components/view-selector2.js"></script>
- 
- 
+    <script src="{% static 'admin/js/home/active-users.js' %}"></script>
+    <script src="{% static 'admin/js/home/view-selector2.js' %}"></script>
+
+
 <h4 class="italic-title"><span class="btn btn-default" id="active-users-container"></span></h4>
 <!-- this is just to make the view selector work, no need to display it -->
 <div id="view-selector-container" style="display: none"></div>
@@ -59,6 +60,26 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <div class="row-fluid" style="margin: 20px 0;">
 <div class="c6">
 <div class="documents filters intranet box">
+<h3 class="setup-subtitle green">{% trans "Pais de visitas internas" %}</h3>
+<section class="panel">
+<h2>{% trans 'Ultimos 15 dias' %}</h2>
+<div id="chart-5-container"></div>
+</section>
+</div>
+</div>
+<div class="c6">
+<div class="documents filters intranet box">
+<h3 class="setup-subtitle green">{% trans "Pais de visitas externas" %}</h3>
+<section class="panel">
+<h2>{% trans 'Ultimos 15 dias' %}</h2>
+<div id="chart-5-container-p"></div>
+</section>
+</div>
+</div>
+</div>
+<div class="row-fluid" style="margin: 20px 0;">
+<div class="c6">
+<div class="documents filters intranet box">
 <h3 class="setup-subtitle green">{% trans "Navegadores mas populares" %}</h3>
 <section class="panel">
 <h2>{% trans 'Ultimos 15 dias' %}</h2>
@@ -76,29 +97,6 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 </div>
 </div>
 </div>
-
-<!--
-<div class="row-fluid" style="margin: 20px 0;">
-<div class="c6">
-<div class="documents filters intranet box">
-<h3 class="setup-subtitle green">{% trans "Audiencia" %}</h3>
-<section class="panel">
-<h2>{% trans 'Paises, ultimos 15 dias' %}</h2>
-<div id="chart-5-container"></div>
-</section>
-</div>
-</div>
-<div class="c6">
-<div class="documents filters intranet box">
-<h3 class="setup-subtitle green">{% trans "Social" %}</h3>
-<section class="panel">
-<h2>{% trans 'Interacciones, ultimos 15 dias' %}</h2>
-<div id="chart-6-container"></div>
-</section>
-</div>
-</div>
-</div>
- -->
  
 <script>
  
@@ -150,6 +148,7 @@ query: {
 'start-date': '15daysAgo',
 'end-date': 'today',
 'metrics': 'ga:sessions,ga:users',
+'filters' : 'ga:country!=Russia',
 'dimensions': 'ga:date'
 },
 chart: {
@@ -168,6 +167,7 @@ query: {
 'start-date': '15daysAgo',
 'end-date': 'today',
 'metrics': 'ga:sessions,ga:users',
+'filters' : 'ga:country!=Russia',
 'dimensions': 'ga:date'
 },
 chart: {
@@ -191,6 +191,7 @@ query: {
 'end-date': 'today',
 'metrics': 'ga:pageviews',
 'dimensions': 'ga:pagePathLevel3',
+'filters' : 'ga:country!=Russia',
 'sort': '-ga:pageviews',
 'max-results': 7
 },
@@ -212,6 +213,7 @@ query: {
 'end-date': 'today',
 'metrics': 'ga:pageviews',
 'dimensions': 'ga:pagePathLevel2',
+'filters' : 'ga:country!=Russia',
 'sort': '-ga:pageviews',
 'max-results': 7
 },
@@ -236,6 +238,7 @@ query: {
 'end-date': 'today',
 'metrics': 'ga:sessions',
 'dimensions': 'ga:browser',
+'filters' : 'ga:country!=Russia',
 'sort': '-ga:sessions',
 'max-results': 7
 },
@@ -255,11 +258,12 @@ dataChart3.execute();
 */
 var dataChart4 = new gapi.analytics.googleCharts.DataChart({
 query: {
-'ids': 'ga:{{ view_id_public }}',
+'ids': 'ga:{{ view_id }}',
 'start-date': '15daysAgo',
 'end-date': 'today',
 'metrics': 'ga:sessions',
 'dimensions': 'ga:source',
+'filters' : 'ga:country!=Russia',
 'sort': '-ga:sessions',
 'max-results': 7
 },
@@ -279,11 +283,12 @@ dataChart4.execute();
 */
 var dataChart5 = new gapi.analytics.googleCharts.DataChart({
 query: {
-'ids': 'ga:{{ view_id_public }}',
+'ids': 'ga:{{ view_id }}',
 'start-date': '15daysAgo',
 'end-date': 'today',
 'metrics': 'ga:sessions',
 'dimensions': 'ga:country',
+'filters' : 'ga:country!=Russia',
 'sort': '-ga:sessions',
 'max-results': 7
 },
@@ -297,6 +302,28 @@ chart: {
 }
 });
 dataChart5.execute();
+
+var dataChart5p = new gapi.analytics.googleCharts.DataChart({
+query: {
+'ids': 'ga:{{ view_id_public }}',
+'start-date': '15daysAgo',
+'end-date': 'today',
+'metrics': 'ga:sessions',
+'dimensions': 'ga:country',
+'filters' : 'ga:country!=Russia',
+'sort': '-ga:sessions',
+'max-results': 7
+},
+chart: {
+'container': 'chart-5-container-p',
+'type': 'PIE',
+'options': {
+'width': '100%',
+'pieHole': 4/9,
+}
+}
+});
+dataChart5p.execute();
  
  
 });
