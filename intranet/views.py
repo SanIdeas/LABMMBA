@@ -496,6 +496,7 @@ def news_edit(request, id):
 					news.date = request.POST.get('date')
 					news.source_text = request.POST.get('source_text')
 					news.source_url = request.POST.get('source_url')
+					news.in_header = False
 					news.is_published = False
 					if request.POST.get('title'):
 						news.title = request.POST.get('title') if request.POST.get('title') != "" and request.POST.get('title') != "undefined"  else _(u"Noticia sin título")

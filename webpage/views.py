@@ -41,7 +41,7 @@ def home(request):
 							'documents': documents,
 							'sections': sections.exclude(slug__in=exclude),
 							'body': 'inicio',
-							'header': News.objects.filter(in_header=True).exclude(header="").exclude(header=None).order_by('-date')[:5],
+							'header': News.objects.filter(in_header=True, is_published=True).exclude(header="").exclude(header=None).order_by('-date')[:5],
 							'news_1': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[:2],
 							'news_2': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[2:4],
 							'events': events_sort[:3],
@@ -195,6 +195,7 @@ def news_editor(request, id = None):
 					news.title = ' '.join(request.POST.get('news-title').split()) if request.POST.get('news-title') != " " and request.POST.get('news-title') != "undefined"  else _(u"Noticia sin título")
 				if request.POST.get('news-content') is not None:
 					news.body = request.POST.get('news-content')
+				news.in_header	 = False
 				news.is_published = False
 				news.save()
 				return JsonResponse({'error': False})

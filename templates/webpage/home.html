@@ -24,14 +24,6 @@
 	{% else %}
 		<figure class="rsContent">
 			<img class="rsImg" src="{% static 'shared/images/home2.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit."/>
-			<figcaption class="grid rsABlockContainer">
-				<div class="rsABlock bottom left" data-move-effect="left">
-					<a href="#" class="caption-text notrans">
-						<h2>Inauguración de la nueva página web del laboratorio</h2>
-						<span class="more trans">Ver más</span>
-					</a>
-				</div>
-			</figcaption>
 		</figure>
 	{% endif %}
 </div>
@@ -91,7 +83,7 @@
 				<h2 class="c12 title">{% trans "Eventos" %}:</h2>
 				{% if events %}
 					{% for event in events %}
-						<a href="events.html" class="c12" fecha="210120141900">
+						<a href="{% url 'webpage:event' event.slug %}" class="c12" fecha="210120141900">
 							<span class="date icon">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>
 							<p>{{event.title}}</p>
 						</a>
