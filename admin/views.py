@@ -100,6 +100,54 @@ def documents(request, search=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
+def document(request, title=None, author=None):
+	if request.user.is_authenticated() and request.user.is_admin:
+		try:
+			document = Document.objects.get(title_slug=title, author_slug=author)
+		except Document.DoesNotExist:
+			document = None
+		if document is not None:
+			return render(request, 'admin/document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document})
+		else:
+			return documents(request)
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def edit_document(request, id=None):
+	if request.user.is_authenticated() and request.user.is_admin:
+		try:
+			if request.user.is_admin:
+				document = Document.objects.get(id=id)
+			else:
+				document = Document.objects.get(id=id, owner=request.user)
+		except:
+			document = None
+		if document:
+			if request.method == "GET":
+				return render(request, 'admin/edit_document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document, 'areas': Area.objects.all()})
+			elif request.method == "POST":
+					document.title = request.POST['title']
+					document.author = request.POST['author']
+					document.date = request.POST['date']
+					document.category = SubArea.objects.get(id=request.POST['category'])
+					document.abstract = request.POST['abstract']
+					document.issn = request.POST['issn']
+					document.doi = request.POST['doi']
+					document.words = request.POST['words']
+					document.url = "http://dx.doi.org/" + request.POST['doi']
+					document.pages = request.POST['pages']
+					document.save()
+					return HttpResponseRedirect(reverse('admin:document', kwargs={'title': document.title_slug, 'author': document.author_slug}))
+			elif request.method == "DELETE":
+				document.owner.doc_number('-')
+				document.delete()
+				return JsonResponse({'error': False})
+		else:
+			return HttpResponseRedirect(reverse('admin:documens')) #Se redirecciona a Documentos.
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+
 
 def users(request, user_id=None, delete=False, activate=False, block=False, unblock=False, profile=False):
 	if request.user.is_authenticated():

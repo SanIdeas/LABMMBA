@@ -1,0 +1,155 @@
+{% extends 'admin/shared.html' %}
+
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+<div class="title">
+	<h3>{% trans "Información del documento" %}</h3>
+</div>
+<div class="intranet row">
+	<div class="c12">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document head">
+				<h2>{{document.title}}</h2>
+				<h5>{{document.category.name}}</h5>
+				<h5>{{document.date.year}}</h5>
+				<div class="intranet separator"></div>
+				{{ document.abstract }}				
+			</div>
+		</div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c7">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+            <div class="document download trans">
+            	{% if document.owner == request.user %}
+					<a href="{% url 'intranet:viewer' document.id %}">
+				{% else %}
+					<a href="{% url 'intranet:viewer' document.author_slug document.title_slug %}">
+				{% endif %}
+	                <div>
+	                    <h1>{% trans "Ver <span>Documento</span>" %}</h1>
+	                </div>
+	            </a>
+            </div>
+        </div>
+        <!-- Fin de la caja -->
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document table">
+				<table>
+					<tr>
+						<td><strong>{% trans "Autor" %}:</strong></td>
+						<td>{{document.author}}</td>
+					</tr>
+					<tr>
+						<td><strong>{% trans "Publicado el" %}:</strong></td>
+						<td>{{document.date}}</td>
+					</tr>
+					{% if document.pages %}
+					<tr>
+						<td><strong>{% trans "Paginas" %}:</strong></td>
+						<td>{{document.pages}}</td>
+					</tr>
+					{% endif %}
+					{% if document.issn %}
+					<tr>
+						<td><strong>{% trans "ISSN" %}:</strong></td>
+						<td>{{document.issn}}</td>
+					</tr>
+					{% endif %}
+					{% if document.doi %}
+						<tr>
+							<td><strong>{% trans "DOI" %}:</strong></td>
+							<td><a href="{{document.get_doi_url}}">{{document.doi}}</a></td>
+						</tr>
+					{% endif %}
+					<tr>
+						<td><strong>{% trans "Agregado el" %}:</strong></td>
+						<td>{{document.date_added}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!-- Fin de la caja -->
+        <!-- Nueva caja -->
+        <div class="intranet box">
+        	<div class="document keywords">
+        		<ul>
+				{% if document.words %}
+					{% for keyword in document.get_keywords %}
+						<li><a href="{% url 'intranet:documents' %}?kw={{keyword}}">{{keyword}}</a></li>
+					{% endfor %}
+				{% endif %}
+        	</div>
+        </div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c5">
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document owner">
+			<a href="{% url 'intranet:profile' document.owner.id %}">
+				<div class="image">
+					{% if document.owner.profile_picture %}
+						<img src="{% static document.owner.filename %}"> 
+					{% else %} 
+						<img src="{% static 'intranet/images/default.png' %}">
+					{% endif%}
+				</div>				
+				<h3>{{document.owner.first_name}}  {{document.owner.last_name}}</h3>
+				<h5>{{document.owner.area.name}}</h5>
+				<h5>{{document.owner.institution}}</h5>
+			</div>
+			</a>
+		</div>
+        <!-- Fin de la caja -->
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document controls">
+				<a href="{% url 'admin:edit_document' document.id %}">{% trans "Editar" %}</a>
+				<a class="modal" href="#confirmModal">{% trans "Eliminar" %}</a>
+			</div>
+		</div>
+        <!-- Fin de la caja -->
+	</div>
+</div>
+
+<div style="display:none!important">
+	<div class="document modal" id="confirmModal">
+		<h2>{% trans "¿Estas seguro?" %}</h2>
+		<p>{% trans "Estas a punto de eliminar el documento:" %}</p>
+		<h3>{{document.title}}</h3>
+		<h5>{{document.author}}</h5>
+		<div><a class="cancel">{% trans "CONFIRMAR" %}</a></div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	$('.cancel').click(function(e){
+		console.log('{{csrf_token}}');
+		$.ajax({
+			url:"{% url 'admin:edit_document' document.id %}",
+			type: "DELETE",
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("X-CSRFToken", '{{csrf_token}}');
+			}
+		}).done(function(){
+			window.location.href = "{% url 'admin:documents' %}";
+		});
+	});
+</script>
+{% endblock %}

@@ -67,7 +67,7 @@
                         {% for document in documents %}
                             <li>
                                 <div class="body">
-                                    <a href="{% url 'intranet:document' document.author document.title %}">
+                                    <a href="{% url 'admin:document' document.author_slug document.title_slug %}">
                                         <h3><span>{{ document.date|date:"Y" }}</span> · {{ document.title }}</h3>
                                         <span>{{ document.author }}</span>
                                     </a>

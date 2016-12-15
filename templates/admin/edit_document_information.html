@@ -1,0 +1,136 @@
+{% extends 'admin/shared.html' %}
+
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+<form action="" method="POST">
+{% csrf_token %}
+<div class="title">
+	<h3>{% trans "Editar documento" %}</h3>
+</div>
+<div class="intranet row">
+	<div class="c12">
+		<!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document head">
+				<h2><textarea name="title" rows="1" required>{{document.title}}</textarea></h2>
+				<h5>
+					<select name="category" required>
+						<option value="" disabled>{% trans "Selecciona un area" %}</option>
+						{% for area in areas %}
+							<optgroup label="{{ area.name }}">
+								{% for subarea in area.get_sub_areas %}
+									<option value="{{ subarea.id }}" {% if subarea == document.category %} selected {% endif %}> {{ subarea.name }}</option>
+								{% endfor %}
+							</optgroup>
+						{% endfor %}
+					</select>
+				</h5>
+				<div id="type-wrapper" class="{{document.privacy}}"></div>
+				<div class="intranet separator"></div>
+				<textarea name="abstract">{{ document.abstract }}</textarea>			
+			</div>
+		</div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c7">
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document table">
+				<table>
+					<tr>
+						<td><strong>{% trans "Autor" %}:</strong></td>
+						<td><input type="text" class="text" name="author" value="{{document.author}}"></td>
+					</tr>
+					<tr>
+						<td><strong>{% trans "Publicado el" %}:</strong></td>
+						<td><input type="date" class="text" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
+					</tr>
+					<tr>
+						<td><strong>{% trans "Paginas" %}:</strong></td>
+						<td><input type="text" class="text" name="pages" {% if document.pages %} value="{{document.pages}}" {% endif %}></td>
+					</tr>
+					<tr>
+						<td><strong>{% trans "ISSN" %}:</strong></td>
+						<td><input type="text" class="text" name="issn" {% if document.issn %} value="{{document.issn}}" {% endif %}></td>
+					</tr>
+						<tr>
+							<td><strong>{% trans "DOI" %}:</strong></td>
+							<td><input type="text" class="text" name="doi" {% if document.doi %} value="{{document.doi}}" {% endif %}></td>
+						</tr>
+				</table>
+			</div>
+		</div>
+		<!-- Fin de la caja -->
+        <!-- Nueva caja -->
+        <div class="intranet box">
+        	<div class="document keywords">
+        		<ul>
+				{% if document.words %}
+					{% for keyword in document.get_keywords %}
+						<li><a class="rm-keyword" >{{keyword}}</a></li>
+					{% endfor %}
+				{% endif %}
+					<li></i><input id="inputKW" class="text" placeholder="{% trans 'Escribe una palabra clave' %}" type="text"></li>
+				</ul>
+        	</div>
+        </div>
+        <!-- Fin de la caja -->
+	</div>
+	<div class="c5">
+        <!-- Nueva caja -->
+		<div class="intranet box">
+			<div class="document controls">
+				<a id="submitForm">{% trans "Guardar" %}</a>
+				{% if document.title and document.author %}
+					<a href="{% url 'admin:document' document.author_slug document.title_slug %}">{% trans "Cancelar" %}</a>
+				{% else %}
+					<a href="{% url 'intranet:profile' request.user.id %}">{% trans "Cancelar" %}</a>
+				{% endif %}
+			</div>
+		</div>
+        <!-- Fin de la caja -->
+	</div>
+</div>
+<input type="hidden" name="words" id="kwrds-field">
+</form>
+<script>
+	autosize(document.querySelectorAll('textarea'));
+
+	function update_kwrds(){
+		kwrds = [];
+		$('.rm-keyword').each(function(){
+			kwrds.push($(this).text());
+		})
+		$('#kwrds-field').val(kwrds.join(','));
+		}
+
+	update_kwrds();
+	$('.rm-keyword').on('click', function(e){
+		e.preventDefault();
+		$(this).closest('li').remove();
+		update_kwrds();
+	});
+
+	$('#inputKW').keypress(function(e) {
+	    if(e.which == 13) {
+			e.preventDefault();
+	        $("<li><a class='rm-keyword' href='#'>" + $(this).val().toLowerCase() + "</a></li>").insertBefore($(this).closest('li'));
+	        $(this).val('');
+		    update_kwrds();
+	        $('.rm-keyword').off();
+		    $('.rm-keyword').on('click', function(e){
+		    	e.preventDefault();
+		    	$(this).closest('li').remove();
+				update_kwrds();
+		    });
+	    }
+	});
+
+	$('#submitForm').click(function(e){
+		e.preventDefault();
+		$('form').submit();
+	});
+</script>
+
+{% endblock %}
