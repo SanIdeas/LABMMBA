@@ -12,7 +12,7 @@ class DocumentForm(forms.ModelForm):
 	abstract = forms.CharField(required=False)
 	content = forms.CharField(required=False)
 	drive_id = forms.CharField(required=False)
-	date = forms.DateField(required=False)
+	date = forms.DateField(required=False, input_formats=['%d-%m-%Y'])
 	thumbnail = forms.FileField(required=False)
 	words = forms.CharField(required=False)
 	issn = forms.CharField(required=False)

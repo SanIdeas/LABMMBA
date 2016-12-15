@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-05 00:43-0400\n"
+"POT-Creation-Date: 2016-12-15 00:27-0300\n"
 "PO-Revision-Date: 2016-07-05 00:50-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,528 +17,1526 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 
-#: .\crossref\views.py:54
+#: .\admin\views.py:200
+msgid "Uno o más correos son inválidos o ya se encuentran registrados"
+msgstr ""
+
+#: .\crossref\views.py:57
 msgid "Debe iniciar sesion."
 msgstr "You must log in"
 
-#: .\drive\views.py:164
-msgid "Para continuar debes enlazar tu cuenta de Google Drive"
-msgstr "Link your Google Drive account to continue"
+#: .\drive\views.py:144
+msgid "Ya asociaste una cuenta"
+msgstr ""
 
-#: .\drive\views.py:175
-msgid "El link ingresado no contiene documentos compatibles"
-msgstr "The Link does not have compatible documents"
+#: .\drive\views.py:186
+msgid ""
+"Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas "
+"tarde."
+msgstr "There was a problem to obtain files from Google Drive. Trylater."
 
-#: .\drive\views.py:188
-msgid "No existen archivos compatibles en el enlace."
-msgstr "There are not compatible files in the link."
-
-#: .\drive\views.py:190
-msgid "Error desconocido. Contacta al administrador."
-msgstr "Unkown error. Contact the administrator."
-
-#: .\drive\views.py:193 .\drive\views.py:230
+#: .\drive\views.py:188 .\drive\views.py:318 .\drive\views.py:376
 msgid "Debes iniciar sesion."
 msgstr "You must log in"
 
-#: .\drive\views.py:223
+#: .\drive\views.py:230
 #, python-format
 msgid ""
 "No se pudo descargar el documento %(title)s debibo a un problema desconocido."
 msgstr ""
 "The document %(title)s could not be downloaded due to an unknown problem"
 
-#: .\drive\views.py:228
-msgid ""
-"Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas "
-"tarde."
-msgstr "There was a problem to obtain files from Google Drive. Trylater."
+#: .\drive\views.py:263
+msgid "Para continuar debes enlazar tu cuenta de Google Drive"
+msgstr "Link your Google Drive account to continue"
 
-#: .\labmmba\settings.py:115
+#: .\drive\views.py:281
+#, fuzzy
+#| msgid "Mis documentos"
+msgid "El documento <strong>"
+msgstr "My documents"
+
+#: .\drive\views.py:284
+msgid "El documento no puede tener un tamano superior a 2 Megabytes."
+msgstr ""
+
+#: .\drive\views.py:300
+msgid "El link ingresado no contiene documentos compatibles"
+msgstr "The Link does not have compatible documents"
+
+#: .\drive\views.py:313
+msgid "No existen archivos compatibles en el enlace."
+msgstr "There are not compatible files in the link."
+
+#: .\drive\views.py:315
+msgid "Error desconocido. Contacta al administrador."
+msgstr "Unkown error. Contact the administrator."
+
+#: .\drive\views.py:360
+msgid "Raiz"
+msgstr ""
+
+#: .\drive\views.py:369
+msgid "Debe ingresar la ID de una carpeta"
+msgstr ""
+
+#: .\labmmba\settings.py:131
 msgid "Spanish"
 msgstr "Spanish"
 
-#: .\labmmba\settings.py:116
+#: .\labmmba\settings.py:132
 msgid "English"
 msgstr "English"
 
-#: .\templates\about\about.html:7 .\templates\about\about.html.py:15
-msgid "Quiénes Somos"
-msgstr "About us"
+#: .\login\views.py:162 .\templates\intranet\profile.html:327
+#, fuzzy
+#| msgid "Subida exitosa"
+msgid "Cambio exitoso"
+msgstr "Successful upload"
 
-#: .\templates\about\about.html:16
-msgid "Nuestra Historia"
-msgstr "Our history"
+#: .\login\views.py:164
+msgid ""
+"Hubo un problema. Asegurate de escribir correctamente tu contraseña actual."
+msgstr ""
 
-#: .\templates\about\about.html:17
-msgid "Integrantes"
-msgstr "Members"
+#: .\login\views.py:166
+msgid "Metodo de envio incorrecto"
+msgstr ""
 
-#: .\templates\about\about.html:18 .\templates\shared\base.html.py:83
-#: .\templates\shared\base.html:98 .\templates\shared\base.html.py:145
-msgid "Cooperación"
-msgstr "Cooperation"
+#: .\login\views.py:168 .\webpage\views.py:325
+#, fuzzy
+#| msgid "Debes iniciar sesion."
+msgid "Debes iniciar sesión"
+msgstr "You must log in"
 
-#: .\templates\about\about.html:23
-msgid "Nuestra historia"
-msgstr "Our history"
+#: .\templates\admin\analytics.html:23
+msgid "Tráfico interno"
+msgstr ""
 
-#: .\templates\intranet\admin.html:8 .\templates\intranet\admin.html.py:10
-msgid "Administrar Usuarios"
-msgstr "Manage users"
+#: .\templates\admin\analytics.html:25 .\templates\admin\analytics.html:45
+msgid "Sesiones y usuarios, ultimos 15 dias"
+msgstr ""
 
-#: .\templates\intranet\admin.html:14 .\templates\intranet\admin.html.py:16
-msgid "Personalizar Página Web"
-msgstr "Customize Web Page"
+#: .\templates\admin\analytics.html:32
+msgid "Popularidad interna"
+msgstr ""
 
-#: .\templates\intranet\admin.html:20 .\templates\intranet\admin.html.py:22
-msgid "Generar Informe"
-msgstr "Generate report"
+#: .\templates\admin\analytics.html:34 .\templates\admin\analytics.html:54
+msgid "Visitas, ultimos 15 dias"
+msgstr ""
 
-#: .\templates\intranet\admin.html:26 .\templates\intranet\admin.html.py:28
-msgid "Gestionar Documentos"
-msgstr "Manage Documents"
+#: .\templates\admin\analytics.html:43
+msgid "Tráfico externo"
+msgstr ""
 
-#: .\templates\intranet\admin.html:32 .\templates\intranet\admin.html.py:38
-msgid "Algo"
-msgstr "Something"
+#: .\templates\admin\analytics.html:52
+msgid "Popularidad externa"
+msgstr ""
 
-#: .\templates\intranet\admin.html:34
-msgid "Administradores"
-msgstr "Administrators"
+#: .\templates\admin\analytics.html:63
+msgid "Pais de visitas internas"
+msgstr ""
 
-#: .\templates\intranet\admin.html:40
-msgid "Areas de investigación"
-msgstr "Research areas"
+#: .\templates\admin\analytics.html:65 .\templates\admin\analytics.html:74
+#: .\templates\admin\analytics.html:85
+msgid "Ultimos 15 dias"
+msgstr ""
 
-#: .\templates\intranet\admin_setups\users.html:3
-msgid "Pendientes de Aprobación"
-msgstr "Pending approval"
+#: .\templates\admin\analytics.html:72
+msgid "Pais de visitas externas"
+msgstr ""
 
-#: .\templates\intranet\admin_setups\users.html:17
-#: .\templates\intranet\admin_setups\users.html:54
-#: .\templates\intranet\admin_setups\users.html:80
-msgid "Ver"
-msgstr "View"
+#: .\templates\admin\analytics.html:83
+#, fuzzy
+#| msgid "Categorias Populares"
+msgid "Navegadores mas populares"
+msgstr "Popular categories"
 
-#: .\templates\intranet\admin_setups\users.html:23
-msgid "Admitir"
-msgstr "Allow"
+#: .\templates\admin\analytics.html:92
+msgid "Adquisición"
+msgstr ""
 
-#: .\templates\intranet\admin_setups\users.html:28
-#: .\templates\intranet\admin_setups\users.html:59
-#: .\templates\intranet\admin_setups\users.html:90
+#: .\templates\admin\analytics.html:94
+msgid "Tráfico referido, ultimos 15 dias"
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:6
+#, fuzzy
+#| msgid "Agregado el"
+msgid "Agregar área"
+msgstr "Added on"
+
+#: .\templates\admin\areas_ajax.html:7 .\templates\admin\areas_ajax.html:34
+#: .\templates\admin\members_ajax.html:7
+#, fuzzy
+#| msgid "Agregado el"
+msgid "Agregar"
+msgstr "Added on"
+
+#: .\templates\admin\areas_ajax.html:22 .\templates\admin\areas_ajax.html:55
+#: .\templates\admin\members_ajax.html:30
+#: .\templates\admin\webpage_ajax.html:89
+#: .\templates\admin\webpage_ajax.html:123
+#: .\templates\admin\webpage_subsection_ajax.html:16
+#: .\templates\admin\webpage_subsection_ajax.html:50
+#: .\templates\intranet\document_information.html:113
+#: .\templates\intranet\profile.html:128
+msgid "Editar"
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:28 .\templates\admin\areas_ajax.html:50
+#: .\templates\admin\event_create.html:75 .\templates\admin\event_edit.html:76
+#: .\templates\admin\members_ajax.html:35
+#: .\templates\admin\members_ajax.html:70 .\templates\admin\users_ajax.html:28
+#: .\templates\admin\users_ajax.html:71 .\templates\admin\users_ajax.html:109
+#: .\templates\intranet\document_information.html:114
+#: .\templates\intranet\profile.html:125
 msgid "Eliminar"
 msgstr "Delete"
 
-#: .\templates\intranet\admin_setups\users.html:35
+#: .\templates\admin\areas_ajax.html:62
+#, fuzzy
+#| msgid "Areas de investigación"
+msgid "No hay subáreas de investigación en esta área"
+msgstr "Research areas"
+
+#: .\templates\admin\areas_ajax.html:69
+#, fuzzy
+#| msgid "Areas de investigación"
+msgid "No hay áreas de investigación en el sistema"
+msgstr "Research areas"
+
+#: .\templates\admin\areas_ajax.html:76
+#, fuzzy
+#| msgid "¿De verdad deseas eliminar a este usuario?"
+msgid "¿De verdad deseas eliminar esta área?"
+msgstr "Do you really want to delete this user?"
+
+#: .\templates\admin\areas_ajax.html:80
+msgid ""
+"Ten en cuenta que las subáreas pertenecientes a esta área también se "
+"eliminarán."
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:82 .\templates\admin\areas_ajax.html:98
+#: .\templates\admin\areas_ajax.html:115 .\templates\admin\areas_ajax.html:130
+#: .\templates\admin\areas_ajax.html:146 .\templates\admin\events_ajax.html:50
+#: .\templates\admin\members_ajax.html:92
+#: .\templates\admin\members_ajax.html:118 .\templates\admin\news_ajax.html:140
+#: .\templates\admin\users_ajax.html:131
+#: .\templates\intranet\document_information.html:128
+#: .\templates\intranet\news.html:123 .\templates\intranet\profile.html:321
+#: .\templates\webpage\members.html:108
+msgid "CONFIRMAR"
+msgstr "CONFIRM"
+
+#: .\templates\admin\areas_ajax.html:83 .\templates\admin\areas_ajax.html:99
+#: .\templates\admin\areas_ajax.html:116 .\templates\admin\areas_ajax.html:131
+#: .\templates\admin\areas_ajax.html:147 .\templates\admin\members_ajax.html:93
+#: .\templates\admin\members_ajax.html:119
+#: .\templates\admin\users_ajax.html:132 .\templates\webpage\members.html:109
+msgid "CANCELAR"
+msgstr "CANCEL"
+
+#: .\templates\admin\areas_ajax.html:90
+msgid "Editar área"
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:106
+msgid "Agregar subárea en"
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:110
+msgid "Agregar subárea"
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:124
+#, fuzzy
+#| msgid "¿De verdad deseas eliminar a este usuario?"
+msgid "¿De verdad deseas eliminar esta subárea?"
+msgstr "Do you really want to delete this user?"
+
+#: .\templates\admin\areas_ajax.html:128
+msgid ""
+"Ten en cuenta que los usuarios y documentos pertenecientes a esta subárea "
+"quedarán sin una categoría asociada."
+msgstr ""
+
+#: .\templates\admin\areas_ajax.html:138
+msgid "Editar subárea"
+msgstr ""
+
+#: .\templates\admin\documents.html:20 .\templates\intranet\documents.html:16
+#, fuzzy
+#| msgid "No posees documentos"
+msgid "No hemos encontrado documentos"
+msgstr "You don´t have documents"
+
+#: .\templates\admin\documents.html:21 .\templates\intranet\documents.html:17
+msgid ""
+"Asegurate de haber subido algún documento. Nuestra base de datos esta vacía"
+msgstr ""
+
+#: .\templates\admin\documents.html:28 .\templates\intranet\documents.html:24
+msgid "Categorías"
+msgstr ""
+
+#: .\templates\admin\documents.html:29 .\templates\intranet\documents.html:25
+msgid "Todas"
+msgstr ""
+
+#: .\templates\admin\documents.html:41 .\templates\intranet\documents.html:37
+#, fuzzy
+#| msgid "Escribe una palabra clave"
+msgid "Palabra clave:"
+msgstr "Write a keyword"
+
+#: .\templates\admin\documents.html:104 .\templates\intranet\documents.html:86
+#, fuzzy
+#| msgid " No se encontraron resultados para %(search)s "
+msgid "No encontramos resultados para tu busqueda"
+msgstr "No results for %(search)s found"
+
+#: .\templates\admin\documents.html:105 .\templates\intranet\documents.html:87
+msgid "Asegurate de haber escrito correctamente el autor y/o titulo"
+msgstr ""
+
+#: .\templates\admin\documents.html:112 .\templates\intranet\documents.html:94
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t%(len)s resultados para <strong>%(search)s</strong>\n"
+"\t\t\t\t\t\t\t"
+msgstr ""
+
+#: .\templates\admin\documents.html:123 .\templates\intranet\documents.html:105
+msgid "AUTOR"
+msgstr "AUTHOR"
+
+#: .\templates\admin\documents.html:143 .\templates\intranet\documents.html:125
+msgid "DUEÑO"
+msgstr "OWNER"
+
+#: .\templates\admin\documents.html:163 .\templates\intranet\documents.html:145
+msgid "CATEGORÍA"
+msgstr "CATEGORY"
+
+#: .\templates\admin\documents.html:183 .\templates\intranet\documents.html:165
+msgid "AÑO"
+msgstr "YEAR"
+
+#: .\templates\admin\event_create.html:21
+msgid "Creando un evento"
+msgstr ""
+
+#: .\templates\admin\event_create.html:30 .\templates\admin\event_edit.html:30
+#: .\templates\intranet\news_create_link.html:36
+#: .\templates\intranet\news_edit_link.html:39
+#, fuzzy
+#| msgid "Titulo"
+msgid "Título"
+msgstr "Title"
+
+#: .\templates\admin\event_create.html:32
+#: .\templates\admin\event_create.html:38
+#: .\templates\admin\event_create.html:71 .\templates\admin\event_edit.html:32
+#: .\templates\admin\event_edit.html:38 .\templates\admin\event_edit.html:72
+#: .\templates\intranet\news_create_link.html:38
+#: .\templates\intranet\news_create_link.html:44
+#: .\templates\intranet\news_create_link.html:50
+msgid "Requerido"
+msgstr ""
+
+#: .\templates\admin\event_create.html:36 .\templates\admin\event_edit.html:36
+msgid "Descripción"
+msgstr ""
+
+#: .\templates\admin\event_create.html:43 .\templates\admin\event_edit.html:43
+msgid "Imagen"
+msgstr ""
+
+#: .\templates\admin\event_create.html:49 .\templates\admin\event_edit.html:49
+msgid "Programa"
+msgstr ""
+
+#: .\templates\admin\event_create.html:60 .\templates\admin\event_edit.html:60
+#: .\templates\intranet\news_create.html:48
+#: .\templates\intranet\news_create_link.html:54
+#: .\templates\intranet\news_edit.html:52
+#: .\templates\intranet\news_edit_link.html:57
+msgid "Fecha"
+msgstr ""
+
+#: .\templates\admin\event_create.html:61 .\templates\admin\event_edit.html:61
+#: .\templates\webpage\event.html:38
+msgid "Lugar"
+msgstr ""
+
+#: .\templates\admin\event_create.html:62 .\templates\admin\event_edit.html:62
+#: .\templates\admin\home.html:18 .\templates\admin\shared.html:70
+#: .\templates\admin\shared.html:141 .\templates\intranet\shared.html:69
+#: .\templates\intranet\shared.html:133 .\templates\webpage\event.html:36
+msgid "Inicio"
+msgstr "Start"
+
+#: .\templates\admin\event_create.html:63 .\templates\admin\event_edit.html:63
+#: .\templates\webpage\event.html:37
+msgid "Término"
+msgstr ""
+
+#: .\templates\admin\event_create.html:70
+msgid "dd-mm-aaaa"
+msgstr ""
+
+#: .\templates\admin\event_create.html:72
+#: .\templates\admin\event_create.html:73
+msgid "HH:mm"
+msgstr ""
+
+#: .\templates\admin\event_create.html:85 .\templates\admin\event_edit.html:87
+#, fuzzy
+#| msgid "Agregado el"
+msgid "Agregar día"
+msgstr "Added on"
+
+#: .\templates\admin\event_create.html:89 .\templates\admin\event_edit.html:91
+#: .\templates\admin\members_ajax.html:140 .\templates\admin\users_ajax.html:7
+#: .\templates\intranet\profile.html:184
+msgid "Enviar"
+msgstr ""
+
+#: .\templates\admin\event_create.html:101
+#: .\templates\admin\event_edit.html:103
+msgid "Hubo un problema. Asegúrate de que los datos ingresados sean válidos."
+msgstr ""
+
+#: .\templates\admin\event_edit.html:21
+msgid "Editando un evento"
+msgstr ""
+
+#: .\templates\admin\events_ajax.html:5
+#, fuzzy
+#| msgid "Publicado el"
+msgid "Eventos Publicados"
+msgstr "Published "
+
+#: .\templates\admin\events_ajax.html:6
+msgid "Crear"
+msgstr ""
+
+#: .\templates\admin\events_ajax.html:39
+msgid "No hay eventos publicados"
+msgstr ""
+
+#: .\templates\admin\events_ajax.html:46
+msgid "¿Estás seguro?"
+msgstr ""
+
+#: .\templates\admin\events_ajax.html:47
+msgid "Este evento desaparecerá completamente"
+msgstr ""
+
+#: .\templates\admin\gallery_ajax.html:4 .\templates\admin\shared.html:80
+#: .\templates\admin\shared.html:166
+msgid "Galería de Fotos"
+msgstr ""
+
+#: .\templates\admin\gallery_ajax.html:34
+#, fuzzy
+#| msgid "Eliminar"
+msgid "Eliminar foto"
+msgstr "Delete"
+
+#: .\templates\admin\gallery_ajax.html:49
+#: .\templates\admin\members_ajax.html:139
+#: .\templates\admin\webpage_ajax.html:160
+#: .\templates\admin\webpage_ajax.html:177
+#: .\templates\intranet\news_create.html:98
+#: .\templates\intranet\news_create_link.html:104
+#: .\templates\intranet\news_edit.html:115
+#: .\templates\intranet\news_edit_link.html:119
+#: .\templates\intranet\profile.html:183
+#, fuzzy
+#| msgid "Selecciona un area"
+msgid "Seleccionar nueva imagen"
+msgstr "Select an area"
+
+#: .\templates\admin\gallery_ajax.html:50
+#, fuzzy
+#| msgid "Agregado el"
+msgid "Agregar foto"
+msgstr "Added on"
+
+#: .\templates\admin\members_ajax.html:6
+#, fuzzy
+#| msgid "Integrantes"
+msgid "Agregar integrante"
+msgstr "Members"
+
+#: .\templates\admin\members_ajax.html:13 .\templates\admin\shared.html:82
+#: .\templates\admin\shared.html:171
+msgid "Integrantes"
+msgstr "Members"
+
+#: .\templates\admin\members_ajax.html:25
+#, fuzzy
+#| msgid "Integrantes"
+msgid "Ex-Integrante"
+msgstr "Members"
+
+#: .\templates\admin\members_ajax.html:42
+msgid "No hay integrantes en el sistema"
+msgstr ""
+
+#: .\templates\admin\members_ajax.html:48
+#, fuzzy
+#| msgid "Integrantes"
+msgid "Ex-Integrantes"
+msgstr "Members"
+
+#: .\templates\admin\members_ajax.html:60
+#, fuzzy
+#| msgid "Integrantes"
+msgid "Integrante"
+msgstr "Members"
+
+#: .\templates\admin\members_ajax.html:65 .\templates\admin\users_ajax.html:66
+#: .\templates\admin\users_ajax.html:99
+msgid "Ver"
+msgstr "View"
+
+#: .\templates\admin\members_ajax.html:77
+msgid "No hay ex-integrantes en el sistema"
+msgstr ""
+
+#: .\templates\admin\members_ajax.html:85
+#, fuzzy
+#| msgid "¿De verdad deseas eliminar a este usuario?"
+msgid "¿De verdad deseas eliminar a este integrante?"
+msgstr "Do you really want to delete this user?"
+
+#: .\templates\admin\members_ajax.html:90
+msgid ""
+"Ten en cuenta que esto solo evitará que se muestre información del usuario "
+"públicamente."
+msgstr ""
+
+#: .\templates\admin\members_ajax.html:102
+msgid "Modificando integrante"
+msgstr ""
+
+#: .\templates\admin\members_ajax.html:107
+msgid "Cambiar foto de integrante"
+msgstr ""
+
+#: .\templates\admin\members_ajax.html:129
+#: .\templates\intranet\profile.html:173
+msgid "Presiona para seleccionar"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:4
+msgid "Noticias Publicadas"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:23 .\templates\admin\news_ajax.html:56
+#: .\templates\admin\news_ajax.html:91 .\templates\admin\news_ajax.html:119
+#: .\templates\intranet\news.html:44 .\templates\intranet\news_edit.html:24
+#: .\templates\intranet\news_edit_link.html:24 .\webpage\views.py:198
+#: .\webpage\views.py:201
+msgid "Noticia sin título"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:46 .\templates\admin\news_ajax.html:107
+#: .\templates\intranet\news.html:69
+msgid "Tienes comentarios sin leer"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:66
+msgid "No hay noticias publicadas"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:73
+msgid "Noticias No Publicadas"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:129
+msgid "No hay noticias sin publicar"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:136
+#: .\templates\intranet\document_information.html:124
+#: .\templates\intranet\news.html:119 .\templates\intranet\profile.html:193
+#: .\templates\intranet\profile.html:317
+msgid "¿Estas seguro?"
+msgstr ""
+
+#: .\templates\admin\news_ajax.html:137 .\templates\intranet\news.html:120
+msgid "Esta noticia desaparecerá completamente"
+msgstr ""
+
+#: .\templates\admin\profile.html:11
+#, python-format
+msgid ""
+"\n"
+"            Perfil de %(first_name)s %(last_name)s\n"
+"        "
+msgstr ""
+
+#: .\templates\admin\profile.html:32 .\templates\intranet\profile.html:53
+msgid "Nombre completo"
+msgstr "Full name"
+
+#: .\templates\admin\profile.html:36 .\templates\intranet\profile.html:57
+#: .\templates\intranet\profile.html:217 .\templates\intranet\profile.html:218
+#: .\templates\login\register.html:17
+msgid "Institución"
+msgstr "Institution"
+
+#: .\templates\admin\profile.html:40 .\templates\intranet\profile.html:61
+#: .\templates\intranet\profile.html:221 .\templates\intranet\profile.html:222
+#: .\templates\login\register.html:45
+msgid "Carrera"
+msgstr "Career"
+
+#: .\templates\admin\profile.html:44 .\templates\intranet\profile.html:65
+#: .\templates\intranet\profile.html:240
+msgid "País"
+msgstr "Country"
+
+#: .\templates\admin\profile.html:48 .\templates\intranet\profile.html:69
+#: .\templates\intranet\profile.html:225
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:79
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:78
+msgid "Area"
+msgstr "Area"
+
+#: .\templates\admin\shared.html:72 .\templates\admin\shared.html:146
+#: .\templates\intranet\shared.html:75 .\templates\intranet\shared.html:148
+#: .\templates\intranet\users.html:6
+msgid "Usuarios"
+msgstr "Users"
+
+#: .\templates\admin\shared.html:74 .\templates\admin\shared.html:151
+#: .\templates\intranet\documents.html:6 .\templates\intranet\home.html:77
+#: .\templates\intranet\shared.html:71 .\templates\intranet\shared.html:138
+msgid "Documentos"
+msgstr "Documents"
+
+#: .\templates\admin\shared.html:76 .\templates\admin\shared.html:156
+msgid "Áreas"
+msgstr ""
+
+#: .\templates\admin\shared.html:78 .\templates\admin\shared.html:161
+#, fuzzy
+#| msgid "Personalizar Página Web"
+msgid "Página Web"
+msgstr "Customize Web Page"
+
+#: .\templates\admin\shared.html:84 .\templates\admin\shared.html:176
+#: .\templates\webpage\home.html:35 .\templates\webpage\news_feed.html:9
+msgid "Noticias"
+msgstr ""
+
+#: .\templates\admin\shared.html:86 .\templates\admin\shared.html:181
+#: .\templates\webpage\events_feed.html:13 .\templates\webpage\home.html:91
+msgid "Eventos"
+msgstr ""
+
+#: .\templates\admin\shared.html:87 .\templates\intranet\shared.html:80
+msgid "Volver a la página principal"
+msgstr "return to homepage"
+
+#: .\templates\admin\shared.html:91 .\templates\admin\shared.html:112
+#: .\templates\intranet\shared.html:84 .\templates\intranet\shared.html:105
+#: .\templates\shared\base.html:66 .\templates\shared\base.html:96
+msgid "Ingresar"
+msgstr "Log in"
+
+#: .\templates\admin\shared.html:94 .\templates\admin\shared.html:115
+#: .\templates\intranet\shared.html:87 .\templates\intranet\shared.html:108
+#: .\templates\shared\base.html:73 .\templates\shared\base.html:103
+msgid "Cerrar Sesión"
+msgstr "Logout"
+
+#: .\templates\admin\shared.html:137
+#, fuzzy
+#| msgid "Administrador"
+msgid "Administrar"
+msgstr "Administrator"
+
+#: .\templates\admin\users_ajax.html:6
+#, fuzzy
+#| msgid "Administrar Usuarios"
+msgid "Invitar usuarios"
+msgstr "Manage users"
+
+#: .\templates\admin\users_ajax.html:10
+msgid "Ingresa las direcciones de correo electrónico separadas por coma ( , )"
+msgstr ""
+
+#: .\templates\admin\users_ajax.html:16
+#, fuzzy
+#| msgid "Usuarios Inactivos"
+msgid "Usuarios Invitados"
+msgstr "Inactive Users"
+
+#: .\templates\admin\users_ajax.html:33
+msgid "Reenviar"
+msgstr ""
+
+#: .\templates\admin\users_ajax.html:40
+msgid "No hay usuarios invitados en el sistema"
+msgstr ""
+
+#: .\templates\admin\users_ajax.html:46
 msgid "Usuarios Activos"
 msgstr "Active Users"
 
-#: .\templates\intranet\admin_setups\users.html:49
+#: .\templates\admin\users_ajax.html:61
 msgid "Bloquear"
 msgstr "Block"
 
-#: .\templates\intranet\admin_setups\users.html:66
-msgid "Usuarios Inactivos"
+#: .\templates\admin\users_ajax.html:78
+msgid "No hay usuarios activos en el sistema"
+msgstr ""
+
+#: .\templates\admin\users_ajax.html:84
+#, fuzzy
+#| msgid "Usuarios Inactivos"
+msgid "Usuarios Bloqueados"
 msgstr "Inactive Users"
 
-#: .\templates\intranet\admin_setups\users.html:85
+#: .\templates\admin\users_ajax.html:104
 msgid "Desbloquear"
 msgstr "Unlock"
 
-#: .\templates\intranet\admin_setups\users.html:100
+#: .\templates\admin\users_ajax.html:116
+msgid "No hay usuarios bloqueados en el sistema"
+msgstr ""
+
+#: .\templates\admin\users_ajax.html:124
 msgid "¿De verdad deseas eliminar a este usuario?"
 msgstr "Do you really want to delete this user?"
 
-#: .\templates\intranet\admin_setups\users.html:105
+#: .\templates\admin\users_ajax.html:129
 msgid ""
 "Ten en cuenta que este usuario posee <strong id=\"modal-user-count\"></"
 "strong> documentos."
 msgstr ""
 "Note that this user has <strong id=\"modal-user-count\"></strong> documents."
 
-#: .\templates\intranet\admin_setups\users.html:107
-#: .\templates\intranet\document_information.html:85
-msgid "CONFIRMAR"
-msgstr "CONFIRM"
+#: .\templates\admin\webpage.html:22
+#, fuzzy
+#| msgid "Selecciona un area"
+msgid "Selecciona una sección"
+msgstr "Select an area"
 
-#: .\templates\intranet\admin_setups\users.html:108
-msgid "CANCELAR"
-msgstr "CANCEL"
+#: .\templates\admin\webpage.html:36
+msgid "No has seleccionado una sección para editar"
+msgstr ""
 
-#: .\templates\intranet\document_information.html:19
-#: .\templates\intranet\edit_document_information.html:31
-msgid "Abrir Documento"
-msgstr "Open Document"
+#: .\templates\admin\webpage_ajax.html:7
+msgid "Principal"
+msgstr ""
 
-#: .\templates\intranet\document_information.html:24
-#: .\templates\intranet\documents.html:47
-#: .\templates\intranet\edit_document_information.html:36
-#: .\templates\intranet\profile.html:77
-#: .\templates\public_search\search.html:63
-msgid "Autor"
-msgstr "Author"
+#: .\templates\admin\webpage_ajax.html:28
+msgid "Imagen de Cabecera"
+msgstr ""
 
-#: .\templates\intranet\document_information.html:28
-#: .\templates\intranet\edit_document_information.html:40
-msgid "Publicado el"
-msgstr "Published "
+#: .\templates\admin\webpage_ajax.html:34
+#: .\templates\intranet\news_create.html:79
+#: .\templates\intranet\news_create_link.html:85
+#: .\templates\intranet\news_edit.html:91
+#: .\templates\intranet\news_edit_link.html:95
+msgid "Presiona para agregar una imagen de cabecera"
+msgstr ""
 
-#: .\templates\intranet\document_information.html:33
-#: .\templates\intranet\edit_document_information.html:45
-msgid "Paginas"
-msgstr "Pages"
+#: .\templates\admin\webpage_ajax.html:49
+msgid "Imágenes de Categorías"
+msgstr ""
 
-#: .\templates\intranet\document_information.html:39
-#: .\templates\intranet\edit_document_information.html:51
-msgid "ISSN"
-msgstr "ISSN"
+#: .\templates\admin\webpage_ajax.html:86
+#: .\templates\admin\webpage_subsection_ajax.html:13
+msgid "Versión en Español"
+msgstr ""
 
-#: .\templates\intranet\document_information.html:45
-#: .\templates\intranet\edit_document_information.html:57
-msgid "DOI"
-msgstr "DOI"
-
-#: .\templates\intranet\document_information.html:50
-#: .\templates\intranet\edit_document_information.html:62
-msgid "Agregado el"
-msgstr "Added on"
-
-#: .\templates\intranet\documents.html:9
-#: .\templates\public_search\search.html:25
-#, python-format
-msgid " No se encontraron resultados para %(search)s "
-msgstr "No results for %(search)s found"
-
-#: .\templates\intranet\documents.html:17
-#: .\templates\intranet\documents.html:50 .\templates\intranet\upload.html:43
-#: .\templates\intranet\upload.html:58 .\templates\public_search\search.html:33
-#: .\templates\public_search\search.html:66
-msgid "Dueño"
-msgstr "Owner"
-
-#: .\templates\intranet\documents.html:20
-#: .\templates\public_search\search.html:36
-msgid "Extracto"
-msgstr "Abstract"
-
-#: .\templates\intranet\documents.html:43
-#: .\templates\public_search\search.html:59
-msgid "No hay documentos en la base de datos"
-msgstr "There are no documents in the database"
-
-#: .\templates\intranet\documents.html:48 .\templates\intranet\profile.html:78
-#: .\templates\public_search\search.html:64
-msgid "Titulo"
-msgstr "Title"
-
-#: .\templates\intranet\documents.html:49 .\templates\intranet\profile.html:79
-#: .\templates\public_search\search.html:65
-msgid "Año"
-msgstr "Year"
-
-#: .\templates\intranet\documents.html:51 .\templates\intranet\profile.html:81
-#: .\templates\public_search\search.html:67
-msgid "Añadido"
-msgstr "Added"
-
-#: .\templates\intranet\edit_document_information.html:13
-msgid "Selecciona una categoria"
-msgstr "Select a category"
-
-#: .\templates\intranet\edit_document_information.html:14
-msgid "Microbiología Molecular"
-msgstr "Molecular Microbiology"
-
-#: .\templates\intranet\edit_document_information.html:15
-msgid "Biotecnología Ambiental"
-msgstr "Environmental Biotechnology"
-
-#: .\templates\intranet\edit_document_information.html:16
-msgid "Bionanotecnología"
-msgstr "Bionanotechnology"
-
-#: .\templates\intranet\edit_document_information.html:17
-msgid "Genómica Funcional y Proteómica"
-msgstr "Functional Genomic and proteomics"
-
-#: .\templates\intranet\edit_document_information.html:18
-msgid "Síntesis de compuestos bioactivos y de interés biotecnológico"
-msgstr "Synthesis of bioactive compounds and biotechnological interest "
-
-#: .\templates\intranet\edit_document_information.html:19
-msgid "Biorremediación de Ambientes Contaminados"
-msgstr "Bioremediation of Contaminated Environments"
-
-#: .\templates\intranet\edit_document_information.html:74
-msgid "Escribe una palabra clave"
-msgstr "Write a keyword"
-
-#: .\templates\intranet\edit_document_information.html:87
-#: .\templates\intranet\profile.html:14
+#: .\templates\admin\webpage_ajax.html:94
+#: .\templates\admin\webpage_ajax.html:128
+#: .\templates\admin\webpage_subsection_ajax.html:21
+#: .\templates\admin\webpage_subsection_ajax.html:55
+#: .\templates\intranet\news_create.html:99
+#: .\templates\intranet\news_create_link.html:105
+#: .\templates\intranet\news_edit.html:116
+#: .\templates\intranet\news_edit_link.html:120
 msgid "Aceptar"
 msgstr "Accept"
 
-#: .\templates\intranet\edit_document_information.html:93
-#: .\templates\intranet\profile.html:15
+#: .\templates\admin\webpage_ajax.html:99
+#: .\templates\admin\webpage_ajax.html:133
+#: .\templates\admin\webpage_subsection_ajax.html:26
+#: .\templates\admin\webpage_subsection_ajax.html:60
+#: .\templates\intranet\edit_document_information.html:90
+#: .\templates\intranet\edit_document_information.html:92
 msgid "Cancelar"
 msgstr "Cancel"
 
-#: .\templates\intranet\home.html:8
-msgid "Resumen de actividad"
-msgstr "Activity summary"
+#: .\templates\admin\webpage_ajax.html:120
+#: .\templates\admin\webpage_subsection_ajax.html:47
+msgid "Versión en Inglés"
+msgstr ""
 
-#: .\templates\intranet\home.html:12
-msgid "Documentos agregados"
-msgstr "Added documents"
-
-#: .\templates\intranet\home.html:17
-msgid "Actividad de los ultimos 6 meses"
-msgstr "Activity of last 6 months"
-
-#: .\templates\intranet\home.html:21
-msgid "Categorias Populares"
-msgstr "Popular categories"
-
-#: .\templates\intranet\home.html:26
-#, python-format
-msgid "Selección de las %(number)s categorias mas populares"
-msgstr "Selection of the %(number)s most popular categories"
-
-#: .\templates\intranet\profile.html:48
-msgid "Nombre completo"
-msgstr "Full name"
-
-#: .\templates\intranet\profile.html:52 .\templates\login\signup.html.py:38
-msgid "Institución"
-msgstr "Institution"
-
-#: .\templates\intranet\profile.html:56 .\templates\login\signup.html.py:55
-msgid "Carrera"
-msgstr "Career"
-
-#: .\templates\intranet\profile.html:60
-msgid "País"
-msgstr "Country"
-
-#: .\templates\intranet\profile.html:64 .\templates\login\signup.html.py:46
-msgid "Area"
-msgstr "Area"
-
-#: .\templates\intranet\profile.html:70
-msgid "Mis documentos"
-msgstr "My documents"
-
-#: .\templates\intranet\profile.html:72
-msgid "No posees documentos"
-msgstr "You don´t have documents"
-
-#: .\templates\intranet\profile.html:80
-msgid "Tipo"
-msgstr "Type"
-
-#: .\templates\intranet\profile.html:88
-msgid "Público"
-msgstr "Public"
-
-#: .\templates\intranet\profile.html:88
-msgid "Privado"
-msgstr "Private"
-
-#: .\templates\intranet\shared.html:62 .\templates\intranet\shared.html:116
-#: .\templates\shared\base.html.py:60 .\templates\shared\base.html:112
-msgid "Ingresar"
-msgstr "Log in"
-
-#: .\templates\intranet\shared.html:64 .\templates\intranet\shared.html:119
-#: .\templates\shared\base.html.py:62 .\templates\shared\base.html:114
-msgid "Cerrar Sesión"
-msgstr "Logout"
-
-#: .\templates\intranet\shared.html:86 .\templates\public_search\search.html:17
-msgid "Ingresa tu busqueda aquí"
-msgstr "Enter your search here"
-
-#: .\templates\intranet\shared.html:97 .\templates\intranet\shared.html:131
-msgid "Inicio"
-msgstr "Start"
-
-#: .\templates\intranet\shared.html:99 .\templates\intranet\shared.html:133
-#: .\templates\intranet\users.html:21
-msgid "Documentos"
-msgstr "Documents"
-
-#: .\templates\intranet\shared.html:101 .\templates\intranet\shared.html:135
-msgid "Mi perfil"
-msgstr "My profile"
-
-#: .\templates\intranet\shared.html:104 .\templates\intranet\shared.html:138
-msgid "Usuarios"
-msgstr "Users"
-
-#: .\templates\intranet\shared.html:107 .\templates\intranet\shared.html:141
-msgid "Subir documento"
+#: .\templates\admin\webpage_ajax.html:161
+#: .\templates\admin\webpage_ajax.html:178
+#, fuzzy
+#| msgid "Subir documento"
+msgid "Subir imagen"
 msgstr "Upload document"
 
-#: .\templates\intranet\shared.html:110 .\templates\intranet\shared.html:144
-msgid "Administrador"
-msgstr "Administrator"
+#: .\templates\intranet\document_information.html:7
+msgid "Información del documento"
+msgstr ""
 
-#: .\templates\intranet\shared.html:112
-msgid "Volver a la página principal"
-msgstr "return to homepage"
+#: .\templates\intranet\document_information.html:33
+msgid "Ver <span>Documento</span>"
+msgstr ""
 
-#: .\templates\intranet\shared.html:129
-msgid "Enlaces"
-msgstr "Links"
+#: .\templates\intranet\document_information.html:44
+#: .\templates\intranet\edit_document_information.html:46
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:38
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:37
+msgid "Autor"
+msgstr "Author"
 
-#: .\templates\intranet\shared.html:155
-msgid "Refinar busqueda"
-msgstr "Refine search"
+#: .\templates\intranet\document_information.html:48
+#: .\templates\intranet\edit_document_information.html:50
+msgid "Publicado el"
+msgstr "Published "
 
-#: .\templates\intranet\shared.html:158
-msgid "AUTOR"
-msgstr "AUTHOR"
+#: .\templates\intranet\document_information.html:53
+#: .\templates\intranet\edit_document_information.html:54
+msgid "Paginas"
+msgstr "Pages"
 
-#: .\templates\intranet\shared.html:170
-msgid "DUEÑO"
-msgstr "OWNER"
+#: .\templates\intranet\document_information.html:59
+#: .\templates\intranet\edit_document_information.html:58
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:63
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:62
+msgid "ISSN"
+msgstr "ISSN"
 
-#: .\templates\intranet\shared.html:182
-msgid "CATEGORÍA"
-msgstr "CATEGORY"
+#: .\templates\intranet\document_information.html:65
+#: .\templates\intranet\edit_document_information.html:62
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:55
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:54
+msgid "DOI"
+msgstr "DOI"
 
-#: .\templates\intranet\shared.html:194
-msgid "AÑO"
-msgstr "YEAR"
+#: .\templates\intranet\document_information.html:70
+msgid "Agregado el"
+msgstr "Added on"
 
-#: .\templates\intranet\upload.html:9
-msgid "Subir documento desde"
-msgstr "Upload document from"
+#: .\templates\intranet\document_information.html:125
+#: .\templates\intranet\profile.html:318
+msgid "Estas a punto de eliminar el documento:"
+msgstr ""
 
-#: .\templates\intranet\upload.html:12
-msgid "Archivos locales"
-msgstr "Local files"
+#: .\templates\intranet\documents.html:60
+#: .\templates\public_search\search.html:43
+#: .\templates\webpage\events_feed.html:47
+#: .\templates\webpage\news_feed.html:66
+msgid "Anterior"
+msgstr ""
 
-#: .\templates\intranet\upload.html:21
-msgid "Añadir documentos"
-msgstr "Add documents"
+#: .\templates\intranet\documents.html:68
+#: .\templates\public_search\search.html:51
+#: .\templates\webpage\events_feed.html:55
+#: .\templates\webpage\news_feed.html:74
+msgid "Siguiente"
+msgstr ""
 
-#: .\templates\intranet\upload.html:28 .\templates\intranet\upload.html:81
-msgid "Confirmar"
-msgstr "Confirm"
+#: .\templates\intranet\edit_document_information.html:13
+#, fuzzy
+#| msgid "Subir documento"
+msgid "Editar documento"
+msgstr "Upload document"
 
-#: .\templates\intranet\upload.html:34
-msgid "Ingresa el enlace de la carpeta o archivo Google Drive"
-msgstr "Enter the Google Drive link for the folder or file"
-
-#: .\templates\intranet\upload.html:35
-msgid "Mensaje de error"
-msgstr "error message"
-
-#: .\templates\intranet\upload.html:37
-msgid "Titulo del enlace"
-msgstr "Link title"
-
-#: .\templates\intranet\upload.html:42 .\templates\login\signup.html.py:22
-msgid "Nombre"
-msgstr "Name"
-
-#: .\templates\intranet\upload.html:44 .\templates\intranet\upload.html:66
-msgid "Ultima modificación"
-msgstr "Last modification"
-
-#: .\templates\intranet\upload.html:45 .\templates\intranet\upload.html:70
-msgid "Tamaño"
-msgstr "Size"
-
-#: .\templates\intranet\upload.html:62 .\templates\login\login.html.py:14
-#: .\templates\login\signup.html:18
-msgid "Correo electronico"
-msgstr "Email"
-
-#: .\templates\intranet\upload.html:89
-msgid "Subida exitosa"
-msgstr "Successful upload"
-
-#: .\templates\intranet\upload.html:95
-msgid "Procesando"
-msgstr "Processing"
-
-#: .\templates\intranet\users.html:22
-#, python-format
-msgid "Hace %(days)s dias"
-msgstr "%(days)s days ago"
-
-#: .\templates\intranet\users.html:22
-msgid "Ultima actividad"
-msgstr "last activity"
-
-#: .\templates\login\login.html:9
-msgid "Ingresar al sistema"
-msgstr "Log in Intranet"
-
-#: .\templates\login\login.html:10
-msgid "Ingresa tus datos para acceder a la base de datos de Labmmba"
-msgstr "Enter your information to access the Labmmba database"
-
-#: .\templates\login\login.html:18 .\templates\login\signup.html.py:30
-msgid "Contraseña"
-msgstr "Password"
-
-#: .\templates\login\login.html:39
-msgid "¿No posees cuenta?. Registrate"
-msgstr "Don't have an account?. Sign up"
-
-#: .\templates\login\login.html:39
-msgid "aquí"
-msgstr "here"
-
-#: .\templates\login\signup.html:9
-msgid "Registro"
-msgstr "Sign up"
-
-#: .\templates\login\signup.html:10
-msgid "Crea una cuenta de usuario en el sistema Labmmba"
-msgstr "Create an account in the Labmmba system"
-
-#: .\templates\login\signup.html:26
-msgid "Apellido"
-msgstr "Last name"
-
-#: .\templates\login\signup.html:42
-msgid "Pais"
-msgstr "Country"
-
-#: .\templates\login\signup.html:48
+#: .\templates\intranet\edit_document_information.html:23
+#: .\templates\intranet\profile.html:228 .\templates\login\register.html:32
 msgid "Selecciona un area"
 msgstr "Select an area"
 
-#: .\templates\public_search\search.html:10 .\templates\shared\base.html:89
-#: .\templates\shared\base.html.py:104 .\templates\shared\base.html:151
+#: .\templates\intranet\edit_document_information.html:78
+msgid "Escribe una palabra clave"
+msgstr "Write a keyword"
+
+#: .\templates\intranet\edit_document_information.html:88
+#: .\templates\intranet\news_create_link.html:60
+msgid "Guardar"
+msgstr ""
+
+#: .\templates\intranet\home.html:30
+msgid "Por"
+msgstr ""
+
+#: .\templates\intranet\home.html:38
+#, fuzzy
+#| msgid "Publicaciones"
+msgid "Ver publicaciones"
+msgstr "Publications"
+
+#: .\templates\intranet\home.html:44
+#, fuzzy
+#| msgid "Usuarios Activos"
+msgid "Usuarios registrados"
+msgstr "Active Users"
+
+#: .\templates\intranet\home.html:61
+#, python-format
+msgid " %(users_count)s más "
+msgstr ""
+
+#: .\templates\intranet\home.html:66
+msgid "Ver todos los usuarios"
+msgstr ""
+
+#: .\templates\intranet\news.html:14 .\templates\intranet\news_create.html:15
+#: .\templates\intranet\news_create_link.html:15
+#: .\templates\intranet\news_edit.html:15
+#: .\templates\intranet\news_edit_link.html:15
+#: .\templates\intranet\shared.html:79 .\templates\intranet\shared.html:158
+msgid "Mis noticias"
+msgstr ""
+
+#: .\templates\intranet\news.html:28
+#, fuzzy
+#| msgid "Añadido"
+msgid "Añadir noticia"
+msgstr "Added"
+
+#: .\templates\intranet\news.html:47
+msgid "Aprobado"
+msgstr ""
+
+#: .\templates\intranet\news.html:52
+msgid "Requiere aprobación del administrador"
+msgstr ""
+
+#: .\templates\intranet\news.html:94
+#, fuzzy
+#| msgid "Selecciona un area"
+msgid "Selecciona un metodo de creación"
+msgstr "Select an area"
+
+#: .\templates\intranet\news.html:101
+msgid "Redactar"
+msgstr ""
+
+#: .\templates\intranet\news.html:110
+#, fuzzy
+#| msgid "Enlaces"
+msgid "Enlace"
+msgstr "Links"
+
+#: .\templates\intranet\news_create.html:21
+msgid "Redactando una noticia"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:22
+msgid "Una vez que llenes los datos, podras escribir la noticia en el editor"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:29
+#: .\templates\intranet\news_create_link.html:29
+#: .\templates\intranet\news_edit.html:33
+#: .\templates\intranet\news_edit_link.html:32
+msgid ""
+"Si quieres que tu noticia pueda aparecer en la cabecera de la página web, "
+"debes agregar una imagen de una resolución ideal de 1600x525."
+msgstr ""
+
+#: .\templates\intranet\news_create.html:36
+#: .\templates\intranet\news_edit.html:40
+msgid "Nombre de la fuente de información"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:38
+#: .\templates\intranet\news_create.html:44
+#: .\templates\intranet\news_edit.html:42
+#: .\templates\intranet\news_edit.html:48
+#: .\templates\intranet\news_edit_link.html:41
+#: .\templates\intranet\news_edit_link.html:47
+#: .\templates\intranet\news_edit_link.html:53
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:66
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:74
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:65
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:73
+msgid "No requerido"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:42
+#: .\templates\intranet\news_edit.html:46
+msgid "URL de la fuente de información"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:54
+#: .\templates\intranet\news_edit.html:59
+msgid "Ir al editor"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:66
+#: .\templates\intranet\news_create_link.html:72
+#: .\templates\intranet\news_edit.html:72
+#: .\templates\intranet\news_edit_link.html:76
+msgid "Presiona para agregar una miniatura"
+msgstr ""
+
+#: .\templates\intranet\news_create.html:110
+#: .\templates\intranet\news_edit.html:127
+#: .\templates\intranet\news_edit_link.html:131
+msgid "Asegurate de adjuntar una miniatura."
+msgstr ""
+
+#: .\templates\intranet\news_create_link.html:21
+msgid "Noticia desde un enlace externo"
+msgstr ""
+
+#: .\templates\intranet\news_create_link.html:22
+msgid "Crea noticias de manera fácil adjuntando un enlace externo"
+msgstr ""
+
+#: .\templates\intranet\news_create_link.html:42
+#: .\templates\intranet\news_edit_link.html:45
+msgid "Nombre del sitio quien publica la noticia"
+msgstr ""
+
+#: .\templates\intranet\news_create_link.html:48
+#: .\templates\intranet\news_edit_link.html:51
+msgid "URL de la noticia"
+msgstr ""
+
+#: .\templates\intranet\news_create_link.html:116
+msgid "Asegurate de adjuntar una miniatura y llenar los campos requeridos"
+msgstr ""
+
+#: .\templates\intranet\news_edit.html:26
+msgid "Si presionas 'Ir al editor' los datos se guardaran automaticamente"
+msgstr ""
+
+#: .\templates\intranet\news_edit.html:58
+#: .\templates\intranet\news_edit_link.html:63
+msgid "Guardar cambios"
+msgstr ""
+
+#: .\templates\intranet\profile.html:17
+#, python-format
+msgid ""
+" \n"
+"\t\t\tPerfil de %(first_name)s %(last_name)s \n"
+"\t\t"
+msgstr ""
+
+#: .\templates\intranet\profile.html:85
+msgid "Desvincular"
+msgstr ""
+
+#: .\templates\intranet\profile.html:87
+msgid "No hay una cuenta asociada"
+msgstr ""
+
+#: .\templates\intranet\profile.html:88
+msgid "Vincular"
+msgstr ""
+
+#: .\templates\intranet\profile.html:92
+msgid "Cambiar foto de perfil"
+msgstr ""
+
+#: .\templates\intranet\profile.html:93
+msgid "Editar información"
+msgstr ""
+
+#: .\templates\intranet\profile.html:94
+#, fuzzy
+#| msgid "Contraseña"
+msgid "Cambiar contraseña"
+msgstr "Password"
+
+#: .\templates\intranet\profile.html:106 .\templates\intranet\profile.html:261
+#: .\templates\intranet\profile.html:262
+msgid "Biografía"
+msgstr ""
+
+#: .\templates\intranet\profile.html:141
+msgid "Sin título"
+msgstr ""
+
+#: .\templates\intranet\profile.html:146
+msgid "Sin autores"
+msgstr ""
+
+#: .\templates\intranet\profile.html:194
+#, fuzzy
+#| msgid "Para continuar debes enlazar tu cuenta de Google Drive"
+msgid "Estas a punto de desvincular tu cuenta de Google: "
+msgstr "Link your Google Drive account to continue"
+
+#: .\templates\intranet\profile.html:201
+#, fuzzy
+#| msgid "Mi perfil"
+msgid "Edita tu perfil"
+msgstr "My profile"
+
+#: .\templates\intranet\profile.html:205 .\templates\intranet\profile.html:206
+#: .\templates\login\login.html:15 .\templates\login\register.html:16
+msgid "Correo electronico"
+msgstr "Email"
+
+#: .\templates\intranet\profile.html:209 .\templates\intranet\profile.html:210
+#: .\templates\intranet\upload_sections\drive.html:55
+#: .\templates\login\register.html:20
+msgid "Nombre"
+msgstr "Name"
+
+#: .\templates\intranet\profile.html:213 .\templates\intranet\profile.html:214
+#: .\templates\login\register.html:29
+msgid "Apellido"
+msgstr "Last name"
+
+#: .\templates\intranet\profile.html:243 .\templates\login\register.html:23
+#, fuzzy
+#| msgid "Selecciona un area"
+msgid "Selecciona un país"
+msgstr "Select an area"
+
+#: .\templates\intranet\profile.html:249
+msgid "Facebook"
+msgstr ""
+
+#: .\templates\intranet\profile.html:250
+msgid "Perfil de Facebook"
+msgstr ""
+
+#: .\templates\intranet\profile.html:253
+msgid "Twitter"
+msgstr ""
+
+#: .\templates\intranet\profile.html:254
+msgid "Perfil de Twitter"
+msgstr ""
+
+#: .\templates\intranet\profile.html:257
+msgid "LinkedIn"
+msgstr ""
+
+#: .\templates\intranet\profile.html:258
+msgid "Perfil de LinkedIn"
+msgstr ""
+
+#: .\templates\intranet\profile.html:272
+#, fuzzy
+#| msgid "Contraseña"
+msgid "Cambio de contraseña"
+msgstr "Password"
+
+#: .\templates\intranet\profile.html:311
+msgid "¡Un momento!"
+msgstr ""
+
+#: .\templates\intranet\profile.html:312
+msgid "Al parecer tienes deshabilitadas las ventanas emergentes."
+msgstr ""
+
+#: .\templates\intranet\profile.html:313
+msgid "Activalas, recarga la página y vuelve a intentarlo."
+msgstr ""
+
+#: .\templates\intranet\shared.html:73 .\templates\intranet\shared.html:143
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: .\templates\intranet\shared.html:77 .\templates\intranet\shared.html:153
+msgid "Subir documento"
+msgstr "Upload document"
+
+#: .\templates\intranet\upload.html:19
+#, fuzzy
+#| msgid "Subir documento"
+msgid "Subir documentos"
+msgstr "Upload document"
+
+#: .\templates\intranet\upload.html:26
+#, fuzzy
+#| msgid "Selecciona una categoria"
+msgid "Selecciona un método de subida"
+msgstr "Select a category"
+
+#: .\templates\intranet\upload.html:33
+msgid "Archivos locales"
+msgstr "Local files"
+
+#: .\templates\intranet\upload.html:49
+msgid "Subida exitosa. Tus documentos estarán disponibles en breve."
+msgstr ""
+
+#: .\templates\intranet\upload.html:57
+msgid "Ten paciencia. Los documentos estan cargandose."
+msgstr ""
+
+#: .\templates\intranet\upload.html:92
+msgid "Añadir documentos"
+msgstr "Add documents"
+
+#: .\templates\intranet\upload.html:99
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: .\templates\intranet\upload_sections\drive.html:25
+msgid "Introduce aquí un enlace a Google Drive"
+msgstr ""
+
+#: .\templates\intranet\upload_sections\drive.html:56
+#, fuzzy
+#| msgid "Ultima modificación"
+msgid "Última modificación"
+msgstr "Last modification"
+
+#: .\templates\intranet\upload_sections\drive.html:57
+msgid "Tamaño"
+msgstr "Size"
+
+#: .\templates\intranet\upload_sections\drive.html:79
+msgid "Modificado por ultima vez el"
+msgstr ""
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:11
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:12
+msgid "Titulo"
+msgstr "Title"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:15
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:16
+msgid "Ej: Tesis de microbiologia"
+msgstr ""
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:41
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:40
+msgid "Ej: Juan Perez"
+msgstr ""
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:46
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:45
+msgid "Fecha de creacion"
+msgstr ""
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:71
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:70
+#, fuzzy
+#| msgid "Paginas"
+msgid "Páginas"
+msgstr "Pages"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:83
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:82
+msgid "Selecciona una categoria"
+msgstr "Select a category"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:96
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:95
+#, fuzzy
+#| msgid "Privado"
+msgid "Privacidad"
+msgstr "Private"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:100
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:99
+#, fuzzy
+#| msgid "Selecciona una categoria"
+msgid "Selecciona privacidad"
+msgstr "Select a category"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:101
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:100
+#, fuzzy
+#| msgid "Integrantes"
+msgid "Interno"
+msgstr "Members"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:102
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:101
+msgid "Público"
+msgstr "Public"
+
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:108
+msgid "Resumen"
+msgstr ""
+
+#: .\templates\login\login.html:10
+msgid "Ingresar al sistema"
+msgstr "Log in Intranet"
+
+#: .\templates\login\login.html:11
+msgid "Ingresa tus datos para acceder a la base de datos de Labmmba"
+msgstr "Enter your information to access the Labmmba database"
+
+#: .\templates\login\login.html:19 .\templates\login\register.html:44
+msgid "Contraseña"
+msgstr "Password"
+
+#: .\templates\login\register.html:10
+msgid "Registro"
+msgstr "Sign up"
+
+#: .\templates\login\register.html:11
+msgid "Crea una cuenta de usuario en el sistema Labmmba"
+msgstr "Create an account in the Labmmba system"
+
+#: .\templates\public_search\search.html:14
 msgid "Publicaciones"
 msgstr "Publications"
 
-#: .\templates\shared\base.html:82 .\templates\shared\base.html.py:97
-#: .\templates\shared\base.html:144
-msgid "Areas de Investigación"
-msgstr "Research areas"
+#: .\templates\public_search\search.html:21
+msgid "Ingresa tu busqueda aquí"
+msgstr "Enter your search here"
 
-#: .\templates\shared\base.html:84 .\templates\shared\base.html.py:99
-#: .\templates\shared\base.html:146
+#: .\templates\public_search\search.html:36
+#, fuzzy
+#| msgid "No posees documentos"
+msgid "No hay documentos"
+msgstr "You don´t have documents"
+
+#: .\templates\public_search\search.html:82
+#, fuzzy
+#| msgid "Selecciona una categoria"
+msgid "No hay categorias"
+msgstr "Select a category"
+
+#: .\templates\webpage\about.html:22
 msgid "Sobre Nosotros"
 msgstr "About us"
 
-#: .\templates\shared\base.html:85 .\templates\shared\base.html.py:100
-#: .\templates\shared\base.html:147
-msgid "Ubicación"
-msgstr "Location"
+#: .\templates\webpage\about.html:23
+#, fuzzy
+#| msgid "Institución"
+msgid "Investigación"
+msgstr "Institution"
 
-#: .\templates\shared\base.html:87 .\templates\shared\base.html.py:102
-#: .\templates\shared\base.html:149
-msgid "Intranet"
-msgstr "Intranet"
+#: .\templates\webpage\about.html:24
+msgid "Cooperación"
+msgstr "Cooperation"
+
+#: .\templates\webpage\event.html:35
+msgid "Día"
+msgstr ""
+
+#: .\templates\webpage\event.html:60
+msgid "Ver programa"
+msgstr ""
+
+#: .\templates\webpage\event.html:175 .\templates\webpage\events_feed.html:175
+msgid "Hay 888 eventos"
+msgstr ""
+
+#: .\templates\webpage\events_feed.html:40 .\templates\webpage\home.html:101
+#: .\templates\webpage\news_feed.html:103
+msgid "No hay eventos"
+msgstr ""
+
+#: .\templates\webpage\home.html:77 .\templates\webpage\news_feed.html:84
+msgid "No hay noticias"
+msgstr ""
+
+#: .\templates\webpage\home.html:84
+msgid "Ver más noticias"
+msgstr ""
+
+#: .\templates\webpage\home.html:108
+msgid "Ver más eventos"
+msgstr ""
+
+#: .\templates\webpage\home.html:116
+#, fuzzy
+#| msgid "Publicaciones"
+msgid "Ultimas publicaciones"
+msgstr "Publications"
+
+#: .\templates\webpage\news.html:10
+msgid "Noticia del laboratorio"
+msgstr ""
+
+#: .\templates\webpage\news.html:41 .\templates\webpage\news_editor.html:76
+#, python-format
+msgid ""
+"\n"
+"                                    Hay %(count)s comentario para esta "
+"noticia\n"
+"                                "
+msgstr ""
+
+#: .\templates\webpage\news.html:45 .\templates\webpage\news_editor.html:80
+#, python-format
+msgid ""
+"\n"
+"                                    Hay %(count)s comentarios para esta "
+"noticia\n"
+"                                "
+msgstr ""
+
+#: .\templates\webpage\news.html:55 .\templates\webpage\news_editor.html:90
+msgid "Administrador"
+msgstr "Administrator"
+
+#: .\templates\webpage\news.html:60 .\templates\webpage\news_editor.html:95
+#, python-format
+msgid ""
+"\n"
+"                                                Publicado el %(day)s de "
+"%(month)s de %(year)s a las %(hour)s:%(minutes)s\n"
+"                                            "
+msgstr ""
+
+#: .\templates\webpage\news.html:73 .\templates\webpage\news_editor.html:108
+msgid "Ingresa tu comentario"
+msgstr ""
+
+#: .\templates\webpage\news.html:75 .\templates\webpage\news_editor.html:110
+msgid "Utiliza los comentarios para comunicarte con el autor de la noticia."
+msgstr ""
+
+#: .\templates\webpage\news.html:77 .\templates\webpage\news_editor.html:112
+msgid "Utiliza los comentarios para comunicarte con el administrador."
+msgstr ""
+
+#: .\templates\webpage\news.html:115
+msgid "No hay más noticias"
+msgstr ""
+
+#: .\templates\webpage\news_editor.html:28
+#, fuzzy
+#| msgid "Titulo del enlace"
+msgid "Titulo de la noticia"
+msgstr "Link title"
+
+#: .\webpage\views.py:321
+msgid "No tienes permisos para modificar esta noticia"
+msgstr ""
+
+#: .\webpage\views.py:323
+msgid "Esta noticia no existe"
+msgstr ""
+
+#~ msgid "Quiénes Somos"
+#~ msgstr "About us"
+
+#~ msgid "Nuestra Historia"
+#~ msgstr "Our history"
+
+#~ msgid "Nuestra historia"
+#~ msgstr "Our history"
+
+#~ msgid "Generar Informe"
+#~ msgstr "Generate report"
+
+#~ msgid "Gestionar Documentos"
+#~ msgstr "Manage Documents"
+
+#~ msgid "Algo"
+#~ msgstr "Something"
+
+#~ msgid "Administradores"
+#~ msgstr "Administrators"
+
+#~ msgid "Pendientes de Aprobación"
+#~ msgstr "Pending approval"
+
+#~ msgid "Admitir"
+#~ msgstr "Allow"
+
+#~ msgid "Abrir Documento"
+#~ msgstr "Open Document"
+
+#~ msgid "Dueño"
+#~ msgstr "Owner"
+
+#~ msgid "Extracto"
+#~ msgstr "Abstract"
+
+#~ msgid "No hay documentos en la base de datos"
+#~ msgstr "There are no documents in the database"
+
+#~ msgid "Año"
+#~ msgstr "Year"
+
+#~ msgid "Microbiología Molecular"
+#~ msgstr "Molecular Microbiology"
+
+#~ msgid "Biotecnología Ambiental"
+#~ msgstr "Environmental Biotechnology"
+
+#~ msgid "Bionanotecnología"
+#~ msgstr "Bionanotechnology"
+
+#~ msgid "Genómica Funcional y Proteómica"
+#~ msgstr "Functional Genomic and proteomics"
+
+#~ msgid "Síntesis de compuestos bioactivos y de interés biotecnológico"
+#~ msgstr "Synthesis of bioactive compounds and biotechnological interest "
+
+#~ msgid "Biorremediación de Ambientes Contaminados"
+#~ msgstr "Bioremediation of Contaminated Environments"
+
+#~ msgid "Resumen de actividad"
+#~ msgstr "Activity summary"
+
+#~ msgid "Documentos agregados"
+#~ msgstr "Added documents"
+
+#~ msgid "Actividad de los ultimos 6 meses"
+#~ msgstr "Activity of last 6 months"
+
+#~ msgid "Selección de las %(number)s categorias mas populares"
+#~ msgstr "Selection of the %(number)s most popular categories"
+
+#~ msgid "Tipo"
+#~ msgstr "Type"
+
+#~ msgid "Refinar busqueda"
+#~ msgstr "Refine search"
+
+#~ msgid "Subir documento desde"
+#~ msgstr "Upload document from"
+
+#~ msgid "Ingresa el enlace de la carpeta o archivo Google Drive"
+#~ msgstr "Enter the Google Drive link for the folder or file"
+
+#~ msgid "Mensaje de error"
+#~ msgstr "error message"
+
+#~ msgid "Procesando"
+#~ msgstr "Processing"
+
+#~ msgid "Hace %(days)s dias"
+#~ msgstr "%(days)s days ago"
+
+#~ msgid "Ultima actividad"
+#~ msgstr "last activity"
+
+#~ msgid "¿No posees cuenta?. Registrate"
+#~ msgstr "Don't have an account?. Sign up"
+
+#~ msgid "aquí"
+#~ msgstr "here"
+
+#~ msgid "Pais"
+#~ msgstr "Country"
+
+#~ msgid "Areas de Investigación"
+#~ msgstr "Research areas"
+
+#~ msgid "Ubicación"
+#~ msgstr "Location"
+
+#~ msgid "Intranet"
+#~ msgstr "Intranet"
 
 #~ msgid "Relacionados"
 #~ msgstr "Related"

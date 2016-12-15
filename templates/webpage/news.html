@@ -33,22 +33,6 @@
                         </div>
                     {% endif %}
                 </article>
-                <!--<div id="gallery">
-                    <h3>Lorem ipsum dolor sit amet</h3>
-                    <div class="photos clear">
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Quidem, at quisquam assumenda commodi adipisci veniam laudantium. Possimus, maxime."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Cumque, libero aliquam autem quod ex deleniti id alias sed."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Deserunt porro veniam repellat odit sed ipsum voluptates dolorem hic!"><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Dolorem, autem explicabo iusto veniam eum quaerat sed porro esse?"><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Obcaecati, sunt distinctio suscipit iste odio molestias repellendus quo commodi!"><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Quia, natus ipsum sit debitis odio sint nulla eaque tenetur."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Veritatis, sapiente quod quis incidunt totam est pariatur nobis possimus."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Quas, alias est deserunt similique molestias facilis provident veritatis necessitatibus."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Quo, maiores nam quidem provident laboriosam enim quisquam rerum officia."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                        <a href="{% static 'usm_theme/demo/news-single.jpg' %}" title="Blanditiis veniam ea itaque placeat perferendis cum quo ducimus reprehenderit."><img src="{% static 'usm_theme/demo/category.jpg' %}"/></a>
-                    </div>
-                </div>
-                -->
                 {% if request.user == news_.author or request.user.is_admin %}
                     <div id="comments">
                     {% with comments=news_.get_comments %}
@@ -113,27 +97,24 @@
                 {% endif %}
     		</section>
 			<section id="sidebar" class="c4">
-				<div class="destacados clear box">
-                    <h3>Noticias relacionadas</h3>
-                    <a class="clear" href="#">
-                        <span class="thumb"><img src="{% static 'usm_theme/demo/news-thumb.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, nemo quidem ea."/></span>
-                        <span class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, quod maxime natus.</span>
-                    </a>
-                    <a class="clear" href="#">
-                        <span class="thumb"><img src="{% static 'usm_theme/demo/news-thumb.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto animi adipisci!"/></span>
-                        <span class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit molestiae repudiandae nemo.</span>
-                    </a>
-                    <a class="clear" href="#">
-                        <span class="thumb"><img src="{% static 'usm_theme/demo/news-thumb.jpg' %}" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, laboriosam at maiores?"/></span>
-                        <span class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio vel quasi enim.</span>
-                    </a>
-                </div>
                 <div class="ultimas clear box">
                     <h3>Noticias recientes</h3>
-                    <a class="clear" href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit totam consectetur aut.</a>
-                    <a class="clear" href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, vitae quidem excepturi?</a>
-                    <a class="clear" href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi quam repellat expedita.</a>
-                    <a class="clear more" href="category.html">Ver todas</a>
+                    {% if recents %}
+                        {% for recent in recents %}
+                            {% if recent.is_external %}
+                                <a href="{{ recent.source_url }}">
+                            {% else %}
+                                <a href="{% url 'webpage:news' recent.date|date:'Y' recent.date|date:'m' recent.date|date:'d' recent.slug %}">
+                            {% endif %}
+                                    {{recent.title}}
+                                </a>
+                        {% endfor %}
+                        <a class="clear more" href="{% url 'webpage:news_feed' %}">Ver todas</a>
+                    {% else %}
+                        <span class="c12 empty">
+                            {% trans "No hay más noticias" %}
+                        </span>
+                    {% endif %}
                 </div>
 			</section>
     	</div>

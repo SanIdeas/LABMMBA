@@ -199,7 +199,7 @@ def sendInvitation(request):
 			if error:
 				return JsonResponse({'error': True, 'message': _(u'Uno o más correos son inválidos o ya se encuentran registrados')})
 			else:
-				return JsonResponse({'error': False, 'message': _('')})
+				return JsonResponse({'error': False})
 		elif not request.user.is_admin:
 			return HttpResponseRedirect(reverse('webpage:home'))
 

@@ -33,71 +33,79 @@
 		<section class="content noticias list c8">
 			<div class="clear">
 				<h2 class="title">{% trans "Noticias" %}:</h2>
-				{% if news_1 %}
-					<div class="row">
-						{% for news in news_1 %}
-							{% if news.is_external %}
-								<a class="c6" href="{{ news.source_url }}">
-							{% else %}
-								<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
-							{% endif %}				
-							<figure class="clear">
-								<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
-								<figcaption>
-									<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>
-									<h4>{{news.title}}</h4>
-								</figcaption>
-							</figure>
-						</a>
-						{% endfor %}
-					</div>
-				{% endif %}
-				{% if news_2 %}
-					<div class="row">
-						{% for news in news_2 %}
-							{% if news.is_external %}
-								<a class="c6" href="{{ news.source_url }}">
-							{% else %}
-								<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
-							{% endif %}
-							<figure class="clear">
-								<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
-								<figcaption>
-									<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>
-									<h4>{{news.title}}</h4>
-								</figcaption>
-							</figure>
-						</a>
-						{% endfor %}
-					</div>
+				{% if news_1 or news_2 %}
+					{% if news_1 %}
+						<div class="row">
+							{% for news in news_1 %}
+								{% if news.is_external %}
+									<a class="c6" href="{{ news.source_url }}">
+								{% else %}
+									<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+								{% endif %}				
+								<figure class="clear">
+									<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
+									<figcaption>
+										<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>
+										<h4>{{news.title}}</h4>
+									</figcaption>
+								</figure>
+							</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+					{% if news_2 %}
+						<div class="row">
+							{% for news in news_2 %}
+								{% if news.is_external %}
+									<a class="c6" href="{{ news.source_url }}">
+								{% else %}
+									<a class="c6" href="{% url 'webpage:news' news.date|date:'Y' news.date|date:'m' news.date|date:'d' news.slug %}">
+								{% endif %}
+								<figure class="clear">
+									<span class="thumb"><img src="{% static news.thumbnail_url %}" ></span>
+									<figcaption>
+										<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>
+										<h4>{{news.title}}</h4>
+									</figcaption>
+								</figure>
+							</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+				{% else %}
+					<span class="c12 empty">
+						{% trans "No hay noticias" %}
+					</span>
 				{% endif %}
 			</div>
-			<div class="row more">
-				<div class="c12">
-					<a href="{% url 'webpage:news_feed' %}"><span>{% trans "Ver más noticias" %}</span></a>
+			{% if news_1 or news_2 %}
+				<div class="row more">
+					<div class="c12">
+						<a href="{% url 'webpage:news_feed' %}"><span>{% trans "Ver más noticias" %}</span></a>
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</section>
 		<section class="c4 end eventos">
 			<div class="row">
 				<h2 class="c12 title">{% trans "Eventos" %}:</h2>
 				{% if events %}
 					{% for event in events %}
-						<a href="{% url 'webpage:event' event.slug %}" class="c12" fecha="210120141900">
+						<a href="{% url 'webpage:event' event.slug %}" class="c12">
 							<span class="date icon">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>
 							<p>{{event.title}}</p>
 						</a>
 					{% endfor %}
 				{% else %}
-					<span class="c12">
-						<p>{% trans "No hay eventos" %}</p>
+					<span class="c12 empty">
+						{% trans "No hay eventos" %}
 					</span>
 				{% endif %}
 			</div>
 			{% if events %}
 				<div class="row more">
 					<div class="c12">
-						<a href="{% url 'webpage:section' 'events' %}"><span>{% trans "Ver más eventos" %}</span></a>
+						<a href="{% url 'webpage:events_feed' %}"><span>{% trans "Ver más eventos" %}</span></a>
 					</div>
 				</div>
 			{% endif %}

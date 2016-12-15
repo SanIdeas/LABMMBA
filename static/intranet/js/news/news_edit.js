@@ -23,15 +23,10 @@ $(document).ready(function() {
 
 function checkFields() {
 	var changed = false;
-	$('input.text, input.date').each(function() {
+	$('input.text[required], input.date[required]').each(function() {
 		if($(this).val() != $(this).attr('original')) {
 			console.log('$(this).attr(\'original\')', $(this).attr('original'));
 			console.log('$(this).val()', $(this).val());
-			changed = true;
-		}
-	});
-	$('img').each(function(){
-		if($(this).attr('new')){
 			changed = true;
 		}
 	});
@@ -40,6 +35,14 @@ function checkFields() {
 	if(!formStatus){
 		changed = false;
 	}
+	$('#thumbnailPicture').each(function(){
+		if(!$(this).attr('new')){
+			changed = false;
+		}
+		else{
+			changed = changed && true;
+		}
+	});
 
 	if(changed)
 		$('input[type="submit"].news').attr('disabled', false);
