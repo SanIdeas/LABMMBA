@@ -1114,6 +1114,10 @@ span.error {
 	color: #e0424e!important;
 }
 
+.gallery > div.list{
+	padding: 0;
+}
+
 .gallery ul{
 	list-style: none;
 	padding: 0;
