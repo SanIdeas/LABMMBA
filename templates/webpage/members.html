@@ -36,7 +36,7 @@
             <h1 class="c12">Integrantes</h1>
             <div class="s1 c11">
                 {% for member in working %}
-                <div class="c3 member" href="#data" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
+                <div class="c2 member" href="#data" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
                     <div class="c12 img">
                                     {% if member.image %}
                                         <img class="profile" src="{% static member.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
@@ -49,6 +49,10 @@
                     </div>
 
                 </div>
+                {% if forloop.counter|divisibleby:6 %}
+                    <div class="c12" style="height: 1px;"> </div>
+                {% endif %}
+
                 {% endfor %}
             </div>
         </div>
@@ -58,7 +62,7 @@
             <h1 class="c12">Ex-Integrantes</h1>
             <div class="s1 c11">
                 {% for member in not_working %}
-                <div class="c3 member" href="#data" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
+                <div class="c2 member" href="#data" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
                     <div class="c12 img">
                                     {% if member.image %}
                                         <img class="profile" src="{% static member.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
@@ -71,6 +75,9 @@
                     </div>
 
                 </div>
+                {% if forloop.counter|divisibleby:6 %}
+                    <div class="c12" style="height: 1px;"> </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

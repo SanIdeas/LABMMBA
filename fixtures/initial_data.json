@@ -406,8 +406,8 @@
     "model": "webpage.subsectioncategory",
     "pk": 4,
     "fields": {
-      "spanish_name": "Patentes",
-      "english_name": "Patents",
+      "spanish_name": "Tecnologías y Patentes",
+      "english_name": "Technologies and Patents",
       "image": "static/webpage/images/sections/thumbnail/CI4.jpg",
       "section": 5
     }
@@ -417,20 +417,9 @@
     "model": "webpage.subsectioncategory",
     "pk": 5,
     "fields": {
-      "spanish_name": "Tecnologías",
-      "english_name": "Technologies",
-      "image": "static/webpage/images/sections/thumbnail/CI5.jpg",
-      "section": 5
-    }
-  },
-
-  {
-    "model": "webpage.subsectioncategory",
-    "pk": 6,
-    "fields": {
       "spanish_name": "Asesorías",
       "english_name": "Counselings",
-      "image": "static/webpage/images/sections/thumbnail/CI6.jpg",
+      "image": "static/webpage/images/sections/thumbnail/CI5.jpg",
       "section": 5
     }
   },
@@ -479,6 +468,19 @@
     "model": "webpage.subsection",
     "pk": 4,
     "fields": {
+      "spanish_name": "Galería de Fotos",
+      "english_name": "Pictures Gallery",
+      "slug": "gallery",
+      "spanish_title": "<h1 class='c12'>Galería de Fotos</h1>",
+      "english_title": "<h1 class='c12'>Pictures Gallery</h1>",
+      "category": 1
+    }
+  },
+
+  {
+    "model": "webpage.subsection",
+    "pk": 5,
+    "fields": {
       "spanish_name": "Áreas de Investigación",
       "english_name": "Investigation Areas",
       "slug": "areas",
@@ -491,7 +493,7 @@
 
   {
     "model": "webpage.subsection",
-    "pk": 5,
+    "pk": 6,
     "fields": {
       "spanish_name": "Proyectos",
       "english_name": "Projects",
@@ -504,11 +506,11 @@
 
   {
     "model": "webpage.subsection",
-    "pk": 6,
+    "pk": 7,
     "fields": {
       "spanish_name": "Patentes",
       "english_name": "Patents",
-      "slug": "patents",
+      "slug": "our_patents",
       "spanish_title": "<h1 class='c12'>Patentes</h1>",
       "english_title": "<h1 class='c12'>Patents</h1>",
       "category": 2
@@ -517,7 +519,7 @@
 
   {
     "model": "webpage.subsection",
-    "pk": 7,
+    "pk": 8,
     "fields": {
       "spanish_name": "Links de Interés",
       "english_name": "Links of Interest",
@@ -530,7 +532,7 @@
 
   {
     "model": "webpage.subsection",
-    "pk": 8,
+    "pk": 9,
     "fields": {
       "spanish_name": "Nacional",
       "english_name": "National",
@@ -544,7 +546,7 @@
 
   {
     "model": "webpage.subsection",
-    "pk": 9,
+    "pk": 10,
     "fields": {
       "spanish_name": "Internacional",
       "english_name": "International",
@@ -558,26 +560,13 @@
 
   {
     "model": "webpage.subsection",
-    "pk": 10,
-    "fields": {
-      "spanish_name": "Bacteria biorremediadora MSR33",
-      "english_name": "Bioremediation Bacteria MSR33",
-      "slug": "msr33-bacteria",
-      "spanish_title": "<h1 class='c12'>Bacteria biorremediadora MSR33</h1>",
-      "english_title": "<h1 class='c12'>Bioremediation Bacteria MSR33</h1>",
-      "category": 4
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
     "pk": 11,
     "fields": {
-      "spanish_name": "Bacteria recombinante JMS34",
-      "english_name": "Recombinant bacteria JMS34",
-      "slug": "jms34-bacteria",
-      "spanish_title": "<h1 class='c12'>Bacteria recombinante JMS34</h1>",
-      "english_title": "<h1 class='c12'>Recombinant bacteria JMS34</h1>",
+      "spanish_name": "Tecnologías",
+      "english_name": "Technologies",
+      "slug": "technologies",
+      "spanish_title": "<h1 class='c12'>Tecnologías</h1>",
+      "english_title": "<h1 class='c12'>Technologies</h1>",
       "category": 4
     }
   },
@@ -586,11 +575,11 @@
     "model": "webpage.subsection",
     "pk": 12,
     "fields": {
-      "spanish_name": "Bacteria MHP41",
-      "english_name": "Bacteria MHP41",
-      "slug": "mhp41-bacteria",
-      "spanish_title": "<h1 class='c12'>Bacteria MHP41</h1>",
-      "english_title": "<h1 class='c12'>Bacteria MHP41</h1>",
+      "spanish_name": "Patentes",
+      "english_name": "Patents",
+      "slug": "patents",
+      "spanish_title": "<h1 class='c12'>Patentes</h1>",
+      "english_title": "<h1 class='c12'>Patents</h1>",
       "category": 4
     }
   },
@@ -599,11 +588,11 @@
     "model": "webpage.subsection",
     "pk": 13,
     "fields": {
-      "spanish_name": "Biorremediación de matrices contaminadas con mercurio y otros metales pesados",
-      "english_name": "Bioremediation of matrices contaminated with mercury and other heavy metals",
-      "slug": "matrices-bioremediation",
-      "spanish_title": "<h1 class='c12'>Biorremediación de matrices contaminadas con mercurio y otros metales pesados</h1>",
-      "english_title": "<h1 class='c12'>Bioremediation of matrices contaminated with mercury and other heavy metals</h1>",
+      "spanish_name": "Tecnológicas",
+      "english_name": "Technologicals",
+      "slug": "technologicals",
+      "spanish_title": "<h1 class='c12'>Tecnológicas</h1>",
+      "english_title": "<h1 class='c12'>Technologicals</h1>",
       "category": 5
     }
   },
@@ -612,11 +601,11 @@
     "model": "webpage.subsection",
     "pk": 14,
     "fields": {
-      "spanish_name": "Biorremediación de pesticidas",
-      "english_name": "Bioremediation of pesticides",
-      "slug": "pesticides-bioremediation",
-      "spanish_title": "<h1 class='c12'>Biorremediación de pesticidas</h1>",
-      "english_title": "<h1 class='c12'>Bioremediation of pesticides</h1>",
+      "spanish_name": "Medioambientales",
+      "english_name": "Environmentals",
+      "slug": "environmentals",
+      "spanish_title": "<h1 class='c12'>Medioambientales</h1>",
+      "english_title": "<h1 class='c12'>Environmentals</h1>",
       "category": 5
     }
   },
@@ -625,90 +614,12 @@
     "model": "webpage.subsection",
     "pk": 15,
     "fields": {
-      "spanish_name": "Biorremediación de hidrocarburos de petróleo",
-      "english_name": "Bioremediation of petroleum hydrocarbons",
-      "slug": "hydrocarbons-bioremediation",
-      "spanish_title": "<h1 class='c12'>Biorremediación de hidrocarburos de petróleo</h1>",
-      "english_title": "<h1 class='c12'>Bioremediation of petroleum hydrocarbons</h1>",
-      "category": 5
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
-    "pk": 16,
-    "fields": {
-      "spanish_name": "Biorremediación de compuestos químicos industriales",
-      "english_name": "Bioremediation of industrial chemical compounds",
-      "slug": "compounds-bioremediation",
-      "spanish_title": "<h1 class='c12'>Biorremediación de compuestos químicos industriales</h1>",
-      "english_title": "<h1 class='c12'>Bioremediation of industrial chemical compounds</h1>",
-      "category": 5
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
-    "pk": 17,
-    "fields": {
-      "spanish_name": "Biotransformación de compuestos bioactivos",
-      "english_name": "Biotransformation of bioactive compounds",
-      "slug": "compounds-biotransformation",
-      "spanish_title": "<h1 class='c12'>Biotransformación de compuestos bioactivos</h1>",
-      "english_title": "<h1 class='c12'>Biotransformation of bioactive compounds</h1>",
-      "category": 5
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
-    "pk": 18,
-    "fields": {
-      "spanish_name": "Micropropagación de plantas",
-      "english_name": "Micropropagation of plants",
-      "slug": "plants-micropropagation",
-      "spanish_title": "<h1 class='c12'>Micropropagación de plantas</h1>",
-      "english_title": "<h1 class='c12'>Micropropagation of plants</h1>",
-      "category": 5
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
-    "pk": 19,
-    "fields": {
-      "spanish_name": "Tecnológicas",
-      "english_name": "Technologicals",
-      "slug": "technologicals",
-      "spanish_title": "<h1 class='c12'>Tecnológicas</h1>",
-      "english_title": "<h1 class='c12'>Technologicals</h1>",
-      "category": 6
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
-    "pk": 20,
-    "fields": {
-      "spanish_name": "Medioambientales",
-      "english_name": "Environmentals",
-      "slug": "environmentals",
-      "spanish_title": "<h1 class='c12'>Medioambientales</h1>",
-      "english_title": "<h1 class='c12'>Environmentals</h1>",
-      "category": 6
-    }
-  },
-
-  {
-    "model": "webpage.subsection",
-    "pk": 21,
-    "fields": {
       "spanish_name": "I+D+I",
       "english_name": "I+D+I",
       "slug": "idi",
       "spanish_title": "<h1 class='c12'>I+D+I</h1>",
       "english_title": "<h1 class='c12'>I+D+I</h1>",
-      "category": 6
+      "category": 5
     }
   }
 ]
