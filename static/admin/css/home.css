@@ -10,3 +10,7 @@
 #active-users-container > div {
 	padding-left: 20px;
 }
+
+#active-users-container {
+	display: inline;
+}
