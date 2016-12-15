@@ -20,21 +20,7 @@ window.addEventListener('load', function() {
 	    if (Object.keys(regions).length == 0) {
 	        return;
 	    }	    
-/*
-	    // Send the update content to the server to be saved
-	    function onStateChange(ev) {
-	        // Check if the request is finished
-	        if (ev.target.readyState == 4) {
-	            editor.busy(false);
-	            if (ev.target.status == '200') {
-	                // Save was successful, notify the user with a flash
-	                new ContentTools.FlashUI('ok');
-	            } else {
-	                // Save failed, notify the user with a flash
-	                new ContentTools.FlashUI('no');
-	            }
-	        }
-	    }; */
+
 	    // Editor ocupado mientras se actualizan los datos
 	    editor.busy(true);
 	    // Se obtienen las imagenes del area editable
@@ -278,7 +264,7 @@ function sendPayload(regions, pictures={}){
 }
 
 function formatContent(content, pictures){
-	var body = $(content).trim();
+	var body = $(content);
 	// Se recorren las url de las imagenes y se asocian a sus img respectivos
 	for (var i = 0; i < pictures.length; i++) {
 		body.closest('img[image-id="' + pictures[i]['client_side_id'] +'"]').attr('src', pictures[i]['url']).attr('image-id', null);
@@ -287,7 +273,12 @@ function formatContent(content, pictures){
 }
 
 function formatTitle(content){
-	var title = $(content).html().trim();
+	var title = $(content).text();
+	console.log('title', title);
+	if(title != undefined)
+		title = title.trim().replace(/\s+/g,' ');
+	else
+		title = '';
 	return {'html': '<h1 class="c12">' + title + '</h1>', 'text': title};
 }
 

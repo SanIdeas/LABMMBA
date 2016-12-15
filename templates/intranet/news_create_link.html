@@ -72,7 +72,7 @@
 						<span>{% trans "Presiona para agregar una miniatura" %}</span>
 					</a>
 					<a class="selectThumbnail" style="display:none;">
-						<img id="thumbnailPicture" src="">
+						<img id="thumbnailPicture" class="image required" src="">
 					</a>
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 						<span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
 					</a>
 					<a class="selectHeader" style="display:none;">
-						<img id="headerPicture" src="">
+						<img id="headerPicture" class="image" src="">
 					</a>
 				</div>
 			</div>
@@ -123,7 +123,7 @@
 	$('.date[type="text"]').datepicker({firstDay: 1,dateFormat: 'dd-mm-yy'});
 </script>
 <script>autosize(document.querySelectorAll('textarea'));</script>
-<script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
+<script src="{% static 'intranet/js/news/news_create.js' %}"></script>
 <script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>
 <script src="{% static 'intranet/js/news/news_create_sender.js' %}"></script>
 {% endblock %}
