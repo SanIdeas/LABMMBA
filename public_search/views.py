@@ -36,7 +36,7 @@ def search(request, search=None):
             paginator = Paginator(all_docs, 10);
             # Se obtienen las categorias disponibles
             parameters['categories'] = []
-            for category in Document.objects.values('category').distinct():
+            for category in Document.objects.filter(is_available=True, is_public=True).values('category').distinct():
                 parameters['categories'].append(SubArea.objects.get(id=category['category']))
 
             # Se extrae el numero de pagina
@@ -85,6 +85,7 @@ def search(request, search=None):
             parameters['authors'] = authors
             parameters['years'] = years
             parameters['categories'] = categories
+            print categories
             parameters['owners'] = owners
             parameters['search'] = search
             

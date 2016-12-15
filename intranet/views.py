@@ -148,7 +148,7 @@ def documents(request, search=None):
 				paginator = Paginator(all_docs, 5);
 				# Se obtienen las categorias disponibles
 				parameters['categories'] = []
-				for category in Document.objects.values('category').distinct():
+				for category in Document.objects.filter(is_available=True).values('category').distinct():
 					parameters['categories'].append(SubArea.objects.get(id=category['category']))
 
 				# Se extrae el numero de pagina

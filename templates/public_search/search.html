@@ -11,7 +11,15 @@
     <div id="title">
         <div class="grid">
             <div class="row">
-                <h1 class="c12">{% trans "Publicaciones" %}</h1>
+                <h1 class="c12">
+                	{% if request.GET.category %}
+                		{% if documents %}
+                			{{documents.0.category.name}}
+                		{% endif %}
+                	{% else %}
+            			{% trans "Publicaciones" %}
+                	{% endif %}
+                </h1>
             </div>
         </div>
     </div>
@@ -26,7 +34,7 @@
 				{% for document in documents%}
 					 <div class="evento">
 				        <a class="clear closed" href="{% url 'intranet:viewer' document.author_slug document.title_slug %}">
-				            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
+				            <span class="date document">{{ document.date|date:"Y" }} · {{ document.author }}</span>
 				            <h4>{{ document.title }}</h4>
 				            <span class="icon arrow"></span>
 				        </a>
@@ -75,9 +83,11 @@
 			<section id="sidebar" class="c4">
 	            <div class="links clear box">
 	                <h3>Categorias</h3>
-	                {% if documents %}
-		                <a class="clear external" href="#" target="_blank">Microbiologia Molecular</a>
-		                <a class="clear external" href="#" target="_blank">Biotecnologia Ambiental</a>
+	                {% if categories %}
+	                	<a class="clear" href="{% url 'publications' %}">{% trans "Todas" %}</a>
+	                	{% for category in categories %}
+		                	<a class="clear" href="{% url 'publications' %}?category={{category.id}}">{{category.name}}</a>
+		                {% endfor %}
 		            {% else %}
 		            	<span class="c12 empty">{% trans "No hay categorias" %}</span>
 		            {% endif %}

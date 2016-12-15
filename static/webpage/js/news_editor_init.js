@@ -278,7 +278,7 @@ function sendPayload(regions, pictures={}){
 }
 
 function formatContent(content, pictures){
-	var body = $(content);
+	var body = $(content).trim();
 	// Se recorren las url de las imagenes y se asocian a sus img respectivos
 	for (var i = 0; i < pictures.length; i++) {
 		body.closest('img[image-id="' + pictures[i]['client_side_id'] +'"]').attr('src', pictures[i]['url']).attr('image-id', null);
@@ -287,7 +287,7 @@ function formatContent(content, pictures){
 }
 
 function formatTitle(content){
-	var title = $(content).html();
+	var title = $(content).html().trim();
 	return {'html': '<h1 class="c12">' + title + '</h1>', 'text': title};
 }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-03 03:27-0400\n"
+"POT-Creation-Date: 2016-12-15 00:38-0300\n"
 "PO-Revision-Date: 2016-07-03 03:50-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,119 +17,236 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 
-#: .\static\intranet\js\upload.js:183 .\static\intranet\js\upload.js:729
-msgid "Selecciona privacidad"
-msgstr "Select privacy"
+#: .\static\admin\vendor\tinymce\tinymce.min.js:8
+msgid "align"
+msgstr ""
 
-#: .\static\intranet\js\upload.js:184 .\static\intranet\js\upload.js:730
-msgid "Público"
-msgstr "Public"
+#: .\static\admin\vendor\tinymce\tinymce.min.js:8
+msgid "blockquote"
+msgstr ""
 
-#: .\static\intranet\js\upload.js:185 .\static\intranet\js\upload.js:731
-msgid "Privado"
-msgstr "Private"
+#: .\static\admin\vendor\tinymce\tinymce.min.js:8
+msgid "p"
+msgstr ""
 
-#: .\static\intranet\js\upload.js:191 .\static\intranet\js\upload.js:680
-msgid "Titulo"
-msgstr "Title"
+#: .\static\intranet\js\profile.js:162
+msgid "Las contraseñas no coinciden."
+msgstr ""
 
-#: .\static\intranet\js\upload.js:191 .\static\intranet\js\upload.js:681
-msgid "Ej: Tesis de microbiologia"
-msgstr "e.g. Microbiology Thesis"
-
-#: .\static\intranet\js\upload.js:192 .\static\intranet\js\upload.js:684
-msgid "Autor"
-msgstr "Author"
-
-#: .\static\intranet\js\upload.js:192 .\static\intranet\js\upload.js:685
-msgid "Ej: Juan Perez"
-msgstr "e.g. John Smith"
-
-#: .\static\intranet\js\upload.js:193
-msgid "Fecha de creación"
-msgstr "Date of creation"
-
-#: .\static\intranet\js\upload.js:193 .\static\intranet\js\upload.js:689
-msgid "Ej: 2016-12-30"
-msgstr "e.g. 2016-12-30"
-
-#: .\static\intranet\js\upload.js:194 .\static\intranet\js\upload.js:692
-msgid "Colaboradores"
-msgstr "Contributors"
-
-#: .\static\intranet\js\upload.js:199 .\static\intranet\js\upload.js:712
-msgid "Area"
-msgstr "Area"
-
-#: .\static\intranet\js\upload.js:201 .\static\intranet\js\upload.js:715
-msgid "Selecciona una categoria"
-msgstr "Select a category"
-
-#: .\static\intranet\js\upload.js:202 .\static\intranet\js\upload.js:716
-msgid "Microbiología Molecular"
-msgstr "Molecular Microbiology"
-
-#: .\static\intranet\js\upload.js:203 .\static\intranet\js\upload.js:717
-msgid "Biotecnología Ambiental"
-msgstr "Environmental Biotechnology"
-
-#: .\static\intranet\js\upload.js:204 .\static\intranet\js\upload.js:718
-msgid "Bionanotecnología"
-msgstr "Bionanotechnology"
-
-#: .\static\intranet\js\upload.js:205 .\static\intranet\js\upload.js:719
-msgid "Genómica Funcional y Proteómica"
-msgstr "Functional Genomic and proteomics"
-
-#: .\static\intranet\js\upload.js:206 .\static\intranet\js\upload.js:720
-msgid "Síntesis de compuestos bioactivos y de interés biotecnológico"
-msgstr "Synthesis of bioactive compounds and biotechnological interest "
-
-#: .\static\intranet\js\upload.js:207 .\static\intranet\js\upload.js:721
-msgid "Biorremediación de Ambientes Contaminados"
-msgstr "Bioremediation of Contaminated Environments"
-
-#: .\static\intranet\js\upload.js:333
+#: .\static\intranet\js\upload.js:122
 msgid "Debes añadir un enlace de Google Drive a la solicitud"
 msgstr "You must add a Google Drive link to the request"
 
-#: .\static\intranet\js\upload.js:416
+#: .\static\intranet\js\upload.js:205
 msgid "No se encontraron archivos compatibles en el enlace"
 msgstr "No compatibles files found in the link"
 
-#: .\static\intranet\js\upload.js:604
+#: .\static\intranet\js\upload.js:388
 msgid "Confirma los datos de tus documentos"
 msgstr "Confirm the information of your documents"
 
-#: .\static\intranet\js\upload.js:688
+#: .\static\intranet\js\upload.js:460
+msgid "Titulo"
+msgstr "Title"
+
+#: .\static\intranet\js\upload.js:461
+msgid "Ej: Tesis de microbiologia"
+msgstr "e.g. Microbiology Thesis"
+
+#: .\static\intranet\js\upload.js:464
+msgid "Autor"
+msgstr "Author"
+
+#: .\static\intranet\js\upload.js:465
+msgid "Ej: Juan Perez"
+msgstr "e.g. John Smith"
+
+#: .\static\intranet\js\upload.js:468
 msgid "Fecha"
 msgstr "Date"
 
-#: .\static\intranet\js\upload.js:696
+#: .\static\intranet\js\upload.js:469
+msgid "Ej: 2016-12-30"
+msgstr "e.g. 2016-12-30"
+
+#: .\static\intranet\js\upload.js:472
 msgid "ISSN"
 msgstr "ISSN"
 
-#: .\static\intranet\js\upload.js:697 .\static\intranet\js\upload.js:701
-#: .\static\intranet\js\upload.js:709
+#: .\static\intranet\js\upload.js:473 .\static\intranet\js\upload.js:477
+#: .\static\intranet\js\upload.js:485
 msgid "No requerido"
 msgstr "Not required"
 
-#: .\static\intranet\js\upload.js:700
+#: .\static\intranet\js\upload.js:476
 msgid "DOI"
 msgstr "DOI"
 
-#: .\static\intranet\js\upload.js:704
+#: .\static\intranet\js\upload.js:480
 msgid "URL"
 msgstr "URL"
 
-#: .\static\intranet\js\upload.js:705
+#: .\static\intranet\js\upload.js:481
 msgid "ej: http://dx.doi.org/10.1109/ms.2006.34"
 msgstr "e.g. http://dx.doi.org/10.1109/ms.2006.34"
 
-#: .\static\intranet\js\upload.js:708
+#: .\static\intranet\js\upload.js:484
 msgid "Paginas"
 msgstr "Pages"
 
-#: .\static\intranet\js\upload.js:726
+#: .\static\intranet\js\upload.js:488
+msgid "Area"
+msgstr "Area"
+
+#: .\static\intranet\js\upload.js:491
+msgid "Selecciona una categoria"
+msgstr "Select a category"
+
+#: .\static\intranet\js\upload.js:492
+msgid "Microbiología Molecular"
+msgstr "Molecular Microbiology"
+
+#: .\static\intranet\js\upload.js:493
+msgid "Biotecnología Ambiental"
+msgstr "Environmental Biotechnology"
+
+#: .\static\intranet\js\upload.js:494
+msgid "Bionanotecnología"
+msgstr "Bionanotechnology"
+
+#: .\static\intranet\js\upload.js:495
+msgid "Genómica Funcional y Proteómica"
+msgstr "Functional Genomic and proteomics"
+
+#: .\static\intranet\js\upload.js:496
+msgid "Síntesis de compuestos bioactivos y de interés biotecnológico"
+msgstr "Synthesis of bioactive compounds and biotechnological interest "
+
+#: .\static\intranet\js\upload.js:497
+msgid "Biorremediación de Ambientes Contaminados"
+msgstr "Bioremediation of Contaminated Environments"
+
+#: .\static\intranet\js\upload.js:502
 msgid "Privacidad"
 msgstr "Privacy"
+
+#: .\static\intranet\js\upload.js:505
+msgid "Selecciona privacidad"
+msgstr "Select privacy"
+
+#: .\static\intranet\js\upload.js:506
+msgid "Público"
+msgstr "Public"
+
+#: .\static\intranet\js\upload.js:507
+msgid "Privado"
+msgstr "Private"
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:6881
+#: .\static\webpage\vendor\contentTools\content-tools.js:6884
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Rotate"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:6887
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Crop marks"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:6896
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Upload"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:6905
+#: .\static\webpage\vendor\contentTools\content-tools.js:7942
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Insert"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:6908
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Cancel"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:6911
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Clear"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7210
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Enter a link"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7373
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "No styles available for this tag"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7411
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Styles"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7414
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Attributes"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7417
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Code"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7423
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Remove"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7428
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:5
+msgid "Apply"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7687
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Name"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7694
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Value"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7809
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Table head"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7816
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Table body (columns)"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7832
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Table foot"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:7938
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Paste YouTube or Vimeo URL"
+msgstr ""
+
+#: .\static\webpage\vendor\contentTools\content-tools.js:8393
+#: .\static\webpage\vendor\contentTools\content-tools.min.js:6
+msgid "Your changes have not been saved, do you really want to lose them?"
+msgstr ""
+
+#~ msgid "Fecha de creación"
+#~ msgstr "Date of creation"
+
+#~ msgid "Colaboradores"
+#~ msgstr "Contributors"
