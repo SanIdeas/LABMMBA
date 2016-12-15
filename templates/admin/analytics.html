@@ -28,7 +28,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "Tráfico Interno" %}</h3>
 <section class="panel">
 <h2>{% trans 'Sesiones y usuarios, últimos 15 días' %}</h2>
-<div id="chart-1-container"></div>
+<div id="chart-1-container" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -37,7 +37,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "Popularidad Interna" %}</h3>
 <section class="panel">
 <h2>{% trans 'Visitas, últimos 15 días' %}</h2>
-<div id="chart-2-container"></div>
+<div id="chart-2-container" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -48,7 +48,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "Tráfico Externo" %}</h3>
 <section class="panel">
 <h2>{% trans 'Sesiones y usuarios, últimos 15 días' %}</h2>
-<div id="chart-1-container-p"></div>
+<div id="chart-1-container-p" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -57,7 +57,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "Popularidad Externa" %}</h3>
 <section class="panel">
 <h2>{% trans 'Visitas, últimos 15 días' %}</h2>
-<div id="chart-2-container-p"></div>
+<div id="chart-2-container-p" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -68,7 +68,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "País de Visitas Internas" %}</h3>
 <section class="panel">
 <h2>{% trans 'Últimos 15 días' %}</h2>
-<div id="chart-5-container"></div>
+<div id="chart-5-container" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -77,7 +77,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "País de Visitas Externas" %}</h3>
 <section class="panel">
 <h2>{% trans 'Últimos 15 días' %}</h2>
-<div id="chart-5-container-p"></div>
+<div id="chart-5-container-p" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -88,7 +88,7 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "Navegadores Más Populares" %}</h3>
 <section class="panel">
 <h2>{% trans 'Últimos 15 días' %}</h2>
-<div id="chart-3-container"></div>
+<div id="chart-3-container" style="height: 300px;"></div>
 </section>
 </div>
 </div>
@@ -97,16 +97,29 @@ fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
 <h3 class="setup-subtitle green">{% trans "Adquisición" %}</h3>
 <section class="panel">
 <h2>{% trans 'Tráfico referido, últimos 15 días' %}</h2>
-<div id="chart-4-container"></div>
+<div id="chart-4-container" style="height: 300px;"></div>
 </section>
 </div>
 </div>
 </div>
- 
-<script>
- 
+
+
+<script type="text/javascript">
+	
+var count=0;
+
+$.fancybox.showLoading();
+
+function function1() {
+	if (count==5){
+		setTimeout(function(){
+        $.fancybox.hideLoading();
+    	}, 2000);
+	}
+	count++;
+} 
+
 gapi.analytics.ready(function() {
- 
 /**
 * Authorize the user with an access token obtained server side.
 */
@@ -164,7 +177,7 @@ chart: {
 }
 }
 });
-dataChart1.execute();
+dataChart1.execute(function1());
 
 var dataChart1P = new gapi.analytics.googleCharts.DataChart({
 query: {
@@ -183,7 +196,7 @@ chart: {
 }
 }
 });
-dataChart1P.execute();
+dataChart1P.execute(function1());
  
  
 /**
@@ -209,7 +222,7 @@ chart: {
 }
 }
 });
-dataChart2.execute();
+dataChart2.execute(function1());
 
 var dataChart2P = new gapi.analytics.googleCharts.DataChart({
 query: {
@@ -231,7 +244,7 @@ chart: {
 }
 }
 });
-dataChart2P.execute();
+dataChart2P.execute(function1());
  
 /**
 * Creates a new DataChart instance showing top borwsers
@@ -256,7 +269,7 @@ chart: {
 }
 }
 });
-dataChart3.execute();
+dataChart3.execute(function1());
  
 /**
 * Creates a new DataChart instance showing top referral
@@ -281,7 +294,7 @@ chart: {
 }
 }
 });
-dataChart4.execute();
+dataChart4.execute(function1());
  
 /**
 * Creates a new DataChart instance showing top visitors continents
@@ -306,7 +319,7 @@ chart: {
 }
 }
 });
-dataChart5.execute();
+dataChart5.execute(function1());
 
 var dataChart5p = new gapi.analytics.googleCharts.DataChart({
 query: {
@@ -328,9 +341,9 @@ chart: {
 }
 }
 });
-dataChart5p.execute();
- 
+dataChart5p.execute(function1());
  
 });
+
 </script>
  
