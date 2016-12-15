@@ -89,21 +89,8 @@
                     <ul class="documents">
                         {% for document in documents %}
                             <li>
-                                {% if request.user == profile_user %}
-                                    <div class="options" data-id="{{ document.id }}">
-                                        <div>
-                                            <button class="delete" data-title="{{document.title}}" data-author="{{document.author}}" data-id="{{document.id}}" title="{% trans 'Eliminar' %}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        </div>
-                                        <div>
-                                            <a href="{% url 'intranet:edit_document' document.id %}" title="{% trans 'Editar' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        </div>
-                                        <div>
-                                            <!-- Boton 3 -->
-                                        </div>
-                                    </div>
-                                {% endif %}
                                 <div class="body">
-                                    <a href="{% url 'intranet:document' document.author_slug document.title_slug %}">
+                                    <a href="{% url 'admin:document' document.author_slug document.title_slug %}">
                                         <h3><span>{{ document.date|date:"Y" }}</span> ·
                                             {% if document.title %}
                                                 {{ document.title }}</h3>

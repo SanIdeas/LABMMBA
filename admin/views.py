@@ -100,6 +100,7 @@ def documents(request, search=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
+
 def document(request, title=None, author=None):
 	if request.user.is_authenticated() and request.user.is_admin:
 		try:
@@ -107,11 +108,12 @@ def document(request, title=None, author=None):
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
-			return render(request, 'admin/document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document})
+			return render(request, 'admin/document_information.html', {'administration': Section.objects.get(slug='administrator'), 'document': document})
 		else:
 			return documents(request)
 	else:
 		return HttpResponseRedirect(reverse('login'))
+
 
 def edit_document(request, id=None):
 	if request.user.is_authenticated() and request.user.is_admin:
@@ -124,7 +126,7 @@ def edit_document(request, id=None):
 			document = None
 		if document:
 			if request.method == "GET":
-				return render(request, 'admin/edit_document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document, 'areas': Area.objects.all()})
+				return render(request, 'admin/edit_document_information.html', {'administration': Section.objects.get(slug='administrator'), 'document': document, 'areas': Area.objects.all()})
 			elif request.method == "POST":
 					document.title = request.POST['title']
 					document.author = request.POST['author']
@@ -146,7 +148,6 @@ def edit_document(request, id=None):
 			return HttpResponseRedirect(reverse('admin:documens')) #Se redirecciona a Documentos.
 	else:
 		return HttpResponseRedirect(reverse('login'))
-
 
 
 def users(request, user_id=None, delete=False, activate=False, block=False, unblock=False, profile=False):
@@ -388,7 +389,7 @@ def webpage(request, section_id=None, subsection_id=None):
 							categories_arr = []
 							categories_obj = section.get_categories()
 							for category in categories_obj:
-								categories_arr.append((category, category.get_subsections()))
+								categories_arr.append((category, category.get_subsections().exclude(slug='gallery')))
 
 							return render(request, 'admin/webpage_ajax.html', {'section': section, 'categories': categories_arr})
 						except Exception:

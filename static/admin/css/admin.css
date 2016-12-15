@@ -1121,7 +1121,7 @@ span.error {
 }
 
 .gallery ul li{
-	margin-bottom: 20px;
+	margin-bottom: 20px!important;
 }
 
 .gallery ul li a{
