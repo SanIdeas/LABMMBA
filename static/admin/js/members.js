@@ -33,7 +33,7 @@ function members(){
 				xhr.setRequestHeader("X-CSRFToken", csrf_token);
 				e.preventDefault();
 
-				if($('#add-member-name').val().length <= 0)	// Abort if name is empty
+				if(!$('#add-member-name').val().trim())	// Abort if name is empty
 					xhr.abort();
 				else {
 					$('#add-member-submit').val("Agregando...").attr("disabled", true);

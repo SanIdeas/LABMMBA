@@ -47,7 +47,7 @@ function users(){
 	$('.setup-delete-invitation-box').click(function(){
 		$.ajax({
 			url: remove.replace('999', $(this).attr('user-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_setup();
 		});
@@ -59,7 +59,7 @@ function users(){
 	$('#modal-confirm').click(function(){
 		$.ajax({
 			url: remove.replace('999', $(this).attr('user-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_setup();
 		});
@@ -67,7 +67,7 @@ function users(){
 	$('.setup-block-box').click(function(){
 		$.ajax({
 			url: block.replace('999', $(this).attr('user-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_setup();
 		});
@@ -75,7 +75,7 @@ function users(){
 	$('.setup-unblock-box').click(function(){
 		$.ajax({
 			url: unblock.replace('999', $(this).attr('user-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_setup();
 		});
@@ -104,10 +104,10 @@ function users(){
 				xhr.setRequestHeader("X-CSRFToken", csrf_token);
 				e.preventDefault();
 
-				if($('#email-invitation').val().length <= 0)	// Abort if email is empty
+				if(!$('#email-invitation').val().trim())	// Abort if email is empty
 					xhr.abort();
 				else {
-					$('#submit-invitation').val("Enviando...").attr("disabled", true);
+					$('#submit-invitation').val(gettext("Enviando...")).attr("disabled", true);
 					$('#invitation-error').text("");
 				}
 			}
@@ -226,13 +226,13 @@ function areas(){
             beforeSend: function(xhr){
                 xhr.setRequestHeader("X-CSRFToken", csrf_token);
 
-                if($('#subarea-modal-edit-confirm #modal-subarea-name').val().length <= 0) {	// Abort if name is empty
+                if(!$('#subarea-modal-edit-confirm #modal-subarea-name').val().trim()) {	// Abort if name is empty
                     xhr.abort();
-                    $('#subarea-modal-edit-confirm #modal-error').text("El nombre de la subárea no puede estar vacío");
+                    $('#subarea-modal-edit-confirm #modal-error').text(gettext("El nombre de la subárea no puede estar vacío"));
                 }
                 else if($('#subarea-modal-edit-confirm #modal-subarea-name').val() == $('#subarea-modal-edit-confirm #modal-confirm').attr('subarea-name')){	// Abort if no changes were made
                     xhr.abort();
-                    $('#subarea-modal-edit-confirm #modal-error').text("No ha hecho ningún cambio");
+                    $('#subarea-modal-edit-confirm #modal-error').text(gettext("No ha hecho ningún cambio"));
 				}
                 else {
                     $('#subarea-modal-edit-confirm #modal-error').text("");
@@ -263,9 +263,9 @@ function areas(){
             beforeSend: function(xhr){
                 xhr.setRequestHeader("X-CSRFToken", csrf_token);
 
-                if($('#subarea-modal-add #add-subarea-name').val().length <= 0) {	// Abort if name is empty
+                if(!$('#subarea-modal-add #add-subarea-name').val().trim()) {	// Abort if name is empty
                     xhr.abort();
-                    $('#subarea-modal-add #modal-error').text("El nombre de la subárea no puede estar vacío");
+                    $('#subarea-modal-add #modal-error').text(gettext("El nombre de la subárea no puede estar vacío"));
                 }
                 else {
                     $('#subarea-modal-add #modal-error').text("");
@@ -318,13 +318,13 @@ function areas(){
             beforeSend: function(xhr){
                 xhr.setRequestHeader("X-CSRFToken", csrf_token);
 
-                if($('#area-modal-edit-confirm #modal-area-name').val().length <= 0) {	// Abort if name is empty
+                if(!$('#area-modal-edit-confirm #modal-area-name').val().trim()) {	// Abort if name is empty
                     xhr.abort();
-                    $('#area-modal-edit-confirm #modal-error').text("El nombre del área no puede estar vacío");
+                    $('#area-modal-edit-confirm #modal-error').text(gettext("El nombre del área no puede estar vacío"));
                 }
                 else if($('#area-modal-edit-confirm #modal-area-name').val() == $('#area-modal-edit-confirm #modal-confirm').attr('area-name')){	// Abort if no changes were made
                     xhr.abort();
-                    $('#area-modal-edit-confirm #modal-error').text("No ha hecho ningún cambio");
+                    $('#area-modal-edit-confirm #modal-error').text(gettext("No ha hecho ningún cambio"));
                 }
                 else {
                     $('#area-modal-edit-confirm #modal-error').text("");
@@ -346,10 +346,10 @@ function areas(){
 				xhr.setRequestHeader("X-CSRFToken", csrf_token);
 				e.preventDefault();
 
-				if($('#add-area-name').val().length <= 0)	// Abort if email is empty
+				if(!$('#add-area-name').val().trim())	// Abort if email is empty
 					xhr.abort();
 				else {
-					$('#add-area-submit').val("Agregando...").attr("disabled", true);
+					$('#add-area-submit').val(gettext("Agregando...")).attr("disabled", true);
 					$('#add-area-error').text("");
 				}
 			}
@@ -648,11 +648,7 @@ function webpage(){
 			ed.on('loadContent', function(){    // Avoid to loose <p> class when everything is deleted
 				$(ed.getBody()).bind('DOMNodeInserted', function(e){
 					var element = e.target;
-					if(element.tagName == 'P'){
-                        if (is_section)
-                            $(element).addClass('s3 c9');
-                    }
-					else if(element.tagName == 'IMG'){	// Identify new images
+					if(element.tagName == 'IMG'){	// Identify new images
 						if(!$(element).attr('src')){
 							$(element).attr('src', src);
 							$(element).attr('image-id', imgIndex++);
@@ -1023,8 +1019,8 @@ function reload_gallery_setup(){
         else{
             $('#gallery-setup').children().remove();
             $('#gallery-setup').append(html);
-            $.fancybox.hideLoading()
-            $.fancybox.close()
+            $.fancybox.hideLoading();
+            $.fancybox.close();
         }
 
     });
@@ -1337,10 +1333,6 @@ function events(){
 
 function events_create(){
 	function init_pickers(){
-        var confirm = 'Confirm';
-		if(current_lang == 'es')
-            confirm = 'Confirmar';
-
         $('#create-event-form .date input').datepicker({
 			firstDay: 1,
 			dateFormat: 'dd-mm-yy'
@@ -1349,7 +1341,6 @@ function events_create(){
         $('#create-event-form .time').clockpicker({
             placement: 'top', // clock popover placement
             align: 'right',       // popover arrow align
-            donetext: confirm,     // done button text
             autoclose: true,
             default: '00:00'
         });
@@ -1358,7 +1349,7 @@ function events_create(){
 	function areInputsFilled(){
 		var areFilled = true;
 		$('#create-event-form .text').each(function(){
-			if(!$(this).val()){
+			if(!$(this).val().trim()){
                 areFilled = false;
 				return false;
 			}
@@ -1508,10 +1499,6 @@ function events_edit(){
 	var removeDays = [];
 
     function init_pickers(){
-        var confirm = 'Confirm';
-        if(current_lang == 'es')
-            confirm = 'Confirmar';
-
         $('#edit-event-form .date input').datepicker({
             firstDay: 1,
             dateFormat: 'dd-mm-yy'
@@ -1520,7 +1507,6 @@ function events_edit(){
         $('#edit-event-form .time').clockpicker({
             placement: 'top', // clock popover placement
             align: 'right',       // popover arrow align
-            donetext: confirm,     // done button text
             autoclose: true,
             default: '00:00'
         });
@@ -1529,7 +1515,7 @@ function events_edit(){
     function areInputsFilled(){
         var areFilled = true;
         $('#edit-event-form .text').each(function(){
-            if(!$(this).val()){
+            if(!$(this).val().trim()){
                 areFilled = false;
                 return false;
             }

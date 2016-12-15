@@ -915,6 +915,19 @@ span.error {
 	transition: opacity 0.3s ease;
 }
 
+.selectThumbnail .addButton{
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+}
+
+.selectThumbnail .addButton > i{
+	align-self: center;
+	color: #77A1CE;
+}
+
 .selectHeader.picture{
 	padding: 0!important;
 }
@@ -956,9 +969,14 @@ span.error {
 	margin-bottom: 0;
 }
 
+#webpage-section > form{
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
 #webpage-subsection-form{
 	margin: 5px;
 	font-size: 9pt;
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
 }
 
 #webpage-categories-container{
@@ -1131,4 +1149,28 @@ span.error {
 .gallery div.gallery-photo i{
 	align-self: center;
 	color: #009065;
+}
+
+@media screen and (max-width: 1190px){
+	.gallery ul li.c2{
+		width: 25%!important;
+	}
+}
+
+@media screen and (max-width: 900px){
+	.gallery ul li.c2{
+		width: 33.3%!important;
+	}
+}
+
+@media screen and (max-width: 750px){
+	.gallery ul li.c2{
+		width: 50%!important;
+	}
+}
+
+@media screen and (max-width: 390px){
+	.gallery ul li.c2{
+		width: 100%!important;
+	}
 }

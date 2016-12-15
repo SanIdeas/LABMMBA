@@ -6,8 +6,8 @@ from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
 from login.models import User
 from datetime import date, datetime
-from dateutil.parser import parse
 from django.db import models
+from itertools import groupby
 import os, re
 
 
@@ -17,9 +17,9 @@ class Section(models.Model):
 	english_name = models.CharField(max_length=50, unique=True, null=False)
 	slug = models.SlugField(max_length=20, unique=True, null=False)
 	spanish_title = models.CharField(max_length=200, default="<h1 class='c12'></h1>")
-	spanish_body = models.TextField(default="<p class='s3 c9'></p>")
+	spanish_body = models.TextField(default="<p></p>")
 	english_title = models.CharField(max_length=200, default="<h1 class='c12'></h1>")
-	english_body = models.TextField(default="<p class='s3 c9'></p>")
+	english_body = models.TextField(default="<p></p>")
 	header = models.FileField(upload_to='static/webpage/images/sections/header/', max_length=500, null=True)
 
 	def save(self, *args, **kwargs):
@@ -339,6 +339,12 @@ class Event(models.Model):
 		if event_day:
 			return datetime.combine(event_day.day, event_day.begin_hour)
 
+	def get_dates(self):
+		dates = EventDay.objects.filter(event=self).values_list('day', flat=True).order_by('day').distinct()
+
+		if dates:
+			return [list(g) for t, g in groupby(dates, key=lambda date: (date.month, date.year))]
+
 	def get_days(self):
 		return EventDay.objects.filter(event=self).order_by('day', 'begin_hour')
 
@@ -403,7 +409,7 @@ class Event(models.Model):
 				event_day = EventDay.objects.filter(id=id, event=self).first()
 				if event_day:
 					if day['day'] is not None:
-						event_day.day = parse(day['day']).date()
+						event_day.day = datetime.strptime(day['day'], "%d-%m-%Y").date()
 
 					if day['begin_hour'] is not None:
 						event_day.begin_hour = day['begin_hour']

@@ -181,7 +181,7 @@ def sendInvitation(request):
 				user = User.objects.filter(email=email).first()
 				if user is None or not user.is_registered:
 					message = EmailMultiAlternatives(subject, text, from_email, [email])
-					message.attach_alternative(html.replace('$token', token).replace('$redirect', settings.REDIRECT_URL).replace('$header', settings.HEADER_URL).replace('$footer', settings.FOOTER_URL), 'text/html')
+					message.attach_alternative(html.replace('$token', token).replace('$redirect', settings.EMAIL_REDIRECT_URL).replace('$header', settings.EMAIL_HEADER_URL).replace('$footer', settings.EMAIL_FOOTER_URL), 'text/html')
 
 					try:
 						message.send()
@@ -231,13 +231,13 @@ def areas(request, area_id=None, subarea_id=None):
 							area.save()
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
+							return JsonResponse({'error': True, 'message': _('El área ingresada ya existe')})
 					else:
 						try:
 							Area.objects.create(name=area_name)
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': 'El área ingresada ya existe'})
+							return JsonResponse({'error': True, 'message': _('El área ingresada ya existe')})
 				elif subarea_name is not None:
 					if subarea_id is not None:
 						try:
@@ -246,7 +246,7 @@ def areas(request, area_id=None, subarea_id=None):
 							subarea.save()
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': 'La subárea ingresada ya existe'})
+							return JsonResponse({'error': True, 'message': _('La subárea ingresada ya existe')})
 
 					else:
 						area_id = request.POST.get('area_id', None)
@@ -256,9 +256,9 @@ def areas(request, area_id=None, subarea_id=None):
 								area.add_sub_area(subarea_name)
 								return JsonResponse({'error': False})
 							except Exception:
-								return JsonResponse({'error': True, 'message': 'La subárea ingresada ya existe'})
+								return JsonResponse({'error': True, 'message': _('La subárea ingresada ya existe')})
 						except Exception:
-							return JsonResponse({'error': True, 'message': 'El área entregada no existe'})
+							return JsonResponse({'error': True, 'message': _('El área entregada no existe')})
 				else:
 					areas_arr = []
 					areas_obj = Area.objects.all()
@@ -377,7 +377,7 @@ def upload_header(request):
 					section.update_header(request.FILES['header'])
 					return JsonResponse({'error': False, 'url': section.header_static_url()})
 				else:
-					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
+					return JsonResponse({'error': True, 'message': _(u"Esta sección no existe")})
 
 		else:
 			if request.is_ajax():
@@ -403,7 +403,7 @@ def upload_thumbnail(request):
 					category.update_image(request.FILES['thumbnail'])
 					return JsonResponse({'error': False, 'url': category.image_static_url()})
 				else:
-					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
+					return JsonResponse({'error': True, 'message': _(u"Esta sección no existe")})
 
 		else:
 			if request.is_ajax():
@@ -443,7 +443,7 @@ def save_images(request):
 
 					return JsonResponse({'error': False, 'urls': response})
 				else:
-					return JsonResponse({'error': True, 'message': u"Esta sección no existe"})
+					return JsonResponse({'error': True, 'message': _(u"Esta sección no existe")})
 
 		else:
 			if request.is_ajax():
@@ -531,13 +531,13 @@ def members(request, member_id=None, work=False, unwork=False):
 							member.save()
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': 'El integrante ingresado ya existe'})
+							return JsonResponse({'error': True, 'message': _('El integrante ingresado ya existe')})
 					else:
 						try:
 							Member.objects.create(name=member_name)
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': 'El integrante ingresado ya existe'})
+							return JsonResponse({'error': True, 'message': _('El integrante ingresado ya existe')})
 				else:
 					members_arr = []
 					members_obj = Member.objects.all()
@@ -566,9 +566,9 @@ def members(request, member_id=None, work=False, unwork=False):
 
 def update_member_picture(request):
 	if request.user.is_authenticated() and request.user.is_admin:
-		member = request.POST.get('member', None);
+		member = request.POST.get('member', None)
 		Member.objects.get(id=member).update_picture(request.FILES['picture'])
-		Member.objects.get(id=member).set_image_filename();
+		Member.objects.get(id=member).set_image_filename()
 		return JsonResponse({'error': False})
 
 

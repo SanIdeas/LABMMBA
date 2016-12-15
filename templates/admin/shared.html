@@ -50,13 +50,14 @@
 		<script src="{% static 'usm_theme/js/fancybox.js' %}"></script>
 		<script src="{% static 'usm_theme/js/functions.js' %}"></script>
         <script src="{% static 'admin/js/admin.js' %}"></script>
+        <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 
 		{% block extra_js %}{% endblock %}
 	</head>
 	<body class="seccion">
 		<header id="header" class="wfull main-nav clear">
 			<div class="row top-bar">
-				<div class="grid">
+				<div>
 					<div class="row">
 						<div class="c12">
 							<div class="mobile-nav-wrapper clear">

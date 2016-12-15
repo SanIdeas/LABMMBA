@@ -1,12 +1,12 @@
 {% extends 'admin/shared.html' %}
+{% load staticfiles %}
+{% load i18n %}
 
 {% block css %}
     <link href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
-{% load i18n %}
-{% load staticfiles %}
     <div class="title">
         <h3>{% blocktrans with first_name=profile_user.first_name last_name=profile_user.last_name %}
             Perfil de {{ first_name }} {{ last_name }}
@@ -18,14 +18,29 @@
         <div id="lCol" class="c5">
             <!-- Nueva linea -->
             <div class="intranet box">
-                <div class="profile image">
-                    <img
-                            {% if profile_user.profile_picture %}
-                                src="{% static profile_user.filename %}"
-                            {% else %}
-                                src="{% static 'intranet/images/default.png' %}"
-                            {% endif%}>
+                <div class="profile picture">
+                    <img class="flag" src="{% static profile_user.country.flag %}">
+                    <div>
+                        <img
+                                {% if profile_user.profile_picture %}
+                                    src="{% static profile_user.filename %}"
+                                {% else %}
+                                    src="{% static 'intranet/images/default.png' %}"
+                                {% endif%}>
+                    </div>
+                    <div class="profile networks">
+                        {% if profile_user.facebook %}
+                            <div class="facebook trans"><a href="{{profile_user.facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
+                        {% endif %}
+                        {% if profile_user.twitter %}
+                            <div class="twitter trans "><a href="{{profile_user.twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
+                        {% endif %}
+                        {% if profile_user.linkedin %}
+                            <div class="linkedin trans"><a href="{{profile_user.linkedin}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></div>
+                        {% endif %}
+                    </div>
                 </div>
+
                 <div class="document table">
                     <table>
                         <tr>
@@ -42,7 +57,7 @@
                         </tr>
                         <tr>
                             <td>{% trans "País" %}:</td>
-                            <td>{{ profile_user.country }}</td>
+                            <td>{{ profile_user.country.name }}</td>
                         </tr>
                         <tr>
                             <td>{% trans "Area" %}:</td>
@@ -55,21 +70,51 @@
         <!-- Seccion derecha -->
         <div id="rCol" class="c7">
             <!-- Nueva linea -->
+            {% if profile_user.bio %}
+                <div class="intranet box">
+                    <div class="bookmark">
+                        <h2>{% trans "Biografía" %}</h2>
+                    </div>
+                    <div class="content">{{ profile_user.bio }}</div>
+                </div>
+            {% endif %}
             <div class="intranet box">
                 <div class="profile counter">
                     <div>
                         <h1>{{ profile_user.doc_count }}</h1>
-                        <h3>Documentos</h3>
+                        <h3>{% trans 'Documentos' %}</h3>
                     </div>
                 </div>
                 <div class="profile info">
                     <ul class="documents">
                         {% for document in documents %}
                             <li>
+                                {% if request.user == profile_user %}
+                                    <div class="options" data-id="{{ document.id }}">
+                                        <div>
+                                            <button class="delete" data-title="{{document.title}}" data-author="{{document.author}}" data-id="{{document.id}}" title="{% trans 'Eliminar' %}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div>
+                                            <a href="{% url 'intranet:edit_document' document.id %}" title="{% trans 'Editar' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div>
+                                            <!-- Boton 3 -->
+                                        </div>
+                                    </div>
+                                {% endif %}
                                 <div class="body">
-                                    <a href="{% url 'intranet:document' document.author document.title %}">
-                                        <h3><span>{{ document.date|date:"Y" }}</span> · {{ document.title }}</h3>
-                                        <span>{{ document.author }}</span>
+                                    <a href="{% url 'intranet:document' document.author_slug document.title_slug %}">
+                                        <h3><span>{{ document.date|date:"Y" }}</span> ·
+                                            {% if document.title %}
+                                                {{ document.title }}</h3>
+                                            {% else %}
+                                                {% trans "Sin título" %}</h3>
+                                            {% endif %}
+                                        {% if document.author %}
+                                            <span>{{ document.author }}</span>
+                                        {% else %}
+                                            <span>{% trans "Sin autores" %}</span>
+                                        {% endif %}
                                     </a>
                                 </div>
                             </li>

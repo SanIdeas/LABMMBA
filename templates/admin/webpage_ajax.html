@@ -59,6 +59,9 @@
                                 </div>
                             {% else %}
                                 <div class="selectThumbnail erasable" category-id="{{category.id}}">
+                                    <div class="addButton">
+                                        <i class="fa fa-plus fa-5x"></i>
+                                    </div>
                                     <img src="{% static 'usm_theme/img/category_default.jpg' %}">
                                 </div>
                                 <div class="selectThumbnail" category-id="{{category.id}}" style="display: none">
@@ -183,7 +186,6 @@
     <a href="#changeThumbnail" class="modal picture thumbnail" style="display:none;"></a>
     <input id="thumbnailField" type="file" accept="image/png, image/jpeg" style="display: none" name="picture">
 
-    <script>var is_section=true</script>
     <script>webpage();</script>
 </div>
 
