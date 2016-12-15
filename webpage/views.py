@@ -139,6 +139,11 @@ def news_feed(request):
 	else:
 		news = paginator.page(1)
 	news_group = grouped(news, 2)
+
+	eventsId = EventDay.objects.filter(day__gte=datetime.today()).order_by('-day').values_list('event', flat=True).distinct()
+	events = Event.objects.filter(id__in=eventsId)
+	events_sort = sorted(events, key=lambda event: event.get_date())
+
 	return render(request, 'webpage/news_feed.html', {
 							'current_view': section,
 							'current_section': section,
@@ -146,7 +151,8 @@ def news_feed(request):
 							'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
 							'body': 'seccion',
 							'news': news_group if len(news) else None,
-							'paginator': news
+							'paginator': news,
+							'events': events_sort,
 							})
 
 
@@ -243,6 +249,7 @@ def news(request, year = None, month = None, day = None, title = None, id = None
 									'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3],
 									'body': 'blog',
 									'news_': news[0],
+									'recents': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).exclude(id=news[0].id).order_by('-date')[:4],
 									})
 		else:
 			return HttpResponseRedirect(reverse('webpage:news_feed'))

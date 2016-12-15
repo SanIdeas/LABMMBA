@@ -71,7 +71,7 @@ function crossref_query(query, doc_id, open = true){
 	$('.loader[doc-index="' + doc_id +'"]').removeClass('hidden');
 
 	$.ajax({
-		url: crossref_link.replace('999', query),
+		url: crossref_link.replace('999', query.trim()),
 		method: 'GET'
 		/*beforeSend: function(xhr){
 			xhr.setRequestHeader("X-CSRFToken", csrf_token);

@@ -1,4 +1,4 @@
-var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "No.v", "Dec."];
+var monthNames = ["Ene.", "Feb.", "Mar.", "Abr.", "May", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dec."];
 var bCrumbsCount = 0;
 var doc_selected = {};
 var last_cr_query = {};
@@ -162,7 +162,7 @@ function sendLink(url){
 function getFiles(folderId = "", bcId = (bCrumbsCount+1)){
 	showLoadingBar();
 	$.ajax({
-		url: folder_files_link.replace('999', folderId),
+		url: folder_files_link.replace('999', folderId.trim()),
 		method: 'GET'
 	}).done(function(response){
 		console.log(response);

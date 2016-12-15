@@ -46,7 +46,8 @@
 						<strong>{% trans "Fecha de creacion" %}:</strong>
 					</div>
 					<div class="c9">
-						<input type="date" class="field text" value="$date" name="date$index" required>
+						<input type="text" class="field text date" value="$date" placeholder="dd-mm-aaaa" name="date$index" required readonly>
+						<script>$('.date[type="text"]').datepicker({firstDay: 1,dateFormat: 'dd-mm-yy'});</script>
 					</div>
 				</div>
 				<div class="c12 upload file field">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-05 00:43-0400\n"
+"POT-Creation-Date: 2016-12-15 00:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\intranet\views.py:219
+#: .\intranet\models.py:270
+msgid "Laboratorio"
+msgstr ""
+
+#: .\intranet\models.py:272
+msgid "Público"
+msgstr ""
+
+#: .\intranet\views.py:279
 msgid "Actualizado con exito."
 msgstr ""
 
-#: .\intranet\views.py:225
+#: .\intranet\views.py:290
 #, python-format
 msgid "El archivo %(name)s no debe superar los 2 Mb"
 msgstr ""
 
-#: .\intranet\views.py:228
+#: .\intranet\views.py:294
 #, python-format
 msgid ""
 "El documento <span style=\"text-transform: uppercase; font-size:14px\"> "
@@ -34,29 +42,19 @@ msgid ""
 "size:14px\"> %(author)s </span> ya existe."
 msgstr ""
 
-#: .\intranet\views.py:264
+#: .\intranet\views.py:317
 #, python-format
 msgid "Ocurrio un problema: %(error)s"
 msgstr ""
 
-#: .\intranet\views.py:265
+#: .\intranet\views.py:318
 msgid "Subida exitosa"
 msgstr ""
 
-#: .\intranet\views.py:267 .\intranet\views.py:290
+#: .\intranet\views.py:322 .\intranet\views.py:353
 msgid "Debes iniciar sesion."
 msgstr ""
 
-#: .\intranet\views.py:307
-msgid "Debes tener una cuenta para visualizar este archivo."
-msgstr ""
-
-#: .\intranet\views.py:309
-#, python-format
-msgid "No se encontraron documentos con el nombre: %(title)s"
-msgstr ""
-
-#: .\intranet\views.py:330
-#, python-format
-msgid "No se encontro el documento %(title)s del autor %(author)s"
+#: .\intranet\views.py:469 .\intranet\views.py:470 .\intranet\views.py:502
+msgid "Noticia sin título"
 msgstr ""

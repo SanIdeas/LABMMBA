@@ -10,6 +10,9 @@ from django.db import models
 from itertools import groupby
 import os, re
 
+# Para extraer contenido de las noticias externas
+from bs4 import BeautifulSoup
+import requests
 
 # Create your models here.
 class Section(models.Model):
@@ -117,6 +120,7 @@ class News(models.Model):
 	title_html = models.CharField(max_length=200, null=True)
 	slug = models.SlugField(max_length=200, null=True)
 	body = models.TextField()
+	description = models.TextField(null=True)
 	date = models.DateField(null=True, default=date.today)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	source_text = models.CharField(max_length=200, null=True)
@@ -142,6 +146,15 @@ class News(models.Model):
 					break
 			slug += '-' + str(count)
 		self.slug = slug
+
+		# http://stackoverflow.com/questions/11092192/extracting-values-from-meta-tags-and-img-url-having-only-url-of-website-written
+		if self.source_url and self.is_external:
+			soup = BeautifulSoup(requests.get(self.source_url).content, "html")
+			meta = soup.find_all('meta')
+			for tag in meta:
+				if 'name' in tag.attrs and tag.attrs['name'].lower() in ['description']:
+					setattr(self, tag.attrs['name'].lower(), tag.attrs['content'])
+
 		super(News, self).save(*args, **kwargs)
 
 	def set_header_filename(self):
@@ -454,11 +467,11 @@ class EventDay(models.Model):
 # http://stackoverflow.com/questions/5372934/how-do-i-get-django-admin-to-delete-files-when-i-remove-an-object-from-the-datab
 @receiver(post_delete, sender=News)
 def news_delete(sender, instance, **kwargs):
-    instance.header.delete(False)
-    instance.thumbnail.delete(False)
+	instance.header.delete(False)
+	instance.thumbnail.delete(False)
 @receiver(post_delete, sender=Image)
 def image_delete(sender, instance, **kwargs):
-    instance.picture.delete(False)
+	instance.picture.delete(False)
 @receiver(post_delete, sender=Section)
 def section_delete(sender, instance, **kwargs):
 	instance.header.delete(False)

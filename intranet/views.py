@@ -16,7 +16,7 @@ from login.models import SubArea, Area, User
 from webpage.models import Section, News, Image
 from webpage.forms import NewsForm
 from unidecode import unidecode
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from django_countries import countries
 from collections import Counter
 from itertools import chain
@@ -203,7 +203,7 @@ def documents(request, search=None):
 
 
 		return render(request, 'intranet/documents.html', parameters)
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
@@ -267,7 +267,7 @@ def upload(request):
 					document = Document.objects.get(id=id,owner=request.user)
 					document.title = request.POST.get('title' + id)
 					document.author = request.POST.get('author' + id)
-					document.date = request.POST.get('date' + id)
+					document.date = datetime.strptime(request.POST.get('date' + id), "%d-%m-%Y")
 					document.category = SubArea.objects.get(id=request.POST.get('category' + id))
 					document.is_public = int(request.POST.get('type' + id))
 					document.abstract = request.POST.get('abstract' + id)
@@ -316,7 +316,7 @@ def upload(request):
 					else:
 						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error': str(form.errors)}})
 				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'local_ids': local_ids})
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
@@ -347,7 +347,7 @@ def extract_content_and_keywords(request):
 			return JsonResponse({'error': False, 'abstracts': abstracts})
 		else:
 			return JsonResponse({'error': True})
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
@@ -358,7 +358,7 @@ def pdf_viewer(request, title=None, author=None, id=None):
 			# Solo usuarios dueños de un archivo o administradores pueden visualizarlo solo con la id
 			if request.user.is_authenticated():
 				document = Document.objects.get(id=id, owner=request.user)
-			elif request.user.is_admin:
+			elif request.user.is_authenticated() and request.user.is_admin:
 				document = Document.objects.get(id=id)
 			else: 
 				document = None
@@ -376,9 +376,9 @@ def pdf_viewer(request, title=None, author=None, id=None):
 				return response
 			pdf.close()
 		else:
-			return HttpResponse(_('Debes tener una cuenta para visualizar este archivo.'))
+			return HttpResponseRedirect(reverse('login'))
 	else:
-		return HttpResponse(_('No se encontraron documentos disponibles con el nombre: %(title)s') % {'title': title})
+		return HttpResponseRedirect(reverse('intranet:documents'))
 
 def users(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
@@ -386,7 +386,7 @@ def users(request):
 		for user in users:
 			user.last_activity = (timezone.localtime(timezone.now()) - user.last_activity).days
 		return render(request, 'intranet/users.html', {'users': users, 'intranet': Section.objects.get(slug='intranet')})
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
@@ -401,8 +401,8 @@ def document(request, title=None, author=None):
 		if document is not None:
 			return render(request, 'intranet/document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document})
 		else:
-			return HttpResponse(_('No se encontro el documento %(title)s del autor %(author)s') % {'title': title, 'author': author})
-	elif request.user.is_admin:
+			return HttpResponseRedirect(reverse('intranet:documents'))
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
@@ -421,7 +421,7 @@ def edit_document(request, id=None):
 			elif request.method == "POST":
 					document.title = request.POST['title']
 					document.author = request.POST['author']
-					document.date = request.POST['date']
+					document.date = datetime.strptime(request.POST['date'], "%d-%m-%Y")
 					document.category = SubArea.objects.get(id=request.POST['category'])
 					document.abstract = request.POST['abstract']
 					document.issn = request.POST['issn']
@@ -437,7 +437,7 @@ def edit_document(request, id=None):
 				return JsonResponse({'error': False})
 		else:
 			return HttpResponseRedirect(reverse('intranet:documens')) #Se redirecciona a Documentos.
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
@@ -449,7 +449,7 @@ def search_helper(request, search=None):
 		doc = Document.objects.values('title', 'author').filter(reduce(operator.and_, (Q(title__contains=x) for x in search.split(' '))))
 		response = {'error': False, 'list': list(doc)}
 		return JsonResponse(response)
-	elif request.user.is_admin:
+	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
@@ -493,7 +493,7 @@ def news_edit(request, id):
 			elif request.method == "POST":
 					if news.is_external and (request.POST.get('source_url') is None and request.POST.get('source_url') == ""):
 						return JsonResponse({'error': True, 'message': 'form.errors'})
-					news.date = request.POST.get('date')
+					news.date = datetime.strptime(request.POST.get('date'), "%d-%m-%Y")
 					news.source_text = request.POST.get('source_text')
 					news.source_url = request.POST.get('source_url')
 					news.in_header = False

@@ -2,9 +2,10 @@
 {% load staticfiles %}
 {% load i18n %}
 {% get_current_language as lang %}	
-
-
-
+{% block css %}
+    <!-- FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/font-awesome.min.css' %}">
+{% endblock %}
 {% block content %}
 <section id="content" class="wfull">
     <div id="title">
@@ -24,57 +25,62 @@
 			<section class="content eventos c8">
 				{% for document in documents%}
 					 <div class="evento">
-				        <a class="clear closed">
+				        <a class="clear closed" href="{% url 'intranet:viewer' document.author_slug document.title_slug %}">
 				            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
 				            <h4>{{ document.title }}</h4>
-				            <span class="icon">+</span>
+				            <span class="icon arrow"></span>
 				        </a>
-				        <div class="content" style="display:none;">
-				            <div class="meta">
-				                <p><strong>Dueño: </strong>{{ document.owner.first_name }} {{ document.owner.last_name }}</p>
-				                <p><strong>Añadido: </strong>{{ document.date_added }}</p>
-				            	<p>
-						            <sup class="button">
-						            	<a href="{% url 'intranet:viewer' document.author document.title %}">ver documento</a>
-						            </sup>
-						        </p>
-				            </div>
-				            <div class="details">
-				                <p>{{ document.abstract }}</p>
-				            </div>
-				        </div>
 				    </div>
 				{% endfor %}
 				{% if not documents %}
 					<h1>{% trans "No hay documentos" %}</h1>
 				{% else %}
-			    <div class="clear">
-			        <div id="wp_page_numbers">
-			            <ul>
-			                <li class="active_page"><a href="#">1</a></li>
-			                <li><a href="#">2</a></li>
-			                <li><a href="#">3</a></li>
-			                <li><a href="#">4</a></li>
-			                <li><a href="#">Siguiente</a></li>
-			            </ul>
-			            <div style="float: none; clear: both;"></div>
-			        </div>
-			    </div>
-			    {% endif %} 
+				   {% if documents.has_other_pages %}
+					    <div class="clear">
+					        <div id="wp_page_numbers">
+					            <ul>
+					                {% if documents.has_previous %}
+					                	<li><a href="{% url 'publications' %}?page={{documents.previous_page_number}}">{% trans "Anterior" %}</a></li>
+					                {% endif %}
+					            	{% for page in documents.paginator.page_range %}
+					                	<li {% ifequal documents.number page %}class="active_page"{% endifequal %}>
+					                		<a href="{% url 'publications' %}?page={{page}}">{{page}}</a>
+					                	</li>
+					                {% endfor %}
+					                {% if documents.has_next %}
+					                	<li><a href="{% url 'publications' %}?page={{documents.next_page_number}}">{% trans "Siguiente" %}</a></li>
+					                {% endif %}
+					            </ul>
+					            <div style="float: none; clear: both;"></div>
+					        </div>
+					    </div>
+				    {% endif %}
+			    {% endif %}
+				<div class="row">
+		            <div class="c12">
+		                <ul id="bottom-nav" class="clear">
+		                    {% if other_sections.0 %}
+		                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+		                    {% endif %}
+		                    {% if other_sections.1 %}
+		                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+		                    {% endif %}
+		                    {% if other_sections.2 %}
+		                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+		                    {% endif %}
+		                </ul>
+		            </div>
+		        </div>
 			</section>
 			<section id="sidebar" class="c4">
-	            <form action="http://www.eventos.usm.cl/eventos/" class="clear search-by-dates accordion" method="get">
-	                <a class="toggle acc-header">Filtros<span class="icon">+</span><span class="icon">+</span></a>
-	                <div class="acc-content" style="display: none;">
-	                    <input type="text" class="text dates from placeholder hasDatepicker" name="date_from" readonly="true" placeholder="Fecha desde" id="dp1472498701480">
-	                    <input type="text" class="text dates to placeholder hasDatepicker" name="date_to" readonly="true" placeholder="Fecha hasta" id="dp1472498701481">
-	                    <input type="submit" class="submit button" value="Buscar">
-	                </div>
-	            </form>
 	            <div class="links clear box">
 	                <h3>Categorias</h3>
-	                <a class="clear external" href="#" target="_blank">Microbiologia Molecular</a>
-	                <a class="clear external" href="#" target="_blank">Biotecnologia Ambiental</a>
+	                {% if documents %}
+		                <a class="clear external" href="#" target="_blank">Microbiologia Molecular</a>
+		                <a class="clear external" href="#" target="_blank">Biotecnologia Ambiental</a>
+		            {% else %}
+		            	<span class="c12 empty">{% trans "No hay categorias" %}</span>
+		            {% endif %}
 	            </div>
 			</section>
 			<script>

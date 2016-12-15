@@ -1,12 +1,8 @@
-{% extends 'intranet/shared.html' %}
+{% extends 'admin/shared.html' %}
 
 {% load staticfiles %}
 {% block content %}
 {% load i18n %}
-{% block css %}
-	<!-- jQuery DatePicker -->
-	<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/vendor/jquery-datepicker/jquery-ui.min.css' %}">
-{% endblock %}
 <form action="" method="POST">
 {% csrf_token %}
 <div class="title">
@@ -44,11 +40,11 @@
 				<table>
 					<tr>
 						<td><strong>{% trans "Autor" %}:</strong></td>
-						<td><input type="text" class="text" name="author" value="{{document.author}}" required></td>
+						<td><input type="text" class="text" name="author" value="{{document.author}}"></td>
 					</tr>
 					<tr>
 						<td><strong>{% trans "Publicado el" %}:</strong></td>
-						<td><input type="text" class="text date" name="date" placeholder="dd-mm-aaaa" value="{{document.date|date:'d-m-Y'}}" readonly required></td>
+						<td><input type="date" class="text" name="date" value="{{document.date|date:'Y-m-d'}}"></td>
 					</tr>
 					<tr>
 						<td><strong>{% trans "Paginas" %}:</strong></td>
@@ -87,7 +83,7 @@
 			<div class="document controls">
 				<a id="submitForm">{% trans "Guardar" %}</a>
 				{% if document.title and document.author %}
-					<a href="{% url 'intranet:document' document.author_slug document.title_slug %}">{% trans "Cancelar" %}</a>
+					<a href="{% url 'admin:document' document.author_slug document.title_slug %}">{% trans "Cancelar" %}</a>
 				{% else %}
 					<a href="{% url 'intranet:profile' request.user.id %}">{% trans "Cancelar" %}</a>
 				{% endif %}
@@ -135,7 +131,6 @@
 		e.preventDefault();
 		$('form').submit();
 	});
-	$('.date[type="text"]').datepicker({firstDay: 1,dateFormat: 'dd-mm-yy'});
 </script>
 
 {% endblock %}
