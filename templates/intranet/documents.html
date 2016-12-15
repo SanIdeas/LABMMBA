@@ -18,6 +18,17 @@
 		</div>
 		{% else %}
 			{% if not keyword %}
+					{% if request.GET.category %}
+                		{% if documents %}
+                			<div class="c12">
+								<div class="intranet box">
+									<div class="document head">
+										<h2 style="font-weight:normal">{% trans "Categoría" %}: <strong>{{documents.0.category.name}}</strong></h2>
+									</div>
+								</div>
+							</div>
+                		{% endif %}
+                	{% endif %}
 					<div class="documents filters c3">
 						<div class="intranet box">
 				            <div class="links">

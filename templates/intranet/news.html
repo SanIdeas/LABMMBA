@@ -32,17 +32,17 @@
 					<div class="item clear">
 						<div class="details c10">
 							{%if news.date%}<span class="date">{{news.date|date:'d'}} · {{news.date|date:'F'}} · {{news.date|date:'Y'}}</span>{%endif%}
-							{%if news.title%}
-								{% if news.is_external %}
-									<a class="title" href="{{ news.source_url }}">
-								{% else %}
-									<a class="title" href="{% url 'webpage:news_editor' news.id %}?ret=news">
-								{% endif %}								
-									<h2 class="title">{{news.title}}</h2>
-								</a>
+							{% if news.is_external %}
+								<a class="title" href="{{ news.source_url }}">
 							{% else %}
-								<h2 class="title">{% trans "Noticia sin título" %}</h2>
-							{%endif%}
+								<a class="title" href="{% url 'webpage:news_editor' news.id %}?ret=news">
+							{% endif %}
+								{%if news.title%}								
+									<h2 class="title">{{news.title}}</h2>
+								{% else %}
+									<h2 class="title">{% trans "Noticia sin título" %}</h2>
+								{%endif%}
+							</a>
 							{% if news.is_published %}
 								<span class="fa-stack fa-lg help tooltip approved" title="{% trans 'Aprobado' %}">
 									<i class="fa fa-circle fa-stack-2x"></i>
