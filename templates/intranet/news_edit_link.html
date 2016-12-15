@@ -3,6 +3,8 @@
 {% load i18n %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+	<!-- jQuery DatePicker -->
+	<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/vendor/jquery-datepicker/jquery-ui.min.css' %}">
 {% endblock %}
 {% block extra_js %}
 	<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
@@ -54,7 +56,7 @@
 		         <div class="row field">
 					<span class="c12">{% trans 'Fecha' %}:</span>
 		         	<div class="c12">
-		         		<input type="date" class="text" original="" name="date" value="{{news_.date|date:'Y-m-d'}}" required>
+		         		<input type="text" class="text date" original="" name="date" placeholder="dd-mm-aaaa" value="{{news_.date|date:'d-m-Y'}}" required readonly>
 		         	</div>
 		         </div>
 		         <div class="row field">
@@ -135,6 +137,7 @@
 <script>autosize(document.querySelectorAll('textarea'));</script>
 <script>
 	var id = "{{ news_.id }}";
+	$('.date[type="text"]').datepicker({firstDay: 1,dateFormat: 'dd-mm-yy', onSelect: function() {$(this).trigger('input');}});
 </script>
 <script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
 <script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>

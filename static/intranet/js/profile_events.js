@@ -74,7 +74,6 @@ $('#pictureField').change(function(){
 	if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
     	alert('Debes seleccionar una imagen');
 	else if(this.files.length > 0){
-		console.log("asd");
 		$.fancybox.showLoading();
 		$('#selectImage').animate({
 			top: '-20px',
@@ -88,8 +87,6 @@ $('#pictureField').change(function(){
 			top: '0',
 			opacity: 1
 		}, 200);
-		
-		console.log("asd2");
 		readURL(this);
 	}
 });

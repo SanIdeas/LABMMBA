@@ -1749,3 +1749,31 @@
 .ct--puesdo-select {
     background: rgba(0, 0, 0, .1)
 }
+
+/* Mobile version */
+
+@media screen and (max-width: 700px){
+    .ct-toolbox{
+        width: 100% !important;
+        left: 0px;
+        bottom: inherit !important;
+        box-shadow: none !important;
+        top: 0px !important;
+    }
+    .ct-toolbox__grip{
+        display: none;
+    }
+    .ct-tool-group{
+        display: none;
+    }
+    .ct-tool{
+        float: right !important;
+    }
+    .ct-tool-group:last-child{
+        display: block;
+    }
+    .ct-ignition{
+        top: 9px !important;
+        z-index: 99999;
+    }
+}

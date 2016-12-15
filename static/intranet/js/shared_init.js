@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 $('#search').submit(function(e){
 	e.preventDefault()
-	if($('#searchPhrase').val() != '')
-		window.open($(this).attr('url').replace('999', encodeURIComponent($('#searchPhrase').val())), '_self');
+	if($('#searchPhrase').val().trim() != '')
+		window.open($(this).attr('url').replace('999', encodeURIComponent($('#searchPhrase').val().trim())), '_self');
 });
 

@@ -1103,6 +1103,9 @@ body {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
 }
+input[type='text'][readonly].date {
+  opacity: 1 !important;
+}
 .documents.mark {
   background-color: yellow;
 }

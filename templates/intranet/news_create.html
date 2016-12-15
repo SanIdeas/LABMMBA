@@ -3,6 +3,8 @@
 {% load i18n %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/cropper.min.css' %}">
+	<!-- jQuery DatePicker -->
+	<link rel="stylesheet" type="text/css" href="{% static 'usm_theme/css/vendor/jquery-datepicker/jquery-ui.min.css' %}">
 {% endblock %}
 {% block extra_js %}
 	<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
@@ -45,7 +47,7 @@
 		         <div class="row field">
 					<span class="c12">{% trans 'Fecha' %}:</span>
 		         	<div class="c12">
-		         		<input type="date" class="text" name="date" value="{{today|date:'Y-m-d'}}">
+		         		<input type="text" class="text date" name="date" placeholder="dd-mm-aaaa" value="{{today|date:'d-m-Y'}}" required readonly>
 		         	</div>
 		         </div>
 		         <div class="row field">
@@ -114,6 +116,7 @@
 <script>autosize(document.querySelectorAll('textarea'));</script>
 <script>
 	var live_editor_url = "{% url 'webpage:news_editor' 888 %}";
+	$('.date[type="text"]').datepicker({firstDay: 1,dateFormat: 'dd-mm-yy'});
 </script>
 <script src="{% static 'intranet/js/news/news_edit.js' %}"></script>
 <script src="{% static 'intranet/js/news/news_picture_cropper.js' %}"></script>

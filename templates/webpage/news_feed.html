@@ -27,7 +27,11 @@
                                         <figcaption>
                                             <span class="date">{{left.date|date:'d'}} · {{left.date|date:'F'}} · {{left.date|date:'Y'}}</span>
                                             <h4>{{left.title}}</h4>
-                                            <p>{{left.get_extract}}</p>
+                                            {% if left.is_external %}
+                                                <p>{{left.description}}</p>
+                                            {% else %}
+                                                <p>{{left.get_extract}}</p>
+                                            {% endif %}
                                         </figcaption>
                                     </figure>
                                 </a>
@@ -42,7 +46,11 @@
                                             <figcaption>
                                                 <span class="date">{{right.date|date:'d'}} · {{right.date|date:'F'}} · {{right.date|date:'Y'}}</span>
                                                 <h4>{{right.title}}</h4>
-                                                <p>{{right.get_extract}}</p>
+                                                {% if right.is_external %}
+                                                    <p>{{right.description}}</p>
+                                                {% else %}
+                                                    <p>{{right.get_extract}}</p>
+                                                {% endif %}
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -50,24 +58,26 @@
                             </div>
                         {% endfor %}
                     </div>
-                    <div class="clear">
-                        <div id="wp_page_numbers">
-                            <ul>
-                                {% if paginator.has_previous %}
-                                    <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.previous_page_number}}">{% trans "Anterior" %}</a></li>
-                                {% endif %}
-                                {% for page in paginator.paginator.page_range %}
-                                    <li {% ifequal paginator.number page %}class="active_page"{% endifequal %}>
-                                        <a href="{% url 'webpage:news_feed' %}?page={{page}}">{{page}}</a>
-                                    </li>
-                                {% endfor %}
-                                {% if paginator.has_next %}
-                                    <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.next_page_number}}">{% trans "Siguiente" %}</a></li>
-                                {% endif %}
-                            </ul>
-                            <div style="float: none; clear: both;"></div>
+                    {% if paginator.paginator.page_range|length > 1 %}
+                        <div class="clear">
+                            <div id="wp_page_numbers">
+                                <ul>
+                                    {% if paginator.has_previous %}
+                                        <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.previous_page_number}}">{% trans "Anterior" %}</a></li>
+                                    {% endif %}
+                                    {% for page in paginator.paginator.page_range %}
+                                        <li {% ifequal paginator.number page %}class="active_page"{% endifequal %}>
+                                            <a href="{% url 'webpage:news_feed' %}?page={{page}}">{{page}}</a>
+                                        </li>
+                                    {% endfor %}
+                                    {% if paginator.has_next %}
+                                        <li><a href="{% url 'webpage:news_feed' %}?page={{paginator.next_page_number}}">{% trans "Siguiente" %}</a></li>
+                                    {% endif %}
+                                </ul>
+                                <div style="float: none; clear: both;"></div>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% else %}
                     <div class="clear">
                         <div class="row">
@@ -80,19 +90,19 @@
                 <div class="eventos clear box">
                     <h3>Eventos</h3>
                     <div class="clear">
-                        <a href="eventos-single.html">
-                            <span class="date icon">24 · Septiembre · 2013</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </a>
-                        <a href="eventos-single.html">
-                            <span class="date icon">24 · Septiembre · 2013</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </a>
-                        <a href="eventos-single.html">
-                            <span class="date icon">24 · Septiembre · 2013</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </a>
-                        <a class="clear more" href="events.html">Ver más</a>
+                        {% if events %}
+                            {% for event in events %}
+                                <a href="{% url 'webpage:event' event.slug %}">
+                                    <span class="date icon">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>
+                                    <p>{{event.title}}</p>
+                                </a>
+                            {% endfor %}
+                            <a class="clear more" href="{% url 'webpage:section' 'events' %}">Ver más</a>
+                        {% else %}
+                            <span class="c12 empty">
+                                {% trans "No hay eventos" %}
+                            </span>
+                        {% endif %}
                     </div>
                 </div>
             </section>
