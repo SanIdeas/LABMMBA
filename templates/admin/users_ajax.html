@@ -121,12 +121,14 @@
 <div id="modal-curtain" class="curtain-hidden"></div>
 <div id="modal-delete-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "¿De verdad deseas eliminar a este usuario?" %}</h3>
-        <div id="modal-user">
-            <div id="modal-user-img"></div>
-            <h4 id="modal-user-name"></h4>
+        <div id="modal-info">
+            <h3>{% trans "¿De verdad deseas eliminar a este usuario?" %}</h3>
+            <div id="modal-user">
+                <div id="modal-user-img"></div>
+                <h4 id="modal-user-name"></h4>
+            </div>
+            <h3 id="modal-message">{% trans 'Ten en cuenta que este usuario posee <strong id="modal-user-count"></strong> documentos.' %}</h3>
         </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta que este usuario posee <strong id="modal-user-count"></strong> documentos.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" user-id="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>

@@ -82,12 +82,14 @@
 <div id="modal-delete" class="curtain-hidden"></div>
 <div id="modal-delete-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "¿De verdad deseas eliminar a este integrante?" %}</h3>
-        <div id="modal-user">
-            <div id="modal-user-img"></div>
-            <h4 id="modal-user-name"></h4>
+        <div id="modal-info">
+            <h3>{% trans "¿De verdad deseas eliminar a este integrante?" %}</h3>
+            <div id="modal-user">
+                <div id="modal-user-img"></div>
+                <h4 id="modal-user-name"></h4>
+            </div>
+            <h3 id="modal-message">{% trans 'Ten en cuenta que esto solo evitará que se muestre información del usuario públicamente.' %}</h3>
         </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta que esto solo evitará que se muestre información del usuario públicamente.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" member-id="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
@@ -99,19 +101,21 @@
 <div id="modal-edit" class="curtain-hidden"></div>
 <div id="modal-edit-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "Modificando integrante" %}</h3>
-        <div id="modal-user">
-            <div class="left">
-                <div id="modal-member-img"></div>
-                <h4 id="modal-member-name"></h4>
-                <a class="modal picture" href="#changeImgModal">{% trans "Cambiar foto de integrante" %}</a>    
-            </div>
-            <div class="right">
-                <form id="usrform">
-                    <textarea rows="10" cols="50" name="comment" form="usrform" id="modal-member-description" type="text" class="text search field" placeholder="Descripción">
-                    </textarea>
-                    <span id="modal-error" class="error"></span>
-                </form>
+        <div id="modal-info">
+            <h3>{% trans "Modificando integrante" %}</h3>
+            <div id="modal-user">
+                <div class="left">
+                    <div id="modal-member-img"></div>
+                    <h4 id="modal-member-name"></h4>
+                    <a class="modal picture" href="#changeImgModal">{% trans "Cambiar foto de integrante" %}</a>
+                </div>
+                <div class="right">
+                    <form id="usrform">
+                        <textarea rows="10" cols="50" name="comment" form="usrform" id="modal-member-description" type="text" class="text search field" placeholder="Descripción">
+                        </textarea>
+                        <span id="modal-error" class="error"></span>
+                    </form>
+                </div>
             </div>
         </div>
         <div id="modal-btns">

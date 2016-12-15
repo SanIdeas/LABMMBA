@@ -24,6 +24,22 @@ function reload_member_setup(msg){
 }
 
 function members(){
+    // Animation for iOS
+    $('.setup-user-list > li').click(function(e){
+        e.preventDefault()
+        var row = $(this).find('.setup-user-row');
+        var handler = function(){
+            row.removeClass('expand-row-target');
+        };
+
+        $('*').not($(this)).unbind('click', handler);
+        $('*').not($(this)).click(handler);
+
+        row.removeClass('expand-row-target');
+        void row.get(0).offsetWidth;
+        row.addClass('expand-row-target');
+    });
+
 	$('#add-member-form').submit(function(e){
 		$.ajax({
 			url: reload,
@@ -47,7 +63,7 @@ function members(){
 	$('.setup-block-box').click(function(){
 		$.ajax({
 			url: unwork.replace('999', $(this).attr('member-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_member_setup();
 		});
@@ -55,7 +71,7 @@ function members(){
 	$('.setup-unblock-box').click(function(){
 		$.ajax({
 			url: work.replace('999', $(this).attr('member-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_member_setup();
 		});
@@ -74,7 +90,7 @@ function members(){
 	$('#modal-confirm').click(function(){
 		$.ajax({
 			url: remove.replace('999', $(this).attr('member-id')),
-			type: 'GET',
+			type: 'GET'
 		}).done(function(){
 			reload_member_setup();
 		});

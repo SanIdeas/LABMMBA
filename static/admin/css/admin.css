@@ -381,6 +381,16 @@
 	padding: 0;
 }
 
+.expand-row-target{
+	transform: translateX(-100px);
+	transition: transform 0.2s ease-in-out;
+}
+
+.expand-row-user-target{
+	transform: translateX(-150px);
+	transition: transform 0.2s ease-in-out;
+}
+
 .setup-user-list > li:hover > .setup-user-row{
 	transform: translateX(-150px);
 	transition: transform 0.2s ease-in-out;
@@ -597,8 +607,7 @@
 
 #modal-delete-confirm, #modal-edit-confirm, #subarea-modal-delete-confirm, #subarea-modal-edit-confirm, #area-modal-delete-confirm, #area-modal-edit-confirm, #subarea-modal-add{
     position: fixed;
-    width: 400px;
-    top: 30%;
+    top: 20%;
     right: 0;
     left: 0;
     max-width: 800px;
@@ -616,13 +625,13 @@
     box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
 }
 
-#modal-content > h3:nth-child(1){
+#modal-content > #modal-info > h3:nth-child(1){
 	margin: 0;
     text-align: center;
     padding: 20px;
 }
 
-#modal-content > #modal-message{
+#modal-content > #modal-info > #modal-message{
 	margin: 0;
     text-align: center;
     padding: 20px;
@@ -1055,6 +1064,7 @@ span.error {
 
 #create-event-form table, #edit-event-form table{
 	margin: 0;
+	max-width: none;
 }
 
 #create-event-form table th, #edit-event-form table th{
@@ -1170,6 +1180,18 @@ span.error {
 @media screen and (max-width: 750px){
 	.gallery ul li.c2{
 		width: 50%!important;
+	}
+}
+
+@media screen and (max-width: 700px){
+	#modal-delete-confirm, #modal-edit-confirm, #subarea-modal-delete-confirm, #subarea-modal-edit-confirm, #area-modal-delete-confirm, #area-modal-edit-confirm, #subarea-modal-add{
+		position: fixed;
+		top: 73px;
+	}
+
+	#modal-content #modal-info{
+		overflow: auto;
+		max-height: 300px;
 	}
 }
 

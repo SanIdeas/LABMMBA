@@ -7,13 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="title">
-        <h3>{% blocktrans with first_name=profile_user.first_name last_name=profile_user.last_name %}
-            Perfil de {{ first_name }} {{ last_name }}
-        {% endblocktrans %}
-        </h3>
-    </div>
-    <div class="intranet row">
+    <div class="intranet row" style="padding-top: 20px">
         <!-- Seccion izquierda -->
         <div id="lCol" class="c5">
             <!-- Nueva linea -->

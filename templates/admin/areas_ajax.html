@@ -73,11 +73,13 @@
 <div id="modal-curtain" class="curtain-hidden"></div>
 <div id="area-modal-delete-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "¿De verdad deseas eliminar esta área?" %}</h3>
-        <div id="modal-area">
-            <h3 id="modal-area-name"></h3>
+        <div id="modal-info">
+            <h3>{% trans "¿De verdad deseas eliminar esta área?" %}</h3>
+            <div id="modal-area">
+                <h3 id="modal-area-name"></h3>
+            </div>
+            <h3 id="modal-message">{% trans 'Ten en cuenta que las subáreas pertenecientes a esta área también se eliminarán.' %}</h3>
         </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta que las subáreas pertenecientes a esta área también se eliminarán.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" area-id="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
@@ -87,12 +89,14 @@
 
 <div id="area-modal-edit-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "Editar área" %}</h3>
-        <div id="modal-area">
-            <form>
-                <input id="modal-area-name" type="text" class="text search field"/>
-                <span id="modal-error" class="error"></span>
-            </form>
+        <div id="modal-info">
+            <h3>{% trans "Editar área" %}</h3>
+            <div id="modal-area">
+                <form>
+                    <input id="modal-area-name" type="text" class="text search field"/>
+                    <span id="modal-error" class="error"></span>
+                </form>
+            </div>
         </div>
         <div id="modal-btns">
             <button id="modal-confirm" area-id="" area-name="">{% trans "CONFIRMAR" %}</button>
@@ -103,13 +107,15 @@
 
 <div id="subarea-modal-add" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "Agregar subárea en" %}</h3>
-        <div id="modal-area">
-            <h3 id="modal-area-name"></h3>
-            <form id="add-subarea-form">
-                <input id="add-subarea-name" type="text" name="subarea_name" class="text search field" placeholder="{% trans 'Agregar subárea' %}"/>
-                <span id="modal-error" class="error"></span>
-            </form>
+        <div id="modal-info">
+            <h3>{% trans "Agregar subárea en" %}</h3>
+            <div id="modal-area">
+                <h3 id="modal-area-name"></h3>
+                <form id="add-subarea-form">
+                    <input id="add-subarea-name" type="text" name="subarea_name" class="text search field" placeholder="{% trans 'Agregar subárea' %}"/>
+                    <span id="modal-error" class="error"></span>
+                </form>
+            </div>
         </div>
         <div id="modal-btns">
             <button id="modal-confirm" area-id="">{% trans "CONFIRMAR" %}</button>
@@ -121,11 +127,13 @@
 
 <div id="subarea-modal-delete-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "¿De verdad deseas eliminar esta subárea?" %}</h3>
-        <div id="modal-area">
-            <h3 id="modal-subarea-name"></h3>
+        <div id="modal-info">
+            <h3>{% trans "¿De verdad deseas eliminar esta subárea?" %}</h3>
+            <div id="modal-area">
+                <h3 id="modal-subarea-name"></h3>
+            </div>
+            <h3 id="modal-message">{% trans 'Ten en cuenta que los usuarios y documentos pertenecientes a esta subárea quedarán sin una categoría asociada.' %}</h3>
         </div>
-        <h3 id="modal-message">{% trans 'Ten en cuenta que los usuarios y documentos pertenecientes a esta subárea quedarán sin una categoría asociada.' %}</h3>
         <div id="modal-btns">
             <button id="modal-confirm" subarea-id="">{% trans "CONFIRMAR" %}</button>
             <button id="modal-cancel">{% trans "CANCELAR" %}</button>
@@ -135,12 +143,14 @@
 
 <div id="subarea-modal-edit-confirm" class="modal-hidden">
     <div id="modal-content">
-        <h3>{% trans "Editar subárea" %}</h3>
-        <div id="modal-area">
-            <form>
-                <input id="modal-subarea-name" type="text" class="text search field"/>
-                <span id="modal-error" class="error"></span>
-            </form>
+        <div id="modal-info">
+            <h3>{% trans "Editar subárea" %}</h3>
+            <div id="modal-area">
+                <form>
+                    <input id="modal-subarea-name" type="text" class="text search field"/>
+                    <span id="modal-error" class="error"></span>
+                </form>
+            </div>
         </div>
         <div id="modal-btns">
             <button id="modal-confirm" subarea-id="" subarea-name="">{% trans "CONFIRMAR" %}</button>

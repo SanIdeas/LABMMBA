@@ -33,6 +33,34 @@ function users(){
 			}
 		});
 	}*/
+
+    // Animation for iOS
+    $('.setup-user-list > li').click(function(e){
+		e.preventDefault();
+        var userRow = $(this).find('.setup-user-row');
+        var row = $(this).find('.setup-user-invited-row');
+
+        var handler = function(){
+        	if(row.length > 0)
+            	row.removeClass('expand-row-target');
+        	else
+            	userRow.removeClass('expand-row-user-target');
+        };
+
+        $('*').not($(this)).unbind('click', handler);
+        $('*').not($(this)).click(handler);
+
+        if(row.length > 0){
+			row.removeClass('expand-row-target');
+			void row.get(0).offsetWidth;
+			row.addClass('expand-row-target');
+		}
+		else{
+			userRow.removeClass('expand-row-user-target');
+			void userRow.get(0).offsetWidth;
+			userRow.addClass('expand-row-user-target');
+		}
+    });
 	$('.setup-view-box').click(function(){
 		window.location.href = $(this).attr('data-target');
 	});
@@ -159,7 +187,7 @@ function areas(){
         var minBox = $('#areas-setup .intranet.box').first();
 
         var maxTitle = $('.setup-areas-subtitle h3').sort(function(s1, s2){
-            return $(s1).width() < $(s2).width();
+            return $(s1).width() < $(s2).width() ? 1: -1;
         }).first();
 
         var delta = minBox.width() - maxTitle.width();
@@ -187,6 +215,23 @@ function areas(){
 	$(window).ready(function(){
         checkResponsiveButtons();
     });
+
+	// Animation for iOS
+	$('.setup-area-list > li').click(function(e){
+		e.preventDefault()
+		var row = $(this).find('.setup-subarea-row');
+		var handler = function(){
+            row.removeClass('expand-row-target');
+        };
+
+        $('*').not($(this)).unbind('click', handler);
+		$('*').not($(this)).click(handler);
+
+		row.removeClass('expand-row-target');
+		void row.get(0).offsetWidth;
+		row.addClass('expand-row-target');
+	});
+
 	// Subareas
 	$('.setup-subarea-box .setup-delete-box').click(function(){
 		$('#subarea-modal-delete-confirm #modal-subarea-name').text($(this).attr('subarea-name'));

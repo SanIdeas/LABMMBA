@@ -14,7 +14,7 @@ $(window).click(function(e){
 			closeOptions($(this).attr('data-id'));
 		}
 	});
-})
+});
 $('#sendImage').click(function(){
 	sendPicture();
 });	
