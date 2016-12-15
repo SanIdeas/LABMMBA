@@ -195,10 +195,10 @@ def news_editor(request, id = None):
 			elif request.method == "POST":
 				# En este caso la respuesta sera en un objeto JSON
 				if request.POST.get('news-title-html') is not None:
-					news.title_html = request.POST.get('news-title-html') if request.POST.get('news-title') != "undefined" else request.POST.get('news-title-html').replace('undefined', _(u"Noticia sin título"))
+					print request.POST.get('news-title-html')
+					news.title_html = request.POST.get('news-title-html') if (request.POST.get('news-title') != "" and request.POST.get('news-title') != "undefined") else '<h1 class="c12">' + _(u"Noticia sin título") + '</h1>'
 				if request.POST.get('news-title') is not None:
-					news.title = request.POST.get('news-title')
-					news.title = ' '.join(request.POST.get('news-title').split()) if request.POST.get('news-title') != " " and request.POST.get('news-title') != "undefined"  else _(u"Noticia sin título")
+					news.title = ' '.join(request.POST.get('news-title').split()) if (request.POST.get('news-title') != "" and request.POST.get('news-title') != "undefined")  else _(u"Noticia sin título")
 				if request.POST.get('news-content') is not None:
 					news.body = request.POST.get('news-content')
 				news.in_header	 = False

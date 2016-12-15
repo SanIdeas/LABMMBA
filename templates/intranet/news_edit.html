@@ -72,11 +72,11 @@
 						<span>{% trans "Presiona para agregar una miniatura" %}</span>
 					</a>
 					<a class="selectThumbnail" style="display:none;">
-						<img id="thumbnailPicture" src="">
+						<img id="thumbnailPicture" class="image" src="">
 					</a>
 					{% else %}
 						<a class="selectThumbnail">
-							<img id="thumbnailPicture" src="{% static news_.thumbnail_url %}">
+							<img id="thumbnailPicture" class="image" src="{% static news_.thumbnail_url %}">
 						</a>
 					{% endif %}
 				</div>
@@ -91,11 +91,11 @@
 							<span>{% trans "Presiona para agregar una imagen de cabecera" %}</span>
 						</a>
 						<a class="selectHeader" style="display:none;">
-							<img id="headerPicture" src="">
+							<img id="headerPicture" class="image" src="">
 						</a>
 					{% else %}
 						<a class="selectHeader">
-							<img id="headerPicture" src="{% static news_.header_url %}">
+							<img id="headerPicture" class="image" src="{% static news_.header_url %}">
 						</a>
 					{% endif %}
 				</div>

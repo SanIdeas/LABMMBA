@@ -1,11 +1,8 @@
 $(document).ready(function() {
-	$('input.text, input.date').each(function() {
-		$(this).attr('original', $(this).val())
-	});
 	$('input.text, input.date').on('input', function(){
 		 checkFields();
 	});
-	$('.image').on('load', function(){
+	$('.image.required').on('load', function(){
 		 checkFields();
 	});
 	$('input[type="submit"].editor-link').click(function(e){
@@ -22,22 +19,22 @@ $(document).ready(function() {
 });
 
 function checkFields() {
-	var changed = false;
-	$('input.text, input.date').each(function() {
-		if($(this).val() != $(this).attr('original')) {
-			changed = true;
-		}
-	});
-	$('.image').each(function(){
-		if($(this).attr('new')){
-			changed = true;
-		}
-	});
+	var changed = true;
 	var formElement = $('.news form')[0];
 	var formStatus = formElement.checkValidity();
+	console.log('formStatus', formStatus);
 	if(!formStatus){
 		changed = false;
 	}
+	$('.image.required').each(function(){
+		if(!$(this).attr('new')){
+			changed = false;
+		}
+		else{
+			changed = changed && true;
+		}
+	});
+
 	if(changed)
 		$('input[type="submit"].news').attr('disabled', false);
 	else
