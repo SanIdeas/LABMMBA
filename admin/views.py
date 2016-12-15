@@ -389,7 +389,7 @@ def webpage(request, section_id=None, subsection_id=None):
 							categories_arr = []
 							categories_obj = section.get_categories()
 							for category in categories_obj:
-								categories_arr.append((category, category.get_subsections()))
+								categories_arr.append((category, category.get_subsections().exclude(slug='gallery')))
 
 							return render(request, 'admin/webpage_ajax.html', {'section': section, 'categories': categories_arr})
 						except Exception:
