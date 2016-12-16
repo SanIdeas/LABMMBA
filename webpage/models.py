@@ -8,6 +8,7 @@ from login.models import User
 from datetime import date, datetime
 from django.db import models
 from itertools import groupby
+from PIL import Image as PILImage
 import os, re
 
 # Para extraer contenido de las noticias externas
@@ -202,7 +203,7 @@ class News(models.Model):
 	def user_has_unseen_comments(self):
 		comment = News_comment.objects.filter(news=self, author__is_admin=True).latest('id')
 		if not comment.seen:
-			return comment.id		
+			return comment.id
 		return False
 
 	def admin_has_unseen_comments(self):
@@ -263,8 +264,14 @@ class SectionImage(models.Model):
 
 	def set_filename(self):
 		filename = settings.SECTION_IMAGES_DIR + 'S' + str(self.section.id) + 'I' + str(self.id) + '.jpg'
-		os.rename(self.image.path, filename)
-		self.image.name = filename
+
+		img = PILImage.open(self.image.path)
+		exif = img.info.get('exif', '')
+		img.save(filename, exif=exif, quality=70)
+		img.close()
+
+		os.remove(self.image.path)
+		self.image = filename
 		self.save()
 
 
@@ -276,8 +283,14 @@ class GalleryPhoto(models.Model):
 
 	def set_image_filename(self):
 		filename = settings.GALLERY_IMAGES_DIR + 'GI' + str(self.id) + '.jpg'
-		os.rename(self.image.path, filename)
-		self.image.name = filename
+
+		img = PILImage.open(self.image.path)
+		exif = img.info.get('exif', '')
+		img.save(filename, exif=exif, quality=80)
+		img.close()
+
+		os.remove(self.image.path)
+		self.image = filename
 		self.save()
 
 
@@ -286,14 +299,14 @@ class Member(models.Model):
 	description = models.TextField()
 	working = models.BooleanField(default=True)
 	image = models.FileField(upload_to='static/webpage/images/members/', max_length=500, null=True)
-	
+
 
 	def set_image_filename(self):
 		filename_h = settings.MEMBERS_IMAGES_DIR + 'I' + str(self.id) + '.jpg'
 		os.rename(self.image.path, filename_h)
 		self.image.name = filename_h
 		self.save()
-	
+
 	def image_url(self):
 		return 'webpage/images/members/' + os.path.basename(self.image.name)
 
@@ -360,6 +373,12 @@ class Event(models.Model):
 
 	def get_days(self):
 		return EventDay.objects.filter(event=self).order_by('day', 'begin_hour')
+
+	def image_name(self):
+		return os.path.basename(self.image.name)
+
+	def program_name(self):
+		return os.path.basename(self.program.name)
 
 	def image_static_url(self):
 		return settings.EVENT_IMAGES_STATIC_URL + os.path.basename(self.image.name)

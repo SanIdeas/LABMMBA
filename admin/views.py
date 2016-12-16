@@ -57,7 +57,7 @@ def filters_selected(list, request, name):
 def documents(request, search=None):
 	if request.user.is_authenticated() and request.user.is_admin:
 		kwargs = get_filters(request)
-		parameters = {'intranet': Section.objects.get(slug='intranet')}
+		parameters = {'administration': Section.objects.get(slug='administrator')}
 
 		try:
 			all_docs = Document.objects.filter(is_available=True, **kwargs).exclude(title__isnull=True, author__isnull=True)
@@ -79,7 +79,7 @@ def documents(request, search=None):
 				paginator = Paginator(all_docs, 5);
 				# Se obtienen las categorias disponibles
 				parameters['categories'] = []
-				for category in Document.objects.filter(is_available=True).values('category').distinct():
+				for category in Document.objects.filter(is_available=True, category__isnull=False).values('category').distinct():
 					parameters['categories'].append(SubArea.objects.get(id=category['category']))
 
 				# Se extrae el numero de pagina

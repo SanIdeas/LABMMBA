@@ -11,6 +11,7 @@
 {% block extra_js %}
     <script src="{% static 'usm_theme/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'usm_theme/js/bootstrap-clockpicker.min.js' %}"></script>
+    <script src="{% static 'usm_theme/js/load-image.all.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -40,15 +41,15 @@
 		        </div>
                 <div class="row">
                      <div class="c6 field">
-                        <span class="c12">{% trans 'Imagen' %}:</span>
+                        <span class="c12">{% trans 'Imagen' %}: {% if event.image %}<a href="{% static event.image_static_url %}" target="_blank">{{event.image_name}}</a>{% else %}<strong>{% trans 'No asignada' %}</strong>{% endif %}</span>
                         <div class="c12">
-                            <input type="file" accept="image/png, image/jpeg" name="image" value="{{event.image}}">
+                            <input id="image" type="file" accept="image/png, image/jpeg">
                         </div>
                      </div>
                     <div class="c6 field">
-                        <span class="c12">{% trans 'Programa' %}:</span>
+                        <span class="c12">{% trans 'Programa' %}: {% if event.program %}<a href="{% static event.program_static_url %}" target="_blank">{{event.program_name}}</a>{% else %}<strong>{% trans 'No asignado' %}</strong>{% endif %}</span>
                         <div class="c12">
-                            <input type="file" accept="application/pdf" name="program" value="{{event.program}}">
+                            <input type="file" accept="application/pdf" name="program">
                         </div>
                     </div>
                 </div>

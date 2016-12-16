@@ -11,6 +11,7 @@
 {% block extra_js %}
     <script src="{% static 'usm_theme/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'usm_theme/js/bootstrap-clockpicker.min.js' %}"></script>
+    <script src="{% static 'usm_theme/js/load-image.all.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -42,7 +43,7 @@
                      <div class="c6 field">
                         <span class="c12">{% trans 'Imagen' %}:</span>
                         <div class="c12">
-                            <input type="file" accept="image/png, image/jpeg" name="image">
+                            <input id="image" type="file" accept="image/png, image/jpeg">
                         </div>
                      </div>
                     <div class="c6 field">

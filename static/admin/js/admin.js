@@ -1114,6 +1114,8 @@ function gallery(){
     });
     $('#showPicture #deleteImage').click(function(){
     	var id = $(this).attr('photo-id');
+    	var button = $(this);
+    	$(this).attr('disabled', true);
     	$.fancybox.showLoading();
 
         $.ajax({
@@ -1127,15 +1129,18 @@ function gallery(){
                 window.location.href = response.redirect;
             else if(!response['error'])
                 reload_gallery_setup();
-            else
+            else{
                 $.fancybox.hideLoading();
+            	button.attr('disabled', false);
+			}
         });
     });
     $('#changePicture #changeImage').click(function(){
         $('#pictureField').click();
     });
     $('#changePicture #selectImage').click(function(){
-        selectPicture();
+        $(this).attr('disabled', true);
+        selectPicture($(this));
     });
     $('#pictureField').change(function(){
         if(this.files.length > 0){
@@ -1157,56 +1162,60 @@ function gallery(){
 
     // Obtiene la url del archivo ingresado por el input
     function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+        if (input.files && input.files[0]){
+            var file = input.files[0];
+			var options = {
+				canvas: true,
+				maxWidth: 1000
+			};
+            loadImage.parseMetaData(file, function(data){
 
-            reader.onload = function (e) {
-                $('#changePicture #imageCropper').attr('src', e.target.result);
-                $.fancybox.hideLoading();
-                $('a.modal.change.picture').click();
-            };
+                // Get the correct orientation setting from the EXIF Data
+                if (data.exif)
+                    options.orientation = data.exif.get('Orientation');
 
-            reader.readAsDataURL(input.files[0]);
+                // Load the image from disk and inject it into the DOM with the correct orientation
+                loadImage(
+                    file,
+                    function(canvas){
+                    	canvas = $(canvas);
+                    	canvas.attr('id', 'imageCropper');
+                        $('#changePicture #imageCropper').replaceWith(canvas);
+                        $.fancybox.hideLoading();
+                        $('a.modal.change.picture').click();
+                    },
+                    options
+                );
+            });
         }
     }
 
-    function convertDataURIToBinary(dataURI) {
-        // convert base64 to raw binary data held in a string
-        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-        var byteString = atob(dataURI.split(',')[1]);
-        // separate out the mime component
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        // write the bytes of the string to an ArrayBuffer
-        var ab = new ArrayBuffer(byteString.length);
-        var dw = new DataView(ab);
-        for(var i = 0; i < byteString.length; i++) {
-            dw.setUint8(i, byteString.charCodeAt(i));
-        }
-        // write the ArrayBuffer to a blob, and you're done
-        return new Blob([ab], {type: mimeString});
-    }
-
-    function selectPicture(){
+    function selectPicture(button){
         $.fancybox.showLoading();
 
-		var form = new FormData();
-		form.append('csrfmiddlewaretoken', csrf_token);
-		form.append('image', convertDataURIToBinary($('#changePicture #imageCropper').attr('src')));
+        $('#changePicture #imageCropper')[0].toBlob(function(blob){
+			var form = new FormData();
+			form.append('csrfmiddlewaretoken', csrf_token);
+			form.append('image', blob);
 
-		$.ajax({
-			url: upload_image_url,
-			method: "POST",
-			data: form,
-			processData: false,
-			contentType: false
-		}).done(function(response){
-			if(response.redirect)
-				window.location.href = response.redirect;
-			else if(!response['error'])
-				reload_gallery_setup();
-			else
-				$.fancybox.hideLoading();
+			$.ajax({
+				url: upload_image_url,
+				method: "POST",
+				data: form,
+				processData: false,
+				contentType: false
+			}).done(function(response){
+				if(response.redirect)
+					window.location.href = response.redirect;
+				else if(!response['error'])
+					reload_gallery_setup();
+				else{
+					$.fancybox.hideLoading();
+					button.attr('disabled', false);
+				}
+			});
 		});
+
     }
 }
 
@@ -1520,22 +1529,52 @@ function events_create(){
         var form = new FormData(this);
         form.append('days', JSON.stringify(days));
 
-        $.ajax({
-            url: create_event_url,
-            method: "POST",
-            data: form,
-            contentType: false,
-            processData: false,
-            beforeSend: function(xhr){
-                if(!areInputsFilled())	// Abort if required inputs are not filled
-                    xhr.abort();
-            }
-        }).done(function(response){
-            if(response.redirect)
-                window.location.href = response.redirect;
-            else if(response['error'])
-                showError();
-        });
+        var sendAJAX = function(){
+            $.ajax({
+                url: create_event_url,
+                method: "POST",
+                data: form,
+                contentType: false,
+                processData: false,
+                beforeSend: function(xhr){
+                    if(!areInputsFilled())	// Abort if required inputs are not filled
+                        xhr.abort();
+                }
+            }).done(function(response){
+                if(response.redirect)
+                    window.location.href = response.redirect;
+                else if(response['error'])
+                    showError();
+            });
+		};
+
+        var imageInput = $('#create-event-form input#image')[0];
+        if(imageInput.files && imageInput.files[0]){
+        	var file = imageInput.files[0];
+            var options = {
+                canvas: true,
+                maxWidth: 1000
+            };
+            loadImage.parseMetaData(file, function(data){
+                // Get the correct orientation setting from the EXIF Data
+                if (data.exif)
+                    options.orientation = data.exif.get('Orientation');
+
+                // Load the image from disk and inject it into the DOM with the correct orientation
+                loadImage(
+                    file,
+                    function(canvas){
+                        canvas.toBlob(function(blob){
+                        	form.append('image', blob);
+                        	sendAJAX();
+						});
+                    },
+                    options
+                );
+            });
+		}
+		else
+			sendAJAX();
 	});
 }
 
@@ -1720,21 +1759,51 @@ function events_edit(){
         form.append('days', JSON.stringify(days));
         form.append('remove_days', JSON.stringify(removeDays));
 
-        $.ajax({
-            url: edit_event_url.replace('999', id),
-            method: "POST",
-            data: form,
-            contentType: false,
-            processData: false,
-            beforeSend: function(xhr){
-                if(!(areInputsFilled() && (actualRowsCount != rowsCount || isNewData())))
-                    xhr.abort();
-            }
-        }).done(function(response){
-            if(response.redirect)
-                window.location.href = response.redirect;
-            else if(response['error'])
-                showError();
-        });
+        var sendAJAX = function(){
+			$.ajax({
+				url: edit_event_url.replace('999', id),
+				method: "POST",
+				data: form,
+				contentType: false,
+				processData: false,
+				beforeSend: function(xhr){
+					if(!(areInputsFilled() && (actualRowsCount != rowsCount || isNewData())))
+						xhr.abort();
+				}
+			}).done(function(response){
+				if(response.redirect)
+					window.location.href = response.redirect;
+				else if(response['error'])
+					showError();
+			});
+		};
+
+        var imageInput = $('#edit-event-form input#image')[0];
+        if(imageInput.files && imageInput.files[0]){
+            var file = imageInput.files[0];
+            var options = {
+                canvas: true,
+                maxWidth: 1000
+            };
+            loadImage.parseMetaData(file, function(data){
+                // Get the correct orientation setting from the EXIF Data
+                if (data.exif)
+                    options.orientation = data.exif.get('Orientation');
+
+                // Load the image from disk and inject it into the DOM with the correct orientation
+                loadImage(
+                    file,
+                    function(canvas){
+                        canvas.toBlob(function(blob){
+                            form.append('image', blob);
+                            sendAJAX();
+                        });
+                    },
+                    options
+                );
+            });
+        }
+        else
+            sendAJAX();
     });
 }
