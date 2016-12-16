@@ -15,14 +15,28 @@ from django.utils.translation import ugettext as _
 # Create your views here.
 
 def login(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
 	section = Section()
 	section.spanish_name = 'Ingresar'
 	section.english_name = 'Login'
 	section.slug = 'login'
 
+	sections = Section.objects.all()
+
 	if request.method == "GET":
 		if request.user.is_authenticated() == False: #Si el usuario ya esta logueado no podra ingresar a la vista Login. Se redirecciona a Intranet.
-			return render(request, 'login/login.html', {'current_view': section, 'current_section': section})
+			return render(request, 'login/login.html', {
+				'current_view': section,
+				'current_section': section,
+				'sections': sections.exclude(slug__in=exclude)
+			})
 		else:
 			return HttpResponseRedirect(reverse('intranet:home')) #Se redirecciona a la ultima pagina visitada.			
 	else:
@@ -36,7 +50,7 @@ def login(request):
 		if user is not None:
 			if user.is_blocked:
 				message = {'type': 'error', 'content': 'El administrador ha bloqueado tu cuenta.'}
-				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section})
+				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 			elif user.is_active:
 				user_ = authenticate(username=email, password=password)
 				if user_ is not None:
@@ -49,16 +63,16 @@ def login(request):
 				else:
 					#Si el usuario no fue autenticado, se envia un mensaje de error
 					message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
-					return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section})
+					return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 			else:
 				#Si el usuario no esta activo:
 				message = {'type': 'error', 'content': 'Ten paciencia. Debes ser aprobado por el administrador.'}
-				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section})
+				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 
 		else:
 			#Si el usuario no existe
 			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
-			return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section})
+			return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 
 
 def logout(request):
@@ -66,11 +80,23 @@ def logout(request):
 		auth_logout(request)
 	return HttpResponseRedirect(reverse('webpage:home'))
 
+
 def register(request, token = None):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
 	section = Section()
 	section.spanish_name = 'Registro'
 	section.english_name = 'Register'
 	section.slug = 'login/register/'
+
+	sections = Section.objects.all()
+
 	if token:
 		section.slug += token
 
@@ -91,7 +117,7 @@ def register(request, token = None):
 						print "usuario ya registrado"
 						return HttpResponseRedirect(reverse('webpage:home'))
 					else:
-						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token, 'current_view': section, 'current_section': section, 'countries': list(countries)})
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'token': token, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude), 'countries': list(countries)})
 				else:
 					#Aqui deberia decirle al usuario que el token no es valido
 					return HttpResponseRedirect(reverse('webpage:home'))
@@ -102,7 +128,7 @@ def register(request, token = None):
 			# 
 			user = None
 			try:
-				user  = User.objects.get(email= request.POST['email'], access_token=request.POST['access_token'])
+				user = User.objects.get(email= request.POST['email'], access_token=request.POST['access_token'])
 			except Exception as error:
 				print "Error: " + str(error)
 
@@ -126,7 +152,7 @@ def register(request, token = None):
 					else:
 						# Falto un campo
 						print "falta un campo"
-						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'current_view': section, 'current_section': section})
+						return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 				else:
 					# El usuario ya esta registrado, por lo tanto, se le redirecciona al login
 					print "usuario ya registrado"
@@ -136,13 +162,14 @@ def register(request, token = None):
 			else:
 				# Deberia llevar a una pagina de error: token y/o correo electronico incorrecto.
 				print "token y/o correo electronico incorrecto."
-				return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'current_view': section, 'current_section': section})
+				return render(request, 'login/register.html', {'user': user, 'areas': Area.objects.all(), 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 		else:
 			# si no es GET o POST, se redirecciona a la pagina de inicio
 			return HttpResponseRedirect(reverse('webpage:home'))
 
 	else:
 		return HttpResponseRedirect(reverse('webpage:home'))
+
 
 def change_password(request):
 	if request.user.is_authenticated():
