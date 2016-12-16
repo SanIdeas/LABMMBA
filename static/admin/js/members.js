@@ -21,10 +21,31 @@ function reload_member_setup(msg){
 		}
 
 	});
-}
+};
+
+function create() {
+		if(!$('#add-member-name').val().trim())	// Abort if name is empty
+			console.log("no nombre");
+		else {
+			$.fancybox({
+     			'href' : '#data',
+     			'hideOnContentClick': true,
+				'autoSize' : false,
+		    	'width'    : "80%",
+		    	'height'   : "auto"
+  			}); 
+			$('#modal-member-img').css('background-image', 'url("/static/intranet/images/default.png")');
+			$('#create-title').css('display', '');
+			$('#edit-title').css('display', 'none'); 
+		    $('#modal-member-name').text($('#add-member-name').val().trim()); 
+		    $('#modal-member-description').val(''); 
+		    $('#modal-confirm-edit').attr('member-id', ''); 
+		}
+};
 
 function members(){
     // Animation for iOS
+
     $('.setup-user-list > li').click(function(e){
         e.preventDefault()
         var row = $(this).find('.setup-user-row');
@@ -40,26 +61,7 @@ function members(){
         row.addClass('expand-row-target');
     });
 
-	$('#add-member-form').submit(function(e){
-		$.ajax({
-			url: reload,
-			type: 'POST',
-			data: $(this).serialize(),
-			beforeSend: function(xhr){
-				xhr.setRequestHeader("X-CSRFToken", csrf_token);
-				e.preventDefault();
 
-				if(!$('#add-member-name').val().trim())	// Abort if name is empty
-					xhr.abort();
-				else {
-					$('#add-member-submit').val("Agregando...").attr("disabled", true);
-					$('#add-member-error').text("");
-				}
-			}
-		}).done(function(data){
-			reload_member_setup(data['message']);
-		});
-	});
 	$('.setup-block-box').click(function(){
 		$.ajax({
 			url: unwork.replace('999', $(this).attr('member-id')),
@@ -76,39 +78,64 @@ function members(){
 			reload_member_setup();
 		});
 	});
-	$('.setup-delete-box').click(function(){
-		$('#modal-user-img').css('background-image', 'url(' + $(this).attr('member-img') + ')');
+	$('.member').click(function(){
+		$('#modal-member-img').css('background-image', 'url(' + $(this).attr('member-img') + ')'); 
+	    $('#modal-member-name').text($(this).attr('name')); 
+	    $('#modal-member-description').val($(this).attr('description')); 
+	    $('#modal-confirm-edit').attr('member-id', $(this).attr('member-id')); 
+	    $('#edit-title').css('display', '');
+		$('#create-title').css('display', 'none'); 
+	});
+
+	$('.delete').click(function(){
+		$('#modal-user-img').css('background-image', 'url(' + $(this).attr('member-img') + ')'); 
 		$('#modal-user-name').text($(this).attr('user-full-name'));
 		$('#modal-confirm').attr('member-id', $(this).attr('member-id'));
-		$('#modal-delete-confirm').removeClass('modal-hidden').addClass('modal-visible');
-		$('#modal-delete').removeClass('curtain-hidden').addClass('curtain-visible');
 	});
+
 	$('#modal-cancel').click(function(){
-		$('#modal-delete-confirm').addClass('modal-hidden').removeClass('modal-visible');
-		$('#modal-delete').addClass('curtain-hidden').removeClass('curtain-visible');
+		$.fancybox.close();
+	});
+	$('#modal-cancel-edit').click(function(){
+		$.fancybox.close();
 	});
 	$('#modal-confirm').click(function(){
 		$.ajax({
 			url: remove.replace('999', $(this).attr('member-id')),
 			type: 'GET'
 		}).done(function(){
+			$.fancybox.close();
 			reload_member_setup();
 		});
 	});
-	$('.setup-view-box').click(function(){
-		$('#modal-member-img').css('background-image', 'url(' + $(this).attr('member-img') + ')');
-		$('#modal-member-name').text($(this).attr('user-full-name'));
-		$('#modal-member-description').val($(this).attr('user-description'));
-		$('#modal-confirm-edit').attr('member-id', $(this).attr('member-id'));
-		$('#modal-edit-confirm').removeClass('modal-hidden').addClass('modal-visible');
-		$('#modal-edit').removeClass('curtain-hidden').addClass('curtain-visible');
-	});
-	$('#modal-cancel-edit').click(function(){
-		$('#modal-edit-confirm').addClass('modal-hidden').removeClass('modal-visible');
-		$('#modal-edit').addClass('curtain-hidden').removeClass('curtain-visible');
-	});
+
 	$('#modal-confirm-edit').click(function(e){
-		$.ajax({
+		if(!$('#modal-confirm-edit').val().trim())	// if id is empty
+			$.ajax({
+			url: reload,
+			type: 'POST',
+			data: {
+				member_name: $('#add-member-name').val(),
+				member_description: $('#modal-member-description').val()
+				},
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("X-CSRFToken", csrf_token);
+				e.preventDefault();
+
+				if(!$('#add-member-name').val().trim())	// Abort if name is empty
+					xhr.abort();
+				else {
+					$('#add-member-submit').val("Agregando...").attr("disabled", true);
+					$('#add-member-error').text("");
+				}
+			}
+		}).done(function(data){
+			$.fancybox.close();
+			reload_member_setup();
+		});
+
+		else {
+			$.ajax({
 			url: edit.replace('999', $(this).attr('member-id')),
 			type: 'POST',
 			data: {
@@ -120,9 +147,13 @@ function members(){
 				e.preventDefault();
 				}
 		}).done(function(){
+			$.fancybox.close();
 			reload_member_setup();
 		});
-	});
+		
+
+		}
+});
 }
 
 $.extend(jQuery.easing,{outcubic:function(x,t,b,c,d){
@@ -239,3 +270,43 @@ function closeOptions(id){
 		});	
 	}
 }
+
+$(document).ready(function() {
+	/* This is basic - uses default settings */
+	$('a.modal.picture').fancybox({
+		scrolling: false,
+		autoSize: false,
+	});
+	/* Using custom settings */
+
+
+	$("a.member").fancybox({
+		'hideOnContentClick': true,
+		'autoSize' : false,
+    	'width'    : "80%",
+    	'height'   : "auto"
+	});
+
+	$("a.delete").fancybox({
+		'hideOnContentClick': true,
+		'autoSize' : false,
+    	'width'    : "80%",
+    	'height'   : "auto"
+	});
+
+	/* Apply fancybox to multiple items */
+	
+	$("member.group").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false
+	});
+
+
+
+	$(window).resize(function(){
+		$.fancybox.update();
+	});
+});

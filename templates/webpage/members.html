@@ -36,7 +36,7 @@
             <h1 class="c12">{% trans "Integrantes" %}</h1>
             <div class="s1 c11">
                 {% for member in working %}
-                <div class="c2 member" href="#data" {% if member.image %} member-img="{% static member.image %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
+                <div class="c2 member" href="#data" {% if member.image %} member-img="{% static member.image_url %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
                     <div class="c12 img">
                                     {% if member.image %}
                                         <img class="profile" src="{% static member.image_url %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
@@ -65,7 +65,7 @@
                 <div class="c2 member" href="#data" {% if member.image %} member-img="{% static member.image_url %}" {% else %} member-img="{% static 'intranet/images/default.png' %}" {% endif%} description="{{member.description}}" name="{{member.name}}" member-id="{{member.id}}">
                     <div class="c12 img">
                                     {% if member.image %}
-                                        <img class="profile" src="{% static member.image %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
+                                        <img class="profile" src="{% static member.image_url %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
                                     {% else %}
                                         <img src="{% static 'intranet/images/default.png' %}" alt="{% if lang == 'es' %}{{category1.0.spanish_name}}{% elif lang == 'en' %}{{category1.0.english_name}}{% endif %}"/>
                                     {% endif %}
@@ -98,25 +98,6 @@
         </div>
     </div>
 </section>
-
-<div id="modal-edit" class="curtain-hidden"></div>
-<div id="modal-edit-confirm" class="modal-hidden">
-    <div id="modal-content">
-        <h3 id="modal-member-name"></h3>
-        <div id="modal-user">
-            <div class="left">
-                <div id="modal-member-img"></div>
-            </div>
-            <div class="right">
-                <div id="modal-member-description"> </div>
-            </div>
-        </div>
-        <div id="modal-btns">
-            <button id="modal-confirm-edit" member-id="">{% trans "CONFIRMAR" %}</button>
-            <button id="modal-cancel-edit">{% trans "CANCELAR" %}</button>
-        </div>
-    </div>
-</div>
 
 <div style="display:none">
     <div id="data">

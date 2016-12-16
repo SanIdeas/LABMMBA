@@ -1,13 +1,5 @@
 var cropper;
-$(document).ready(function() {
-	$('a.modal.picture').fancybox({
-		scrolling: false,
-		autoSize: false,
-	});
-	$(window).resize(function(){
-		$.fancybox.update();
-	});
-});
+
 $(window).click(function(e){
 	$('.options').each(function(){
 		if($(this).attr('data-id') != $(e.target).parent('.options').attr('data-id')){
@@ -15,6 +7,11 @@ $(window).click(function(e){
 		}
 	});
 });
+
+$('.pic-button').click(function(){
+	$('#modal-confirm-edit').attr('member-id', $(this).attr('member-id'));
+});	
+
 $('#sendImage').click(function(){
 	sendPicture();
 });	

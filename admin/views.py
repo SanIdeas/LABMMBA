@@ -583,7 +583,9 @@ def members(request, member_id=None, work=False, unwork=False):
 							return JsonResponse({'error': True, 'message': _('El integrante ingresado ya existe')})
 					else:
 						try:
-							Member.objects.create(name=member_name)
+							member = Member.objects.create(name=member_name)
+							member.description = member_description
+							member.save()
 							return JsonResponse({'error': False})
 						except Exception:
 							return JsonResponse({'error': True, 'message': _('El integrante ingresado ya existe')})
