@@ -2,11 +2,13 @@
 {% load staticfiles %}
 {% block content %}
 {% load i18n %}
-<div id="documents-setup">
+
+
+
 <div class="title">
   <form id="search" url="{% url 'admin:admin_search' 999 %}" class="title-form">
-  	<input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda">
-  	<input class="submit trans search send" type="submit" value="Buscar">
+    <input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"> 
+    <input class="submit trans search send" type="submit" value="Buscar">
   </form>
 </div>
 
@@ -22,6 +24,17 @@
 		</div>
 		{% else %}
 			{% if not keyword %}
+					{% if request.GET.category %}
+                		{% if documents %}
+                			<div class="c12">
+								<div class="intranet box">
+									<div class="document head">
+										<h2 style="font-weight:normal">{% trans "Categoría" %}: <strong>{{documents.0.category.name}}</strong></h2>
+									</div>
+								</div>
+							</div>
+                		{% endif %}
+                	{% endif %}
 					<div class="documents filters c3">
 						<div class="intranet box">
 				            <div class="links">
@@ -47,7 +60,7 @@
 					<div class="intranet box">
 						<div>
 							{% for document in documents%}
-								<div class="evento">
+							 	<div class="evento">
 							        <a class="clear closed" href="{% url 'admin:document' document.author_slug document.title_slug %}">
 							            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
 							            <h4>{{ document.title }}</h4>
@@ -61,7 +74,7 @@
 						        <div id="wp_page_numbers">
 						            <ul>
 						                {% if documents.has_previous %}
-						                	<li><a href="{% url 'admin:documents' %}?page={{documents.previous_page_number}}">Anterior</a></li>
+						                	<li><a href="{% url 'admin:documents' %}?page={{documents.previous_page_number}}">{% trans "Anterior" %}</a></li>
 						                {% endif %}
 						            	{% for page in documents.paginator.page_range %}
 						                	<li {% ifequal documents.number page %}class="active_page"{% endifequal %}>
@@ -69,7 +82,7 @@
 						                	</li>
 						                {% endfor %}
 						                {% if documents.has_next %}
-						                	<li><a href="{% url 'admin:documents' %}?page={{documents.next_page_number}}">Siguiente</a></li>
+						                	<li><a href="{% url 'admin:documents' %}?page={{documents.next_page_number}}">{% trans "Siguiente" %}</a></li>
 						                {% endif %}
 						            </ul>
 						            <div style="float: none; clear: both;"></div>
@@ -84,7 +97,7 @@
 	{% else %}
 		<!-- Es una busqueda -->
 		<!--Seccion de resultados de buscqueda-->
-<script>$('#searchPhrase').val('{{search}}');</script>
+		<script>$('#searchPhrase').val('{{search}}');</script>
 		{% if not documents %}
 			<div class="c12">
 				<h1 class="documents message">{% trans "No encontramos resultados para tu busqueda" %}</h1>
@@ -226,5 +239,5 @@
 	</script>	
 </div>
 <script src="{% static 'intranet/js/documents_events.js' %}"></script>
-</div>
+
 {% endblock %}

@@ -11,6 +11,7 @@ from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 from collections import Counter
 from django.conf import settings
+from django.core.paginator import Paginator
 import json
 
 
@@ -54,49 +55,87 @@ def filters_selected(list, request, name):
 
 
 def documents(request, search=None):
-	if request.user.is_authenticated():
-		if request.user.is_admin:
-			kwargs = get_filters(request)
-			all_docs = Document.objects.filter(**kwargs)
-			if search is None: #Si no es una busqueda
-				documents = all_docs
-			else:
-				documents = []
-				high_acc_result = []
-				low_acc_result = []
-				authors = []
-				years = []
-				owners = []
-				categories = []
-				for document in all_docs:
-					result = document.match(search)
-					if result['match']:
-						if result['extract'] != '':
-							setattr(document, 'extract', result['extract'])
-						if result['exact']:
-							high_acc_result.append(document)
-						else:
-							low_acc_result.append(document)
-						authors.append(document.author)
-						years.append(document.date.year)
-						owners.append(document.owner)
-						categories.append(document.category)
-				documents = high_acc_result + low_acc_result
-				authors = filters_selected(Counter(authors).most_common(), request, 'author')
-				years = filters_selected(Counter(years).most_common(), request, 'date')
-				owners = filters_selected(Counter(owners).most_common(), request, 'owner')
-				categories = filters_selected(Counter(categories).most_common(), request, 'category')
-			parameters = {'current_view': 'admin', 'documents': documents, 'administration': Section.objects.get(slug='administrator')}
-			if search is not None:
-				parameters['authors'] = authors
-				parameters['years'] = years
-				parameters['categories'] = categories
-				parameters['owners'] = owners
-				parameters['search'] = search
-			return render(request, 'admin/documents.html', parameters)
-		else:
-			return HttpResponseRedirect(reverse('webpage:home'))
+	if request.user.is_authenticated() and request.user.is_admin:
+		kwargs = get_filters(request)
+		parameters = {'intranet': Section.objects.get(slug='intranet')}
 
+		try:
+			all_docs = Document.objects.filter(is_available=True, **kwargs).exclude(title__isnull=True, author__isnull=True)
+		except:
+			all_docs = Document.objects.filter(is_available=True).exclude(title__isnull=True, author__isnull=True)
+
+
+		#Si no es una busqueda
+		if search is None:
+			# Se obtiene la palabra clave si es que la hay
+			# Si no hay, se obtienen las paginas
+			if request.GET.get('kw'):
+				parameters['keyword'] = request.GET.get('kw')
+				parameters['documents'] = []
+				for document in all_docs:
+					if request.GET.get('kw') in document.get_keywords():
+						parameters['documents'].append(document)
+			else:
+				paginator = Paginator(all_docs, 5);
+				# Se obtienen las categorias disponibles
+				parameters['categories'] = []
+				for category in Document.objects.filter(is_available=True).values('category').distinct():
+					parameters['categories'].append(SubArea.objects.get(id=category['category']))
+
+				# Se extrae el numero de pagina
+				if request.GET.get('page'):
+					try: parameters['documents'] = paginator.page(request.GET.get('page'))
+					except: parameters['documents'] = paginator.page(1)
+				else:
+					parameters['documents'] = paginator.page(1)
+
+		# Si es una busqueda
+		else:
+			documents = []
+			high_acc_result = [] # Resultados de alta presicion
+			low_acc_result = [] # Resultados de baja presicion
+
+			# Lista con los authores, años, dueños y categorias, y sus contadores.
+			authors = []
+			years = []
+			owners = []
+			categories = []
+
+			for document in all_docs:
+				result = document.match(search)
+				if result['match']:
+					if result['extract'] != '':
+						setattr(document, 'extract', result['extract'])
+					if result['exact']:
+						high_acc_result.append(document)
+					else:
+						low_acc_result.append(document)
+					authors.append(document.author)
+					years.append(document.date.year)
+					owners.append(document.owner)
+					categories.append(document.category)
+
+			# Se obtiene los datos del filtro
+			documents = high_acc_result + low_acc_result
+			authors = filters_selected(Counter(authors).most_common(), request, 'author')
+			years = filters_selected(Counter(years).most_common(), request, 'date')
+			owners = filters_selected(Counter(owners).most_common(), request, 'owner')
+			categories = filters_selected(Counter(categories).most_common(), request, 'category')
+
+			# Se almacenan los documentos en los parametros
+			parameters['documents'] = documents
+
+			parameters['authors'] = authors
+			parameters['years'] = years
+			parameters['categories'] = categories
+			parameters['owners'] = owners
+			parameters['search'] = search
+			
+
+
+		return render(request, 'admin/documents.html', parameters)
+	elif request.user.is_authenticated() and request.user.is_admin:
+		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
