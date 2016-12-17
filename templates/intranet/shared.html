@@ -119,7 +119,7 @@
 			</div>
 			<div class="c12 brand row nav">
 				<a class="notrans" href="{% url 'webpage:home' %}"><img src="{% static 'shared/images/logo_labmmba.png' %}" alt=" · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/></a>
-				<form id="search" url="{% url 'intranet:intranet_search' 999 %}"><input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"><input class="submit trans search send" type="submit" value="Buscar"></form>
+				<form id="search" url="{% url 'intranet:intranet_search' 999 %}"><input type="text" class="text search field" id="searchPhrase" placeholder="{% trans 'Ingresa aquí tu búsqueda' %}"><input class="submit trans search send" type="submit" value="{% trans 'Buscar' %}"></form>
 			</div>
 		</header>
 		<!-- Menu lateral de la intranet -->

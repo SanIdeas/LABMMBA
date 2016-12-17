@@ -66,7 +66,7 @@
 						<td>{{ profile_user.country.name }}</td>
 					</tr>
 					<tr>
-						<td>{% trans "Area" %}:</td>
+						<td>{% trans "Área" %}:</td>
 						<td>{% trans profile_user.area.name %}</td>
 					</tr>
 				</table>
@@ -112,7 +112,7 @@
        		<div class="profile counter">
                 <div>
                     <h1>{{ profile_user.doc_count }}</h1>
-                    <h3>Documentos</h3>
+                    <h3>{% trans 'Documentos' %}</h3>
                 </div>
             </div>
             <div class="profile info">
@@ -190,10 +190,10 @@
 
 <!-- Modal para desvincular la cuenta de Google -->
 <div id="deauthenticateModal" class="document modal"  style="display:none!important">
-	<h2>{% trans "¿Estas seguro?" %}</h2>
-	<p>{% trans "Estas a punto de desvincular tu cuenta de Google: " %}</p>
+	<h2>{% trans "¿Estás seguro?" %}</h2>
+	<p>{% trans "Estás a punto de desvincular tu cuenta de Google: " %}</p>
 	<h3>{{profile_user.drive_email}}</h3>
-	<div><a href="{% url 'deauthenticate' 'intranet:profile' %}">CONFIRMAR</a></div>
+	<div><a href="{% url 'deauthenticate' 'intranet:profile' %}">{% trans 'CONFIRMAR' %}</a></div>
 </div>
 
 <!-- Modal para modificar la informacion del perfil -->
@@ -202,8 +202,8 @@
 	<form class="clear c12" action="{% url 'intranet:profile' %}" method="POST" >
 		{% csrf_token %}
 		<div class="row profile field">
-			<span class="c12">{% trans 'Correo electronico' %}:</span>
-            <div class="c12"><input value="{{ profile_user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required readonly/></div>
+			<span class="c12">{% trans 'Correo electrónico' %}:</span>
+            <div class="c12"><input value="{{ profile_user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electrónico' %}" required readonly/></div>
          </div>
          <div class="row profile field">
 			<span class="c12">{% trans 'Nombre' %}:</span>
@@ -222,10 +222,10 @@
      		<div class="c12"><input type="text" name="career" value="{{ profile_user.career }}" class="text" placeholder="{% trans 'Carrera' %}" required/></div>
      	</div>
      	<div class="row profile field">
-			<span class="c12">{% trans 'Area' %}:</span>
+			<span class="c12">{% trans 'Área' %}:</span>
      		<div class="c12">
      			<select name="area" required>
-					<option disabled>{% trans "Selecciona un area" %}</option>
+					<option disabled>{% trans "Selecciona un área" %}</option>
 					{% for area in areas %}
 						<optgroup label="{{ area.name }}">
 							{% for subarea in area.get_sub_areas %}
@@ -275,20 +275,20 @@
 		{% csrf_token %}
 		<div class="row profile field">
 			<div class="c12">
-				<span>Contraseña actual:</span>
+				<span>{% trans 'Contraseña actual:' %}</span>
 				<input id="current" type="password" class="text" name="current" required>
 			</div>
 		</div>
 		<div class="intranet separator"></div>
 		<div class="row profile field">
 			<div class="c12">
-				<span>Nueva contraseña:</span>
+				<span>{% trans 'Nueva contraseña:' %}</span>
 				<input id="new" type="password" class="text" name="new" required>
 			</div>
 		</div>
 		<div class="row profile field">
 			<div class="c12">
-				<span>Ingresar nuevamente:</span>
+				<span>{% trans 'Ingresar nuevamente:' %}</span>
 				<input id="confirm" type="password" class="text" required>
 			</div>
 		</div>
@@ -308,14 +308,14 @@
 <!-- Modal extra -->
 <div style="display:none;">
 	<div id="enablePopupModal">
-		<h4>{%trans "¡Un momento!" %}</h4>
+		<h4>{% trans "¡Un momento!" %}</h4>
 		<span>{% trans "Al parecer tienes deshabilitadas las ventanas emergentes." %}</span>
-		<span>{% trans "Activalas, recarga la página y vuelve a intentarlo." %}</span>
+		<span>{% trans "Actívalas, recarga la página y vuelve a intentarlo." %}</span>
 	</div>
 	<div>
 		<div class="document modal" id="deleteModal">
-			<h2>{% trans "¿Estas seguro?" %}</h2>
-			<p>{% trans "Estas a punto de eliminar el documento:" %}</p>
+			<h2>{% trans "¿Estás seguro?" %}</h2>
+			<p>{% trans "Estás a punto de eliminar el documento:" %}</p>
 			<h3 class="confirm" type="title" data=""></h3>
 			<h5 class="confirm" type="author" data=""></h5>
 			<div><a class="confirm" type="send" data="">{% trans "CONFIRMAR" %}</a></div>

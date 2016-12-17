@@ -17,8 +17,8 @@
 	<div class="c12">
 		<div class="intranet box">
 			<div class="upload head">
-				<h1>Noticias de {{ request.user.first_name }}</h1>
-				<h4>Aqui encontrarás todas las noticias que has agregado</h4>
+				<h1>{% trans 'Noticias de' %} {{ request.user.first_name }}</h1>
+				<h4>{% trans 'Aquí encontrarás todas las noticias que has agregado' %}</h4>
 			</div>
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 								</span>
 							{% endif %}
 							{% if news.source_text %}
-		                        <span class="source"><strong>Fuente: </strong>
+		                        <span class="source"><strong>{% trans 'Fuente:' %} </strong>
 		                            {% if news.source_url %}
 		                                <a href="{{news.source_url}}">{{news.source_text}}</a>
 		                            {% else %}
@@ -91,7 +91,7 @@
 <!-- Modal para seleccionar el tipo de creacion -->
 <div id="createModal" class="news modal clear"  style="display:none!important; height:100%;">
 	<div class="c12">
-		<h3 style="text-align: center; margin:0; font-weight:normal">{% trans "Selecciona un metodo de creación" %}</h3>
+		<h3 style="text-align: center; margin:0; font-weight:normal">{% trans "Selecciona un método de creación" %}</h3>
 	</div>
 	<div class="c12">
 		<div class="c6">
@@ -100,8 +100,8 @@
 				<div class="write trans">
 					<h5>{% trans "Redactar" %}</h5>
 				</div>
-			</div>
 			</a>
+			</div>
 		</div>
 		<div class="c6">
 			<div class="intranet box">
@@ -116,7 +116,7 @@
 </div>
 <!-- Modal de confirmacion -->
 <div class="document modal" id="deleteModal" style="display:none;">
-	<h2>{% trans "¿Estas seguro?" %}</h2>
+	<h2>{% trans "¿Estás seguro?" %}</h2>
 	<p>{% trans "Esta noticia desaparecerá completamente" %}</p>
 	<h3 class="confirm" type="title" data=""></h3>
 	<h5 class="confirm" type="date" data=""></h5>

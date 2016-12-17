@@ -20,7 +20,7 @@
 				<h2><textarea name="title" rows="1" required>{{document.title}}</textarea></h2>
 				<h5>
 					<select name="category" required>
-						<option value="" disabled>{% trans "Selecciona un area" %}</option>
+						<option value="" disabled>{% trans "Selecciona un área" %}</option>
 						{% for area in areas %}
 							<optgroup label="{{ area.name }}">
 								{% for subarea in area.get_sub_areas %}
@@ -51,7 +51,7 @@
 						<td><input type="text" class="text date" name="date" placeholder="dd-mm-aaaa" value="{{document.date|date:'d-m-Y'}}" readonly required></td>
 					</tr>
 					<tr>
-						<td><strong>{% trans "Paginas" %}:</strong></td>
+						<td><strong>{% trans "Páginas" %}:</strong></td>
 						<td><input type="text" class="text" name="pages" {% if document.pages %} value="{{document.pages}}" {% endif %}></td>
 					</tr>
 					<tr>

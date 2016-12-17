@@ -8,11 +8,11 @@
 		<div class="row">
 			<div class="s3 c6">
 				<h2>{% trans "Ingresar al sistema" %}</h2>
-				<p>{% trans "Ingresa tus datos para acceder a la base de datos de Labmmba" %}</p>
+				<p>{% trans "Ingresa tus datos para acceder a la base de datos de LABMMBA" %}</p>
 				<form class="clear c12" action="{% url 'login' %}" method="POST">
 					{% csrf_token %}
                     <div class="row">
-                        <div class="c12"><input type="email" name="email" class="text" value="{{ email }}" placeholder="{% trans 'Correo electronico' %}"/></div>
+                        <div class="c12"><input type="email" name="email" class="text" value="{{ email }}" placeholder="{% trans 'Correo electrónico' %}"/></div>
                         <span class="error"> </span>
                     </div>
                     <div class="row">

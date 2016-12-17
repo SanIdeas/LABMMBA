@@ -5,8 +5,8 @@
 	<div class="c12">
 		<div class="intranet box">
 			<div class="upload head">
-				<h1>Subida local de documentos</h1>
-				<h4>Selecciona desde tus archivos locales los documentos que deseas subir</h4>
+				<h1>{% trans 'Subida local de documentos' %}</h1>
+				<h4>{% trans 'Selecciona desde tus archivos locales los documentos que deseas subir' %}</h4>
 			</div>
 		</div>
 	</div>
@@ -14,12 +14,12 @@
 <div class="intranet row">
 		<div class="c6">
 			<div class="intranet box">
-				<button class="c12 upload button add hover trans">Agregar Documento</button>		
+				<button class="c12 upload button add hover trans">{% trans 'Agregar Documento' %}</button>
 			</div>	
 		</div>
 		<div class="c6">
 			<div class="intranet box">
-				<button class="c12 upload button send hover trans disabled" disabled="true">Enviar Documentos</button>	
+				<button class="c12 upload button send hover trans disabled" disabled="true">{% trans 'Enviar Documentos' %}</button>
 			</div>			
 		</div>
 </div>
@@ -31,7 +31,7 @@
 		<!-- Aqui se agregan los formularios de cada documento -->
 		<div class="upload empty">
 			<img src="{% static 'intranet/images/directorio_vacio.png' %}">
-			<h3>No has agregado documentos</h3>
+			<h3>{% trans 'No has agregado documentos' %}</h3>
 		</div>
 	</form>
 </div>
