@@ -18,7 +18,7 @@ def query(request, query=None):
 			if count == 10:
 				break;
 			try: 
-				title = r['title'][0].encode(sys.stdout.encoding, errors='replace')
+				title = r['title'][0]
 			except:
 				title = None
 			if title:#Si existe titulo el documento se añade a la respuesta. De lo contrario se salta.
