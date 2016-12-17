@@ -64,21 +64,6 @@
 					    </div>
 				    {% endif %}
 			    {% endif %}
-				<div class="row">
-		            <div class="c12">
-		                <ul id="bottom-nav" class="clear">
-		                    {% if other_sections.0 %}
-		                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
-		                    {% endif %}
-		                    {% if other_sections.1 %}
-		                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
-		                    {% endif %}
-		                    {% if other_sections.2 %}
-		                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
-		                    {% endif %}
-		                </ul>
-		            </div>
-		        </div>
 			</section>
 			<section id="sidebar" class="c4">
 	            <div class="links clear box">
@@ -97,6 +82,21 @@
 				$('#search').val('{{search}}');
 			</script>
     	</div>
+    	<div class="row">
+            <div class="c12">
+                <ul id="bottom-nav" class="clear">
+                    {% if other_sections.0 %}
+                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.1 %}
+                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.2 %}
+                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
 	</div>
 </section>
 

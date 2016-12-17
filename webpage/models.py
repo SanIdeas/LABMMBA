@@ -159,16 +159,24 @@ class News(models.Model):
 		super(News, self).save(*args, **kwargs)
 
 	def set_header_filename(self):
-		filename_h = settings.NEWS_HEADERS_DIR + 'NH' + str(self.id) + '.jpg'
-		os.rename(self.header.path, filename_h)
-		self.header.name = filename_h
+		filename = settings.NEWS_HEADERS_DIR + 'NH' + str(self.id) + '.jpg'
+		os.rename(self.header.path, filename)
+		self.header = filename
 		self.save()
+		header = PILImage.open(self.header.path)
+		exif = header.info.get('exif', '')
+		header.save(filename, exif=exif, quality=70)
+		header.close()
 
 	def set_thumbnail_filename(self):
-		filename_t = settings.NEWS_THUMBNAILS_DIR + 'NT' + str(self.id) + '.jpg'
-		os.rename(self.thumbnail.path, filename_t)
-		self.thumbnail.name = filename_t
+		filename = settings.NEWS_THUMBNAILS_DIR + 'NT' + str(self.id) + '.jpg'
+		os.rename(self.thumbnail.path, filename)
+		self.thumbnail.name = filename
 		self.save()
+		thumbnail = PILImage.open(self.thumbnail.path)
+		exif = thumbnail.info.get('exif', '')
+		thumbnail.save(filename, exif=exif, quality=70)
+		thumbnail.close()
 
 	def thumbnail_url(self):
 		return 'webpage/images/news/thumbnail/' + os.path.basename(self.thumbnail.name)
@@ -184,6 +192,10 @@ class News(models.Model):
 
 		self.thumbnail.save('NT' + str(self.id) + '.jpg', picture)
 		self.save()
+		thumbnail = PILImage.open(self.thumbnail.path)
+		exif = thumbnail.info.get('exif', '')
+		thumbnail.save(self.thubmail.path, exif=exif, quality=70)
+		thumbnail.close()
 		return True
 
 	def update_header(self, picture):
@@ -194,6 +206,12 @@ class News(models.Model):
 
 		self.header.save('NH' + str(self.id) + '.jpg', picture)
 		self.save()
+
+		# Se baja la calidad
+		header = PILImage.open(self.header.path)
+		exif = header.info.get('exif', '')
+		header.save(self.header.path, exif=exif, quality=70)
+		header.close()
 		return True
 
 	def get_comments(self):

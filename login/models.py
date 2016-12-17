@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.conf import settings
 import oauth2client, base64, cPickle, re
 from django_countries.fields import CountryField
+from PIL import Image as PILImage
 
 # Create your models here.
 
@@ -126,6 +127,10 @@ class User(AbstractBaseUser):
 
 		self.profile_picture.save('U' + str(self.id) + '.jpg', picture)
 		self.save()
+		picture = PILImage.open(self.profile_picture.path)
+		exif = picture.info.get('exif', '')
+		picture.save(self.profile_picture.path, exif=exif, quality=70)
+		picture.close()
 		return True
 
 	def filename(self):

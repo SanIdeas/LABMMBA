@@ -1,5 +1,6 @@
 {% extends 'shared/base.html' %}
 {% load staticfiles %}
+{% load webpagetags %}
 {% load i18n %}
 {% block css %}
     <!-- FontAwesome -->
@@ -30,7 +31,10 @@
                     {% for event in events %}
                         <div class="evento">
                             <a class="clear closed" href="{% url 'webpage:event' event.slug %}">
-                                <span class="date">{{event.get_date|date:'l'}} {{event.get_date|date:'d'}}, {{event.get_date|date:'F'}} {{event.get_date|date:'Y'}}</span>
+                                <span class="date">
+                                    {{ event.get_dates|format_date }}
+                                   
+                                    </span>
                                 <h4>{{event.title}}</h4>
                                 <span class="icon arrow"></span>
                             </a>
