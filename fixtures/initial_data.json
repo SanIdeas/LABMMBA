@@ -469,7 +469,7 @@
     "pk": 4,
     "fields": {
       "spanish_name": "Galería de Fotos",
-      "english_name": "Pictures Gallery",
+      "english_name": "Photo Gallery",
       "slug": "gallery",
       "spanish_title": "<h1 class='c12'>Galería de Fotos</h1>",
       "english_title": "<h1 class='c12'>Pictures Gallery</h1>",

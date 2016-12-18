@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 04:02-0300\n"
-"PO-Revision-Date: 2016-12-18 04:10-0300\n"
+"PO-Revision-Date: 2016-12-18 18:43-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -651,7 +651,7 @@ msgstr "This event will disappear completely"
 #: .\templates\admin\gallery_ajax.html:4 .\templates\admin\shared.html:81
 #: .\templates\admin\shared.html:167
 msgid "Galería de Fotos"
-msgstr "Pictures Gallery"
+msgstr "Photo Gallery"
 
 #: .\templates\admin\gallery_ajax.html:34
 msgid "Eliminar foto"
@@ -1458,7 +1458,7 @@ msgstr "No events"
 
 #: .\templates\webpage\gallery.html:9
 msgid "Galería de fotos"
-msgstr "Pictures Gallery"
+msgstr "Photo Gallery"
 
 #: .\templates\webpage\gallery.html:17
 msgid "No hay fotos para mostrar"
