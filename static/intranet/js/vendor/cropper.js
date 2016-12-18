@@ -802,10 +802,20 @@
 
       $cropper.addClass(CLASS_HIDDEN);
       $this.removeClass(CLASS_HIDDEN);
-
+      var $height;
+      if ($('#preview')){
+        $height = $('.editor').height();
+        if ($('#preview').css('display') != 'none')
+          $height -= $('#preview').height()
+        if ($('.editor .header'))
+          $height -= $('.editor .header').height()
+      }
+      else{ 
+        $height =  max($container.height(), num(options.minContainerHeight) || 100)
+      }
       $cropper.css((this.container = {
         width: max($container.width(), num(options.minContainerWidth) || 200),
-        height: max($container.height(), num(options.minContainerHeight) || 100)
+        height: $height
       }));
 
       $this.addClass(CLASS_HIDDEN);

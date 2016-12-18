@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load staticfiles %}
+{% load webpagetags %}
 <div class="intranet box news">
     <div class="setup-events-subtitle-container green">
         <h3>{% trans "Eventos Publicados" %}</h3>
@@ -11,11 +12,11 @@
     <div class="list clear">
         {% if events %}
             {% for event in events %}
-                <div class="item clear">
+                <div class="item clear" id="event{{event.id}}">
                     <div class="details c10">
-                        {%if event.get_date%}<span class="date">{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}</span>{%endif%}
+                        {%if event.get_date%}<span class="date">{{ event.get_dates|format_date }}</span>{%endif%}
                         <div>
-                            <a href="{% url 'webpage:event' event.slug %}" class="news-title-link">
+                            <a href="{% url 'webpage:event' event.slug %}" target="_blank" class="news-title-link">
                                 <h2 class="title">{{event.title}}</h2>
                             </a>
                         </div>
@@ -26,7 +27,7 @@
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                             </a>
-                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{event.id}}" data-title="{{event.title}}" data-date="{{event.get_date|date:'d'}} · {{event.get_date|date:'F'}} · {{event.get_date|date:'Y'}}">
+                            <a href="#deleteModal" class="fa-stack fa-lg delete trans modal" data-id="{{event.id}}" data-title="{{event.title}}" data-date="{{ event.get_dates|format_date }}">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                             </a>

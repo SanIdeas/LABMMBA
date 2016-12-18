@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from datetime import datetime, date, timedelta
 from intranet.models import Document
-from webpage.models import Section, SubSection, News, Member, Event, EventDay
+from webpage.models import Section, SubSection, News, Member, Event, EventDay, GalleryPhoto
 from webpage.forms import ImageForm, NewsCommentForm
 from itertools import izip_longest
 import json
@@ -436,5 +436,34 @@ def event(request, title):
 								'counter': events_counter,
 								'event': event_[0],
 								'months': months,
+								'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3]
+								})
+
+def gallery(request):
+	if request.user.is_authenticated():
+		if request.user.is_admin:
+			exclude = ['intranet', 'publications']
+		else:
+			exclude = ['administrator', 'publications']
+	else:
+		exclude = ['intranet', 'administrator']
+
+	sections = Section.objects.all()
+	section = Section.objects.get(slug='about')
+	subsection = SubSection.objects.get(slug='gallery')
+
+	eventsId = EventDay.objects.filter(day__gte=datetime.today()).order_by('-day').values_list('event', flat=True).distinct()
+	events = Event.objects.filter(id__in=eventsId)
+	events_sort = sorted(events, key=lambda event: event.get_date())
+
+	return render(request, 'webpage/gallery.html', {
+								'current_view': subsection,
+								'current_section': section,
+								'current_subsection': subsection,
+								'sections': sections.exclude(slug__in=exclude),
+								'body': 'blog',
+								'photos': GalleryPhoto.objects.all(),
+								'recents': News.objects.filter(is_published=True).exclude(thumbnail="").exclude(thumbnail=None).order_by('-date')[:4],
+								'events': events_sort,
 								'other_sections': sections.exclude(slug__in=['.', 'publications', 'intranet', 'administrator', section.slug])[:3]
 								})

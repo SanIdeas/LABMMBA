@@ -3,6 +3,8 @@ $('.news form').submit(function(e){
 	sendData($(this).attr('action'), $(this).attr('redirect-to'));
 });
 function sendData(url, redirect_to){
+	blockFormAndShowLoading();
+	console.log('asd');
 	var formElement = $('.news form')[0];
 	var formStatus = formElement.checkValidity();
 	if(!formStatus){
@@ -62,7 +64,8 @@ function showError(){
 
 function blockFormAndShowLoading(){
 	// Se desactivan los campos y botones
-	$('.news form input, .news form textarea').attr('disabled', true);
+	$('.news form input[type="text"], .news form textarea').attr('readonly', true);
+	$('.news form input[type="submit"]').attr('disabled', true);
 	busy = true;
 	$.fancybox.showLoading();
 }
@@ -71,8 +74,9 @@ function unlockFormAndHideLoading(){
 	// Se desactivan los campos y botones
 	$('.news form input, .news form textarea').each(function(){
 		if(!($(this).attr('name') == 'mini-description' && $('#headerPicture').attr('src') == ""))
-			$(this).attr('disabled', false);
+			$(this).attr('readonly', false);
 	});
+	$('.news form input[type="submit"]').attr('disabled', false);
 	busy = false;
 	$.fancybox.hideLoading();
 }

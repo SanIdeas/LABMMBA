@@ -92,6 +92,7 @@
 		<div class="intranet box">
 			<div class="document owner">
 			<a href="{% url 'intranet:profile' document.owner.id %}">
+				<img class="flag" src="{% static user.country.flag %}">	
 				<div class="image">
 					{% if document.owner.profile_picture %}
 						<img src="{% static document.owner.filename %}"> 

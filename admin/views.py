@@ -184,7 +184,7 @@ def edit_document(request, id=None):
 				document.delete()
 				return JsonResponse({'error': False})
 		else:
-			return HttpResponseRedirect(reverse('admin:documens')) #Se redirecciona a Documentos.
+			return HttpResponseRedirect(reverse('admin:documents')) #Se redirecciona a Documentos.
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
@@ -319,13 +319,13 @@ def areas(request, area_id=None, subarea_id=None):
 							area.save()
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': _('El área ingresada ya existe')})
+							return JsonResponse({'error': True, 'message': _(u'El área ingresada ya existe')})
 					else:
 						try:
 							Area.objects.create(name=area_name)
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': _('El área ingresada ya existe')})
+							return JsonResponse({'error': True, 'message': _(u'El área ingresada ya existe')})
 				elif subarea_name is not None:
 					if subarea_id is not None:
 						try:
@@ -334,7 +334,7 @@ def areas(request, area_id=None, subarea_id=None):
 							subarea.save()
 							return JsonResponse({'error': False})
 						except Exception:
-							return JsonResponse({'error': True, 'message': _('La subárea ingresada ya existe')})
+							return JsonResponse({'error': True, 'message': _(u'La subárea ingresada ya existe')})
 
 					else:
 						area_id = request.POST.get('area_id', None)
@@ -344,9 +344,9 @@ def areas(request, area_id=None, subarea_id=None):
 								area.add_sub_area(subarea_name)
 								return JsonResponse({'error': False})
 							except Exception:
-								return JsonResponse({'error': True, 'message': _('La subárea ingresada ya existe')})
+								return JsonResponse({'error': True, 'message': _(u'La subárea ingresada ya existe')})
 						except Exception:
-							return JsonResponse({'error': True, 'message': _('El área entregada no existe')})
+							return JsonResponse({'error': True, 'message': _(u'El área entregada no existe')})
 				else:
 					areas_arr = []
 					areas_obj = Area.objects.all()
@@ -669,7 +669,7 @@ def news(request, news_id=None, publish=False, unpublish=False, show_header=Fals
 				if publish and request.is_ajax():
 					news_obj = News.objects.get(id=news_id)
 					if not news_obj.title:
-						return JsonResponse({'error': True, 'message': 'No se puede aprobar una noticia sin título'})
+						return JsonResponse({'error': True, 'message': _(u'No se puede aprobar una noticia sin título')})
 
 					news_obj.is_published = True
 					news_obj.save()
@@ -683,9 +683,9 @@ def news(request, news_id=None, publish=False, unpublish=False, show_header=Fals
 				elif show_header and request.is_ajax():
 					news_obj = News.objects.get(id=news_id)
 					if not news_obj.title:
-						return JsonResponse({'error': True, 'message': 'No se puede poner en la cabecera una noticia sin título'})
+						return JsonResponse({'error': True, 'message': _(u'No se puede poner en la cabecera una noticia sin título')})
 					elif not news_obj.is_published:
-						return JsonResponse({'error': True, 'message': 'No se puede poner en la cabecera una noticia no publicada'})
+						return JsonResponse({'error': True, 'message': _('No se puede poner en la cabecera una noticia no publicada')})
 
 					news_obj.in_header = True
 					news_obj.save()
@@ -768,7 +768,7 @@ def event_create(request):
 							return JsonResponse({'error': True})
 
 						event.check_slug()
-						return JsonResponse({'redirect': reverse('admin:events')})
+						return JsonResponse({'redirect': reverse('admin:events') + '#event' + str(event.id)})
 					except Exception as e:
 						print e.message
 						return JsonResponse({'error': True})
@@ -825,7 +825,7 @@ def event_edit(request, event_id=None):
 				try:
 					event.save()
 					event.check_slug()
-					return JsonResponse({'redirect': reverse('admin:events')})
+					return JsonResponse({'redirect': reverse('admin:events') + '#event' + str(event.id)})
 				except Exception as e:
 					print e.message
 					return JsonResponse({'error': True})

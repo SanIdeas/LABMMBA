@@ -163,7 +163,6 @@
 				display: flex;
 				flex: 1;
 				overflow: hidden;
-				border-radius: 10px;
 			}
 			& .buttons{
 				width: 100%;
@@ -172,14 +171,25 @@
 					padding: 10px 10px;
 				}
 				& i{
-					padding-left: 5px;
+					padding-right: 10px;
 				}
 				& button{
-					padding: 2px;
+					padding: 5px;
 					border: none;
-					border-radius: 10px;
-					width: 100%;
-					background-color: #dddddd;
+					color: white;
+				}
+				& #changeImage{
+					background-color: @blue-color;
+					&:hover{
+						background-color: lighten(@blue-color, 10%);
+					}
+				}
+
+				& #selectImage{
+					background-color: #679bc2;
+					&:hover{
+						background-color: lighten(#679bc2, 10%);
+					}
 				}
 			}			
 		}

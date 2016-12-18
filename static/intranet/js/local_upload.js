@@ -111,7 +111,7 @@ function addDocument(key_count, filename, object){
 		.replace(/\$filename/g, filename)
 		.replace(/\$title/g, object['Title'] ? object['Title']:'')
 		.replace(/\$author/g, object['Author'] ? object['Author']:'')
-		.replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(2, 4) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(8, 2) ):'');
+		.replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(8, 2) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(2, 4) ):'');
 	/* Se agrega al frontend */
 	$('#form').append(code);
 	/* Se realiza la primera consulta a crossref */
@@ -134,8 +134,6 @@ function addDocument(key_count, filename, object){
 		console.log('.file[doc-index="' + $(this).attr('doc-index') + '"]');
 		delete files[$(this).attr('doc-index')];
 		checkFilesSize();
-		if(Object.size(files) == 0)
-			$('#local-submit').prop('disabled', true).addClass('disabled');
 	});
 
 	// Se activa crossref
@@ -147,15 +145,16 @@ function addDocument(key_count, filename, object){
 function checkFilesSize(){
 	if(Object.size(files) == 0){
 		addElement(".upload.empty");
-		$('.upload.button.send').prop('disabled', true).addClass('disabled');				
+		$('.upload.button.send').prop('disabled', true);				
 	}
 	else{
 		hideElement(".upload.empty", false);
-		$('.upload.button.send').prop('disabled', false).removeClass('disabled');	
+		$('.upload.button.send').prop('disabled', false);	
 	}
 }
 
 function sendDocuments(){
+	$('.upload.button.send, .upload.button.add').prop('disabled', true);	
 	var form = new FormData($('#form')[0]);
 	console.log(Object.keys(files));
 
@@ -167,11 +166,12 @@ function sendDocuments(){
 		}
 	}
 	var form_status = $('#form')[0].checkValidity();
-	console.log(form_status);
 
 	//Si no esta completo el formulario, se resaltan los campos faltantes
-	if(!form_status)
+	if(!form_status){
 		checkEmptyFields();
+		$('.upload.button.send, .upload.button.add').prop('disabled', false);
+	}
 
 	//De lo contrario, se envia la solicitud
 	else{
@@ -197,19 +197,27 @@ function sendDocuments(){
 				$('.upload.message').html("").append(response['message']);
 				addElement(".upload.section");
 				hideElement(".cssload-loader-wrapper", false);
+				$('.upload.button.send, .upload.button.add').prop('disabled', false);
 			}		
 		}).error(function(xhr, status, error){
 				$('.upload.message').html("").append(error);
 				addElement(".upload.section");
 				hideElement(".cssload-loader-wrapper", false);
+				$('.upload.button.send, .upload.button.add').prop('disabled', false);
 		});
 	}
 }
 
 function checkEmptyFields(){
+	var scroll = false;
 	$(".field").each(function(i, field){
 		if (($(field).val() == null || $(field).val() == '') && $(field).prop('required') == true){
 			$(field).addClass("required");
+			if(!scroll){
+				scrollTo($(field));
+				scroll=true;
+				console.log('scroll', scroll);
+			}
 			$(field).on('input', function(){
 				if($(this).hasClass('required'))
 					$(this).removeClass('required');
@@ -217,4 +225,11 @@ function checkEmptyFields(){
 			});	
 		}
 	});
+}
+
+function scrollTo(element){
+	var viewHeight = $(document).height()/2;
+	$('.intranet.body').animate({
+		scrollTop: element.offset().top - viewHeight
+	},800);
 }

@@ -88,7 +88,7 @@
             </section>
             <section id="sidebar" class="c4">
                 <div class="eventos clear box">
-                    <h3>Eventos</h3>
+                    <h3>{% trans 'Eventos' %}</h3>
                     <div class="clear">
                         {% if events %}
                             {% for event in events %}
@@ -97,7 +97,7 @@
                                     <p>{{event.title}}</p>
                                 </a>
                             {% endfor %}
-                            <a class="clear more" href="{% url 'webpage:section' 'events' %}">Ver más</a>
+                            <a class="clear more" href="{% url 'webpage:section' 'events' %}">{% trans 'Ver más' %}</a>
                         {% else %}
                             <span class="c12 empty">
                                 {% trans "No hay eventos" %}

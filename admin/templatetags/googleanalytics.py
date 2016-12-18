@@ -8,7 +8,7 @@ from django import template
  
 register = template.Library()
  
-@register.inclusion_tag(settings.ANALYTICS_HTML_DIR , takes_context=True)
+@register.inclusion_tag(settings.ANALYTICS_HTML_DIR, takes_context=True)
 def analytics(context, next = None):
 
 	# The scope for the OAuth2 request.
@@ -17,7 +17,7 @@ def analytics(context, next = None):
 	ANALYTICS_VIEW_ID = '135953807'
 	ANALYTICS_VIEW_ID_PUBLIC = '135963610'
 
-	 
+
 	return {
 		'token': credentials.get_access_token().access_token,
 		'view_id': ANALYTICS_VIEW_ID,

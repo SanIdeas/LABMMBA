@@ -1103,7 +1103,7 @@ body {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
 }
-input[type='text'][readonly].date {
+input[readonly].date {
   opacity: 1 !important;
 }
 .documents.mark {
@@ -1431,6 +1431,11 @@ form .c12 {
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
+.document.owner .flag {
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+}
 .document.owner h3,
 .document.owner h5 {
   text-align: center;
@@ -1718,7 +1723,10 @@ form .c12 {
 .upload.button.send:hover {
   background-color: #005c83;
 }
-.upload.button.send.disabled {
+.upload.button[disabled] {
+  background-color: #cecece;
+}
+.upload.button[disabled]:hover {
   background-color: #cecece;
 }
 .upload.files {
@@ -2159,10 +2167,10 @@ form .c12 {
   display: none;
 }
 .field {
-  transtion: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 .field.required {
-  background-color: #fdf1f2;
+  background-color: #fdf1f2 !important;
 }
 .erasable {
   position: relative;
@@ -2678,10 +2686,13 @@ form .c12 {
   background-color: #0092cf;
 }
 .profile.cropper > .editor .header #sendImage {
-  background-color: #f2ae47;
+  background-color: #679bc2;
 }
 .profile.cropper > .editor .header #sendImage:hover {
-  background-color: #f5c377;
+  background-color: #8bb3d1;
+}
+.profile.cropper > .editor .header > * i {
+  padding-right: 10px;
 }
 .profile.cropper > .editor .profile.image {
   height: 200px;
@@ -2945,7 +2956,6 @@ form .c12 {
   display: flex;
   flex: 1;
   overflow: hidden;
-  border-radius: 10px;
 }
 .news .cropper .editor .buttons {
   width: 100%;
@@ -2955,14 +2965,24 @@ form .c12 {
   padding: 10px 10px;
 }
 .news .cropper .editor .buttons i {
-  padding-left: 5px;
+  padding-right: 10px;
 }
 .news .cropper .editor .buttons button {
-  padding: 2px;
+  padding: 5px;
   border: none;
-  border-radius: 10px;
-  width: 100%;
-  background-color: #dddddd;
+  color: white;
+}
+.news .cropper .editor .buttons #changeImage {
+  background-color: #006e9c;
+}
+.news .cropper .editor .buttons #changeImage:hover {
+  background-color: #0092cf;
+}
+.news .cropper .editor .buttons #selectImage {
+  background-color: #679bc2;
+}
+.news .cropper .editor .buttons #selectImage:hover {
+  background-color: #8bb3d1;
 }
 .news form {
   padding: 10px 0px;
