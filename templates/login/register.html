@@ -8,12 +8,12 @@
 		<div class="row">
 			<div class="s1 c10">
 				<h2>{% trans "Registro" %}</h2>
-				<p>{% trans "Crea una cuenta de usuario en el sistema Labmmba" %}</p>
+				<p>{% trans "Crea una cuenta de usuario en el sistema LABMMBA" %}</p>
 				<form class="clear c12" action="{% url 'register' %}" method="POST">
 					{% csrf_token %}
                          <input type="hidden" name="access_token" value="{{ token }}">
 					<div class="row">
-                             <div class="c6"><input value="{{ user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electronico' %}" required readonly/></div>
+                             <div class="c6"><input value="{{ user.email }}" type="email" name="email" class="text" placeholder="{% trans 'Correo electrónico' %}" required readonly/></div>
                              <div class="c6"><input type="text" name="institution" class="text" placeholder="{% trans 'Institución' %}" required/></div>
                          </div>
                          <div class="row">
@@ -29,7 +29,7 @@
                          	<div class="c6"><input type="text" name="last_name" class="text" placeholder="{% trans 'Apellido' %}" required/></div>
                          	<div class="c6">
                          	<select name="area" required>
-     						<option selected disabled>{% trans "Selecciona un area" %}</option>
+     						<option selected disabled>{% trans "Selecciona un área" %}</option>
      						{% for area in areas %}
                                         <optgroup label="{{ area.name }}">
                                              {% for subarea in area.get_sub_areas %}

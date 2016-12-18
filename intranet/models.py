@@ -30,7 +30,7 @@ def get_metadata(stream):
 
 def strip_accents(str):
 	str = str.decode("cp1252")  # decode from cp1252 encoding instead of the implicit ascii encoding used by unicode()
-	str = unicodedata.normalize('NFKD', str).encode('ascii','ignore')
+	str = unicodedata.normalize('NFKD', str).encode('ascii', 'ignore')
 	return str
 
 def pdf_to_str(path):
@@ -111,7 +111,7 @@ class Document(models.Model):
 
 			# Se arregla el nombre de la imagen miniatura (solo si aplica)
 			if self.thumbnail:
-				new_filename= settings.THUMBNAILS_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.jpg'
+				new_filename = settings.THUMBNAILS_ROOT + 'U' + str(self.owner.id) + 'I' + str(self.id) + '.jpg'
 				os.rename(self.thumbnail.path, (new_filename))
 				self.thumbnail.name = new_filename
 
@@ -190,7 +190,7 @@ class Document(models.Model):
 
 			#Si es la fecha:
 			elif (field == self._meta.get_field('date')):
-				if word in unidecode(str(self.date)).lower():
+				if words in unidecode(str(self.date)).lower():
 					exact = True
 				for word in splitted_words:
 					if(not(word in unidecode(str(self.date)).lower())):
@@ -296,5 +296,5 @@ class Document(models.Model):
 
 @receiver(post_delete, sender=Document)
 def documetn_delete(sender, instance, **kwargs):
-    instance.document.delete(False)
-    instance.thumbnail.delete(False)
+	instance.document.delete(False)
+	instance.thumbnail.delete(False)

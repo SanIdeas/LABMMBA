@@ -8,11 +8,11 @@
 			<div class="c9">
 				<div class="c12 upload file field">
 					<div class="c3">
-						<strong>{% trans "Titulo" %}:</strong>
+						<strong>{% trans "Título" %}:</strong>
 					</div>
 					<div class="c9">
 						<div class="upload crossrefWrapper">
-							<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="{% trans 'Ej: Tesis de microbiologia' %}" autocomplete="off" required>
+							<input type="text" class="field text" value="$title" field-name="title" doc-index="$index" name="title$index" placeholder="{% trans 'Ej: Tesis de microbiología' %}" autocomplete="off" required>
 							<!-- crossref -->
 							<div class="upload crossref hidden" doc-index="$index">
 								<div class="upload records">
@@ -38,12 +38,12 @@
 						<strong>{% trans "Autor" %}:</strong>
 					</div>
 					<div class="c9">
-						<input type="text" class="field text" value="$author" name="author$index" placeholder="{% trans 'Ej: Juan Perez' %}" required>
+						<input type="text" class="field text" value="$author" name="author$index" placeholder="{% trans 'Ej: Juan Pérez' %}" required>
 					</div>
 				</div>
 				<div class="c12 upload file field">
 					<div class="c3">
-						<strong>{% trans "Fecha de creacion" %}:</strong>
+						<strong>{% trans "Fecha de creación" %}:</strong>
 					</div>
 					<div class="c9">
 						<input type="text" class="field text date" value="$date" placeholder="dd-mm-aaaa" name="date$index" required readonly>
@@ -76,11 +76,11 @@
 				</div>
 				<div class="c12 upload file field">
 					<div class="c3">
-						<strong>{% trans "Area" %}:</strong> 
+						<strong>{% trans "Área" %}:</strong>
 					</div>
 					<div class="c9">
 						<select name="category$index" class="field" required>
-							<option value="" disabled selected>{% trans "Selecciona una categoria" %}</option>
+							<option value="" disabled selected>{% trans "Selecciona una categoría" %}</option>
 							{% for area in areas %}
 								<optgroup label="{{ area.name }}">
 									{% for subarea in area.get_sub_areas %}

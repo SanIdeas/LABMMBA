@@ -20,6 +20,7 @@ class DocumentForm(forms.ModelForm):
 	doi = forms.CharField(required=False)
 	pages = forms.CharField(required=False)
 	is_public = forms.BooleanField(required=False)
+
 	class Meta:
 		model = Document
 		fields = '__all__'

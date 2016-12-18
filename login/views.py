@@ -49,7 +49,7 @@ def login(request):
 		print user
 		if user is not None:
 			if user.is_blocked:
-				message = {'type': 'error', 'content': 'El administrador ha bloqueado tu cuenta.'}
+				message = {'type': 'error', 'content': _(u'El administrador ha bloqueado tu cuenta.')}
 				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 			elif user.is_active:
 				user_ = authenticate(username=email, password=password)
@@ -62,16 +62,16 @@ def login(request):
 						return HttpResponseRedirect(reverse('intranet:home'))
 				else:
 					#Si el usuario no fue autenticado, se envia un mensaje de error
-					message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
+					message = {'type': 'error', 'content': _(u'Email o contraseña inválida.')}
 					return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 			else:
 				#Si el usuario no esta activo:
-				message = {'type': 'error', 'content': 'Ten paciencia. Debes ser aprobado por el administrador.'}
+				message = {'type': 'error', 'content': _(u'Ten paciencia. Debes ser aprobado por el administrador.')}
 				return render(request, 'login/login.html', {'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 
 		else:
 			#Si el usuario no existe
-			message = {'type': 'error', 'content': 'Email o contraseña invalida.'}
+			message = {'type': 'error', 'content': _(u'Email o contraseña inválida.')}
 			return render(request, 'login/login.html', {'message': message, 'email': request.POST['email'], 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
 
 
@@ -188,9 +188,9 @@ def change_password(request):
 				auth_login(request, authenticate_)
 				return JsonResponse({'error': False, 'message': _('Cambio exitoso')})
 			else:
-				return JsonResponse({'error': True, 'message': _(u'Hubo un problema. Asegurate de escribir correctamente tu contraseña actual.')})
+				return JsonResponse({'error': True, 'message': _(u'Hubo un problema. Asegúrate de escribir correctamente tu contraseña actual.')})
 		else:
-			return JsonResponse({'error': True, 'message': _('Metodo de envio incorrecto')})
+			return JsonResponse({'error': True, 'message': _(u'Metodo de envío incorrecto')})
 	else:
 		return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión')})
 

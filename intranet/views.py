@@ -161,8 +161,8 @@ def documents(request, search=None):
 		# Si es una busqueda
 		else:
 			documents = []
-			high_acc_result = [] # Resultados de alta presicion
-			low_acc_result = [] # Resultados de baja presicion
+			high_acc_result = [] # Resultados de alta precision
+			low_acc_result = [] # Resultados de baja precision
 
 			# Lista con los authores, años, dueños y categorias, y sus contadores.
 			authors = []
@@ -276,7 +276,7 @@ def upload(request):
 					document.pages = request.POST.get('pages' + id)
 					document.is_available = True
 					document.save()
-				return JsonResponse({'error': False, 'message':_('Actualizado con exito.')})
+				return JsonResponse({'error': False, 'message': _(u'Actualizado con éxito.')})
 
 			# Aqui se esta creando un documento desde los archivos locales del usuario
 			# user_side_ids son las ids de los archivos locales del usuario
@@ -287,12 +287,12 @@ def upload(request):
 					
 					# Si el tamaño supera los 30 mb, se muestra un mensaje de error
 					if request.FILES['document'+id].size/1000 > 30720:
-						return JsonResponse({'error': True, 'message':_('El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
+						return JsonResponse({'error': True, 'message': _(u'El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
 
 					# Si el documento ya existe, se muestra un mensaje de error
 					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
-						message = _('El documento <span style="text-transform: uppercase; font-size:14px"> %(title)s </span> del autor <span style="text-transform: uppercase; font-size:14px"> %(author)s </span> ya existe.') % {'title': request.POST['title'+id],'author': request.POST['author'+id]}
-						return JsonResponse({'error': True, 'message':message})
+						message = _(u'El documento <span style="text-transform: uppercase; font-size:14px"> %(title)s </span> del autor <span style="text-transform: uppercase; font-size:14px"> %(author)s </span> ya existe.') % {'title': request.POST['title'+id], 'author': request.POST['author'+id]}
+						return JsonResponse({'error': True, 'message': message})
 
 					# Se almacenan los datos
 					fields = {
@@ -314,12 +314,12 @@ def upload(request):
 					if form.is_valid():
 						form.save()
 					else:
-						return JsonResponse({'error': True, 'message':_('Ocurrio un problema: %(error)s') % {'error': str(form.errors)}})
-				return JsonResponse({'error': False, 'message':_('Subida exitosa'), 'local_ids': local_ids})
+						return JsonResponse({'error': True, 'message': _(u'Ocurrió un problema: %(error)s') % {'error': str(form.errors)}})
+				return JsonResponse({'error': False, 'message': _('Subida exitosa'), 'local_ids': local_ids})
 	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
-		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
+		return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión.')})
 
 def upload_local(request):
 	return render(request, 'intranet/upload_sections/local.html')
@@ -350,7 +350,7 @@ def extract_content_and_keywords(request):
 	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
-		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
+		return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión.')})
 
 def pdf_viewer(request, title=None, author=None, id=None):
 	try:
@@ -371,7 +371,7 @@ def pdf_viewer(request, title=None, author=None, id=None):
 			#Informacion por 'rb': http://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
 			with open(document.document.path, 'rb') as pdf:
 				response =  HttpResponse(pdf.read(), content_type='application/pdf')
-				response['Content-Disposition'] = 'inline;filename="some_file.pdf"'.replace('some_file',document.title)
+				response['Content-Disposition'] = 'inline;filename="some_file.pdf"'.replace('some_file', document.title)
 				response['Content-Length'] = os.stat(document.document.path).st_size
 				return response
 			pdf.close()
@@ -406,6 +406,8 @@ def document(request, title=None, author=None):
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
+
+
 def edit_document(request, id=None):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		try:
@@ -436,12 +438,11 @@ def edit_document(request, id=None):
 				document.delete()
 				return JsonResponse({'error': False})
 		else:
-			return HttpResponseRedirect(reverse('intranet:documens')) #Se redirecciona a Documentos.
+			return HttpResponseRedirect(reverse('intranet:documents')) #Se redirecciona a Documentos.
 	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
 	else:
 		return HttpResponseRedirect(reverse('login'))
-
 
 
 def search_helper(request, search=None):
@@ -454,11 +455,13 @@ def search_helper(request, search=None):
 	else:
 		return HttpResponseRedirect(reverse('login'))
 
+
 def news(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		return render(request, 'intranet/news.html', {'intranet': Section.objects.get(slug='intranet'), 'user_news': News.objects.filter(author=request.user).order_by('-date')})
 	else:
 		return HttpResponseRedirect(reverse('login'))
+
 
 def news_create(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
@@ -513,6 +516,7 @@ def news_edit(request, id):
 			return HttpResponseRedirect(reverse('admin:news'))
 		return HttpResponseRedirect(reverse('login'))
 
+
 def news_create_link(request):
 	if request.user.is_authenticated() and not request.user.is_admin:
 		if request.method == "GET":
@@ -531,6 +535,8 @@ def news_create_link(request):
 				return JsonResponse({'error': True, 'message': form.errors})	
 	else:
 		return HttpResponseRedirect(reverse('login'))
+
+
 def news_delete(request, id):
 	if request.user.is_authenticated():
 		news = News.objects.filter(id=id)

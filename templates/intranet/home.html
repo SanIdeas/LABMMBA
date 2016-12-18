@@ -9,7 +9,7 @@
         {% if last_five_documents|length > 0 %}
             <!-- Nueva linea -->
             <div class="intranet box">
-                <h4>Últimas publicaciones</h4>
+                <h4>{% trans 'Últimas publicaciones' %}</h4>
                 <div class="info">
                     <ul class="documents">
                     {% for doc in last_five_documents %}

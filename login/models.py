@@ -39,7 +39,7 @@ class UserManager(BaseUserManager):
 			last_name=last_name,
 			institution=institution,
 			country=country,
-			is_admin = is_admin,
+			is_admin=is_admin,
 			area=area,
 			career=career,
 		)
