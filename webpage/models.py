@@ -194,7 +194,7 @@ class News(models.Model):
 		self.save()
 		thumbnail = PILImage.open(self.thumbnail.path)
 		exif = thumbnail.info.get('exif', '')
-		thumbnail.save(self.thubmail.path, exif=exif, quality=70)
+		thumbnail.save(self.thumbnail.path, exif=exif, quality=70)
 		thumbnail.close()
 		return True
 

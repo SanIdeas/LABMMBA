@@ -8,7 +8,7 @@ from django.db import models
 from login.models import User, Area, SubArea
 from unidecode import unidecode
 from collections import Counter
-import os, re, operator, unicodedata, datetime
+import os, re, operator, unicodedata, datetime, time
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 # Herramientas PDF
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -127,10 +127,8 @@ class Document(models.Model):
 					self.words = meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None
 					self.date = year + '-' + month + '-' + day if '/CreationDate' in meta else '2000-01-01'
 				except:
-					self.title = 'Titulo temporal' + str(datetime.datetime.now())
-					self.abstract = meta['/Subject'] if  '/Subject' in meta else None
-					self.words = meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None
-					self.date = '2001-01-01'
+					self.title = 'Titulo temporal ' + str(datetime.datetime.now())
+					self.date = '2000-01-01'
 			# Si no es de Google Drive, se declara disponible inmediatamente, ya que el usuario ya comprobo los datos
 			else:
 				self.is_available = True
@@ -251,10 +249,13 @@ class Document(models.Model):
 	def dictionary(self):
 		dic = {}
 		for field in self._meta.fields:
-			if field.name not in ['owner', 'date_added', 'document', 'thumbnail']:
+			if field.name not in ['owner', 'date_added', 'document', 'thumbnail', 'date']:
 				dic[field.name] = getattr(self, field.name)
 			elif field.name == 'thumbnail':
 				dic[field.name] = self.thumbnail_filename()
+			elif field.name == 'date':
+				date = datetime.datetime.strptime(self.date, "%Y-%m-%d")
+				dic[field.name] = date.strftime('%d-%m-%Y')
 		return dic
 
 
