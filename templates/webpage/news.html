@@ -23,7 +23,7 @@
 
                     {% if news_.source_text %}
                         <div class="source">
-                            <p><strong>Fuente: </strong>
+                            <p><strong>{% trans 'Fuente:' %}</strong>
                             {% if news_.source_url %}
                                 <a href="{{news_.source_url}}">{{news_.source_text}}</a>
                             {% else %}
@@ -76,17 +76,17 @@
                             {% else %}
                                 <p>{% trans "Utiliza los comentarios para comunicarte con el administrador." %}</p>
                             {% endif %}
-                            <p><em>(*) Son datos necesario para enviar.</em></p>
+                            <p><em>{% trans '(*) Son datos necesario para enviar.' %}</em></p>
                             <form action="{% url 'webpage:new_news_comment' %}?redirect=news" class="clear" method="POST">
                                 <div class="c10 s2">
                                     <div class="row">
-                                        <div class="c12"><textarea class="text" name ="content" placeholder="* Comentario" required></textarea>
+                                        <div class="c12"><textarea class="text" name ="content" placeholder="{% trans '* Comentario' %}" required></textarea>
                                         {% if request.GET.error %}
-                                            <span class="error">Debes ingresar un comentario</span></div>
+                                            <span class="error">{% trans 'Debes ingresar un comentario' %}</span></div>
                                         {% endif %}
                                     </div>
                                     <div class="row">
-                                        <div class="c6 s6"><input type="submit" class="submit trans" value="Publicar comentario"/></div>
+                                        <div class="c6 s6"><input type="submit" class="submit trans" value="{% trans 'Publicar comentario' %}"/></div>
                                     </div>
                                 </div>
                                 {% csrf_token %}
@@ -98,7 +98,7 @@
     		</section>
 			<section id="sidebar" class="c4">
                 <div class="ultimas clear box">
-                    <h3>Noticias recientes</h3>
+                    <h3>{% trans 'Noticias recientes' %}</h3>
                     {% if recents %}
                         {% for recent in recents %}
                             {% if recent.is_external %}

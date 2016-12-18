@@ -19,11 +19,11 @@
         <div class="row">
             <section class="content eventos c8">
                 <div class="clear filter">
-                    <p><span>Eventos:</span> 
-                        <a href="{% url 'webpage:section' 'events' %}?day={{today|date:'d'}}&amp;month={{today|date:'m'}}&amp;year={{today|date:'Y'}}">De hoy</a>
-                        <a href="{% url 'webpage:section' 'events' %}?week=1">De esta semana</a>
-                        <a href="{% url 'webpage:section' 'events' %}?month={{today|date:'m'}}">De este mes</a>
-                        <a href="{% url 'webpage:section' 'events' %}">Ver todos</a>
+                    <p><span>{% trans 'Eventos:' %}</span>
+                        <a href="{% url 'webpage:section' 'events' %}?day={{today|date:'d'}}&amp;month={{today|date:'m'}}&amp;year={{today|date:'Y'}}">{% trans 'De hoy' %}</a>
+                        <a href="{% url 'webpage:section' 'events' %}?week=1">{% trans 'De esta semana' %}</a>
+                        <a href="{% url 'webpage:section' 'events' %}?month={{today|date:'m'}}">{% trans 'De este mes' %}</a>
+                        <a href="{% url 'webpage:section' 'events' %}">{% trans 'Ver todos' %}</a>
                     </p>
                 </div>
 
