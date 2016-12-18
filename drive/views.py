@@ -144,7 +144,7 @@ def get_credentials(request):
 			return HttpResponse('<h3> ' + _("Ya asociaste una cuenta") + '</h3> <script type="text/javascript">setTimeout(function(){window.close()}, 1000);</script>')
 	else:
 		# Si el usuario no inicio sesion, se le hace saber
-		response = {'error': True, 'message':'Debes iniciar sesion.'}
+		response = {'error': True, 'message': _(u'Debes iniciar sesión.')}
 		return JsonResponse(response)
 
 def deauthenticate(request, redirect):
@@ -163,7 +163,7 @@ def deauthenticate(request, redirect):
 			return HttpResponseRedirect(reverse('intranet:profile', kwargs={'user_id': request.user.id}))
 	else:
 		# Si el usuario no inicio sesion, se le redirecciona al login
-		return HttpResponseRedirect(reverse('login'));
+		return HttpResponseRedirect(reverse('login'))
 
 # Recibe las id de los archivos a descargar y retorna un diccionario con las id locales.
 # Ids locales: Ids asignadas por la base de datos
@@ -172,7 +172,7 @@ def download_drive_files(request, ids):
 		ids = ids.split('+')
 		response = {'error': False}
 		files = []
-		local_ids=[]
+		local_ids = []
 		service = get_drive_service(request)
 		for id in ids:
 			doc, local_id = get_file_and_thumbnail(request, service, id)
@@ -183,9 +183,9 @@ def download_drive_files(request, ids):
 		response['local_ids'] = local_ids
 		return JsonResponse(response)
 	except errors.HttpError, error:
-		return JsonResponse({'error': True, 'message':_('Hubo un problema al obtener los archivos desde Google Drive. Intentalo mas tarde.')})
+		return JsonResponse({'error': True, 'message': _(u'Hubo un problema al obtener los archivos desde Google Drive. Inténtalo más tarde.')})
 	else:
-		response = {'error': True, 'message':_('Debes iniciar sesion.')}
+		response = {'error': True, 'message': _(u'Debes iniciar sesión.')}
 		return JsonResponse(response)
 
 # Si no hubo problemas, retorna un diccionario con la id asignada por la base de datos
@@ -227,7 +227,7 @@ def get_file_and_thumbnail(request, service, id):
 		else:
 			doc = {}
 			doc['error'] = True
-			doc['message'] = _('No se pudo descargar el documento %(title)s debibo a un problema desconocido.') % {'title': file['title']}
+			doc['message'] = _(u'No se pudo descargar el documento %(title)s debido a un problema desconocido.') % {'title': file['title']}
 		return doc, local_id
 	return None
 
@@ -237,7 +237,7 @@ def link_parser(request, link=None):
 	if request.user.is_authenticated():
 		print "---------", request.user.credentials()
 		if not link:
-			return JsonResponse({'error': True, 'message':'Debes anadir un enlace de Google Drive a la solicitud.'})
+			return JsonResponse({'error': True, 'message': _('Debes anadir un enlace de Google Drive a la solicitud.')})
 
 
 		# Se intenta reconocer el enlace de Google Drive
@@ -251,7 +251,7 @@ def link_parser(request, link=None):
 
 		# Si no se pudo obtener la id del archivo o carpeta, se retorna el error
 		if not drive_id:
-			return JsonResponse({'error': True, 'message':'El link ingresado no es un enlace a Google Drive'})
+			return JsonResponse({'error': True, 'message': _('El link ingresado no es un enlace a Google Drive')})
 			
 
 		try:
@@ -260,7 +260,7 @@ def link_parser(request, link=None):
 			# Se obtiene acceso al servicio de Google Drive
 			service = get_drive_service(request)
 			if not service:
-				return JsonResponse({'error': True, 'message':_('Para continuar debes enlazar tu cuenta de Google Drive'), 'code': 'gglir'})
+				return JsonResponse({'error': True, 'message': _('Para continuar debes enlazar tu cuenta de Google Drive'), 'code': 'gglir'})
 
 			param={}
 			# Se definen los parametros que se quieren recibir
@@ -278,10 +278,10 @@ def link_parser(request, link=None):
 				# Si el archivo ya existe, se devuelve un error
 				if document:
 					name  = document.title if document.title else document.drive_id
-					return JsonResponse({'error': True, 'message':_('El documento <strong>' + name + '</strong> ya existe')})
+					return JsonResponse({'error': True, 'message': _(u'El documento <strong>' + name + '</strong> ya existe')})
 				# Si excede los 2 mb, se devuelve un error
 				if int(file['fileSize'])  > 2097152:
-					return JsonResponse({'error': True, 'message':_('El documento no puede tener un tamano superior a 2 Megabytes.')})
+					return JsonResponse({'error': True, 'message': _(u'El documento no puede tener un tamaño superior a 2 Megabytes.')})
 				response = {
 							'id': file['id'],
 							'name': file['title'],
@@ -297,7 +297,7 @@ def link_parser(request, link=None):
 				# Si es una carpeta, retorna el controlador folder_files
 				return folder_files(request, file['id'])
 			else:
-				return JsonResponse({'error': True, 'message':_('El link ingresado no contiene documentos compatibles')})  
+				return JsonResponse({'error': True, 'message': _('El link ingresado no contiene documentos compatibles')})
 
 
 			#response['files'][0] = {'name':file['title'], 'size': file['fileSize'], 'content-type': file['mimeType']}
@@ -310,12 +310,12 @@ def link_parser(request, link=None):
 			except:
 				get_error = None
 			if get_error != None:
-				response = {'error': True, 'message':_('No existen archivos compatibles en el enlace.')}
+				response = {'error': True, 'message': _('No existen archivos compatibles en el enlace.')}
 			else:
-				response = {'error': True, 'message':_('Error desconocido. Contacta al administrador.')}           
+				response = {'error': True, 'message': _('Error desconocido. Contacta al administrador.')}
 			return JsonResponse(response)
 	else:
-		response = {'error': True, 'message':_('Debes iniciar sesion.')}
+		response = {'error': True, 'message': _(u'Debes iniciar sesión.')}
 		return JsonResponse(response)
 
 
@@ -357,7 +357,7 @@ def folder_files(request, folder_id = None):
 			# Incluida la id de la carpeta raiz
 			userData = get_user_data(service)
 			folder_id = userData['folder_id']
-			title = _('Raiz')
+			title = _(u'Raíz')
 		else:
 			# Se comprueba que la id corresponde a una carpeta
 			param = {}
@@ -366,11 +366,11 @@ def folder_files(request, folder_id = None):
 			title = file['title']
 			if file['mimeType'] != 'application/vnd.google-apps.folder':
 				# Si la id no corresponde a una carpeta se retorna un error
-				return JsonResponse({'error': True, 'message':_('Debe ingresar la ID de una carpeta')})
+				return JsonResponse({'error': True, 'message': _('Debe ingresar la ID de una carpeta')})
 
 		# En este punto, ya tenemos la id de la carpeta
 		# Se obtiene los archivos de la carpeta, solo del tipo pdf y folder
 		files = children_list(folder_id, service, False)
 		return JsonResponse({'error': False, 'is_folder': True, 'title': title, 'id': folder_id, 'list': sorted(files, key = lambda k: int(k['isFolder']), reverse = True)})
 	else:
-		return JsonResponse({'error': True, 'message':_('Debes iniciar sesion.')})
+		return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión.')})

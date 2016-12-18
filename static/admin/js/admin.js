@@ -1350,6 +1350,30 @@ function events(){
 	 });
 	 }*/
 
+	$(document).ready(function(){
+		var hash = location.hash;
+		var target = $(hash);
+
+        if (target.length){
+            var targetOffset = target.offset().top - $('.intranet.body').offset().top;
+
+            $('html, .intranet.body').animate({
+                scrollTop: targetOffset
+            }, 300, function(){
+            	target.animate({
+            		backgroundColor: '#eeeeee'
+				}, 500, function(){
+            		$(this).animate({
+            			backgroundColor: '#fff'
+					}, 500);
+				});
+			});
+
+            location.hash = '';
+            return false;
+        }
+	});
+
     $('.setup-publish-news-box').click(function(){
         $.ajax({
             url: publish.replace('999', $(this).attr('news-id')),
