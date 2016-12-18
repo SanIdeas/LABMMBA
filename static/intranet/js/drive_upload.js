@@ -161,6 +161,7 @@ function sendLink(url){
 // Si se requieren la carpeta raiz del usuario, llamar a la funcion sin parametros: getFiles()
 function getFiles(folderId = "", bcId = (bCrumbsCount+1)){
 	showLoadingBar();
+	$('.myfiles.btn').off();
 	$.ajax({
 		url: folder_files_link.replace('999', folderId.trim()),
 		method: 'GET'

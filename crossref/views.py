@@ -23,7 +23,7 @@ def query(request, query=None):
 				title = None
 			if title:#Si existe titulo el documento se añade a la respuesta. De lo contrario se salta.
 				timestamp = time.gmtime(int(r['created']['timestamp'])/1000)
-				r['date'] = time.strftime('%Y-%m-%d', timestamp)
+				r['date'] = time.strftime('%d-%m-%Y', timestamp)
 				r['year'] = timestamp.tm_year
 				count  = count + 1
 				authors = getAuthors(r)

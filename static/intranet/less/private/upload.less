@@ -245,8 +245,10 @@
 			&:hover{
 				background-color: darken(@blue-color, 5%);
 			}
-
-			&.disabled{
+		}		
+		&[disabled]{
+			background-color: greyscale(lighten(@blue-color, 50%));
+			&:hover{
 				background-color: greyscale(lighten(@blue-color, 50%));
 			}
 		}
