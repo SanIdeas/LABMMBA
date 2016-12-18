@@ -42,7 +42,7 @@ function enableCrossref(){
 					crossref_busy = false;
 				}
 				else{
-					console.log($this.val());
+
 					crossref_query($this.val(), $this.attr('doc-index'));
 				}
 			}, 500);
@@ -85,7 +85,7 @@ function crossref_query(query, doc_id, open = true){
 			$('.crossref-row').click(function(e){
 				//Cuando se hace click sobre una sugerencia, se rellenan los datos
 				var index = $(this).closest('ul').attr('doc-index');
-				console.log('.field[name="title' + index + '"]');
+
 				$('.field[name="title' + index + '"]').val($(this).attr('title'));
 				$('.field[name="author' + index + '"]').val($(this).attr('author'));
 				$('.field[name="date' + index + '"]').val($(this).attr('date'));

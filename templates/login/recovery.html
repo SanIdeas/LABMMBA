@@ -1,0 +1,49 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+{% load i18n %}
+
+<section id="content" class="wfull">
+	<div class="grid">
+		<div class="row">
+			<div class="s3 c6">
+				<h2>{% trans "Recuperar contraseña" %}</h2>
+				<p>{% trans "Ingresa tu nueva contraseña" %}</p>
+				<form class="clear c12" action="{% url 'recover_password_callback' %}" method="POST">
+					{% csrf_token %}
+                    <input type="hidden" name="recovery_token" value="{{ token }}">
+                    <div class="row">
+                        <div class="c12"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}" required/></div>
+                    </div><div class="row">
+                        <div class="c12"><input type="password" name="check" class="text" placeholder="{% trans 'Ingresar nuevamente' %}" required/></div>
+                    </div>
+                    <div class="row">
+                        <div class="c12"><input type="submit" class="submit trans" value="{% trans 'Actualizar' %}"/></div>
+                        <span class="error"></span>
+                        {% if message %}
+                            {% if message.type == 'error' %}
+                                <span class="error">{{ message.content }}</span>
+                            {% elif message.type == 'success'  %}
+                                <span class="success">{{ message.content }}</span>
+                            {% endif %}
+						{% endif %}	
+                    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+    $('form').submit(function(e){
+        if($('input[name="password"]').val() != $('input[name="check"]').val()){
+            e.preventDefault();
+            if(current_lang == 'es')
+                $('span.error').html('Las contraseñas no coinciden.');
+            else
+                $('span.error').html(gettext('Las contraseñas no coinciden.'));
+            }
+        else
+            $('input[type="submit"]').attr('disabled', true); 
+    });
+</script>
+{% endblock %}

@@ -29,7 +29,7 @@ function convertDataURIToBinary(dataURI) {
 }
 
 function replaceValues(object){
-	console.log(object);
+
 	if(object['Author'].length > 0){
 		var input = $('#author');
 
@@ -130,7 +130,7 @@ function initial_drive_request(link){
 		xhr.open('GET', link, true);
 		xhr.onload =function(){
 			response = JSON.parse(xhr.responseText);
-			console.log(response);
+
 			if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
 				if (response['type'] == 'Folder')
 					create_drive_table(response);
@@ -150,15 +150,15 @@ function initial_drive_request(link){
 		};
 		xhr.onprogress = function(e) {
 		    if (e.lengthComputable) {
-		        console.log(e.total);
-		        console.log(e.loaded);
+
+
 		    }
 		};
 		xhr.onloadstart = function(e) {
-		    console.log(0);
+
 		};
 		xhr.onloadend = function(e) {
-		    console.log(e.loaded);
+
 		};
 		xhr.send();
 	}
@@ -184,7 +184,7 @@ function create_drive_table(response){
 		}
 
 		$('.main-checkbox').click(function(){
-			console.log(this.checked);
+
 			if (this.checked){
 				$('.checkbox').prop('checked', true);
 			}
@@ -218,7 +218,7 @@ function create_drive_document(response){
 	$('#document-size').text(formatSizeUnits(parseInt(file['fileSize'])));
 	$('#information-section').attr('document-id', file['id']);
 	$('#document-thumbnail').attr('src', file['thumbnailLink']);
-	console.log(file['thumbnailLink']);
+
 	alternator('#information-section', null);
 }
 
@@ -273,7 +273,7 @@ function alternator(id, message){
 
 function uploads_5000(){
 	for(var i = 0; i < 5000; i++){
-		console.log(i);
+
 		xhr = new XMLHttpRequest;
 		var form = new FormData($('#confirm-form')[0]);
 		form.append('title0', 'Genomic and Functional Analyses of the 2-Aminophenol Catabolic Pathway and Partial Conversion of Its Substrate into Picolinic Acid in Burkholderia xenovorans LB400' + i);
@@ -294,7 +294,7 @@ function drive_request_handler(){
 		}
 		else{
 			var form = new FormData($('#confirm-form')[0]);
-			console.log(Object.keys(files));
+
 			form.append('local_ids', Object.keys(files).join(','));
 			for(var id in files){
 				if (files.hasOwnProperty(id)){
@@ -310,7 +310,7 @@ function drive_request_handler(){
 				if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
 					alternator('#success-icon')
 					if(upload_method=='local') extract_content(response['real_ids']);
-					console.log(response);
+
 				}
 				else if ((response['error'])){
 					alternator('local-error', response['message'])
@@ -353,7 +353,7 @@ function drive_request_handler(){
 		xhr.onload =function(){
 			response = JSON.parse(xhr.responseText);
 			if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
-				console.log(response)
+
 				load_confirmation(response['files'])
 				extract_content(response['real_ids']);
 			}
@@ -576,16 +576,16 @@ function extract_content(ids){
 	xhr.open('POST', extract_link , true);
 	xhr.setRequestHeader("X-CSRFToken", csrf_token);
 	if (upload_method =="local"){
-		console.log('se envian ids:' + ids);
+
 		xhr.send(form);
 	}
 	else{
-		console.log('se envian ids de drive: ' + ids);
+
 		xhr.onload = function(){
 			var response = JSON.parse(xhr.responseText);
 			if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
 				abs = response['abstracts'];
-				console.log(abs);
+
 				for (var i=0; i < abs.length; i++){
 					var field = $('.abstract-field[name="abstract' + abs[i]['id'] + '"]');
 					field.prop('disabled', false).removeClass('loading-abs').val(abs[i]['abstract']);

@@ -233,24 +233,23 @@ def get_file_and_thumbnail(request, service, id):
 
 
 # Segunda llamada. Se analizan los enlaces y se obtiene el servicio
-def link_parser(request, link=None):
+def link_parser(request):
 	if request.user.is_authenticated():
 		print "---------", request.user.credentials()
-		if not link:
+		if not request.GET.get('url'):
 			return JsonResponse({'error': True, 'message': _('Debes anadir un enlace de Google Drive a la solicitud.')})
 
 
 		# Se intenta reconocer el enlace de Google Drive
-		drive_id = re.match('https:\/\/drive\.google\.com\/.*\?id=([^&]*)\&?', link)
+		drive_id = re.match('https:\/\/drive\.google\.com\/.*\?id=([^&]*)\&?', request.GET.get('url'))
 		if not drive_id:
-			drive_id = re.match('^https:\/\/drive\.google\.com\/file\/d\/(.*)\/view', link)
-
+			drive_id = re.match('^https:\/\/drive\.google\.com\/file\/d\/(.*)\/view', request.GET.get('url'))
+		if not drive_id:
+			drive_id = re.match('^https:\/\/drive\.google\.com\/drive\/folders\/(.*)\?usp=.*', request.GET.get('url'))
 		if drive_id:
 			drive_id = drive_id.groups()[0]
-		print drive_id
-
 		# Si no se pudo obtener la id del archivo o carpeta, se retorna el error
-		if not drive_id:
+		else:
 			return JsonResponse({'error': True, 'message': _('El link ingresado no es un enlace a Google Drive')})
 			
 

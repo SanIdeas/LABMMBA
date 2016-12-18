@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- ¡IMPORTANTE IMPORTANTE IMPORTANTE IMPORTANTE IMPORTANTE IMPORTANTE IMPORTANTE!  -->
+<!-- Cambiar url de las imagenes cuando se tenga un dominio propio -->
+<html>
+<head>
+	<title>Invitación</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<meta charset=“utf-8”>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<style>
+		@media screen and (max-width:700px){
+			p,a {
+				font-size: 8pt;
+			}
+		}
+	</style>
+</head>
+<body style="font-family: 'Open Sans', sans-serif; color:#777;">
+	<div style="background-color: rgba(248, 249, 250, 0.37);border: 2px solid #f2f3f5;border-radius: 8px;overflow:hidden; max-width:800px;margin:0 auto;">
+		<img src="$header" style="width: 100%; position:relative">
+		<div style="padding:20px;">
+			<p>Estimado/a $user :</p>
+			<p>Recientemente solicitaste restablecer la contraseña de tu cuenta. Sigue el enlace de más abajo para completar el proceso de recuperación.</p>
+			<a href="http://$redirect/login/password/recover/callback/$token" style="max-width: 500px;text-align:center;margin: 0 auto;display:block;color: white;border-radius: 5px;padding: 12px;background-color: #009065;text-decoration: none;border-bottom: 6px solid #026c4c;cursor:pointer;">Recuperar contraseña</a>
+			<p style="margin-bottom:0px;">Atentamente:</p>
+			<p style="margin:0px;">El Laboratorio de Microbiología Molecular y Biotecnología Ambiental</p>
+		</div>
+		<div style="background-color:#f2f3f5;padding:20px;">
+			<img src="$footer" style="width:200px;opacity:0.2;margin:0 auto;display:block;">
+		</div>
+	</div>
+</body>
+</html>

@@ -53,6 +53,7 @@ form .text:focus {background: none;}
 form textarea {height: 100px;}
 form .c6, form .c12 {padding: 5px; margin-bottom: 0;}
 form span.error {font-size: 12px; font-style: italic; color: #ee5b55; display: block; padding: 5px 5px 0 5px;}
+form span.success {font-size: 12px; font-style: italic; color: #fbaf26; display: block; padding: 5px 5px 0 5px;}
 form .submit {border: 0; padding: 15px; color: #fff; background: #336090; text-align: center; width: 100%;}
 form .submit.publication {width: 16.66%; padding: 11px; float: right;}
 form .submit:hover {background: #5ca8cb;}
@@ -397,3 +398,10 @@ div.modal {padding: 20px; /*max-width: 700px;*/}
 @media screen and (max-width: 500px) {
 	.responsive-gallery ul li, .responsive-gallery ul li a {width: 100% !important;}
 }
+
+
+/* recents news */
+.ultimas .wrapper {display: block; padding: 20px; background: #f5f5f5; margin-bottom: 1px;}
+.ultimas .wrapper .placeholder {background: #d6dee8; height: 15px}
+.ultimas .wrapper .placeholder:first-child {width: 100%; margin-bottom: 5px;}
+.ultimas .wrapper .placeholder:last-child {width: 70%;}

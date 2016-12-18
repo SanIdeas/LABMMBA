@@ -3,27 +3,34 @@
 {% load tags %}
 {% get_current_language as lang %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" itemscope itemtype="http://schema.org/Article">
 <head>
-	<title>{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
 	
 	<!-- Meta tags -->
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-	<meta name="author" content="Ilógica - www.ilogica.cl"/>
+
+	<!-- SEO -->
+
+	<title>{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
 	<meta name="title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
-	<meta name="description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María."/>
 	<meta property="og:title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
-	<meta property="og:description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María."/>
-	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="www.labmmba.utfsm.cl"/>
-	<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}"/>
+	<meta name="twitter:title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María">
 	<meta property="og:site_name" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
+	{% block meta %}
+	<meta name="description" content="{% trans 'El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional.' %}" />
+	<meta name="author" content="Labmmba"/>
+	<meta name="description" content="{% trans 'El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional.' %}"/>
+	<meta property="og:description" content="{% trans 'El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional.' %}"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="http://www.labmmba.usm.cl"//>
+	<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}"/>
+	
+	<meta name="twitter:description" content="{% trans 'El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional.' %}">
+	{% endblock %}
 	<meta property="og:locale" content="es_ES"/>
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María">
-	<meta name="twitter:description" content="Laboratorio del Departamento de Química de la Universidad Técnica Federico Santa María.">
 	<meta name="twitter:image:src" content="">
 	<meta name="twitter:domain" content="s">
 	<meta name="apple-mobile-web-app-title" content="USM"/>
@@ -37,6 +44,8 @@
 	<link rel="apple-touch-icon" href="{% static 'usm_theme/img/icon/ilogica-icon.png' %}"/>
 
 	<!-- Javascript -->
+	<script>var current_lang = "{{lang}}"</script>
+	<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 	<script src="{% static 'usm_theme/js/jquery.js' %}"></script>
 	<script src="{% static 'usm_theme/js/jquery-ui.min.js' %}"></script>
 	<script src="{% static 'usm_theme/js/functions.js' %}"></script>
@@ -138,7 +147,7 @@
 				</ul>
 			</div>
 			<div class="c12 text">
-				<p>© Universidad Técnica Federico Santa María <br/>Avenida España 1680, Valparaíso · +56 32 2654 000 · <a href="mailto:info@usm.cl">info@usm.cl</a></p>
+				<p>© Universidad Técnica Federico Santa María <br/>Avenida España 1680, Valparaíso · +56 32 2654 000 · <a href="mailto:labmmba@usm.cl">labmmba@usm.cl</a></p>
 				<p>Sitio web desarrollado por <a href="mailto:alex.balladares.13@sansano.usm.cl">Alex Balladares Rojas</a> · <a href="mailto:hernan.herreros.13@sansano.usm.cl">Hernán Herreros Niño</a> · <a href="mailto:ricardo.gamboa.12@sansano.usm.cl">Ricardo Gamboa Arias</a>.</p>
 			</div>
 		</div>

@@ -12,19 +12,24 @@
 				<form class="clear c12" action="{% url 'login' %}" method="POST">
 					{% csrf_token %}
                     <div class="row">
-                        <div class="c12"><input type="email" name="email" class="text" value="{{ email }}" placeholder="{% trans 'Correo electrónico' %}"/></div>
-                        <span class="error"> </span>
+                        <div class="c12"><input type="email" name="email" class="text" value="{{ email }}" placeholder="{% trans 'Correo electrónico' %}" required/></div>
                     </div>
                     <div class="row">
-                        <div class="c12"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}"/></div>
+                        <div class="c12"><input type="password" name="password" class="text" placeholder="{% trans 'Contraseña' %}" required /></div>
                     </div>
                     <div class="row">
-                        <div class="c12"><input type="submit" class="submit trans" value="Enviar"/></div>
+                        <div class="c12"><input type="submit" class="submit trans" value="{% trans 'Enviar' %}"/></div>
                         {% if message %}
 							<span class="error">{{ message.content }}</span>
 						{% endif %}	
                     </div>
                 </form>
+                <span>
+                	{% url 'recover_password' as url %}
+	                {% blocktrans with url=url %}
+	                	¿Has olvidado tu contraseña? Haz <a href="{{url}}">click aquí</a>
+	                {% endblocktrans %}
+                </span>
 			</div>
 		</div>
 	</div>

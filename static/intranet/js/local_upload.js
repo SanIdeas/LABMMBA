@@ -90,12 +90,12 @@ function getMeta(key_count, file){
 		        addDocument(key_count, file.name, stuff['info']);
 
 		    }).catch(function(err) {
-		       console.log('Error getting meta data');
-		       console.log(err);
+
+
 		    });
 		}).catch(function(err) {
-		    console.log('Error getting PDF from ' + url);
-		    console.log(err);
+
+
 		});
 	}, false);
 
@@ -131,7 +131,7 @@ function addDocument(key_count, filename, object){
 	$('.upload.delete').click(function(e){
 		e.preventDefault();
 		hideElement('.file[doc-index="' + $(this).attr('doc-index') + '"]', true);
-		console.log('.file[doc-index="' + $(this).attr('doc-index') + '"]');
+
 		delete files[$(this).attr('doc-index')];
 		checkFilesSize();
 	});
@@ -156,7 +156,7 @@ function checkFilesSize(){
 function sendDocuments(){
 	$('.upload.button.send, .upload.button.add').prop('disabled', true);	
 	var form = new FormData($('#form')[0]);
-	console.log(Object.keys(files));
+
 
 	// Se almacenan las id
 	form.append('user_side_ids', Object.keys(files).join(','));
@@ -186,7 +186,7 @@ function sendDocuments(){
 			processData: false,
 			contentType: false
 		}).done(function(response){
-			console.log(response['error']);
+
 			if(!response['error']) {
 				hideElement(".cssload-loader-wrapper", true);
 				addElement("#success-icon");
@@ -216,7 +216,7 @@ function checkEmptyFields(){
 			if(!scroll){
 				scrollTo($(field));
 				scroll=true;
-				console.log('scroll', scroll);
+
 			}
 			$(field).on('input', function(){
 				if($(this).hasClass('required'))

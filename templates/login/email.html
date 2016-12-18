@@ -1,0 +1,38 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+{% load i18n %}
+
+<section id="content" class="wfull">
+	<div class="grid">
+		<div class="row">
+			<div class="s3 c6">
+				<h2>{% trans "Recuperar contraseña" %}</h2>
+				<p>{% trans "Ingresa tu correo electrónico. Recibirás un email para restablecer tu contraseña" %}</p>
+				<form class="clear c12" action="{% url 'recover_password' %}" method="POST">
+					{% csrf_token %}
+                    <div class="row">
+                        <div class="c12"><input type="email" name="email" class="text" value="{{ email }}" placeholder="{% trans 'Correo electrónico' %}" required/></div>
+                        <span class="error"> </span>
+                    </div>
+                    <div class="row">
+                        <div class="c12"><input type="submit" class="submit trans" value="{% trans 'Recuperar' %}"/></div>
+                        {% if message %}
+                            {% if message.type == 'error' %}
+                                <span class="error">{{ message.content }}</span>
+                            {% elif message.type == 'success'  %}
+                                <span class="success">{{ message.content }}</span>
+                            {% endif %}
+						{% endif %}	
+                    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+    $('form').submit(function(e){
+        $('input[type="submit"]').attr('disabled', true);  
+    });
+</script>
+{% endblock %}

@@ -4,7 +4,7 @@ $('.news form').submit(function(e){
 });
 function sendData(url, redirect_to){
 	blockFormAndShowLoading();
-	console.log('asd');
+
 	var formElement = $('.news form')[0];
 	var formStatus = formElement.checkValidity();
 	if(!formStatus){
@@ -41,7 +41,7 @@ function sendData(url, redirect_to){
 				window.location.href = news_url;
 		}
 		else{
-			console.log('response', response);
+
 			showError();
 			unlockFormAndHideLoading();
 		}

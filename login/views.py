@@ -10,7 +10,9 @@ import os, datetime, base64, json, requests
 from intranet.models import Document
 from django_countries import countries
 from django.utils.translation import ugettext as _
-
+from django.core.mail import get_connection, EmailMultiAlternatives
+from django.conf import settings
+from django.utils.crypto import get_random_string
 
 # Create your views here.
 
@@ -194,3 +196,103 @@ def change_password(request):
 	else:
 		return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión')})
 
+def recover_password(request):
+	if not request.user.is_authenticated():
+		exclude = ['intranet', 'administrator']
+
+		section = Section()
+		section.spanish_name = 'Ingresar'
+		section.english_name = 'Login'
+		section.slug = 'login'
+
+		sections = Section.objects.all()
+		if request.method == "GET":
+			return render(request, 'login/email.html', {'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
+		else:
+			print request.POST.get('email')
+			user = User.objects.filter(email=request.POST.get('email'))
+			if user:
+				user = user[0]
+				if not send_email(user):
+					message = {'type': 'success', 'content': _(u'Enviado con éxito. Revisa tu bandeja de entrada')}
+					return render(request, 'login/email.html', {'message': message,'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
+				else:
+					message = {'type': 'error', 'content': _(u'Hubo un error inesperado. Inténtalo más tarde.')}
+					return render(request, 'login/email.html', {'email': request.POST.get('email'), 'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})	
+			else:
+				message = {'type': 'error', 'content': _(u'El correo electrónico no es válido')}
+				return render(request, 'login/email.html', {'email': request.POST.get('email'), 'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
+	else:
+		return HttpResponseRedirect(reverse('webpage:home'))
+
+def recover_password_callback(request, token=None):
+	if not request.user.is_authenticated():
+		exclude = ['intranet', 'administrator']
+
+		section = Section()
+		section.spanish_name = 'Ingresar'
+		section.english_name = 'Login'
+		section.slug = 'login'
+
+		sections = Section.objects.all()
+
+		if request.method == "GET":
+			if not token:
+				return HttpResponseRedirect(reverse('recover_password'))
+			user = User.objects.filter(recovery_token=token)
+			if user:
+				return render(request, 'login/recovery.html', {'token': token, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
+			else:
+				return HttpResponseRedirect(reverse('recover_password'))
+		else:
+			if request.POST.get('recovery_token') is not None:
+				user = User.objects.filter(recovery_token=request.POST.get('recovery_token'))
+				print '---  ', user
+				if user:
+					user = user[0]
+					user.set_password(request.POST.get('password'))
+					user.recovery_token = None
+					user.save()
+					return HttpResponseRedirect(reverse('login'))
+			
+			message = {'type': 'error', 'content': _(u'Token no valido')}
+			return render(request, 'login/recovery.html', {'token': token, 'message': message, 'current_view': section, 'current_section': section, 'sections': sections.exclude(slug__in=exclude)})
+	else:
+		return HttpResponseRedirect(reverse('webpage:home'))
+
+# Retorna False si no hay errores
+def send_email(user):
+	error = False
+
+	from_email = "LABMMBA <dev.sanideas@gmail.com>"
+	subject = "[Contraseña] Recuperación de contraseña"
+	text = "..."
+
+	# Se utilizan las configuraciones SMTP de settings.py
+	connection = get_connection()
+	connection.open()
+
+	# Se lee la plantilla de correos electronicos
+	body = open(settings.MEDIA_ROOT + "/static/email_template/recovery_template.html", 'r')
+	html = body.read().decode('UTF-8')
+	body.close()
+	token = ""
+	while True: #Crea tokens hasta que no se repitan en la base de datos
+		token = get_random_string(length=128)
+		try:
+			User.objects.get(access_token=token)
+		except Exception:
+			break
+
+	message = EmailMultiAlternatives(subject, text, from_email, [user.email])
+	message.attach_alternative(html.replace('$token', token).replace('$user', user.first_name + ' ' + user.last_name).replace('$redirect', settings.EMAIL_REDIRECT_URL).replace('$header', settings.EMAIL_HEADER_URL).replace('$footer', settings.EMAIL_FOOTER_URL), 'text/html')
+
+	try:
+		message.send()		
+		# Actualiza el token de recuperacion
+		user.recovery_token = token
+		user.save()
+	except Exception:
+		error = True
+	connection.close()
+	return error

@@ -9,7 +9,7 @@ function helper(query){
 	xhr.open('GET', helper_link.replace('999', query), true);
 	xhr.onload =function(){
 		response = JSON.parse(xhr.responseText);
-		console.log(response);
+
 		if (xhr.readyState == 4 && xhr.status == 200 && !response['error']) {
 			var list = response['list'];
 			$('.helper-row').remove();

@@ -2,8 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^parser$', views.link_parser),
-    url(r'^parser/(?P<link>.*)/$', views.link_parser, name="link_parser"),
+    url(r'^parser/$', views.link_parser, name="link_parser"),
     url(r'^folder/$', views.folder_files, name="folder_files"),
     url(r'^folder/(?P<folder_id>.*)/$', views.folder_files, name="folder_files"),
     url(r'^oauth2callback/$', views.oauth2callback, name="oauth2callback"),

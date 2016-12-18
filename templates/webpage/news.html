@@ -1,6 +1,16 @@
 {% extends 'shared/base.html' %}
 {% load staticfiles %}
 {% load i18n %}
+{% block meta %}
+    <meta name="description" content="{{news_.get_extract}}" />
+    <meta name="author" content="Labmmba"/>
+    <meta name="description" content="{{news_.get_extract}}"/>
+    <meta property="og:description" content="{{news_.get_extract}}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://www.labmmba.usm.cl"//>
+    <meta property="og:image" content="{% static left.thumbnail_url %}"/>
+    <meta name="twitter:description" content="{{news_.get_extract}}">
+{% endblock %}
 {% block content %}
 <section id="content" class="wfull">
     <div id="title">

@@ -63,7 +63,7 @@ $('.drive.form').submit(function(){
 //Envia la solicitud con en enlace a Google Drive
 $('.link').change(function(){
 	if($(this).val() != ""){
-		sendLink(link_parser_link.replace('999', encodeURIComponent($(this).val())));
+		sendLink(link_parser_link + '?url=' + encodeURIComponent($(this).val()));
 	}
 	//window.open("{% url 'link_parser' '999' %}".replace('999', encodeURIComponent($(this).val())), '_blank');
 });
@@ -103,7 +103,7 @@ function sendLink(url){
 		method: 'GET'
 	}).done(function(response){
 		hideLoadingBar();
-		console.log(response);
+
 		if(!response['error']){
 			$('.message').html("");
 
@@ -166,7 +166,7 @@ function getFiles(folderId = "", bcId = (bCrumbsCount+1)){
 		url: folder_files_link.replace('999', folderId.trim()),
 		method: 'GET'
 	}).done(function(response){
-		console.log(response);
+
 		if(!response['error']){
 			// Se llama a la funcion filesHandler para mostrar la lista al usuario
 			filesHandler(response, bcId);
@@ -254,15 +254,15 @@ function filesHandler(object, bcId){
 	hideLoadingBar();
 	// Mientras el boton + siga vivo:
 	if($('.myfiles.btn').length > 0){
-		console.log(" .myfiles.btn > 0");
+
 		// Se hace desaparecer el boton con una animacion
 		$('.myfiles.btn').animate({
 			opacity: '0'
 		}, 200, function(){
 			// Una vez terminada la animacion se elimina el boton y se expande el cuadro
-			console.log("remove plus");
+
 			$(this).remove();
-			console.log("remove hidden");
+
 			$('.drive.body').removeClass('hidden');
 			adjustBoxHeight();
 		});
@@ -270,7 +270,7 @@ function filesHandler(object, bcId){
 	else{
 		// Si el boton + no existe
 		// Se expande el cuadro
-		console.log("remove hidden");
+
 		$('.drive.body').removeClass('hidden');
 		adjustBoxHeight();
 	}
@@ -318,7 +318,7 @@ function addBreadCrumb(folderId, name){
 		left: '0px',
 		opacity: '1'
 	},200);
-	console.log("add bc");
+
 }
 
 // Remueve todas las migas de pan que posean una id superior al parametro 'id' de la funcion
@@ -379,7 +379,7 @@ function removeFromSelected(id){
 }
 
 function adjustBoxHeight(plus=0){
-	console.log("ajustar");
+
 	// Se ajusta el alto del cuadro
 	$('.myfiles').animate({
 		height: ($('.drive.body').height() + plus).toString() + 'px'
@@ -424,7 +424,7 @@ function sendIds(){
 	}).error(function(xhr, status, error){
 		showError();
 	});
-	console.log("Drive ids: " + ids);
+
 }
 
 // Solicita la extraccion del contenido y el resumen del texto explicitamente
@@ -443,8 +443,8 @@ function extract_content(){
 	}).done(function(response){
 		if(!response['error']){
 			abs = response['abstracts'];
-			console.log("Resumenes:");
-			console.log(abs);
+
+
 			for (var i=0; i < abs.length; i++){
 				var field = $('textarea[name="abstract' + abs[i]['id'] + '"]');
 				field.prop('disabled', false).val(abs[i]['abstract']);
@@ -466,7 +466,7 @@ function sendCompleteInfo(){
 	var form = new FormData($('#form')[0]);
 	form.append('id', local_ids);
 	var form_status = $('#form')[0].checkValidity();
-	console.log(form_status);
+
 
 	//Si no esta completo el formulario, se resaltan los campos faltantes
 	if(!form_status)
@@ -479,7 +479,7 @@ function sendCompleteInfo(){
 			processData: false,
 			contentType: false,
 		}).done(function(response){
-			console.log(response);
+
 			hideElement('.upload.section', true);
 			addElement("#success-icon");
 			setTimeout(function(){window.location.href = upload_link;}, 1000);
@@ -492,7 +492,7 @@ function sendCompleteInfo(){
 /***********************************************/
 
 function handleDocuments(documents){
-	console.log(documents);
+
 	for(var i = 0; i < documents.length; i++){
 		addDocument(documents[i]);
 	}
@@ -539,7 +539,7 @@ function checkEmptyFields(){
 			if(!scroll){
 				scrollTo($(field));
 				scroll=true;
-				console.log('scroll', scroll);
+
 			}
 			$(field).on('input', function(){
 				if($(this).hasClass('required'))

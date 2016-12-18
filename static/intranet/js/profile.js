@@ -7,25 +7,15 @@ $.extend(jQuery.easing,{outcubic:function(x,t,b,c,d){
 // Obtiene la url del archivo ingresado por el input
 function readURL(input) {
     if (input.files && input.files[0]) {
-     	options = {
-            canvas: true
-        };
-	    loadImage.parseMetaData(input.files[0], function(data){
-	        if (data.exif){
-	            options.orientation = data.exif.get('Orientation');
-	        }
-	        loadImage(
-	            input.files[0],
-	            function(canvas){
-	                var imgDataURL = canvas.toDataURL();
-	                $('#imageCropper').attr('src', imgDataURL);
-					resetCrop();
-	            },
-	            options
-	        );
-	    });
-    }
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+            $('#imageCropper').attr('src', e.target.result);
+			resetCrop();
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 // Activa el editor de imagen
@@ -36,34 +26,13 @@ function enableCrop(){
 		aspectRatio: 1 / 1,
 		viewMode: 1,
 		background: false,
-		build: function(e){
-			var $clone = $(this).clone();
-			$clone.attr('id', '');
-			preview.html($clone);
-			$.fancybox.hideLoading();
-
-		},
-		crop: function(e) {
-			var imageData = $(this).cropper('getImageData');
-            var previewAspectRatio = e.width / e.height;
-
-			var previewWidth = preview.width();
-			var previewHeight = previewWidth / previewAspectRatio;
-			var imageScaledRatio = e.width / previewWidth;
-
-			preview.find('img').height(previewHeight).css({
-				width: imageData.naturalWidth / imageScaledRatio,
-				height: imageData.naturalHeight / imageScaledRatio,
-				marginLeft: -e.x / imageScaledRatio,
-				marginTop: -e.y / imageScaledRatio
-			});	
-		}
 	});
 }
 
 function resetCrop(){
 	$('#imageCropper').cropper('destroy');
 	enableCrop();
+	$.fancybox.hideLoading();
 }
 
 // Envia la nueva foto de perfil
@@ -280,7 +249,7 @@ $('#pictureField').change(function(){
 	if (!this.files[0].name.match(/\.(jpg|jpeg|png|gif)$/i))
     	alert('Debes seleccionar una imagen');
 	else if(this.files.length > 0){
-		console.log("asd");
+
 		$.fancybox.showLoading();
 		$('#selectImage').animate({
 			top: '-20px',
@@ -295,7 +264,7 @@ $('#pictureField').change(function(){
 			opacity: 1
 		}, 200);
 		
-		console.log("asd2");
+
 		readURL(this);
 	}
 });

@@ -18,14 +18,14 @@ $(document).ready(function(){
 $('.selectThumbnail').click(function(){
 	if(!busy){
 		is_thumbnail = true;
-		console.log('is_thumbnail', is_thumbnail);
+
 		$('#pictureField').click();
 	}
 });
 $('.selectHeader').click(function(){
 	if(!busy){
 		is_thumbnail = false;
-		console.log('is_thumbnail', is_thumbnail);
+
 		$('#pictureField').click();
 	}
 });		

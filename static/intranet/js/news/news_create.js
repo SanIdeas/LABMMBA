@@ -22,7 +22,7 @@ function checkFields() {
 	var changed = true;
 	var formElement = $('.news form')[0];
 	var formStatus = formElement.checkValidity();
-	console.log('formStatus', formStatus);
+
 	if(!formStatus){
 		changed = false;
 	}
