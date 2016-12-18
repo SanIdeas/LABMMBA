@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load staticfiles %}
 <div class="title" >
-    <form id="add-member-form" class="title-form">
+    <form id="add-member-form" class="title-form" onkeypress="return event.keyCode != 13;">
        {% csrf_token %}
         <input id="add-member-name" type="text" name="member_name" class="text search field" placeholder="{% trans 'Agregar integrante' %}"/>
         <input id="add-member-submit" type="button" href="#data" onclick="create();" class="submit trans search send" value="{% trans 'Agregar' %}"/>
