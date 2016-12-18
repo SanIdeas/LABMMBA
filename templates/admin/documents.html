@@ -7,8 +7,8 @@
 
 <div class="title">
   <form id="search" url="{% url 'admin:admin_search' 999 %}" class="title-form">
-    <input type="text" class="text search field" id="searchPhrase" placeholder="Ingresa aquí tu búsqueda"> 
-    <input class="submit trans search send" type="submit" value="Buscar">
+    <input type="text" class="text search field" id="searchPhrase" placeholder="{% trans 'Ingresa aquí tu búsqueda' %}">
+    <input class="submit trans search send" type="submit" value="{% trans 'Buscar' %}">
   </form>
 </div>
 
@@ -20,7 +20,7 @@
 		{% if not documents %}
 		<div class="c12">
 			<h1 class="documents message">{% trans "No hemos encontrado documentos" %}</h1>
-			<h5 class="documents description">{% trans "Asegurate de haber subido algún documento. Nuestra base de datos esta vacía" %}</h5>
+			<h5 class="documents description">{% trans "Asegúrate de haber subido algún documento. Nuestra base de datos está vacía" %}</h5>
 		</div>
 		{% else %}
 			{% if not keyword %}
@@ -100,8 +100,8 @@
 		<script>$('#searchPhrase').val('{{search}}');</script>
 		{% if not documents %}
 			<div class="c12">
-				<h1 class="documents message">{% trans "No encontramos resultados para tu busqueda" %}</h1>
-				<h5 class="documents description">{% trans "Asegurate de haber escrito correctamente el autor y/o titulo" %}</h5>
+				<h1 class="documents message">{% trans "No encontramos resultados para tu búsqueda" %}</h1>
+				<h5 class="documents description">{% trans "Asegúrate de haber escrito correctamente el autor y/o título" %}</h5>
 			</div>
 		{% else %}
 			<div class="c12">
@@ -216,12 +216,12 @@
 				{% endfor %}
 				<script>
 						var search = '{{ search }}'.split(' ');
-						console.log(search)
+						console.log(search);
 						$('.text-result').each(function(){
 							for ( var i = 0; i< search.length; i++){
 								var html = $(this).html();
-								console.log(search[i])
-								var re = new RegExp('^' + search[i] + '|' + search[i], 'gi')
+								console.log(search[i]);
+								var re = new RegExp('^' + search[i] + '|' + search[i], 'gi');
 								$(this).html(html.replace(re, '<span class="documents mark">' + '$&'.replace(' ', '') + '</span>'));
 							}
 						});

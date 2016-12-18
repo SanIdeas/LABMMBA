@@ -385,7 +385,7 @@
     "pk": 2,
     "fields": {
       "spanish_name": "Investigación",
-      "english_name": "Investigation",
+      "english_name": "Research",
       "image": "static/webpage/images/sections/thumbnail/CI2.jpg",
       "section": 4
     }
@@ -482,7 +482,7 @@
     "pk": 5,
     "fields": {
       "spanish_name": "Áreas de Investigación",
-      "english_name": "Investigation Areas",
+      "english_name": "Research Areas",
       "slug": "areas",
       "spanish_title": "<h1 class='c12'>Áreas de Investigación</h1>",
       "spanish_body": "<ol> <li><strong>Biorremediaci&oacute;n bacteriana de ambientes contaminados</strong></li> </ol> <ul> <li>Biorremediaci&oacute;n de policlorobifenilos.</li> <li>Biorremediaci&oacute;n de pesticidas.</li> <li>Biorremediaci&oacute;n de hidrocarburos.</li> <li>Biorremediaci&oacute;n de metales pesados.</li> <li>Monitoreo de contaminantes org&aacute;nicos persistentes.</li> </ul> <ol start='2'> <li><strong>Gen&oacute;mica Funcional de bacterias para su reconstrucci&oacute;n metab&oacute;lica y fisiol&oacute;gica</strong></li> </ol> <ul> <li>Reconstrucci&oacute;n del metabolismo de bacterias a partir de sus genomas.</li> <li>Funcionalidad de rutas catab&oacute;licas de compuestos arom&aacute;ticos.</li> <li>Funcionalidad de rutas anab&oacute;licas de compuestos arom&aacute;ticos.</li> <li>Respuesta molecular de bacterias frente a compuestos org&aacute;nicos y a cambios en su entorno.</li> <li>Estr&eacute;s oxidativo.</li> </ul> <ol start='3'> <li><strong>S&iacute;ntesis microbiana y caracterizaci&oacute;n de biopol&iacute;meros </strong></li> </ol> <ul> <li>S&iacute;ntesis bacteriana de biopol&iacute;meros como polihidroxialcanoatos.</li> <li>Caracterizaci&oacute;n de biopol&iacute;meros y sus aplicaciones.</li> </ul> <ol start='4'> <li><strong> Prospecci&oacute;n de compuestos bioactivos de microorganismos, plantas y animales</strong></li> </ol> <ul> <li>Aislamiento y caracterizaci&oacute;n de Actinobacterias.</li> <li>S&iacute;ntesis de compuestos bioactivos tipo PKS y NRPS por bacterias ambientales.</li> <li>Biotransformaciones de compuestos arom&aacute;ticos mediante enzimas microbianas.</li> <li>Generaci&oacute;n de nuevas mol&eacute;culas antioxidantes mediante biotransformaciones.</li> <li>Aislamiento y caracterizaci&oacute;n de compuestos bioactivos de organismos marinos.</li> <li>Extracci&oacute;n de compuestos bioactivos a partir de flora nativa chilena.</li> </ul> <ol start='5'> <li><strong> Interacciones microorganismos y plantas</strong></li> </ol> <ul> <li>Aislamiento y caracterizaci&oacute;n de bacterias promotoras del crecimiento vegetal y micorrizas.</li> <li>Efecto de bacterias promotoras del crecimiento vegetal sobre plantas.</li> <li>Efecto de hongos micorr&iacute;cicos arbusculares sobre la vid.</li> <li>Efecto de fitopat&oacute;genos como <em>Pseudomonas syringae</em> y <em>Clavibacter michiganensis</em> subsp. <em>michiganensis</em> sobre plantas de tomate.</li> <li>Estrategias de biocontrol de fitopat&oacute;genos.</li> </ul> <ol start='6'> <li><strong> Bionanotecnolog&iacute;a </strong></li> </ol> <ul> <li>S&iacute;ntesis qu&iacute;mica y biog&eacute;nica de nanopart&iacute;culas met&aacute;licas</li> <li>Desarrollo de nanopart&iacute;culas met&aacute;licas como sistemas de liberaci&oacute;n de f&aacute;rmacos</li> <li>S&iacute;ntesis de biopol&iacute;meros.</li> </ul>",

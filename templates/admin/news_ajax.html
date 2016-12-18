@@ -11,15 +11,15 @@
                         <div>
                         {%if news.title%}
                             {% if news.is_external %}
-                                <a href="{{ news.source_url }}" class="news-title-link">
+                                <a href="{{ news.source_url }}" target="_blank" class="news-title-link">
                             {% else %}
-                                <a href="{% url 'webpage:news' news.id %}" class="news-title-link">
+                                <a href="{% url 'webpage:news' news.id %}" target="_blank" class="news-title-link">
                             {% endif %}
                             <h2 class="title">{{news.title}}</h2>
                             </a>
                         {% else %}
                             <div class="news-no-title">
-                                <a href="{% url 'webpage:news' news.id %}" class="news-title-link">
+                                <a href="{% url 'webpage:news' news.id %}" target="_blank" class="news-title-link">
                                     <h2 class="title">{% trans "Noticia sin título" %}</h2>
                                 </a>
                             </div>
@@ -32,7 +32,7 @@
                         {% endif %}
                         </div>
                         {% if news.source_text %}
-                            <span class="source"><strong>Fuente: </strong>
+                            <span class="source"><strong>{% trans 'Fuente:' %}</strong>
                                 {% if news.source_url %}
                                     <a href="{{news.source_url}}">{{news.source_text}}</a>
                                 {% else %}
@@ -80,20 +80,20 @@
                         <div>
                         {%if news.title%}
                             {% if news.is_external %}
-                                <a href="{{ news.source_url }}">
+                                <a href="{{ news.source_url }}" target="_blank">
                             {% else %}
-                                <a href="{% url 'webpage:news' news.id %}">
+                                <a href="{% url 'webpage:news' news.id %}" target="_blank">
                             {% endif %}
                             <h2 class="title">{{news.title}}</h2>
                             </a>
                         {% else %}
-                            <a href="{% url 'webpage:news' news.id %}">
+                            <a href="{% url 'webpage:news' news.id %}" target="_blank">
                                 <h2 class="title">{% trans "Noticia sin título" %}</h2>
                             </a>
                         {%endif%}
                         </div>
                         {% if news.source_text %}
-                            <span class="source"><strong>Fuente: </strong>
+                            <span class="source"><strong>{% trans 'Fuente:' %}</strong>
                                 {% if news.source_url %}
                                     <a href="{{news.source_url}}">{{news.source_text}}</a>
                                 {% else %}
@@ -133,7 +133,7 @@
 </div>
 
 <div class="document modal" id="deleteModal" style="display:none;">
-    <h2>{% trans "¿Estas seguro?" %}</h2>
+    <h2>{% trans "¿Estás seguro?" %}</h2>
     <p>{% trans "Esta noticia desaparecerá completamente" %}</p>
     <h3 class="confirm" type="title" data=""></h3>
     <h5 class="confirm" type="date" data=""></h5>

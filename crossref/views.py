@@ -16,7 +16,7 @@ def query(request, query=None):
 		count = 0
 		for r in result:
 			if count == 10:
-				break;
+				break
 			try: 
 				title = r['title'][0]
 			except:
@@ -54,7 +54,7 @@ def query(request, query=None):
 				#response = reponse + row
 		return render(request, 'crossref/template.html', {'documents': response})
 	else:
-		return JsonResponse({'error': True, 'message':  _('Debe iniciar sesion.')})
+		return JsonResponse({'error': True, 'message':  _(u'Debe iniciar sesión.')})
 
 
 def getAuthors(object):

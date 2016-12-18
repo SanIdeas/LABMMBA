@@ -26,7 +26,7 @@
     <div class="grid">
     	<div class="row">
     		<form class="clear c12">
-	    		<div class="c12"><input id="search" type="text" class="text" placeholder="{% trans 'Ingresa tu busqueda aquí' %}"/></div> 			
+	    		<div class="c12"><input id="search" type="text" class="text" placeholder="{% trans 'Ingresa tu búsqueda aquí' %}"/></div>
     		</form>
     	</div>
 		<div class="row">
@@ -67,14 +67,14 @@
 			</section>
 			<section id="sidebar" class="c4">
 	            <div class="links clear box">
-	                <h3>Categorias</h3>
+	                <h3>{% trans 'Categorías' %}</h3>
 	                {% if categories %}
 	                	<a class="clear" href="{% url 'publications' %}">{% trans "Todas" %}</a>
 	                	{% for category in categories %}
 		                	<a class="clear" href="{% url 'publications' %}?category={{category.id}}">{{category.name}}</a>
 		                {% endfor %}
 		            {% else %}
-		            	<span class="c12 empty">{% trans "No hay categorias" %}</span>
+		            	<span class="c12 empty">{% trans "No hay categorías" %}</span>
 		            {% endif %}
 	            </div>
 			</section>
