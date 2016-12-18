@@ -209,9 +209,15 @@ function sendDocuments(){
 }
 
 function checkEmptyFields(){
+	var scroll = false;
 	$(".field").each(function(i, field){
 		if (($(field).val() == null || $(field).val() == '') && $(field).prop('required') == true){
 			$(field).addClass("required");
+			if(!scroll){
+				scrollTo($(field));
+				scroll=true;
+				console.log('scroll', scroll);
+			}
 			$(field).on('input', function(){
 				if($(this).hasClass('required'))
 					$(this).removeClass('required');
@@ -219,4 +225,11 @@ function checkEmptyFields(){
 			});	
 		}
 	});
+}
+
+function scrollTo(element){
+	var viewHeight = $(document).height()/2;
+	$('.intranet.body').animate({
+		scrollTop: element.offset().top - viewHeight
+	},800);
 }

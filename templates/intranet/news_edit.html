@@ -8,7 +8,7 @@
 {% endblock %}
 {% block extra_js %}
 	<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
-	<script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script>
+	<script src="{% static 'intranet/js/vendor/cropper.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div class="title">
@@ -112,8 +112,8 @@
   				<img id="imageCropper">
   			</div>
 	  		<div class="buttons">
-  				<div class="c8"><button id="changeImage"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button></div>
-  				<div class="c4"><button id="selectImage"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button></div>
+  				<button id="changeImage" class="c8"><i class="fa fa-cloud-upload" aria-hidden="true"></i> {% trans 'Seleccionar nueva imagen' %}</button>
+  				<button id="selectImage" class="c4"><i class="fa fa-paper-plane" aria-hidden="true"></i> {% trans 'Aceptar' %}</button>
 	  		</div>
   		</div>
 	</div>

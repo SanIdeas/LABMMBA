@@ -7,9 +7,10 @@
 {% endblock %}
 {% block extra_js %}
 	{% if request.user == profile_user %}
-		 <script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
-		 <script src="{% static 'intranet/js/vendor/cropper.min.js' %}"></script> 
-		 <script src="{% static 'intranet/js/profile.js' %}"></script>
+		<script src="{% static 'intranet/js/vendor/canvas-to-blob.min.js' %}"></script>
+		<script src="{% static 'intranet/js/vendor/cropper.js' %}"></script> 
+		<script src="{% static 'intranet/js/profile.js' %}"></script>
+		<script src="{% static 'usm_theme/js/load-image.all.min.js' %}"></script>
 	{% endif %} 
 {% endblock %}
 {% block content %}
@@ -176,7 +177,7 @@
   			<div id="preview" class="profile image">	
         		<div><!-- Aqui va el preview de la imagen recortada --></div>
         	</div>
-  			<div class="crop">
+  			<div class="crop" style="height:0px;">
   				<img id="imageCropper">
   			</div>
   			<div class="header">

@@ -421,6 +421,8 @@ function sendIds(){
 		$('.link').prop("disabled", true).off();
 		local_ids = response['local_ids'].join(',');
 		extract_content();
+	}).error(function(xhr, status, error){
+		showError();
 	});
 	console.log("Drive ids: " + ids);
 }
@@ -530,9 +532,15 @@ function addDocument(document){
 }
 
 function checkEmptyFields(){
+	var scroll = false;
 	$(".field").each(function(i, field){
 		if (($(field).val() == null || $(field).val() == '') && $(field).prop('required') == true){
 			$(field).addClass("required");
+			if(!scroll){
+				scrollTo($(field));
+				scroll=true;
+				console.log('scroll', scroll);
+			}
 			$(field).on('input', function(){
 				if($(this).hasClass('required'))
 					$(this).removeClass('required');
@@ -550,4 +558,25 @@ function checkFilesSize(){
 	else{
 		$('.upload.button.send.first').prop('disabled', false).removeClass('disabled');	
 	}
+}
+
+function scrollTo(element){
+	var viewHeight = $(document).height()/2;
+	$('.intranet.body').animate({
+		scrollTop: element.offset().top - viewHeight
+	},800);
+}
+
+function showError(){
+	$.fancybox($('#errorModal').parent('div').html(), {
+		closebtn: false,
+		autoSize: false,
+		width: 400,
+		height: 100,
+		scrolling: false,
+		closeBtn: false,
+	});
+	setTimeout(function(){
+		window.location.href = upload_link;
+	},2000);
 }

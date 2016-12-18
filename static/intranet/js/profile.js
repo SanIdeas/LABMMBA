@@ -7,15 +7,25 @@ $.extend(jQuery.easing,{outcubic:function(x,t,b,c,d){
 // Obtiene la url del archivo ingresado por el input
 function readURL(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#imageCropper').attr('src', e.target.result);
-			resetCrop();
-        }
-
-        reader.readAsDataURL(input.files[0]);
+     	options = {
+            canvas: true
+        };
+	    loadImage.parseMetaData(input.files[0], function(data){
+	        if (data.exif){
+	            options.orientation = data.exif.get('Orientation');
+	        }
+	        loadImage(
+	            input.files[0],
+	            function(canvas){
+	                var imgDataURL = canvas.toDataURL();
+	                $('#imageCropper').attr('src', imgDataURL);
+					resetCrop();
+	            },
+	            options
+	        );
+	    });
     }
+
 }
 
 // Activa el editor de imagen

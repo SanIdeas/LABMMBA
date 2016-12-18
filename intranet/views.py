@@ -216,7 +216,7 @@ def profile(request, user_id = None):
 					profile = User.objects.get(id=user_id)
 				else:
 					profile = User.objects.get(id=user_id, is_admin=request.user.is_admin)
-				documents = Document.objects.filter(owner=user_id)
+				documents = Document.objects.filter(owner=user_id).order_by('-date_added')
 
 				return render(request, 'intranet/profile.html', {'intranet': Section.objects.get(slug='intranet'), 'profile_user': profile, 'documents': documents, 'areas': Area.objects.all(), 'countries': list(countries)})
 			except Exception as error:
