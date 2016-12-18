@@ -39,7 +39,7 @@
                         <h3>
                             {% if comments|length == 1 %}
                                 {% blocktrans with count=comments|length %}
-                                    Hay {{count}} comentario para esta noticia
+                                    Hay {{count}} comentarios para esta noticia
                                 {% endblocktrans %}
                             {% else %}
                                 {% blocktrans with count=comments|length %}
@@ -76,7 +76,7 @@
                             {% else %}
                                 <p>{% trans "Utiliza los comentarios para comunicarte con el administrador." %}</p>
                             {% endif %}
-                            <p><em>{% trans '(*) Son datos necesario para enviar.' %}</em></p>
+                            <p><em>{% trans '(*) Son datos necesarios para enviar.' %}</em></p>
                             <form action="{% url 'webpage:new_news_comment' %}?redirect=news" class="clear" method="POST">
                                 <div class="c10 s2">
                                     <div class="row">
