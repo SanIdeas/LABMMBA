@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 01:19-0300\n"
-"PO-Revision-Date: 2016-12-18 01:21-0300\n"
+"POT-Creation-Date: 2016-12-18 04:02-0300\n"
+"PO-Revision-Date: 2016-12-18 04:10-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -17,136 +17,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: admin/views.py:288
+#: .\admin\views.py:288
 msgid "Uno o más correos son inválidos o ya se encuentran registrados"
 msgstr "One or more emails are invalid or are already registered"
 
-#: admin/views.py:322 admin/views.py:328
+#: .\admin\views.py:322 .\admin\views.py:328
 msgid "El área ingresada ya existe"
 msgstr "The entered area already exists"
 
-#: admin/views.py:337 admin/views.py:347
+#: .\admin\views.py:337 .\admin\views.py:347
 msgid "La subárea ingresada ya existe"
 msgstr "The entered subarea already exists"
 
-#: admin/views.py:349
+#: .\admin\views.py:349
 msgid "El área entregada no existe"
 msgstr "The entered area doesn’t exist"
 
-#: admin/views.py:468 admin/views.py:494 admin/views.py:534
+#: .\admin\views.py:468 .\admin\views.py:494 .\admin\views.py:534
 msgid "Esta sección no existe"
 msgstr "This section doesn’t exist"
 
-#: admin/views.py:622 admin/views.py:630
+#: .\admin\views.py:622 .\admin\views.py:630
 msgid "El integrante ingresado ya existe"
 msgstr "Entered member already exists"
 
-#: admin/views.py:672
+#: .\admin\views.py:672
 msgid "No se puede aprobar una noticia sin título"
 msgstr "Untitled news can’t be approved"
 
-#: admin/views.py:686
+#: .\admin\views.py:686
 msgid "No se puede poner en la cabecera una noticia sin título"
 msgstr "Untitled news can’t be put on header"
 
-#: admin/views.py:688
+#: .\admin\views.py:688
 msgid "No se puede poner en la cabecera una noticia no publicada"
 msgstr "Unpublished news can’t be put on header"
 
-#: crossref/views.py:57
-#, fuzzy
-#| msgid "Debes iniciar sesion."
+#: .\crossref\views.py:57
 msgid "Debe iniciar sesión."
 msgstr "You must log in"
 
-#: drive/views.py:144
+#: .\drive\views.py:144
 msgid "Ya asociaste una cuenta"
 msgstr "You have already associated an account"
 
-#: drive/views.py:147 drive/views.py:188 drive/views.py:318 drive/views.py:376
-#: intranet/views.py:322 intranet/views.py:353
-#, fuzzy
-#| msgid "Debes iniciar sesion."
+#: .\drive\views.py:147 .\drive\views.py:188 .\drive\views.py:318
+#: .\drive\views.py:376 .\intranet\views.py:322 .\intranet\views.py:353
 msgid "Debes iniciar sesión."
 msgstr "You must log in"
 
-#: drive/views.py:186
-#, fuzzy
-#| msgid ""
-#| "Hubo un problema al obtener los archivos desde Google Drive. Intentalo "
-#| "mas tarde."
+#: .\drive\views.py:186
 msgid ""
 "Hubo un problema al obtener los archivos desde Google Drive. Inténtalo más "
 "tarde."
 msgstr "There was a problem to obtain files from Google Drive. Try later."
 
-#: drive/views.py:230
+#: .\drive\views.py:230
 #, python-format
 msgid ""
 "No se pudo descargar el documento %(title)s debido a un problema desconocido."
 msgstr ""
 "The document %(title)s could not be downloaded due to an unknown problem."
 
-#: drive/views.py:240
+#: .\drive\views.py:240
 msgid "Debes anadir un enlace de Google Drive a la solicitud."
 msgstr "You must add a Google Drive link to the request."
 
-#: drive/views.py:254
+#: .\drive\views.py:254
 msgid "El link ingresado no es un enlace a Google Drive"
 msgstr "The entered link isn’t a link to Google Drive"
 
-#: drive/views.py:263
+#: .\drive\views.py:263
 msgid "Para continuar debes enlazar tu cuenta de Google Drive"
 msgstr "Link your Google Drive account to continue"
 
-#: drive/views.py:281
+#: .\drive\views.py:281
 msgid "El documento <strong>"
 msgstr "The document <strong>"
 
-#: drive/views.py:284
+#: .\drive\views.py:284
 msgid "El documento no puede tener un tamaño superior a 2 Megabytes."
 msgstr "The document must not exceed the 2 Megabytes."
 
-#: drive/views.py:300
+#: .\drive\views.py:300
 msgid "El link ingresado no contiene documentos compatibles"
 msgstr "The Link does not have compatible documents"
 
-#: drive/views.py:313
+#: .\drive\views.py:313
 msgid "No existen archivos compatibles en el enlace."
 msgstr "There are not compatible files in the link."
 
-#: drive/views.py:315
+#: .\drive\views.py:315
 msgid "Error desconocido. Contacta al administrador."
 msgstr "Unknown error. Contact the administrator."
 
-#: drive/views.py:360
+#: .\drive\views.py:360
 msgid "Raíz"
 msgstr "Root"
 
-#: drive/views.py:369
+#: .\drive\views.py:369
 msgid "Debe ingresar la ID de una carpeta"
 msgstr "You must enter the ID of a folder"
 
-#: intranet/models.py:271
+#: .\intranet\models.py:271
 msgid "Laboratorio"
 msgstr "Laboratory"
 
-#: intranet/models.py:273
-#: templates/intranet/upload_sections/drive_upload_form_template.html:102
-#: templates/intranet/upload_sections/local_upload_form_template.html:101
+#: .\intranet\models.py:273
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:102
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:101
 msgid "Público"
 msgstr "Public"
 
-#: intranet/views.py:279
+#: .\intranet\views.py:279
 msgid "Actualizado con éxito."
 msgstr "Updated successfully."
 
-#: intranet/views.py:290
+#: .\intranet\views.py:290
 #, python-format
 msgid "El archivo %(name)s no debe superar los 2 Mb"
 msgstr "The file %(name)s must not exceed 2 Mb"
 
-#: intranet/views.py:294
+#: .\intranet\views.py:294
 #, python-format
 msgid ""
 "El documento <span style=\"text-transform: uppercase; font-size:14px\"> "
@@ -157,231 +149,202 @@ msgstr ""
 "%(title)s </span> from the author <span style=\"text-transform: uppercase; "
 "font-size:14px\"> %(author)s </span> already exists."
 
-#: intranet/views.py:317
-#, fuzzy, python-format
-#| msgid "Ocurrio un problema: %(error)s"
+#: .\intranet\views.py:317
+#, python-format
 msgid "Ocurrió un problema: %(error)s"
 msgstr "There was a problem: %(error)s"
 
-#: intranet/views.py:318
-#, fuzzy
-#| msgid "Subida exitosa"
+#: .\intranet\views.py:318
 msgid "Subida exitosa"
 msgstr "Successful upload"
 
-#: intranet/views.py:472 intranet/views.py:473 intranet/views.py:505
-#: templates/admin/news_ajax.html:23 templates/admin/news_ajax.html.py:56
-#: templates/admin/news_ajax.html:91 templates/admin/news_ajax.html.py:119
-#: templates/intranet/news.html:43 templates/intranet/news_edit.html.py:24
-#: templates/intranet/news_edit_link.html:24 webpage/views.py:199
-#: webpage/views.py:201
+#: .\intranet\views.py:472 .\intranet\views.py:473 .\intranet\views.py:505
+#: .\templates\admin\news_ajax.html:23 .\templates\admin\news_ajax.html:56
+#: .\templates\admin\news_ajax.html:91 .\templates\admin\news_ajax.html:119
+#: .\templates\intranet\news.html:43 .\templates\intranet\news_edit.html:24
+#: .\templates\intranet\news_edit_link.html:24 .\webpage\views.py:199
+#: .\webpage\views.py:201
 msgid "Noticia sin título"
 msgstr "Untitled News"
 
-#: labmmba/settings.py:130
+#: .\labmmba\settings.py:131
 msgid "Spanish"
 msgstr "Spanish"
 
-#: labmmba/settings.py:131
+#: .\labmmba\settings.py:132
 msgid "English"
 msgstr "English"
 
-#: login/views.py:52
+#: .\login\views.py:52
 msgid "El administrador ha bloqueado tu cuenta."
 msgstr "The administrator has blocked your account."
 
-#: login/views.py:65 login/views.py:74
+#: .\login\views.py:65 .\login\views.py:74
 msgid "Email o contraseña inválida."
 msgstr "Invalid email or password."
 
-#: login/views.py:69
+#: .\login\views.py:69
 msgid "Ten paciencia. Debes ser aprobado por el administrador."
 msgstr "Be patient. You must be approved by the administrator."
 
-#: login/views.py:189 templates/intranet/profile.html.py:327
+#: .\login\views.py:189 .\templates\intranet\profile.html:328
 msgid "Cambio exitoso"
 msgstr "Successful change"
 
-#: login/views.py:191
-#, fuzzy
-#| msgid ""
-#| "Hubo un problema. Asegurate de escribir correctamente tu contraseña "
-#| "actual."
+#: .\login\views.py:191
 msgid ""
 "Hubo un problema. Asegúrate de escribir correctamente tu contraseña actual."
 msgstr "There was a problem. Make sure your password is correct."
 
-#: login/views.py:193
-#, fuzzy
-#| msgid "Metodo de envio incorrecto"
+#: .\login\views.py:193
 msgid "Metodo de envío incorrecto"
 msgstr "Incorrect sent method."
 
-#: login/views.py:195 webpage/views.py:325
-#, fuzzy
-#| msgid "Debes iniciar sesion."
+#: .\login\views.py:195 .\webpage\views.py:325
 msgid "Debes iniciar sesión"
 msgstr "You must log in"
 
-#: templates/admin/analytics.html:19
+#: .\templates\admin\analytics.html:19
 msgid "Usuarios activos: "
 msgstr "Active Users: "
 
-#: templates/admin/analytics.html:28
-#, fuzzy
-#| msgid "Tráfico interno"
+#: .\templates\admin\analytics.html:28
 msgid "Tráfico Interno"
 msgstr "Internal traffic"
 
-#: templates/admin/analytics.html:30 templates/admin/analytics.html.py:50
-#, fuzzy
-#| msgid "Sesiones y usuarios, ultimos 15 dias"
+#: .\templates\admin\analytics.html:30 .\templates\admin\analytics.html:50
 msgid "Sesiones y usuarios, últimos 15 días"
 msgstr "Sessions and users, last 15 days"
 
-#: templates/admin/analytics.html:37
-#, fuzzy
-#| msgid "Popularidad interna"
+#: .\templates\admin\analytics.html:37
 msgid "Popularidad Interna"
 msgstr "Internal popularity"
 
-#: templates/admin/analytics.html:39 templates/admin/analytics.html.py:59
-#, fuzzy
-#| msgid "Visitas, ultimos 15 dias"
+#: .\templates\admin\analytics.html:39 .\templates\admin\analytics.html:59
 msgid "Visitas, últimos 15 días"
 msgstr "Visits, last 15 days"
 
-#: templates/admin/analytics.html:48
-#, fuzzy
-#| msgid "Tráfico externo"
+#: .\templates\admin\analytics.html:48
 msgid "Tráfico Externo"
 msgstr "External traffic"
 
-#: templates/admin/analytics.html:57
-#, fuzzy
-#| msgid "Popularidad externa"
+#: .\templates\admin\analytics.html:57
 msgid "Popularidad Externa"
 msgstr "External popularity"
 
-#: templates/admin/analytics.html:68
-#, fuzzy
-#| msgid "Pais de visitas internas"
+#: .\templates\admin\analytics.html:68
 msgid "País de Visitas Internas"
 msgstr "Internal visits country"
 
-#: templates/admin/analytics.html:70 templates/admin/analytics.html.py:79
-#: templates/admin/analytics.html:90
-#, fuzzy
-#| msgid "Ultimos 15 dias"
+#: .\templates\admin\analytics.html:70 .\templates\admin\analytics.html:79
+#: .\templates\admin\analytics.html:90
 msgid "Últimos 15 días"
 msgstr "Last 15 days"
 
-#: templates/admin/analytics.html:77
-#, fuzzy
-#| msgid "Pais de visitas externas"
+#: .\templates\admin\analytics.html:77
 msgid "País de Visitas Externas"
 msgstr "External visits country"
 
-#: templates/admin/analytics.html:88
-#, fuzzy
-#| msgid "Navegadores mas populares"
+#: .\templates\admin\analytics.html:88
 msgid "Navegadores Más Populares"
 msgstr "Most popular browsers"
 
-#: templates/admin/analytics.html:97
+#: .\templates\admin\analytics.html:97
 msgid "Adquisición"
 msgstr "Acquisition"
 
-#: templates/admin/analytics.html:99
-#, fuzzy
-#| msgid "Tráfico referido, ultimos 15 dias"
+#: .\templates\admin\analytics.html:99
 msgid "Tráfico referido, últimos 15 días"
 msgstr "Referred traffic, last 15 days"
 
-#: templates/admin/areas_ajax.html:6
+#: .\templates\admin\areas_ajax.html:6
 msgid "Agregar área"
 msgstr "Add area"
 
-#: templates/admin/areas_ajax.html:7 templates/admin/areas_ajax.html.py:34
-#: templates/admin/members_ajax.html:7
+#: .\templates\admin\areas_ajax.html:7 .\templates\admin\areas_ajax.html:34
+#: .\templates\admin\members_ajax.html:7
 msgid "Agregar"
 msgstr "Add"
 
-#: templates/admin/areas_ajax.html:22 templates/admin/areas_ajax.html.py:55
-#: templates/admin/document_information.html:109
-#: templates/admin/webpage_ajax.html:92 templates/admin/webpage_ajax.html:126
-#: templates/admin/webpage_subsection_ajax.html:16
-#: templates/admin/webpage_subsection_ajax.html:50
-#: templates/intranet/document_information.html:113
-#: templates/intranet/profile.html:128
+#: .\templates\admin\areas_ajax.html:22 .\templates\admin\areas_ajax.html:55
+#: .\templates\admin\document_information.html:109
+#: .\templates\admin\webpage_ajax.html:92
+#: .\templates\admin\webpage_ajax.html:126
+#: .\templates\admin\webpage_subsection_ajax.html:16
+#: .\templates\admin\webpage_subsection_ajax.html:50
+#: .\templates\intranet\document_information.html:114
+#: .\templates\intranet\profile.html:129
 msgid "Editar"
 msgstr "Edit"
 
-#: templates/admin/areas_ajax.html:28 templates/admin/areas_ajax.html.py:50
-#: templates/admin/document_information.html:110
-#: templates/admin/event_create.html:76 templates/admin/event_edit.html:77
-#: templates/admin/members_ajax.html:100 templates/admin/users_ajax.html:28
-#: templates/admin/users_ajax.html.py:71 templates/admin/users_ajax.html:109
-#: templates/intranet/document_information.html:114
-#: templates/intranet/profile.html:125
+#: .\templates\admin\areas_ajax.html:28 .\templates\admin\areas_ajax.html:50
+#: .\templates\admin\document_information.html:110
+#: .\templates\admin\event_create.html:76 .\templates\admin\event_edit.html:77
+#: .\templates\admin\members_ajax.html:100 .\templates\admin\users_ajax.html:28
+#: .\templates\admin\users_ajax.html:71 .\templates\admin\users_ajax.html:109
+#: .\templates\intranet\document_information.html:115
+#: .\templates\intranet\profile.html:126
 msgid "Eliminar"
 msgstr "Delete"
 
-#: templates/admin/areas_ajax.html:62
+#: .\templates\admin\areas_ajax.html:62
 msgid "No hay subáreas de investigación en esta área"
 msgstr "There aren’t research subareas in this area"
 
-#: templates/admin/areas_ajax.html:69
+#: .\templates\admin\areas_ajax.html:69
 msgid "No hay áreas de investigación en el sistema"
 msgstr "There aren’t research subareas in this area"
 
-#: templates/admin/areas_ajax.html:77
+#: .\templates\admin\areas_ajax.html:77
 msgid "¿De verdad deseas eliminar esta área?"
 msgstr "Do you really want to delete this area?"
 
-#: templates/admin/areas_ajax.html:81
+#: .\templates\admin\areas_ajax.html:81
 msgid ""
 "Ten en cuenta que las subáreas pertenecientes a esta área también se "
 "eliminarán."
 msgstr "Please note that subareas belonging to this area will also be deleted."
 
-#: templates/admin/areas_ajax.html:84 templates/admin/areas_ajax.html.py:102
-#: templates/admin/areas_ajax.html:121 templates/admin/areas_ajax.html:138
-#: templates/admin/areas_ajax.html:156
-#: templates/admin/document_information.html:123
-#: templates/admin/events_ajax.html:51 templates/admin/members_ajax.html:160
-#: templates/admin/members_ajax.html:180 templates/admin/news_ajax.html:140
-#: templates/admin/users_ajax.html.py:133
-#: templates/intranet/document_information.html:128
-#: templates/intranet/news.html:123 templates/intranet/profile.html.py:196
-#: templates/intranet/profile.html:321
+#: .\templates\admin\areas_ajax.html:84 .\templates\admin\areas_ajax.html:102
+#: .\templates\admin\areas_ajax.html:121 .\templates\admin\areas_ajax.html:138
+#: .\templates\admin\areas_ajax.html:156
+#: .\templates\admin\document_information.html:123
+#: .\templates\admin\events_ajax.html:51
+#: .\templates\admin\members_ajax.html:160
+#: .\templates\admin\members_ajax.html:180 .\templates\admin\news_ajax.html:140
+#: .\templates\admin\users_ajax.html:133
+#: .\templates\intranet\document_information.html:129
+#: .\templates\intranet\news.html:123 .\templates\intranet\profile.html:197
+#: .\templates\intranet\profile.html:322
 msgid "CONFIRMAR"
 msgstr "CONFIRM"
 
-#: templates/admin/areas_ajax.html:85 templates/admin/areas_ajax.html.py:103
-#: templates/admin/areas_ajax.html:122 templates/admin/areas_ajax.html:139
-#: templates/admin/areas_ajax.html:157 templates/admin/members_ajax.html:161
-#: templates/admin/members_ajax.html:181 templates/admin/users_ajax.html:134
+#: .\templates\admin\areas_ajax.html:85 .\templates\admin\areas_ajax.html:103
+#: .\templates\admin\areas_ajax.html:122 .\templates\admin\areas_ajax.html:139
+#: .\templates\admin\areas_ajax.html:157
+#: .\templates\admin\members_ajax.html:161
+#: .\templates\admin\members_ajax.html:181
+#: .\templates\admin\users_ajax.html:134
 msgid "CANCELAR"
 msgstr "CANCEL"
 
-#: templates/admin/areas_ajax.html:93
+#: .\templates\admin\areas_ajax.html:93
 msgid "Editar área"
 msgstr "Edit area"
 
-#: templates/admin/areas_ajax.html:111
+#: .\templates\admin\areas_ajax.html:111
 msgid "Agregar subárea en"
 msgstr "Add subarea in"
 
-#: templates/admin/areas_ajax.html:115
+#: .\templates\admin\areas_ajax.html:115
 msgid "Agregar subárea"
 msgstr "Add subarea"
 
-#: templates/admin/areas_ajax.html:131
+#: .\templates\admin\areas_ajax.html:131
 msgid "¿De verdad deseas eliminar esta subárea?"
 msgstr "Do you really want to delete this subarea?"
 
-#: templates/admin/areas_ajax.html:135
+#: .\templates\admin\areas_ajax.html:135
 msgid ""
 "Ten en cuenta que los usuarios y documentos pertenecientes a esta subárea "
 "quedarán sin una categoría asociada."
@@ -389,144 +352,134 @@ msgstr ""
 "Please note that users and documents belonging to this subarea will be left "
 "without an associated category."
 
-#: templates/admin/areas_ajax.html:147
+#: .\templates\admin\areas_ajax.html:147
 msgid "Editar subárea"
 msgstr "Edit subarea"
 
-#: templates/admin/document_information.html:30
-#: templates/intranet/document_information.html:33
+#: .\templates\admin\document_information.html:30
+#: .\templates\intranet\document_information.html:33
 msgid "Ver <span>Documento</span>"
 msgstr "View <span>Document</span>"
 
-#: templates/admin/document_information.html:41
-#: templates/admin/edit_document_information.html:39
-#: templates/intranet/document_information.html:44
-#: templates/intranet/edit_document_information.html:46
-#: templates/intranet/upload_sections/drive_upload_form_template.html:38
-#: templates/intranet/upload_sections/local_upload_form_template.html:37
+#: .\templates\admin\document_information.html:41
+#: .\templates\admin\edit_document_information.html:39
+#: .\templates\intranet\document_information.html:44
+#: .\templates\intranet\edit_document_information.html:46
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:38
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:37
 msgid "Autor"
 msgstr "Author"
 
-#: templates/admin/document_information.html:45
-#: templates/admin/edit_document_information.html:43
-#: templates/intranet/document_information.html:48
-#: templates/intranet/edit_document_information.html:50
+#: .\templates\admin\document_information.html:45
+#: .\templates\admin\edit_document_information.html:43
+#: .\templates\intranet\document_information.html:48
+#: .\templates\intranet\edit_document_information.html:50
 msgid "Publicado el"
 msgstr "Published on"
 
-#: templates/admin/document_information.html:50
-#: templates/admin/edit_document_information.html:47
-#: templates/intranet/document_information.html:53
-#: templates/intranet/edit_document_information.html:54
-#: templates/intranet/upload_sections/drive_upload_form_template.html:71
-#: templates/intranet/upload_sections/local_upload_form_template.html:70
-#, fuzzy
-#| msgid "Paginas"
+#: .\templates\admin\document_information.html:50
+#: .\templates\admin\edit_document_information.html:47
+#: .\templates\intranet\document_information.html:53
+#: .\templates\intranet\edit_document_information.html:54
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:71
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:70
 msgid "Páginas"
 msgstr "Pages"
 
-#: templates/admin/document_information.html:56
-#: templates/admin/edit_document_information.html:51
-#: templates/intranet/document_information.html:59
-#: templates/intranet/edit_document_information.html:58
-#: templates/intranet/upload_sections/drive_upload_form_template.html:63
-#: templates/intranet/upload_sections/local_upload_form_template.html:62
+#: .\templates\admin\document_information.html:56
+#: .\templates\admin\edit_document_information.html:51
+#: .\templates\intranet\document_information.html:59
+#: .\templates\intranet\edit_document_information.html:58
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:63
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:62
 msgid "ISSN"
 msgstr "ISSN"
 
-#: templates/admin/document_information.html:62
-#: templates/admin/edit_document_information.html:55
-#: templates/intranet/document_information.html:65
-#: templates/intranet/edit_document_information.html:62
-#: templates/intranet/upload_sections/drive_upload_form_template.html:55
-#: templates/intranet/upload_sections/local_upload_form_template.html:54
+#: .\templates\admin\document_information.html:62
+#: .\templates\admin\edit_document_information.html:55
+#: .\templates\intranet\document_information.html:65
+#: .\templates\intranet\edit_document_information.html:62
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:55
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:54
 msgid "DOI"
 msgstr "DOI"
 
-#: templates/admin/document_information.html:67
-#: templates/intranet/document_information.html:70
+#: .\templates\admin\document_information.html:67
+#: .\templates\intranet\document_information.html:70
 msgid "Agregado el"
 msgstr "Added on"
 
-#: templates/admin/document_information.html:119
-#: templates/admin/events_ajax.html:47 templates/admin/news_ajax.html.py:136
-#: templates/intranet/document_information.html:124
-#: templates/intranet/news.html:119 templates/intranet/profile.html.py:193
-#: templates/intranet/profile.html:317
+#: .\templates\admin\document_information.html:119
+#: .\templates\admin\events_ajax.html:47 .\templates\admin\news_ajax.html:136
+#: .\templates\intranet\document_information.html:125
+#: .\templates\intranet\news.html:119 .\templates\intranet\profile.html:194
+#: .\templates\intranet\profile.html:318
 msgid "¿Estás seguro?"
 msgstr "Are you sure?"
 
-#: templates/admin/document_information.html:120
-#: templates/intranet/profile.html:318
-#, fuzzy
-#| msgid "Estas a punto de eliminar el documento:"
+#: .\templates\admin\document_information.html:120
+#: .\templates\intranet\profile.html:319
 msgid "Estás a punto de eliminar el documento:"
 msgstr "You are about to delete the document:"
 
-#: templates/admin/documents.html:10 templates/intranet/shared.html.py:122
+#: .\templates\admin\documents.html:10 .\templates\intranet\shared.html:122
 msgid "Ingresa aquí tu búsqueda"
 msgstr "Enter your search here"
 
-#: templates/admin/documents.html:11 templates/intranet/shared.html.py:122
+#: .\templates\admin\documents.html:11 .\templates\intranet\shared.html:122
 msgid "Buscar"
 msgstr "Search"
 
-#: templates/admin/documents.html:22 templates/intranet/documents.html.py:16
+#: .\templates\admin\documents.html:22 .\templates\intranet\documents.html:16
 msgid "No hemos encontrado documentos"
 msgstr "We haven’t found documents"
 
-#: templates/admin/documents.html:23 templates/intranet/documents.html.py:17
-#, fuzzy
-#| msgid ""
-#| "Asegurate de haber subido algún documento. Nuestra base de datos esta "
-#| "vacía"
+#: .\templates\admin\documents.html:23 .\templates\intranet\documents.html:17
 msgid ""
 "Asegúrate de haber subido algún documento. Nuestra base de datos está vacía"
 msgstr "Make sure you have uploaded a document. Our database is empty"
 
-#: templates/admin/documents.html:32 templates/intranet/documents.html.py:26
+#: .\templates\admin\documents.html:32 .\templates\intranet\documents.html:26
 msgid "Categoría"
 msgstr "Category"
 
-#: templates/admin/documents.html:41 templates/intranet/documents.html.py:35
-#: templates/public_search/search.html:70
+#: .\templates\admin\documents.html:41 .\templates\intranet\documents.html:35
+#: .\templates\public_search\search.html:70
 msgid "Categorías"
 msgstr "Categories"
 
-#: templates/admin/documents.html:42 templates/intranet/documents.html.py:36
-#: templates/public_search/search.html:72
+#: .\templates\admin\documents.html:42 .\templates\intranet\documents.html:36
+#: .\templates\public_search\search.html:72
 msgid "Todas"
 msgstr "All"
 
-#: templates/admin/documents.html:54 templates/intranet/documents.html.py:48
+#: .\templates\admin\documents.html:54 .\templates\intranet\documents.html:48
 msgid "Palabra clave:"
 msgstr "Keyword:"
 
-#: templates/admin/documents.html:77 templates/intranet/documents.html.py:71
-#: templates/public_search/search.html:51 templates/webpage/events_feed.html:51
-#: templates/webpage/news_feed.html:66
+#: .\templates\admin\documents.html:77 .\templates\intranet\documents.html:71
+#: .\templates\public_search\search.html:51
+#: .\templates\webpage\events_feed.html:51
+#: .\templates\webpage\news_feed.html:66
 msgid "Anterior"
 msgstr "Previous"
 
-#: templates/admin/documents.html:85 templates/intranet/documents.html.py:79
-#: templates/public_search/search.html:59 templates/webpage/events_feed.html:59
-#: templates/webpage/news_feed.html:74
+#: .\templates\admin\documents.html:85 .\templates\intranet\documents.html:79
+#: .\templates\public_search\search.html:59
+#: .\templates\webpage\events_feed.html:59
+#: .\templates\webpage\news_feed.html:74
 msgid "Siguiente"
 msgstr "Next"
 
-#: templates/admin/documents.html:103 templates/intranet/documents.html:97
-#, fuzzy
-#| msgid "No encontramos resultados para tu busqueda"
+#: .\templates\admin\documents.html:103 .\templates\intranet\documents.html:97
 msgid "No encontramos resultados para tu búsqueda"
 msgstr "We didn’t find results for your search"
 
-#: templates/admin/documents.html:104 templates/intranet/documents.html:98
-#, fuzzy
-#| msgid "Asegurate de haber escrito correctamente el autor y/o titulo"
+#: .\templates\admin\documents.html:104 .\templates\intranet\documents.html:98
 msgid "Asegúrate de haber escrito correctamente el autor y/o título"
 msgstr "Make sure you have written the author and/or title correctly"
 
-#: templates/admin/documents.html:111 templates/intranet/documents.html:105
+#: .\templates\admin\documents.html:111 .\templates\intranet\documents.html:105
 #, python-format
 msgid ""
 "\n"
@@ -537,241 +490,246 @@ msgstr ""
 "\t\t\t\t\t\t\t%(len)s results for <strong>%(search)s</strong>\n"
 "\t\t\t\t\t\t\t"
 
-#: templates/admin/documents.html:122 templates/intranet/documents.html:116
+#: .\templates\admin\documents.html:122 .\templates\intranet\documents.html:116
 msgid "AUTOR"
 msgstr "AUTHOR"
 
-#: templates/admin/documents.html:142 templates/intranet/documents.html:136
+#: .\templates\admin\documents.html:142 .\templates\intranet\documents.html:136
 msgid "DUEÑO"
 msgstr "OWNER"
 
-#: templates/admin/documents.html:162 templates/intranet/documents.html:156
+#: .\templates\admin\documents.html:162 .\templates\intranet\documents.html:156
 msgid "CATEGORÍA"
 msgstr "CATEGORY"
 
-#: templates/admin/documents.html:182 templates/intranet/documents.html:176
+#: .\templates\admin\documents.html:182 .\templates\intranet\documents.html:176
 msgid "AÑO"
 msgstr "YEAR"
 
-#: templates/admin/edit_document_information.html:16
-#: templates/intranet/edit_document_information.html:23
-#: templates/intranet/profile.html:228 templates/login/register.html.py:32
-#, fuzzy
-#| msgid "Selecciona un area"
+#: .\templates\admin\edit_document_information.html:16
+#: .\templates\intranet\edit_document_information.html:23
+#: .\templates\intranet\profile.html:229 .\templates\login\register.html:32
 msgid "Selecciona un área"
 msgstr "Select an area"
 
-#: templates/admin/edit_document_information.html:71
-#: templates/intranet/edit_document_information.html:78
+#: .\templates\admin\edit_document_information.html:71
+#: .\templates\intranet\edit_document_information.html:78
 msgid "Escribe una palabra clave"
 msgstr "Write a keyword"
 
-#: templates/admin/edit_document_information.html:81
-#: templates/intranet/edit_document_information.html:88
-#: templates/intranet/news_create_link.html:60
+#: .\templates\admin\edit_document_information.html:81
+#: .\templates\intranet\edit_document_information.html:88
+#: .\templates\intranet\news_create_link.html:60
 msgid "Guardar"
 msgstr "Save"
 
-#: templates/admin/edit_document_information.html:83
-#: templates/admin/edit_document_information.html:85
-#: templates/admin/webpage_ajax.html:102 templates/admin/webpage_ajax.html:136
-#: templates/admin/webpage_subsection_ajax.html:26
-#: templates/admin/webpage_subsection_ajax.html:60
-#: templates/intranet/edit_document_information.html:90
-#: templates/intranet/edit_document_information.html:92
+#: .\templates\admin\edit_document_information.html:83
+#: .\templates\admin\edit_document_information.html:85
+#: .\templates\admin\webpage_ajax.html:102
+#: .\templates\admin\webpage_ajax.html:136
+#: .\templates\admin\webpage_subsection_ajax.html:26
+#: .\templates\admin\webpage_subsection_ajax.html:60
+#: .\templates\intranet\edit_document_information.html:90
+#: .\templates\intranet\edit_document_information.html:92
 msgid "Cancelar"
 msgstr "Cancel"
 
-#: templates/admin/event_create.html:22
+#: .\templates\admin\event_create.html:22
 msgid "Creando un evento"
 msgstr "Creating an event"
 
-#: templates/admin/event_create.html:31 templates/admin/event_edit.html:31
-#: templates/intranet/news_create_link.html:36
-#: templates/intranet/news_edit_link.html:39
-#: templates/intranet/upload_sections/drive_upload_form_template.html:11
-#: templates/intranet/upload_sections/local_upload_form_template.html:12
-#, fuzzy
-#| msgid "Titulo"
+#: .\templates\admin\event_create.html:31 .\templates\admin\event_edit.html:31
+#: .\templates\intranet\news_create_link.html:36
+#: .\templates\intranet\news_edit_link.html:39
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:11
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:12
 msgid "Título"
 msgstr "Title"
 
-#: templates/admin/event_create.html:33 templates/admin/event_create.html:39
-#: templates/admin/event_create.html:72 templates/admin/event_edit.html:33
-#: templates/admin/event_edit.html.py:39 templates/admin/event_edit.html:73
-#: templates/intranet/news_create_link.html:38
-#: templates/intranet/news_create_link.html:44
-#: templates/intranet/news_create_link.html:50
+#: .\templates\admin\event_create.html:33
+#: .\templates\admin\event_create.html:39
+#: .\templates\admin\event_create.html:72 .\templates\admin\event_edit.html:33
+#: .\templates\admin\event_edit.html:39 .\templates\admin\event_edit.html:73
+#: .\templates\intranet\news_create_link.html:38
+#: .\templates\intranet\news_create_link.html:44
+#: .\templates\intranet\news_create_link.html:50
 msgid "Requerido"
 msgstr "Required"
 
-#: templates/admin/event_create.html:37 templates/admin/event_edit.html:37
-#: templates/admin/members_ajax.html:152
+#: .\templates\admin\event_create.html:37 .\templates\admin\event_edit.html:37
+#: .\templates\admin\members_ajax.html:152
 msgid "Descripción"
 msgstr "Description"
 
-#: templates/admin/event_create.html:44 templates/admin/event_edit.html:44
+#: .\templates\admin\event_create.html:44 .\templates\admin\event_edit.html:44
 msgid "Imagen"
 msgstr "Image"
 
-#: templates/admin/event_create.html:50 templates/admin/event_edit.html:50
+#: .\templates\admin\event_create.html:50 .\templates\admin\event_edit.html:50
 msgid "Programa"
 msgstr "Program"
 
-#: templates/admin/event_create.html:61 templates/admin/event_edit.html:61
-#: templates/intranet/news_create.html:48
-#: templates/intranet/news_create_link.html:54
-#: templates/intranet/news_edit.html:52
-#: templates/intranet/news_edit_link.html:57
+#: .\templates\admin\event_create.html:61 .\templates\admin\event_edit.html:61
+#: .\templates\intranet\news_create.html:48
+#: .\templates\intranet\news_create_link.html:54
+#: .\templates\intranet\news_edit.html:52
+#: .\templates\intranet\news_edit_link.html:57
 msgid "Fecha"
 msgstr "Date"
 
-#: templates/admin/event_create.html:62 templates/admin/event_edit.html:62
-#: templates/webpage/event.html.py:38
+#: .\templates\admin\event_create.html:62 .\templates\admin\event_edit.html:62
+#: .\templates\webpage\event.html:38
 msgid "Lugar"
 msgstr "Location"
 
-#: templates/admin/event_create.html:63 templates/admin/event_edit.html:63
-#: templates/admin/shared.html.py:71 templates/admin/shared.html:142
-#: templates/intranet/shared.html.py:69 templates/intranet/shared.html:133
-#: templates/webpage/event.html.py:36
+#: .\templates\admin\event_create.html:63 .\templates\admin\event_edit.html:63
+#: .\templates\admin\shared.html:71 .\templates\admin\shared.html:142
+#: .\templates\intranet\shared.html:69 .\templates\intranet\shared.html:133
+#: .\templates\webpage\event.html:36
 msgid "Inicio"
 msgstr "Start"
 
-#: templates/admin/event_create.html:64 templates/admin/event_edit.html:64
-#: templates/webpage/event.html.py:37
+#: .\templates\admin\event_create.html:64 .\templates\admin\event_edit.html:64
+#: .\templates\webpage\event.html:37
 msgid "Término"
 msgstr "End"
 
-#: templates/admin/event_create.html:71
+#: .\templates\admin\event_create.html:71
 msgid "dd-mm-aaaa"
 msgstr "dd-mm-yyyy"
 
-#: templates/admin/event_create.html:73 templates/admin/event_create.html:74
+#: .\templates\admin\event_create.html:73
+#: .\templates\admin\event_create.html:74
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: templates/admin/event_create.html:86 templates/admin/event_edit.html:88
+#: .\templates\admin\event_create.html:86 .\templates\admin\event_edit.html:88
 msgid "Agregar día"
 msgstr "Add day"
 
-#: templates/admin/event_create.html:90 templates/admin/event_edit.html:92
-#: templates/admin/members_ajax.html:129 templates/admin/users_ajax.html:7
-#: templates/intranet/profile.html.py:184
-#: templates/intranet/upload_sections/drive.html:41
-#: templates/intranet/upload_sections/drive.html:91
+#: .\templates\admin\event_create.html:90 .\templates\admin\event_edit.html:92
+#: .\templates\admin\members_ajax.html:129 .\templates\admin\users_ajax.html:7
+#: .\templates\intranet\profile.html:185
+#: .\templates\intranet\upload_sections\drive.html:41
+#: .\templates\intranet\upload_sections\drive.html:91
 msgid "Enviar"
 msgstr "Submit"
 
-#: templates/admin/event_create.html:102 templates/admin/event_edit.html:104
+#: .\templates\admin\event_create.html:102
+#: .\templates\admin\event_edit.html:104
 msgid "Hubo un problema. Asegúrate de que los datos ingresados sean válidos."
 msgstr "There was a problem. Make sure the data entered is valid."
 
-#: templates/admin/event_edit.html:22
+#: .\templates\admin\event_edit.html:22
 msgid "Editando un evento"
 msgstr "Editing an event"
 
-#: templates/admin/event_edit.html:44
+#: .\templates\admin\event_edit.html:44
 msgid "No asignada"
 msgstr "Unassigned"
 
-#: templates/admin/event_edit.html:50
+#: .\templates\admin\event_edit.html:50
 msgid "No asignado"
 msgstr "Unassigned"
 
-#: templates/admin/events_ajax.html:6
+#: .\templates\admin\events_ajax.html:6
 msgid "Eventos Publicados"
 msgstr "Published Events"
 
-#: templates/admin/events_ajax.html:7
+#: .\templates\admin\events_ajax.html:7
 msgid "Crear"
 msgstr "Create"
 
-#: templates/admin/events_ajax.html:40
+#: .\templates\admin\events_ajax.html:40
 msgid "No hay eventos publicados"
 msgstr "No events published"
 
-#: templates/admin/events_ajax.html:48
+#: .\templates\admin\events_ajax.html:48
 msgid "Este evento desaparecerá completamente"
 msgstr "This event will disappear completely"
 
-#: templates/admin/gallery_ajax.html:4 templates/admin/shared.html.py:81
-#: templates/admin/shared.html:167
+#: .\templates\admin\gallery_ajax.html:4 .\templates\admin\shared.html:81
+#: .\templates\admin\shared.html:167
 msgid "Galería de Fotos"
 msgstr "Pictures Gallery"
 
-#: templates/admin/gallery_ajax.html:34
+#: .\templates\admin\gallery_ajax.html:34
 msgid "Eliminar foto"
 msgstr "Delete picture"
 
-#: templates/admin/gallery_ajax.html:49 templates/admin/members_ajax.html:128
-#: templates/admin/webpage_ajax.html:163 templates/admin/webpage_ajax.html:180
-#: templates/intranet/news_create.html:98
-#: templates/intranet/news_create_link.html:104
-#: templates/intranet/news_edit.html:115
-#: templates/intranet/news_edit_link.html:119
-#: templates/intranet/profile.html:183
+#: .\templates\admin\gallery_ajax.html:49
+#: .\templates\admin\members_ajax.html:128
+#: .\templates\admin\webpage_ajax.html:163
+#: .\templates\admin\webpage_ajax.html:180
+#: .\templates\intranet\news_create.html:98
+#: .\templates\intranet\news_create_link.html:104
+#: .\templates\intranet\news_edit.html:115
+#: .\templates\intranet\news_edit_link.html:119
+#: .\templates\intranet\profile.html:184
 msgid "Seleccionar nueva imagen"
 msgstr "Select new image"
 
-#: templates/admin/gallery_ajax.html:50
+#: .\templates\admin\gallery_ajax.html:50
 msgid "Agregar foto"
 msgstr "Add picture"
 
-#: templates/admin/members_ajax.html:6
+#: .\templates\admin\members_ajax.html:6
 msgid "Agregar integrante"
 msgstr "Add member"
 
-#: templates/admin/members_ajax.html:13 templates/admin/shared.html.py:83
-#: templates/admin/shared.html:172 templates/webpage/members.html.py:36
+#: .\templates\admin\members_ajax.html:13 .\templates\admin\shared.html:83
+#: .\templates\admin\shared.html:172 .\templates\webpage\members.html:36
 msgid "Integrantes"
 msgstr "Members"
 
-#: templates/admin/members_ajax.html:25 templates/admin/members_ajax.html:76
+#: .\templates\admin\members_ajax.html:25
+#: .\templates\admin\members_ajax.html:76
 msgid "Sin imagen"
 msgstr "No image"
 
-#: templates/admin/members_ajax.html:30
+#: .\templates\admin\members_ajax.html:30
 msgid "Ex-Integrante"
 msgstr "Ex-Member"
 
-#: templates/admin/members_ajax.html:36 templates/admin/members_ajax.html:87
+#: .\templates\admin\members_ajax.html:36
+#: .\templates\admin\members_ajax.html:87
 msgid "Cambiar imagen"
 msgstr "Change image"
 
-#: templates/admin/members_ajax.html:58
+#: .\templates\admin\members_ajax.html:58
 msgid "No hay integrantes en el sistema"
 msgstr "There are no members in the system"
 
-#: templates/admin/members_ajax.html:64 templates/webpage/members.html.py:62
+#: .\templates\admin\members_ajax.html:64 .\templates\webpage\members.html:62
 msgid "Ex-Integrantes"
 msgstr "Ex-Members"
 
-#: templates/admin/members_ajax.html:81
+#: .\templates\admin\members_ajax.html:81
 msgid "Integrante"
 msgstr "Member"
 
-#: templates/admin/members_ajax.html:109
+#: .\templates\admin\members_ajax.html:109
 msgid "No hay ex-integrantes en el sistema"
 msgstr "There are no ex-members in the system"
 
-#: templates/admin/members_ajax.html:118 templates/intranet/profile.html:173
+#: .\templates\admin\members_ajax.html:118
+#: .\templates\intranet\profile.html:174
 msgid "Presiona para seleccionar"
 msgstr "Tap to select"
 
-#: templates/admin/members_ajax.html:142
+#: .\templates\admin\members_ajax.html:142
 msgid "Modificando integrante"
 msgstr "Modifying member"
 
-#: templates/admin/members_ajax.html:143
+#: .\templates\admin\members_ajax.html:143
 msgid "Creando integrante"
 msgstr "Creating member"
 
-#: templates/admin/members_ajax.html:172
+#: .\templates\admin\members_ajax.html:172
 msgid "¿De verdad deseas eliminar a este integrante?"
 msgstr "Do you really want to delete this member?"
 
-#: templates/admin/members_ajax.html:177
+#: .\templates\admin\members_ajax.html:177
 msgid ""
 "Ten en cuenta que esto solo evitará que se muestre información del usuario "
 "públicamente."
@@ -779,183 +737,183 @@ msgstr ""
 "Please note that this will only prevent user public information from being "
 "displayed."
 
-#: templates/admin/news_ajax.html:4
+#: .\templates\admin\news_ajax.html:4
 msgid "Noticias Publicadas"
 msgstr "Published News"
 
-#: templates/admin/news_ajax.html:35 templates/admin/news_ajax.html.py:96
-#: templates/intranet/news.html:58 templates/webpage/news.html.py:26
-#: templates/webpage/news_editor.html:47
+#: .\templates\admin\news_ajax.html:35 .\templates\admin\news_ajax.html:96
+#: .\templates\intranet\news.html:58 .\templates\webpage\news.html:26
+#: .\templates\webpage\news_editor.html:47
 msgid "Fuente:"
 msgstr "Source:"
 
-#: templates/admin/news_ajax.html:46 templates/admin/news_ajax.html.py:107
-#: templates/intranet/news.html:69
+#: .\templates\admin\news_ajax.html:46 .\templates\admin\news_ajax.html:107
+#: .\templates\intranet\news.html:69
 msgid "Tienes comentarios sin leer"
 msgstr "You have unread comments"
 
-#: templates/admin/news_ajax.html:66
+#: .\templates\admin\news_ajax.html:66
 msgid "No hay noticias publicadas"
 msgstr "No news published"
 
-#: templates/admin/news_ajax.html:73
+#: .\templates\admin\news_ajax.html:73
 msgid "Noticias No Publicadas"
 msgstr "Unpublished News"
 
-#: templates/admin/news_ajax.html:129
+#: .\templates\admin\news_ajax.html:129
 msgid "No hay noticias sin publicar"
 msgstr "No unpublished news"
 
-#: templates/admin/news_ajax.html:137 templates/intranet/news.html.py:120
+#: .\templates\admin\news_ajax.html:137 .\templates\intranet\news.html:120
 msgid "Esta noticia desaparecerá completamente"
 msgstr "This news will disappear completely"
 
-#: templates/admin/profile.html:41 templates/intranet/profile.html.py:53
+#: .\templates\admin\profile.html:41 .\templates\intranet\profile.html:54
 msgid "Nombre completo"
 msgstr "Full name"
 
-#: templates/admin/profile.html:45 templates/intranet/profile.html.py:57
-#: templates/intranet/profile.html:217 templates/intranet/profile.html:218
-#: templates/login/register.html.py:17
+#: .\templates\admin\profile.html:45 .\templates\intranet\profile.html:58
+#: .\templates\intranet\profile.html:218 .\templates\intranet\profile.html:219
+#: .\templates\login\register.html:17
 msgid "Institución"
 msgstr "Institution"
 
-#: templates/admin/profile.html:49 templates/intranet/profile.html.py:61
-#: templates/intranet/profile.html:221 templates/intranet/profile.html:222
-#: templates/login/register.html.py:45
+#: .\templates\admin\profile.html:49 .\templates\intranet\profile.html:62
+#: .\templates\intranet\profile.html:222 .\templates\intranet\profile.html:223
+#: .\templates\login\register.html:45
 msgid "Carrera"
 msgstr "Career"
 
-#: templates/admin/profile.html:53 templates/intranet/profile.html.py:65
-#: templates/intranet/profile.html:240
+#: .\templates\admin\profile.html:53 .\templates\intranet\profile.html:66
+#: .\templates\intranet\profile.html:241
 msgid "País"
 msgstr "Country"
 
-#: templates/admin/profile.html:57 templates/intranet/profile.html.py:69
-#: templates/intranet/profile.html:225
-#: templates/intranet/upload_sections/drive_upload_form_template.html:79
-#: templates/intranet/upload_sections/local_upload_form_template.html:78
+#: .\templates\admin\profile.html:57 .\templates\intranet\profile.html:70
+#: .\templates\intranet\profile.html:226
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:79
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:78
 msgid "Área"
 msgstr "Area"
 
-#: templates/admin/profile.html:70 templates/intranet/profile.html.py:106
-#: templates/intranet/profile.html:261 templates/intranet/profile.html:262
+#: .\templates\admin\profile.html:70 .\templates\intranet\profile.html:107
+#: .\templates\intranet\profile.html:262 .\templates\intranet\profile.html:263
 msgid "Biografía"
 msgstr "Biography"
 
-#: templates/admin/profile.html:79 templates/admin/shared.html.py:75
-#: templates/admin/shared.html:152 templates/intranet/documents.html.py:6
-#: templates/intranet/home.html:77 templates/intranet/profile.html.py:115
-#: templates/intranet/shared.html:71 templates/intranet/shared.html.py:138
+#: .\templates\admin\profile.html:79 .\templates\admin\shared.html:75
+#: .\templates\admin\shared.html:152 .\templates\intranet\documents.html:6
+#: .\templates\intranet\home.html:77 .\templates\intranet\profile.html:116
+#: .\templates\intranet\shared.html:71 .\templates\intranet\shared.html:138
 msgid "Documentos"
 msgstr "Documents"
 
-#: templates/admin/profile.html:92 templates/intranet/profile.html.py:141
+#: .\templates\admin\profile.html:92 .\templates\intranet\profile.html:142
 msgid "Sin título"
 msgstr "No title"
 
-#: templates/admin/profile.html:97 templates/intranet/profile.html.py:146
+#: .\templates\admin\profile.html:97 .\templates\intranet\profile.html:147
 msgid "Sin autores"
 msgstr "No authors"
 
-#: templates/admin/shared.html:73 templates/admin/shared.html.py:147
-#: templates/intranet/shared.html:75 templates/intranet/shared.html.py:148
-#: templates/intranet/users.html:6
+#: .\templates\admin\shared.html:73 .\templates\admin\shared.html:147
+#: .\templates\intranet\shared.html:75 .\templates\intranet\shared.html:148
+#: .\templates\intranet\users.html:6
 msgid "Usuarios"
 msgstr "Users"
 
-#: templates/admin/shared.html:77 templates/admin/shared.html.py:157
+#: .\templates\admin\shared.html:77 .\templates\admin\shared.html:157
 msgid "Áreas"
 msgstr "Areas"
 
-#: templates/admin/shared.html:79 templates/admin/shared.html.py:162
+#: .\templates\admin\shared.html:79 .\templates\admin\shared.html:162
 msgid "Página Web"
 msgstr "Web Page"
 
-#: templates/admin/shared.html:85 templates/admin/shared.html.py:177
-#: templates/webpage/home.html:35 templates/webpage/news_feed.html.py:9
+#: .\templates\admin\shared.html:85 .\templates\admin\shared.html:177
+#: .\templates\webpage\home.html:35 .\templates\webpage\news_feed.html:9
 msgid "Noticias"
 msgstr "News"
 
-#: templates/admin/shared.html:87 templates/admin/shared.html.py:182
-#: templates/webpage/events_feed.html:14 templates/webpage/home.html.py:91
-#: templates/webpage/news_feed.html:91
+#: .\templates\admin\shared.html:87 .\templates\admin\shared.html:182
+#: .\templates\webpage\events_feed.html:14 .\templates\webpage\home.html:91
+#: .\templates\webpage\news_feed.html:91
 msgid "Eventos"
 msgstr "Events"
 
-#: templates/admin/shared.html:88 templates/intranet/shared.html.py:80
+#: .\templates\admin\shared.html:88 .\templates\intranet\shared.html:80
 msgid "Volver a la página principal"
 msgstr "Return to homepage"
 
-#: templates/admin/shared.html:92 templates/admin/shared.html.py:113
-#: templates/intranet/shared.html:84 templates/intranet/shared.html.py:105
-#: templates/shared/base.html:66 templates/shared/base.html.py:96
+#: .\templates\admin\shared.html:92 .\templates\admin\shared.html:113
+#: .\templates\intranet\shared.html:84 .\templates\intranet\shared.html:105
+#: .\templates\shared\base.html:66 .\templates\shared\base.html:96
 msgid "Ingresar"
 msgstr "Log in"
 
-#: templates/admin/shared.html:95 templates/admin/shared.html.py:116
-#: templates/intranet/shared.html:87 templates/intranet/shared.html.py:108
-#: templates/shared/base.html:73 templates/shared/base.html.py:103
+#: .\templates\admin\shared.html:95 .\templates\admin\shared.html:116
+#: .\templates\intranet\shared.html:87 .\templates\intranet\shared.html:108
+#: .\templates\shared\base.html:73 .\templates\shared\base.html:103
 msgid "Cerrar Sesión"
 msgstr "Logout"
 
-#: templates/admin/shared.html:138
+#: .\templates\admin\shared.html:138
 msgid "Administrar"
 msgstr "Administer"
 
-#: templates/admin/users_ajax.html:6
+#: .\templates\admin\users_ajax.html:6
 msgid "Invitar usuarios"
 msgstr "Invite users"
 
-#: templates/admin/users_ajax.html:10
+#: .\templates\admin\users_ajax.html:10
 msgid "Ingresa las direcciones de correo electrónico separadas por coma ( , )"
 msgstr "Enter email addresses separated by commas ( , )"
 
-#: templates/admin/users_ajax.html:16
+#: .\templates\admin\users_ajax.html:16
 msgid "Usuarios Invitados"
 msgstr "Invited Users"
 
-#: templates/admin/users_ajax.html:33
+#: .\templates\admin\users_ajax.html:33
 msgid "Reenviar"
 msgstr "Forward"
 
-#: templates/admin/users_ajax.html:40
+#: .\templates\admin\users_ajax.html:40
 msgid "No hay usuarios invitados en el sistema"
 msgstr "No invited users in the system"
 
-#: templates/admin/users_ajax.html:46
+#: .\templates\admin\users_ajax.html:46
 msgid "Usuarios Activos"
 msgstr "Active Users"
 
-#: templates/admin/users_ajax.html:61
+#: .\templates\admin\users_ajax.html:61
 msgid "Bloquear"
 msgstr "Block"
 
-#: templates/admin/users_ajax.html:66 templates/admin/users_ajax.html.py:99
+#: .\templates\admin\users_ajax.html:66 .\templates\admin\users_ajax.html:99
 msgid "Ver"
 msgstr "View"
 
-#: templates/admin/users_ajax.html:78
+#: .\templates\admin\users_ajax.html:78
 msgid "No hay usuarios activos en el sistema"
 msgstr "No active users in the system"
 
-#: templates/admin/users_ajax.html:84
+#: .\templates\admin\users_ajax.html:84
 msgid "Usuarios Bloqueados"
 msgstr "Blocked Users"
 
-#: templates/admin/users_ajax.html:104
+#: .\templates\admin\users_ajax.html:104
 msgid "Desbloquear"
 msgstr "Unlock"
 
-#: templates/admin/users_ajax.html:116
+#: .\templates\admin\users_ajax.html:116
 msgid "No hay usuarios bloqueados en el sistema"
 msgstr "No blocked users in the system"
 
-#: templates/admin/users_ajax.html:125
+#: .\templates\admin\users_ajax.html:125
 msgid "¿De verdad deseas eliminar a este usuario?"
 msgstr "Do you really want to delete this user?"
 
-#: templates/admin/users_ajax.html:130
+#: .\templates\admin\users_ajax.html:130
 msgid ""
 "Ten en cuenta que este usuario posee <strong id=\"modal-user-count\"></"
 "strong> documentos."
@@ -963,153 +921,149 @@ msgstr ""
 "Please note that this user has <strong id=\"modal-user-count\"></strong> "
 "documents."
 
-#: templates/admin/webpage.html:22
+#: .\templates\admin\webpage.html:22
 msgid "Selecciona una sección"
 msgstr "Select a section"
 
-#: templates/admin/webpage.html:36
+#: .\templates\admin\webpage.html:36
 msgid "No has seleccionado una sección para editar"
 msgstr "You have not selected a section to edit"
 
-#: templates/admin/webpage_ajax.html:7
+#: .\templates\admin\webpage_ajax.html:7
 msgid "Principal"
 msgstr "Principal"
 
-#: templates/admin/webpage_ajax.html:28
+#: .\templates\admin\webpage_ajax.html:28
 msgid "Imagen de Cabecera"
 msgstr "Header Image"
 
-#: templates/admin/webpage_ajax.html:34 templates/intranet/news_create.html:79
-#: templates/intranet/news_create_link.html:85
-#: templates/intranet/news_edit.html:91
-#: templates/intranet/news_edit_link.html:95
+#: .\templates\admin\webpage_ajax.html:34
+#: .\templates\intranet\news_create.html:79
+#: .\templates\intranet\news_create_link.html:85
+#: .\templates\intranet\news_edit.html:91
+#: .\templates\intranet\news_edit_link.html:95
 msgid "Presiona para agregar una imagen de cabecera"
 msgstr "Tap to add a header image"
 
-#: templates/admin/webpage_ajax.html:49
+#: .\templates\admin\webpage_ajax.html:49
 msgid "Imágenes de Categorías"
 msgstr "Images of Categories"
 
-#: templates/admin/webpage_ajax.html:89
-#: templates/admin/webpage_subsection_ajax.html:13
+#: .\templates\admin\webpage_ajax.html:89
+#: .\templates\admin\webpage_subsection_ajax.html:13
 msgid "Versión en Español"
 msgstr "Spanish Version"
 
-#: templates/admin/webpage_ajax.html:97 templates/admin/webpage_ajax.html:131
-#: templates/admin/webpage_subsection_ajax.html:21
-#: templates/admin/webpage_subsection_ajax.html:55
-#: templates/intranet/news_create.html:99
-#: templates/intranet/news_create_link.html:105
-#: templates/intranet/news_edit.html:116
-#: templates/intranet/news_edit_link.html:120
+#: .\templates\admin\webpage_ajax.html:97
+#: .\templates\admin\webpage_ajax.html:131
+#: .\templates\admin\webpage_subsection_ajax.html:21
+#: .\templates\admin\webpage_subsection_ajax.html:55
+#: .\templates\intranet\news_create.html:99
+#: .\templates\intranet\news_create_link.html:105
+#: .\templates\intranet\news_edit.html:116
+#: .\templates\intranet\news_edit_link.html:120
 msgid "Aceptar"
 msgstr "Accept"
 
-#: templates/admin/webpage_ajax.html:123
-#: templates/admin/webpage_subsection_ajax.html:47
+#: .\templates\admin\webpage_ajax.html:123
+#: .\templates\admin\webpage_subsection_ajax.html:47
 msgid "Versión en Inglés"
 msgstr "English Version"
 
-#: templates/admin/webpage_ajax.html:164 templates/admin/webpage_ajax.html:181
+#: .\templates\admin\webpage_ajax.html:164
+#: .\templates\admin\webpage_ajax.html:181
 msgid "Subir imagen"
 msgstr "Upload image"
 
-#: templates/intranet/document_information.html:7
+#: .\templates\intranet\document_information.html:7
 msgid "Información del documento"
 msgstr "Document information"
 
-#: templates/intranet/document_information.html:125
+#: .\templates\intranet\document_information.html:126
 msgid "Estas a punto de eliminar el documento:"
 msgstr "You are about to delete the document:"
 
-#: templates/intranet/edit_document_information.html:13
+#: .\templates\intranet\edit_document_information.html:13
 msgid "Editar documento"
 msgstr "Edit document"
 
-#: templates/intranet/home.html:12 templates/webpage/home.html.py:116
-#, fuzzy
-#| msgid "Ultimas publicaciones"
+#: .\templates\intranet\home.html:12 .\templates\webpage\home.html:116
 msgid "Últimas publicaciones"
 msgstr "Latest publications"
 
-#: templates/intranet/home.html:30
+#: .\templates\intranet\home.html:30
 msgid "Por"
 msgstr "By"
 
-#: templates/intranet/home.html:38
+#: .\templates\intranet\home.html:38
 msgid "Ver publicaciones"
 msgstr "View publications"
 
-#: templates/intranet/home.html:44
+#: .\templates\intranet\home.html:44
 msgid "Usuarios registrados"
 msgstr "Registered users"
 
-#: templates/intranet/home.html:61
+#: .\templates\intranet\home.html:61
 #, python-format
 msgid " %(users_count)s más "
 msgstr " %(users_count)s more "
 
-#: templates/intranet/home.html:66
+#: .\templates\intranet\home.html:66
 msgid "Ver todos los usuarios"
 msgstr "View all users"
 
-#: templates/intranet/news.html:14 templates/intranet/news_create.html.py:15
-#: templates/intranet/news_create_link.html:15
-#: templates/intranet/news_edit.html:15
-#: templates/intranet/news_edit_link.html:15 templates/intranet/shared.html:79
-#: templates/intranet/shared.html.py:158
+#: .\templates\intranet\news.html:14 .\templates\intranet\news_create.html:15
+#: .\templates\intranet\news_create_link.html:15
+#: .\templates\intranet\news_edit.html:15
+#: .\templates\intranet\news_edit_link.html:15
+#: .\templates\intranet\shared.html:79 .\templates\intranet\shared.html:158
 msgid "Mis noticias"
 msgstr "My news"
 
-#: templates/intranet/news.html:20
+#: .\templates\intranet\news.html:20
 msgid "Noticias de"
 msgstr "News of"
 
-#: templates/intranet/news.html:21
+#: .\templates\intranet\news.html:21
 msgid "Aquí encontrarás todas las noticias que has agregado"
 msgstr "Here you will find all the news you have added"
 
-#: templates/intranet/news.html:28
+#: .\templates\intranet\news.html:28
 msgid "Añadir noticia"
 msgstr "Add news"
 
-#: templates/intranet/news.html:47
+#: .\templates\intranet\news.html:47
 msgid "Aprobado"
 msgstr "Approved"
 
-#: templates/intranet/news.html:52
+#: .\templates\intranet\news.html:52
 msgid "Requiere aprobación del administrador"
 msgstr "Requires administrator approval"
 
-#: templates/intranet/news.html:94
-#, fuzzy
-#| msgid "Selecciona un metodo de creación"
+#: .\templates\intranet\news.html:94
 msgid "Selecciona un método de creación"
 msgstr "Select a creation method"
 
-#: templates/intranet/news.html:101
+#: .\templates\intranet\news.html:101
 msgid "Redactar"
 msgstr "Write"
 
-#: templates/intranet/news.html:110
+#: .\templates\intranet\news.html:110
 msgid "Enlace"
 msgstr "Link"
 
-#: templates/intranet/news_create.html:21
+#: .\templates\intranet\news_create.html:21
 msgid "Redactando una noticia"
 msgstr "Writting news"
 
-#: templates/intranet/news_create.html:22
-#, fuzzy
-#| msgid ""
-#| "Una vez que llenes los datos, podras escribir la noticia en el editor"
+#: .\templates\intranet\news_create.html:22
 msgid "Una vez que llenes los datos, podrás escribir la noticia en el editor"
 msgstr "Once you fill in the data, you can write the news in the editor"
 
-#: templates/intranet/news_create.html:29
-#: templates/intranet/news_create_link.html:29
-#: templates/intranet/news_edit.html:33
-#: templates/intranet/news_edit_link.html:32
+#: .\templates\intranet\news_create.html:29
+#: .\templates\intranet\news_create_link.html:29
+#: .\templates\intranet\news_edit.html:33
+#: .\templates\intranet\news_edit_link.html:32
 msgid ""
 "Si quieres que tu noticia pueda aparecer en la cabecera de la página web, "
 "debes agregar una imagen de una resolución ideal de 1600x525."
@@ -1117,82 +1071,80 @@ msgstr ""
 "If you want your news be allowed to appear in the header of the website, you "
 "must add an image of an ideal resolution of 1600x525."
 
-#: templates/intranet/news_create.html:36 templates/intranet/news_edit.html:40
+#: .\templates\intranet\news_create.html:36
+#: .\templates\intranet\news_edit.html:40
 msgid "Nombre de la fuente de información"
 msgstr "Name of source of information"
 
-#: templates/intranet/news_create.html:38
-#: templates/intranet/news_create.html:44 templates/intranet/news_edit.html:42
-#: templates/intranet/news_edit.html:48
-#: templates/intranet/news_edit_link.html:41
-#: templates/intranet/news_edit_link.html:47
-#: templates/intranet/news_edit_link.html:53
-#: templates/intranet/upload_sections/drive_upload_form_template.html:66
-#: templates/intranet/upload_sections/drive_upload_form_template.html:74
-#: templates/intranet/upload_sections/local_upload_form_template.html:65
-#: templates/intranet/upload_sections/local_upload_form_template.html:73
+#: .\templates\intranet\news_create.html:38
+#: .\templates\intranet\news_create.html:44
+#: .\templates\intranet\news_edit.html:42
+#: .\templates\intranet\news_edit.html:48
+#: .\templates\intranet\news_edit_link.html:41
+#: .\templates\intranet\news_edit_link.html:47
+#: .\templates\intranet\news_edit_link.html:53
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:66
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:74
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:65
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:73
 msgid "No requerido"
 msgstr "Not required"
 
-#: templates/intranet/news_create.html:42 templates/intranet/news_edit.html:46
+#: .\templates\intranet\news_create.html:42
+#: .\templates\intranet\news_edit.html:46
 msgid "URL de la fuente de información"
 msgstr "URL of the information source"
 
-#: templates/intranet/news_create.html:54 templates/intranet/news_edit.html:59
+#: .\templates\intranet\news_create.html:54
+#: .\templates\intranet\news_edit.html:59
 msgid "Ir al editor"
 msgstr "Go to editor"
 
-#: templates/intranet/news_create.html:66
-#: templates/intranet/news_create_link.html:72
-#: templates/intranet/news_edit.html:72
-#: templates/intranet/news_edit_link.html:76
+#: .\templates\intranet\news_create.html:66
+#: .\templates\intranet\news_create_link.html:72
+#: .\templates\intranet\news_edit.html:72
+#: .\templates\intranet\news_edit_link.html:76
 msgid "Presiona para agregar una miniatura"
 msgstr "Tap to add a thumbnail"
 
-#: templates/intranet/news_create.html:110
-#: templates/intranet/news_edit.html:127
-#: templates/intranet/news_edit_link.html:131
-#, fuzzy
-#| msgid "Asegurate de adjuntar una miniatura."
+#: .\templates\intranet\news_create.html:110
+#: .\templates\intranet\news_edit.html:127
+#: .\templates\intranet\news_edit_link.html:131
 msgid "Asegúrate de adjuntar una miniatura."
 msgstr "Make sure to attach a thumbnail."
 
-#: templates/intranet/news_create_link.html:21
+#: .\templates\intranet\news_create_link.html:21
 msgid "Noticia desde un enlace externo"
 msgstr "News from an external link"
 
-#: templates/intranet/news_create_link.html:22
+#: .\templates\intranet\news_create_link.html:22
 msgid "Crea noticias de manera fácil adjuntando un enlace externo"
 msgstr "Create news easily by attaching an external link"
 
-#: templates/intranet/news_create_link.html:42
-#: templates/intranet/news_edit_link.html:45
+#: .\templates\intranet\news_create_link.html:42
+#: .\templates\intranet\news_edit_link.html:45
 msgid "Nombre del sitio quien publica la noticia"
 msgstr "Name of the site that publishes the news"
 
-#: templates/intranet/news_create_link.html:48
-#: templates/intranet/news_edit_link.html:51
+#: .\templates\intranet\news_create_link.html:48
+#: .\templates\intranet\news_edit_link.html:51
 msgid "URL de la noticia"
 msgstr "News URL"
 
-#: templates/intranet/news_create_link.html:116
-#, fuzzy
-#| msgid "Asegurate de adjuntar una miniatura y llenar los campos requeridos"
+#: .\templates\intranet\news_create_link.html:116
 msgid "Asegúrate de adjuntar una miniatura y llenar los campos requeridos"
 msgstr "Make sure to attach a thumbnail and fill in the required fields"
 
-#: templates/intranet/news_edit.html:26
-#, fuzzy
-#| msgid "Si presionas 'Ir al editor' los datos se guardaran automaticamente"
+#: .\templates\intranet\news_edit.html:26
 msgid "Si presionas 'Ir al editor' los datos se guardarán automáticamente"
 msgstr "If you press 'Go to editor' the data will be saved automatically"
 
-#: templates/intranet/news_edit.html:58
-#: templates/intranet/news_edit_link.html:63
+#: .\templates\intranet\news_edit.html:58
+#: .\templates\intranet\news_edit_link.html:63
 msgid "Guardar cambios"
 msgstr "Save changes"
 
-#: templates/intranet/profile.html:17
+#: .\templates\intranet\profile.html:18
 #, python-format
 msgid ""
 " \n"
@@ -1200,346 +1152,337 @@ msgid ""
 "\t\t"
 msgstr ""
 " \n"
-"\t\t\\Profile of %(first_name)s %(last_name)s \n"
+"\t\t\tProfile of %(first_name)s %(last_name)s \n"
 "\t\t"
 
-#: templates/intranet/profile.html:85
+#: .\templates\intranet\profile.html:86
 msgid "Desvincular"
 msgstr "Unlink"
 
-#: templates/intranet/profile.html:87
+#: .\templates\intranet\profile.html:88
 msgid "No hay una cuenta asociada"
 msgstr "There isn’t an associated account"
 
-#: templates/intranet/profile.html:88
+#: .\templates\intranet\profile.html:89
 msgid "Vincular"
 msgstr "Link"
 
-#: templates/intranet/profile.html:92
+#: .\templates\intranet\profile.html:93
 msgid "Cambiar foto de perfil"
 msgstr "Change profile picture"
 
-#: templates/intranet/profile.html:93
+#: .\templates\intranet\profile.html:94
 msgid "Editar información"
 msgstr "Edit information"
 
-#: templates/intranet/profile.html:94
+#: .\templates\intranet\profile.html:95
 msgid "Cambiar contraseña"
 msgstr "Change password"
 
-#: templates/intranet/profile.html:194
-#, fuzzy
-#| msgid "Estas a punto de desvincular tu cuenta de Google: "
+#: .\templates\intranet\profile.html:195
 msgid "Estás a punto de desvincular tu cuenta de Google: "
 msgstr "You are about to unlink your Google account: "
 
-#: templates/intranet/profile.html:201
+#: .\templates\intranet\profile.html:202
 msgid "Edita tu perfil"
 msgstr "Edit your profile"
 
-#: templates/intranet/profile.html:205 templates/intranet/profile.html:206
-#: templates/login/login.html.py:15 templates/login/register.html:16
-#, fuzzy
-#| msgid "Correo electronico"
+#: .\templates\intranet\profile.html:206 .\templates\intranet\profile.html:207
+#: .\templates\login\login.html:15 .\templates\login\register.html:16
 msgid "Correo electrónico"
 msgstr "Email"
 
-#: templates/intranet/profile.html:209 templates/intranet/profile.html:210
-#: templates/intranet/upload_sections/drive.html:55
-#: templates/login/register.html:20
+#: .\templates\intranet\profile.html:210 .\templates\intranet\profile.html:211
+#: .\templates\intranet\upload_sections\drive.html:55
+#: .\templates\login\register.html:20
 msgid "Nombre"
 msgstr "Name"
 
-#: templates/intranet/profile.html:213 templates/intranet/profile.html:214
-#: templates/login/register.html.py:29
+#: .\templates\intranet\profile.html:214 .\templates\intranet\profile.html:215
+#: .\templates\login\register.html:29
 msgid "Apellido"
 msgstr "Last name"
 
-#: templates/intranet/profile.html:243 templates/login/register.html.py:23
+#: .\templates\intranet\profile.html:244 .\templates\login\register.html:23
 msgid "Selecciona un país"
 msgstr "Select a country"
 
-#: templates/intranet/profile.html:249
+#: .\templates\intranet\profile.html:250
 msgid "Facebook"
 msgstr "Facebook"
 
-#: templates/intranet/profile.html:250
+#: .\templates\intranet\profile.html:251
 msgid "Perfil de Facebook"
 msgstr "Facebook Profile"
 
-#: templates/intranet/profile.html:253
+#: .\templates\intranet\profile.html:254
 msgid "Twitter"
 msgstr "Twitter"
 
-#: templates/intranet/profile.html:254
+#: .\templates\intranet\profile.html:255
 msgid "Perfil de Twitter"
 msgstr "Twitter Profile"
 
-#: templates/intranet/profile.html:257
+#: .\templates\intranet\profile.html:258
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: templates/intranet/profile.html:258
+#: .\templates\intranet\profile.html:259
 msgid "Perfil de LinkedIn"
 msgstr "LinkedIn Profile"
 
-#: templates/intranet/profile.html:272
+#: .\templates\intranet\profile.html:273
 msgid "Cambio de contraseña"
 msgstr "Change of password"
 
-#: templates/intranet/profile.html:278
+#: .\templates\intranet\profile.html:279
 msgid "Contraseña actual:"
 msgstr "Current Password:"
 
-#: templates/intranet/profile.html:285
+#: .\templates\intranet\profile.html:286
 msgid "Nueva contraseña:"
 msgstr "New password:"
 
-#: templates/intranet/profile.html:291
+#: .\templates\intranet\profile.html:292
 msgid "Ingresar nuevamente:"
 msgstr "Enter again:"
 
-#: templates/intranet/profile.html:311
+#: .\templates\intranet\profile.html:312
 msgid "¡Un momento!"
 msgstr "¡Wait!"
 
-#: templates/intranet/profile.html:312
+#: .\templates\intranet\profile.html:313
 msgid "Al parecer tienes deshabilitadas las ventanas emergentes."
 msgstr "You appear to have disabled popup windows."
 
-#: templates/intranet/profile.html:313
-#, fuzzy
-#| msgid "Activalas, recarga la página y vuelve a intentarlo."
+#: .\templates\intranet\profile.html:314
 msgid "Actívalas, recarga la página y vuelve a intentarlo."
 msgstr "Activate them, reload the page and try again."
 
-#: templates/intranet/shared.html:73 templates/intranet/shared.html.py:143
+#: .\templates\intranet\shared.html:73 .\templates\intranet\shared.html:143
 msgid "Mi perfil"
 msgstr "My profile"
 
-#: templates/intranet/shared.html:77 templates/intranet/shared.html.py:153
+#: .\templates\intranet\shared.html:77 .\templates\intranet\shared.html:153
 msgid "Subir documento"
 msgstr "Upload document"
 
-#: templates/intranet/upload.html:19
+#: .\templates\intranet\upload.html:19
 msgid "Subir documentos"
 msgstr "Upload documents"
 
-#: templates/intranet/upload.html:26
+#: .\templates\intranet\upload.html:26
 msgid "Selecciona un método de subida"
 msgstr "Select an upload method"
 
-#: templates/intranet/upload.html:33
+#: .\templates\intranet\upload.html:33
 msgid "Archivos locales"
 msgstr "Local files"
 
-#: templates/intranet/upload.html:49
+#: .\templates\intranet\upload.html:49
 msgid "Subida exitosa. Tus documentos estarán disponibles en breve."
 msgstr "Successful upload. Your documents will be available shortly."
 
-#: templates/intranet/upload.html:57
+#: .\templates\intranet\upload.html:57
 msgid "Ten paciencia. Los documentos están cargándose."
 msgstr "Be patient. Your documents are being loaded."
 
-#: templates/intranet/upload.html:92
+#: .\templates\intranet\upload.html:67
+msgid "Hubo un problema. Asegúrate de que los archivos son válidos."
+msgstr "There was a problem. Make sure the files are valid."
+
+#: .\templates\intranet\upload.html:100
 msgid "Añadir documentos"
 msgstr "Add documents"
 
-#: templates/intranet/upload.html:99
+#: .\templates\intranet\upload.html:107
 msgid "Confirmar"
 msgstr "Confirm"
 
-#: templates/intranet/upload_sections/drive.html:8
+#: .\templates\intranet\upload_sections\drive.html:8
 msgid ""
 "Puedes proporcionar un enlace de Google Drive o buscar entre tus archivos"
 msgstr "You can provide a Google Drive’s link or browse through your files"
 
-#: templates/intranet/upload_sections/drive.html:25
+#: .\templates\intranet\upload_sections\drive.html:25
 msgid "Introduce aquí un enlace a Google Drive"
 msgstr "Enter a link to Google Drive here"
 
-#: templates/intranet/upload_sections/drive.html:37
+#: .\templates\intranet\upload_sections\drive.html:37
 msgid "Ver mis archivos"
 msgstr "View my files"
 
-#: templates/intranet/upload_sections/drive.html:56
-#, fuzzy
-#| msgid "Ultima modificación"
+#: .\templates\intranet\upload_sections\drive.html:56
 msgid "Última modificación"
 msgstr "Last modification"
 
-#: templates/intranet/upload_sections/drive.html:57
+#: .\templates\intranet\upload_sections\drive.html:57
 msgid "Tamaño"
 msgstr "Size"
 
-#: templates/intranet/upload_sections/drive.html:79
-#, fuzzy
-#| msgid "Modificado por ultima vez el"
+#: .\templates\intranet\upload_sections\drive.html:79
 msgid "Modificado por última vez el"
 msgstr "Last modified on"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:15
-#: templates/intranet/upload_sections/local_upload_form_template.html:16
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:15
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:16
 msgid "Ej: Tesis de microbiología"
 msgstr "e.g. Microbiology thesis"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:41
-#: templates/intranet/upload_sections/local_upload_form_template.html:40
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:41
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:40
 msgid "Ej: Juan Pérez"
 msgstr "e.g. John Smith"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:46
-#: templates/intranet/upload_sections/local_upload_form_template.html:45
-#, fuzzy
-#| msgid "Fecha de creacion"
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:46
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:45
 msgid "Fecha de creación"
 msgstr "Creation date"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:83
-#: templates/intranet/upload_sections/local_upload_form_template.html:82
-#, fuzzy
-#| msgid "Selecciona una categoria"
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:83
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:82
 msgid "Selecciona una categoría"
 msgstr "Select a category"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:96
-#: templates/intranet/upload_sections/local_upload_form_template.html:95
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:96
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:95
 msgid "Privacidad"
 msgstr "Privacy"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:100
-#: templates/intranet/upload_sections/local_upload_form_template.html:99
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:100
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:99
 msgid "Selecciona privacidad"
 msgstr "Select privacy"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:101
-#: templates/intranet/upload_sections/local_upload_form_template.html:100
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:101
+#: .\templates\intranet\upload_sections\local_upload_form_template.html:100
 msgid "Interno"
 msgstr "Internal"
 
-#: templates/intranet/upload_sections/drive_upload_form_template.html:108
+#: .\templates\intranet\upload_sections\drive_upload_form_template.html:108
 msgid "Resumen"
 msgstr "Abstract"
 
-#: templates/intranet/upload_sections/local.html:8
+#: .\templates\intranet\upload_sections\local.html:8
 msgid "Subida local de documentos"
 msgstr "Local upload of documents"
 
-#: templates/intranet/upload_sections/local.html:9
+#: .\templates\intranet\upload_sections\local.html:9
 msgid "Selecciona desde tus archivos locales los documentos que deseas subir"
 msgstr "Select from your local files the documents you want to upload"
 
-#: templates/intranet/upload_sections/local.html:17
+#: .\templates\intranet\upload_sections\local.html:17
 msgid "Agregar Documento"
 msgstr "Add Document"
 
-#: templates/intranet/upload_sections/local.html:22
+#: .\templates\intranet\upload_sections\local.html:22
 msgid "Enviar Documentos"
 msgstr "Submit documents"
 
-#: templates/intranet/upload_sections/local.html:34
+#: .\templates\intranet\upload_sections\local.html:34
 msgid "No has agregado documentos"
 msgstr "We haven’t added documents"
 
-#: templates/login/login.html:10
+#: .\templates\login\login.html:10
 msgid "Ingresar al sistema"
 msgstr "Log in Intranet"
 
-#: templates/login/login.html:11
-#, fuzzy
-#| msgid "Ingresa tus datos para acceder a la base de datos de Labmmba"
+#: .\templates\login\login.html:11
 msgid "Ingresa tus datos para acceder a la base de datos de LABMMBA"
 msgstr "Enter your information to access the LABMMBA database"
 
-#: templates/login/login.html:19 templates/login/register.html.py:44
+#: .\templates\login\login.html:19 .\templates\login\register.html:44
 msgid "Contraseña"
 msgstr "Password"
 
-#: templates/login/register.html:10
+#: .\templates\login\register.html:10
 msgid "Registro"
 msgstr "Sign up"
 
-#: templates/login/register.html:11
-#, fuzzy
-#| msgid "Crea una cuenta de usuario en el sistema Labmmba"
+#: .\templates\login\register.html:11
 msgid "Crea una cuenta de usuario en el sistema LABMMBA"
 msgstr "Create an account in the LABMMBA system"
 
-#: templates/public_search/search.html:20
+#: .\templates\public_search\search.html:20
 msgid "Publicaciones"
 msgstr "Publications"
 
-#: templates/public_search/search.html:29
-#, fuzzy
-#| msgid "Ingresa tu busqueda aquí"
+#: .\templates\public_search\search.html:29
 msgid "Ingresa tu búsqueda aquí"
 msgstr "Enter your search here"
 
-#: templates/public_search/search.html:44
+#: .\templates\public_search\search.html:44
 msgid "No hay documentos"
 msgstr "No documents"
 
-#: templates/public_search/search.html:77
-#, fuzzy
-#| msgid "No hay categorias"
+#: .\templates\public_search\search.html:77
 msgid "No hay categorías"
 msgstr "No categories"
 
-#: templates/webpage/event.html:35
+#: .\templates\webpage\event.html:35
 msgid "Día"
 msgstr "Day"
 
-#: templates/webpage/event.html:60
+#: .\templates\webpage\event.html:60
 msgid "Ver programa"
 msgstr "View program"
 
-#: templates/webpage/event.html:175 templates/webpage/events_feed.html:179
+#: .\templates\webpage\event.html:175 .\templates\webpage\events_feed.html:179
 msgid "Hay 888 eventos"
 msgstr "There are 888 events"
 
-#: templates/webpage/events_feed.html:22
+#: .\templates\webpage\events_feed.html:22
 msgid "Eventos:"
 msgstr "Events:"
 
-#: templates/webpage/events_feed.html:23
+#: .\templates\webpage\events_feed.html:23
 msgid "De hoy"
 msgstr "From today"
 
-#: templates/webpage/events_feed.html:24
+#: .\templates\webpage\events_feed.html:24
 msgid "De esta semana"
 msgstr "From this week"
 
-#: templates/webpage/events_feed.html:25
+#: .\templates\webpage\events_feed.html:25
 msgid "De este mes"
 msgstr "From this month"
 
-#: templates/webpage/events_feed.html:26
+#: .\templates\webpage\events_feed.html:26
 msgid "Ver todos"
 msgstr "See all"
 
-#: templates/webpage/events_feed.html:44 templates/webpage/home.html.py:101
-#: templates/webpage/news_feed.html:103
+#: .\templates\webpage\events_feed.html:44 .\templates\webpage\home.html:101
+#: .\templates\webpage\news_feed.html:103
 msgid "No hay eventos"
 msgstr "No events"
 
-#: templates/webpage/home.html:77 templates/webpage/news_feed.html.py:84
+#: .\templates\webpage\gallery.html:9
+msgid "Galería de fotos"
+msgstr "Pictures Gallery"
+
+#: .\templates\webpage\gallery.html:17
+msgid "No hay fotos para mostrar"
+msgstr "There are no photos to show"
+
+#: .\templates\webpage\home.html:77 .\templates\webpage\news_feed.html:84
 msgid "No hay noticias"
 msgstr "No news"
 
-#: templates/webpage/home.html:84
+#: .\templates\webpage\home.html:84
 msgid "Ver más noticias"
 msgstr "See more news"
 
-#: templates/webpage/home.html:108
+#: .\templates\webpage\home.html:108
 msgid "Ver más eventos"
 msgstr "See more events"
 
-#: templates/webpage/news.html:10
+#: .\templates\webpage\news.html:10
 msgid "Noticia del laboratorio"
 msgstr "Laboratory news"
 
-#: templates/webpage/news.html:41 templates/webpage/news.html.py:45
-#: templates/webpage/news_editor.html:76 templates/webpage/news_editor.html:80
+#: .\templates\webpage\news.html:41 .\templates\webpage\news.html:45
+#: .\templates\webpage\news_editor.html:76
+#: .\templates\webpage\news_editor.html:80
 #, python-format
 msgid ""
 "\n"
@@ -1552,11 +1495,11 @@ msgstr ""
 "news\n"
 "                                "
 
-#: templates/webpage/news.html:55 templates/webpage/news_editor.html.py:90
+#: .\templates\webpage\news.html:55 .\templates\webpage\news_editor.html:90
 msgid "Administrador"
 msgstr "Administrator"
 
-#: templates/webpage/news.html:60 templates/webpage/news_editor.html.py:95
+#: .\templates\webpage\news.html:60 .\templates\webpage\news_editor.html:95
 #, python-format
 msgid ""
 "\n"
@@ -1569,70 +1512,66 @@ msgstr ""
 "%(month)s of %(year)s at %(hour)s:%(minutes)s\n"
 "                                            "
 
-#: templates/webpage/news.html:73 templates/webpage/news_editor.html.py:108
+#: .\templates\webpage\news.html:73 .\templates\webpage\news_editor.html:108
 msgid "Ingresa tu comentario"
 msgstr "Enter your comment"
 
-#: templates/webpage/news.html:75 templates/webpage/news_editor.html.py:110
+#: .\templates\webpage\news.html:75 .\templates\webpage\news_editor.html:110
 msgid "Utiliza los comentarios para comunicarte con el autor de la noticia."
 msgstr "Use the comments to communicate with the author of the news."
 
-#: templates/webpage/news.html:77 templates/webpage/news_editor.html.py:112
+#: .\templates\webpage\news.html:77 .\templates\webpage\news_editor.html:112
 msgid "Utiliza los comentarios para comunicarte con el administrador."
 msgstr "Use the comments to communicate with the administrator."
 
-#: templates/webpage/news.html:79 templates/webpage/news_editor.html.py:114
-#, fuzzy
-#| msgid "(*) Son datos necesario para enviar."
+#: .\templates\webpage\news.html:79 .\templates\webpage\news_editor.html:114
 msgid "(*) Son datos necesarios para enviar."
 msgstr "(*) Are required fields."
 
-#: templates/webpage/news.html:83 templates/webpage/news_editor.html.py:118
+#: .\templates\webpage\news.html:83 .\templates\webpage\news_editor.html:118
 msgid "* Comentario"
 msgstr "* Comment"
 
-#: templates/webpage/news.html:85 templates/webpage/news_editor.html.py:120
+#: .\templates\webpage\news.html:85 .\templates\webpage\news_editor.html:120
 msgid "Debes ingresar un comentario"
 msgstr "Yoy must enter a comment"
 
-#: templates/webpage/news.html:89 templates/webpage/news_editor.html.py:124
+#: .\templates\webpage\news.html:89 .\templates\webpage\news_editor.html:124
 msgid "Publicar comentario"
 msgstr "Publish comment"
 
-#: templates/webpage/news.html:101 templates/webpage/news_editor.html.py:151
+#: .\templates\webpage\news.html:101 .\templates\webpage\news_editor.html:151
 msgid "Noticias recientes"
 msgstr "Recent news"
 
-#: templates/webpage/news.html:115
+#: .\templates\webpage\news.html:115
 msgid "No hay más noticias"
 msgstr "No more news"
 
-#: templates/webpage/news_editor.html:28
-#, fuzzy
-#| msgid "Titulo de la noticia"
+#: .\templates\webpage\news_editor.html:28
 msgid "Título de la noticia"
 msgstr "News title"
 
-#: templates/webpage/news_editor.html:136
+#: .\templates\webpage\news_editor.html:136
 msgid "Noticias relacionadas"
 msgstr "Related news"
 
-#: templates/webpage/news_feed.html:100
+#: .\templates\webpage\news_feed.html:100
 msgid "Ver más"
 msgstr "See more"
 
-#: webpage/templatetags/webpagetags.py:27
-#: webpage/templatetags/webpagetags.py:29
-#: webpage/templatetags/webpagetags.py:33
+#: .\webpage\templatetags\webpagetags.py:27
+#: .\webpage\templatetags\webpagetags.py:29
+#: .\webpage\templatetags\webpagetags.py:33
 #, python-format
 msgid " de %s"
 msgstr " of %s"
 
-#: webpage/views.py:321
+#: .\webpage\views.py:321
 msgid "No tienes permisos para modificar esta noticia"
 msgstr "You don’t have permissions to modify this news"
 
-#: webpage/views.py:323
+#: .\webpage\views.py:323
 msgid "Esta noticia no existe"
 msgstr "This news doesn’t exist"
 

@@ -1,0 +1,51 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+<section id="content" class="wfull">
+    <div id="title">
+        <div class="grid">
+            <div class="row">
+                <h1 class="c12">{% trans "Galería de fotos" %}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+    	<div class="row">
+    		<section class="content noticias single c12">
+            {% if not photos %}
+                <h1>{% trans "No hay fotos para mostrar" %}</h1>
+            {% else %}
+                <div id="gallery" class="c12 responsive-gallery">
+                    <ul>
+                        {% for photo in photos %}
+                            <li>
+                                <a class="clear" href="{% static photo.image_static_url %}">
+                                    <img src="{% static photo.image_static_url %}">
+                                    <span class="helper clear"></span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>                    
+                </div>
+            {% endif %}
+    		</section>
+    	</div>
+        <div class="row">
+            <div class="c12">
+                <ul id="bottom-nav" class="clear">
+                    {% if other_sections.0 %}
+                        <li><a class="red" href="{% url 'webpage:section' other_sections.0.slug %}">{% if lang == 'es' %}{{other_sections.0.spanish_name}}{% elif lang == 'en' %}{{other_sections.0.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.1 %}
+                        <li><a class="orange" href="{% url 'webpage:section' other_sections.1.slug %}">{% if lang == 'es' %}{{other_sections.1.spanish_name}}{% elif lang == 'en' %}{{other_sections.1.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                    {% if other_sections.2 %}
+                        <li><a class="yellow" href="{% url 'webpage:section' other_sections.2.slug %}">{% if lang == 'es' %}{{other_sections.2.spanish_name}}{% elif lang == 'en' %}{{other_sections.2.english_name}}{% endif %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1431,6 +1431,11 @@ form .c12 {
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
+.document.owner .flag {
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+}
 .document.owner h3,
 .document.owner h5 {
   text-align: center;
