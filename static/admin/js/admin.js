@@ -135,7 +135,7 @@ function users(){
 				if(!$('#email-invitation').val().trim())	// Abort if email is empty
 					xhr.abort();
 				else {
-					$('#submit-invitation').val(gettext("Enviando...")).attr("disabled", true);
+					$('#submit-invitation').val(current_lang == 'en' ? gettext("Enviando..."): "Enviando...").attr("disabled", true);
 					$('#invitation-error').text("");
 				}
 			}
@@ -273,11 +273,11 @@ function areas(){
 
                 if(!$('#subarea-modal-edit-confirm #modal-subarea-name').val().trim()) {	// Abort if name is empty
                     xhr.abort();
-                    $('#subarea-modal-edit-confirm #modal-error').text(gettext("El nombre de la subárea no puede estar vacío"));
+                    $('#subarea-modal-edit-confirm #modal-error').text(current_lang == 'en' ? gettext("El nombre de la subárea no puede estar vacío"): "El nombre de la subárea no puede estar vacío");
                 }
                 else if($('#subarea-modal-edit-confirm #modal-subarea-name').val() == $('#subarea-modal-edit-confirm #modal-confirm').attr('subarea-name')){	// Abort if no changes were made
                     xhr.abort();
-                    $('#subarea-modal-edit-confirm #modal-error').text(gettext("No ha hecho ningún cambio"));
+                    $('#subarea-modal-edit-confirm #modal-error').text(current_lang == 'en' ? gettext("No ha hecho ningún cambio"): "No ha hecho ningún cambio");
 				}
                 else {
                     $('#subarea-modal-edit-confirm #modal-error').text("");
@@ -310,7 +310,7 @@ function areas(){
 
                 if(!$('#subarea-modal-add #add-subarea-name').val().trim()) {	// Abort if name is empty
                     xhr.abort();
-                    $('#subarea-modal-add #modal-error').text(gettext("El nombre de la subárea no puede estar vacío"));
+                    $('#subarea-modal-add #modal-error').text(current_lang == 'en' ? gettext("El nombre de la subárea no puede estar vacío"): "El nombre de la subárea no puede estar vacío");
                 }
                 else {
                     $('#subarea-modal-add #modal-error').text("");
@@ -365,11 +365,11 @@ function areas(){
 
                 if(!$('#area-modal-edit-confirm #modal-area-name').val().trim()) {	// Abort if name is empty
                     xhr.abort();
-                    $('#area-modal-edit-confirm #modal-error').text(gettext("El nombre del área no puede estar vacío"));
+                    $('#area-modal-edit-confirm #modal-error').text(current_lang == 'en' ? gettext("El nombre del área no puede estar vacío"): "El nombre del área no puede estar vacío");
                 }
                 else if($('#area-modal-edit-confirm #modal-area-name').val() == $('#area-modal-edit-confirm #modal-confirm').attr('area-name')){	// Abort if no changes were made
                     xhr.abort();
-                    $('#area-modal-edit-confirm #modal-error').text(gettext("No ha hecho ningún cambio"));
+                    $('#area-modal-edit-confirm #modal-error').text(current_lang == 'en' ? gettext("No ha hecho ningún cambio"): "No ha hecho ningún cambio");
                 }
                 else {
                     $('#area-modal-edit-confirm #modal-error').text("");
@@ -394,7 +394,7 @@ function areas(){
 				if(!$('#add-area-name').val().trim())	// Abort if email is empty
 					xhr.abort();
 				else {
-					$('#add-area-submit').val(gettext("Agregando...")).attr("disabled", true);
+					$('#add-area-submit').val(current_lang == 'en' ? gettext("Agregando..."): "Agregando...").attr("disabled", true);
 					$('#add-area-error').text("");
 				}
 			}
