@@ -314,7 +314,7 @@ def upload(request):
 					if form.is_valid():
 						form.save()
 					else:
-						return JsonResponse({'error': True, 'message': _(u'Ocurrió un problema: %(error)s') % {'error': str(form.errors)}})
+						return JsonResponse({'error': True, 'message': str(form.errors)})
 				return JsonResponse({'error': False, 'message': _('Subida exitosa'), 'local_ids': local_ids})
 	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))

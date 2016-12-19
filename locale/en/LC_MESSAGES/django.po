@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 04:02-0300\n"
-"PO-Revision-Date: 2016-12-18 18:43-0300\n"
+"POT-Creation-Date: 2016-12-18 20:07-0300\n"
+"PO-Revision-Date: 2016-12-18 20:15-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -61,8 +61,8 @@ msgstr "You must log in"
 msgid "Ya asociaste una cuenta"
 msgstr "You have already associated an account"
 
-#: .\drive\views.py:147 .\drive\views.py:188 .\drive\views.py:318
-#: .\drive\views.py:376 .\intranet\views.py:322 .\intranet\views.py:353
+#: .\drive\views.py:147 .\drive\views.py:188 .\drive\views.py:317
+#: .\drive\views.py:375 .\intranet\views.py:322 .\intranet\views.py:353
 msgid "Debes iniciar sesión."
 msgstr "You must log in"
 
@@ -83,39 +83,39 @@ msgstr ""
 msgid "Debes anadir un enlace de Google Drive a la solicitud."
 msgstr "You must add a Google Drive link to the request."
 
-#: .\drive\views.py:254
+#: .\drive\views.py:253
 msgid "El link ingresado no es un enlace a Google Drive"
 msgstr "The entered link isn’t a link to Google Drive"
 
-#: .\drive\views.py:263
+#: .\drive\views.py:262
 msgid "Para continuar debes enlazar tu cuenta de Google Drive"
 msgstr "Link your Google Drive account to continue"
 
-#: .\drive\views.py:281
+#: .\drive\views.py:280
 msgid "El documento <strong>"
 msgstr "The document <strong>"
 
-#: .\drive\views.py:284
+#: .\drive\views.py:283
 msgid "El documento no puede tener un tamaño superior a 2 Megabytes."
 msgstr "The document must not exceed the 2 Megabytes."
 
-#: .\drive\views.py:300
+#: .\drive\views.py:299
 msgid "El link ingresado no contiene documentos compatibles"
 msgstr "The Link does not have compatible documents"
 
-#: .\drive\views.py:313
+#: .\drive\views.py:312
 msgid "No existen archivos compatibles en el enlace."
 msgstr "There are not compatible files in the link."
 
-#: .\drive\views.py:315
+#: .\drive\views.py:314
 msgid "Error desconocido. Contacta al administrador."
 msgstr "Unknown error. Contact the administrator."
 
-#: .\drive\views.py:360
+#: .\drive\views.py:359
 msgid "Raíz"
 msgstr "Root"
 
-#: .\drive\views.py:369
+#: .\drive\views.py:368
 msgid "Debe ingresar la ID de una carpeta"
 msgstr "You must enter the ID of a folder"
 
@@ -175,34 +175,50 @@ msgstr "Spanish"
 msgid "English"
 msgstr "English"
 
-#: .\login\views.py:52
+#: .\login\views.py:54
 msgid "El administrador ha bloqueado tu cuenta."
 msgstr "The administrator has blocked your account."
 
-#: .\login\views.py:65 .\login\views.py:74
+#: .\login\views.py:67 .\login\views.py:76
 msgid "Email o contraseña inválida."
 msgstr "Invalid email or password."
 
-#: .\login\views.py:69
+#: .\login\views.py:71
 msgid "Ten paciencia. Debes ser aprobado por el administrador."
 msgstr "Be patient. You must be approved by the administrator."
 
-#: .\login\views.py:189 .\templates\intranet\profile.html:328
+#: .\login\views.py:191 .\templates\intranet\profile.html:325
 msgid "Cambio exitoso"
 msgstr "Successful change"
 
-#: .\login\views.py:191
+#: .\login\views.py:193
 msgid ""
 "Hubo un problema. Asegúrate de escribir correctamente tu contraseña actual."
 msgstr "There was a problem. Make sure your password is correct."
 
-#: .\login\views.py:193
+#: .\login\views.py:195
 msgid "Metodo de envío incorrecto"
 msgstr "Incorrect sent method."
 
-#: .\login\views.py:195 .\webpage\views.py:325
+#: .\login\views.py:197 .\webpage\views.py:325
 msgid "Debes iniciar sesión"
 msgstr "You must log in"
+
+#: .\login\views.py:217
+msgid "Enviado con éxito. Revisa tu bandeja de entrada"
+msgstr "Sent successfully. Check your Inbox"
+
+#: .\login\views.py:220
+msgid "Hubo un error inesperado. Inténtalo más tarde."
+msgstr "There was an unexpected error. Try again later."
+
+#: .\login\views.py:223
+msgid "El correo electrónico no es válido"
+msgstr "The email address is invalid"
+
+#: .\login\views.py:258
+msgid "Token no valido"
+msgstr "Invalid token"
 
 #: .\templates\admin\analytics.html:19
 msgid "Usuarios activos: "
@@ -314,8 +330,8 @@ msgstr "Please note that subareas belonging to this area will also be deleted."
 #: .\templates\admin\members_ajax.html:180 .\templates\admin\news_ajax.html:140
 #: .\templates\admin\users_ajax.html:133
 #: .\templates\intranet\document_information.html:129
-#: .\templates\intranet\news.html:123 .\templates\intranet\profile.html:197
-#: .\templates\intranet\profile.html:322
+#: .\templates\intranet\news.html:123 .\templates\intranet\profile.html:194
+#: .\templates\intranet\profile.html:319
 msgid "CONFIRMAR"
 msgstr "CONFIRM"
 
@@ -412,13 +428,13 @@ msgstr "Added on"
 #: .\templates\admin\document_information.html:119
 #: .\templates\admin\events_ajax.html:47 .\templates\admin\news_ajax.html:136
 #: .\templates\intranet\document_information.html:125
-#: .\templates\intranet\news.html:119 .\templates\intranet\profile.html:194
-#: .\templates\intranet\profile.html:318
+#: .\templates\intranet\news.html:119 .\templates\intranet\profile.html:191
+#: .\templates\intranet\profile.html:315
 msgid "¿Estás seguro?"
 msgstr "Are you sure?"
 
 #: .\templates\admin\document_information.html:120
-#: .\templates\intranet\profile.html:319
+#: .\templates\intranet\profile.html:316
 msgid "Estás a punto de eliminar el documento:"
 msgstr "You are about to delete the document:"
 
@@ -508,7 +524,7 @@ msgstr "YEAR"
 
 #: .\templates\admin\edit_document_information.html:16
 #: .\templates\intranet\edit_document_information.html:23
-#: .\templates\intranet\profile.html:229 .\templates\login\register.html:32
+#: .\templates\intranet\profile.html:226 .\templates\login\register.html:32
 msgid "Selecciona un área"
 msgstr "Select an area"
 
@@ -609,9 +625,10 @@ msgstr "Add day"
 
 #: .\templates\admin\event_create.html:90 .\templates\admin\event_edit.html:92
 #: .\templates\admin\members_ajax.html:129 .\templates\admin\users_ajax.html:7
-#: .\templates\intranet\profile.html:185
+#: .\templates\intranet\profile.html:182
 #: .\templates\intranet\upload_sections\drive.html:41
 #: .\templates\intranet\upload_sections\drive.html:91
+#: .\templates\login\login.html:21
 msgid "Enviar"
 msgstr "Submit"
 
@@ -665,7 +682,7 @@ msgstr "Delete picture"
 #: .\templates\intranet\news_create_link.html:104
 #: .\templates\intranet\news_edit.html:115
 #: .\templates\intranet\news_edit_link.html:119
-#: .\templates\intranet\profile.html:184
+#: .\templates\intranet\profile.html:181
 msgid "Seleccionar nueva imagen"
 msgstr "Select new image"
 
@@ -742,7 +759,7 @@ msgid "Noticias Publicadas"
 msgstr "Published News"
 
 #: .\templates\admin\news_ajax.html:35 .\templates\admin\news_ajax.html:96
-#: .\templates\intranet\news.html:58 .\templates\webpage\news.html:26
+#: .\templates\intranet\news.html:58 .\templates\webpage\news.html:36
 #: .\templates\webpage\news_editor.html:47
 msgid "Fuente:"
 msgstr "Source:"
@@ -773,31 +790,31 @@ msgid "Nombre completo"
 msgstr "Full name"
 
 #: .\templates\admin\profile.html:45 .\templates\intranet\profile.html:58
-#: .\templates\intranet\profile.html:218 .\templates\intranet\profile.html:219
+#: .\templates\intranet\profile.html:215 .\templates\intranet\profile.html:216
 #: .\templates\login\register.html:17
 msgid "Institución"
 msgstr "Institution"
 
 #: .\templates\admin\profile.html:49 .\templates\intranet\profile.html:62
-#: .\templates\intranet\profile.html:222 .\templates\intranet\profile.html:223
+#: .\templates\intranet\profile.html:219 .\templates\intranet\profile.html:220
 #: .\templates\login\register.html:45
 msgid "Carrera"
 msgstr "Career"
 
 #: .\templates\admin\profile.html:53 .\templates\intranet\profile.html:66
-#: .\templates\intranet\profile.html:241
+#: .\templates\intranet\profile.html:238
 msgid "País"
 msgstr "Country"
 
 #: .\templates\admin\profile.html:57 .\templates\intranet\profile.html:70
-#: .\templates\intranet\profile.html:226
+#: .\templates\intranet\profile.html:223
 #: .\templates\intranet\upload_sections\drive_upload_form_template.html:79
 #: .\templates\intranet\upload_sections\local_upload_form_template.html:78
 msgid "Área"
 msgstr "Area"
 
 #: .\templates\admin\profile.html:70 .\templates\intranet\profile.html:107
-#: .\templates\intranet\profile.html:262 .\templates\intranet\profile.html:263
+#: .\templates\intranet\profile.html:259 .\templates\intranet\profile.html:260
 msgid "Biografía"
 msgstr "Biography"
 
@@ -847,13 +864,13 @@ msgstr "Return to homepage"
 
 #: .\templates\admin\shared.html:92 .\templates\admin\shared.html:113
 #: .\templates\intranet\shared.html:84 .\templates\intranet\shared.html:105
-#: .\templates\shared\base.html:66 .\templates\shared\base.html:96
+#: .\templates\shared\base.html:75 .\templates\shared\base.html:105
 msgid "Ingresar"
 msgstr "Log in"
 
 #: .\templates\admin\shared.html:95 .\templates\admin\shared.html:116
 #: .\templates\intranet\shared.html:87 .\templates\intranet\shared.html:108
-#: .\templates\shared\base.html:73 .\templates\shared\base.html:103
+#: .\templates\shared\base.html:82 .\templates\shared\base.html:112
 msgid "Cerrar Sesión"
 msgstr "Logout"
 
@@ -1179,83 +1196,84 @@ msgstr "Edit information"
 msgid "Cambiar contraseña"
 msgstr "Change password"
 
-#: .\templates\intranet\profile.html:195
+#: .\templates\intranet\profile.html:192
 msgid "Estás a punto de desvincular tu cuenta de Google: "
 msgstr "You are about to unlink your Google account: "
 
-#: .\templates\intranet\profile.html:202
+#: .\templates\intranet\profile.html:199
 msgid "Edita tu perfil"
 msgstr "Edit your profile"
 
-#: .\templates\intranet\profile.html:206 .\templates\intranet\profile.html:207
-#: .\templates\login\login.html:15 .\templates\login\register.html:16
+#: .\templates\intranet\profile.html:203 .\templates\intranet\profile.html:204
+#: .\templates\login\email.html:15 .\templates\login\login.html:15
+#: .\templates\login\register.html:16
 msgid "Correo electrónico"
 msgstr "Email"
 
-#: .\templates\intranet\profile.html:210 .\templates\intranet\profile.html:211
+#: .\templates\intranet\profile.html:207 .\templates\intranet\profile.html:208
 #: .\templates\intranet\upload_sections\drive.html:55
 #: .\templates\login\register.html:20
 msgid "Nombre"
 msgstr "Name"
 
-#: .\templates\intranet\profile.html:214 .\templates\intranet\profile.html:215
+#: .\templates\intranet\profile.html:211 .\templates\intranet\profile.html:212
 #: .\templates\login\register.html:29
 msgid "Apellido"
 msgstr "Last name"
 
-#: .\templates\intranet\profile.html:244 .\templates\login\register.html:23
+#: .\templates\intranet\profile.html:241 .\templates\login\register.html:23
 msgid "Selecciona un país"
 msgstr "Select a country"
 
-#: .\templates\intranet\profile.html:250
+#: .\templates\intranet\profile.html:247
 msgid "Facebook"
 msgstr "Facebook"
 
-#: .\templates\intranet\profile.html:251
+#: .\templates\intranet\profile.html:248
 msgid "Perfil de Facebook"
 msgstr "Facebook Profile"
 
-#: .\templates\intranet\profile.html:254
+#: .\templates\intranet\profile.html:251
 msgid "Twitter"
 msgstr "Twitter"
 
-#: .\templates\intranet\profile.html:255
+#: .\templates\intranet\profile.html:252
 msgid "Perfil de Twitter"
 msgstr "Twitter Profile"
 
-#: .\templates\intranet\profile.html:258
+#: .\templates\intranet\profile.html:255
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: .\templates\intranet\profile.html:259
+#: .\templates\intranet\profile.html:256
 msgid "Perfil de LinkedIn"
 msgstr "LinkedIn Profile"
 
-#: .\templates\intranet\profile.html:273
+#: .\templates\intranet\profile.html:270
 msgid "Cambio de contraseña"
 msgstr "Change of password"
 
-#: .\templates\intranet\profile.html:279
+#: .\templates\intranet\profile.html:276
 msgid "Contraseña actual:"
 msgstr "Current Password:"
 
-#: .\templates\intranet\profile.html:286
+#: .\templates\intranet\profile.html:283
 msgid "Nueva contraseña:"
 msgstr "New password:"
 
-#: .\templates\intranet\profile.html:292
+#: .\templates\intranet\profile.html:289
 msgid "Ingresar nuevamente:"
 msgstr "Enter again:"
 
-#: .\templates\intranet\profile.html:312
+#: .\templates\intranet\profile.html:309
 msgid "¡Un momento!"
 msgstr "¡Wait!"
 
-#: .\templates\intranet\profile.html:313
+#: .\templates\intranet\profile.html:310
 msgid "Al parecer tienes deshabilitadas las ventanas emergentes."
 msgstr "You appear to have disabled popup windows."
 
-#: .\templates\intranet\profile.html:314
+#: .\templates\intranet\profile.html:311
 msgid "Actívalas, recarga la página y vuelve a intentarlo."
 msgstr "Activate them, reload the page and try again."
 
@@ -1383,6 +1401,21 @@ msgstr "Submit documents"
 msgid "No has agregado documentos"
 msgstr "We haven’t added documents"
 
+#: .\templates\login\email.html:10 .\templates\login\recovery.html:10
+msgid "Recuperar contraseña"
+msgstr "Recover password"
+
+#: .\templates\login\email.html:11
+msgid ""
+"Ingresa tu correo electrónico. Recibirás un email para restablecer tu "
+"contraseña"
+msgstr ""
+"Enter your email address. You will receive an email to reset your password"
+
+#: .\templates\login\email.html:19
+msgid "Recuperar"
+msgstr "Recover"
+
 #: .\templates\login\login.html:10
 msgid "Ingresar al sistema"
 msgstr "Log in Intranet"
@@ -1391,9 +1424,35 @@ msgstr "Log in Intranet"
 msgid "Ingresa tus datos para acceder a la base de datos de LABMMBA"
 msgstr "Enter your information to access the LABMMBA database"
 
-#: .\templates\login\login.html:19 .\templates\login\register.html:44
+#: .\templates\login\login.html:18 .\templates\login\recovery.html:16
+#: .\templates\login\register.html:44
 msgid "Contraseña"
 msgstr "Password"
+
+#: .\templates\login\login.html:29
+#, python-format
+msgid ""
+"\n"
+"\t                \t¿Has olvidado tu contraseña? Haz <a href=\"%(url)s"
+"\">click aquí</a>\n"
+"\t                "
+msgstr ""
+"\n"
+"\t                \tHave you forgotten your password? Click <a href=\"%(url)s"
+"\">here</a>\n"
+"\t                "
+
+#: .\templates\login\recovery.html:11
+msgid "Ingresa tu nueva contraseña"
+msgstr "Enter your new password"
+
+#: .\templates\login\recovery.html:18
+msgid "Ingresar nuevamente"
+msgstr "Enter again"
+
+#: .\templates\login\recovery.html:21
+msgid "Actualizar"
+msgstr "Update"
 
 #: .\templates\login\register.html:10
 msgid "Registro"
@@ -1418,6 +1477,14 @@ msgstr "No documents"
 #: .\templates\public_search\search.html:77
 msgid "No hay categorías"
 msgstr "No categories"
+
+#: .\templates\shared\base.html:22 .\templates\shared\base.html:24
+#: .\templates\shared\base.html:25 .\templates\shared\base.html:30
+msgid ""
+"El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia "
+"la degradación bacteriana de contaminantes orgánicos persistentes, química "
+"ambiental, genómica y proteómica funcional."
+msgstr ""
 
 #: .\templates\webpage\event.html:35
 msgid "Día"
@@ -1476,11 +1543,11 @@ msgstr "See more news"
 msgid "Ver más eventos"
 msgstr "See more events"
 
-#: .\templates\webpage\news.html:10
+#: .\templates\webpage\news.html:20
 msgid "Noticia del laboratorio"
 msgstr "Laboratory news"
 
-#: .\templates\webpage\news.html:41 .\templates\webpage\news.html:45
+#: .\templates\webpage\news.html:51 .\templates\webpage\news.html:55
 #: .\templates\webpage\news_editor.html:76
 #: .\templates\webpage\news_editor.html:80
 #, python-format
@@ -1495,11 +1562,11 @@ msgstr ""
 "news\n"
 "                                "
 
-#: .\templates\webpage\news.html:55 .\templates\webpage\news_editor.html:90
+#: .\templates\webpage\news.html:65 .\templates\webpage\news_editor.html:90
 msgid "Administrador"
 msgstr "Administrator"
 
-#: .\templates\webpage\news.html:60 .\templates\webpage\news_editor.html:95
+#: .\templates\webpage\news.html:70 .\templates\webpage\news_editor.html:95
 #, python-format
 msgid ""
 "\n"
@@ -1512,49 +1579,45 @@ msgstr ""
 "%(month)s of %(year)s at %(hour)s:%(minutes)s\n"
 "                                            "
 
-#: .\templates\webpage\news.html:73 .\templates\webpage\news_editor.html:108
+#: .\templates\webpage\news.html:83 .\templates\webpage\news_editor.html:108
 msgid "Ingresa tu comentario"
 msgstr "Enter your comment"
 
-#: .\templates\webpage\news.html:75 .\templates\webpage\news_editor.html:110
+#: .\templates\webpage\news.html:85 .\templates\webpage\news_editor.html:110
 msgid "Utiliza los comentarios para comunicarte con el autor de la noticia."
 msgstr "Use the comments to communicate with the author of the news."
 
-#: .\templates\webpage\news.html:77 .\templates\webpage\news_editor.html:112
+#: .\templates\webpage\news.html:87 .\templates\webpage\news_editor.html:112
 msgid "Utiliza los comentarios para comunicarte con el administrador."
 msgstr "Use the comments to communicate with the administrator."
 
-#: .\templates\webpage\news.html:79 .\templates\webpage\news_editor.html:114
+#: .\templates\webpage\news.html:89 .\templates\webpage\news_editor.html:114
 msgid "(*) Son datos necesarios para enviar."
 msgstr "(*) Are required fields."
 
-#: .\templates\webpage\news.html:83 .\templates\webpage\news_editor.html:118
+#: .\templates\webpage\news.html:93 .\templates\webpage\news_editor.html:118
 msgid "* Comentario"
 msgstr "* Comment"
 
-#: .\templates\webpage\news.html:85 .\templates\webpage\news_editor.html:120
+#: .\templates\webpage\news.html:95 .\templates\webpage\news_editor.html:120
 msgid "Debes ingresar un comentario"
 msgstr "Yoy must enter a comment"
 
-#: .\templates\webpage\news.html:89 .\templates\webpage\news_editor.html:124
+#: .\templates\webpage\news.html:99 .\templates\webpage\news_editor.html:124
 msgid "Publicar comentario"
 msgstr "Publish comment"
 
-#: .\templates\webpage\news.html:101 .\templates\webpage\news_editor.html:151
+#: .\templates\webpage\news.html:111 .\templates\webpage\news_editor.html:136
 msgid "Noticias recientes"
 msgstr "Recent news"
 
-#: .\templates\webpage\news.html:115
+#: .\templates\webpage\news.html:125
 msgid "No hay más noticias"
 msgstr "No more news"
 
 #: .\templates\webpage\news_editor.html:28
 msgid "Título de la noticia"
 msgstr "News title"
-
-#: .\templates\webpage\news_editor.html:136
-msgid "Noticias relacionadas"
-msgstr "Related news"
 
 #: .\templates\webpage\news_feed.html:100
 msgid "Ver más"
@@ -1574,6 +1637,9 @@ msgstr "You don’t have permissions to modify this news"
 #: .\webpage\views.py:323
 msgid "Esta noticia no existe"
 msgstr "This news doesn’t exist"
+
+#~ msgid "Noticias relacionadas"
+#~ msgstr "Related news"
 
 #~ msgid ""
 #~ "\n"

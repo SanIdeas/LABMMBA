@@ -10,10 +10,16 @@
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=7"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-
+	<meta name="google-site-verification" content="xxHZoTPWFrnBoV0-nOnkuod_NItxViiQ3USlBE2glTA" />
+	{% if lang == 'en' %}
+		<link rel="alternate" hreflang="es" href="http://www.labmmba.usm.cl/es/" />
+	{% else %}
+		<link rel="alternate" hreflang="en" href="http://www.labmmba.usm.cl/en/" />
+	{% endif %}
 	<!-- SEO -->
-
-	<title>{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
+	{% block title %}
+		<title>{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
+	{% endblock %}
 	<meta name="title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
 	<meta property="og:title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María"/>
 	<meta name="twitter:title" content="{% if lang == 'es' %}{{current_view.spanish_name}}{% elif lang == 'en' %}{{current_view.english_name}}{% endif %} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María">
@@ -25,7 +31,7 @@
 	<meta property="og:description" content="{% trans 'El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional.' %}"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://www.labmmba.usm.cl"//>
-	<meta property="og:image" content="{% static 'shared/images/labmmba1.png' %}"/>
+	<meta property="og:image" content="http://www.labmmba.usm.cl{% static 'shared/images/labmmba.jpg' %}"/>
 	
 	<meta name="twitter:description" content="{% trans 'El laboratorio MMBA de la Universidad Técnica Federico Santa María estudia la degradación bacteriana de contaminantes orgánicos persistentes, química ambiental, genómica y proteómica funcional.' %}">
 	{% endblock %}

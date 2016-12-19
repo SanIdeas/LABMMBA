@@ -1,6 +1,20 @@
 {% extends 'shared/base.html' %}
 {% load staticfiles %}
 {% load i18n %}
+{% block title %}
+    <title>{{event.title}} · Laboratorio de Microbiología Molecular y Biotecnología Ambiental · Universidad Técnica Federico Santa María</title>
+{% endblock %}
+{% block meta %}
+    <meta name="description" content="{{event.description}}" />
+    <meta name="author" content="Labmmba"/>
+    <meta name="description" content="{{event.description}}"/>
+    <meta property="og:description" content="{{event.description}}"/>
+    <meta property="og:type" content="event"/>
+    <meta property="og:url" content="http://www.labmmba.usm.cl"//>
+    <meta property="og:image" content="http://www.labmmba.usm.cl{% static event.image_url %}"/>
+    <meta name="twitter:description" content="{{event.description}}">
+    <meta property="event:start_time" content="{{event.get_date|date:'c'}}" />
+{% endblock %}
 {% block css %}
     <!-- FontAwesome -->
     <link rel="stylesheet" type="text/css" href="{% static 'intranet/css/vendor/font-awesome.min.css' %}">
