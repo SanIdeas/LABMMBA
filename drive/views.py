@@ -22,52 +22,6 @@ flow.params['access_type'] = 'offline'
 
 # Create your views hereself.
 
-
-'''def upload_from_drive(stream, drive_id, request, thumbnail):
-	owner = request.user
-	try:
-		meta = get_metadata(stream)
-		day, month, year = date(meta['/CreationDate'])
-		fields = {
-			'title': meta['/Title'] if '/Title' in meta and meta['/Title']  else 'Titulo temporal' + str(datetime.datetime.now()),
-			'author': meta['/Author'] if  '/Author' in meta else owner.first_name + ' ' + owner.last_name,
-			'abstract': meta['/Subject'] if  '/Subject' in meta else None,
-			'words': meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None,
-			'date': year + '-' + month + '-' + day if '/CreationDate' in meta else '2000-01-01',
-			'owner': owner.id,
-			'drive_id': drive_id,
-		}
-		files = {
-			'document': stream,
-			'thumbnail': thumbnail,
-		}
-	except:
-		fields = {
-			'title': 'Titulo temporal' + str(datetime.datetime.now()),
-			'author': owner.first_name + ' ' + owner.last_name,
-			'abstract': meta['/Subject'] if  '/Subject' in meta else None,
-			'words': meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None,
-			'date': '2001-01-01',
-			'owner': owner.id,
-			'drive_id': drive_id,
-			'type': 1,
-		}
-		files = {
-			'document': stream  
-		}
-	form = DocumentForm(fields, files)
-	print form.errors
-	if form.is_valid():
-		document = form.save()
-		document.owner.update_activity().doc_number('+')
-		document.format_filename()
-		document.format_thumbnail_filename()
-		return document.id
-	else:
-		return False'''
-
-
-
 def children_list(folder_id, service, onlyPDF):
 	param = {}
 	param['fields'] = 'items/id'

@@ -1,0 +1,69 @@
+{% extends 'intranet/shared.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+<div class="title">
+	<h3>{% trans "Foro" %}</h3>
+</div>
+
+<div class="intranet row">
+	<div class="c12">
+		<div class="intranet box">
+			<div class="upload head">
+				<h1>{% trans 'Foro del laboratorio' %}</h1>
+				<h4>{% trans 'Aquí podras discutir sobre temas de interes con los miembros del laboratorio' %}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="c12">
+		<div class="intranet box forum home">
+			<a class="create" href="{% url 'intranet:forum_create' %}">{% trans 'Crear foro' %}</a>
+		</div>
+		<div class="intranet box forum home">
+			{% for forum in forum_list %}
+			 	<div class="c12 item">
+			        <a class="clear wrapper" href="{% url 'intranet:forum' forum.slug %}">
+			        	<div class="icon">
+			        		<i class="fa {{forum.type}}" aria-hidden="true"></i>
+			        	</div>
+			        	<div class="body">
+				            <span class="date">{{ forum.date|date:"d-F-Y" }}</span>
+				            <h3>{{ forum.title }}</h3>
+				            <span>{% trans "Iniciado por" %} {{ forum.author.get_full_name }}</span>
+			        	</div>
+			        	{% if forum.get_last_comment.author %}
+					        <div class="last">
+					        	<h4>{% trans "Último mensaje" %}:</h4>
+					        	<h4>{{forum.get_last_comment.author.get_full_name}}</h4>
+					        	<h5>{{forum.get_last_comment.get_time_ago}}</h5>
+					        </div>
+					    {% endif %}
+			        </a>
+		        </div>
+			{% endfor %}
+	    </div>
+	    	{% if forum_list.has_other_pages %}
+			    <div class="clear ">
+			        <div id="wp_page_numbers" class="custom">
+			            <ul class="intranet box">
+			                {% if forum_list.has_previous %}
+			                	<li><a href="{% url 'intranet:forum' %}?page={{forum_list.previous_page_number}}">{% trans "Anterior" %}</a></li>
+			                {% endif %}
+			            	{% for page in forum_list.paginator.page_range %}
+			                	<li {% ifequal forum_list.number page %}class="active_page"{% endifequal %}>
+			                		<a href="{% url 'intranet:forum' %}?page={{page}}">{{page}}</a>
+			                	</li>
+			                {% endfor %}
+			                {% if forum_list.has_next %}
+			                	<li><a href="{% url 'intranet:forum' %}?page={{forum_list.next_page_number}}">{% trans "Siguiente" %}</a></li>
+			                {% endif %}
+			            </ul>
+			            <div style="float: none; clear: both;"></div>
+			        </div>
+			    </div>
+		    {% endif %}
+	</div>
+
+</div>
+
+{% endblock %}

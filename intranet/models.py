@@ -8,7 +8,7 @@ from django.db import models
 from login.models import User, Area, SubArea
 from unidecode import unidecode
 from collections import Counter
-import os, re, operator, unicodedata, datetime, time
+import os, re, operator, unicodedata, datetime, time, pytz
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 # Herramientas PDF
 from PyPDF2 import PdfFileWriter, PdfFileReader
@@ -20,6 +20,9 @@ from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
 from django.core.files import File 
 from cStringIO import StringIO
+
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 
 # Utilidades
 
@@ -294,7 +297,79 @@ class Document(models.Model):
 		self.words = ','.join(keywords)
 		self.save()
 
+class Forum(models.Model):
+	title = models.CharField(max_length=300, null=False)
+	slug = models.SlugField(max_length=300, null=False)
+	date = models.DateTimeField(auto_now_add=True)
+	content = models.TextField(null=False)
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	type = models.CharField(max_length=50, null=False)
+
+	def save(self, *args, **kwargs):
+		slug = slugify(self.title)
+		forum = Forum.objects.filter(title=self.title).exclude(id=self.id)
+		count = 0
+		# Si existe una noticia con el mismo nombre
+		# Se agrega un numero al final del slug
+		if forum:
+			while True:
+				count += 1
+				slug_temp = slug + '-' + str(count)
+				if not Forum.objects.filter(slug=slug_temp).exclude(id=self.id):
+					break
+			slug += '-' + str(count)
+		self.slug = slug
+		super(Forum, self).save(*args, **kwargs)
+
+	def get_comments(self):
+		return ForumComment.objects.filter(forum=self.id)
+
+	def can_remove(self):
+		delta = datetime.datetime.now(pytz.UTC) - self.date
+		if delta.total_seconds()/60 < 5:
+			return True
+		return False
+
+	def get_last_comment(self):
+		return ForumComment.objects.filter(forum=self.id).last()
+
+class ForumComment(models.Model):
+	forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
+	content = models.TextField(null=False)
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	date = models.DateTimeField(auto_now_add=True)
+	content_type = models.ForeignKey(ContentType, on_delete=models.SET_NULL, null=True)
+	object_id = models.PositiveIntegerField(null=True)
+	content_object = GenericForeignKey('content_type', 'object_id')
+
+	def can_remove(self):
+		delta = datetime.datetime.now(pytz.UTC) - self.date
+		if delta.total_seconds()/60 < 5:
+			return True
+		return False
+
+	def get_time_ago(self):
+		delta = datetime.datetime.now(pytz.UTC) - self.date
+		minutes = delta.total_seconds()/60
+		hours = delta.total_seconds()/3600
+		days = delta.days
+		if minutes < 1:
+			return _(u'Recién')
+		elif minutes > 1 and minutes < 2:
+			return _(u'Hace %s minuto') % (str(int(minutes)))
+		elif minutes > 2 and minutes < 60:
+			return _(u'Hace %s minutos') % (str(int(minutes)))
+		elif hours >= 1 and hours < 2:
+			return _(u'Hace %s hora') % (str(int(hours)))
+		elif hours >= 2 and hours < 24:
+			return _(u'Hace %s horas') % (str(int(hours)))
+		elif days >= 1 and hours < 2:
+			return _(u'Hace %s día') % (str(int(days)))
+		else:
+			return _(u'Hace %s días') % (str(int(days)))
+
+
 @receiver(post_delete, sender=Document)
-def documetn_delete(sender, instance, **kwargs):
+def document_delete(sender, instance, **kwargs):
 	instance.document.delete(False)
 	instance.thumbnail.delete(False)

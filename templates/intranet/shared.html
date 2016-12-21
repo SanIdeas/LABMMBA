@@ -73,6 +73,8 @@
 											<li class="{% if profile == request.path%} current {%endif%}"><a href="{{profile}}">{% trans "Mi perfil" %}</a></li>
 										{% url 'intranet:users' as users_view%}
 											<li class="{% if users_view == request.path%} current {%endif%}"><a href="{{users_view}}">{% trans "Usuarios" %}</a></li>
+										{% url 'intranet:forum' as forums%}
+											<li class="{% if forums == request.path%} current {%endif%}"><a href="{{forums}}">{% trans "Foros" %}</a></li>
 										{% url 'intranet:upload' as upload%}
 											<li class="{% if upload == request.path%} current {%endif%}"><a href="{{upload}}">{% trans "Subir documento" %}</a></li>
 										{% url 'intranet:news' as news%}
@@ -146,6 +148,11 @@
 						<a class="clear {% if users_view == request.path%} selected {%endif%}" href="{{users_view}}">
 							<i class="fa fa-users" aria-hidden="true"></i>
 							{% trans "Usuarios" %}
+						</a>
+					{% url 'intranet:forum' as forums%}
+						<a class="clear {% if forums == request.path%} selected {%endif%}" href="{{forums}}">
+							<i class="fa fa-comments" aria-hidden="true"></i>
+							{% trans "Foro" %}
 						</a>
 					{% url 'intranet:upload' as upload%}
 						<a class="clear {% if upload == request.path%} selected {%endif%}" href="{{upload}}">

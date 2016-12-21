@@ -1,0 +1,188 @@
+{% extends 'intranet/shared.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+<div class="title">
+	<h3>{{forum.title}}</h3>
+</div>
+
+<div class="intranet row">
+	<div class="c12">
+		<div class="intranet box forum detail">
+			{% if comments.number == 1 %}
+				<div class="clear comment master">
+					{% if request.user == forum.author and forum.can_remove %}
+						<button class="delete" type="forum" data-type="forum" data-id="{{forum.id}}" title="{% trans 'Eliminar' %}"><i class="fa fa-times" aria-hidden="true"></i></button>
+					{% endif %}
+					<div class="c12 header">
+						<div class="image">
+							{% if forum.author.profile_picture %} 
+			    				<img src="{% static forum.author.filename %}">
+			    			{% else %} 
+			    				<img src="{% static 'intranet/images/default.png' %}">
+			    			{% endif%}
+			    		</div>
+						<h3>{{forum.title}}</h3>
+						<span>{% trans "De" %} {{forum.author.get_full_name}}</span>
+					</div>
+					<div class="body">
+							{{forum.content}}		
+					</div>
+					<div class="footer">
+						<span class="date">{{forum.date}}</span>
+						<button class="cite" data-type="forum" data-id="{{forum.id}}" data-author="{{forum.author.get_full_name}}" data-content="{{forum.content}}"><i class="fa fa-commenting" aria-hidden="true"></i> {% trans "Citar" %}</button>
+					</div>
+				</div>
+			{% endif %}
+			{% for comment in comments %}
+				<div class="comment">
+					{% if request.user == comment.author and comment.can_remove %}
+						<button class="delete" type="comment" data-type="comment" data-id="{{comment.id}}" title="{% trans 'Eliminar' %}"><i class="fa fa-times" aria-hidden="true"></i></button>
+					{% endif %}
+					<div class="c12 header">
+						<div class="image">
+							{% if comment.author.profile_picture %} 
+			    				<img src="{% static comment.author.filename %}">
+			    			{% else %} 
+			    				<img src="{% static 'intranet/images/default.png' %}">
+			    			{% endif%}
+			    		</div>
+						<h3>Re: {{comment.forum.title}}</h3>
+						<span>{% trans "De" %} {{comment.author.get_full_name}}</span>
+					</div>
+					<div class="body">
+						{% if comment.content_type %}
+							<div class="quote">
+								{% if comment.content_object %}
+				    				<div class="author">
+				    					{% trans "De" %} <span>{{comment.content_object.author.get_full_name}}</span>:
+				    				</div>
+				    				<div class="content">
+				    					{{comment.content_object.content}}
+				    				</div>
+				    			{% else %}
+				    				<div class="message">{% trans "El comentario citado ha sido eliminado por su autor" %}</div>
+				    			{% endif %}
+			    			</div>
+						{% endif %}
+						{{comment.content}}	
+					</div>
+					<div class="footer">
+						<span class="date">{{comment.date}}</span>
+						<button class="cite" data-type="comment" data-id="{{comment.id}}" data-author="{{comment.author.get_full_name}}" data-content="{{comment.content}}"><i class="fa fa-commenting" aria-hidden="true"></i> {% trans "Citar" %}</button>
+					</div>
+				</div>
+			{% endfor %}
+	    </div>
+	    {% if comments.has_other_pages %}
+			<div class="clear">
+		        <div id="wp_page_numbers" class="custom">
+		            <ul class="intranet box">
+		                {% if comments.has_previous %}
+		                	<li><a href="{% url 'intranet:forum' forum.slug %}?page={{comments.previous_page_number}}">{% trans "Anterior" %}</a></li>
+		                {% endif %}
+		            	{% for page in comments.paginator.page_range %}
+		                	<li {% ifequal comments.number page %}class="active_page"{% endifequal %}>
+		                		<a href="{% url 'intranet:forum' forum.slug %}?page={{page}}">{{page}}</a>
+		                	</li>
+		                {% endfor %}
+		                {% if comments.has_next %}
+		                	<li><a href="{% url 'intranet:forum' forum.slug %}?page={{comments.next_page_number}}">{% trans "Siguiente" %}</a></li>
+		                {% endif %}
+		            </ul>
+		            <div style="float: none; clear: both;"></div>
+		        </div>
+		    </div>
+		{% endif %}
+	    <div class="intranet box forum">
+	    	<div class="c12">
+	    		<h3>{% trans "Escribe un comentario" %}</h3>
+	    	</div>
+	    	<form action="{% url 'intranet:forum_new_comment' %}" method="POST">
+	    		{% csrf_token %}
+	    		<input type="hidden" name="forum" value="{{ forum.id }}">
+	    		<input type="hidden" id="cite-input" name="cite" value="">
+	    		<div class="c12 field">
+	    			<div class="to quote" style='display:none;'>
+	    				<button title="{% trans 'Cerrar' %}"><i class="fa fa-times" aria-hidden="true"></i></button>
+	    				<div class="author">
+	    					{% trans "De" %} <span></span>:
+	    				</div>
+	    				<div class="content">
+	    					
+	    				</div>
+	    			</div>
+	    			<textarea class="text" name="content" placeholder="{% trans 'Escribe aquí' %}" required></textarea>
+	    		</div>
+	    		<div class="s6 c6">
+	    			<input class="submit" type="submit" name="{% trans 'Enviar' %}">
+	    		</div>
+	    	</form>
+	    </div> 
+	</div>
+</div>
+<!-- Modal extra -->
+<div style="display:none;">
+	<div>
+		<div class="document modal" id="deleteCommentModal">
+			<h2>{% trans "¿Estás seguro?" %}</h2>
+			<h3>{% trans "Estás a punto de eliminar una entrada en el foro" %}</h3>
+			<div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+		</div>
+	</div>
+	<div>
+		<div class="document modal" id="deleteForumModal">
+			<h2>{% trans "¿Estás seguro?" %}</h2>
+			<p>{% trans "Estás a punto de eliminar este foro:" %}</p>
+			<h3>Todos los comentarios se perderán</h3>
+			<div><a class="confirm" type="send">{% trans "CONFIRMAR" %}</a></div>
+		</div>
+	</div>
+</div>
+<script>
+	var delete_id;
+	var delete_type;
+	if(window.location.hash){
+        $('.intranet.body').scrollTop($('.intranet.body').prop('scrollHeight'));
+    }
+	$('.cite').click(function(){
+		$('.to.quote').css('display', 'block');
+		$('.to.quote .author span').text($(this).attr('data-author'));
+		$('.to.quote .content').text($(this).attr('data-content'));
+		if ($(this).attr('data-type') == 'forum')
+			$('#cite-input').attr('name', 'cite_forum').val($(this).attr('data-id'));
+		else
+			$('#cite-input').attr('name', 'cite_comment').val($(this).attr('data-id'));
+
+		$('.intranet.body').animate({
+			scrollTop: $('.intranet.body').prop('scrollHeight')
+		},800);
+	});
+	$('.to.quote button').click(function(e){
+		e.preventDefault();
+		$('.to.quote').css('display', 'none');
+		$('#cite-input').val('');
+	});
+	$('.delete').click(function(){
+		if($(this).attr('type') == 'comment'){
+			$.fancybox($('#deleteCommentModal').parent('div').html());
+		}
+		else{
+			$.fancybox($('#deleteForumModal').parent('div').html());
+		}
+		delete_id = $(this).attr('data-id');
+		delete_type = $(this).attr('data-type');
+
+		$('a.confirm').click(function(){
+			if(delete_type == 'forum'){
+				window.location.href = '{% url "intranet:forum_remove" %}?id=' + delete_id;
+			}
+			else if(delete_type == 'comment'){
+				window.location.href = '{% url "intranet:forum_remove_comment" %}?id=' + delete_id;
+			}
+
+		});
+	});
+</script>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'intranet/shared.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+<div class="title">
+	<h3>{% trans "Foro" %}</h3>
+</div>
+
+<div class="intranet row">
+	<div class="c12">
+		<div class="intranet box">
+			<div class="upload head">
+				<h1>{% trans 'Creando un foro' %}</h1>
+				<h4>{% trans 'Rellena los campos para comenzar un tema' %}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="c12">
+    	<form class="forum" action="{% url 'intranet:forum_create' %}" method="POST">
+		    <div class="intranet box forum detail">
+				<div class="clear comment master">
+					<div class="c12 header">
+						<div class="image">
+							{% if request.user.profile_picture %} 
+			    				<img src="{% static request.user.filename %}">
+			    			{% else %} 
+			    				<img src="{% static 'intranet/images/default.png' %}">
+			    			{% endif%}
+			    		</div>
+						<h3><input class="text" type="text" placeholder="{% trans 'Escribe aquí el título de la publicación' %}" name="title" required></h3>
+					</div>
+					<div class="body">
+							<div class="c12 field">
+				    			<textarea class="text" name="content" placeholder="{% trans 'Escribe aquí el contenido de la publicación' %}" required></textarea>
+				    		</div>		
+					</div>
+				</div>
+				{% csrf_token %}
+			</div>
+		 	<div class="intranet box forum create">
+			 	<div class="c12">
+			 		<div class="icon">
+		 				<i class="fa fa-info-circle" aria-hidden="true"></i>
+		 			</div>
+					<select name="type" required>
+						<option value="" disabled selected>{% trans "Presiona aquí para clasificar la publicación" %}</option>
+						<option value="fa-info-circle">{% trans "General" %}</option>
+						<option value="fa-question-circle">{% trans "Consulta" %}</option>
+						<option value="fa-exclamation-circle">{% trans "Discusión" %}</option>
+						<option value="fa-comment">{% trans "Comentario" %}</option>
+					</select>
+				</div>
+		 	</div>
+		 	<div class="intranet box s6 c6 submit">
+					<input class="trans submit" type="submit" name="{% trans 'Crear' %}" disabled>
+		 	</div>
+		</form>
+	</div>
+</div>
+<script>
+	$('select[name="type"]').change(function(){
+		$('.forum.create .icon i').attr('class', 'fa ' + $(this).val());
+	});
+	$('input.text, textarea.text, select').on('input', function(){
+		var changed = true;
+		var formElement = $('form.forum')[0];
+		var formStatus = formElement.checkValidity();
+
+		if(!formStatus){
+			changed = false;
+		}
+		if(changed)
+			$('.forum input[type="submit"]').attr('disabled', false);
+		else
+			$('.forum input[type="submit"]').attr('disabled', true);
+	});
+</script>
+				
+{% endblock %}

@@ -620,3 +620,35 @@ body{
 input[readonly].date{
 	opacity: 1 !important;
 }
+
+/* numero de paginas personalizado */
+
+#wp_page_numbers{
+	&.custom{
+		margin: 0 !important;
+		margin-bottom: 20px !important;
+		& a{
+			margin: 0 !important;
+		}
+		& li{
+			position: relative;
+			&:after{
+			    content: '';
+			    position: absolute;
+			    background-color: rgba(66, 157, 209, 0.27);
+			    height: 60%;
+			    width: 1px;
+			    top: 0;
+			    right: 0;
+			    bottom: 0;
+			    margin: auto;
+			}
+			&:last-child:after{
+				content: none;
+			}
+		}
+		& ul{
+			padding: 0;
+		}
+	}
+}

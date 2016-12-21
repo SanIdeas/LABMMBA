@@ -210,14 +210,14 @@
 				{% endfor %}
 				<script>
 						var search = '{{ search }}'.split(' ');
-						console.log(search);
 						$('.text-result').each(function(){
+							var html = $(this).html();
 							for ( var i = 0; i< search.length; i++){
-								var html = $(this).html();
-								console.log(search[i])
 								var re = new RegExp('^' + search[i] + '|' + search[i], 'gi')
-								$(this).html(html.replace(re, '<span class="documents mark">' + '$&'.replace(' ', '') + '</span>'));
+								if (search[i] != 'mark')
+									html = html.replace(re, '<mark>' + '$&'.replace(' ', '') + '</mark>');
 							}
+							$(this).html(html);
 						});
 				</script>
 				</div>

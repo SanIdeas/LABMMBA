@@ -25,4 +25,10 @@ urlpatterns = [
     url(r'^news/edit/(?P<id>.*)/$', views.news_edit, name='edit_news'),
     url(r'^news/create/link$', views.news_create_link, name='create_news_from_link'),
     url(r'^news/delete/(?P<id>.*)/$', views.news_delete, name='delete_news'),
+    url(r'^new/forum/$', views.forum_create, name='forum_create'),
+    url(r'^new/comment/forum/$', views.forum_new_comment, name='forum_new_comment'),
+    url(r'^remove/forum/$', views.forum_remove, name='forum_remove'),
+    url(r'^remove/comment/forum/$', views.forum_remove_comment, name='forum_remove_comment'),
+    url(r'^forum/$', views.forum_list, name='forum'),
+    url(r'^forum/(?P<title>.*)/$', views.forum, name='forum'),
 ]

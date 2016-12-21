@@ -1106,6 +1106,34 @@ body {
 input[readonly].date {
   opacity: 1 !important;
 }
+/* numero de paginas personalizado */
+#wp_page_numbers.custom {
+  margin: 0 !important;
+  margin-bottom: 20px !important;
+}
+#wp_page_numbers.custom a {
+  margin: 0 !important;
+}
+#wp_page_numbers.custom li {
+  position: relative;
+}
+#wp_page_numbers.custom li:after {
+  content: '';
+  position: absolute;
+  background-color: rgba(66, 157, 209, 0.27);
+  height: 60%;
+  width: 1px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+#wp_page_numbers.custom li:last-child:after {
+  content: none;
+}
+#wp_page_numbers.custom ul {
+  padding: 0;
+}
 .documents.mark {
   background-color: yellow;
 }
@@ -3012,6 +3040,279 @@ form .c12 {
   padding: 20px;
   display: block;
   text-align: justify;
+}
+.forum.home .item {
+  transition: background-color 0.2s ease;
+}
+.forum.home .item:hover {
+  background-color: #F5F5F5;
+}
+.forum.home .item .wrapper {
+  padding: 10px;
+  display: block;
+  position: relative;
+  border-bottom: 1px solid #F6F6F6;
+}
+.forum.home .item .wrapper > div {
+  display: inline-block;
+}
+.forum.home .item .wrapper > div.icon {
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+}
+.forum.home .item .wrapper > div.icon i {
+  display: table;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 40px;
+}
+.forum.home .item .wrapper > div.body {
+  margin-left: 50px;
+  width: 100%;
+  padding-right: 200px;
+}
+@media screen and (max-width: 900px) {
+  .forum.home .item .wrapper > div.body {
+    padding-right: 0px;
+    width: auto;
+  }
+}
+.forum.home .item .wrapper > div h3 {
+  margin: 0;
+  padding: 0;
+}
+.forum.home .item .wrapper > div span {
+  font-size: 9pt;
+  color: inherit;
+}
+.forum.home .item .wrapper .last {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: table;
+  margin: auto;
+  height: 100%;
+}
+.forum.home .item .wrapper .last * {
+  margin: 0;
+  font-weight: normal;
+}
+@media screen and (max-width: 900px) {
+  .forum.home .item .wrapper .last {
+    position: relative;
+    display: inline-block;
+    margin-left: 50px;
+    width: 100%;
+  }
+  .forum.home .item .wrapper .last > * {
+    font-size: 9pt;
+    display: inline-block;
+  }
+  .forum.home .item .wrapper .last > *:nth-child(2) {
+    display: none;
+  }
+}
+.forum.home .create {
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
+.forum.detail .comment {
+  padding-top: 10px;
+  margin-left: 20px;
+  position: relative;
+}
+.forum.detail .comment > * {
+  display: inline-block;
+}
+.forum.detail .comment > *:nth-child(2) {
+  width: 100%;
+}
+.forum.detail .comment.master {
+  background-color: #f7fafd;
+  margin: 0;
+  position: relative;
+}
+.forum.detail .comment.master .body {
+  border-radius: 0;
+}
+.forum.detail .comment.master:before {
+  content: '';
+  height: 100%;
+  position: absolute;
+  width: 2px;
+  background-color: blue;
+}
+.forum.detail .comment > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  color: #777;
+  padding: 10px;
+  z-index: 1;
+}
+.forum.detail .comment .header {
+  padding-top: 5px;
+  position: relative;
+}
+.forum.detail .comment .header .image {
+  height: 100%;
+  margin: 0;
+  position: absolute;
+}
+.forum.detail .comment .header .image img {
+  height: 100%;
+  border-radius: 50%;
+}
+.forum.detail .comment .header h3,
+.forum.detail .comment .header span {
+  margin: 0;
+  margin-left: 60px;
+}
+.forum.detail .comment .user {
+  width: 120px;
+  padding: 0px  20px;
+  position: relative;
+  float: left;
+}
+.forum.detail .comment .user .image {
+  padding: 5px;
+}
+.forum.detail .comment .user .image img {
+  border-radius: 50%;
+}
+@media screen and (max-width: 700px) {
+  .forum.detail .comment .user {
+    width: 100px;
+  }
+}
+.forum.detail .comment .user > * {
+  display: block;
+}
+.forum.detail .comment .user .name {
+  text-align: center;
+  font-size: 9pt;
+}
+.forum.detail .comment .user:after {
+  content: '';
+  position: absolute;
+  background-color: #e5e5e5;
+  height: 80%;
+  width: 1px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.forum.detail .comment .body {
+  padding: 16px;
+  padding-left: 60px;
+  margin-top: 10px;
+  background-color: #f3f6f7;
+  width: 100%;
+  border-radius: 10px 0px 0px 10px;
+}
+@media screen and (max-width: 700px) {
+  .forum.detail .comment .body {
+    padding-left: 20px;
+  }
+}
+.forum.detail .comment .footer {
+  padding: 10px 5px;
+  width: 100%;
+  border-bottom: 1px solid #f4f4f4;
+}
+.forum.detail .comment .footer button {
+  float: right;
+  background: none;
+  border: none;
+  color: #0077ad;
+}
+.forum.detail .comment .footer .date {
+  font-size: 9pt;
+  padding-left: 5px;
+}
+.forum .field {
+  padding: 5px !important;
+  background-color: #e9edf0;
+}
+.forum .field textarea {
+  border-radius: 0;
+  resize: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.forum .quote {
+  margin: 20px;
+  padding: 10px;
+  border-left: 3px solid #c4ccce;
+  position: relative;
+}
+.forum .quote .content {
+  padding: 5px;
+}
+.forum .quote .message {
+  color: #b0b0b0;
+  font-style: italic;
+  font-size: 11pt;
+}
+.forum .quote button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: #777;
+}
+.forum.create {
+  position: relative;
+}
+.forum.create > div {
+  position: relative;
+}
+.forum.create .icon {
+  text-align: center;
+  height: 100%;
+  margin: auto;
+  width: 100px;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+}
+.forum.create .icon i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 30pt;
+  padding-left: 20px;
+  display: table;
+}
+.forum.create select {
+  margin-left: 50px;
+}
+form.forum div.submit {
+  width: 50%;
+  padding: 0px !important;
+}
+form.forum div.submit input[disabled] {
+  background-color: #99b0c8;
+  color: #f3f6f9;
+  opacity: 1;
 }
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

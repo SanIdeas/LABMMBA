@@ -10,8 +10,8 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import ugettext as _ # Para traducir un string se usa: _("String a traducir")
 from django.core.paginator import Paginator
-from intranet.forms import DocumentForm
-from intranet.models import Document
+from intranet.forms import DocumentForm, ForumForm
+from intranet.models import Document, Forum, ForumComment
 from login.models import SubArea, Area, User
 from webpage.models import Section, News, Image
 from webpage.forms import NewsForm
@@ -314,7 +314,7 @@ def upload(request):
 					if form.is_valid():
 						form.save()
 					else:
-						return JsonResponse({'error': True, 'message': str(form.errors)})
+						return JsonResponse({'error': True, 'message': _(u'Ocurrió un problema: %(error)s') % {'error': str(form.errors)}})
 				return JsonResponse({'error': False, 'message': _('Subida exitosa'), 'local_ids': local_ids})
 	elif request.user.is_authenticated() and request.user.is_admin:
 		return HttpResponseRedirect(reverse('webpage:home'))
@@ -555,3 +555,110 @@ def news_delete(request, id):
 			return JsonResponse({'redirect': reverse('login')})
 		else:
 			return HttpResponseRedirect(reverse('login'))
+
+def forum_list(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		paginator = Paginator(Forum.objects.all().order_by('-date'), 8)
+
+		# Se extrae el numero de pagina
+		if request.GET.get('page'):
+			try: forum = paginator.page(request.GET.get('page'))
+			except: forum = paginator.page(1)
+		else:
+			forum = paginator.page(1)
+		return render(request, 'intranet/forums.html', {'intranet': Section.objects.get(slug='intranet'), 'forum_list': forum})	
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def forum(request, title=None):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		forum = Forum.objects.filter(slug=title)
+		if forum:
+			forum = forum[0]
+			paginator = Paginator(forum.get_comments(), 8)
+			# Se extrae el numero de pagina
+			if request.GET.get('page'):
+				try: comments = paginator.page(request.GET.get('page'))
+				except: comments = paginator.page(1)
+			else:
+				comments = paginator.page(1)
+			return render(request, 'intranet/forum.html', {'intranet': Section.objects.get(slug='intranet'), 'forum': forum, 'comments': comments})	
+		else:
+			return HttpResponseRedirect(reverse('intranet:forum'))
+	else:
+		return HttpResponseRedirect(reverse('login'))
+
+def forum_create(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		if request.method == 'GET':
+			return render(request, 'intranet/forum_create.html', {'intranet': Section.objects.get(slug='intranet')})	
+
+		elif request.method == 'POST':
+			mutable = request.POST._mutable
+			request.POST._mutable = True
+			request.POST['author'] = request.user.id
+			request.POST._mutable = mutable
+			form = ForumForm(request.POST)
+			print form.errors
+			if form.is_valid():
+				forum = form.save()
+				return HttpResponseRedirect(reverse('intranet:forum', kwargs={'title': forum.slug}))
+			return HttpResponseRedirect(reverse('intranet:forum'))	
+		
+	return HttpResponseRedirect(reverse('login'))
+
+def forum_new_comment(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		if request.method == 'GET':
+			return HttpResponseRedirect(reverse('intranet:forum'))	
+
+		elif request.method == 'POST':
+			mutable = request.POST._mutable
+			request.POST._mutable = True
+			request.POST['author'] = request.user.id
+			request.POST._mutable = mutable
+			if request.POST.get('content') and request.POST.get('forum'):
+				forum = Forum.objects.filter(id=request.POST.get('forum'))
+				if forum:
+					forum = forum[0]
+					comment = ForumComment(author=request.user, content=request.POST.get('content'), forum=forum)
+					cite = None
+					if request.POST.get('cite_comment'):
+						cite = ForumComment.objects.filter(id=request.POST.get('cite_comment'))
+					if request.POST.get('cite_forum'):
+						cite = Forum.objects.filter(id=request.POST.get('cite_forum'))
+					if cite:
+						comment.content_object = cite[0]
+					comment.save()
+					paginator = Paginator(forum.get_comments(), 8)
+					count = 0
+					for p in paginator.page_range:
+						count += 1
+					print count
+					return HttpResponseRedirect(reverse('intranet:forum', kwargs={'title': forum.slug}) + '?page=' + str(count) + '#comment')
+			return HttpResponseRedirect(reverse('intranet:forum'))	
+		
+	return HttpResponseRedirect(reverse('login'))
+
+def forum_remove(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		if request.GET.get('id'):
+			forum = Forum.objects.filter(id=request.GET.get('id'), author=request.user)
+			if forum and forum[0].can_remove():
+				forum = forum[0]
+				forum.delete()
+		return HttpResponseRedirect(reverse('intranet:forum'))
+		
+	return HttpResponseRedirect(reverse('login'))
+
+def forum_remove_comment(request):
+	if request.user.is_authenticated() and not request.user.is_admin:
+		if request.GET.get('id'):
+			comment = ForumComment.objects.filter(id=request.GET.get('id'), author=request.user)
+			if comment and comment[0].can_remove():
+				comment = comment[0]
+				slug = comment.forum.slug
+				comment.delete()
+		return HttpResponseRedirect(reverse('intranet:forum', kwargs={'title': slug}))
+		
+	return HttpResponseRedirect(reverse('login'))

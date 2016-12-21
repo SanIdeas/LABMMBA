@@ -1,6 +1,6 @@
 from django import forms
-from intranet.models import Document
-from login.models import SubArea
+from intranet.models import Document, Forum, ForumComment
+from login.models import SubArea, User
 
 
 class DocumentForm(forms.ModelForm):
@@ -23,4 +23,15 @@ class DocumentForm(forms.ModelForm):
 
 	class Meta:
 		model = Document
+		fields = '__all__'
+
+class ForumForm(forms.ModelForm):
+	title = forms.CharField(required=True)
+	slug = forms.CharField(required=False)
+	author = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
+	content = forms.CharField(required=True)
+	type = forms.CharField(required=True)
+
+	class Meta:
+		model = Forum
 		fields = '__all__'
