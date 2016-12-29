@@ -30,6 +30,13 @@
 						</div>
 					</div>
 				</div>
+				<!-- duplicate indicator -->
+				<div class="duplicate hidden" doc-index="$index">
+					<span class="fa-stack fa-lg help tooltip duplicate" title="{% trans 'Ya existen documentos con este título. De igual forma, se creará una nueva versión del documento.' %}">
+						<i class="fa fa-circle fa-stack-2x"></i>
+						<i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
+					</span>					
+				</div>
 			</div>
 		</div>
 		<div class="c12 field">
@@ -104,3 +111,11 @@
 		</div>
 	</div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.tooltip').tooltipster({
+        	theme: 'tooltipster-light',
+        	side: 'top'
+        });
+    });
+</script>

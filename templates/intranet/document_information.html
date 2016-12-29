@@ -11,7 +11,7 @@
 		<!-- Nueva caja -->
 		<div class="intranet box">
 			<div class="document head">
-				<h2>{{document.title}}</h2>
+				<h2>{{document.title}} <span class="version noselect">v{{document.version}}.0</span></h2>
 				<h5>{{document.category.name}}</h5>
 				<h5>{{document.date.year}}</h5>
 				<div class="intranet separator"></div>
@@ -115,6 +115,31 @@
 				<a class="modal" href="#confirmModal">{% trans "Eliminar" %}</a>
 			</div>
 		</div>
+		<div class="intranet box">
+            <div class="profile info">
+            	<ul class="documents">
+	            	{% for document in versions %}
+	            		<li>
+	            			<div class="body">
+	            				<a href="{% url 'intranet:document' document.author_slug document.title_slug %}">
+	            					<h3><span>v{{document.version}}.0</span> · 
+	            					{% if document.title %}
+	            						{{ document.title }}</h3>
+	            					{% else %}
+	            						{% trans "Sin título" %}</h3>
+	            					{% endif %}
+	            					{% if document.author %}
+	            						<span>{{ document.author }}</span>
+	            					{% else %}
+	            						<span>{% trans "Sin autores" %}</span>
+	            					{% endif %}
+	            				</a>
+	            			</div>
+	            		</li>
+	            	{% endfor %}
+            	</ul>
+            </div>
+        </div>
 		{% endif %}
         <!-- Fin de la caja -->
 	</div>

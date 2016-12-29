@@ -155,6 +155,7 @@ def get_file_and_thumbnail(request, service, id):
 		document = File(fh)
 		# Se obtiene el archivo de la imagen miniatura
 		thumbnailLink = file['thumbnailLink'].replace('=s220', '=s600')
+		filename = file['title']
 		file = urllib.urlopen(thumbnailLink).read()
 		img = tempfile.TemporaryFile()
 		img.write(file)
@@ -164,6 +165,7 @@ def get_file_and_thumbnail(request, service, id):
 			'owner': request.user.id,
 			'drive_id': id,
 			'author': request.user.first_name + ' ' + request.user.last_name,
+			'original_filename': filename,
 		}
 		files = {
 			'document': document,

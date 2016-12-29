@@ -30,29 +30,58 @@ function enableCrossref(){
 
 	// Cuando se ingresa texto al campo de titulo
 	$('.field[field-name="title"]').off();
-	$('.field[field-name="title"]').on('input', function(){
-		last_cr_query[parseInt($(this).attr('doc-index'))] = $(this).val();
-		if(!crossref_busy){
-			crossref_busy = true;
+	$('.field[field-name="title"]').on({
+		input: function(){
+			last_cr_query[parseInt($(this).attr('doc-index'))] = $(this).val();
+			if(!crossref_busy){
+				crossref_busy = true;
 
-			openCrossref($(this).attr('doc-index'));
-			var $this = $(this)
-			crossref_timeout = setTimeout(function(){
-				if($this.val() == ''){
-					crossref_busy = false;
+				openCrossref($(this).attr('doc-index'));
+				var $this = $(this)
+				crossref_timeout = setTimeout(function(){
+					if($this.val() == ''){
+						crossref_busy = false;
+					}
+					else{
+
+						crossref_query($this.val(), $this.attr('doc-index'));
+					}
+				}, 500);
+			}
+		},
+		change: function(){
+			/* Se activa el escucha al input del titulo para comprobar si hay documentos duplicados */
+			var $this = $(this);
+			$.ajax({
+				url: check_title_url + '?title=' + encodeURIComponent($(this).val()),
+				type: 'GET',
+			}).done(function(response){
+				console.log('response', response)
+				if(!response['error']){
+					console.log('no hubo error');
+					if(response['exists']){
+					console.log($this);
+						$this.addClass('duplicate');
+						$('div.duplicate[doc-index="' + $this.attr('doc-index') + '"]').removeClass('hidden');
+					}
+					else{
+						$this.removeClass('duplicate');
+						$('div.duplicate[doc-index="' + $this.attr('doc-index') + '"]').addClass('hidden');
+					}
 				}
 				else{
-
-					crossref_query($this.val(), $this.attr('doc-index'));
+					console.log('Check_title_error', response['message'])
 				}
-			}, 500);
+			}).error(function(xhr, status, error){
+				console.log('Check_title' + status, 'Error al recibir informacion de documentos duplicados');
+			});
 		}
 	});
 
 	//Al hacer click sobre el campo de texto, si hay textos de sugerencia, se muestran.
 	$('.field[field-name="title"]').focus(function(e){
 		var cr = $(this).siblings('.crossref');
-		if(cr.find('.records.list').find('li').length > 0)
+		if(cr.find('.records.list').find('li').length >= 0)
 			openCrossref($(this).attr('doc-index'));
 	});
 	
@@ -69,6 +98,7 @@ function crossref_query(query, doc_id, open = true){
 	// Se muestra el icono que gira y se remueve el check
 	$('.fa-check[doc-index="' + doc_id +'"]').addClass('hidden');
 	$('.loader[doc-index="' + doc_id +'"]').removeClass('hidden');
+	console.log(doc_id, query);
 
 	$.ajax({
 		url: crossref_link.replace('999', query.trim()),
@@ -93,6 +123,7 @@ function crossref_query(query, doc_id, open = true){
 				$('.field[name="doi' + index + '"]').val($(this).attr('doi'));
 				$('.field[name="url' + index + '"]').val($(this).attr('url'));
 				$('.field[name="pages' + index + '"]').val($(this).attr('pages'));
+				$('.field[name="title' + index + '"]').trigger('change')
 				closeCrossref(index);
 			});
 			// Se meuestra el icono check

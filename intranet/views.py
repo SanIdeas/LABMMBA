@@ -289,11 +289,6 @@ def upload(request):
 					if request.FILES['document'+id].size/1000 > 30720:
 						return JsonResponse({'error': True, 'message': _(u'El archivo %(name)s no debe superar los 2 Mb') % {'name': request.FILES['document'+id].name}})
 
-					# Si el documento ya existe, se muestra un mensaje de error
-					if Document.objects.filter(title=request.POST['title'+id], author=request.POST['author'+id]).exists():
-						message = _(u'El documento <span style="text-transform: uppercase; font-size:14px"> %(title)s </span> del autor <span style="text-transform: uppercase; font-size:14px"> %(author)s </span> ya existe.') % {'title': request.POST['title'+id], 'author': request.POST['author'+id]}
-						return JsonResponse({'error': True, 'message': message})
-
 					# Se almacenan los datos
 					fields = {
 						'title': request.POST.get('title'+id),
@@ -399,7 +394,11 @@ def document(request, title=None, author=None):
 		except Document.DoesNotExist:
 			document = None
 		if document is not None:
-			return render(request, 'intranet/document_information.html', {'intranet': Section.objects.get(slug='intranet'), 'document': document})
+			return render(request, 'intranet/document_information.html', {
+				'intranet': Section.objects.get(slug='intranet'),
+				'document': document,
+				'versions': Document.objects.filter(title=document.title).exclude(id=document.id)
+				})
 		else:
 			return HttpResponseRedirect(reverse('intranet:documents'))
 	elif request.user.is_authenticated() and request.user.is_admin:
@@ -662,3 +661,12 @@ def forum_remove_comment(request):
 		return HttpResponseRedirect(reverse('intranet:forum', kwargs={'title': slug}))
 		
 	return HttpResponseRedirect(reverse('login'))
+
+def check_title(request):
+	if request.user.is_authenticated() and not request.user.is_admin and request.GET.get('title'):
+		document = Document.objects.filter(title=request.GET.get('title'))
+		if document:
+			return JsonResponse({'error': False, 'exists': True})
+		return JsonResponse({'error': False, 'exists': False})
+	return JsonResponse({'error': True, 'message': _(u'Debes iniciar sesión')})
+	

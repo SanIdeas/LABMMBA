@@ -106,16 +106,21 @@ function getMeta(key_count, file){
 function addDocument(key_count, filename, object){
 	var code = form_template;
 	/* Se reemplazan las etiquetas por los Metadatos extraidos */
+	var title = object['Title'] ? object['Title']:''
+	if (title == '' || title == null){
+		title = filename;
+	}
+	console.log('title', title);
 	code = code
 		.replace(/\$index/g, key_count)
 		.replace(/\$filename/g, filename)
-		.replace(/\$title/g, object['Title'] ? object['Title']:'')
+		.replace(/\$title/g, title)
 		.replace(/\$author/g, object['Author'] ? object['Author']:'')
 		.replace(/\$date/g, object['CreationDate'] ? (object['CreationDate'].substr(8, 2) + '-' + object['CreationDate'].substr(6, 2) + '-' + object['CreationDate'].substr(2, 4) ):'');
 	/* Se agrega al frontend */
 	$('#form').append(code);
 	/* Se realiza la primera consulta a crossref */
-	crossref_query(object['Title'] ? object['Title']:'', key_count, false);
+	crossref_query(title, key_count, false);
 
 	/* Se evita la accion del boton Enter */
 	$('#form').off();
@@ -124,7 +129,7 @@ function addDocument(key_count, filename, object){
 		  event.preventDefault();
 		  return false;
 		}
-	});
+	});		
 
 	/* Se configura la accion del boton Cruz */
 	$('.upload.delete').off();
@@ -138,6 +143,7 @@ function addDocument(key_count, filename, object){
 
 	// Se activa crossref
 	enableCrossref("class");
+	$('input.field.text[field-name="title"][doc-index="' + key_count + '"]').trigger('change');
 
 }
 
