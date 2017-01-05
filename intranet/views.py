@@ -309,6 +309,9 @@ def upload(request):
 					files = {
 							'document': request.FILES.get('document'+id)
 						}
+
+					print fields
+					print files
 					form = DocumentForm(fields, files)
 					print form.errors
 					if form.is_valid():
