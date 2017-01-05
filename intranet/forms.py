@@ -8,6 +8,7 @@ class DocumentForm(forms.ModelForm):
 	author = forms.CharField(required=False)
 	title_slug = forms.CharField(required=False)
 	author_slug = forms.CharField(required=False)
+	original_filename = forms.CharField(required=False)
 	category = forms.ModelChoiceField(queryset=SubArea.objects.all(), required=False)
 	abstract = forms.CharField(required=False)
 	content = forms.CharField(required=False)
@@ -20,6 +21,7 @@ class DocumentForm(forms.ModelForm):
 	doi = forms.CharField(required=False)
 	pages = forms.CharField(required=False)
 	is_public = forms.BooleanField(required=False)
+	version = forms.IntegerField(required=False)
 
 	class Meta:
 		model = Document

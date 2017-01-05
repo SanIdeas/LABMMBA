@@ -57,7 +57,7 @@
 							 	<div class="evento">
 							        <a class="clear closed" href="{% url 'intranet:document' document.author_slug document.title_slug %}">
 							            <span class="date">{{ document.date|date:"Y" }} · {{ document.author }}</span>
-							            <h4>{{ document.title }}</h4>
+							            <h4>{{ document.title }} <span class="version noselect">v{{document.version}}.0</span></h4>
 							            <span class="icon arrow"></span>
 							        </a>
 						        </div>
@@ -199,7 +199,7 @@
 					 <div class="evento">
 				        <a class="clear closed" href="{% url 'intranet:document' document.author_slug document.title_slug %}">
 				            <span class="date text-result">{{ document.date|date:"Y" }} · {{ document.author }}</span>
-				            <h4 class='text-result'>{{ document.title }}</h4>
+				            <h4 class='text-result'>{{ document.title }} <span class="version noselect">v{{document.version}}.0</span></h4>
 				            {% if document.extract|length > 0 %}
 				            		<div class="extract trans">
 										<p class="text-result">{{ document.extract }}</p>

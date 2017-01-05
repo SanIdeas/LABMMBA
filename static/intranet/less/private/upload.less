@@ -768,3 +768,23 @@
 	    display: inline-block;
 	}
 }
+
+div.duplicate{
+	position: absolute;
+    top: 0;
+    right: -6px;
+    height: 100%;
+    width: 25px;
+    & span{
+    	top: 0;
+	    right: 0;
+	    left: 0;
+	    position: absolute;
+	    bottom: 0;
+	    margin: auto;
+	    display: table;
+    }
+	&.hidden{
+		display: none;
+	}
+}

@@ -20,7 +20,6 @@
 										<!--  Cabecera del cuadro -->
 										<i class="upload fa fa-check" doc-index="$index" aria-hidden="true"></i>
 										<i class="upload loader fa fa-circle-o-notch fa-spin fa-3x fa-fw" doc-index="$index"></i>
-										<button doc-index="$index"><i class="fa fa-times" aria-hidden="true"></i></button>
 									</div>
 									<div class="upload records list">
 										<ul class="upload records root" doc-index="$index">
@@ -30,7 +29,13 @@
 								</div>
 							</div>
 						</div>
-
+						<!-- duplicate indicator -->
+						<div class="duplicate hidden" doc-index="$index">
+							<span class="fa-stack fa-lg help tooltip duplicate" title="{% trans 'Ya existen documentos con este título. De igual forma, se creará una nueva versión del documento.' %}">
+								<i class="fa fa-circle fa-stack-2x"></i>
+								<i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
+							</span>					
+						</div>
 					</div>
 				</div>
 				<div class="c12 upload file field">
@@ -116,3 +121,11 @@
 		</div>
 	</div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.tooltip').tooltipster({
+        	theme: 'tooltipster-light',
+        	side: 'top'
+        });
+    });
+</script>

@@ -80,16 +80,16 @@ body {
   height: 100%;
 }
 .bar > div.red {
-  background-color: #e0424e;
+  background-color: #E0424E;
 }
 .bar > div.green {
   background-color: #009065;
 }
 .bar > div.blue {
-  background-color: #006e9c;
+  background-color: #006E9C;
 }
 .bar > div.yellow {
-  background-color: #f2ae47;
+  background-color: #F2AE47;
 }
 #content {
   height: 100%;
@@ -185,7 +185,7 @@ body {
   font-size: 10pt;
 }
 .intranet.box.border.bottom {
-  border-bottom-color: #f2ae47;
+  border-bottom-color: #F2AE47;
 }
 .intranet.box > h4 {
   margin: 0;
@@ -347,7 +347,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #f2ae47;
+  text-shadow: 3px 0px 40px #F2AE47;
 }
 .intranet.box .counter span {
   text-shadow: 3px 0px 40px #c57c0e;
@@ -424,7 +424,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e0424e;
+  text-shadow: 3px 0px 40px #E0424E;
 }
 .intranet.box .pdf span {
   text-shadow: 3px 0px 40px #a21a25;
@@ -443,7 +443,7 @@ body {
   font: normal normal normal 123px FontAwesome;
 }
 .intranet.box .pdf:hover {
-  background-color: #e0424e;
+  background-color: #E0424E;
 }
 .intranet.box .google-drive {
   position: relative;
@@ -566,7 +566,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #006e9c;
+  text-shadow: 3px 0px 40px #006E9C;
 }
 .intranet.box .myfiles span {
   text-shadow: 3px 0px 40px #002636;
@@ -585,7 +585,7 @@ body {
   font: normal normal normal 123px FontAwesome;
 }
 .intranet.box .myfiles:hover {
-  background-color: #006e9c;
+  background-color: #006E9C;
 }
 .intranet.box .warning {
   position: relative;
@@ -776,7 +776,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #006e9c;
+  text-shadow: 3px 0px 40px #006E9C;
 }
 .intranet.box .bookmark span {
   text-shadow: 3px 0px 40px #002636;
@@ -851,7 +851,7 @@ body {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #ee5548;
+  text-shadow: 3px 0px 40px #EE5548;
 }
 .intranet.box .write span {
   text-shadow: 3px 0px 40px #be1f12;
@@ -1057,51 +1057,17 @@ body {
 .help {
   font-size: 9pt !important;
 }
-.help span {
-  z-index: 99;
-  position: absolute;
-  width: 1000px;
-  max-width: 300px;
-  padding: 2px 10px;
-  margin: 0;
-  font-size: 9pt;
-  line-height: 9pt;
-  border-radius: 3px;
-  border: 1px solid #eceded;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  color: #777;
-  background-color: #fafbfc;
+.help.tooltip.approved .fa-circle {
+  color: #009065;
 }
-.help span:before {
-  content: "";
-  height: 0px;
-  width: 0px;
-  position: absolute;
-  display: block;
+.help.tooltip.pending .fa-circle {
+  color: #006E9C;
 }
-.help.right span {
-  left: 100%;
-  top: 2px;
-  margin-left: 10px;
+.help.tooltip.duplicate .fa-circle {
+  color: #F2AE47;
 }
-.help.right span:before {
-  left: -8px;
-  top: 4px;
-  border-right: 8px solid #eceded;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-}
-.help.bottom span {
-  left: 100%;
-  top: 2px;
-  margin-left: 10px;
-}
-.help.bottom span:before {
-  left: -8px;
-  top: 4px;
-  border-right: 8px solid #eceded;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
+input.duplicate {
+  border-color: #F2AE47 !important;
 }
 input[readonly].date {
   opacity: 1 !important;
@@ -1289,6 +1255,10 @@ input[readonly].date {
   font-style: normal;
   font-weight: bold;
 }
+.evento .version {
+  font-style: italic;
+  font-weight: normal;
+}
 .eventos > .intranet.box > div > div:last-child {
   border: none !important;
 }
@@ -1333,6 +1303,10 @@ form .c12 {
 .document.head select {
   max-width: 100%;
   width: inherit !important;
+}
+.document.head .version {
+  font-style: italic;
+  font-weight: normal;
 }
 .document.download {
   position: relative;
@@ -1384,7 +1358,7 @@ form .c12 {
   font-size: 20pt;
   color: white;
   z-index: 99;
-  text-shadow: 3px 0px 40px #e0424e;
+  text-shadow: 3px 0px 40px #E0424E;
 }
 .document.download span {
   text-shadow: 3px 0px 40px #a21a25;
@@ -1419,7 +1393,7 @@ form .c12 {
   }
 }
 .document.download:hover {
-  background-color: #e0424e;
+  background-color: #E0424E;
 }
 .document.download a {
   color: inherit;
@@ -1688,7 +1662,7 @@ form .c12 {
     background-color: transparent;
   }
   100% {
-    background-color: #006e9c;
+    background-color: #006E9C;
   }
 }
 .upload {
@@ -1926,7 +1900,7 @@ form .c12 {
 }
 .upload.files .file .field .crossref .records.list li {
   padding: 10px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -1937,7 +1911,7 @@ form .c12 {
   width: 100%;
 }
 .upload.files .file .field .crossref .records.list li:hover {
-  background-color: #eeeeee;
+  background-color: #eee;
 }
 .upload.hidden {
   height: 0px;
@@ -1951,7 +1925,7 @@ form .c12 {
   visibility: visible;
 }
 .upload.hover:hover {
-  background-color: #eeeeee;
+  background-color: #eee;
 }
 .upload.animation.exit.up {
   animation-name: exit_up;
@@ -2012,7 +1986,7 @@ form .c12 {
   padding: 5px 0px 5px 30px;
   height: 36px;
   position: relative;
-  background-color: #eeeeee;
+  background-color: #eee;
   transition: background-color 0.3s ease;
 }
 .upload.drive.breadcrumbs .crumbs button:hover {
@@ -2035,7 +2009,7 @@ form .c12 {
 .upload.drive.breadcrumbs .crumbs button:after {
   content: " ";
   border: solid transparent;
-  border-left-color: #eeeeee;
+  border-left-color: #eee;
   height: 0px;
   position: absolute;
   border-width: 18px;
@@ -2085,7 +2059,7 @@ form .c12 {
 .upload.drive.table th {
   background-color: #fafafa !important;
   border: none;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
   font-weight: normal;
 }
 .upload.drive.table td {
@@ -2093,7 +2067,7 @@ form .c12 {
   margin: 0px;
   padding: 10px;
   border: none;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
   background-color: transparent;
 }
 .upload.drive.table td > .fa {
@@ -2139,15 +2113,15 @@ form .c12 {
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .upload.drive.loading > div .blue {
-  background-color: #006e9c;
+  background-color: #006E9C;
   animation-name: loading_blue;
 }
 .upload.drive.loading > div .red {
-  background-color: #e0424e;
+  background-color: #E0424E;
   animation-name: loading_red;
 }
 .upload.drive.loading > div .yellow {
-  background-color: #f2ae47;
+  background-color: #F2AE47;
   animation-name: loading_yellow;
 }
 .upload.drive.loading > div .green {
@@ -2210,6 +2184,25 @@ form .c12 {
   transform: rotate(-16deg);
   position: relative;
   display: inline-block;
+}
+div.duplicate {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  height: 100%;
+  width: 25px;
+}
+div.duplicate span {
+  top: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  display: table;
+}
+div.duplicate.hidden {
+  display: none;
 }
 /******CHECK ANIMATION*******/
 #success-icon > h4 {
@@ -2607,7 +2600,7 @@ form .c12 {
 }
 .profile.info .documents .options > div:nth-child(1) button,
 .profile.info .documents .options > div:nth-child(1) a {
-  background-color: #e0424e;
+  background-color: #E0424E;
 }
 .profile.info .documents .options > div:nth-child(1) button i,
 .profile.info .documents .options > div:nth-child(1) a i {
@@ -2618,7 +2611,7 @@ form .c12 {
 }
 .profile.info .documents .options > div:nth-child(2) button,
 .profile.info .documents .options > div:nth-child(2) a {
-  background-color: #f2ae47;
+  background-color: #F2AE47;
 }
 .profile.info .documents .options > div:nth-child(2) button i,
 .profile.info .documents .options > div:nth-child(2) a i {
@@ -2648,7 +2641,7 @@ form .c12 {
 }
 .profile.field h5 {
   position: absolute;
-  color: #e0424e;
+  color: #E0424E;
   margin: 0;
   font-weight: normal;
 }
@@ -2708,7 +2701,7 @@ form .c12 {
   transition: background-color 0.3s ease;
 }
 .profile.cropper > .editor .header #changeImage {
-  background-color: #006e9c;
+  background-color: #006E9C;
 }
 .profile.cropper > .editor .header #changeImage:hover {
   background-color: #0092cf;
@@ -2825,13 +2818,13 @@ form .c12 {
   font-size: 107pt;
   opacity: 0.1;
   right: 0;
-  color: #e0424e;
+  color: #E0424E;
 }
 .users.box h4 {
   text-align: center;
 }
 .news .separator {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
   width: 80%;
   margin: 20px auto;
 }
@@ -2857,7 +2850,7 @@ form .c12 {
   position: relative;
   display: table;
   padding: 10px 0px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
 }
 .news .list .item * {
   float: none;
@@ -2888,17 +2881,11 @@ form .c12 {
   display: block;
   font-style: 9pt;
 }
-.news .list .item .details .tooltip.approved .fa-circle {
-  color: #009065;
-}
-.news .list .item .details .tooltip.pending .fa-circle {
-  color: #006e9c;
-}
 .news .list .item .details .unseen {
   display: block;
   padding-top: 20px;
   outline: none;
-  color: #f2ae47;
+  color: #F2AE47;
 }
 .news .list .item .buttons {
   display: table-cell;
@@ -3001,7 +2988,7 @@ form .c12 {
   color: white;
 }
 .news .cropper .editor .buttons #changeImage {
-  background-color: #006e9c;
+  background-color: #006E9C;
 }
 .news .cropper .editor .buttons #changeImage:hover {
   background-color: #0092cf;
@@ -3337,7 +3324,7 @@ form.forum div.submit input[disabled] {
 }
 /* makes the font 33% larger relative to the icon container */
 .fa-lg {
-  font-size: 1.3333333333333333em;
+  font-size: 1.33333333em;
   line-height: 0.75em;
   vertical-align: -15%;
 }
@@ -3354,12 +3341,12 @@ form.forum div.submit input[disabled] {
   font-size: 5em;
 }
 .fa-fw {
-  width: 1.2857142857142858em;
+  width: 1.28571429em;
   text-align: center;
 }
 .fa-ul {
   padding-left: 0;
-  margin-left: 2.142857142857143em;
+  margin-left: 2.14285714em;
   list-style-type: none;
 }
 .fa-ul > li {
@@ -3367,17 +3354,17 @@ form.forum div.submit input[disabled] {
 }
 .fa-li {
   position: absolute;
-  left: -2.142857142857143em;
-  width: 2.142857142857143em;
-  top: 0.14285714285714285em;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
   text-align: center;
 }
 .fa-li.fa-lg {
-  left: -1.8571428571428572em;
+  left: -1.85714286em;
 }
 .fa-border {
   padding: .2em .25em .15em;
-  border: solid 0.08em #eeeeee;
+  border: solid 0.08em #eee;
   border-radius: .1em;
 }
 .fa-pull-left {
@@ -3492,7 +3479,7 @@ form.forum div.submit input[disabled] {
   font-size: 2em;
 }
 .fa-inverse {
-  color: #ffffff;
+  color: #fff;
 }
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */

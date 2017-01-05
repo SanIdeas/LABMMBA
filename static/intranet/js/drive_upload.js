@@ -235,8 +235,8 @@ function filesHandler(object, bcId){
 				removeFromSelected($(this).attr('id'));
 			}
 			else{
-				// Si el tamaño es mayor a 2 megabytes, no se permite la seleccion
-				if(parseInt($(this).attr('size')) > 2097152){
+				// Si el tamaño es mayor a 30 megabytes, no se permite la seleccion
+				if(parseInt($(this).attr('size')) > 31457280){
 					$(this).children('.size').css('background-color', '#f7cacd');
 					var $this = $(this);
 					setTimeout(function(){
@@ -509,6 +509,8 @@ function handleDocuments(documents){
 	// Se activa crossref
 	enableCrossref();
 	addElement('.upload.files');
+
+	$('input.field.text[field-name="title"]').trigger('change');
 }
 
 
@@ -516,17 +518,21 @@ function handleDocuments(documents){
 function addDocument(document){
 	var code = form_template;
 	/* Se reemplazan las etiquetas por los Metadatos extraidos */
+	var title = document['title'] ? document['title']:''
+	if (title == '' || title == null){
+		title = document['original_filename'];
+	}
 	code = code
 		.replace(/\$index/g, document['id'])
-		.replace(/\$title/g, document['title'] ? document['title']:'')
+		.replace(/\$title/g, title)
 		.replace(/\$author/g, document['author'] ? document['author']:'')
 		.replace(/\$thumbnail/g, document['thumbnail'] ? static_link.replace('999', document['thumbnail']):'')
 		.replace(/\$date/g, document['date'] ? document['date']:'');
 	/* Se agrega al frontend */
 	$('#form').append(code);
 	/* Se realiza la primera consulta a crossref */
-	last_cr_query[document['id']] = document['title'];
-	crossref_query(document['title'] ? document['title']:'', document['id']);
+	last_cr_query[document['id']] = title;
+	crossref_query(title, document['id']);
 
 	
 }

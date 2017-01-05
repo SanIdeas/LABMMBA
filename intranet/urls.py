@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^users/', views.users, name='users'),
     url(r'^upload/extract/$', views.extract_content_and_keywords, name='extract_content'),
     url(r'^upload/$', views.upload, name='upload'),
+    url(r'^upload/check/$', views.check_title, name='check_title'),
     url(r'^upload/local/$', views.upload_local, name="local_upload"),
     url(r'^upload/drive/$', views.upload_drive, name="drive_upload"),
     url(r'^upload/form/local/$', views.local_form, name='local_form'),

@@ -80,6 +80,7 @@
 	var spinner_link = "{% static 'intranet/images/ring.svg' %}"
 	var extract_link = "{% url 'intranet:extract_content' %}"
 	var folder_files_link = "{% url 'folder_files' '999' %}"
+	var check_title_url = "{% url 'intranet:check_title' %}"
 	var csrf_token = '{{csrf_token}}';
 	{% if request.user.drive_credentials == None %}
 		var google_status = false;

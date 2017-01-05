@@ -73,10 +73,11 @@ def date(date):
 class Document(models.Model):
 	document = models.FileField(upload_to='uploads/documents/', max_length=500)
 	category = models.ForeignKey(SubArea, on_delete=models.SET_NULL, null=True)
-	title = models.CharField(max_length=300, null=True)
-	title_slug = models.SlugField(max_length=300, null=True)
-	author = models.CharField(max_length=300, null=True)
-	author_slug = models.SlugField(max_length=300, null=True)
+	title = models.CharField(max_length=500, null=True)
+	title_slug = models.SlugField(max_length=500, null=True)
+	author = models.CharField(max_length=500, null=True)
+	author_slug = models.SlugField(max_length=500, null=True)
+	original_filename = models.CharField(max_length=500, null=True)
 	date = models.DateField(null=True)
 	content = models.TextField(null=True)
 	abstract = models.CharField(max_length=1000, null=True)
@@ -91,10 +92,24 @@ class Document(models.Model):
 	is_available = models.BooleanField(default=False)
 	first_save_flag = models.BooleanField(default=False)
 	is_public = models.BooleanField(default=False)
+	version = models.IntegerField(default=1)
 
 	def save(self, *args, **kwargs):
-		if self.title:
-			self.title_slug = slugify(self.title)
+		if self.title:	
+			slug = slugify(self.title)
+			forum = Document.objects.filter(title=self.title).exclude(id=self.id)
+			count = 0
+			# Si existe una noticia con el mismo nombre
+			# Se agrega un numero al final del slug
+			if forum:
+				while True:
+					count += 1
+					slug_temp = slug + '-' + str(count)
+					if not Document.objects.filter(title_slug=slug_temp).exclude(id=self.id):
+						break
+				slug += '-' + str(count)
+			self.version = count + 1
+			self.title_slug = slug
 		if self.author:
 			self.author_slug = slugify(self.author)
 
@@ -124,13 +139,19 @@ class Document(models.Model):
 				print "-------------Funciona"
 				try:
 					day, month, year = date(meta['/CreationDate'])
-					self.title = meta['/Title'] if '/Title' in meta and meta['/Title']  else 'Titulo temporal' + str(datetime.datetime.now())
-					self.author = meta['/Author'] if  '/Author' in meta else owner.first_name + ' ' + owner.last_name
-					self.abstract = meta['/Subject'] if  '/Subject' in meta else None
-					self.words = meta['/Keywords'].replace('; ', ',') if  '/Keywords' in meta else None
+					print '/Title' in meta
+					self.title = meta['/Title'].encode('utf-8') if '/Title' in meta and meta['/Title'] is not None  else (self.original_filename if self.original_filename != '' and self.original_filename is not None else 'Titulo temporal ' + str(datetime.datetime.now()))
+					print 'primer autor ---', meta['/Author']
+					self.author = meta['/Author'].encode('utf-8') if  '/Author' in meta else owner.first_name + ' ' + owner.last_name
+					print 'primer abstract ---', meta['/Subject']
+					self.abstract = meta['/Subject'].encode('utf-8') if  '/Subject' in meta else None
+					print 'primer words ---', meta['/Keywords']
+					self.words = meta['/Keywords'].replace('; ', ',').encode('utf-8') if  '/Keywords' in meta else None
 					self.date = year + '-' + month + '-' + day if '/CreationDate' in meta else '2000-01-01'
-				except:
-					self.title = 'Titulo temporal ' + str(datetime.datetime.now())
+					print 'segundo titulo --- ', self.title
+				except Exception as error:
+					print 'error --- ',error
+					self.title = self.original_filename if self.original_filename != '' and self.original_filename is not None else 'Titulo temporal ' + str(datetime.datetime.now())
 					self.date = '2000-01-01'
 			# Si no es de Google Drive, se declara disponible inmediatamente, ya que el usuario ya comprobo los datos
 			else:
